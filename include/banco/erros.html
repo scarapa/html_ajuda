@@ -1,0 +1,32 @@
+﻿<h2><i class="fa fa-times-circle"></i> ERROS</h2>
+
+<h3>SQLSERVER - ERRO: Heterogeneous queries</h3>			
+Quando aparecer essa mensagem de erro: <br/><br/>
+<code><span style="font-style:italic;">Heterogeneous queries require the ANSI_NULLS and ANSI_WARNINGS options to be set for the connection. 
+This ensures consistent query semantics. Enable these options and then reissue your query.</span></code><br/><br/>
+Isso acontence as vezes por conta de que você esteja executando uma consulta em um servidor vinculado que não é uma caixa do SQL Server, 
+então é mais do que provável que você precise ativar esses dois recursos para padronizar a maneira como determinados operadores de comparação são manipulados em Diferentes bases de dados.
+Solução:
+<pre><code>mssql_query("SET ANSI_NULLS ON ; SET ANSI_WARNINGS ON ;");</code></pre>
+<a href="https://stackoverflow.com/questions/13354665/sql-linked-server-query-error-on-php">Fonte</a>
+
+
+<h3>SQLSERVER - ERRO: erro na consulta de string com acentuação</h3>			
+Quando aparecer essa mensagem de erro: <br/><br/>
+<pre><code>WHERE (p.nm_produtor COLLATE sql_latin1_general_cp1251_ci_as) LIKE ('álvaro%' COLLATE sql_latin1_general_cp1251_ci_as)</code></pre>
+<a href="http://www.devmedia.com.br/eliminando-caracteres-especiais-de-strings-no-sql-server-collate/25286">Fonte 1</a>		
+
+
+<h3>SQLSERVER - ERRO NO INSERT</h3>			
+Quando aparecer essa mensagem de erro: <br/><br/>
+<code><span style="font-style:italic;">Cannot insert explicit value for identity column in table 'NOME_SUA_TABELA' when IDENTITY_INSERT is set to OFF.</span></code><br/><br/>
+Isso acontece porque na sua tabela existe o relacionamento de ser chave estrangeira em outra tabela, mas é possível FORÇAR  o insert.<br/>
+Solução:
+<pre><code>mssql_query("SET IDENTITY_INSERT tblCad_Etapas ON;");</code></pre>
+
+<h3>SQLSERVER - ERRO AO TENTAR CRIAR FK - CHAVE ESTRANGEIRA</h3>
+<code><span style="font-style:italic;">SQLSERVER Msg 547, Level 16, State 0, Line 2 The ALTER TABLE statement conflicted with the FOREIGN KEY constraint ...</span></code><br/><br/>
+Isso acontece porque não se pode construir a integridade das chaves já populado.<br/>
+Solução: limpar a base e dar comando de construção, exemplo abaixo:
+<pre><code>ALTER TABLE PEDIDOS ADD CONSTRAINT FK_COD_CLI FOREIGN KEY (COD_CLI) REFERENCES CLIENTES(COD);</code></pre>
+<a href="http://www.devmedia.com.br/criando-banco-e-tabelas-garantindo-a-integridade-dos-dados/24426">DEVMEDIA</a>

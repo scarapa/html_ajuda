@@ -1,0 +1,29 @@
+{
+  "produtos": [
+    {
+      "id": "1",
+      "nome": "Refri - Coca Cola 600ml"
+    },{
+      "id": "2",
+      "nome": "Refri - Sprite 2L"
+    },{
+      "id": "3",
+      "nome": "Halls"
+    },{
+      "id": "4",
+      "nome": "Pao Frances"
+    },{
+      "id": "5",
+      "nome": "Queijo Mussarela"
+    },{
+      "id": "6",
+      "nome": "Tang - Refresco em Pó"
+    },{
+      "id": "7",
+      "nome": "Fruta - Bergamota"
+    },{
+      "id": "8",
+      "nome": "Fruta - Morango"
+    }
+  ]
+}

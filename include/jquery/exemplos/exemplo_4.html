@@ -1,0 +1,175 @@
+<h2><i class="fa fa-code fa-fw"></i> EXEMPLO 4</h2>
+
+<h3>SIMULANDO COMPRA</h3>
+
+<div class="col-lg-4">
+	<div class="form-group">
+		<label class="control-label">Produto<span class="required">*</span></label>
+		<input type="text" id="test2" style="display:none"/>	
+		<input type="hidden" id="test"/>
+		<button class="btn btn-success btn-circle" type="button">
+			<i class="fa fa-refresh fw"></i>
+		</button>	
+		
+	</div>		
+
+</div>
+
+<div class="col-lg-2 col-md-2 col-xs-4">
+	<div class="form-group">
+		<label class="control-label">Valor<span class="required">*</span></label>
+		<div class="input-group">
+			<span class="input-group-addon hidden-xs"><i class="fa fa-dollar hidden-xs"></i></span>
+			<input name="valor" id="valor" class="form-control numeroSomentePonto calcular" autocomplete="off" type="text">
+		</div>
+	</div>
+</div>
+    
+<div class="col-md-2 col-xs-4">
+	<div class="form-group">
+		<label class="control-label">Quantidade<span class="required">*</span></label>
+		<div class="input-group">
+			<span class="input-group-addon hidden-xs"><i class="fa fa-list hidden-xs"></i></span>
+			<input name="quantidade" id="quantidade" class="form-control soNumero calcular" autocomplete="off" type="text">
+		</div>
+	</div>
+</div>
+
+<div class="col-md-2 col-xs-4">
+	<div class="form-group">
+		<label class="control-label">SubTotal</label>
+		<div class="input-group">
+			<span class="input-group-addon hidden-xs"><i class="fa fa-dollar hidden-xs"></i></span>
+			<input id="subTotal" class="form-control dinheiro" disabled="" type="text">
+		</div>
+	</div>
+</div>
+
+<div class="col-md-1 col-xs-12">
+	<label class="control-label"><span class="required" style="color:#fff">.</span></label>
+	<div class="form-group">
+		<button class="btn btn-success" id="botaoAdicionarItem"><i class="fa fa-plus"></i> ADD</button>
+	</div>
+</div>
+
+<!-- LISTA DE PRODUTOS -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="table-responsive">
+                <table id="tabelaGrid" class="custom-grid table table-bordered table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th width="3%">
+                                <div id="totalItens"></div>
+                            </th>
+                            <th width="55%">Produto</th>
+                            <th width="15%">Valor Unitario</th>
+                            <th width="10%">Qnt</th>
+                            <th width="15%">SubTotal</th>                                        
+                            <th width="10%" class="esconder"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+   
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td style="font-weight:bold;text-align: right">TOTAL</td>
+                            <td colspan="2">
+								R$ <input type="text" name="total" id="total" value ="" style="width:70%;border:0px;background: transparent" readonly="" disabled="true">
+							</td>
+                        </tr>                                      
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- LISTA DE PRODUTOS -->    
+
+<script>
+$(document).ready(function() {
+	$('#test').select2({
+		data: [{
+			id: 0,
+			text: "enhancement"
+		}, {
+			id: 1,
+			text: "bug"
+		}, {
+			id: 2,
+			text: "duplicate"
+		}, {
+			id: 3,
+			text: "invalid"
+		}, {
+			id: 4,
+			text: "wontfix"
+		}],
+		width: "280px"
+	}).one('select2-focus', select2Focus).on("select2-blur", function () {
+		$(this).one('select2-focus', select2Focus)
+	})
+
+	function select2Focus() {
+		var select2 = $(this).data('select2');
+		setTimeout(function() {
+			if (!select2.opened()) {
+				select2.open();
+			}
+		}, 0);
+	}
+	//$('#produto').select2();
+	
+
+	
+	$(".calcular").bind("keyup change", function(){
+		calcular();
+	});
+	
+	function calcular(){
+		var vl_valor = $("#valor").val();
+		var no_item = $("#quantidade").val();
+		if( (vl_valor != "") && (no_item != "")) {
+			var vl_subtotal = vl_valor * no_item;	
+			$("#subTotal").val(vl_subtotal);
+		}
+	}
+	
+	$( "#botaoAdicionarItem" ).click(function() {
+		inserirGrid();
+		limparCampos();
+		//$('#produto').select2('opening');
+		//$("input[class=select2-search__field]").focus()
+		$('#produto').select2('focus');
+	});
+	
+	function inserirGrid(){
+		var id_produto = $("#produto").val()
+		var ds_produto = $("#produto option:selected").text().toString();
+		var vl_valor = $("#valor").val();
+		var no_item = $("#quantidade").val();
+		var sub_total = vl_valor * no_item;
+		var html = "<tr><td></td><td>"+ds_produto+"</td><td>"+vl_valor+"</td><td>"+no_item+"</td><td>"+sub_total+"</td><td><i class='fa fa fa-times remover'></i></td></tr>";
+		$("#tabelaGrid tbody").append(html)
+	}
+	
+	function limparCampos(){
+		$('#produto').val(0).trigger('change.select2');
+		$("#valor").val('')
+		$("#quantidade").val('');
+		$("#subTotal").val('')
+	}
+	
+	$(document).on('click', '.remover', function(){
+		$(this).parent().parent().remove()
+	});	
+	
+});
+</script>	
+
+Fontes: <br/>
+https://select2.github.io/<br/>
+http://jsfiddle.net/mtLUp/292/

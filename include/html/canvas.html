@@ -1,0 +1,38 @@
+﻿<h1><i class="fa fa-edit"></i> CANVAS</h1>
+<h3>A grade</h3>
+<img id="imagem" src="../helper/images/canvas_grade.png" style="float:left;margin:5px 10px" />
+Antes que possamos começar a desenhar, precisamos falar sobre a grade de tela ou espaço de coordenadas. 
+O modelo HTML na pagina anterior tinha um elemento canvas de 150 pixels de largura e 150 pixels de altura. 
+A direita, você verá este canvas com a grade padrão sobreposta. Normalmente 1 unidade na grade corresponde a um pixel na tela. 
+A origem desta grade está pocisionada no canto superior esquerdo (coordenadas (0,0)). 
+Todos os elementos são colocados em relação a esta origem. 
+Assim, a posição do canto superior esquerdo do quadrado azul, se torna x pixels dos pixels da esquerda e y a partir do topo (coordenadas (x,y)). 
+Mais tarde nesse tutorial vamos ver como podemos traduzir a origem para uma posição diferente
+, girar a grade e até mesmo escaloná-la. Por enquanto vamos ficar com o padrão.
+
+<br clear="all">
+
+<h3>Desenhando retângulos</h3>
+Diferente do SVG , o &lt; canvas&gt; suporta somente formas primitivas: retângulos. 
+Todas as outras formas são criadas a partir da combinação de um ou mais caminhos (paths), 
+lista de pontos conectados por uma linha. Felizmente, temos uma variedade de funções de 
+desenho que tornam possíveis criar formas muito complexas.
+
+Primeiramente vamos olhar o retângulo. Aqui está listado três funções para desenhar retângulos pelo canvas:<br/>
+
+Desenha um retângulo preenchido.
+<pre><code>fillRect(x, y, width, height)</code></pre>
+
+Desenha a borda do retângulo.
+<pre><code>strokeRect(x, y, width, height)</code></pre>
+
+Limpa um retângulo específico, tornando-o totalmente transparente.
+<pre><code>clearRect(x, y, width, height)</code></pre>
+
+Cada umas das funções recebem os mesmos parâmetros. x e y determinam a posição no canvas (em relação a origem) no canto superior esquerdo do retângulo. O width (largura) e o height(altura) definem o tamanho do retângulo.
+
+<br clear="all">
+
+<a href="http://zetcode.com/gfx/html5canvas/shapes/" target="_blank">zetcode</a> |
+<a href="https://developer.mozilla.org/pt-BR/docs/Web/Guide/HTML/Canvas_tutorial/Utilizacao_basica" target="_blank">MDN</a> |
+<a href="https://css-tricks.com/examples/ShapesOfCSS/" target="_blank">css-tricks</a>

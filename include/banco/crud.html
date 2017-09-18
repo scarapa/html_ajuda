@@ -1,0 +1,186 @@
+﻿<h2><i class="glyphicon glyphicon-th"></i> CRUD - DML</h2>
+
+<kbd>DML</kbd> – Data Manipulation Language ( DML) são utilizados para o gerenciamento de dados dentro de objetos do banco. Alguns exemplos:
+<br><br>
+<div class="col-lg-8">
+	<div class="panel panel-default">
+		<div class="table-responsive">
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>SELECT</th>
+						<td>recuperar dados do banco de dados</td>
+					</tr>
+					<tr>
+						<th>INSERT</th>
+						<td>inserir dados em uma tabela</td>
+					</tr>
+					<tr>
+						<th>UPDATE</th>
+						<td>atualiza os dados existentes em uma tabela</td>
+					</tr>
+					<tr>
+						<th>DELETE</th>
+						<td>exclui registros de uma tabela,</td>
+					</tr>
+					<tr>
+						<th>CALL</th>
+						<td>chamar um subprograma PL / SQL</td>
+					</tr>
+					<tr>
+						<th>EXPLAIN PLAN</th>
+						<td>explicar o caminho de acesso aos dados</td>
+					</tr>
+					<tr>
+						<th>LOCK TABLE</th>
+						<td>controle de concorrência</td>
+					</tr>					
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>	
+<br clear="all">
+<a href="http://www.dellanio.com/diferenca-entre-comandos-ddl-dml-dcl-e-tcl/">Fonte</a>
+<br clear="all">
+
+<h3> SQLSERVER : CONCATENAR/AGRUPAR STRING</h3>	
+<div class="col-lg-3">
+	<div class="panel panel-default">
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>TURMA</th>
+						<th>MATRICULA</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>2499</td>
+						<td>38059</td>
+					</tr>
+					<tr>
+						<td>2499</td>
+						<td>48892</td>
+					</tr>
+					<tr>
+						<td>2499</td>
+						<td>57099</td>
+					</tr>
+					<tr>
+						<td>2499</td>
+						<td>39381</td>
+					</tr>		
+					<tr>
+						<td>2499</td>
+						<td>49583</td>
+					</tr>
+					
+					<tr>
+						<td>2498</td>
+						<td>38059</td>
+					</tr>
+					<tr>
+						<td>2498</td>
+						<td>48892</td>
+					</tr>		
+					<tr>
+						<td>2498</td>
+						<td>57099</td>
+					</tr>						
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>	
+
+
+Para agrupar valor no MYSQL é muito fácil, existe a função group_concat, entretanto no SQLSERVER é mais completo, sigamos com o exemplo ao lado.
+Iremos agrupar os alunos pela numero de turma.<br/>
+
+<br clear="all">
+<div class="col-lg-6">
+<pre><code>SELECT
+	e.turma
+	,STUFF(
+	(SELECT ', ' + cd_matricula
+FROM tblEmail b 
+WHERE b.turma = e.turma 
+	FOR XML PATH('')), 1, 2, '') AS 'cd_matricula'    
+FROM tblEmail e
+GROUP BY e.turma
+</code></pre>
+</div>
+<br clear="all">
+
+Resultado o SQL foi a tabela gerada abaixo:<br/>
+
+<div class="col-lg-3">
+	<div class="panel panel-default">
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>TURMA</th>
+						<th>MATRICULA</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>2499</td>
+						<td>38059 , 48892 , 57099 , 39381 , 49583</td>
+					</tr>
+					<tr>
+						<td>2498</td>
+						<td>38059 , 48892 , 57099</td>
+					</tr>
+					</tbody>
+			</table>
+		</div>
+	</div>
+</div>	
+
+<br clear="all">
+
+<h3> SQLSERVER : GERAR TABELA COM INDICE PARA REALIZAR PAGINACAO</h3>
+Existem duas variaveis como parametros na consulta: $indice_inicio e $indice_fim. <br/>
+Se você quiser trazer os 20 primeiros reguistros bastar setar $indice_inicio = 1 e a variavel $indice_fim = 20;<br/>
+Exemplos:<br/>
+PAGINA->1 ; INICIO->1 ; FIM->20<br/>
+PAGINA->2 ; INICIO->21 ; FIM->40<br/>
+PAGINA->3 ; INICIO->41 ; FIM->60<br/>...
+<pre><code>
+WITH paginacao AS
+(
+SELECT 
+	indice = ROW_NUMBER() OVER (ORDER BY chave_primaria) 
+	,c.*
+FROM NOME_TABELA c
+WHERE 1 = 1 
+)
+SELECT * FROM paginacao p 
+WHERE 1 = 1
+AND ( indice BETWEEN $indice_inicio AND $indice_fim )
+ORDER BY chave_primaria ASC 
+</code></pre>
+
+<h3>BETWEEN</h3>
+O operador BETWEEN seleciona valores dentro de um determinado intervalo. Os valores podem ser números, texto ou datas.
+<br/>
+O operador BETWEEN é inclusivo: os valores de início e final estão incluídos.
+<pre><code>SELECT * FROM table_name WHERE coluna <strong>BETWEEN</strong> valor1 AND valor2; </code></pre>
+<a href="https://www.w3schools.com/sql/sql_between.asp">w3schools</a>
+
+<h3>CASE</h3>
+<div class="col-lg-6">
+<pre><code>SELECT 
+   CASE 
+      WHEN MIN(value) <= 0 THEN 0 
+      WHEN MAX(1/value) >= 100 THEN 1 
+   END 
+FROM Data ;
+</code></pre>
+</div>
+<br clear="all">
+<a href="https://msdn.microsoft.com/pt-br/library/ms181765(v=sql.120).aspx">msdn.microsoft</a>

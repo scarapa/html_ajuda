@@ -1,0 +1,22 @@
+<h1><i class="fa fa-code fa-fw"></i> EXEMPLO 2</h1>
+<h2>VALIDANDO SOMENTE NUMEROS NO COMPONENTE</h2>
+<div class="col-lg-4"></div>
+<div class="col-lg-4">	
+	<div class="form-group input-group">
+		<input type="text" class="form-control" id="numero">
+		<span class="input-group-btn">
+			<button type="button" class="btn btn-default"><i class="fa fa-search"></i></button>
+		</span>
+	</div>
+</div>		
+<div class="col-lg-4"></div>	
+
+
+<script>
+$(document).ready(function() {
+	$("#numero").bind("keyup", function(){
+		//REGEX APENAS NUMEROS
+		$(this).val( $(this).val().replace(/[^0-9 ]+$/,'') )
+	});
+});
+</script>	

@@ -1,0 +1,60 @@
+﻿<style type="text/css">
+canvas{border:1px dashed gray;}
+</style>
+<h1><i class="fa fa-code fa-fw"></i> RETANGULOS</h1>
+
+Diferente do SVG , o &lt; canvas&gt; suporta somente formas primitivas: retângulos. 
+Todas as outras formas são criadas a partir da combinação de um ou mais caminhos (paths), 
+lista de pontos conectados por uma linha. Felizmente, temos uma variedade de funções de 
+desenho que tornam possíveis criar formas muito complexas.
+
+Primeiramente vamos olhar o retângulo. Aqui está listado três funções para desenhar retângulos pelo canvas:<br/>
+<canvas id="myCanvas"></canvas>
+
+<pre><code>function draw(){
+	var canvas = document.getElementById('myCanvas');
+	var ctx = canvas.getContext('2d');
+
+	ctx.fillStyle = 'red';
+	ctx.fillRect(10, 10, 60, 60);
+	ctx.fillRect(100, 10, 100, 60);
+}</code></pre>
+
+Abaixo esta listado a função draw(), porém utilizando as três funções.<br/>
+<canvas id="myCanvas2"></canvas>
+
+<pre><code>function draw() {
+  var canvas = document.getElementById('myCanvas2');
+  if (canvas.getContext) {
+    var ctx = canvas.getContext('2d');
+
+    ctx.fillRect(25, 25, 100, 100);
+    ctx.clearRect(45, 45, 60, 60);
+    ctx.strokeRect(50, 50, 50, 50);
+  }
+}</code></pre>
+
+<script>
+$(document).ready(function() {
+	draw();
+	draw2();
+    function draw() {
+        var canvas = document.getElementById('myCanvas');
+        var ctx = canvas.getContext('2d');
+
+        ctx.fillStyle = 'red';
+        ctx.fillRect(10, 10, 60, 60);
+        ctx.fillRect(100, 10, 100, 60);
+    }
+	function draw2() {
+	  var canvas = document.getElementById('myCanvas2');
+	  if (canvas.getContext) {
+		var ctx = canvas.getContext('2d');
+
+		ctx.fillRect(25, 25, 100, 100);
+		ctx.clearRect(45, 45, 60, 60);
+		ctx.strokeRect(50, 50, 50, 50);
+	  }
+	}	
+});
+</script>	

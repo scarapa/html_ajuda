@@ -1,0 +1,37 @@
+<h2><i class="mdi mdi-function fa-fw"></i> Função Anonima</h2>
+
+<h3></h3>
+<pre><code>
+var dataAtualFormatada = function(){ 
+	var data = new Date();
+	var dia = data.getDate();
+	if (dia.toString().length == 1) dia = "0"+dia;
+	var mes = data.getMonth()+1;
+	if (mes.toString().length == 1) mes = "0"+mes;
+	var ano = data.getFullYear();  
+	return dia+"/"+mes+"/"+ano;
+}
+	
+
+(function($){
+    $.fn.extend({
+        dataAtual: function(  ){
+            var data = new Date();
+            /*DATA*/
+            var dia = data.getDate();
+            var mes = data.getMonth()+1;
+            var ano = data.getFullYear();  
+            if (dia.toString().length == 1) dia = "0"+dia;
+            if (mes.toString().length == 1) mes = "0"+mes;
+            /*HORARIO*/
+            var horas = data.getHours();
+            var minutos = data.getMinutes();
+            var segundos = data.getSeconds();
+            if (horas.toString().length == 1) horas = "0"+horas;
+            if (minutos.toString().length == 1) minutos = "0"+minutos;
+            if (segundos.toString().length == 1) segundos = "0"+segundos;            
+            return dia+mes+ano+horas+minutos+segundos;
+        }
+    });
+})(jQuery);	
+</code></pre>

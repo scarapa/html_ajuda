@@ -1,0 +1,17 @@
+﻿<h2><i class="fa fa-question-circle"></i> OUTROS</h2>
+
+<h3>SQLSERVER: Truncar completando com zeros a esquerda</h3>			
+Na verdade você pode completar com o caracter e sentido(direita ou esquerda) que quizer.<br>
+No exemplo abaixo completei com zeros a esquerda pois o numero identificador do usuario tem que ter 5 de tamanho.
+<pre><code>SELECT 171 AS 'normal' , REPLICATE('0', 5 - LEN(171)) + RTRIM(171) AS 'modificado'</code></pre>
+Retorno
+<table border="1">
+	<tr>
+		<th>normal</th>
+		<th>modificado</th>
+	</tr>
+	<tr>
+		<td>171</td>
+		<td>00171</td>
+	</tr>
+</table>

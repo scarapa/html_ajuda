@@ -1,0 +1,102 @@
+﻿<h2><i class="fa fa-terminal fw"></i> Comandos Linux</h2>
+
+<kbd>SISTEMA OPERACIONAL</kbd>
+<h3>descobrir versao</h3>
+<pre>cat /etc/issue</pre>
+
+<h3>distribuicao </h3>
+<pre>cat /etc/*-release | grep PRETTY</pre>
+
+<h3>listar devices</h3>
+<pre>lsusb</pre>
+
+<h3>listar versao do kernel</h3>
+<pre>sudo uname -r</pre>
+
+<h3>pesquisar pacotes/programas instalados</h3>
+<pre>$ dpkg --get-selections</pre>
+
+<h3>instalar pacotes DEB</h3>
+<pre>$ dpkg -i nome.deb</pre>
+
+<h3>desinstalar/remover pacotes/programas</h3>
+<pre>apt-get purge nome-do-pacote 
+apt-get remove programa</pre>
+
+<h3>baixar algum programa da internet via terminal</h3>
+<pre>wget link</pre>
+
+<kbd>PASTAS / DIRETORIOS / ARQUIVOS</kbd>
+<h3>criar arquivo</h3>
+<pre><strong>touch</strong> nomearquivo.ext</pre>
+
+<h3>criar diretorio</h3>
+<pre><strong>mkdir</strong> nome_diretorio</pre>
+
+<h3>copiar arquivos</h3>
+<pre>cp nome_original nome_copia</pre>
+	
+<h3>deletar arquivos</h3>
+<pre>rm -rf nome_arquivo</pre>
+
+<h3></h3>
+<pre></pre>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		TECLAS DE ATALHOS
+	</div>
+	<div class="panel-body">
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>TECLAS</th>
+						<th>DESCRICAO</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>CTRL+C</td>
+						<td>sai (kill) do programa.</td>
+					</tr>
+					<tr>
+						<td>CTRL+ALT+BackSpace</td>
+						<td>sai (kill) do servidor X.</td>
+					</tr>
+					<tr>
+						<td>CTRL+L</td>
+						<td>impa a tela.</td>
+					</tr>
+					<tr>
+						<td>CTRL+A / E: </td>
+						<td>move o cursor para o início / fim da linha.</td>
+					</tr>
+					<tr>
+						<td>CTRL+U / K</td>
+						<td>eleta da posição do cursor até o início / fim da linha</td>
+					</tr>
+					<tr>
+						<td>CTRL+H:</td>
+						<td>deleta palavra anterior ao cursor</td>
+					</tr>	
+					<tr>
+						<td>CTRL+R</td>
+						<td>busca comando digitado no history do bash</td>
+					</tr>
+					<tr>
+						<td>CTRL+D:</td>
+						<td>logout (para isto altere ou unset a var. $IGNOREEOF)</td>
+					</tr>
+				
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+Fontes<br>
+<a href="https://www.vivaolinux.com.br/topico/Slackware/Comando-para-criar-uma-pasta">vivaolinux</a><br>
+<a href="http://www.ubuntuupdates.org/pm/google-chrome-stable">ubuntuupdates</a><br>
+<a href="http://lifehacker.com/5633909/who-needs-a-mouse-learn-to-use-the-command-line-for-almost-anything">lifehacker</a><br>
+<a href="http://www.tecmint.com/35-practical-examples-of-linux-find-command/">tecmint</a><br>
+

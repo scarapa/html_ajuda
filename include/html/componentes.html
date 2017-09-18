@@ -1,0 +1,91 @@
+﻿<h1><i class="fa fa-gears"></i> FORM COMPONENTES</h1>
+<h3>TEXT</h3>
+<pre><code>&lt;input type="text" name=""&gt;</code></pre>
+
+<h3>CHECKBOX</h3>
+<pre><code>&lt;input type="checkbox" name="documentos[]" value="cpf" &gt;
+&lt;input type="checkbox" name="documentos[]" value="rg" &gt;
+</code></pre>
+Exemplo<br/>
+<label><input type="checkbox" name="documentos[]" value="cpf"> CPF</label>
+<label><input type="checkbox" name="documentos[]" value="rg"> RG</label>
+
+
+<h3>RADIOBOX</h3>
+<pre><code>&lt;input type="radio" name="documentos" value="cpf" &gt;
+&lt;input type="radio" name="documentos" value="rg" &gt;
+</code></pre>
+Exemplo<br/>
+<label><input type="radio" name="documentos[]" value="cpf"> CPF</label>
+<label><input type="radio" name="documentos[]" value="rg"> RG</label>
+
+<h3>SELECT</h3>
+<pre><code>&lt;select name="carro"&gt;
+&lt;option value="volvo"&gt;Volvo&lt;/option&gt;
+&lt;option value="saab"&gt;Saab&lt;/option&gt;
+&lt;option value="fiat"&gt;Fiat&lt;/option&gt;
+&lt;option value="audi"&gt;Audi&lt;/option&gt;
+&lt;/select&gt;
+</code></pre>
+Exemplo:
+ <select name="cars">
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="fiat">Fiat</option>
+  <option value="audi">Audi</option>
+</select> 
+
+<h3>TEXTAREA</h3>
+<pre><code>&lt;textarea name="message" rows="2" cols="30"&gt;The cat was playing in the garden.&lt;/textarea&gt; </code></pre>
+Exemplo:<br/>
+ <textarea name="message" rows="10" cols="30">
+The cat was playing in the garden.
+</textarea> 
+
+<h3>BUTTON</h3>
+Existem duas maneiras de incrementar o botao/button, não existem uma maneira certa ou errada. A primeira é amplamente mais utilizada
+<pre><code>&lt;input type="button" ...&gt; </code></pre>
+Exemplo: <input type="button" value="botao">
+
+<br clear="all">
+
+E a 2º maneira.
+<pre><code>&lt;button>&lt;/button&gt;</code></pre>
+Exemplo: <button>Botao</button>
+
+<h3>DATALIST</h3>
+<pre><code>&lt;input list="browsers" name="browser"&gt;
+&lt;datalist id="browsers"&gt;
+    &lt;option value="Internet Explorer"&gt;
+    &lt;option value="Firefox"&gt;
+    &lt;option value="Chrome"&gt;
+    &lt;option value="Opera"&gt;
+    &lt;option value="Safari"&gt;
+&lt;/datalist&gt;
+</code></pre>
+EXEMPLO:<br/>
+Lista com os navegadores<input list="browsers" name="browser">
+<datalist id="browsers">
+	<option value="Internet Explorer">
+	<option value="Firefox">
+	<option value="Chrome">
+	<option value="Opera">
+	<option value="Safari">
+</datalist>
+  
+<h3>RANGE</h3>
+<pre><code>&lt;input type="range" id="a" name="a" value="50"&gt;</code></pre>
+Exemplo:<br/>
+<div style="width:200px">
+	<input type="range" id="testeRange" name="testeRange" value="100" style="float:left;width:150px;">
+	<span id="valorRange" style="float:left;"></span>
+</div>
+
+<br/>
+<h3>NUMBER</h3>
+<pre><code>&lt;input type="number" id="b" name="b" value="50" max="60" min="35"&gt;</code></pre>
+Exemplo:<br/>
+<input type="number" id="testeNumber" name="testeNumber" value="50" max="60" min="35">
+
+<br clear="all">
+<a href="https://www.w3schools.com/html/html_form_elements.asp">W3schools</a>

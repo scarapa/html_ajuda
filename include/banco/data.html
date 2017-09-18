@@ -1,0 +1,213 @@
+﻿<h2><i class="fa fa-calendar"></i> DATA</h2>
+
+<h3>ADICIONAR/RETIRAR DIAS/MESES/ANOS</h3>
+<div class="col-lg-8">
+	<kbd>SQLSERVER</kbd><br/>
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>PADRAO</th>
+							<th>RETORNO</th>
+							<th>SQL</th>							
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>normal</td>
+							<td>2017-08-23 12:50:20.273</td>
+							<td>GETDATE()</td>
+						</tr>
+						<tr>
+							<td>DIAS</td>
+							<td>2017-08-25 12:50:20.273</td>
+							<td>DATEADD(DAY,+2,GETDATE())</td>
+						</tr>
+						<tr>
+							<td>MESES</td>
+							<td>2017-10-23 12:50:20.273</td>
+							<td>DATEADD(MONTH,+2,GETDATE())</td>
+						</tr>
+						<tr>
+							<td>ANOS</td>
+							<td>2019-08-23 12:50:20.273</td>
+							<td>DATEADD(YEAR,+2,GETDATE())</td>
+						</tr>						
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>	
+
+<br clear="all">
+
+<h3>Converter DATA</h3>
+<div class="col-lg-8">
+	<kbd>SQLSERVER</kbd><br/>
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>PADRAO</th>
+							<th>RETORNO</th>
+							<th>SQL</th>							
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>normal</td>
+							<td>2017-08-23 11:58:19.410</td>
+							<td>GETDATE()</td>
+						</tr>
+						<tr>
+							<td>EUA</td>
+							<td>2017-08-23</td>
+							<td>CONVERT(DATE,GETDATE())</td>
+						</tr>
+						<tr>
+							<td>BRASIL</td>
+							<td>23/08/2017</td>
+							<td>CONVERT(VARCHAR,GETDATE(),103)</td>
+						</tr>	
+						<tr>
+							<td>troca de (/) por (-)</td>
+							<td>23-08-2017</td>
+							<td>CONVERT(VARCHAR,GETDATE() , 105)</td>
+						</tr>
+						<tr>
+							<td>hora</td>
+							<td>11:58:19</td>
+							<td>CONVERT(VARCHAR,GETDATE() , 108)</td>
+						</tr>
+				
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<br clear="all"><br clear="all">
+
+<div class="col-lg-8">
+	<kbd>MYSQL</kbd><br/>
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>PADRAO</th>
+							<th>RETORNO</th>
+							<th>SQL</th>							
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>EUA</td>
+							<td>2017-08-26</td>
+							<td>DATE_FORMAT(STR_TO_DATE('26/08/2017', '%d/%m/%Y'), '%Y-%m-%d')</td>
+						</tr>
+						<tr>
+							<td>BRASIL</td>
+							<td>26/08/2017</td>
+							<td>DATE_FORMAT(STR_TO_DATE('2017-08-26', '%Y-%m-%d'), '%d/%m/%Y')</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>	
+
+<br clear="all">
+Fonte: https://pt.stackoverflow.com/questions/72033/converter-data-mysql-dd-mm-yyyy-para-yyyy-mm-dds
+<br clear="all">
+
+<h3>SQL: Capturar ANO/MES/DIA de data</h3>	
+
+<div class="col-lg-8">
+	<kbd>SQL</kbd><br/>
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>DESCRIÇÃO</th>
+							<th>RETORNO</th>
+							<th>SQL</th>							
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Data</td>
+							<td>2017-11-15</td>
+							<td>GETDATE()</td>
+						</tr>
+						<tr>
+							<td>Ano</td>
+							<td>2017</td>
+							<td>YEAR('2017-11-15') </td>
+						</tr>
+						<tr>
+							<td>Mês</td>
+							<td>11</td>
+							<td>MONTH('2017-11-15')</td>
+						</tr>
+						<tr>
+							<td>Dia</td>
+							<td>15</td>
+							<td>DAY('2017-11-15')</td>
+						</tr>						
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>	
+
+<br clear="all">
+
+<h3>Diferença de dias entre datas</h3>			
+
+<div class="col-lg-8">
+	<kbd>SQLSERVER</kbd><br/>
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Data Inicial</th>
+							<th>Data Final</th>
+							<th>Dias</th>
+							<th>SQL</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>2017-10-15</td>
+							<td>2017-10-31</td>
+							<td>16</td>
+							<td>SELECT '2017-10-15' AS 'inicio' , '2017-10-31' AS 'inicio' , DATEDIFF(DAY, '2017-10-15', '2017-10-31') AS 'dias'</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>	
+<br clear="all">
+<a href="https://augustopierzynski.wordpress.com/2011/08/25/formatando-data-no-sql-server/">Fonte</a>
+
+
+
+		
+		

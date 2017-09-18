@@ -1,0 +1,29 @@
+﻿<h2><i class="fa fa fa-lightbulb-o fw"></i> Caso 01</h2>
+Foram feitas atualizações e por acidente/descuido, não foi criado um branch novo ou foi feita a modificação no BRANCH errado.<br/>
+No caso abaixo foi feita modificações no BRANCH ERRADO, então precisamos por o que foi trabalhado em um BRANCH CORRETO e só então depois comitar.
+
+<h3>1º De dentro do BRANCH ERRADO, faremos esse comando para jogarmos o que foi trabalhado em um local temporario; no git esse local temporario é uma pilha</h3>
+<pre><code>$ git stash</code></pre>
+
+Verificar se foi pra pilha, se habitue a usar bastante esse comando.
+<pre><code>$ git status</code></pre>
+
+<h3>2º Voltar pro BRANCH MASTER</h3>
+<pre><code>$ git checkout master</code></pre>
+
+<h3>3º Criar um branch novo, para receber as modificacoes jogadas na pilha</h3>
+<pre><code>$ git checkout -B nome_branch_novo</code></pre>
+
+<h3>4º De dentro do novo branch adicionaremos o que está na pilha ao branch</h3>
+<pre><code>$ git stash apply</code></pre>
+
+<h3>5º SEMPRE trabalhar no MASTER , fazer MERGE do branch em que foi trabalhado com o MASTER</h3>
+<pre><code>$ git merge nome_branch</code></pre>
+
+<h3>6º fazer o PUSH</h3>
+<pre><code>$ git push origin master</code></pre>
+
+<h3>7º pra finalizar limparemos a pilha e deletaremos o branch</h3>
+<pre><code>$ git stash drop 
+$ git branch -D <strong>nome_branch</strong>
+</code></pre>

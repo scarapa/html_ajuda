@@ -1,0 +1,31 @@
+﻿<h1><i class="fa fa-refresh"></i> Autoload</h1>
+A função autoload é utilizada no PHP para fazer o carregamento automático das classes
+
+<h3>autoload.php</h3>
+
+<pre><code>function __autoload($class) {
+    $classFilePath =  PASTA.'/class/' . $class . '.php';
+    if (file_exists($classFilePath)) {
+        require_once($classFilePath);
+        return;
+    }
+
+    $modelFilePath =   PASTA.'/model/' . $class . '.php';
+    if (file_exists($modelFilePath)) {
+        require_once($modelFilePath);
+        return;
+    }
+
+    $controllerFilePath =   PASTA.'/controller/' . $class . '.php';
+    if (file_exists($controllerFilePath)) {
+        require_once($controllerFilePath);
+        return;
+    }
+    
+    $controllerFilePath =  PASTA.'/service/' . $class . '.php';
+    if (file_exists($controllerFilePath)) {
+        require_once($controllerFilePath);
+        return;
+    }    
+}
+</code></pre>

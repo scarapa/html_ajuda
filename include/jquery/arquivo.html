@@ -1,0 +1,21 @@
+<h2><i class="fa fa-file-text-o fw"></i> AJUDA.JS</h2>
+
+<h3>Arquivo com as funções amplamente utilizadas nos mais diversos sistemas</h3>
+<pre><code>
+    $('.soNumero').keyup(function() {
+        $(this).val($(this).val().replace(/[^\d]/, ''));
+    });
+    $('.decimal').maskMoney({decimal:".", thousands:".",precision: 0});
+
+    $('.numeroSomentePonto').keydown(function() {
+        $(this).val($(this).val().replace(",", "."));
+    });
+
+    $( ".dinheiro" ).blur(function() {
+        if( $(this).val() == "") { $(this).val('0,00'); }
+    });  
+    $(".dinheiro").maskMoney({decimal:",", thousands:"."});
+    
+    $(".cpf").mask("999.999.999-99");
+    $(".cep").mask("99999-999");
+</code></pre>

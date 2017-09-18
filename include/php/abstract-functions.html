@@ -1,0 +1,108 @@
+﻿<h1><i class="fa fa-gears"></i> Abstract Functions</h1>
+É uma classe que não precisa ser instanciada, para ser usada basta usar o comando abaixo de exemplo:
+<pre><code>Funcoes::DataBrToEUA('10/03/1985')</code></pre>
+O retorno desse método é esse:
+<pre><code>1985-03-10</code></pre>
+
+Atualmente(07/07/21017) esse arquivo esta com esse métodos e essas funcionalidades:
+<pre><code>
+Class Funcoes {
+	public static function DataBrToEUA($date) {
+		if (empty($date)) { return ""; }
+		if(strpos($date, '-')) { $date = ltrim($date, '-'); return $date;}
+		$data = explode("/", $date);
+		$data = $data[2] . "-" . $data[1] . "-" . $data[0];
+		return $data;
+	}
+
+	public static function DataEUAToEUA($date) {
+		if (empty($date)) { return ""; }
+		$data = explode("-", $date);
+		$data = $data[2] . "-" . $data[1] . "-" . $data[0];
+		//$data = "10/03/1985";
+		return $data;
+	}
+
+	public static function DataEUAToBr($date) {
+		if (empty($date)) { return ""; }
+		$data = explode("-", $date);
+		$data = $data[2] . "/" . $data[1] . "/" . $data[0];
+		return $data;
+	}
+
+	public static function dataAtual() {
+		return date("d/m/Y");
+	}
+
+	public static function horaAtual() {
+		return date("H:i:s");
+	}
+
+	public static function diaSemana($data) {
+		// data padrao brasileiro
+		$data = explode("/", $data);
+
+		//$diasemana = date("w", mktime(0,0,0,$mes,$dia,$ano) );
+		$diasemana = date("w", mktime(0, 0, 0, $data[1], $data[0], $data[2]));
+		switch ($diasemana) {
+			case"0":
+				$diasemana = "Domingo";
+				break;
+			case"1":
+				$diasemana = "Segunda-Feira";
+				break;
+			case"2":
+				$diasemana = "Terça-Feira";
+				break;
+			case"3":
+				$diasemana = "Quarta-Feira";
+				break;
+			case"4":
+				$diasemana = "Quinta-Feira";
+				break;
+			case"5":
+				$diasemana = "Sexta-Feira";
+				break;
+			case"6":
+				$diasemana = "Sábado";
+				break;
+		}
+		return $diasemana;
+	}
+
+	public static  function moedaReal($valor){
+		return number_format($valor, 2, ',', '.');
+	}
+
+	public static function soNumeros($variavel) {
+		$c = strlen($variavel);
+		$v = "";$t="";
+		for ($i = 0; $i < $c; $i++) {
+			$t = $variavel[$i];
+			if (is_numeric($t)) { $v = $v.$t; }
+		}
+		return $v;
+	} 
+	
+	public static function utf8_encode_all($dat) { 
+		if (is_string($dat)) return utf8_encode($dat); 
+		if (!is_array($dat)) return $dat; 
+		$ret = array(); 
+		foreach($dat as $i=>$d) $ret[$i] = utf8_encode_all($d); 
+		return $ret; 
+	} 
+
+	public static function converterValorParaDecimalBanco($valor){
+		//echo "tamanho: ".strlen($valor). " ->".$valor;
+		if(strlen($valor) > 6) { $valor = str_replace(".", "", $valor); }
+		return str_replace(",", ".", $valor);
+	}
+	
+	public static function converterValorParaDecimalBancoNoArray($array){
+		foreach ($array as $indice => $valor) {
+			$array[$indice] = converterValorParaDecimalBanco($valor);
+		}
+		return $array;
+	}	
+}
+</code></pre>

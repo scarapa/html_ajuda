@@ -1,0 +1,169 @@
+<section id="configuracao">
+			<h1>PRIMEIROS PASSOS</h1>
+			<div class="row">
+				<div class="col-lg-12">
+					<h4>Configuraçao global</h4>
+				</div>	
+				<div class="col-lg-12 col-xs-12">
+					<pre><code>git config --global user.name "Roberto Aguiar Alam"<br/>git config --global user.email "ralam@emater.tche.br"</code></pre>
+				</div>
+
+				<div class="col-lg-12">
+					<h4>Criando repositorio</h4>
+				</div>	
+				<div class="col-lg-12 col-xs-12">
+					<pre><code>git clone git@git.emater.tche.br:49583/pbsm.git<br/>cd pbsm</br>touch README.md</br>git add README.md</br>git commit -m "add README"</br>git push -u origin master</code></pre>
+				</div>	
+
+				<div class="col-lg-12">
+					<h4>caso já exista a pasta do projeto</h4>
+				</div>	
+				<div class="col-lg-12 col-xs-12">
+					1º entrar na pasta do projeto
+					<pre><code>cd pasta_do_projeto</br>git init</code></pre>
+					2º Definir a forma de comunicacao<br/>
+					<strong>http</strong> ou <strong>ssh</strong> escolha uma delas, comigo funcionou a HTTP
+					<pre><code>git remote add origin http://git.emater.tche.br/49583/pbsm.git</br>ou<br/>git remote add origin git@git.emater.tche.br:49583/pbsm.git</code></pre>
+					3º Escolhido a forma de comunicação basta enviar o projeto para o repositorio
+					<pre><code>git add .<br/>git commit -m "mensagem"</br>git push -u origin master</code></pre>
+				</div>	
+			</div>
+		</section>
+		<section id="ignore">
+			<h1>.IGNORE</h1>
+			<div class="row">
+				<div class="col-lg-12">
+					<h4>CRIAR arquivo .gitignore - Esse arquivo é responsável por apontar as pastas e/ou arquivos que não irão ser comitados</h4>		
+				</div>	
+				<div class="col-lg-12 col-xs-12">
+					Exemplo do arquivo .gitignore
+					<pre><code>/nbproject<br/>/fpdf</br>/tmp</br>/anexos</code></pre>
+					No exemplo acima o arquivo vai ignorar essas pastas indiferente das alterações realizadas nelas.<br/>
+					OBS: É possível inserir o próprio arquivo .gitignore , entretanto é interessante deixar o arquivo nos commits.
+				</div>
+			</div>
+		</section>
+		<section id="branch">
+			<h1>BRANCH</h1>
+			<div class="row">
+				<div class="col-lg-12">
+					<h4>CRIAR Branch novo</h4>
+				</div>	
+				<div class="col-lg-12 col-xs-12">
+					<pre><code>git checkout -b funcionalidade_x</code></pre>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12">
+					<h4>RETORNAR para o Branch MASTER</h4>
+				</div>	
+				<div class="col-lg-12 col-xs-12">
+					<pre><code>git checkout master</code></pre>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12">
+					<h4>REMOVER o Branch </h4>
+					-D maisculo funciona como o -force, deleta mesmo com erros.<BR/>
+					-d minusculo se tiver erros nao deleta
+				</div>	
+				<div class="col-lg-12 col-xs-12">
+					<pre><code>git branch -D funcionalidade_x</code></pre>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12">
+					<h4>ALTERAR o nome do Branch </h4>
+				</div>	
+				<div class="col-lg-12 col-xs-12">
+					<pre><code>git branch -m <strong>nome_atual nome_novo</strong></code></pre>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12">
+					<h4>LISTAR Branchs</h4>
+				</div>	
+				<div class="col-lg-12 col-xs-12">
+					<pre><code>git branch</code></pre>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12">
+					<h4>ENVIAR o Branch </h4>
+				</div>	
+				<div class="col-lg-12 col-xs-12">
+					<pre><code>git push origin <funcionalidade_x></code></pre>
+				</div>
+			</div>
+		</section>
+		<section id="commit">
+			<h1>COMMIT</h1>
+			<div class="row">
+				<div class="col-lg-12">
+					<h4>Adicionar TODOS os arquivos</h4>
+				</div>	
+				<div class="col-lg-12"><pre><code>git add .</code></pre></div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12">
+					<h4>Adicionar os arquivos INDIVIDUALMENTE</h4>
+				</div>	
+				<div class="col-lg-12"><pre><code>git add CAMINHO/ARQUIVO</code></pre></div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12">
+					<h4>Adiciona os arquivos por pasta no exemplo do comando é a pasta include</h4>
+				</div>	
+				<div class="col-lg-12"><pre><code>git add include/*</code></pre></div>
+			</div>
+		</section>
+		<section id="dicas">
+			<h1>dicas COM O GIT - de verdade \o/</h1>
+			<h2>DICA 01</h2>
+			<div class="row">
+				<div class="col-lg-12">
+					Como proceder após comitar um branch diferente do <strong>MASTER</strong>
+				</div>	
+				<div class="col-lg-12 col-xs-12">
+					1º Após o commit do branch 'novo' fazer checkout para o <strong>master</strong>
+					<pre><code>git checkout master</code></pre> 
+					2º pegar o utimo commit do branch nomeado.
+					<pre><code>git cherry-pick <strong>NOME DO BRANCH</strong></code></pre> 
+					3º antes de fazer o <strong>PUSH</strong> , fazer o <strong>PULL</strong> do branch <strong>MASTER</strong><br/>
+					<pre><code>git <strong>pull</strong> origin master
+git <strong>push</strong> origin master</code></pre> 
+			</code></pre> 
+				</div>
+			</div>
+			
+			<h2>DICA 02</h2>
+			<div class="row">
+				<div class="col-lg-12">
+					comitando alteracoes de outro branch para o ORIGIN <strong>MASTER</strong>
+				</div>	
+				<div class="col-lg-12 col-xs-12">
+					<pre><code>git merge NOME_DO_BRANCH 
+git push <strong>origin master</strong></code></pre> 
+				</div>
+			</div>			
+			
+		</section>
+
+		<section id="rollback">
+			<h1>DESFAZENDO COISAS</h1>
+			<div class="row">
+				<div class="col-lg-12">
+					resetando todo o branch(NAO RECOMENDAVEL)
+				</div>	
+				<div class="col-lg-12 col-xs-12">
+					<pre><code>git reset --hard</code></pre> 
+				</div>
+			</div>	
+		</section>

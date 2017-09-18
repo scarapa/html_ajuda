@@ -1,0 +1,78 @@
+<h2><i class="fa fa-calendar fw"></i> DATA</h2>
+
+<h3>Data pra inteiro</h3>
+<pre><code>function converterDataParaInteiro( data ){
+    data = data.toString().split("/");
+    var data1 = new Date(data[2], data[1]-1, data[0]);    
+    return data1.getTime();
+}
+</code></pre>
+
+<h3>Função para comparar datas</h3>
+<pre><code>function compararDatas(data1 , data2){
+    data1 = converterDataParaInteiro(data1);
+    data2 = converterDataParaInteiro(data2);
+    if(data1 > data2) {
+        return 1;
+    }else if( data1 == data2)
+        return 2;
+    }else{
+        return 3;
+    }
+}
+</code></pre>
+
+<h3>Função converta data padrão BRASILEIRO para padrão NORTE AMERICANO(banco)</h3>
+<pre><code>
+function converterDataBrToEua(data){
+    var data2 = data.split("/");
+    if(data2.length ==3){
+        return data2[2]+'-'+data2[1]+'-'+data2[0] ;
+    }
+    return ;
+}
+</code></pre>
+
+<h3>Função retorno mes(NUMERICO) da data</h3>
+<pre><code>
+function buscarMesData( data ){
+    data = converterDataBrToEua(data);
+    var d = new Date(data);
+    var mes = d.getMonth()+1;
+    return mes;
+}
+</code></pre>
+
+<h3>Função retorno dia da semana(NUMERICO)</h3>
+
+<pre><code>
+function buscarDiaDaSemanaInteiro(data){
+  var data = converterDataBrToEua(data);
+  var d = new Date(data);
+  return parseInt( d.getDay() ) ;
+}
+</code></pre>
+
+<h3>Função retorno dia da semana, descrição longa</h3>
+<pre><code>
+function buscarDiaDaSemanaDescricaoLonga(data){
+  var semana = ["Domingo","Segunda","Terça","Quarta","Quinta","Sexta","Sabado"];		
+  var data = converterDataBrToEua(data);
+  return semana[ buscarDiaDaSemanaInteiro(data) ];  
+}
+</code></pre>
+
+<h3>Função retorno dia da semana, descrição curta</h3>
+<pre><code>
+function buscarDiaDaSemanaDescricaoCurta(data){
+  var semana = ["dom","seg","ter","qua","qui","sex","sab"];		
+  var data = converterDataBrToEua(data);
+  return semana[ buscarDiaDaSemanaInteiro(data) ];  
+}
+</code></pre>
+<a href="https://www.w3schools.com/js/js_date_methods.asp">w3schools</a>
+
+
+
+
+

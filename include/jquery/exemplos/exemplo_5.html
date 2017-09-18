@@ -1,0 +1,101 @@
+<h2><i class="fa fa-code fa-fw"></i> EXEMPLO 5 - JSON</h2>
+
+<div class="col-lg-4">
+	<div class="form-group">
+		<label class="control-label">
+			Produto<span class="required">*</span> 
+		</label><i class="fa fa-refresh fw pull-right"></i>
+		<select name="produto" id="produto" class="form-control">
+			<option value="0">---Selecione</option>
+		</select>
+	</div>		
+
+</div>
+
+<div class="col-lg-2 col-md-2 col-xs-4">
+	<div class="form-group">
+		<label class="control-label">Valor<span class="required">*</span></label>
+		<div class="input-group">
+			<span class="input-group-addon hidden-xs"><i class="fa fa-dollar hidden-xs"></i></span>
+			<input name="valor" id="valor" class="form-control numeroSomentePonto calcular" autocomplete="off" type="text">
+		</div>
+	</div>
+</div>
+    
+<div class="col-md-2 col-xs-4">
+	<div class="form-group">
+		<label class="control-label">Quantidade<span class="required">*</span></label>
+		<div class="input-group">
+			<span class="input-group-addon hidden-xs"><i class="fa fa-list hidden-xs"></i></span>
+			<input name="quantidade" id="quantidade" class="form-control soNumero calcular" autocomplete="off" type="text">
+		</div>
+	</div>
+</div>
+
+<div class="col-md-2 col-xs-4">
+	<div class="form-group">
+		<label class="control-label">SubTotal</label>
+		<div class="input-group">
+			<span class="input-group-addon hidden-xs"><i class="fa fa-dollar hidden-xs"></i></span>
+			<input id="subTotal" class="form-control dinheiro" disabled="" type="text">
+		</div>
+	</div>
+</div>
+
+<div class="col-md-1 col-xs-12">
+	<label class="control-label"><span class="required" style="color:#fff">.</span></label>
+	<div class="form-group">
+		<button class="btn btn-success" id="botaoAdicionarItem"><i class="fa fa-plus"></i> ADD</button>
+	</div>
+</div>
+
+<!-- LISTA DE PRODUTOS -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="table-responsive">
+                <table id="tabelaGrid" class="custom-grid table table-bordered table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th width="3%">
+                                <div id="totalItens"></div>
+                            </th>
+                            <th width="55%">Produto</th>
+                            <th width="15%">Valor Unitario</th>
+                            <th width="10%">Qnt</th>
+                            <th width="15%">SubTotal</th>                                        
+                            <th width="10%" class="esconder"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+   
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td style="font-weight:bold;text-align: right">TOTAL</td>
+                            <td colspan="2">
+								R$ <input type="text" name="total" id="total" value ="" style="width:70%;border:0px;background: transparent" readonly="" disabled="true">
+							</td>
+                        </tr>                                      
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- LISTA DE PRODUTOS -->    
+
+<script>
+$(document).ready(function() {
+	$('#test').select2();
+});
+</script>	
+
+Fontes: <br/>
+http://api.jquery.com/jquery.getjson/<br/>
+https://pt.stackoverflow.com/questions/120845/ler-e-manipular-dados-de-json-usando-jquery/120860<br/>
+https://imasters.com.br/artigo/18684/jquery/listando-valores-de-um-json-com-jquery?trace=1519021197&source=single<br/>
+http://respostas.guj.com.br/39457-como-utilizar-o-json-com-jquery-e-ajax<br/>
+https://www.sitepoint.com/ajaxjquery-getjson-simple-example/<br/>
+

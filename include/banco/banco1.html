@@ -1,0 +1,368 @@
+<h2> Linked Server</h2>			
+O Linked Server é uma funcionalidade do SQL Server muito útil para estabelecer conexão segura entre dois ou mais servidores.
+<pre><code>SELECT * FROM [LINKED_NOME].[DATABASE_NOME].[USUARIO_NOME].[TABELA_NOME] ; </code></pre>
+
+<h5> 1.1.1 - ERRO: Heterogeneous queries</h5>			
+Quando aparecer essa mensagem de erro: <BR/><BR/>
+<code><span style="font-style:italic;">Heterogeneous queries require the ANSI_NULLS and ANSI_WARNINGS options to be set for the connection. This ensures consistent query semantics. Enable these options and then reissue your query.</span></code><br/><br/>
+Isso acontence as vezes por conta de que você esteja executando uma consulta em um servidor vinculado que não é uma caixa do SQL Server, então é mais do que provável que você precise ativar esses dois recursos para padronizar a maneira como determinados operadores de comparação são manipulados em Diferentes bases de dados.
+Solução:
+<pre><code>mssql_query("SET ANSI_NULLS ON ; SET ANSI_WARNINGS ON ;");</code></pre>
+<a href="https://stackoverflow.com/questions/13354665/sql-linked-server-query-error-on-php">Fonte</a>
+
+<a href="https://imasters.com.br/banco-de-dados/sql-server/linked-server-pra-que-serve-e-quando-utilizar/?trace=1519021197&source=single">Fonte 1</a>
+<h4> 1.2 - Codificação</h4>			
+Consulta que não leva em conta a acentuação(SQLSERVER)
+<pre><code>WHERE (p.nm_produtor COLLATE sql_latin1_general_cp1251_ci_as) LIKE ('álvaro%' COLLATE sql_latin1_general_cp1251_ci_as)</code></pre>
+<a href="http://www.devmedia.com.br/eliminando-caracteres-especiais-de-strings-no-sql-server-collate/25286">Fonte 1</a>		
+
+<h4> 1.3 - CONCATENAR Agrupamento SQLSERVER</h4>			
+<table border="1" style="float:left;margin:3px;">
+	<tr>
+		<th>TURMA</th>
+		<th>MATRICULA</th>
+	</tr>			
+	<tr>
+		<td>2499</td>
+		<td>38059</td>
+	</tr>
+	<tr>
+		<td>2499</td>
+		<td>48892</td>
+	</tr>
+	<tr>
+		<td>2499</td>
+		<td>57099</td>
+	</tr>
+	<tr>
+		<td>2499</td>
+		<td>39381</td>
+	</tr>
+	<tr>
+		<td>2499</td>
+		<td>49583</td>
+	</tr>
+	<tr>
+		<td>2498</td>
+		<td>38059</td>
+	</tr>
+	<tr>
+		<td>2498</td>
+		<td>48892</td>
+	</tr>
+	<tr>
+		<td>2498</td>
+		<td>57099</td>
+	</tr>
+</table>
+Para agrupar valor no MYSQL é muito fácil, existe a função group_concat, entretanto no SQLSERVER é mais completo, sigamos com o exemplo ao lado.
+Iremos agrupar os alunos pela numero de turma.<br/>
+<div style="float:left">
+<pre><code>
+SELECT
+e.turma
+,STUFF(
+(SELECT ', ' + cd_matricula
+FROM tblEmail b 
+WHERE b.turma = e.turma 
+FOR XML PATH('')), 1, 2, '') AS 'cd_matricula'    
+FROM tblEmail e
+GROUP BY e.turma
+</code></pre>
+</div>
+
+<br clear="all">
+Resultado o SQL foi a tabela gerada abaixo:<br/>
+<table border="1">
+	<tr>
+		<th>TURMA</th>
+		<th>MATRICULA</th>
+	</tr>			
+	<tr>
+		<td>2498</td>
+		<td>38059, 39381, 48892, 49583, 57099</td>
+	</tr>
+	<tr>
+		<td>2499</td>
+		<td>38059, 38059, 39381, 39381, 48892, 48892, 49583, 49583, 57099, 57099</td>
+	</tr>
+</table>
+
+
+WITH paginacao AS
+(
+SELECT 
+	indice = ROW_NUMBER() OVER (ORDER BY chave_primaria) 
+	,c.*
+FROM tabela c
+WHERE 1 = 1 
+)
+SELECT * FROM paginacao p 
+WHERE 1 = 1
+AND ( indice BETWEEN $inicio AND $fim )
+ORDER BY chave_primaria ASC 
+
+
+
+<h4>4.3 - Agrupando(GROUP_CONCAT)</h4>
+			<pre><code></code></pre>
+			<h4>4.4 - Arredondando</h4>
+			<table border="1" style="float:left;margin:5px;">
+				<tr>
+					<th>valor original</th>
+					<th>valor desejado</th>
+				</tr>
+				<tr>
+					<th>1,500000</th>
+					<th>1,5</th>
+				</tr>				
+			</table>
+			<div style="float:left">
+			
+				Pra isso foi feito o seguinte SQL:
+				<pre><code>CAST(AVG(valor) AS DECIMAL(18,2)) AS 'valor'</code></pre>			
+			</div>
+			<br clear="all">
+			<a href="https://pt.stackoverflow.com/questions/3455/formatar-casas-decimais-diretamente-no-comando-sql-em-firebird">FONTE 1</a>
+		</section>
+
+		<section id="outros">
+			<h1><i class="fa fa-exchange"></i> 5 - OUTROS</h1>
+			<h4>5.2 Importar dados de uma outra DATABASE(SQLSERVER)</h4>
+			<br> Para fazer tal procedimento foi utilizado LOOP e VARIAVEIS, o exemplo abaixo exporta/importa a tabela de GRUPO
+			
+			<pre><code>
+DECLARE @nm_grupo VARCHAR(60);
+DECLARE lista CURSOR FOR
+-- SELECIONANDO AS COLUNAS NA TABELA ORIGINAL
+SELECT nm_grupo  FROM CDA_RS_MAIS_IGUAL_DEV..tblGrupo
+
+OPEN lista
+	--SETANDO OS VALORES NAS VARIVEIS
+	FETCH NEXT FROM lista INTO @nm_grupo
+
+	WHILE @@FETCH_STATUS = 0
+		BEGIN
+			-- INSERINDO NA TABELA NOVA
+			INSERT INTO CDA_RS_MAIS_IGUAL_DEV_2017..tblGrupo (nm_grupo) 
+				VALUES (@nm_grupo);
+		FETCH NEXT FROM lista INTO @nm_grupo
+	END
+-- Fechando Cursor para leitura
+CLOSE lista
+-- Desalocando o cursor
+DEALLOCATE lista		
+			</code></pre>
+
+			<h4>5.2 Setar valor padrão em coluna</h4>
+			No caso abaixo quando é criado um novo registro é inserido automaticamente na coluna 'nome_coluna' a data atual através do método getdate() 
+			
+			<pre><code>ALTER TABLE nome_tabela ADD CREATED_AT nome_coluna NOT NULL default getdate()</code></pre>
+			<a href="https://pt.stackoverflow.com/questions/72631/setar-valor-padr%C3%A3o-para-coluna-de-uma-tabela-j%C3%A1-existente">Fonte</a>
+		</section>		
+		
+	</div>
+</div>
+<br clear="all">
+<a href="https://www.w3schools.com/icons/fontawesome_icons_webapp.asp">ICONES</a>
+
+
+
+https://stackoverflow.com/questions/510121/reset-autoincrement-in-sql-server-after-delete
+
+
+
+
+
+
+
+
+
+
+OLLATE sql_latin1_general_cp1251_ci_as) LIKE ('álvaro%' COLLATE sql_latin1_general_cp1251_ci_as)</code></pre>
+			<a href="http://www.devmedia.com.br/eliminando-caracteres-especiais-de-strings-no-sql-server-collate/25286">Fonte 1</a>		
+
+			<h4> 1.3 - CONCATENAR Agrupamento SQLSERVER</h4>			
+			<table border="1" style="float:left;margin:3px;">
+				<tr>
+					<th>TURMA</th>
+					<th>MATRICULA</th>
+				</tr>			
+				<tr>
+					<td>2499</td>
+					<td>38059</td>
+				</tr>
+				<tr>
+					<td>2499</td>
+					<td>48892</td>
+				</tr>
+				<tr>
+					<td>2499</td>
+					<td>57099</td>
+				</tr>
+				<tr>
+					<td>2499</td>
+					<td>39381</td>
+				</tr>
+				<tr>
+					<td>2499</td>
+					<td>49583</td>
+				</tr>
+				<tr>
+					<td>2498</td>
+					<td>38059</td>
+				</tr>
+				<tr>
+					<td>2498</td>
+					<td>48892</td>
+				</tr>
+				<tr>
+					<td>2498</td>
+					<td>57099</td>
+				</tr>
+			</table>
+			Para agrupar valor no MYSQL é muito fácil, existe a função group_concat, entretanto no SQLSERVER é mais completo, sigamos com o exemplo ao lado.
+			Iremos agrupar os alunos pela numero de turma.<br/>
+			<div style="float:left">
+			<pre><code>
+SELECT
+	 e.turma
+	,STUFF(
+        (SELECT ', ' + cd_matricula
+        FROM tblEmail b 
+        WHERE b.turma = e.turma 
+        FOR XML PATH('')), 1, 2, '') AS 'cd_matricula'    
+FROM tblEmail e
+GROUP BY e.turma
+			</code></pre>
+			</div>
+			
+			<br clear="all">
+			Resultado o SQL foi a tabela gerada abaixo:<br/>
+			<table border="1">
+				<tr>
+					<th>TURMA</th>
+					<th>MATRICULA</th>
+				</tr>			
+				<tr>
+					<td>2498</td>
+					<td>38059, 39381, 48892, 49583, 57099</td>
+				</tr>
+				<tr>
+					<td>2499</td>
+					<td>38059, 38059, 39381, 39381, 48892, 48892, 49583, 49583, 57099, 57099</td>
+				</tr>
+			</table>
+			
+			
+		WITH paginacao AS
+        (
+            SELECT 
+                indice = ROW_NUMBER() OVER (ORDER BY chave_primaria) 
+                ,c.*
+            FROM tabela c
+            WHERE 1 = 1 
+        )
+        SELECT * FROM paginacao p 
+        WHERE 1 = 1
+            AND ( indice BETWEEN $inicio AND $fim )
+        ORDER BY chave_primaria ASC 
+		
+		
+		
+		
+		
+ssql_query("SET ANSI_NULLS ON ; SET ANSI_WARNINGS ON ;");</code></pre>
+<a href="https://stackoverflow.com/questions/13354665/sql-linked-server-query-error-on-php">Fonte</a>
+
+<a href="https://imasters.com.br/banco-de-dados/sql-server/linked-server-pra-que-serve-e-quando-utilizar/?trace=1519021197&source=single">Fonte 1</a>
+<h4> 1.2 - Codificação</h4>			
+Consulta que não leva em conta a acentuação(SQLSERVER)
+<pre><code>WHERE (p.nm_produtor COLLATE sql_latin1_general_cp1251_ci_as) LIKE ('álvaro%' COLLATE sql_latin1_general_cp1251_ci_as)</code></pre>
+<a href="http://www.devmedia.com.br/eliminando-caracteres-especiais-de-strings-no-sql-server-collate/25286">Fonte 1</a>		
+
+<h4> 1.3 - CONCATENAR Agrupamento SQLSERVER</h4>			
+<table border="1" style="float:left;margin:3px;">
+	<tr>
+		<th>TURMA</th>
+		<th>MATRICULA</th>
+	</tr>			
+	<tr>
+		<td>2499</td>
+		<td>38059</td>
+	</tr>
+	<tr>
+		<td>2499</td>
+		<td>48892</td>
+	</tr>
+	<tr>
+		<td>2499</td>
+		<td>57099</td>
+	</tr>
+	<tr>
+		<td>2499</td>
+		<td>39381</td>
+	</tr>
+	<tr>
+		<td>2499</td>
+		<td>49583</td>
+	</tr>
+	<tr>
+		<td>2498</td>
+		<td>38059</td>
+	</tr>
+	<tr>
+		<td>2498</td>
+		<td>48892</td>
+	</tr>
+	<tr>
+		<td>2498</td>
+		<td>57099</td>
+	</tr>
+</table>
+Para agrupar valor no MYSQL é muito fácil, existe a função group_concat, entretanto no SQLSERVER é mais completo, sigamos com o exemplo ao lado.
+Iremos agrupar os alunos pela numero de turma.<br/>
+<div style="float:left">
+<pre><code>
+SELECT
+e.turma
+,STUFF(
+(SELECT ', ' + cd_matricula
+FROM tblEmail b 
+WHERE b.turma = e.turma 
+FOR XML PATH('')), 1, 2, '') AS 'cd_matricula'    
+FROM tblEmail e
+GROUP BY e.turma
+</code></pre>
+</div>
+
+<br clear="all">
+Resultado o SQL foi a tabela gerada abaixo:<br/>
+<table border="1">
+	<tr>
+		<th>TURMA</th>
+		<th>MATRICULA</th>
+	</tr>			
+	<tr>
+		<td>2498</td>
+		<td>38059, 39381, 48892, 49583, 57099</td>
+	</tr>
+	<tr>
+		<td>2499</td>
+		<td>38059, 38059, 39381, 39381, 48892, 48892, 49583, 49583, 57099, 57099</td>
+	</tr>
+</table>
+
+
+WITH paginacao AS
+(
+SELECT 
+	indice = ROW_NUMBER() OVER (ORDER BY chave_primaria) 
+	,c.*
+FROM tabela c
+WHERE 1 = 1 
+)
+SELECT * FROM paginacao p 
+WHERE 1 = 1
+AND ( indice BETWEEN $inicio AND $fim )
+ORDER BY chave_primaria ASC 		

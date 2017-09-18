@@ -1,0 +1,69 @@
+﻿<h2><i class="mdi mdi-transfer"></i> INICIO</h2>
+
+Qual a diferença entre $(document).ready() e window.onload?<br/>
+O evento <kbd>ready</kbd> é disparado depois que o documento HTML foi carregado.<br/>
+O <kbd>onload</kbd> só é disparado quando todo o conteúdo é carregado (incluindo imagens, vídeos, etc).
+<br clear="all">
+<a href="https://pt.stackoverflow.com/questions/182797/qual-a-diferen%C3%A7a-entre-document-ready-e-window-onload"></a>
+
+<h3>Exemplo 1</h3>
+<pre><code>$(document).ready(function() {
+	//Começará o jQuery quando o DOM(Documento) estiver pronto
+});</code></pre>
+
+<h3>Exemplo 2</h3>
+Igual ao exemplo 1 … literalmente a MESMA coisa.
+<pre><code>$(function(){ 
+
+});</code></pre>
+
+<h3>Exemplo 3</h3>
+<pre><code>jQuery(document).ready(function($) {
+	//Começará o jQuery quando o DOM(Documento) estiver pronto
+});</code></pre>
+
+A adição do jQuery pode ajudar a evitar conflitos com outros frameworks JS.
+<br/>
+Os conflitos normalmente ocorrem porque muitas bibliotecas JavaScript / Frameworks usam o mesmo atalho
+Nome qual é o símbolo do dólar $. Então, se eles tiverem as mesmas funções mencionadas, o navegador obtém
+confuso!
+<br/>
+Para evitar conflitos, recomendo aliasing o espaço de nome jQuery (ou seja, usando o exemplo 3 acima).
+Então, quando você chamar $ .noConflict () para evitar dificuldades de espaço para nome (como o atalho $ não está mais disponível)
+Nós estamos forçando-o a lidar com jQuery sempre que for necessário.
+
+<pre><code>jQuery.noConflict(); // Retorna a variável '$' de volta para outras bibliotecas JS
+jQuery(document).ready( function(){ 
+	//faça jQuery quando o DOM estiver pronto e sem conflitos
+});  
+
+//Ou a função de auto-execução
+ jQuery.noConflict();
+ (function($) { 
+    // Código usando $ como alias para jQuery
+})(jQuery);</code></pre>
+
+
+<h3>Exemplo 4</h3>
+Desta forma, você pode incorporar uma função dentro de uma função que usa o $ como um alias jQuery.
+<pre><code>(function($) { 
+	//Código usando $ como alias para jQuery
+  $(function() {
+    //Mais código usando $ como alias para jQuery
+  });
+})(jQuery);
+//Outro código usando $ como um alias para a outra biblioteca</code></pre>
+
+<h3>Exemplo 5</h3>
+<pre><code>$(window).load(function(){  
+	//Inicializar depois que as imagens são carregadas
+});</code></pre>
+Às vezes você quer manipular imagens e com $ (documento) .ready () você não poderá fazer isso
+Se o visitante não tiver a imagem já carregada. Nesse caso, você precisa inicializar o
+Função de alinhamento jQuery quando a imagem termina de carregar.
+<br/><br/>
+Você também pode usar o JavaScript simples e anexar uma função chamar a tag do corpo no html, use isso somente se você não estiver usando uma estrutura JS.
+<br clear="all"><br clear="all">
+<a href="https://www.sitepoint.com/types-document-ready/">Fonte</a>
+
+

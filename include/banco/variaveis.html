@@ -1,0 +1,29 @@
+﻿<h2><i class="mdi mdi-keyboard-tab"></i> VARIAVEIS</h2>
+
+Pode se usar as variaveis tanto em SELECT/UPDATE/INSERT/DELETE
+<pre><code><kbd>SQLSERVER</kbd>
+DECLARE @matricula int;
+SET @matricula = 171;
+SELECT * FROM funcionarios WHERE cd = @matricula;
+</code></pre>
+
+Setando mais de uma variavel no mesmo SELECT, pra isso é necessario um ponteiro/cursor
+<pre><code><kbd>SQLSERVER</kbd>
+DECLARE @cd_matricula VARCHAR(5);
+DECLARE @cd_grupo INT;
+DECLARE lista CURSOR FOR
+	SELECT cd_matricula,cd_grupo FROM tblUsuario
+	OPEN lista
+		FETCH NEXT FROM lista INTO @cd_matricula,@cd_grupo
+	CLOSE lista
+
+	SELECT @cd_matricula,@cd_grupo
+DEALLOCATE lista
+</code></pre>
+
+Setando o valor de uma coluna AUTOINCREMENT de um INSERT/INSERÇÃO
+<pre><code><kbd>SQLSERVER</kbd>
+DECLARE @cd_log INT;
+INSERT INTO log (cd_modulo ,id_usuario ) VALUES (5, 171 );
+SET @cd_log = SCOPE_IDENTITY();
+</code></pre>

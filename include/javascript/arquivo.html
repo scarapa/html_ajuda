@@ -1,0 +1,87 @@
+<h2><i class="fa fa-file-text-o fw"></i> AJUDA.JS</h2>
+
+<h3>Arquivo com as funções amplamente utilizadas nos mais diversos sistemas</h3>
+<pre><code>
+function converterDataEUAtoBR(data) {
+    if(data.length == 0) return "";    
+    var data = data.toString().split("-");
+    return data[2] + "/" + data[1] + "/" + data[0];
+}
+
+function converterDataBRtoEUA(data) {
+    if(data.length == 0) return "";
+    var data = data.toString().split("/");
+    return data[2] + "-" + data[1] + "-" + data[0];
+}
+
+
+function replaceTudo(string, caracterProcurar, caracterSubstituir) {
+    var i = 0;
+    var novaString = "";
+    if(string == undefined) return string;
+    while (i <= string.length) {
+        if (typeof string[i] !== 'undefined') {
+            if (string[i] == caracterProcurar) {
+                novaString += caracterSubstituir;
+            } else {
+                novaString += string[i];
+            }
+        }
+        i++;
+    }
+    return novaString;
+}
+
+function ajaxGenericoGet(url, variaveis) {
+    var tmp = [];
+    $.ajax({
+        'async': false,
+        'type': "GET",
+        'global': false,
+        'dataType': 'html',
+        'url': url,
+        'data': variaveis,
+        'beforeSend': function () {
+            //abrirCortina();
+        },
+        'success': function (data) {
+            return tmp = jQuery.parseJSON(data)
+        }, 'error': function (jqXHR, exception) {
+            //console.log('ERRO');
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            alert(msg)
+            //$('#post').html(msg);            
+        }
+    });
+    return tmp;
+}
+
+$( ".dinheiro" ).blur(function() {
+    if( $(this).val() == "") { $(this).val('0,00'); }
+});  
+$(".dinheiro").maskMoney({decimal:",", thousands:"."});
+
+$('.soNumero').keyup(function() {
+    $(this).val($(this).val().replace(/[^\d]/, ''));
+});
+
+$('.data').mask('00/00/0000');
+
+function rtrim(str) { return str.replace(/s+$/," ") ; }
+
+</code></pre>

@@ -1,0 +1,61 @@
+<h2><i class="fa fa-refresh fa-fw"></i> AJAX</h2>
+
+
+
+<h3>1 - Construção do método genérico</h3>
+<pre><code>
+function ajaxGenericoGet(url, variaveis) {
+    var tmp = [];
+    $.ajax({
+        'async': false,
+        'type': "GET",
+        'global': false,
+        'dataType': 'html',
+        'url': url,
+        'data': variaveis,
+        'beforeSend': function () {
+            //abrirCortina();
+        },
+        'success': function (data) {
+            return tmp = jQuery.parseJSON(data)
+        }, 'error': function (jqXHR, exception) {
+            //console.log('ERRO');
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            alert(msg)
+        }
+    });
+    return tmp;
+}
+</code></pre>
+
+<h3>2 - Gerando e enviando os dados</h3>
+Basicamente são 2 parametros , urlController pra onde será enviados os dados e o segundo parametro arrayVariaveis , são os 
+dados propriamente ditos
+<pre><code>var arrayVariaveis = {ajax: 1, metodo: 1, data_festa: '15/11/1981'};
+var dados = ajaxGenericoGet(urlController, arrayVariaveis);
+</code></pre>
+
+<h3>3 - Recebendo os dados no PHP</h3>
+<pre><code>header("Content-type: application/json");
+
+if ( (isset($_GET['ajax'])) && ($_GET['metodo'] == 1) ) {
+    $data = $_REQUEST['data_festa'];
+    $aniversario = new Festa();
+    echo $aniversario->buscarFesta($data);
+}
+</code></pre>

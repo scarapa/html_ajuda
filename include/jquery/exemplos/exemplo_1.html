@@ -1,0 +1,53 @@
+<h2><i class="fa fa-code fa-fw"></i> EXEMPLO 1</h2>
+
+<div class="col-lg-4">.</div>
+<div class="col-lg-4">	
+	<div class="form-group input-group">
+		<input type="text" class="form-control" id="procurar" autocomplete="off">
+		<span class="input-group-btn">
+			<button type="button" class="btn btn-default"><i class="fa fa-search"></i></button>
+		</span>
+	</div>
+</div>		
+<div class="col-lg-4"></div>	
+
+<div class="col-lg-12" id="lista"></div>
+
+
+<script>
+$(document).ready(function() {
+
+	pesquisar();
+	
+	function pesquisar(){
+		exibirLista($("#procurar").val())
+	}
+	
+	function exibirLista(procurar){
+		var lista = [{"nome":"Roberto"},{"nome":"Luisa"},{"nome":"Tonia"},{"nome":"Ricardo"},{"nome":"Michel"}
+		,{"nome":"Rafael"},{"nome":"Roberta"},{"nome":"Roberval"},{"nome":"Lizandro"},{"nome":"Vagner"},{"nome":"Eloa"}
+		,{"nome":"Jose"},{"nome":"Jorge"},{"nome":"Eduardo"},{"nome":"Leandro"},{"nome":"Ane"},{"nome":"Amelia"}
+		,{"nome":"Gabriela"},{"nome":"Valdir"},{"nome":"Julia"},{"nome":"Mauricio"},{"nome":"Mateus"},{"nome":"Vitor"}
+		,{"nome":"Gabriel"},{"nome":"Vitoria"},{"nome":"Luis Eduardo"}];	
+		var flag = false;
+		var html = "<ul>";
+		$.each(lista, function (name,value) {
+		   $.each(this, function (name, value) {
+				var nomeMinusculo = value.toLowerCase();
+				var procurarMinusculo = procurar.toLowerCase();
+				if(nomeMinusculo.indexOf(procurarMinusculo) == 0) { 
+					html += "<li class='col-lg-2'>"+value+"</li>";
+					flag = true;
+				}
+		   });
+		});	
+		if(flag == false) { html += "<div class='alert alert-danger col-lg-2'>Nada encontrado <i class='mdi mdi-block-helper'></i></div>" };
+		html += "</ul>";
+		$("#lista").html(html)
+	}
+	
+	$("#procurar").bind("keyup keydown", function(){
+		pesquisar();
+	});
+});
+</script>	
