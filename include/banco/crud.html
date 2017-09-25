@@ -184,3 +184,16 @@ FROM Data ;
 </div>
 <br clear="all">
 <a href="https://msdn.microsoft.com/pt-br/library/ms181765(v=sql.120).aspx">msdn.microsoft</a>
+
+<h3>SELECT COM INSERT</h3>
+<pre><code><strong>INSERT INTO</strong> TABELA_NOME <strong>SELECT * FROM</strong> TABELA_NOME;</code></pre>
+<code>OBS1: Pode escolher as colunas e inserir valores estaticos no <strong>SELECT</strong></code><br/>
+<code>OBS2: Pode por condição(WHERE) no <strong>SELECT</strong></code><br>
+Exemplo abaixo:
+<pre><code><strong>INSERT INTO</strong> alunos 
+	<strong>SELECT</strong> 
+		id,nome,'REPROVADOS' AS 'ds_obs' 
+	<strong>FROM</strong> alunos 
+	<strong>WHERE</strong> no_nota < 6;</code></pre>
+<br clear="all">
+
