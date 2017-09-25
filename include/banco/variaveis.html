@@ -1,13 +1,13 @@
 ﻿<h2><i class="mdi mdi-keyboard-tab"></i> VARIAVEIS</h2>
 
-Pode se usar as variaveis tanto em SELECT/UPDATE/INSERT/DELETE
+<h3>Pode se usar as variaveis tanto em SELECT/UPDATE/INSERT/DELETE</h3>
 <pre><code><kbd>SQLSERVER</kbd>
 DECLARE @matricula int;
 SET @matricula = 171;
 SELECT * FROM funcionarios WHERE cd = @matricula;
 </code></pre>
 
-Setando mais de uma variavel no mesmo SELECT, pra isso é necessario um ponteiro/cursor
+<h3>Setando mais de uma variavel no mesmo SELECT, pra isso é necessario um ponteiro/cursor</h3>
 <pre><code><kbd>SQLSERVER</kbd>
 DECLARE @cd_matricula VARCHAR(5);
 DECLARE @cd_grupo INT;
@@ -21,9 +21,30 @@ DECLARE lista CURSOR FOR
 DEALLOCATE lista
 </code></pre>
 
-Setando o valor de uma coluna AUTOINCREMENT de um INSERT/INSERÇÃO
+<h3>Setando o valor de uma coluna AUTOINCREMENT de um INSERT/INSERÇÃO</h3>
 <pre><code><kbd>SQLSERVER</kbd>
 DECLARE @cd_log INT;
 INSERT INTO log (cd_modulo ,id_usuario ) VALUES (5, 171 );
 SET @cd_log = SCOPE_IDENTITY();
 </code></pre>
+
+<h3>IF ELSE</h3>
+<pre><code><kbd>SQLSERVER</kbd>
+DECLARE @condicao INT
+SET @condicao = 3
+
+IF @condicao = 1 
+	BEGIN
+		SELECT 'tricolor tricampeão da libertadores'
+	END
+ELSE IF @condicao = 2
+	BEGIN
+		SELECT 'tricolor tricampeão mundial'
+	END
+ELSE
+	BEGIN
+		SELECT 'tricolor campeão paulista 2005'
+	END
+</code></pre>
+<a href="https://forum.imasters.com.br/topic/159724-if-no-sql/">Fonte</a>
+<br clear="all"><br clear="all">
