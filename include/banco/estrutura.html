@@ -55,10 +55,12 @@
 <strong>ALTER TABLE</strong> PEDIDOS <strong>ADD CONSTRAINT</strong> FK_COD_CLI <strong>FOREIGN KEY</strong> (COD_CLI) <strong>REFERENCES</strong> CLIENTES(COD);</code></pre>
 <a href="http://www.devmedia.com.br/criando-banco-e-tabelas-garantindo-a-integridade-dos-dados/24426">DEVMEDIA</a>
 
-<h3>SQLSERVER: Setar valor padrão em coluna</h3>
-No caso abaixo quando é criado um novo registro é inserido automaticamente na coluna 'nome_coluna' a data atual através do método getdate() 
-<pre><code><kbd>Adicionando Coluna</kbd>
-<strong>ALTER TABLE</strong> nome_tabela ADD CREATED_AT DATETIME NOT NULL <strong>DEFAULT</strong> getdate() ;
+<h3>SETAR VALOR PADRÃO EM COLUNA</h3>
+Sintaxe:
+<pre><code><strong>ALTER TABLE</strong> tabela_nome <strong>ADD</strong> campo_nome campo_tipo NOT NULL <strong>DEFAULT</strong> campo_valor ;</code></pre>
+Exemplos abaixo:
+<pre><code><strong>ALTER TABLE</strong> ponto <strong>ADD</strong> status BOOLEAN NOT NULL DEFAULT '1'
+<strong>ALTER TABLE</strong> log <strong>ADD</strong> dt_insert DATETIME NOT NULL <strong>DEFAULT</strong> getdate() ;
 </code></pre>
 <a href="https://pt.stackoverflow.com/questions/72631/setar-valor-padr%C3%A3o-para-coluna-de-uma-tabela-j%C3%A1-existente">Fonte</a>
 
