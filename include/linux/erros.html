@@ -1,0 +1,14 @@
+﻿<h2><i class="fa fa-times-circle fa-fwfa-fw"></i> ERROS</h2>
+<h3>Comando SUDO não funciona</h3>
+
+
+
+Ao alterar certas variáveis de ambiente, o usuário pode bagunçar tudo e tornar o comando sudo inutilizável.
+<pre>$ sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}</pre>
+Quando isso acontece, ao usar o comando sudo, surge a seguinte mensagem: <br/>
+<code>sudo: /usr/bin/sudo deve ter como dono o uid 0 e tem definido o bit setuid</code><br>
+Para resolver isso, execute como root:<br/>
+
+<pre># chown root:root /usr/bin/sudo && chmod 4755 /usr/bin/sudo</pre>
+
+<a href="https://www.vivaolinux.com.br/dica/sudo-usrbinsudo-deve-ter-como-dono-o-uid-0-e-tem-definido-o-bit-setuid-Resolvido">vivaolinux</a>
