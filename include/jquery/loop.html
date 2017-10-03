@@ -1,0 +1,104 @@
+﻿<h2><i class="fa fa-repeat"></i> LOOP</h2>
+Principais eventos JQUERY. Geralmente os eventos serão utilizados dessa maneira, exemplo do evento click abaixo:<br>
+
+<h3>1. Basic jQuery.each()</h3>
+Vamos ver como a função each() nos ajuda em conjunto com um objeto jQuery. O primeiro exemplo seleciona todos os elementos na página e exibe seu atributo href.
+<pre>$('a').each(function (index, value){
+  console.log($(this).attr('href'));
+});</pre>
+O segundo exemplo emite cada href externo na página da Web (assumindo apenas o protocolo HTTP):
+<pre>$('a').each(function (index, value){
+  var link = $(this).attr('href');
+
+  if (link.indexOf('http://') === 0) {
+    console.log(link);
+  }
+});</pre>
+
+Digamos que na página tivemos os seguintes links:
+<pre>&#60a href="http://www.jquery4u.com">JQUERY4U&#60/a&#62
+&#60a href="http://www.phpscripts4u.com">PHP4U&#60/a&#62
+&#60a href="http://www.blogoola.com">BLOGOOLA&#60/a>&#62</pre>
+
+<pre>http://jquery4u.com
+http://www.phpscripts4u.com
+http://www.blogoola.com</pre>
+
+Devemos notar que os elementos DOM de um objeto jQuery precisam ser embalados novamente quando usados ​​dentro de um jQuery each(). 
+A razão é que jQuery é de fato apenas um invólucro em torno de uma série de elementos DOM. 
+Ao usar jQuery each() esta matriz é iterada da mesma maneira que uma matriz comum seria. 
+Portanto, não removemos elementos embrulhados da caixa.
+
+<h3>2. jQuery.each() Array Example</h3>
+<pre>var numbers = [1, 2, 3, 4, 5, 6];
+$.each(numbers , function (index, value){
+  console.log(index + ':' + value); 
+});</pre>
+This snippet outputs: 0:1, 1:2, 2:3, 3:4, 4:5, and 5:6.
+
+Nada especial aqui. Uma matriz possui índices numéricos, portanto, obtemos números a partir de 0 e indo até N-1, 
+onde N é o número de elementos na matriz.
+
+<h3>3. jQuery.each() JSON Example</h3>
+Podemos ter estruturas de dados mais complicadas, como arrays em arrays, objetos em objetos, 
+arrays em objetos ou objetos em matrizes. Vamos ver como each() pode nos ajudar em tais cenários.
+<pre>var json = [ 
+ { 'red': '#f00' },
+ { 'green': '#0f0' },
+ { 'blue': '#00f' }
+];
+
+$.each(json, function () {
+   $.each(this, function (name, value) {
+      console.log(name + '=' + value);
+   });
+});</pre>
+Este exemplo exibe red=#f00, green=#0f0, blue=#00f.<br><br>
+
+Nós lidamos com a estrutura aninhada com uma chamada aninhada para each (). 
+A chamada externa lida com a matriz da variável JSON, a chamada interna lida com os objetos. Neste exemplo, 
+cada objeto possui apenas uma chave, no entanto, em geral, qualquer número pode ser atacado com o código fornecido.
+
+<h3>4. jQuery.each() Class Example</h3>
+Este exemplo mostra como percorrer cada elemento com o produto da classe atribuído, dado no HTML abaixo.
+<pre>&#60div class="productDescription">Red&#60/div&#62;
+&#60div&#62;Pink&#60/div&#62;
+&#60div class="productDescription">Orange&#60/div&#62;
+&#60div class="generalDescription">Teal&#60/div&#62;
+&#60div class="productDescription">Green&#60/div&#62;</pre>
+
+Usamos each() ajudante em vez do método cada () no seletor.
+
+<pre>$.each($('.productDescription'), function (index, value) { 
+  console.log(index + ':' + $(value).text()); 
+});</pre>
+
+Neste caso, a saída é 0:Red, 1:Orange, 2:Green.<br/><br/>
+
+Não precisamos incluir índice e valor. Estes são apenas parâmetros que ajudam a 
+determinar qual elemento DOM que estamos atualmente iterando. Além disso, neste cenário, 
+também podemos usar o método mais conveniente para cada um. Podemos escrever assim:
+
+<pre>$('.productDescription').each(function () { 
+  console.log($(this).text());
+});</pre>
+E nós obteremos no console:
+<pre>Red
+Orange
+Green</pre>
+Mais uma vez, precisamos envolver o elemento DOM em uma nova instância jQuery. Usamos o método text () para obter o texto do elemento para saída.
+
+<h3>5. jQuery .each() Delay Example</h3>
+No próximo exemplo, quando o usuário clicar no elemento com o ID 5demo, todos os 
+itens da lista serão ajustados para laranja imediatamente. Após um atraso dependente 
+do índice (0, 200, 400, ... milissegundos), desaparecemos o elemento.
+<pre>$('#5demo').bind('click', function (e) {
+  $('li').each(function (index) {
+    $(this).css('background-color', 'orange')
+		.delay(index * 200)
+		.fadeOut(1500);
+  });
+  e.preventDefault();
+});</pre>
+
+<a href="https://www.sitepoint.com/jquery-each-function-examples/">sitepoint</a>
