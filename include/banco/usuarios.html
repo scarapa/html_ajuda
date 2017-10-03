@@ -1,74 +1,14 @@
-﻿<h2><i class="glyphicon glyphicon-th"></i> ESTRUTURA - DDL</h2>
+﻿<h2><i class="fa fa-users"></i> Usuarios</h2>
 
-<kbd>DDL</kbd> – Data Definition Language ( DDL) são usadas para definir a estrutura de banco de dados ou esquema. Alguns exemplos:
-<br><br>
-<div class="col-lg-8">
-	<div class="panel panel-default">
-		<div class="table-responsive">
-			<table class="table">
-				<tbody>
-					<tr>
-						<th>CREATE</th>
-						<td>Para criar objetos no banco de dados</td>
-					</tr>
-					<tr>
-						<th>ALTER</th>
-						<td>Altera a estrutura da base de dados</td>
-					</tr>
-					<tr>
-						<th>TRUNCATE</th>
-						<td>Remover todos os registros de uma tabela, incluindo todos os espaços alocados para os registros são removidos</td>
-					</tr>
-					<tr>
-						<th>COMMENT</th>
-						<td>Adicionar comentários ao dicionário de dados</td>
-					</tr>
-					<tr>
-						<th>RENAME</th>
-						<td>Para renomear um objeto</td>
-					</tr>							
-				</tbody>
-			</table>
-
-		</div>
-	</div>
-</div>	
-
-
-<br clear="all">
-
-<h3>ADICIONANDO COLUNA</h3>
-<pre><code><kbd>SQLSERVER</kbd>
-<strong>ALTER TABLE</strong> nome_tabela <strong>ADD</strong> column_b <strong>TIPO</strong> NULL, column_c INT NULL ;</code></pre>
-<a href="https://msdn.microsoft.com/pt-br/library/ms190238(v=sql.120).aspx">msdn</a>
-
-<h3>ALTERAR O TIPO DA COLUNA</h3>
+<h3>CRIANDO USUARIO REMOTO</h3>
 <pre><code><kbd>MYSQL</kbd>
-<strong>ALTER TABLE</strong> nome_tabela <strong>MODIFY</strong> nome_coluna <strong>TIPO</strong></code></pre>
+CREATE USER 'remoto'@'%' IDENTIFIED BY '***';
 
-<pre><code><kbd>SQLSERVER</kbd>
-<strong>ALTER TABLE</strong> nome_tabela <strong>ALTER COLUMN</strong> nome_coluna <strong>TIPO</strong></code></pre>
-<a href="https://msdn.microsoft.com/pt-br/library/ms190238(v=sql.120).aspx">msdn</a>
-
-<h3>CRIAR CHAVE ESTRANGEIRA - FK</h3>
-<pre><code><kbd>SQLSERVER</kbd>
-<strong>ALTER TABLE</strong> PEDIDOS <strong>ADD CONSTRAINT</strong> FK_COD_CLI <strong>FOREIGN KEY</strong> (COD_CLI) <strong>REFERENCES</strong> CLIENTES(COD);</code></pre>
-<a href="http://www.devmedia.com.br/criando-banco-e-tabelas-garantindo-a-integridade-dos-dados/24426">DEVMEDIA</a>
-
-<h3>SQLSERVER: Setar valor padrão em coluna</h3>
-No caso abaixo quando é criado um novo registro é inserido automaticamente na coluna 'nome_coluna' a data atual através do método getdate() 
-<pre><code><kbd>Adicionando Coluna</kbd>
-<strong>ALTER TABLE</strong> nome_tabela ADD CREATED_AT DATETIME NOT NULL <strong>DEFAULT</strong> getdate() ;
+GRANT ALL PRIVILEGES ON * . * TO 'remoto'@'%' IDENTIFIED BY '***' 
+WITH GRANT OPTION MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0 ;
 </code></pre>
-<a href="https://pt.stackoverflow.com/questions/72631/setar-valor-padr%C3%A3o-para-coluna-de-uma-tabela-j%C3%A1-existente">Fonte</a>
 
-
-<h3>Resetar o valor de campo autoincrement</h3>
-<pre><code><kbd>SQLSERVER</kbd>
-DELETE FROM <strong>tabela_nome</strong> DBCC CHECKIDENT ('<strong>database_nome</strong>..<strong>tabela_nome</strong>',RESEED, 0);</code></pre>
-
-<h3>REMOVER COLUNA</h3>
-<pre><code><strong>ALTER TABLE</strong> nome_tabela <strong>DROP COLUMN</strong> nome_coluna ;</code></pre>
-
-
-<br clear="all">
+Fontes: <br>
+<a href="https://www.digitalocean.com/community/tutorials/como-criar-um-novo-usuario-e-conceder-permissoes-no-mysql-pt">digitalocean</a><br>
+<a href="http://www.devmedia.com.br/gerenciamento-de-usuarios-e-controle-de-acessos-do-mysql/1898">devmedia</a><br>
+<a href="https://stackoverflow.com/questions/16287559/mysql-adding-user-for-remote-access">stackoverflow</a>
