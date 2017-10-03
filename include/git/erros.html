@@ -1,7 +1,22 @@
-﻿<h2><i class="fa fa-cloud fa-fw"></i> BRANCH</h2>
+﻿<h2><i class="fa fa-warning fa-fw"></i> ERROS</h2>
 
 <h3>Não faz o push</h3>
 <code>Unable to rewind rpc post data - try increasing http.postBuffer error: <br/>RPC failed; result=65, HTTP code = 301</code>
 <BR/>Solução encontrada:<br>
 <pre><code>$ git config http.postBuffer 524288000</code></pre>
 <a href="https://stackoverflow.com/questions/2702731/git-fails-when-pushing-commit-to-github">stackoverflow</a>
+
+<h3>error: Your local changes to the following files would be overwritten by merge</h3>
+Erro completo abaixo:
+<pre>
+error: Your local changes to the following files would be overwritten by merge
+*** LISTA DE ARQUIVOS ***
+Please commit your changes or stash them before you merge.
+Aborting
+</pre>
+Acontece porque a sua versão é anterior a verão atual, portanto antes de fazer o commit e o push você precisa atualizar para que os conflitos sejam locais
+e nao no server.<br><br>
+Solução:<br/>
+<pre>git checkout HEAD^ CAMINHO/DO/ARQUIVO
+git pull</pre>
+<a href="https://stackoverflow.com/questions/14318234/how-to-ignore-error-on-git-pull-about-my-local-changes-would-be-overwritten-by-m">stackoverflow</a>
