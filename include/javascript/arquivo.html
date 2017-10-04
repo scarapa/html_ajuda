@@ -14,7 +14,6 @@ function converterDataBRtoEUA(data) {
     return data[2] + "-" + data[1] + "-" + data[0];
 }
 
-
 function replaceTudo(string, caracterProcurar, caracterSubstituir) {
     var i = 0;
     var novaString = "";
@@ -71,6 +70,45 @@ function ajaxGenericoGet(url, variaveis) {
     return tmp;
 }
 
+function ajaxGenericoPost(rota, variaveis) {
+    var tmp = [];
+    $.ajax({
+        'async': false,
+        'type': "POST",
+        'global': false,
+        'dataType': 'html',
+        'url': rota,
+        'data': variaveis,
+        'beforeSend': function () {
+            //abrirCortina();
+        },
+        'success': function (data) {
+            return tmp = jQuery.parseJSON(data)
+        }, 'error': function () {
+            //console.log('ERRO');
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            //alert(msg)            
+            console.log('%c '+msg+' ','color:hsl(0, 100%, 90%);background-color:hsl(0, 100%, 50%);');
+        }
+    });
+    return tmp;
+}
+
 $( ".dinheiro" ).blur(function() {
     if( $(this).val() == "") { $(this).val('0,00'); }
 });  
@@ -82,6 +120,17 @@ $('.soNumero').keyup(function() {
 
 $('.data').mask('00/00/0000');
 
+$('.decimal').maskMoney({decimal:".", thousands:".",precision: 0});
+
+$('.numeroSomentePonto').keydown(function() {
+	$(this).val($(this).val().replace(",", "."));
+});
+
+$(".cpf").mask("999.999.999-99");
+$(".cep").mask("99999-999");
+
 function rtrim(str) { return str.replace(/s+$/," ") ; }
+
+
 
 </code></pre>
