@@ -101,7 +101,8 @@ Iremos agrupar os alunos pela numero de turma.<br/>
 
 <br clear="all">
 <div class="col-lg-6">
-<pre><code>SELECT
+<pre><code><kbd>SQLSERVER</kbd>
+SELECT
 	e.turma
 	,STUFF(
 	(SELECT ', ' + cd_matricula
@@ -143,14 +144,14 @@ Resultado o SQL foi a tabela gerada abaixo:<br/>
 
 <br clear="all">
 
-<h3> SQLSERVER : GERAR TABELA COM INDICE PARA REALIZAR PAGINACAO</h3>
+<h3>GERAR TABELA COM INDICE PARA REALIZAR PAGINACAO</h3>
 Existem duas variaveis como parametros na consulta: $indice_inicio e $indice_fim. <br/>
 Se você quiser trazer os 20 primeiros reguistros bastar setar $indice_inicio = 1 e a variavel $indice_fim = 20;<br/>
 Exemplos:<br/>
 PAGINA->1 ; INICIO->1 ; FIM->20<br/>
 PAGINA->2 ; INICIO->21 ; FIM->40<br/>
 PAGINA->3 ; INICIO->41 ; FIM->60<br/>...
-<pre><code>
+<pre><code><kbd>SQLSERVER</kbd>
 WITH paginacao AS
 (
 SELECT 

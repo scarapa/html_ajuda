@@ -24,3 +24,46 @@ WHERE
 Exemplo de Retorno
 
 <a href="https://stackoverflow.com/questions/2418527/sql-server-query-to-get-the-list-of-columns-in-a-table-along-with-data-types-no">stackoverflow</a>
+
+<hr>
+
+<h3>Mascarar CPF</h3>
+O Campo CPF atualmente é composto de 11 caracteres numéricos(0-9), para fins de exemplos o nosso CPF terá essa composicao:<code>003.456.789-01</code><br/>
+Ou seja, como o nosso banco é um tipo numerico no BD , ele está gravado dessa forma:<code>345678901</code><br/>
+
+<div class="col-lg-6">
+	<div class="panel panel-default">
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>CPF ORIGINAL</th>
+						<th>CPF CORRIGIDO</th>
+						<th>CPF MASCARADO</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>345678901</td>
+						<td>00345678901</td>
+						<td>003.456.789-01</td>
+					</tr>
+					</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<br clear="all">
+<pre><code><kbd>SQLSERVER</kbd>
+SELECT 
+	'345678901' AS 'cpf original'
+	,REPLICATE('0', 11 - LEN('345678901')) + RTRIM('345678901') AS 'cpf com zeros'
+	,SUBSTRING(REPLICATE('0', 11 - LEN('345678901')) + RTRIM('345678901'),0,4)+'.'
+		+SUBSTRING(REPLICATE('0', 11 - LEN('345678901')) + RTRIM('345678901'),4,3)+'.'
+		+SUBSTRING(REPLICATE('0', 11 - LEN('345678901')) + RTRIM('345678901'),7,3)+'-'
+		+SUBSTRING(REPLICATE('0', 11 - LEN('345678901')) + RTRIM('345678901'),10,2) 
+	AS ' cpf mascarado'   
+</pre>
+
+<br clear="all">
+
