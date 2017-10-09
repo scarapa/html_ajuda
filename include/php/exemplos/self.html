@@ -1,0 +1,65 @@
+﻿<h2><i class="fa fa-lightbulb-o"></i> Dicas</h2>
+
+<h3>self vs $this </h3>
+<i>Quando devemos usar o self::, ou o $this no PHP. Qual forma é mais adequada para o uso e qual a diferença das 2 situações?</i><br/>
+De forma simplificada, $this se refere ao objeto (instância) atual, e self se refere à classe. Portanto, como regra geral, usa-se $this para acessar membros (atributos, métodos) da instância e self para acessar membros estáticos.
+
+Herança
+Quando se usa herança, no entanto, há diferença entre usar self e $this ao chamar um método da instância:
+
+<li><code>self::metodo()</code> chama o <code>metodo()</code> da classe atual;</li>
+<li><code>$this->metodo()</code> chama o <code>metodo()</code> da classe usada para instanciar o objeto 
+que está sendo executado (que pode ser uma subclasse da classe onde a chamada é feita). Você pode 
+descobrir que classe é essa usando <code>get_class($this)</code></li>
+
+Exemplo:<br>
+<pre><kbd>PHP</kbd>
+class Animal {
+	public function teste() {
+		echo "\$this é instância de " . get_class($this) . "\n";
+
+		// chama Animal::fala(), independentemente do
+		// tipo da instância
+		echo "self::fala(): ";
+		self::fala();
+
+		// chama fala() na classe usada pra instanciar
+		// este objeto
+		echo "\$this->fala(): ";
+		$this->fala();
+	}
+	
+	public function fala() {
+		echo "Oi\n";
+	}
+}
+
+class Gato extends Animal {
+	public function fala() {
+		echo "Miau\n";
+	}
+}
+
+// Nesse caso, self != get_class($this)
+// - self == Animal
+// - get_class($this) == Gato
+$gato = new Gato();
+$gato->teste();
+
+echo "\n";
+
+// Nesse caso, self == get_class($this) == Animal
+$animal = new Animal();
+$animal->teste();
+</pre>
+Retorno:
+<pre>$this é instância de Gato
+self::fala(): Oi
+$this->fala(): Miau
+
+$this é instância de Animal
+self::fala(): Oi
+$this->fala(): Oi
+</pre>
+
+<a href="https://pt.stackoverflow.com/questions/575/quando-usar-self-vs-this-em-php">stackoverflow</a>
