@@ -1,3 +1,12 @@
 ﻿<h2><i class="fa fa-lightbulb-o"></i> Dicas</h2>
 
-<h3></h3>
+<h3>Addslashe NAO FUNCIONA</h3>
+Quando isso ocorrer pode ser feito uma 'gambi'!<br/>
+
+1º Ao salvar no banco substitua a aspa simples(') por acento(´)
+<pre>$ds_ferias_mensagem_alerta = str_replace("'","´",$_POST['ds_ferias_mensagem_alerta']);</pre>
+
+2º Ao exibir na view faça o inverso
+<pre>echo str_replace("\´","'",$ds_ferias_mensagem_alerta);</pre>
+
+

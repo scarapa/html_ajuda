@@ -1,0 +1,42 @@
+﻿<h2><i class="fa fa-refresh fw"></i> Transação</h2>
+
+<h3>Exemplo 1</h3>
+<pre><code><kbd>SQLSERVER</kbd>
+DECLARE @erro int;
+DECLARE @erro_msg int;
+	SET @erro = 0;
+	BEGIN TRAN excluiEsforco;
+UPDATE tblEsforco SET 
+	st_excluido='S'
+WHERE 
+	cd_esforco=".$cd_esforco."
+SET @erro_msg = @@ERROR
+IF @erro_msg <> 0 
+SET @erro = @erro_msg;
+IF @erro <> 0
+	ROLLBACK TRAN excluiEsforco;
+ELSE
+	COMMIT TRAN excluiEsforco;
+SELECT @erro AS st_transacao 
+</code></pre>
+
+<hr>
+
+<h3>Exemplo 2</h3>
+<pre><code><kbd>SQLSERVER</kbd>
+<i style="font-size:.85em">//COMECA A TRANSACAO </i>
+$db->query("BEGIN TRANSACTION TRANSACAO_GRAVAR_FERIAS");
+
+<i style="font-size:.85em">//EXECUTA N QUERYS</i>
+$db->query("INSERT ...");
+$db->query("UPDATE...");
+
+<i style="font-size:.85em">//SE ALGO DER ERRADO DEZFAZ TODAS AS QUERYS
+//SENAO COMMITA </i>
+if($flagErro){
+	$db->query("ROLLBACK TRANSACTION TRANSACAO_GRAVAR_FERIAS");
+}else{
+	$db->query("COMMIT TRANSACTION TRANSACAO_GRAVAR_FERIAS"); 
+}
+
+</code></pre>
