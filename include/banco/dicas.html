@@ -69,7 +69,12 @@ SELECT
 		+SUBSTRING(REPLICATE('0', 11 - LEN('345678901')) + RTRIM('345678901'),7,3)+'-'
 		+SUBSTRING(REPLICATE('0', 11 - LEN('345678901')) + RTRIM('345678901'),10,2) 
 	AS ' cpf mascarado'   
-</pre>
+</code></pre>
 
 <br clear="all">
+
+<h3>Criar tabela de BACKUP</h3>
+<pre><kbd>SQLSERVER</kbd>
+SELECT * INTO <strong>nova_tabela</strong> FROM <strong>tabela_atual</strong></pre>
+<a href="https://imasters.com.br/artigo/12083/sql-server/como-copiar-estrutura-de-tabelas-no-sql-server?trace=1519021197&source=single">Fonte</a>
 

@@ -17,6 +17,15 @@
 	-o-transform: rotate(90deg);
 	transform: rotate(90deg);
 }
+.tableNumeracaoAutomatica tr:not(.fble_htr) {
+    counter-increment: rowNumber;
+}
+
+.tableNumeracaoAutomatica tr:not(.fble_htr) td:first-child::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;
+}
 </style>
 <pre><code>    
 .rotate-45 {
@@ -54,3 +63,51 @@ exemplo<br>
 <br clear="all">
 <a href="https://www.w3schools.com/icons/tryit.asp?filename=tryicons_fa-gear">w3schools</a>
 <br clear="all">
+<hr>
+<h2>TABELA - Numero em linhas</h2>
+<pre>
+.tableNumeracaoAutomatica tr:not(.fble_htr) {
+    counter-increment: rowNumber;
+}
+
+.tableNumeracaoAutomatica tr:not(.fble_htr) td:first-child::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;
+}
+</pre>
+
+<div class="col-lg-3">
+	<div class="panel panel-default">
+		<div class="table-responsive">
+			<table class="tableNumeracaoAutomatica">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>NOME</th>
+						<th>SOBRENOME</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td></td>
+						<td>Ronaldo</td>						
+						<td>Oliveira</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>Douglas</td>						
+						<td>Silva</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>Bernardo</td>						
+						<td>Ferreira</td>
+					</tr>					
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>	
+<br clear="all">
+Fonte: <a href="https://stackoverflow.com/questions/25248005/css-auto-numbers-for-table-rows-not-first">stackoverflow</a>

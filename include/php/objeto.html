@@ -1,0 +1,19 @@
+﻿<h2><i class="mdi mdi-cube-outline "></i> Objeto</h2>
+
+<h3>Converter ARRAY em OBJETO</h3>
+<pre>$dados = array('nome' =>'Mateus', 'sexo'=>'Masculino');
+echo $dados['nome']; //Resultado: Mateus
+echo $dados->nome; //Resultado: Erro
+ 
+$dados = (object) $dados; //É aqui que tudo funciona...
+echo $dados->nome; //Resultado: Mateus
+</pre>
+
+<h3>Converter OBJETO em ARRAY</h3>
+<pre>$array = (array) $objeto;
+$numero = (float) $numero;
+$boolean = (boolean) $boolean;
+$string = (string) $string;
+</pre>
+
+<a href="https://mateussouzaweb.com/blog/php/como-converter-arrays-em-objetos-e-vice-versa-usando-uma-linha-de-codigo">Fonte</a>
