@@ -1,0 +1,32 @@
+﻿<h2><i class="fa fa-share fa-fwfa-fw"></i> SYMLINK</h2>
+
+É um link simbólico, isto é, um alias ou atalho para um programa ou arquivo.
+
+É um arquivo especial existente no FileSystem e apontando para outro arquivo ou diretório. Se você acessar o link simbólico de um aplicativo, ele parece transparente para o aplicativo e você realmente acessará o arquivo ou o diretório ao qual o link simbólico está apontando.
+
+Embora um link simbólico apareça com permissões de arquivos e propriedades de usuários / grupos, os direitos de acesso são determinados apenas pelas permissões de destino e pelos proprietários de usuários / grupos.
+
+Criar o link:
+<pre>$ ln -s <destination file or directory> <name of the symlink> </pre>
+
+Deletar o link:
+<pre>$ rm [name of the symlink]</pre>
+
+
+Caso de uso, montar um pendrive/hd e criar um link na pasta /var/www com nome de 'dados'
+
+<pre>$ cd /var/www
+$ ln -s /media/beto/DADOS/ dados
+</pre>
+
+<code>Erro1: Sem acesso do link pelo <b>APACHE</b></code>
+<pre>Forbidden
+
+You don't have permission to access /dados on this server.
+Apache/2.4.23 (Debian) Server at localhost Port 80</pre>
+
+1 - Acessar 
+
+
+<a href="https://wiki.debian.org/SymLink">fonte</a><br/>
+<a href="https://superuser.com/questions/244245/how-do-i-get-apache-to-follow-symlinks"></a>
