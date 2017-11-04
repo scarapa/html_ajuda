@@ -1,0 +1,80 @@
+<h2><i class="fa fa-code fa-fw"></i> EXEMPLO 7 - INSERIR TOPO TABELA</h2>
+<div class="col-lg-3">
+	<div class="form-group">
+		<label>Nome Completo</label>
+		<input class="form-control" name="nome" id="nome">
+	</div>
+</div>
+
+<div class="col-lg-1">
+	<div class="form-group">	
+		<label>&nbsp;</label>
+		<input type="button" class="btn btn-success" value="ENVIAR" id="enviar">
+	</div>
+</div>
+
+<br clear="all">
+
+<div class="col-lg-6">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			TESTE DE INSERÇÃO NO TOPO
+		</div>
+		<div class="panel-body">
+			<div class="table-responsive">
+				<table class="table table-striped" id="tabelaTeste">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Nome</th>
+							<th>Sobre Nome</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>Roberto</td>
+							<td>Alam</td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>Tonia Laura</td>
+							<td>Ferreira</td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td>Luisa</td>
+							<td>Alam</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<br clear="all">
+<h3>3 Sintaxes para se fazer a funcionalidade</h3>
+<pre>$('[tr][td]Stuff[/td][/tr]').insertBefore('table > tbody > tr:first');</pre>
+<pre>$('table > tbody > tr:first').before('[tr][td]Stuff[/td][/tr]');</pre>
+<pre>$("[tr][td]prependTo[/td][/tr]").prependTo("table > tbody");</pre>
+
+<code>OBS: Alterar os caracteres acima <b>[]</b> por estes <b><></b> </code>
+
+<br clear="all"><br clear="all">
+<a href="https://stackoverflow.com/questions/1353657/add-a-row-on-top-of-table-generated-by-javascript">Fonte</a>
+
+<script>
+    $(document).ready(function () {
+
+        $('#enviar').click(function (e) {
+
+        	var nome = $("#nome").val();
+			var nomeSobrenome = nome.split(" ");
+			var linha = "<tr><td></td><td>"+nomeSobrenome[0]+"</td><td>"+nomeSobrenome[1]+"</td></tr>";
+			$(linha).prependTo("#tabelaTeste > tbody");
+
+        });
+
+    });
+</script>    	
