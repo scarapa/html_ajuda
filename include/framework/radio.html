@@ -35,3 +35,40 @@
 	</label>
   </div>
 </div>
+
+<div>
+  <div class="radio3 radio-check radio-inline">
+	<input type="radio" value="asc" name="radio3" id="superAsc">
+	<label for="superAsc">Option 1</label>
+  </div>
+  <div class="radio3 radio-check radio-inline">
+	<input type="radio" value="desc" name="radio3" id="superDesc">
+	<label for="superDesc">Option 2</label>
+  </div>
+</div>
+
+<hr>
+<h3>Radio Mudando de ICONE</h3>
+<style>
+input[type='radio'].icon-checkbox{display:none}
+input[type='radio'].icon-checkbox+label .unchecked{display:inline}
+input[type='radio'].icon-checkbox+label .checked{display:none}
+input[type='radio']:checked.icon-checkbox{display:none}
+input[type='radio']:checked.icon-checkbox+label .unchecked{display:none}
+input[type='radio']:checked.icon-checkbox+label .checked{display:inline}
+</style>
+<input type="radio" id="checkbox1" class="icon-checkbox" name="radioTeste"/>
+<label for="checkbox1" class="fa fa-3x">
+  <span class='mdi mdi-arrow-up-drop-circle-outline unchecked'></span>
+  <span class='mdi mdi-arrow-up-drop-circle checked'></span>
+  ASC
+</label>
+
+<input type="radio" id="checkbox2" class="icon-checkbox" name="radioTeste"/>
+<label for="checkbox2" class="fa fa-3x">
+  <span class='mdi mdi-arrow-down-drop-circle-outline unchecked'></span>
+  <span class='mdi mdi-arrow-down-drop-circle checked'></span>
+  DESC
+</label>
+<br clear="all">
+<a href="https://stackoverflow.com/questions/23793737/twitter-bootstrap-radio-checkbox-how-to-put-glyphicon">FONTE</a>
