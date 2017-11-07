@@ -1,81 +1,112 @@
 <h2><i class="fa fa-anchor fw"></i> LOCATION</h2>
-
+<h3>PROPRIEDADES</h3>
 <div class="col-lg-8">
 	<div class="panel panel-default">
-		<div class="panel-body">
-			<div class="table-responsive">
-				<table class="table">
-					<thead>
-						<tr>
-							<th></th>
-							<th>DESCRIÇÃO</th>
-							<th>RETORNO</th>							
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>hash</td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>host</td>
-							<td></td>
-							<td></td>
-						</tr>						
-						<tr>
-							<td>hostname</td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>href</td>
-							<td></td>
-							<td></td>
-						</tr>					
-						<tr>
-							<td>location</td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>pathname</td>
-							<td></td>
-							<td></td>
-						</tr>						
-						<tr>
-							<td>port</td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>protocol</td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>search</td>
-							<td></td>
-							<td></td>
-						</tr>						
-						<tr>
-							<td>assign</td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>reload</td>
-							<td></td>
-							<td></td>
-						</tr>						
-						<tr>
-							<td>replace</td>
-							<td></td>
-							<td></td>
-						</tr>						
-					</tbody>
-				</table>
-			</div>
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<th></th>
+						<th>DESCRIÇÃO</th>
+						<th>RETORNO</th>							
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>hash</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>host</td>
+						<td></td>
+						<td></td>
+					</tr>						
+					<tr>
+						<td>hostname</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>href</td>
+						<td></td>
+						<td></td>
+					</tr>					
+					<tr>
+						<td>location</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>pathname</td>
+						<td></td>
+						<td></td>
+					</tr>						
+					<tr>
+						<td>port</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>protocol</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>search</td>
+						<td></td>
+						<td></td>
+					</tr>						
+					<tr>
+						<td>assign</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>reload</td>
+						<td></td>
+						<td></td>
+					</tr>						
+					<tr>
+						<td>replace</td>
+						<td></td>
+						<td></td>
+					</tr>						
+				</tbody>
+			</table>
 		</div>
 	</div>
 </div>	
+
+<br clear="all">
+<hr>
+
+<h3>VARIAVEIS NA URL</h3>
+EXEMPLO: <code>http://idiota.com.br/?modulo=informatica&conteudo=jquery&capitulo=3</code>
+<br/><br/>
+<pre>var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+};
+</pre>
+
+Capturando as variaveis:
+<pre>var modulo = getUrlParameter('modulo');
+var conteudo = getUrlParameter('conteudo');
+var capitulo = getUrlParameter('capitulo');
+</pre>
+
+
+<a href="https://stackoverflow.com/questions/19491336/get-url-parameter-jquery-or-how-to-get-query-string-values-in-js">Fonte</a> - 
+<a href="https://www.w3schools.com/js/js_window_location.asp">Fonte[2]</a> - 
+<a href="https://www.w3schools.com/html/html_urlencode.asp">Fonte[3]</a>
