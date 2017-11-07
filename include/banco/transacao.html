@@ -38,5 +38,24 @@ if($flagErro){
 }else{
 	$db->query("COMMIT TRANSACTION TRANSACAO_GRAVAR_FERIAS"); 
 }
-
 </code></pre>
+
+<h3>Exemplo 3</h3>
+<pre>
+DECLARE @cd_documento INT;
+BEGIN TRANSACTION teste
+	BEGIN TRY
+		INSERT tblDocumento (cd_tipo_documento,cd_matricula_empregado,dt_documento) VALUES(3,'99999',GETDATE());
+		SET @cd_documento= SCOPE_IDENTITY();
+		INSERT tblAnexo (cd_documento ,ds_anexo )VALUES (@cd_documento , 'TESTE' );
+COMMIT TRANSACTION teste
+	END TRY
+BEGIN CATCH
+	<b style="color:red;">SELECT ERROR_MESSAGE() AS ErrorMessage; </b>
+  ROLLBACK TRANSACTION teste
+END CATCH 
+</pre>
+Buscar o erro: <code>SELECT ERROR_MESSAGE() AS ErrorMessage</code>
+<br clear="all">
+<a href="https://stackoverflow.com/questions/10153648/correct-use-of-transactions-in-sql-server-2008">stackoverflow</a> - 
+<a href="https://docs.microsoft.com/pt-br/sql/t-sql/functions/error-message-transact-sql">Fonte[2]</a>
