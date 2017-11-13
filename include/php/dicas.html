@@ -10,3 +10,40 @@ Quando isso ocorrer pode ser feito uma 'gambi'!<br/>
 <pre>echo str_replace("\´","'",$ds_ferias_mensagem_alerta);</pre>
 
 
+<h3>Criando variáveis de váriaveis</h3>
+
+<pre>$destino = 'cidade';
+$$destino = 'Porto Alegre';
+echo "Cidade de destino é: $cidade";</pre>
+
+Utilizei essa funcionalidade para criar as variaveis que vinham do filtro de pesquisa e jogar essas variaveis no mesmo.<br/>
+Codigo PHP:<br/>
+<pre>
+if(empty($_GET['pagina'])) { 
+    $pagina = 1;
+    unset($_SESSION[CD_SESSION]['filtro']);
+}else{
+    $pagina = $_GET['pagina'];
+}
+
+if (!empty($_POST)) {
+    foreach ($_POST['filtro'] AS $indice => $valor) {
+        $_SESSION[CD_SESSION]['filtro'][$indice] = $valor;
+        $coluna = $indice;
+        $$coluna = $valor;
+    }
+
+} else {
+    if(!empty($_GET['pagina'])) { 
+        foreach ($_SESSION[CD_SESSION]['filtro'] AS $indice => $valor) {
+            $coluna = $indice;
+            $$coluna = $valor;            
+        }
+    }
+}
+</pre>
+
+Codigo HTML:<br/>
+<pre>[input name="filtro['nm_funcionario']" id="nm_funcionario" tabindex="<?=$tab++?>" value="<?=$nm_funcionario;?>]</pre>
+
+<a href="http://www.mauricioprogramador.com.br/posts/criando-variaveis-dinamicas-no-php">Fonte</a>
