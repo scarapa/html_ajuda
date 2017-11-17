@@ -1,0 +1,50 @@
+﻿<style>
+table {width:90%}
+table td.celulaImagem{padding:5px 0px ;text-align:center}
+table .celulaImagem img {width:80%;}
+table td.celulaTexto{padding:0px 5px 40px 0;text-align:center}
+</style>
+
+<h2><i class="fa fa-print fa-fw"></i> TESTES</h2>
+
+Caso queira imprimir um conteudo mais real para testes, arquivo:<code>\escpos-php\example\1.php</code>, conteudo do arquivo abaixo:<br/>
+
+<pre><kbd>1.php</kbd>
+require("../autoload.php");
+use Mike42\Escpos\Printer;
+use Mike42\Escpos\PrintConnectors\FilePrintConnector;
+$connector = new FilePrintConnector("/dev/usb/lp0");
+$printer = new Printer($connector);
+
+/* Text */
+$printer -> text("Hello world\n");
+$printer -> cut();
+$printer -> close();
+</pre>
+<a href="https://mike42.me/blog/what-is-escpos-and-how-do-i-use-it">Fonte</a><br/>
+
+Sintaxe do comando para executar o teste de impressão via terminal:
+<pre>$ echo "test" >> /dev/usb/NOME_IMPRESSORA</pre>
+
+Infelizmente no 1º momento só consegui rodar o comando abaixo com permissão root, no meu caso ficou assim:
+<pre>$ sudo su 
+SUA_SENHA [ENTER]
+$ echo 1.php > /dev/usb/Epson-TM-T20</pre>
+
+A correção do problema acima é dar permissão para todos os usuários executaram o comando <b>lp0</b><br/>
+Para verificar as permissões execute esse comando: <code> ls -la /dev/usb/</code>
+<pre>drwxr-xr-x  2 root root     80 Nov 15 12:47 .
+drwxr-xr-x 16 root root   4180 Nov 15 12:44 ..
+-rw-r--r--  1 root root      0 Nov 15 12:49 Epson-TM-T20
+<span style="color:red;">crw-rw----  1 root lp   180, 0 Nov 15 12:44 lp0</span>
+</pre>
+
+Dar permissão para a linha em vermelho.
+<pre>$ sudo chmod 777 /dev/usb/lp0</pre>
+
+Listando novamente ...<code>$ ls -la /dev/usb/</code>
+<pre>drwxr-xr-x  2 root root        80 Nov 15 12:47 .
+drwxr-xr-x 16 root root      4180 Nov 15 12:44 ..
+-rw-r--r--  1 root root         0 Nov 15 12:49 Epson-TM-T20
+<span style="color:red;">crwxrwxrwx  1 root lpadmin 180, 0 Nov 15 12:44 lp0</span>
+</pre>
