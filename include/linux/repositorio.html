@@ -1,0 +1,42 @@
+﻿<h2><i class="glyphicon glyphicon-cloud-download fa-fw"></i> REPOSITÓRIOS</h2>
+
+Esse tutorial tem como intuito adicionar o repositório OFICIAL de uma aplicação/programa no sistema operacional, para que a mesma esteja sempre atualizada.
+<br/><br/>
+Nosso caso de uso irá ser o <strong>CHROME</strong> no sistema operacional <strong>DEEPIN</strong>.
+<br/><br/>
+Geralmente os arquivos de repositórios ficam em <code>/etc/apt/sources.list</code>, este arquivo de texto contém os repositórios padrões da distro,
+no entanto, não é este arquivo que temos que alterar para modificar os repositórios adicionais, como o do Skype, Spotify e do Google Chrome.
+<br/><br/>
+Os repositórios adicionais ficam no diretório <code>/etc/apt/sources.list.d</code> use o gerenciador de arquivos do sistema para navegar até esta pasta:
+<br/><br/>
+
+<li>Nesta pasta, clique com o botão direito do mouse e vá na opção de "Abrir em nova janela como administrador".</li>
+<br/>
+
+<li>Na janela em modo Root, crie um novo arquivo de texto e coloque o nome de google-chrome-stable.list</li>
+<div style="text-align:center">
+	<a href="../helper/images/linux_repositorio_01.png" target="_blank">
+		<img id="imagem" src="../helper/images/linux_repositorio_01.png" style="width:500px;border:1px solid black" />
+	</a>
+</div>
+<br/>
+
+<li>Abra o arquivo que você criou com o editor de texto de sua preferência e cole a seguinte linha dentro dele, depois salve o arquivo:</li>
+<pre>deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main</pre>
+<br/>
+
+<li>Depois de salvar, pode fechar o editor de texto e agora você terá um arquivo google-chrome-stable.list dentro daquele diretório.</li>
+<br/>
+
+<li>Depois disso, basta mandar atualizar o sistema, você pode fazer isso pelo utilitário de atualização:</li>
+<div style="text-align:center">
+	<a href="../helper/images/linux_repositorio_02.png" target="_blank">
+		<img id="imagem" src="../helper/images/linux_repositorio_02.png" style="width:500px;border:1px solid black" />
+	</a>
+</div>
+<br/>
+Ou é claro, pelo terminal: 
+<pre>$ sudo apt update</pre>
+
+<a href="http://www.diolinux.com.br/2017/11/como-adicionar-o-repositorio-oficial-do-google-chrome-no-deepin.html?m=1">diolinux</a><br/>
+
