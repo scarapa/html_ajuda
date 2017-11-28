@@ -1,0 +1,28 @@
+<script>
+var canvas = document.getElementById("mycanvas");
+var dataURL = canvas.toDataURL();
+console.log(dataURL);
+
+</script>
+
+<h2><i class="fa fa-imagem-o fw"></i> Imagem</h2>
+
+<h3>Gerando Imagem</h3>
+<pre>
+var canvas = document.getElementById("mycanvas");
+var img    = canvas.toDataURL("image/png");
+document.write('[img src="'+img+'"/]');
+</pre>
+
+<canvas id="mycanvas" width="500" height="500">
+	<table>
+		<tr>
+			<th>NOME</th>
+			<th>SOBRENOME</th>			
+		</tr>
+		<tr>
+			<td>Roberto</td>
+			<td>Alam</td>
+		</tr>
+	</table>
+</canvas>
