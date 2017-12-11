@@ -28,6 +28,7 @@
         <script src="js/sb-admin-2.js"></script>
         <!-- <script src="js/select2.min.js"></script> -->
 		<script src="js/select2.1.js"></script>
+		<script src="js/html2canvas.js"></script>
 		<script>
 		$(document).ready(function() {
 			var link = window.location.hash.replace('#','','g') ;
@@ -148,6 +149,7 @@
 									<li><a href="#javascript/componentes"><i class="glyphicon glyphicon-inbox fa-fw"></i> Componentes</a></li>
 									<li><a href="#javascript/seletores"><i class="glyphicon glyphicon-filter fa-fw"></i> Seletores</a></li>
 									<li><a href="#javascript/data"><i class="fa fa-calendar fa-fw"></i> Data</a></li>
+									<li><a href="#javascript/imagem"><i class="fa fa-picture-o fa-fw "></i> Imagem</a></li>									
 									<li><a href="#javascript/console"><i class="fa fa-terminal fa-fw"></i> Console</a></li>	
 									<li><a href="#javascript/location"><i class="fa fa-anchor fa-fw"></i> Location</a></li>
 									<li><a href="#javascript/objeto"><i class="mdi mdi-cube-outline "></i> Objeto</a></li>
@@ -161,13 +163,15 @@
 								</ul>
 							</li>
 							<li>
-								<a href="#php"><i class="devicon-php-plain fa-fw"></i> PHP <span class="fa arrow"></span></a>
+								<a href="#php"><i class="devicon-php-plain fa-fw fa-2x" style="float:left;margin:-3px -4px 0 -10px "></i> PHP <span class="fa arrow"></span></a>
 								<ul class="nav nav-second-level collapse">
 									<li><a href="#php/autoload"><i class="fa fa-refresh fa-fw"></i> Autoload</a></li>
 									<li><a href="#php/abstract-functions"><i class="fa fa-gears fa-fw"></i> Abstract Functions</a></li>
 									<li><a href="#php/functions"><i class="fa fa-gear fa-fw"></i> Funcoes</a></li>
 									<li><a href="#php/dicas"><i class="fa fa-lightbulb-o fa-fw"></i> Dicas</a></li>
-									<li><a href="#php/objeto"><i class="mdi mdi-cube-outline "></i> Objeto</a></li>									
+									<li><a href="#php/objeto"><i class="mdi mdi-cube-outline "></i> Objeto</a></li>
+									<li><a href="#php/imagem"><i class="fa fa-image fa-fw"></i> Imagem</a></li>
+									<li><a href="#php/impressora"><i class="fa fa-print fa-fw"></i> Impressora</a></li>									
 									<li><a href="#php/erros"><i class="fa fa-warning fa-fw"></i> ERROS</a></li>
 									<li>
 										<a href="#php-exemplos"><i class="fa fa-code fa-fw"></i> Exemplos <span class="fa arrow"></span></a>
@@ -177,23 +181,9 @@
 									</li>									
 								</ul>
 							</li>
+						
 							<li>
-								<a href="#phonegap"><i class="fa fa-tablet fa-fw"></i> PHONEGAP <span class="fa arrow"></span></a>
-								<ul class="nav nav-second-level collapse">
-									<li><a href="#phonegap/instalacao"><i class="fa fa-gears fa-fw"></i> Instalação</a></li>
-									<li><a href="#phonegap/configuracao"><i class="icon-controlpanelalt fa-fw"></i> Configuração</a></li>
-									<li><a href="#phonegap/estrutura"><i class="fa fa-sitemap fa-fw"></i> Estrutura</a></li>
-									<li><a href="#phonegap/erros"><i class="fa fa-times-circle fa-fw"></i> ERROS</a></li>
-									<li>
-										<a href="#phonegap-casos"><i class="fa fa-code fa-fw"></i> Casos <span class="fa arrow"></span></a>
-										<ul class="nav nav-third-level collapse">
-											<li><a href="#phonegap/casos/caso_1">Caso 01</a></li>
-										</ul>
-									</li>									
-								</ul>
-							</li>							
-							<li>
-								<a href="#git"><i class="fa fa-bitbucket fa-fw"></i> GIT <span class="fa arrow"></span></a>
+								<a href="#git"><i class="fa fa-bitbucket fa-fw fa-2x" style="float:left;margin:-3px -4px 0 -10px "></i> GIT <span class="fa arrow"></span></a>
 								<ul class="nav nav-second-level collapse">
 									<li><a href="#git/configuracao"><i class="fa fa-gear fa-fw"></i> Configuração</a></li>
 									<li><a href="#git/comandos"><i class="fa fa-terminal"></i> Comandos</a></li>									
@@ -211,6 +201,58 @@
 										</ul>
 									</li>									
 								</ul>
+							</li>		
+							<li>
+								<a href="#docker"><i class="cbp-ig-icon devicon-docker-plain fa-2x" style="float:left;margin:-3px 5px 0 0 "></i> DOCKER <span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level collapse">
+									<li><a href="#docker/introducao"><i class="fa fa-file-o fa-fw"></i> Introdução</a></li>
+									<li><a href="#docker/configuracao"><i class="fa fa-gears fa-fw"></i> Configuração</a></li>
+									<li><a href="#docker/comandos"><i class="fa fa-terminal"></i> Comandos</a></li>									
+								
+								</ul>
+							</li>												
+							<li>
+								<a href="#phonegap"><i class="fa fa-tablet fa-fw fa-2x" style="float:left;margin:-3px -4px 0 -10px "></i> PHONEGAP <span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level collapse">
+									<li><a href="#phonegap/instalacao"><i class="fa fa-gears fa-fw"></i> Instalação</a></li>
+									<li><a href="#phonegap/configuracao"><i class="icon-controlpanelalt fa-fw"></i> Configuração</a></li>
+									<li><a href="#phonegap/estrutura"><i class="fa fa-sitemap fa-fw"></i> Estrutura</a></li>
+									<li><a href="#phonegap/erros"><i class="fa fa-times-circle fa-fw"></i> ERROS</a></li>
+									<li>
+										<a href="#phonegap-casos"><i class="fa fa-code fa-fw"></i> Casos <span class="fa arrow"></span></a>
+										<ul class="nav nav-third-level collapse">
+											<li><a href="#phonegap/casos/caso_1">Caso 01</a></li>
+										</ul>
+									</li>									
+								</ul>
+							</li>
+							<li>
+								<a href="#linux"><i class="fa fa-linux fa-fw fa-2x" style="float:left;margin:-3px -4px 0 -10px "></i> Linux<span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level collapse">
+									<li>
+										<a href="#linux/comandos"><i class="fa fa-terminal fa-fw"></i> Comandos <span class="fa arrow"></span></a>
+										<ul class="nav nav-third-level collapse">
+											<li><a href="#linux/comandos/sistema"><i class="fa fa-gears fa-fw"></i> Sistema Operacional</a></li>	
+											<li><a href="#linux/comandos/usuarios"><i class="fa fa-users fa-fw"></i>  Usuarios</a></li>
+											<li><a href="#linux/comandos/diretorios"><i class="fa fa-folder fa-fw"></i>  Diretorios</a></li>
+											<li><a href="#linux/comandos/arquivos"><i class="fa fa-file-o fa-fw"></i>  Arquivos</a></li>
+											<li><a href="#linux/comandos/rede"><i class="mdi mdi-sitemap fa-fw"></i>  Rede</a></li>											
+											<li><a href="#linux/symlink"><i class="fa fa-share fa-fw"></i>  Symlink</a></li>
+										</ul>
+									</li>
+									<li>
+										<a href="#linux/impressora"><i class="fa fa-print fa-fw"></i> Impressora <span class="fa arrow"></span></a>
+										<ul class="nav nav-third-level collapse">
+											<li><a href="#linux/impressora/instalacao"><i class="fa fa-gears fa-fw"></i> Instalação</a></li>	
+											<li><a href="#linux/impressora/configuracao"><i class="fa fa-gears fa-fw"></i>  Configuração</a></li>
+											<li><a href="#linux/impressora/testes"><i class="fa fa-folder fa-fw"></i>  Testes</a></li>
+										</ul>
+									</li>									
+									<li><a href="#linux/samba"><i class="fa fa-share-alt fa-fw"></i> Samba</a></li>
+									<li><a href="#linux/repositorio"><i class="glyphicon glyphicon-cloud-download fa-fw"></i> Repositórios</a></li>									
+									<li><a href="#linux/permissoes"><i class="fa fa-ban fa-fw"></i> Permissões</a></li>
+									<li><a href="#linux/erros"><i class="fa fa-times-circle fa-fw"></i> ERROS</a></li>
+								</ul>
 							</li>							
 							<li>
 								<a href="#icones"><i class="fa fa-wrench fa-fw"></i> Icones<span class="fa arrow"></span></a>
@@ -222,23 +264,7 @@
 									<li><a href="#icones/glyphs">Glyphs</a></li>
 								</ul>
 							</li>
-							<li>
-								<a href="#linux"><i class="fa fa-linux fa-fw"></i> Linux<span class="fa arrow"></span></a>
-								<ul class="nav nav-second-level collapse">
-									<li>
-										<a href="#linux/comandos"><i class="fa fa-terminal fa-fw"></i> Comandos <span class="fa arrow"></span></a>
-										<ul class="nav nav-third-level collapse">
-											<li><a href="#linux/comandos/sistema"><i class="fa fa-gears fa-fw"></i> Sistema Operacional</a></li>	
-											<li><a href="#linux/comandos/usuarios"><i class="fa fa-users fa-fw"></i>  Usuarios</a></li>
-											<li><a href="#linux/comandos/diretorios"><i class="fa fa-folder fa-fw"></i>  Diretorios</a></li>
-											<li><a href="#linux/comandos/arquivos"><i class="fa fa-file-o fa-fw"></i>  Arquivos</a></li>
-											<li><a href="#linux/symlink"><i class="fa fa-share fa-fw"></i>  Symlink</a></li>
-										</ul>
-										<li><a href="#linux/permissoes"><i class="fa fa-ban fa-fw"></i> Permissões</a></li>
-										<li><a href="#linux/erros"><i class="fa fa-times-circle fa-fw"></i> ERROS</a></li>
-									</li>									
-								</ul>
-							</li>							
+							
 							<li>
 								<a href="#framework"><i class="cbp-ig-icon devicon-devicon-plain"></i> FrameWork<span class="fa arrow"></span></a>
 								<ul class="nav nav-second-level collapse">

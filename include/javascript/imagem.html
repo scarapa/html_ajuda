@@ -1,0 +1,28 @@
+<script>
+	$("#botaoTeste").click(function() {
+		html2canvas(tabela, {
+			onrendered: function(tabela) {
+				document.body.appendChild(tabela);
+			}
+		});
+	});
+</script>
+
+<h2><i class="fa fa-imagem-o fw"></i> Imagem</h2>
+
+<table id="tabela" border=1>
+	<tr>
+		<th>NOME</th>
+		<th>SOBRENOME</th>
+	</tr>
+	<tr>
+		<td>Roberto</td>
+		<td>Alam</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<input type="button" id="botaoTeste" value="Clique Aqui">		
+		</td>
+</table>
+
+<div id="teste"></div>

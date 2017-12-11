@@ -1,0 +1,124 @@
+﻿<style>
+table {width:90%}
+table td.celulaImagem{padding:5px 0px ;text-align:center}
+table .celulaImagem img {width:80%;}
+table td.celulaTexto{padding:0px 5px 40px 0;text-align:center}
+</style>
+
+<h2><i class="fa fa-print fa-fw"></i> IMPRESSORA FISCAL</h2>
+
+Baixar driver <a href="http://web.archive.org/web/20160813201031/https://download.epson-biz.com/modules/pos/index.php?page=single_soft&cid=2779&scat=32&pcat=3">CLICANDO AQUI</a> OU PEGAR NA ISO.
+
+
+<table border=0>
+	<tr>
+		<td class="celulaImagem">
+			<img src="../helper/images/linux_impressora_1.png">
+		</td>
+	</tr>		
+	<tr>		
+		<td class="celulaTexto">
+			Depois de baixado o arquivo, vá em  Extrair aqui.
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="celulaImagem">
+			<img src="../helper/images/linux_impressora_2.png">		
+		</td>
+	</tr>		
+	<tr>	
+		<td class="celulaTexto">
+			Vai surgir uma pasta descompactada com o mesmo nome, dentro dela tem outras pastas, na pasta backend, existe varios arquivos deb's: 
+			i386 e amd64 bits e rpm, veja que são apenas 4 arquivos diferentes para 3 tipos de arquiteturas, clique e instale somente  os 4 deb's 
+			correspondentes a arquitetura do seu sistema.		
+		</td>
+	</tr>	
+	
+	<tr>
+		<td class="celulaImagem">
+			<img src="../helper/images/linux_impressora_3.png">
+		</td>
+	</tr>		
+		<td class="celulaTexto">
+			No meu sistema instalei os deb's i386.
+		</td>
+	</tr>
+	<tr>
+		<td class="celulaImagem">
+			<img src="../helper/images/linux_impressora_4.png">
+		</td>
+	</tr>		
+	<tr>
+		<td class="celulaTexto">
+			Se aparecer uma mensagem; O software é baixa qualidade, ignore e continue a instalar.
+		</td>
+	</tr>	
+	<tr>
+		<td class="celulaImagem">
+			<img src="../helper/images/linux_impressora_5.png">		
+		</td>
+	</tr>
+	<tr>		
+		<td class="celulaTexto">
+			Da mesma forma que a anterior, na pasta Filters  instale o arquivo tmt-cups 1.0.3-1 correspondente ao seu sistema.		
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="celulaImagem">
+			<img src="../helper/images/linux_impressora_6.png">		
+		</td>
+	</tr>		
+	<tr>		
+		<td class="celulaTexto">
+			Agora vá em Sistema/Administração/Impressão e clique em adicionar impressora.		
+		</td>
+	</tr>	
+	
+	<tr>
+		<td class="celulaImagem">
+			<img src="../helper/images/linux_impressora_7.png">
+		</td>
+	</tr>		
+	<tr>		
+		<td class="celulaTexto">
+			Selecione a porta onde está instalada a impressora, para saber a Taxa de transmissão, Paridade, bits de dados, Fluxograma, deslique a impressora mantenha o botão FEED pressionado e ligue a impressora ela irá imprimir esses dados.		
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="celulaImagem">
+			<img src="../helper/images/linux_impressora_8.png">		
+		</td>
+	</tr>		
+	<tr>		
+		<td class="celulaTexto">
+			Agora vamos escolher um driver, clique em Fornecer arquivo PPD, e em procurar.		
+		</td>
+	</tr>	
+	
+	<tr>
+		<td class="celulaImagem">
+			<img src="../helper/images/linux_impressora_9.png">		
+		</td>
+	</tr>		
+	<tr>		
+		<td class="celulaTexto">
+			Vá na pasta PPD e selecione epson-tm-t-88v-rastertotmt.ppd, e clique em Abrir e Avançar.		
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="celulaImagem">
+			<img src="../helper/images/linux_impressora_10.png">		
+		</td>
+	</tr>		
+	<tr>		
+		<td class="celulaTexto">
+			Pronto a impressora está instalada, provavelmente outras impressoras devem seguir o mesmo principio de instalação, inclusive no ubuntu 10 e outros, se você instalar uma outra impressora, e não funcionar corretamente, experimente instalar com um PPD diferente, pois cada PPD  fornece uma resolução diferente. Boa sorte. 				
+		</td>
+	</tr>
+</table>
+
+<a href="http://web.archive.org/web/20160813201031/http://www.portaldodesenho.com/2014/01/instalar-impressora-epson-tm-t">Fonte</a>

@@ -1,0 +1,48 @@
+﻿<h2><i class="fa fa-file-o fa-fw"></i> INTRODUÇÃO</h2>
+
+<h3>Partes principais do Docker</h3>
+
+    <li>docker daemon: usado para geneciar os contêineres docker (LXC) no host onde ele roda</li>
+    <li>docker CLI: usado para comandar e se comuinicar com o docker daemon</li>
+    <li>docker image index: um repositório (público ou privado) para as imagens do docker</li>
+
+<h3>Elementos principais do Docker</h3>
+
+    <li>Contêineres docker: diretórios contendo tudo que constitui sua aplicação</li>
+    <li>docker images: imagens instantâneas dos contêineres ou do S.O. básico (Ubuntu por exemplo)</li>
+    <li>Dockerfiles: scripts que automatizam o processo de construção de imagens</li>
+
+<h3>Elementos do Docker</h3>
+
+<div style="float:left;margin:0px 5px ;">
+	<a href="../helper/images/docker_01.png" target="_blank">
+		<img id="imagem" src="../helper/images/docker_01.png" style="width:350px;border:1px solid black" />
+	</a>
+</div>
+
+Os seguintes elementos são usados pelas aplicações que formam o projeto docker.
+
+<h4>Contêineres Docker</h4>
+
+Todo o processo de portar aplicações usando docker depende, exclusivamente, do envio de contêineres.
+<br/></br>
+Os contêineres docker são basicamente, diretórios que podem ser empacotados (agrupados com tar por exemplo) como qualquer outro, e então, compartilhados e executados entre várias máquinas e plataformas (hosts). A única dependência é ter os hosts ajustados para executar os contêineres (ou seja, ter o docker instalado). A contenção aqui é obtida através de Contêineres Linux (LXC).
+
+<h4>LXC (Contêineres Linux)</h4>
+
+Contêineres Linux podem ser definidos como uma combinação de várias funcionalidades de kernel (ou seja, coisas que o kernel pode fazer), que permitem o gerenciamento de aplicações (e recursos que elas utilizam) contidas dentro de seus próprios ambientes. Fazendo o uso de algumas funcionalidades (por exemplo namespaces, chroots, cgroups e perfis SELinux), o LXC contém os processos das aplicações e auxilia com seu gerenciamento, através da limitação de recursos, não permitindo que alcance além do seu próprio sistema de arquivos (acesso ao espaço de nomes - namespace - do pai), etc.
+
+
+<h3>Fluxo</h3>
+<ul>
+	<li>Pesquisar Imagem</li>
+	<li>Baixar(PULL) Imagem</li>
+	<li>Listar Imagens</li>	
+</ul>
+
+
+<h3>Lista WEB de imagens</h3>
+
+
+<a href="https://www.digitalocean.com/community/tutorials/como-instalar-e-utilizar-o-docker-primeiros-passos-pt">Fonte</a>
+<a href="https://hub.docker.com/explore/">Fonte[2]</a>

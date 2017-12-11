@@ -1,8 +1,11 @@
 ﻿<h2><i class="glyphicon glyphicon-cloud-download fw"></i> Exportação</h2>
 
 <pre><code><kbd>MYSQL</kbd>
-mysqldump -u username -p nome_database > nome_database_backup.sql
+mysqldump -u <span style="color:red;font-weight:bold;">seu_usuario</span> -p nome_database > nome_database_backup.sql
 </code></pre>
 
+
+OBS: caso deseje visualizar todas as databases disponiveis , esse é o caminho:<code>/var/lib/mysql</code><br/>
+<a href="https://stackoverflow.com/questions/17968287/how-to-find-the-mysql-data-directory-from-command-line-in-windows">Fonte[1]</a>
 
 

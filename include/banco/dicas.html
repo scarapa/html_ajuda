@@ -80,7 +80,7 @@ SELECT * INTO <strong>nova_tabela</strong> FROM <strong>tabela_atual</strong></p
 
 
 <h3>Verificar deadlock</h3>
-<pre>
+<pre><kbd>SQLSERVER</kbd>
 SELECT  L.request_session_id AS SPID, 
     DB_NAME(L.resource_database_id) AS DatabaseName,
     O.Name AS LockedObjectName, 
@@ -106,3 +106,11 @@ ORDER BY L.request_session_id;
 </pre>
 Fonte[1]Joao Vigini - 
 <a href="https://social.msdn.microsoft.com/Forums/pt-BR/95a71ef7-ddbc-48ad-aad1-af7b71187ebd/script-de-monitorao-de-locks?forum=transactsqlpt">Fonte[2]</a>
+
+<h3>Desabilitando o AUTOINCREMENT</h3>
+<pre><kbd>SQLSERVER</kbd>
+SET IDENTITY_INSERT [TableName] ON
+	INSERT INTO [TableName] VALUES (colunas(s));
+SET IDENTITY_INSERT [TableName] OFF 
+</pre>
+Fonte: Guilherme Dambros

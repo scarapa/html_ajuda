@@ -1,0 +1,32 @@
+﻿<h2><i class="fa fa fa-lightbulb-o fw"></i> Caso 01</h2>
+Primeiro desafio será criar um ambiente de desenvolvimento com as seguintes ferramentas 
+
+<ol>
+	<li>Apache</li>
+	<li>PHP 7.0+</li>
+	<li>MYSQL 5+</li>
+	<li>PHPMyAdmin</li>
+</ol>			
+
+<h3>Apache</h3>
+<pre>$ sudo docker pull httpd</pre>
+
+
+<h3>PHP</h3>
+<pre>$sudo docker pull php</pre>
+https://hub.docker.com/_/php/
+
+<h3>MySQL</h3>
+<pre>$sudo docker pull mysql</pre>
+https://hub.docker.com/_/mysql/
+
+<h3>PHPMyAdmin</h3>
+<pre>$ sudo docker pull phpmyadmin/phpmyadmin</pre>
+https://hub.docker.com/r/phpmyadmin/phpmyadmin/
+
+
+OBS: Pasta onde ficam salvas os containes <code>/var/lib/docker/containers/</code>
+
+Levantando APACHE
+Na pagina da documentação diz se você for rodar o httpd de um rodar isolado(<code>Without a Dockerfile</code>) é preciso iniciar dessa forma:
+docker run -dit --name apache-web -v "$PWD":/usr/local/apache2/htdocs/ httpd
