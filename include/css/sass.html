@@ -1,0 +1,92 @@
+<h2><i class="fa fa-ticket fa-fw"></i> SASS</h2>
+
+<div class="fields">
+    <h3>Site para testar o SASS</h3>
+    <a href="https://www.sassmeister.com/"><b>SASS Meister</b></a>
+</div>
+
+
+<div class="fields">
+    <h3>Comandos Básicos - Terminal</h3>
+
+    <fieldset class="fields">
+        <legend>Help</legend>
+        <code>
+            $ sass -h
+        </code>
+    </fieldset>
+
+    <fieldset class="fields">
+        <legend>Converter arquivo scss para sass</legend>
+        <p>sass convert nome arquivo scss já existente e o nome do arquivo sass que irá ser criado</p>
+        <code>
+            $ sass-convert Example.scss Example.sass
+        </code>
+    </fieldset>
+
+    <fieldset class="fields">
+        <legend>Converter arquivo sass para scss</legend>
+        <p>sass-convert nome arquivo scss já existente e o nome do arquivo sass que irá ser criado</p>
+        <code>
+            $ sass-convert Example.sass Example.scss
+        </code>
+    </fieldset>
+
+    <fieldset class="fields">
+        <legend>Converter arquivo scss para css</legend>
+        <p>sass nome arquivo scss já existente, dois pontos com o nome do arquivo css que irá ser criado</p>
+        <code>
+            $ sass Example.scss:Example.css
+        </code>
+    </fieldset>
+
+    <fieldset class="fields">
+        <legend>Observar arquivo com scss - (conversão automática do arquivo scss para css)</legend>
+        <p>sass --watch com o nome arquivo scss já existente que irá ser observado, dois pontos com o nome do arquivo css</p>
+        <code>
+            $ sass --watch Example.scss:Example.css
+        </code>
+    </fieldset>
+
+    <fieldset class="fields">
+        <legend>Observar diretório com arquivos scss - (conversão automática do diretório com arquivos scss para css)</legend>
+        <p>sass --watch com o nome do diretório de arquivos scss já existente que irá ser observado, dois pontos com o nome de um novo diretório, ou de um já existente, onde serão gerados (ou modificados) os arquivos css</p>
+        <code>
+            $ sass --watch Directory:CSS
+        </code>
+    </fieldset>
+
+    <fieldset class="fields">
+        <legend>Converter arquivo scss para css com compressão de estilo</legend>
+        <p>sass nome arquivo scss já existente, dois pontos com o nome do arquivo css que irá ser criado --style com o tipo de compressão desejada</p>
+        <ul>
+            <li>compact - identificadores em um linha</li>
+            <li>compress - tudo em um linha e sem espaços em branco</li>
+            <li>expanded - formatado padrão</li>
+        </ul>
+        <div class="fields">
+            <code>
+                $ sass Example.scss:Example.css --style compact
+            </code>
+        </div>
+        <div class="fields">    
+            <code>
+                $ sass Example.scss:Example.css --style compress
+            </code>
+        </div>
+        <div class="fields">    
+            <code>
+                $ sass Example.scss:Example.css --style expanded
+            </code>
+        </div>
+    </fieldset>
+
+    <fieldset class="fields">
+        <legend>Converter arquivo scss para css sem gerar arquivo map</legend>
+        <p>sass nome arquivo scss já existente, dois pontos com o nome do arquivo css que irá ser criado mais --sourcemap=none</p>
+        <code>
+            $ sass Example.scss:Example.css --sourcemap=none
+        </code>
+        <p>Também pode ser usado com diretórios ao invés de arquivos</p>
+    </fieldset>
+</div>
