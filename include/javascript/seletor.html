@@ -1,0 +1,35 @@
+<h2><i class="glyphicon glyphicon-filter fw"></i> SELETORES</h2>
+
+<h3>Por ID</h3>
+<pre>document.getElementById("demo");</pre>
+
+<pre>
+var x = document.getElementById("demo");   // Get the element with id="demo"
+x.style.color = "red";  	
+</pre>
+
+
+<h3>Por CLASSE</h3>
+<pre>var x = document.getElementsByClassName("example");</pre>
+
+<pre>
+var x = document.getElementsByClassName("example");
+var i;
+for (i = 0; i < x.length; i++) {
+    x[i].style.backgroundColor = "red";
+} 	
+</pre>
+
+
+<h3>Por NOME</h3>
+<pre>var x = document.getElementsByName("fname");</pre>
+
+<pre>
+var x = document.getElementsByName("animal");
+var i;
+for (i = 0; i < x.length; i++) {
+    if (x[i].type == "checkbox") {
+        x[i].checked = true;
+    }
+} 	
+</pre>

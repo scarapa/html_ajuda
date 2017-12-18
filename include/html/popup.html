@@ -1,0 +1,123 @@
+﻿<h1><i class="mdi mdi-checkbox-multiple-blank-outline"></i> POPUP</h1>
+<h3>REFRESH NA JANELA MÃE</h3>
+
+<span id="abrirPopup" style="color:red;text-decoration: underline;font-weight: bold;">CLIQUE AQUI</span> para abrir um popup.
+
+<h4>Sintaxe:</h4>
+<pre>
+window.open(URL, name, specs, replace)
+</pre>
+
+<h4>Parametros:</h4>
+
+<table border=1>
+  <tbody>
+      <tr>
+        <th style="width:20%">Paramatros</th><th>Descrição</th>
+      </tr>  
+      <tr>
+        <td>URL</td><td>Optional. Specifies the URL of the page to open. If no URL is specified, a new window with about:blank is opened</td>
+      </tr>
+      <tr>
+        <td>name</td>
+        <td>Optional. Specifies the target attribute or the name of the window. The following values are supported:
+          <ul>
+            <li>_blank - URL is loaded into a new window. This is default</li>
+            <li>_parent - URL is loaded into the parent frame</li>
+            <li>_self - URL replaces the current page</li>
+            <li>_top - URL replaces any framesets that may be loaded</li>
+            <li><i>name</i> - The name of the window (<strong>Note:</strong> the <em>
+          name</em> does  not specify the title of the new window)</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+    <td>specs</td>
+    <td>Optional. A comma-separated list of items, no whitespaces. The following values are supported:<br><br>
+      <table class="w3-table-all notranslate">
+        <tbody>
+          <tr>
+            <td>channelmode=yes|no|1|0</td>
+            <td>Whether or not to display the window in theater mode. Default is no. IE only</td>
+          </tr>
+          <tr>
+            <td>directories=yes|no|1|0</td>
+            <td><span class="deprecated">Obsolete.</span> Whether or not to add directory buttons. Default is yes. IE only</td>
+          </tr>
+          <tr>
+            <td>fullscreen=yes|no|1|0</td>
+            <td>Whether or not to display the browser in full-screen mode. Default is no. A window in full-screen mode must also be in theater mode. IE only</td>
+          </tr>
+          <tr>
+            <td>height=pixels</td>
+            <td>The height of the window. Min. value is 100</td>
+          </tr>
+          <tr>
+            <td>left=pixels</td>
+            <td>The left position of the window. Negative values not allowed</td>
+          </tr>
+          <tr>
+            <td>location=yes|no|1|0</td>
+            <td>Whether or not to display the address field. Opera only</td>
+          </tr>
+          <tr>
+            <td>menubar=yes|no|1|0</td>
+            <td>Whether or not to display the menu bar</td>
+          </tr>
+          <tr>
+            <td>resizable=yes|no|1|0</td>
+            <td>Whether or not the window is resizable. IE only</td>
+          </tr>
+          <tr>
+            <td>scrollbars=yes|no|1|0</td>
+            <td>Whether or not to display scroll bars. IE, Firefox &amp; Opera only</td>
+          </tr>
+          <tr>
+            <td>status=yes|no|1|0</td>
+            <td>Whether or not to add a status bar</td>
+          </tr>
+          <tr>
+            <td>titlebar=yes|no|1|0</td>
+            <td>Whether or not to display the title bar. Ignored unless the calling application is an HTML Application or a trusted dialog box</td>
+          </tr>
+          <tr>
+            <td>toolbar=yes|no|1|0</td>
+            <td>Whether or not to display the browser toolbar. IE and Firefox only</td>
+          </tr>
+          <tr>
+            <td>top=pixels</td>
+            <td>The top position of the window. Negative values not allowed</td>
+          </tr>
+          <tr>
+            <td>width=pixels</td>
+            <td>The width of the window. Min. value is 100</td>
+          </tr>
+        </tbody>
+      </table>
+    <br>
+    </td>
+  </tr>
+  <tr>
+    <td>replace</td>
+    <td>Optional. Specifies whether the URL creates a new entry or replaces the current entry in the history list. The following values are supported:
+      <ul>
+        <li>true - URL replaces the current document in the history list</li>
+        <li>false - URL creates a new entry in the history list</li>
+      </ul>
+    </td>
+  </tr>
+</tbody>
+</table>
+
+<br clear="all">
+
+<a href="https://www.w3schools.com/jsref/met_win_open.asp">Fonte[1]</a>
+
+<script type="text/javascript">
+$("#abrirPopup").click(function(){
+  var myWindow = window.open("include/html/popup_filha.html", "POPUP", "width=400,height=200"); 
+}); 
+</script>
+
+
+
