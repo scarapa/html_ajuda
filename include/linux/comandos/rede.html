@@ -1,0 +1,17 @@
+﻿<h2><i class="mdi mdi-sitemap fw"></i> Rede</h2>
+
+<h3>Reiniciar rede</h3>
+<pre>$ /etc/init.d/networking restart </pre>
+
+<h3>Retirar rede</h3>
+<pre>$ ifdown eth0</pre>
+
+<h3>Levantar Rede</h3>
+<pre>$ ifup eth0</pre>
+
+<h3>Renew IP</h3>
+<pre>$ sudo dhclient -v -r eth0
+ou
+$ sudo dhclient -v eth0</pre>
+
+<a href="https://www.cyberciti.biz/faq/howto-linux-renew-dhcp-client-ip-address/">Fonte</a>
