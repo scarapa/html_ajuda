@@ -1,0 +1,19 @@
+<h2><i class="fa fa-sitemap fw"></i> DOM</h2>
+
+<div style="text-align:center" class="col-lg-12">
+	<img id="imagem" src="../helper/images/html_dom_tree.gif" border:1px solid black" />
+</div>
+
+<br clear="all">
+
+A figura acima mostra a estrutura de uma árvore DOM, a linearização  das marcações de modo que ela possa ser montada inicialmente por um navegador. Esta estrutura não será o que veremos no navegador – o layout em si. O DOM é a base para uma outra árvore que é o que realmente um browser monta na tela, a Árvore de Renderização – aka Render Tree.
+<br><br>
+A base para todos os nós da árvore DOM é o base class chamado Node.h. Ele possui várias categorias, e as relevantes para renderizarmos código no navegador são os nós de documentos, elementos e texto.
+<br><br>
+1)Documentos é o nó mais importante do DOM, com três classes diferentes: Document, que é usado por todos os documentos XML e outros que não sejam SVG (que também é um XML, porém com marcação já padronizada), HTMLDocument que como o nome diz, cuida de documentos HTML e SVGDocument, responsável pelos documentos SVG e tambem por outros documentos herdados da classe Document (Como o Document.h e o HTMLDocument.h).
+<br>
+2)Elementos são todas as tags que estão em arquivos HTML ou XML se transformam em elementos da árvore DOM. Considerando a renderização do navegador, um elemento é um nó com uma tag que pode ser usada para fazer subclasses específicas que podem ser processadas de acordo com as necessidades da Render Tree (Element.h).
+<br>
+3)Texto: É o texto que vai entre os elementos.
+<br clear="all">
+<a href="https://tableless.com.br/tenha-o-dom/">tableless</a>
