@@ -1,0 +1,23 @@
+<h2><i class="fa icon-authentication-keyalt fw"></i> Acesso Remoto </h2>
+
+Há várias formas de fazer isso e uma delas é usando o Secure Shell.
+
+<h3>1 - Secure Shell - SSH</h3>
+
+Abre o terminal e digita:
+
+<pre>$ ssh <strong>NOME_USUARIO</strong>@<strong>NOME_MAQUINA</strong></pre>
+
+Obs.: ao invés do nome da máquina, pode-se usar o IP também. <br><br>
+
+A senha do usuário será pedida e você pode usar o computador à distância. Pode ser muito útil, e costuma ser usado para administrar servidores.<br><br>
+
+O computador que vai acessar precisa ter o pacote openssh-client, e o computador que será acessado, precisa do pacote openssh-server.<br><br>
+
+O cliente: acessa, ou faz uso de um serviço.<br>
+O servidor: serve, ou disponibiliza um serviço. <br><br>
+
+Nas distribuições como Ubuntu, ou nele baseadas, os pacotes necessários podem ser instalados, com:<br>
+<pre>$ sudo apt-get install openssh-client
+$ sudo apt-get install openssh-server
+</pre>
