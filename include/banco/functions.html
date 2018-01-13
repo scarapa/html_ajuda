@@ -1,0 +1,62 @@
+﻿<h2><i class="mdi mdi-function fa-fw"></i> Functions</h2>
+
+A vantagem de usar FUNCTION ao invés de PROCEDURE é de que a FUNCTION pode ser usada junto com o SELECT<br/>
+<h3>SINTAXE</h3>
+1 -> Criar a function , exemplo abaixo function que retorna o dia útil para tras no calendário.
+<pre>
+CREATE FUNCTION FERIASBUSCARPROXIMODIAUTIL(@data DATE)
+	RETURNS date
+	BEGIN
+		DECLARE @flagErro INT;
+		DECLARE @flagFeriado INT;
+		DECLARE @flagFind INT;
+		/*INICIO DO TRECHO DE CÓDIGO QUE VAI DEFINIR O INICIO DAS FÉRIAS COMPULSÓRIAS*/
+		SET @flagFeriado = 1;
+		SET @flagFind = 1;
+		WHILE( (@flagFeriado = 1) OR (@flagFind = 1) )
+		BEGIN
+			/*Verifica se existe feriado nos proximos 2 dias*/
+			SELECT @flagFeriado = COUNT(*)
+			FROM [10.1.1.19\DESENV].[Vetorh].[vetorh].R002FEC 
+			WHERE 1 = 1	
+				AND ( datfer = @data OR datfer = DATEADD(DAY,1,@data) OR datfer = DATEADD(DAY,2,@data))
+				AND codfer = 1;
+
+			/*Verifica se existe fim de semana nos proximos 2 dias*/
+			SELECT @flagFind = COUNT(*) FROM 
+			(
+				SELECT DATENAME(dw,@data) as 'd1'
+			) p
+			WHERE 
+				DATENAME(dw,@data)='Saturday' OR DATENAME(dw,@data)='Sunday' 
+				OR ( DATENAME(dw,DATEADD(DAY,1,@data))='Saturday' OR DATENAME(dw,DATEADD(DAY,1,@data))='Sunday' )
+		
+			IF( (@flagFeriado = 1) OR (@flagFind = 1) )
+			BEGIN
+				SET @data = DATEADD(DAY,-1,@data);
+			END
+		END--WHILE
+		RETURN @data
+	END
+
+
+SELECT dbo.FERIASBUSCARPROXIMODIAUTIL('2018-01-05')
+</pre>
+
+<h3>UTILIZAÇÃO</h3>
+ Para utilizar a mesma é muito simples, basta jogar no SQL.
+<pre>
+SELECT 
+	* ,dbo.teste( CONVERT(DATE,dt_documento) ) 
+FROM tblDocumento FROM tabela 
+</pre>
+
+Pode ser utilizada até com JOIN
+<pre>
+SELECT * FROM  t_usuarios tbl_u
+	INNER JOIN udf_emprestimosAtraso() udf_e ON udf_e.cd_usuario = tbl_u.cd_usuario
+WHERE nome LIKE '%jeniffer%'
+ORDER BY nome
+</pre>	
+<i>GUILHERME DAMBROS </i>- 05/01/2018</br>
+<a href="https://pt.stackoverflow.com/questions/66872/como-executar-uma-procedure-em-um-select">Fonte[1]</a>
