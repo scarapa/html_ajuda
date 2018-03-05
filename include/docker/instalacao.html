@@ -1,0 +1,31 @@
+<h2><i class="fa fa-gear fa-fw"></i> INSTALAÇÃO</h2>
+
+<h3>Removendo versões antigas</h3>
+<pre>$ sudo apt-get remove docker docker-engine docker.io</pre>
+As imagens ficam preservadas em: <code>/var/lib/docker/</code>
+
+<h3>Atualizando o sistema e instalar alguns pacoetes</h3>
+<pre>
+$ sudo apt-get update
+$ sudo apt-get install \ apt-transport-https \ ca-certificates \ curl \ software-properties-common
+</pre>
+
+
+<h3>Instalar o repósitorio oficial do DOCKER</h3>
+<pre>$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</pre>
+
+Use o seguinte comando abaixo para configurar o repositório estável. Você sempre precisa do repositório estável, mesmo se você quiser instalar versões da borda ou repositórios de teste também. Para adicionar a borda ou repositório de teste, adicione a borda da palavra ou teste (ou ambos) após a palavra estável nos comandos abaixo.
+<pre>
+$ sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+</pre>
+
+<h3>Instalando DOCKER CE</h3>
+<pre>
+$ sudo apt-get update
+$ sudo apt-get install docker-ce
+</pre>
+
+<a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/#os-requirements">Fonte</a>

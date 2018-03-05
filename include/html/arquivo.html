@@ -1,0 +1,32 @@
+<h2><i class="fa fa-file-o fw"></i> Arquivo/Metadado</h2>
+
+Os metadados de arquivos contêm propriedades comuns, que muitas vezes são chamadas de tipo MIME, como name, size e contentType, além de incomuns, como contentDisposition e timeCreated. Esses metadados podem ser recuperados a partir de uma referência.
+
+<br/><br/>
+
+
+<input type="file" id="files" name="files[]" multiple />
+<output id="list"></output>
+
+<script>
+  function handleFileSelect(evt) {
+    var files = evt.target.files; // FileList object
+
+    // files is a FileList of File objects. List some properties.
+    var output = [];
+    for (var i = 0, f; f = files[i]; i++) {
+      output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+                  f.size, ' bytes, last modified: ',
+                  f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+                  '</li>');
+    }
+    document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+  }
+
+  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+</script>
+
+<br/><br/>
+
+<a href="https://www.html5rocks.com/en/tutorials/file/dndfiles/">Fonte[1]</a> 
+<a href="https://firebase.google.com/docs/storage/web/file-metadata?hl=pt-br">Fonte[2]</a>
