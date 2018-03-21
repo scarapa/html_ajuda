@@ -1,0 +1,45 @@
+<h2><i class="icon-network fa-fw"></i> Redes</h2>
+<style type="text/css">
+	table{border-collapse: collapse;}
+	table tr th{padding:0px 5px; text-align: center}
+	table tr td{padding:5px;}
+</style>
+
+<li>Bridge Network (PADRÃO) </li>
+<li>None network</li>
+<li>Host Network</li>
+<li>Overlay Network</li>
+
+<h3>Listar tipos de rede</h3>
+<pre>$ docker network ls</pre>
+
+<table>
+	<thead>
+		<tr>
+			<th>NETWORK</th>
+			<th>NAME</th>			
+			<th>DRIVER</th>
+			<th>SCOPE</th>
+		</tr>
+	</thead>		
+	<tbody>
+		<tr>
+			<td>d118b7d56ed4</td>
+			<td>bridge</td>
+			<td>bridge</td>
+			<td>local</td>
+		</tr>
+		<tr>
+			<td>e82d63539230</td>
+			<td>host </td>
+			<td>host</td>
+			<td>local</td>
+		</tr>
+		<tr>
+			<td>48dc29489aa2</td>
+			<td>none </td>
+			<td>null</td>
+			<td>local</td>
+		</tr>
+	</tbody>	
+</table>
