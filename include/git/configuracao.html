@@ -1,24 +1,27 @@
 ﻿<h2><i class="fa fa-gear fa-fw"></i> CONFIGURAÇÃO</h2>
 
+<h3>Visualização da Configuração global</h3>
+<pre><code>$ git config --list</code></pre>
+
 <h3>Configuração global</h3>
-<pre><code>$ GIT CONFIG --global user.name "seu_nome"
-$ GIT CONFIG --global user.email "seu_email"
+<pre><code>$ git config --global user.name "seu_nome"
+$ git config --global user.email "seu_email"
 </code></pre>
 
 <h3>Criando repositório INEXISTENTE</h3>
-Caso seja um repositório que você não possua...
+<h5>Caso seja um repositório que você não possua</h5>
 <pre><code>$ <strong>git clone</strong> git@git.emater.tche.br:49583/pbsm.git</code></pre>
-Posteriormente seria bom , criar/editar o arquivo <strong>README.md</strong>, pois o mesmo deveria ser o primeiro contato com o projeto.
+Posteriormente é aconselhável criar/editar o arquivo <strong>README.md</strong>, pois o mesmo deveria ser o primeiro contato com o projeto.
 
 <h3>Criando repositório EXISTENTE</h3>
-1º entrar na pasta do projeto
+<h5>1º entrar na pasta do projeto</h5>
 <pre><code>$ <strong>git init</strong></code></pre>
 
-2º Definir a forma de comunicacao
-<strong>http</strong> ou <strong>ssh</strong> escolha uma delas, comigo funcionou a HTTP
+<h5>2º Definir a forma de comunicação</h5>
+<p><strong>http</strong> ou <strong>ssh</strong> escolha uma delas, comigo funcionou a HTTP</p>
 <pre><code>$ <strong>git remote add origin</strong> SEU_LINK_DO_REPOSITORIO(http ou ssh)</code></pre>
 
-3º Escolhido a forma de comunicação basta enviar o projeto para o repositorio
-<pre><code>$git add .
+<h5>3º Escolhido a forma de comunicação basta enviar o projeto para o repositório</h5>
+<pre><code>$ git add .
 $ git commit -m "mensagem"
 $ git push -u origin master</code></pre>

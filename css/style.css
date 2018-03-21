@@ -24,3 +24,19 @@ h2 {margin:0px;padding:10px 0;}
 fieldset.title {
 	padding: 1em;
 }
+
+.margin-title-field {
+	margin-left: 5px;
+}
+
+.adjust-dashboard-icon {
+	float: left;
+	margin: -3px -4px 0 -10px;
+}
+
+.adjust-dashboard-firebase-icon {
+	float:left;
+	left:-2px;
+	margin:-3px -1px -5px -5px !important;
+	font-size:1.8em;
+}
