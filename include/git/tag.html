@@ -1,0 +1,38 @@
+<h2><i class="fa fa-ticket fa-fw"></i> TAG</h2>
+
+<div class="fields">
+    <h3>Site com a documentação do comando <strong>TAG</strong></h3>
+    <a href="https://git-scm.com/book/en/v2/Git-Basics-Tagging"><b>TAG</b></a>
+</div>
+
+<div class="fields">
+    <h3>Comandos Básicos</h3>
+
+    <fieldset class="fields">
+        <legend>Verificar as tags existentes</legend>
+        <code>
+            $ git tag
+        </code>
+    </fieldset>
+
+    <fieldset class="fields">
+        <legend>Verificar tag específica</legend>
+        <code>
+            $ git tag -l "v1.8.5*"
+        </code>
+    </fieldset>
+
+    <fieldset class="fields">
+        <legend>Criar nova tag</legend>
+        <code>
+            $ git tag -a "v'numero_da_versao''" -m "mensagem informando o que foi feito nos commits que compõe a tag"
+        </code>
+    </fieldset>
+
+    <fieldset class="fields">
+        <legend>Apresentar os commits que compõe a tag</legend>
+        <code>
+            $ git show "v'numero_da_tag'"
+        </code>
+    </fieldset>
+</div>

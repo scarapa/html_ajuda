@@ -1,0 +1,126 @@
+<h2><i class="fa fa-gear fa-fw"></i> RAILS</h2>
+
+<div class="fields">
+    <h3>Site com o guia do RAILS</h3>
+    <a href="http://guides.rubyonrails.org/index.html"><b>RAILS</b></a>
+</div>
+
+
+<div class="fields">
+    <h3>Comandos Básicos</h3>
+
+    <fieldset class="fields">
+        <legend>Checar versão</legend>
+        <code>
+            $ rails -v
+        </code>
+    </fieldset>
+
+    <fieldset class="fields">
+        <legend>Ajuda</legend>
+        <code>
+            $ rails -h
+        </code>
+        <h5>OU</h5>
+        <code>
+            $ rails --help
+        </code>
+    </fieldset>
+
+    <fieldset class="fields">
+        <legend>Abrir console</legend>
+        <code>
+            $ rails console
+        </code>
+        <h5>OU</h5>
+        <code>
+            $ rails c
+        </code>
+    </fieldset>
+
+    <fieldset class="fields">
+        <legend>Iniciar o servidor (Puma) interno do rails</legend>
+        <code>
+            $ rails server
+        </code>
+        <h5>OU</h5>
+        <code>
+            $ rails s
+        </code>
+        <h5>-e para selecionar um ambiente diferente</h5>
+        <h5>-p para selecionar uma porta diferente</h5>
+        <code>
+            $ rails s -e production -p 4000
+        </code>
+    </fieldset>
+
+    <fieldset class="fields">
+        <legend>Iniciar um novo projeto</legend>
+        <code>
+            $ rails new app_name
+        </code>
+    </fieldset>
+
+    <fieldset class="fields">
+        <legend>Gerar um novo controller para o projeto</legend>
+        <h5>É necessário colocar um nome para o controller. Opcionalmente é possível já criar o controller com as actions.</h5>
+        <code>
+            $ rails generate controller nome_controller [action action] [options]
+        </code>
+        <h5>Exemplo:</h5>
+        <code>
+            $ rails generate controller Greetings hello
+        </code>
+    </fieldset>
+
+    <fieldset class="fields">
+        <legend>Gerar um novo model para o projeto</legend>
+        <h5>É necessário colocar um nome para o model. Opcionalmente é possível criar o model com os campos farão parte da sua composição, colocando seu nome e tipo.</h5>
+        <code>
+            $ rails generate model NAME [field[:type][:index]]
+        </code>
+        <h5>Tipos disponíveis no momento</h5>
+        <ul>
+            <li>integer</li>
+            <li>primary_key</li>
+            <li>decimal</li>
+            <li>float</li>
+            <li>boolean</li>
+            <li>binary</li>
+            <li>string</li>
+            <li>text</li>
+            <li>date</li>
+            <li>time</li>
+            <li>datetime</li>
+            <li>timestamp</li>
+        </ul>
+        <h5>Exemplo:</h5>
+        <code>
+            $ rails generate model Article title:string text:text
+        </code>
+        <h5>Exemplo criado o campo user como string e o campo pseudo como string e unique:</h5>
+        <code>
+            $ rails g model user pseudo:string:uniq
+        </code>
+    </fieldset>
+
+    <fieldset class="fields">
+        <legend>Fazer uma migração</legend>
+        <code>
+            $ rails db:migrate
+        </code>
+    </fieldset>
+
+    <fieldset class="fields">
+        <legend>Rollback de migração</legend>
+        <code>
+            $ rails db:rollback
+        </code>
+    </fieldset>
+
+    <fieldset class="fields">
+        <legend>Executar os seeds</legend>
+        <code>
+            $ rails db:seed
+        </code>
+    </fieldset>
