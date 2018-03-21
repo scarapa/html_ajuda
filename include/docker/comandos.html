@@ -1,4 +1,7 @@
-﻿<h2><i class="fa fa-terminal fa-fw"></i> COMANDOS</h2>
+﻿<style type="text/css">
+	.subCabecalho{font-weight: bold;text-align: center;background: black;color:white;font-size: 18pt;}
+</style>
+<h2><i class="fa fa-terminal fa-fw"></i> COMANDOS</h2>
 
 
 <div class="col-lg-12">
@@ -8,79 +11,167 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th>COMANDO</th>						
-						<th style="width:70%">DESCRIÇÃO</th>
+						<th style="width:5%">TAG</th>
+						<th style="width:65%">COMANDO</th>
+						<th style="width:30%">DESCRIÇÃO</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
+						<td>RUN</td>
+						<td>docker run</td>
+						<td>1 - baixar imagem(docker imagem pull)<br>
+							2 - criacao de container (docker image create)<br>
+							3 - execucao de container no modo interativo(docker containter start + docker container exec)
+						</td>
+					</tr>			
+
+					<tr>
+						<td>RUN</td>							
+						<td>docker container run -d --name nginx -p 8080:80 -v $(pwd):/usr/share/nginx/html nginx</td>
+						<td>
+							<b>--name</b> --> renomear a imagem baixada <br>
+							<b>-p</b> --> portas <br>
+							<b>-v</b> --> link apontando volume do container para maquina local <br>
+							<b>$(pwd)</b> --> diretorio atual da onde foi feito o comando 
+						</td>
+					</tr>
+
+
+
+					<tr>
+						<td></td>
+						<td>docker run --name <strong>NOME_CONTAINER</strong> image</td>								
+						<td>nomear o container em modo de EXECUCAO</td>
+					</tr>
+
+					<tr>
+						<td colspan="3" class="subCabecalho">CONTAINER</td>
+					</tr>
+
+					<tr>
+						<td>LISTAR</td>
+						<td>docker ps</td>
+						<td>Listar container em execução </td>
+					</tr>
+					<tr>
+						<td>LISTAR</td>						
+						<td>docker ls -a</td>
+						<td>Listar <b>TODOS</b> containers</td>
+					</tr>					
+					<tr>
+						<td>LISTAR</td>						
+						<td>docker ps -l </td>
+						<td>Listar <b>TODOS</b> containers </td>
+					</tr>
+
+					<tr>
+						<td>INICAR</td>						
+						<td>docker container start -ai</td>
+						<td>-a : ter acesso ao terminal<br>
+							-i modo iterativo
+						</td>
+					</tr>		
+					<tr>
+						<td>PARAR</td>						
+						<td>docker container stop </td>
+						<td>-a : ter acesso ao terminal<br>
+							-i modo iterativo
+						</td>
+					</tr>	
+
+					<tr>
+						<td colspan="3" class="subCabecalho">LOGS</td>
+					</tr>
+					<tr>
+						<td></td>						
+						<td>docker container log container_nome  </td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>						
+						<td>docker container inspect container_nome  </td>
+						<td></td>
+					</tr>
+
+					<tr>
+						<td colspan="3" class="subCabecalho">IMAGENS</td>
+					</tr>
+
+					<tr>
+						<td>BAIXAR</td>						
+						<td>$ docker image pull IMAGEM_NOME</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>DELETE</td>						
+						<td>$ docker image rm IMAGEM_NOME</td>
+						<td></td>
+					</tr>					
+					<tr>
+						<td>TAG</td>						
+						<td>$ docker image tag IMAGEM_VERSAO</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>CONSTRUCAO</td>						
+						<td>$ docker image build</td>
+						<td></td>
+					</tr>		
+					<tr>
+						<td>PUSH</td>						
+						<td>$ docker image push</td>
+						<td></td>
+					</tr>										
+					<!--
+					<tr>
+						<td></td>						
+						<td>docker container run -p 8080:80 nginx</td>								
+						<td>
+							-p flag<br>
+							8080 porta roda NO CONTAINER<br>
+							80 porta de acesso<br>
+							nginx nome da imagem a ser baixada<br>
+							para acessar fica: <strong>localhost:8080</strong>
+						</td>
+					</tr>
+
+
+
+					<tr>
+						<td></td>							
 						<td>$ sudo docker images</td>								
 						<td>Listar imagens baixadas</td>
 					</tr>
 					<tr>
+						<td></td>							
 						<td>$ sudo docker pull [nome_imagem]</td>
 						<td>Baixar/pull da imagem escolhida</td>
 					</tr>
+
 					<tr>
-						<td>$ sudo docker ps</td>
-						<td>Listar containers em execução </td>
-					</tr>
-					<tr>
-						<td>$ sudo docker ps -l </td>
-						<td>Listar <b>TODOS</b> containers </td>
-					</tr>
-					<tr>
-						<td>
-							$ sudo docker run [id_containter]</td>
+						<td></td>							
+						<td>$ sudo docker run [id_containter]</td>
 						<td>Levantar/Rodar um containter</td>
 					</tr>
 					<tr>
-						<td>
-							$ sudo docker stop [id_containter]</td>
+						<td></td>							
+						<td>$ sudo docker stop [id_containter]</td>
 						<td>Parar um containter</td>
 					</tr>
+				-->
 					<tr>
+						<td></td>							
 						<td></td>
 						<td></td>
 					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-					</tr>						
+						
 				</tbody>
 			</table>
 		</div>
 	</div>
 </div>	
+
+<br clear="all">
+OBS[1]: o metodo RUN SEMPRE cria um novo container<br/>
+OBS[2]: modo interativo: o container esta sendo executado ;modo daemon: o container esta sendo executado em background

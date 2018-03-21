@@ -26,9 +26,15 @@ $ git diff --staged
 <h3>Quando se deseja voltar a versão do arquivo para o ultimo commit</h3>
 <pre><code>$ git checkout HEAD -- my-file.txt</code></pre>
 
-<h3>Comando:</h3>
-<pre><code>$ git status -s | while read mode file; do echo $mode $(date --reference=$file +"%Y-%m-%d %H:%M:%S") $file; done</code></pre>
+<h3>Ordebar o git status por datetime:</h3>
+<pre>
+$ git status -s | while read mode file; do echo $mode $(date --reference=$file +"%Y-%m-%d %H:%M:%S") $file; done
 
+ou 
+
+git status -s | while read mode file; do echo $mode $(stat -c %y $file) $file; done|sort -k1.4
+</pre>
+			 
 <h3>Lista o historico de commits de forma colorida, (Jorge Titoneli)</h3>
 <pre><code>$ git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 </code></pre>

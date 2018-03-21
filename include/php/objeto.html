@@ -17,3 +17,54 @@ $string = (string) $string;
 </pre>
 
 <a href="https://mateussouzaweb.com/blog/php/como-converter-arrays-em-objetos-e-vice-versa-usando-uma-linha-de-codigo">Fonte</a>
+
+
+<h3>Métodos Acessores</h3>
+Métodos acessores são simplesmente métodos que são devotados somente a receber e setar o valor de qualquer das propriedades de classe. É uma boa prática acessar o valor das propriedades indiretamente através dos métodos acessores.
+<br><br>
+Existem dois tipos de métodos acessores: os getters (retornam valor de uma propriedade) e os setters (setam o vlaor de uma propriedade).
+<pre>
+&lt;?php 
+class Student { 
+	private $properties = array(); 
+	function __get($property) { 
+		return $this->properties[$property]; 
+	} 
+	function __set($property, $value) { 
+		$this->properties[$property]="AutoSet {$property} as: ".$value; 
+	} 
+}	 
+?&gt; 
+</pre>
+
+Estes métodos podem ajudar a filtrar a entrada de dados antes de configurar no trabalho.Existem métodos mágicos que fazem esse trabalho de forma automática e  eduzem o trabalho em 90%.
+<br><br>
+O processo é chamado de <b>sobrecarga de propriedade.</b> Os dois métodos mágicos são o <b>__get()</b> e <b>__set()</b>.
+<pre>
+&lt;?php
+class Student{
+	private $properties = array();
+	function __get($property){
+		return $this->properties($property);
+	}
+	function __set($property, $value){
+		return $this->properties($property)="AutoSet {$property} as: ".$value;
+	}
+}
+?&gt;
+</pre>
+
+Testando:
+<pre>
+&lt;?php
+$st = new Estudante();
+$st->name = "Tiago";
+$st->email = "tiago@ribafs.org";
+echo $st->name."&lt;br&gt;";
+echo $st->email;
+?&gt; 
+</pre>
+
+Quando executamos o código anterior o PHP percebe que não existem propriedades com nome name nem email na classe. Desde que as propriedades não existam então o método __set() será chamado atribuindo valor para a propriedade<br/>
+<a href="http://professores.chapeco.ifsc.edu.br/lara/files/2014/07/php5oobasico.pdf">Fonte[1]</a>
+

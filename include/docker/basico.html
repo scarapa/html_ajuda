@@ -1,0 +1,23 @@
+<h2><i class="fa fa-book fa-fw"></i> BASICO</h2>
+
+<h3>1 - BAIXAR UMA IMAGEM</h3>
+<pre>$ docker container run -p 8080:80 <b>IMAGEM_NOME</b></pre>
+
+Startando CONTAINER
+<pre>$ docker start <b>CONTAINER_NOME</b></pre>
+
+<h3>2 - ACESSANDO CONTAINER</h3>
+
+Pode ser feito de duas formas, ou passando o comando ou entrando DENTRO do container
+
+<h4>2.1 - Passando o comando e recebendo o retorno</h4>
+<pre>$ docker container exec nginx uname -or</pre>
+<code>4.9.0-deepin4-amd64 GNU/Linux</code>
+<br/>
+
+<h4>2.2 - Entrando no CONTAINER via terminal</h4>
+<pre>$ docker exec -i -t <b>CONTAINER_NOME</b> /bin/bash</pre>
+<code>root@240d03e9502d:/usr/local/apache2#</code>
+<br><br>
+
+Para sair basta digitar: <code><strong>exit</strong></code>
