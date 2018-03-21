@@ -8,21 +8,38 @@ Primeiro desafio será criar um ambiente de desenvolvimento com as seguintes fer
 	<li>PHPMyAdmin</li>
 </ol>			
 
-<h3>Apache</h3>
-<pre>$ sudo docker pull httpd</pre>
+<h2>1. Baixar as imagens</h2>
+
+<table>
+	<tr>
+		<th></th>
+		<td></td>	
+	</tr>
+
+	<tr>
+		<th>Apache + php7</th>
+		<td>$ docker pull nimmis/apache-php7</td>	
+	</tr>			
+	<tr>
+		<th>MYSQL</th>
+		<td>$ docker pull mysql</td>	
+	</tr>	
+	<tr>
+		<th>PHPMYADMIN</th>
+		<td>$ docker pull phpmyadmin/phpmyadmin</td>	
+	</tr>	
+</table>
+
+<h2>Listar as imagens baixadas</h2>
+<pre>$ docker image ls</pre>
 
 
-<h3>PHP</h3>
-<pre>$sudo docker pull php</pre>
-https://hub.docker.com/_/php/
-
-<h3>MySQL</h3>
-<pre>$sudo docker pull mysql</pre>
-https://hub.docker.com/_/mysql/
-
-<h3>PHPMyAdmin</h3>
-<pre>$ sudo docker pull phpmyadmin/phpmyadmin</pre>
-https://hub.docker.com/r/phpmyadmin/phpmyadmin/
+<h2>2 Levantando os Containers</h2>
+Startando os containers
+<pre>
+$ docker run --name server nimmis/apache-php7
+$ docker run --name 
+</pre>
 
 
 OBS: Pasta onde ficam salvas os containes <code>/var/lib/docker/containers/</code>

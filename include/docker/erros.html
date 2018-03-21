@@ -1,0 +1,16 @@
+<h2><i class="fa fa-times-circle"></i> ERROS</h2>
+
+<h3>Problema de PERMISSÃO</h3>
+<code>docker: Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock:</code>
+
+<br>Listar o nivel das permissoes do docker<br/>
+<pre>$ ls -l /var/run/docker.sock</pre>
+<code>srw-rw---- 1 root docker 0 mar 11 07:30 /var/run/docker.sock</code>
+
+<br>Basta alterar o nivel de permissão com o comando abaixo<br>
+<pre>$ sudo chmod 666 /var/run/docker.sock</pre>
+
+PERMISSAO ATUALIZADA<br>
+<code>srw-rw-rw- 1 root docker 0 mar 11 07:30 /var/run/docker.sock</code>
+
+<a href="https://github.com/docker/docker-snap/issues/1">Fonte[1]</a>

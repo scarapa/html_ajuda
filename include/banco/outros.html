@@ -1,5 +1,20 @@
 ﻿<h2><i class="fa fa-question-circle"></i> OUTROS</h2>
 
+<h3>Encontrar palavra na string</h3>
+<pre><code><kbd>SQLSERVER</kbd>
+DECLARE @document varchar(64);  
+SELECT @document = 'Reflectors are vital safety components of your bicycle.';  
+SELECT CHARINDEX('bicycle', @document);  
+GO  
+</code></pre>
+Retorno
+<pre>48</pre>
+
+Ou seja, se o retorno for maior que zero(0) é porque <b>ENCONTROU</b>
+<br><br>
+<a href="https://docs.microsoft.com/pt-br/sql/t-sql/functions/charindex-transact-sql">microsoft</a>
+
+
 <h3>SQLSERVER: Truncar completando com zeros a esquerda</h3>			
 Na verdade você pode completar com o caracter e sentido(direita ou esquerda) que quizer.<br>
 No exemplo abaixo completei com zeros a esquerda pois o numero identificador do usuario tem que ter 5 de tamanho.
