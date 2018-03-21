@@ -114,3 +114,15 @@ SET IDENTITY_INSERT [TableName] ON
 SET IDENTITY_INSERT [TableName] OFF 
 </pre>
 Fonte: Guilherme Dambros
+
+<h3>Exportando SCRIPT de banco de dados</h3>
+<pre><kbd>MYSQL</kbd>
+mysqldump -u usuario -p banco_de_dados > arquivo.sql
+</pre>
+Onde:<br>
+<i>usuario: </i>nome do usuário no MySQL que tem acesso ao banco de dados<br>
+<i>banco_de_dados:</i> nome do banco de dados que será exportado<br>
+<i>arquivo.sql:</i> nome do arquivo para o qual os dados serão gravados<br>
+Em seguida será solicitada a senha do usuário Mysql<br>
+Fonte:
+<a href="http://www.isoftsolutions.com.br/exportando-e-importando-banco-de-dados-no-mysql-pela-linha-de-comandos/">isoftsolutions</a>
