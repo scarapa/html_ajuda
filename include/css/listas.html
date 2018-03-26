@@ -1,0 +1,26 @@
+<h2><i class="fa fa-list fa-fw"></i> Listas</h2>
+
+<h3>Lista e Sublista numeradas</h3>
+
+<pre><kbd>HTML</kbd>
+&lt;ol class="nested"&gt;
+&lt;li class="nested"&gt;item 1&lt;/li&gt;
+&lt;li class="nested"&gt;item 2
+    &lt;ol class="nested"&gt;
+        &lt;li class="nested"&gt;subitem 1&lt;/li&gt;
+        &lt;li class="nested"&gt;subitem 2&lt;/li&gt;
+    &lt;/ol&gt;&lt;/li&gt;
+&lt;li class="nested"&gt;item 3&lt;/li&gt;
+&lt;/ol&gt;
+</pre>
+
+<pre><kbd>CSS</kbd>
+ol.nested{ counter-reset: item}
+li.nested{ display: block}
+li.nested:before{
+    content: counters(item, ".") ". ";
+    counter-increment: item
+}
+</pre>
+
+<a href="https://stackoverflow.com/questions/2729927/number-nested-ordered-lists-in-html/7421911#7421911">Fonte[1]</a>
