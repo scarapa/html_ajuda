@@ -1,0 +1,23 @@
+<h2><i class="fa fa-warning fa-fw"></i> ERROS</h2>
+
+
+<h3>Failed opening required autoload.php</h3>
+<pre>
+  PHP Warning:  require(/home/user/project-name/vendor/autoload.php):
+  failed to open stream: No such file or directory in /home/user/project-name/artisan on line 18
+  PHP Fatal error:  require(): Failed opening required '/home/user/project-name/vendor/autoload.php'
+  (include_path='.:/usr/share/php') in /home/guilhermedambros/project-name/artisan on line 18
+</pre>
+<BR/>Solução:<br>
+<pre><code>$ composer install</code></pre>
+<a href="https://stackoverflow.com/questions/28468625/laravel-5-failed-opening-required-bootstrap-vendor-autoload-php/36395204">stackoverflow</a>
+
+<hr>
+
+<h3>Application key</h3>
+<code>RuntimeException<br>No application encryption key has been specified.</code>
+<BR/>Solução:<br>
+<pre><code>$ php artisan key:generate</code></pre>
+<a href="https://stackoverflow.com/questions/44839648/no-application-encryption-key-has-been-specified-new-laravel-app">stackoverflow</a>
+
+<hr>

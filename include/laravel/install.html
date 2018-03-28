@@ -1,0 +1,63 @@
+<h2><i class="fa fa-plane fa-fw"></i> INSTALL</h2>
+
+
+<h3>Instalar o PHP</h3><br>
+O primeiro requisito é o php, com o terminal aberto digite o seguinte comando.
+<pre><code>$sudo apt-get install php</code></pre>
+
+Para verificar a versão do php.
+<pre><code>$php -v</code></pre>
+
+Instale também a extensão Mbstring do php.(Opcional)
+<pre><code>$sudo apt-get install php7.0-mbstring</code></pre>
+
+A extensão do suporte para o XML.(Opcional)
+<pre><code>$sudo apt-get install php-xml</code></pre>
+
+E a extensão do zip do php.(Opcional)
+<pre><code>$sudo apt-get install php7.0-zip</code></pre>
+
+<hr>
+
+<h3>Instalar o CURL</h3><br>
+Caso não tenha instalado o curl na sua máquina digite.
+<pre><code>$sudo apt-get install curl</code></pre>
+
+
+<h3>Instalar o COMPOSER</h3><br>
+O Laravel utiliza o composer para cuidar das suas dependências, então o próximo passo é instalar o Composer.<br>
+Esse comando faz o download do instalador do composer e realiza a instalação dele no diretório correto, <br>
+para o composer funcionar de forma global no sistema.<br>
+
+<pre><code>curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer</code></pre>
+
+Para ver se deu certo, digite composer no terminal.
+<pre><code>$composer</pre></code>
+
+<hr>
+
+<h3>Inicializar um projeto</h3><br>
+É possível inicializar um projeto Laravel sem o seu instalador usando o seguinte comando.
+<pre><code>$composer create-project --prefer-dist laravel/laravel project-name</pre></code>
+
+<hr>
+
+<h3>É possível  instalar o instalador do Laravel pelo Composer para utilizar o comando <i>laravel new project</i></h3><br>
+<pre><code>composer global require "laravel/installer"</pre></code>
+
+Para o comando laravel funcionar precisamos adicionar uma linha no arquivo bashrc se você estiver usando apenas o terminal.
+<pre><code>echo 'export PATH="$HOME/.composer/vendor/bin:$PATH"' >> ~/.bashrc source ~/.bashrc</pre></code>
+
+Ou adicionar uma linha no zshrc se estiver usando o ZSH.
+<pre><code>echo 'export PATH="$HOME/.composer/vendor/bin:$PATH"' >>  ~/.zshrc source ~/.zshrc</pre></code>
+
+Reinicie o terminal. Para testar se deu certo, digite laravel no terminal.<br><br>
+
+Agora vamos inicializar um projeto Laravel.
+<pre><code>laravel new blog</pre></code>
+
+<hr>
+
+Rode o servidor do Laravel. Enjoy!
+<pre><code>php artisan serve</pre></code>
+<a href="https://medium.com/@rgdev/como-instalar-o-laravel-5-4-no-ubuntu-16-04-a80c047c2978">Medium</a>
