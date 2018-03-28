@@ -1,0 +1,29 @@
+<h2><i class="fa fa-th fa-fw"></i> SELETORES</h2>
+<h3>TABELA ZEBRADA</h3>
+
+<table border="1">
+  <tbody id="tBody"><tr style="background-color: rgb(135, 206, 235);"><td>Coluna: 1 </td><td>Coluna: 2 </td><td>Coluna: 3 </td><td>Coluna: 4 </td><td>Coluna: 5 </td></tr><tr><td>Coluna: 1 </td><td>Coluna: 2 </td><td>Coluna: 3 </td><td>Coluna: 4 </td><td>Coluna: 5 </td></tr><tr style="background-color: rgb(135, 206, 235);"><td>Coluna: 1 </td><td>Coluna: 2 </td><td>Coluna: 3 </td><td>Coluna: 4 </td><td>Coluna: 5 </td></tr><tr><td>Coluna: 1 </td><td>Coluna: 2 </td><td>Coluna: 3 </td><td>Coluna: 4 </td><td>Coluna: 5 </td></tr><tr style="background-color: rgb(135, 206, 235);"><td>Coluna: 1 </td><td>Coluna: 2 </td><td>Coluna: 3 </td><td>Coluna: 4 </td><td>Coluna: 5 </td></tr></tbody>
+</table>
+
+Para zebrar usamos uma pseudo-class, denominada <strong>nth-child(evento)</strong>, onde evento assume vários valores, que podem ser:
+<br/><br/>
+
+<b>ODD</b> – Linhas ou Colunas Pares;<br/>
+<b>Even</b> – Linhas ou colunas Ímpares;<br/>
+<b>3n+0</b> – A cada três linha ou coluna.<br/>
+
+<pre><kbd>CSS</kbd>
+table:nth-child(odd){
+    background-color:#CCC;
+}
+ 
+table:nth-child(even){
+    background-color:#EEE;
+}
+ 
+table:nth-child(3n+0){
+    background-color:#666;
+}
+</pre>
+
+<a href="http://www.satellasoft.com/?materia=zebrar-tabela-usando-css">Fonte[1]</a>
