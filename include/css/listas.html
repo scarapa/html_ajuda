@@ -1,3 +1,6 @@
+<style type="text/css">
+
+</style>
 <h2><i class="fa fa-list fa-fw"></i> Listas</h2>
 
 <h3>Lista e Sublista numeradas</h3>
@@ -23,4 +26,60 @@ li.nested:before{
 }
 </pre>
 
-<a href="https://stackoverflow.com/questions/2729927/number-nested-ordered-lists-in-html/7421911#7421911">Fonte[1]</a>
+
+<h3>Ordenação de Listas</h3>
+
+O atributo <code>type</code> da tag <code>&lt;ol&gt</code> define o tipo do marcador de item da lista:
+<div class="panel panel-default">
+	<div class="table-responsive">
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>Type</th>
+					<th>Descrição</th>
+				</tr>
+				<tr>
+					<td>type="1"</td>
+					<td>Os itens da lista serão numerados com números (padrão)</td>
+				</tr>
+				<tr>
+					<td>type="A"</td>
+					<td>Os itens da lista serão numerados com letras maiúsculas</td>
+				</tr>
+				<tr>
+					<td>type="a"</td>
+					<td>Os itens da lista serão numerados com letras minúsculas</td>
+				</tr>
+				<tr>
+					<td>type="I"</td>
+					<td>Os itens da lista serão numerados com números romanos maiúsculos</td>
+				</tr>
+				<tr>
+					<td>type="i"</td>
+					<td>Os itens da lista serão numerados com números romanos em letras minúsculas</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<br>
+<pre><code><kbd>CODIGO HTML</kbd>
+&lt;ol type="1"&gt;
+	&lt;li&gt;Item 1&lt;/li&gt;
+	&lt;li&gt;>Item 2&lt;/li&gt;
+	&lt;li&gt;Item 3&lt;/li&gt;
+&lt;/ol&gt;</code></pre>	
+
+<kbd>RESULTADO HTML</kbd>
+<ol type="1">
+	<li>Item 1</li>
+	<li>Item 2</li>
+	<li>Item 3</li>
+</ol>	
+
+
+
+<br>
+<a href="https://www.w3schools.com/html/html_lists.asp">Fonte[1]</a><br>
+<a href="https://stackoverflow.com/questions/2729927/number-nested-ordered-lists-in-html/7421911#7421911">Fonte[2]</a>

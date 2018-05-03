@@ -1,0 +1,62 @@
+<style type="text/css">
+	table{ border-collapse: collapse; }
+	table tr th {padding:0 5px;text-align: center}
+	table tr td {padding:0 5px;text-align: center;font-size: 125%}
+
+	.teste:after{	
+		content: " \f061";
+	   	font-family: FontAwesome;
+	}	
+	.codeHTML{}
+
+</style>
+<h2><i class="fa fa-pencil-square fa-fw"></i> ASCII - Icones</h2>
+
+<h3>1º Descobrir o código ASCII</h3>
+Para fins de teste utilizaremos a Font Awesome.<br> 
+Abrir o arquivo font.css e procure pela chamada, exemplo:<code>fa fa-arrow-right</code>
+<br/><br/>
+
+<table border=1>
+	<tr>
+		<th>ICONE</th>
+		<th>CHAMADA</th>
+		<th>ASCII</th>
+		<th></th>
+	</tr>
+	<tr>
+		<td><i class="fa fa-arrow-right"></i></td>
+		<td>fa fa-arrow-right</td>
+		<td>&<span style="display:none">!</span>#xf061;</td>
+		<td>"\f061"</td>
+	</tr>
+</table>
+
+<h3>2º Utilizando</h3>
+<pre><kbd>CSS</kbd>
+.teste:after{	
+	content: "\f061";
+   	font-family: FontAwesome;
+}	
+</pre>
+
+<pre class="codeHTML"><kbd>HTML</kbd>
+&lt;table id="teste" border=1&gt; 
+	&lt;tr&gt; 
+		&lt;td class="teste"&gt;Teste&lt;/td&gt; 
+	&lt;/tr&gt; 
+&lt;/table&gt; 	
+</pre>
+
+<h3>RESULTADO</h3>
+
+<table id="teste" border=1>
+	<tr>
+		<td class="teste">Teste</td>
+	</tr>
+</table>
+
+<br/><br/>
+
+<a href="http://astronautweb.co/snippet/font-awesome/">Fonte[1]</a> - 
+<a href="https://www.w3schools.com/icons/icons_reference.asp">Fonte[2]</a>
