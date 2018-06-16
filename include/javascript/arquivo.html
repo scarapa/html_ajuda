@@ -131,6 +131,31 @@ $(".cep").mask("99999-999");
 
 function rtrim(str) { return str.replace(/s+$/," ") ; }
 
+function mascaraGenerica(elemento , mascara){
+    var charEspecial = "~`!#$%^&*+=-[]\\\';,/{}|\":<>?.";       
+    var texto = '';
 
+    for (i=0; i<elemento.value.length; i++){
+        if( compararTipo(elemento.value[i],mascara[i]) ) { texto += texto = elemento.value[i];}                 
+    }
+    //CASO PROXIMO CHAR SEJA ESPECIAL , JÁ PREENCHE         
+    var stCharEspecialMascara = (charEspecial.indexOf(mascara[i]) > -1)  ? charEspecial.indexOf(mascara[i]): -1 ; 
+    if( stCharEspecialMascara > -1) {
+        texto = texto+mascara[i];
+    }
+    
+    document.getElementsByName(elemento.name)[0].value = texto.substring(0,mascara.length);
+    document.getElementsByName(elemento.name)[0].maxLength = mascara.length;
+
+    
+    function compararTipo(valor1,valor2){
+        return ( Number.isInteger(parseInt(valor1))==Number.isInteger(parseInt(valor2)) ) ? true : false ;
+    }
+}
 
 </code></pre>
+
+Para usar a função <code>mascara()</code>
+<pre>
+&lt;input type="text" name="nm_componente" <b style="color:red">onkeypress="mascara(this,'AAA-9999')"&gt;</b> 
+</pre>

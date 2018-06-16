@@ -1,0 +1,30 @@
+﻿<h2><i class="fa fa-warning"></i> WARNING</h2>
+
+<h3>TRY</h3>
+
+<pre><code>
+function divisao($n1,$n2) {
+    if ( (empty($n2)) || ($n2==0)) {
+        throw new Exception('Divisão por zero.');
+    }
+    return $n1/$n2;
+}
+
+try {
+    echo divisao(5,0)."&lt;br&gt;";
+} catch (Exception $e) {
+    echo 'Exceção capturada: ',  $e->getMessage(), "\n";
+}
+
+echo "&lt;br&gt; ...Execução continua&lt;br&gt;";
+
+try {
+    echo divisao(9,3)."&lt;br&gt;";
+} catch (Exception $e) {
+    echo 'Exceção capturada: ',  $e->getMessage(), "&lt;br&gt;";
+}
+</code></pre>
+
+
+<a href="http://php.net/manual/pt_BR/language.exceptions.php">PHP.NET</a>
+
