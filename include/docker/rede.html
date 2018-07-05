@@ -43,3 +43,25 @@
 		</tr>
 	</tbody>	
 </table>
+
+
+<h3><li class="fa fa-link"></li> LINK</h3>
+
+
+O Link permite que você trafegue informações entre os containers de forma segura, pois quem conhece um container conhece apenas o seu par definido no link. Quando você configurar um link, você cria um elo de ligação entre um container de origem e um container de destino. Para criar um link, você deve utilizar o parâmetro –link. 
+<br>
+<br>
+Em primeiro lugar, deve-se criar um container que será origem de dados para outro container, desta vez vamos criar o container de banco de dados:
+
+<pre>$ docker run -d --name db training/postgres</pre>
+
+Agora, crie um novo container chamado web e vincule com o seu container db.
+
+<pre>$ docker run -d -P --name web --link db:db training/webapp python app.py</pre>
+
+<pre>$ docker run -d -P --name web --link db:db training/webapp python app.py</pre>
+
+Sintaxe:
+<pre>--link [nome ou id]:alias</pre>
+
+<a href="https://www.mundodocker.com.br/link-entre-containers/">Fonte[1]</a>
