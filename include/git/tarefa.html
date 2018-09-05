@@ -1,0 +1,15 @@
+<h2>Referenciando issues no GITLAB</h2>
+
+<h3>Issues no mesmo projeto:</h3>
+<pre>$ git commit -m "this is my commit message. Ref #xxx"</pre>
+
+<h3>Issues em projetos diferentes:</h3>
+<pre>$ git commit -m "this is my commit message. Related to https://gitlab.com/<username>/<projectname>/issues/<xxx>"</pre>
+
+<h3>Para também fechar tarefa basta adicionar à mensagem do commit o seguinte:</h3>
+<pre>Closes #xxx</pre>
+
+Ex.:
+<pre>$ git commit -m "this is my commit message. Ref #38 Closes #38"</pre>
+By: <i>Guilherme Dambros</i><br/>
+<a href="https://docs.gitlab.com/ee/user/project/issues/crosslinking_issues.html">Fonte[1]</a>
