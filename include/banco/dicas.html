@@ -73,11 +73,17 @@ SELECT
 
 <br clear="all">
 
-<h3>Criar tabela de BACKUP</h3>
+<h3>Criar tabela de <b>BACKUP</b></h3>
 <pre><kbd>SQLSERVER</kbd>
 SELECT * INTO <strong>nova_tabela</strong> FROM <strong>tabela_atual</strong></pre>
 <a href="https://imasters.com.br/artigo/12083/sql-server/como-copiar-estrutura-de-tabelas-no-sql-server?trace=1519021197&source=single">Fonte</a>
 
+
+<h3>Criar coluna <b>AUTOINCREMENT</b></h3>
+<pre><kbd>SQLSERVER</kbd>
+ALTER TABLE <b>nome_tabela</b> ADD <b>nome_coluna</b> INT IDENTITY CONSTRAINT <b>PK_nome_chave_primaria</b> PRIMARY KEY CLUSTERED 
+</pre>
+<a href="https://stackoverflow.com/questions/4862385/sql-server-add-auto-increment-primary-key-to-existing-table ">stackoverflow</a>
 
 <h3>Verificar deadlock</h3>
 <pre><kbd>SQLSERVER</kbd>
