@@ -1,0 +1,13 @@
+<h2>Criar SCHEMA</h2>
+<pre>CREATE SCHEMA NOME_ESQUEMA</pre>
+Exemplo:
+<pre>CREATE SCHEMA TESTE_2018</pre>
+Criação das tabelas com o schema criado.
+<pre>
+CREATE TABLE TESTE_2018.tblCliente (
+    cd_cliente INT IDENTITY(1,1) PRIMARY KEY
+	,nm_cliente VARCHAR (100)
+	,st_cliente INT
+); 
+</pre>
+<a href="https://docs.microsoft.com/pt-br/sql/t-sql/statements/create-schema-transact-sql?view=sql-server-2017">Fonte[1]</a>
