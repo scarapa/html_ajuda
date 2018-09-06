@@ -1,0 +1,32 @@
+<style type="text/css">
+	.comentario{color:green;}
+</style>
+Objetivo desse cursor é buscar as compras de um determinado cliente
+<pre><kbd>SQLSERVER</kbd>
+<span class="comentario">--VARIAVEIS</span>
+DECLARE @id_cliente_original VARCHAR(5) ;
+DECLARE @id_compra INT, @id_cliente INT , @id_tipo INT  ;
+DECLARE @dt_compra DATE ;
+
+SET @id_cliente_original = '49583';
+
+DECLARE lista CURSOR FOR
+
+<span class="comentario">--SELECT QUE SERÁ VARRIDO</span>
+SELECT id_compra,id_cliente,id_tipo ,dt_compra FROM compra  WHERE id_cliente = @id_cliente_original
+
+OPEN lista
+	<span class="comentario">--NECESSÁRIO</span>
+	FETCH NEXT FROM lista INTO @id_compra,@id_cliente,@id_tipo,@dt_compra
+
+	WHILE @@FETCH_STATUS = 0
+		BEGIN
+			SELECT @id_compra , @id_cliente, @id_tipo , @dt_compra 
+			<span class="comentario">--PROXIMO REGISTRO</span>
+			FETCH NEXT FROM lista INTO @id_compra,@id_cliente ,@id_tipo ,@dt_compra
+		END
+CLOSE lista
+DEALLOCATE lista 
+</pre>
+
+<a href="http://www.williamcleissondecarvalho.com.br/2016/02/03/exemplo-basico-de-cursor-no-sql-server/">Fonte</a>
