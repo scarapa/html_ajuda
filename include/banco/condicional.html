@@ -1,0 +1,39 @@
+<h2>CONDICIONAL</h2>
+<h3>IF</h3>
+<pre><kbd>SQLSERVER</kbd>
+DECLARE @teste INT;
+SET @teste = 5;
+IF @teste > 10
+    PRINT 'MAIOR'
+ELSE
+    PRINT 'MENOR'
+</pre>
+<a href="https://msdn.microsoft.com/pt-br/library/ms182717(v=sql.120).aspx">Fonte</a>
+
+<h3>CASE</h3>
+<pre><kbd>SQLSERVER</kbd>
+DECLARE @teste INT;
+SET @teste = 1;
+SELECT
+  CASE
+    WHEN @teste = 1 THEN 'Numero 1'
+    WHEN @teste = 2 THEN 'Numero 2'
+    ELSE 'ENE'
+  END AS 'teste_case'
+</pre>
+
+
+<pre>
+IF @teste < 5
+	BEGIN
+    	PRINT 'MAIOR'
+    END
+ELSE IF (@teste BETWEEN 5 AND 8)
+	BEGIN
+		PRINT 'oito'
+	END
+ELSE
+	BEGIN 
+    	PRINT 'MENOR'
+	END
+</pre>
