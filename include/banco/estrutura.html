@@ -50,6 +50,13 @@
 <strong>ALTER TABLE</strong> nome_tabela <strong>ALTER COLUMN</strong> nome_coluna <strong>TIPO</strong></code></pre>
 <a href="https://msdn.microsoft.com/pt-br/library/ms190238(v=sql.120).aspx">msdn</a>
 
+<h3>CRIAR CHAVE PRIMARIA - PK</h3>
+<pre><kbd>SQLSERVER</kbd>
+ALTER TABLE <b>dbo.NOME_TABELA</b> ADD CONSTRAINT <b>PK_NOME_CHAVE</b> PRIMARY KEY(<b>NOME_COLUNA</b>)
+</pre>
+<a href="https://stackoverflow.com/questions/4862385/sql-server-add-auto-increment-primary-key-to-existing-table">stackoverflow</a> - Guilherme Dambros
+
+
 <h3>CRIAR CHAVE ESTRANGEIRA - FK</h3>
 <pre><code><kbd>SQLSERVER</kbd>
 <strong>ALTER TABLE</strong> PEDIDOS <strong>ADD CONSTRAINT</strong> FK_COD_CLI <strong>FOREIGN KEY</strong> (COD_CLI) <strong>REFERENCES</strong> CLIENTES(COD);</code></pre>
