@@ -1,0 +1,38 @@
+<h2>Bloquear submit do formulario com enter </h2>
+
+Há 3 maneiras de se fazer isso.
+<h3>1º onsubmit=return false</h3>
+<pre>&lt;form name="nome_formulario" onsubmit="return false"&gt;</pre>
+
+<h3>2º Criando uma function</h3>
+<pre>
+//JS
+function dasabilitarenter() {
+	var tecla = event.keyCode;
+	if ((tecla == 13)) {
+		return false;
+	}
+	return tecla;
+}
+
+//HTML
+&lt;form method='post' action='' onKeyPress='return dasabilitarenter();'&gt;
+seus campos vêm aqui....
+&lt;/form&gt;
+</pre>
+
+
+<h3>3º Criar uma classe</h3>
+<pre>
+//HTML
+&lt;input type='text' name='campo' class='desabilitarEnter'&gt;
+
+//JQUERY
+$(document).on('keypress', '.desabilitarEnter', function(event){ 
+	if(event.which==13) return false;
+});
+</pre>
+
+<a href='https://canofre.blogspot.com/2009/03/desabilitar-o-enter-em-um-formulario.html'>Fonte[1]</a>
+<a href='http://fabiocabral.gabx.com.br/2013/06/javascript-desabilitar-enter-em-campos.html'>Fonte[2]</a>
+<a href='http://codigosnaweb.com/forum/viewtopic.php?t=7746'>Fonte[3]</a>
