@@ -1,0 +1,21 @@
+<h2>The Cypress App could not be unzipped.</h2>
+<pre>The Cypress App could not be unzipped.
+
+Search for an existing issue or open a GitHub issue at
+
+https://github.com/cypress-io/cypress/issues
+----------
+
+Error: EACCES: permission denied, mkdir '/home/beto/.cache/Cypress/3.1.0'
+</pre>
+
+1ª  Instale 
+<pre>$ sudo npm install electron -g --verbose --unsafe-perm=true</pre>
+2 º instale o cypress
+<pre>$ sudo npm install cypress -g --verbose --unsafe-perm=true</pre>
+
+<pre>$ cypress -v</pre>
+<code>Cypress package version: 3.1.0</code><br>
+<code>Cypress binary version: 3.1.0</code>
+<br clear="all">
+<a href="https://github.com/electron-userland/electron-prebuilt/issues/233">github</a>
