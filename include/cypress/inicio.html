@@ -1,9 +1,22 @@
 <h2>1º STARTANDO o projeto</h2>
-Dentro da pasta onde está instalado o <b>cypress</b>, executar o comando abaixo.
+Iniciar o projeto e a criacao do json
 <pre>$ npm init -y</pre>
 
-<h2>2º Abertura da janela de testes</h2>
-<pre>$ npm run test:./node_modules/.bin/cypress open</pre>
+<code>OBSERVACAO</code>, o conceito de dependencias de execucao e de desenvolvimento.<br>
+Esses conceitos ficam armazenados no package.json (devDependencies/dependencies)
+
+Instalar o CYPRESS , um
+<pre>$ npm install --save-dev</pre>
+ou 
+<pre>$ npm i -D cypress</pre>
+ou para instalar <b>GLOBALMENTE</b>
+<pre>$ npm install cypress -g</pre>
+
+<code>OBSERVACAO</code> para <b>DESINSTALAR o CYPRESS GLOBALMENTE</b>
+<pre>$ npm uninstall -g cypress</pre>
+
+Após a instalacao , executar o <b>Cypress</b>
+<pre>$ cypress open</pre>
 
 <h2>2º Armazenamento</h2>
 Para armazenar os testes, deve ser posto na pasta <b>cypress</b> e com a extensão <b>.spec.js</b>
