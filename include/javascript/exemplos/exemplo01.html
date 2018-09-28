@@ -1,0 +1,20 @@
+<h3>SELECT COMBO BOX - PEGAR TEXTO</h3>
+Objetivo é armazenar o texto do option selecionado no select
+<pre><kbd>HTML</kbd>
+&lt;select id="id_marca" onkeypress="setar(this)" onchange="setar(this)"&gt;
+	&lt;option&gt;Fiat&lt;/option&gt;
+	&lt;option&gt;Ford&lt;/option&gt;	
+	&lt;option&gt;Peugeot&lt;/option&gt;
+	&lt;option&gt;Volks&lt;/option&gt;
+&lt;/select&gt;
+&lt;input type="text" id="ds_marca"&gt;
+
+<kbd>JS</kbd>
+&lt;script type="text/javascript"&gt;
+	function setar(objeto){
+		document.getElementById("ds_marca").value = objeto.options[objeto.selectedIndex].text ;
+	}
+&lt;/script&gt;
+</pre>
+
+<a href="https://www.youtube.com/watch?v=WNLC2b5AVIE">Fonte</a>
