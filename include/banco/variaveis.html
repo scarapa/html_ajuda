@@ -48,3 +48,25 @@ ELSE
 </code></pre>
 <a href="https://forum.imasters.com.br/topic/159724-if-no-sql/">Fonte</a>
 <br clear="all"><br clear="all">
+
+<h3>DB LINKED COMO VARIAVEL</h3>
+<pre>
+<b>DECLARE @AMB VARCHAR(MAX);</b>
+DECLARE @query nVarchar(MAX);
+DECLARE @numcad VARCHAR(5);
+DECLARE @dt_iniper VARCHAR(50);
+
+<b>SET @AMB = '10.1.1.19\DESENV';</b>
+SET @numcad = '40096';
+SET @dt_iniper = '2015-10-06 00:00:00.000'
+SET @query = '
+SELECT * FROM <b style="color:red;">['+@amb+']</b>.VETORH.VETORH.R040PER 
+WHERE 1 =1 
+	AND numcad = '+@numcad+' 
+	AND iniper = '''+@dt_iniper+'''
+';
+---SELECT @query;
+EXECUTE sp_executesql @query
+</pre>
+<a href="https://docs.microsoft.com/pt-br/sql/relational-databases/system-stored-procedures/sp-executesql-transact-sql?view=sql-server-2017">Fonte[1]</a>
+<a href="https://www.scriptbrasil.com.br/forum/topic/164391-inserir-valor-em-variavel-resolvido/">Fonte[2]</a>

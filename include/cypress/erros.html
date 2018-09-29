@@ -9,7 +9,7 @@ https://github.com/cypress-io/cypress/issues
 Error: EACCES: permission denied, mkdir '/home/beto/.cache/Cypress/3.1.0'
 </pre>
 
-1ª  Instale 
+<h2>1ª  Instalar</h2>
 <pre>$ sudo npm install electron -g --verbose --unsafe-perm=true</pre>
 2 º instale o cypress
 <pre>$ sudo npm install cypress -g --verbose --unsafe-perm=true</pre>
@@ -19,3 +19,19 @@ Error: EACCES: permission denied, mkdir '/home/beto/.cache/Cypress/3.1.0'
 <code>Cypress binary version: 3.1.0</code>
 <br clear="all">
 <a href="https://github.com/electron-userland/electron-prebuilt/issues/233">github</a>
+
+
+<h2>Uncaught ReferenceError: $ is not defined</h2>
+A solução foi por o codigo abaixo para passar adiante
+<pre>Cypress.on('uncaught:exception', (err, runnable) => {
+    // returning false here prevents Cypress from
+    // failing the test
+    debugger
+    return false
+})
+
+Cypress.on('fail', (err) => {
+    debugger
+})</pre>
+
+<a href="https://github.com/cypress-io/cypress/issues/987">Fonte[1]</a>

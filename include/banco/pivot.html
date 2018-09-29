@@ -1,0 +1,120 @@
+<h2>PIVOT & UNPIVOT</h2>
+
+Tabela de cadastro:<code>tblCad_Tipo_Moradia</code>
+<table border="1">
+    <tr>
+        <th>cd_tipo_moradia</th>
+        <th>ds_descricao</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Alvenaria</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Madeira</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Misto</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Outros</td>
+    </tr>    
+</table>
+<br/>
+Query abaixo , um exemplo muito simples para totalizar os tipos de moradia.
+<pre>SELECT 
+	cad.ds_descricao AS 'descricao'
+	,COUNT(c.cd_tipo_moradia) AS 'total'
+FROM tblCdasiater c 
+	LEFT JOIN tblCad_Tipo_Moradia cad ON c.cd_tipo_moradia = cad.cd_tipo_moradia
+WHERE c.cd_tipo_moradia IS NOT NULL
+GROUP BY c.cd_tipo_moradia,cad.ds_descricao
+</pre>
+retorno:<br/>
+<table border="1">
+	<tr>
+		<th>descricao</th>
+		<th>total</th>		
+	</tr>
+	<tr>
+		<td>Alvenaria</td>
+		<td>410</td>
+	</tr>
+	<tr>
+		<td>Madeira</td>
+		<td>579</td>
+	</tr>	
+	<tr>
+		<td>Misto</td>
+		<td>191</td>
+	</tr>
+	<tr>
+		<td>Outros</td>
+		<td>4</td>
+	</tr>
+</table>
+<br/>
+
+A ideia do PIVOT/UNPIVOT é inverter as linhas em colunas. Para essa situação temos um operador muito interessante e até um pouco desconhecido por muitos, o PIVOT.<br>
+Primeiramente será demonstrado a maneira FIXA das colunas.
+<pre>SELECT
+    'totais' AS 'valor'
+    ,temp.[1] AS 'Alvenaria'
+    ,temp.[2] AS 'Madeira'
+    ,temp.[3] AS 'Misto'
+    ,temp.[4] AS 'Outros'
+FROM (
+	SELECT ISNULL(cd_tipo_moradia,0) AS 'cd_tipo_moradia' FROM tblCdasiater c 
+ )s PIVOT (
+    COUNT(cd_tipo_moradia)
+    FOR cd_tipo_moradia IN ( [1],[2],[3],[4])
+) AS temp </pre>
+
+retorno:
+<table border="1">
+    <tr>
+        <th>valor</th>
+        <th>Alvenaria</th>
+        <th>Madeira</th>
+        <th>Misto</th>
+        <th>Outros</th>
+    </tr>
+    <tr>
+        <td>totais</td>
+        <td>410</td>
+        <td>579</td>
+        <td>191</td>
+        <td>4</td>
+    </tr>    
+</table>
+<br/>
+
+Contudo o desafio agora é buscar de maneira dinamica as colunas que serão exibidas no <b>PIVOT</b>.
+<pre>DECLARE @SQLStr VARCHAR(5000);
+SET @SQLStr=''
+SELECT 
+    @SQLStr=@SQLStr+'['+[a].[Column]+'], '
+FROM (
+    SELECT CONVERT(VARCHAR(20),ds_descricao) AS [Column] FROM tblCad_Tipo_Moradia
+)a
+SET @SQLStr=LEFT(@SQLStr,len(@SQLStr)-1)
+
+SET @SQLStr=
+'SELECT
+    ''VALORES'' AS descricao,'
+    +@SQLStr+
+'FROM (
+    SELECT ds_descricao AS CONTAR_COLUNA FROM tblCdasiater c 
+        LEFT JOIN tblCad_Tipo_Moradia cad ON cad.cd_tipo_moradia = c.cd_tipo_moradia
+    )s PIVOT (
+    COUNT(CONTAR_COLUNA)
+    FOR CONTAR_COLUNA IN ('+@SQLStr+')
+) AS temp '
+EXEC(@SQLStr);</pre>
+
+<a href="https://docs.microsoft.com/pt-br/sql/t-sql/queries/from-using-pivot-and-unpivot?view=sql-server-2017">microsoft</a>
+<a href="https://www.devmedia.com.br/utilizando-os-operadores-pivot-e-unpivot-no-sql-server/27339">devmedia[1]</a>
+<a href="https://www.devmedia.com.br/pivot-no-sql-server-invertendo-linhas-e-colunas-em-um-exemplo-real/28318">devmedia[2]</a>
