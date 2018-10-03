@@ -135,22 +135,19 @@ function mascaraGenerica(elemento , mascara){
     var charEspecial = "~`!#$%^&*+=-[]\\\';,/{}|\":<>?.";       
     var texto = '';
 
-    for (i=0; i<elemento.value.length; i++){
+    for (i=0; i < elemento.value.length ; i++) &#123;
         if( compararTipo(elemento.value[i],mascara[i]) ) { texto += texto = elemento.value[i];}                 
-    }
+    &#125;
     //CASO PROXIMO CHAR SEJA ESPECIAL , JÁ PREENCHE         
     var stCharEspecialMascara = (charEspecial.indexOf(mascara[i]) > -1)  ? charEspecial.indexOf(mascara[i]): -1 ; 
-    if( stCharEspecialMascara > -1) {
-        texto = texto+mascara[i];
-    }
+    if( stCharEspecialMascara > -1) &#123; texto = texto+mascara[i]; &#125;
     
     document.getElementsByName(elemento.name)[0].value = texto.substring(0,mascara.length);
     document.getElementsByName(elemento.name)[0].maxLength = mascara.length;
 
-    
-    function compararTipo(valor1,valor2){
+    function compararTipo(valor1,valor2)&#123;
         return ( Number.isInteger(parseInt(valor1))==Number.isInteger(parseInt(valor2)) ) ? true : false ;
-    }
+    &#125;
 }
 
 </code></pre>
