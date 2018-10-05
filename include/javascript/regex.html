@@ -1,0 +1,13 @@
+<h3>REGEX PARA SOMENTE NUMEROS</h3>
+<pre><kbd>HTML</kbd>
+&lt;input class="form participantes soNumero" type="text" name="numero_participantes" maxlength="5" /&gt;
+
+<kbd>javascript</kbd>
+var regex = /\d+/g;
+var numero_participantes = document.form.numero_participantes.value.match(regex);
+if(numero_participantes == null)&#123;
+    alert("Informe o Número de Participantes!");
+    document.form.numero_participantes.focus();
+    return false;            
+&#125;
+</pre>
