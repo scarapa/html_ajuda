@@ -20,3 +20,45 @@ console.log('%c', 'padding: 40px 45px;line-height:100px;background:url("http://i
 </code></pre>
 
 <a href="https://www.treinaweb.com.br/blog/aprenda-a-formatar-as-mensagens-do-console-do-navegador/?utm_source=dlvr.it&utm_medium=facebook">Fonte</a>
+
+<h2>Log de múltiplos objetos</h2>
+
+<pre><code>
+	const foo = {name: 'Doug', age: '17'};
+	const bar = {name: 'Dick', age: '22'};
+	const baz = {name: 'Harry', age: '25'};
+
+	console.log({foo, bar, baz});
+</code></pre>
+
+<h2>Log de múltiplos objetos com TABLE</h2>
+
+<pre><code>
+	const foo = {name: 'Doug', age: '17'};
+	const bar = {name: 'Dick', age: '22'};
+	const baz = {name: 'Harry', age: '25'};
+
+	console.table([foo, bar, baz]);
+</code></pre>
+
+<h2>Verificar tempo no Log</h2>
+
+<pre><code>
+	console.time('looper');
+
+	let i = 0;
+	while (i < 1000000) {
+		i++;
+	}
+
+	console.timeEnd('looper');
+</code></pre>
+
+<h2>Descobrir de onde a função foi chamada (Stack trace logs)</h2>
+
+<pre><code>
+	const deleteMe = () => console.trace('bye bye database');
+
+	deleteMe();
+	deleteMe();
+</code></pre>

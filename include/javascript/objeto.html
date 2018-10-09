@@ -1,6 +1,6 @@
-<h2><i class="mdi mdi-cube-outline fw"></i> OBJETO JS</h2>
+<h1><i class="mdi mdi-cube-outline fw"></i> OBJETO JS</h1>
 
-<h3>Construindo</h3>
+<h2>Construindo</h2>
 <pre> var pessoa = {}
 pessoa.nome = 'Roberto'
 pessoa.idade = '35'
@@ -9,3 +9,53 @@ pessoa.uf = 'RS'
 Verificando no console.log
 <pre>console.log(pessoa)</pre>
 Saida: <code> Object { nome="Roberto",  idade="35",  uf="RS"} </code>
+
+<h2>Destructuring</h2>
+
+<pre><code>
+	const person = {
+		name: 'Harry',
+		age: '17'
+	}
+
+	function createPerson({name, age}) {
+		return `Seu nome é ${name}, com a idade de ${age}`;
+	}
+
+	function createPerson(person) {
+		const { name, age } = person;
+		return `Seu nome é ${name} com a idade de ${age}`; 
+	}
+</code></pre>
+
+<h2>Template Literals</h2>
+
+<pre><code>
+	const dog = {
+		name: 'Rufus',
+		size: 'Big',
+		color: 'Black',
+		age: 10
+	}
+
+	const { name, size, color } = dog
+
+	function dogAge(str, age) {
+		const ageStr = age > 5 ? 'velho' : 'novo';
+		return `${str[0]}${ageStr} com ${age} anos`;
+	}
+
+	const bio = dogAge`Esse cachorro é ${dog.age}`;
+</code></pre>
+
+<h2>Spread</h2>
+
+<pre><code>
+
+	const person = { name: 'Harry' }
+	const personDetails = { age: '19', job: 'none' }
+
+	const mergePerson = { ...person, ...personDetails };
+</code></pre>
+
+<a href="https://www.youtube.com/watch?v=Mus_vwhTCq0">Fonte</a>
