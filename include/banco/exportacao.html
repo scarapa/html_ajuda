@@ -8,4 +8,15 @@ mysqldump -u <span style="color:red;font-weight:bold;">seu_usuario</span> -p nom
 OBS: caso deseje visualizar todas as databases disponiveis , esse é o caminho:<code>/var/lib/mysql</code><br/>
 <a href="https://stackoverflow.com/questions/17968287/how-to-find-the-mysql-data-directory-from-command-line-in-windows">Fonte[1]</a>
 
+<h2>Salvando dados de uma tabela</h2>
+<pre><kbd>SQLSERVER</kbd>
+DECLARE @SQLStr VARCHAR(MAX);
+DECLARE @tabela VARCHAR(200);
+SET @tabela = '<b>TABELA_NOME</b>'
+SET @SQLStr='
+SELECT 
+	''INSERT INTO AVAL_3.'+@tabela+' (cd_producao_animal,ds_nome) VALUES (''+CAST(cd_producao_animal AS VARCHAR(100))+'',''''''+CAST(ds_nome AS VARCHAR(MAX))+'''''');''
+FROM AVAL_3.'+@tabela+'';
+EXEC(@SQLStr);
+</pre>
 
