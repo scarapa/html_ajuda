@@ -1,0 +1,32 @@
+<h2><i class="fa fa-lightbulb-o fa-fw"></i> CONCEITOS</h2>
+<h3><i class="fa fa-archive fa-fw"></i>COMMIT</h3>
+É o encapsulamento da suas modificações antes do <b>PUSH</b>, exemplo abaixo:
+<pre>$ git commit -m "[CLIENTE] incluido a flag st_ferias"</pre>
+
+
+<h3><i class="fa fa-tag fa-fw"></i> TAGS</h3>
+São marcações do sistema , pode ser a versão do sistema, exemplo: tageando o sistema com a versão abaixo:
+<pre>$ git tag -a "v02.00.01" -m "incluido campos st_ferias no model de cliente"</pre>
+
+<h3><i class="fa fa-code-fork fa-fw"></i> BRANCHES</h3>
+Um branch no Git é simplesmente um leve ponteiro móvel para um desses commits. O nome do branch padrão no Git é master. Como você inicialmente fez commits, você tem um branch principal ( master branch ) que aponta para o último commit que você fez. Cada vez que você faz um commit ele avança automaticamente.
+
+É uma versão do sistema do sistema propriamente dita, geralmente é a master, mas pode haver maid de um branch, com uma modificação especifica, exemplo: branch com o módulo de ferias
+
+<h3><i class="fa fa-warning fa-fw"></i> ISSUES</h3>
+Issue no github é onde os usuários contribuem ou usuários finais da aplicação reportam os problemas/bugs encontrados. Ficando assim mais fácil a correção do problema e a obtenção das informações para simulação dos problemas.<br>
+Pode-se atrelar/linkar uma ISSUE no commit.
+<pre>$ git commit -m "mensagem <b style="color:red">Ref #id_issue</b>"</pre>
+
+No <b style="color:red">GITLAB</b> também é possivel atribuir o tempo estimado e o tempo de conclusão da tarefa numa issue, exemplo abaixo:<br/>
+<div style="text-align:center" class="col-lg-12">
+	<img id="imagem" src="../helper/images/git_issue_01.png" style="border:1px solid black;border-radius: 5px">
+</div>
+<br/>
+<a href="http://git.emater.tche.br/help/workflow/time_tracking.md">Fonte[1]</a> por Jorge Titoneli
+<br/>
+<h3><i class="fa fa-bookmark fa-fw"></i> LABELS</h3>
+São marcações nas <b>ISSUES</b>
+
+<h3><i class="fa fa-paper-plane fa-fw"></i> MILESTONES</h3>
+Milestones ou Marcos são pontos significativos do projeto, eventos cuja ocorrência precisa ser reportada às partes interessadas – stakeholders – de modo a terem clara visibilidade do seu cumprimento. No futebol, por exemplo, o fim do primeiro tempo é o marco de que estamos na metade do jogo.
