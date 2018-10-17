@@ -34,8 +34,43 @@
 	</div>
 </div>	
 
-
 <br clear="all">
+
+<h3>CRIANDO TABELA - PK</h3>
+Criando a estrutura de uma tabela simples, a coluna id é autoincrement(identity) e chave primária(PK).
+<pre><kbd>SQLSERVER</kbd>
+CREATE TABLE tabela_nome(
+	id INT IDENTITY(1,1) NOT NULL,
+	nome VARCHAR(20) NOT NULL,
+	CONSTRAINT <b>pk_numero_generico</b> PRIMARY KEY CLUSTERED (id)
+);</pre>
+
+<h3>CRIANDO TABELA - FK</h3>
+Criando a estrutura de duas tabela simples, a primeira tabela possui id com autoincrement(identity) e chave primária(PK); e a segunda tabela possuim PK e FK.
+<pre><kbd>SQLSERVER</kbd>
+drop table dbo.documento;
+drop table dbo.pessoa;
+
+create table dbo.documento(
+	id_documento INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+    ds_documento VARCHAR(50),
+);
+create table dbo.pessoa(
+    id_pessoa INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+    id_documento INT NOT NULL,
+	nm_pessoa VARCHAR(100) NOT NULL,
+	CONSTRAINT fk_documento_001 FOREIGN KEY (id_documento) REFERENCES documento (id_documento)
+);</pre>
+
+Inserindo os registros ...
+<pre>insert into dbo.documento (ds_documento) values ('CARTEIRA DE MOTORISTA');
+insert into dbo.documento (ds_documento) values ('RG');
+insert into dbo.pessoa (id_documento,nm_pessoa) values (1,'Roberto');
+insert into dbo.pessoa (id_documento,nm_pessoa) values (1,'Tonia');
+insert into dbo.pessoa (id_documento,nm_pessoa) values (2,'Luisa');
+</pre>
+
+
 
 <h3>ADICIONANDO COLUNA</h3>
 <pre><code><kbd>SQLSERVER</kbd>
