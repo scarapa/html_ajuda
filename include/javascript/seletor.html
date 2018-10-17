@@ -33,3 +33,24 @@ for (i = 0; i < x.length; i++) {
     }
 } 	
 </pre>
+
+<h3>Por SELETOR</h3>
+<pre>
+<kbd>querySelectorAll</kbd>
+	var x = querySelectorAll("animal");
+
+<kbd>querySelector</kbd>
+	var x = querySelector("animal");	
+</pre>
+
+
+
+<pre>
+var x = document.getElementsByName("animal");
+var i;
+for (i = 0; i < x.length; i++) {
+    if (x[i].type == "checkbox") {
+        x[i].checked = true;
+    }
+} 	
+</pre>
