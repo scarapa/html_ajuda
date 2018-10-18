@@ -24,15 +24,12 @@ for (i = 0; i < x.length; i++) {
 <h3>Por NOME</h3>
 <pre>var x = document.getElementsByName("fname");</pre>
 
-<pre>
-var x = document.getElementsByName("animal");
-var i;
-for (i = 0; i < x.length; i++) {
+<pre>var x = document.getElementsByName("animal");
+for(var i = 0; i < x.length; i++) {
     if (x[i].type == "checkbox") {
         x[i].checked = true;
     }
-} 	
-</pre>
+} </pre>
 
 <h3>Por SELETOR</h3>
 <pre>
@@ -43,8 +40,6 @@ for (i = 0; i < x.length; i++) {
 	var x = querySelector("animal");	
 </pre>
 
-
-
 <pre>
 var x = document.getElementsByName("animal");
 var i;
@@ -53,4 +48,13 @@ for (i = 0; i < x.length; i++) {
         x[i].checked = true;
     }
 } 	
+</pre>
+
+
+<h3>VALIDAR RADIO/CHECKBOX</h3>
+<pre><kbd>HTML</kbd>
+<label><input type="radio" value="0" name="flag">NAO</label>
+<label><input type="radio" value="1" name="flag">SIM</label>
+<kbd>JS</kbd>
+var valor = document.querySelector("input[name=tipo_contrato]:checked").value 
 </pre>
