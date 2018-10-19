@@ -53,8 +53,35 @@ for (i = 0; i < x.length; i++) {
 
 <h3>VALIDAR RADIO/CHECKBOX</h3>
 <pre><kbd>HTML</kbd>
-<label><input type="radio" value="0" name="flag">NAO</label>
-<label><input type="radio" value="1" name="flag">SIM</label>
+
 <kbd>JS</kbd>
 var valor = document.querySelector("input[name=tipo_contrato]:checked").value 
 </pre>
+
+<h3>VALIDAR RADIO/CHECKBOX</h3>
+<pre><kbd>HTML</kbd>
+&lt;label&gt;&lt;input type="radio" value="0" name="flag"&gt;NAO&lt;/label&gt;
+&lt;label&gt;&lt;input type="radio" value="1" name="flag"&gt;SIM&lt;/label&gt;
+<kbd>JS</kbd>
+var valor = document.querySelector("input[name=tipo_contrato]:checked").value 
+</pre>
+
+<code>Exemplo</code>
+<table border=1>
+	<tr>
+		<td><label><input type="radio" value="0" name="flag" onclick="testeSeletor()">NAO</label></td>
+		<td><label><input type="radio" value="1" name="flag" onclick="testeSeletor()">SIM</label></td>
+	</tr>
+	<tr>
+		<td>VALOR É: </td>
+		<td id="valorSeletor"></td>
+	</tr>	
+</table>
+<script>
+	function testeSeletor(){
+		var valor = document.querySelector("input[name=flag]:checked").value;
+		document.getElementById("valorSeletor").innerHTML=valor;
+	}
+</script>
+
+<br clear="all"><br clear="all">
