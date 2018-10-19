@@ -1,5 +1,34 @@
 ﻿<h2><i class="fa fa fa-lightbulb-o fw"></i> Dicas</h2>
 
+<h3>Verificar deadlock</h3>
+<pre><kbd>SQLSERVER</kbd>
+SELECT  L.request_session_id AS SPID, 
+    DB_NAME(L.resource_database_id) AS DatabaseName,
+    O.Name AS LockedObjectName, 
+    P.object_id AS LockedObjectId, 
+    L.resource_type AS LockedResource, 
+    L.request_mode AS LockType,
+    ST.text AS SqlStatementText,        
+    ES.login_name AS LoginName,
+    ES.host_name AS HostName,
+    TST.is_user_transaction as IsUserTransaction,
+    AT.name as TransactionName,
+    CN.auth_scheme as AuthenticationMethod
+FROM    sys.dm_tran_locks L
+    JOIN sys.partitions P ON P.hobt_id = L.resource_associated_entity_id
+    JOIN sys.objects O ON O.object_id = P.object_id
+    JOIN sys.dm_exec_sessions ES ON ES.session_id = L.request_session_id
+    JOIN sys.dm_tran_session_transactions TST ON ES.session_id = TST.session_id
+    JOIN sys.dm_tran_active_transactions AT ON TST.transaction_id = AT.transaction_id
+    JOIN sys.dm_exec_connections CN ON CN.session_id = ES.session_id
+    CROSS APPLY sys.dm_exec_sql_text(CN.most_recent_sql_handle) AS ST
+WHERE   resource_database_id = db_id()
+ORDER BY L.request_session_id;
+</pre>
+Fonte[1]Joao Vigini - 
+<a href="https://social.msdn.microsoft.com/Forums/pt-BR/95a71ef7-ddbc-48ad-aad1-af7b71187ebd/script-de-monitorao-de-locks?forum=transactsqlpt">Fonte[2]</a>
+
+
 <h3>Pesquisar o tipo das colunas em tabela especifica</h3>
 <pre><code><kbd>SQLSERVER</kbd>
 SELECT 
@@ -18,6 +47,44 @@ WHERE
     c.object_id = OBJECT_ID('<strong>NOME_TABELA</strong>')
 </code></pre>
 <a href="https://stackoverflow.com/questions/2418527/sql-server-query-to-get-the-list-of-columns-in-a-table-along-with-data-types-no">stackoverflow</a>
+
+<h2>SGBD SQLSERVER</h2>
+<pre>SELECT * FROM INFORMATION_SCHEMA.COLUMNS;
+SELECT * FROM sys.types;
+SELECT * FROM sys.tables; 
+SELECT * FROM sys.schemas;
+SELECT * FROM sys.column;
+
+
+SELECT
+    s.name AS schema_name
+    , t.name AS table_name
+    , c.name AS column_name
+    , c.max_length
+    , ty.name AS data_type_name
+    , td.DATA_TYPE 
+
+FROM sys.tables AS t
+    JOIN sys.schemas AS s ON s.schema_id = t.schema_id
+    JOIN sys.columns AS c ON c.object_id = t.object_id
+    JOIN sys.types AS ty ON ( ty.system_type_id = c.system_type_id AND ty.user_type_id = c.user_type_id )
+    JOIN INFORMATION_SCHEMA.COLUMNS AS td ON ( td.TABLE_NAME = t.name AND td.COLUMN_NAME=c.name )
+WHERE t.name = 'tblCdasiater'
+ORDER BY ORDINAL_POSITION;
+-- schema_name , table_name, column_name , data_type_name
+;
+</pre>
+
+<a href="https://stackoverflow.com/questions/37879881/joining-sys-columns-and-sys-tables-on-database-anme">Fonte[1]</a>
+<a href="https://docs.microsoft.com/pt-br/sql/relational-databases/tables/view-the-table-definition?view=sql-server-2017">Fonte[2]</a>
+<a href="https://docs.microsoft.com/pt-br/sql/relational-databases/tables/change-column-order-in-a-table?view=sql-server-2017">Fonte[3]</a>
+<a href="https://docs.microsoft.com/pt-br/sql/relational-databases/tables/view-the-table-definition?view=sql-server-2017">Fonte[4]</a>
+<a href="https://social.msdn.microsoft.com/Forums/sqlserver/en-US/c29ad4d7-86fb-4b52-bf49-5e7f02172de5/syscolumnssystemtypeid?forum=sqltools">Fonte[5]</a>
+<a href="https://dba.stackexchange.com/questions/136671/is-there-a-list-what-datatype-corresponds-to-the-system-type-id-in-sys-columns">Fonte[6]</a>
+<a href="https://docs.microsoft.com/pt-br/sql/relational-databases/system-catalog-views/sys-types-transact-sql?view=sql-server-2017">Fonte[7]</a>
+<a href="https://stackoverflow.com/questions/6215459/t-sql-query-to-show-table-definition">stackoverflow</a>
+
+
 
 <hr>
 
@@ -79,33 +146,7 @@ ALTER TABLE <b>nome_tabela</b> ADD <b>nome_coluna</b> INT IDENTITY CONSTRAI
 </pre>
 <a href="https://stackoverflow.com/questions/4862385/sql-server-add-auto-increment-primary-key-to-existing-table ">stackoverflow</a>
 
-<h3>Verificar deadlock</h3>
-<pre><kbd>SQLSERVER</kbd>
-SELECT  L.request_session_id AS SPID, 
-    DB_NAME(L.resource_database_id) AS DatabaseName,
-    O.Name AS LockedObjectName, 
-    P.object_id AS LockedObjectId, 
-    L.resource_type AS LockedResource, 
-    L.request_mode AS LockType,
-    ST.text AS SqlStatementText,        
-    ES.login_name AS LoginName,
-    ES.host_name AS HostName,
-    TST.is_user_transaction as IsUserTransaction,
-    AT.name as TransactionName,
-    CN.auth_scheme as AuthenticationMethod
-FROM    sys.dm_tran_locks L
-    JOIN sys.partitions P ON P.hobt_id = L.resource_associated_entity_id
-    JOIN sys.objects O ON O.object_id = P.object_id
-    JOIN sys.dm_exec_sessions ES ON ES.session_id = L.request_session_id
-    JOIN sys.dm_tran_session_transactions TST ON ES.session_id = TST.session_id
-    JOIN sys.dm_tran_active_transactions AT ON TST.transaction_id = AT.transaction_id
-    JOIN sys.dm_exec_connections CN ON CN.session_id = ES.session_id
-    CROSS APPLY sys.dm_exec_sql_text(CN.most_recent_sql_handle) AS ST
-WHERE   resource_database_id = db_id()
-ORDER BY L.request_session_id;
-</pre>
-Fonte[1]Joao Vigini - 
-<a href="https://social.msdn.microsoft.com/Forums/pt-BR/95a71ef7-ddbc-48ad-aad1-af7b71187ebd/script-de-monitorao-de-locks?forum=transactsqlpt">Fonte[2]</a>
+<hr>
 
 <h3>Desabilitando o AUTOINCREMENT</h3>
 <pre><kbd>SQLSERVER</kbd>
@@ -126,3 +167,47 @@ Onde:<br>
 Em seguida será solicitada a senha do usuário Mysql<br>
 Fonte:
 <a href="http://www.isoftsolutions.com.br/exportando-e-importando-banco-de-dados-no-mysql-pela-linha-de-comandos/">isoftsolutions</a>
+
+<h3>Encontrar palavra na string</h3>
+<pre><code><kbd>SQLSERVER</kbd>
+DECLARE @document varchar(64);  
+SELECT @document = 'Reflectors are vital safety components of your bicycle.';  
+SELECT CHARINDEX('bicycle', @document);  
+GO  
+</code></pre>
+Retorno
+<pre>48</pre>
+
+Ou seja, se o retorno for maior que zero(0) é porque <b>ENCONTROU</b>
+<br><br>
+<a href="https://docs.microsoft.com/pt-br/sql/t-sql/functions/charindex-transact-sql">microsoft</a>
+
+<hr>
+
+<h3>SQLSERVER: Truncar completando com zeros a esquerda</h3>            
+Na verdade você pode completar com o caracter e sentido(direita ou esquerda) que quizer.<br>
+No exemplo abaixo completei com zeros a esquerda pois o numero identificador do usuario tem que ter 5 de tamanho.
+<pre><code>SELECT 171 AS 'normal' , REPLICATE('0', 5 - LEN(171)) + RTRIM(171) AS 'modificado'</code></pre>
+Retorno
+<table border="1">
+    <tr>
+        <th>normal</th>
+        <th>modificado</th>
+    </tr>
+    <tr>
+        <td>171</td>
+        <td>00171</td>
+    </tr>
+</table>
+
+<hr>
+
+<h3>RANDOM</h3>
+<pre><kbd>SQLSERVER</kbd>
+DECLARE @MIN INT=001; 
+DECLARE @MAX INT=100; 
+SELECT @MIN+FLOOR((@MAX-@MIN+1)*RAND(CONVERT(VARBINARY,NEWID())));
+</pre>
+
+<a href="https://stackoverflow.com/questions/7878287/generate-random-int-value-from-3-to-6">stackoverflow</a>
+

@@ -1,6 +1,6 @@
 ﻿<h2><i class="fa fa-times-circle"></i> ERROS</h2>
 
-<h3>SQLSERVER - ERRO: Heterogeneous queries</h3>			
+<h3>SQLSERVER - ERRO: Heterogeneous queries</h3>
 Quando aparecer essa mensagem de erro: <br/><br/>
 <code><span style="font-style:italic;">Heterogeneous queries require the ANSI_NULLS and ANSI_WARNINGS options to be set for the connection. 
 This ensures consistent query semantics. Enable these options and then reissue your query.</span></code><br/><br/>
@@ -30,3 +30,12 @@ Isso acontece porque não se pode construir a integridade das chaves já populad
 Solução: limpar a base e dar comando de construção, exemplo abaixo:
 <pre><code>ALTER TABLE PEDIDOS ADD CONSTRAINT FK_COD_CLI FOREIGN KEY (COD_CLI) REFERENCES CLIENTES(COD);</code></pre>
 <a href="http://www.devmedia.com.br/criando-banco-e-tabelas-garantindo-a-integridade-dos-dados/24426">DEVMEDIA</a>
+
+<h3>SQLSERVER - ERRO:Implicit conversion of varchar</h3>
+<code>Implicit conversion of varchar value to varchar cannot be performed because the collation of the value is unresolved due to a collation conflict.</code>
+Acontece esse erro quando você tenta, exibir duas colunas strings com collation diferentes.
+<pre>e.ds_Esreg +' - '+u.ds_uniop AS 'lotacao'</pre>
+A solução abaixo:
+<pre>CAST(e.ds_Esreg COLLATE sql_latin1_general_cp1251_ci_as AS VARCHAR(100))+' - '+CAST(u.ds_uniop COLLATE sql_latin1_general_cp1251_ci_as AS VARCHAR(100))</pre>
+
+<br clear="all">
