@@ -21,6 +21,33 @@ DECLARE lista CURSOR FOR
 DEALLOCATE lista
 </code></pre>
 
+<h3>MYSQL - VARIAVEIS</h3>
+<pre><kbd>MySQL</kbd>
+SET @t1=1, @t2=2, @t3:=4;
+SELECT @t1, @t2, @t3, @t4 := @t1+@t2+@t3;</pre>
+
+Retorno:
+<table border=1>
+	<tr>
+		<th>@t1</th>
+		<th>@t2</th>
+		<th>@t3</th>
+		<th>@t4 := @t1+@t2+@t3</th>
+	</tr>
+	<tr>
+		<td>1</td>
+		<td>2</td>
+		<td>4</td>
+		<td>7</td>
+	</tr>
+</table>
+<a href="https://pt.stackoverflow.com/questions/91423/vari%C3%A1veis-no-mysql-declare-set-como-pegar-um-elemento-de-uma-tabela">Fonte[1]</a>
+<a href="https://www.devmedia.com.br/forum/cursores-mysql-5-1/379856">Fonte[2]</a>
+
+
+
+<hr>
+
 <h3>Setando o valor de uma coluna AUTOINCREMENT de um INSERT/INSERÇÃO</h3>
 <pre><code><kbd>SQLSERVER</kbd>
 DECLARE @cd_log INT;

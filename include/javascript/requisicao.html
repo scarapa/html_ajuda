@@ -1,0 +1,76 @@
+<h3>REQUEST/REQUISICAO </h3>
+<h4>Exemplo 01</h4>
+<pre><kbd>REQUISICAO GET</kbd>
+var ajax = new XMLHttpRequest();
+
+// Seta tipo de requisição e URL com os parâmetros
+ajax.open("GET", "minha-url-api.com/?name=Henry&lastname=Ford", true);
+
+// Envia a requisição
+ajax.send();
+
+// Cria um evento para receber o retorno.
+ajax.onreadystatechange = function() {
+  // Caso o state seja 4 e o http.status for 200, é porque a requisiçõe deu certo.
+	if (ajax.readyState == 4 && ajax.status == 200) {
+		var data = ajax.responseText;
+    // Retorno do Ajax
+		console.log(data);
+	}
+}
+</pre>
+
+<pre><kbd>REQUISICAO POST</kbd>
+var ajax = new XMLHttpRequest();
+
+// Seta tipo de requisição: Post e a URL da API
+ajax.open("POST", "minha-url-api", true);
+ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+// Seta paramêtros da requisição e envia a requisição
+ajax.send("email=teste@teste.com");
+
+// Cria um evento para receber o retorno.
+ajax.onreadystatechange = function() {
+  // Caso o state seja 4 e o http.status for 200, é porque a requisiçõe deu certo.
+	if (ajax.readyState == 4 && ajax.status == 200) {
+		var data = ajax.responseText;
+    // Retorno do Ajax
+		console.log(data);
+	}
+}
+</pre>
+
+<hr>
+<h4>Exemplo 02</h4>
+<pre><kbd>JAVASCRIPT</kbd>
+&lt;script&gt;
+var xmlhttp = new XMLHttpRequest();
+var url = "myTutorials.txt";
+
+xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var myArr = JSON.parse(this.responseText);
+        myFunction(myArr);
+    }
+};
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+
+function myFunction(arr) {
+    var out = "";
+    var i;
+    for(i = 0; i < arr.length; i++) {
+        out += '<a href="' + arr[i].url + '">' + 
+        arr[i].display + '</a><br>';
+    }
+    document.getElementById("id01").innerHTML = out;
+}	
+&lt;/script&gt;
+
+<kbd>HTML</kbd>
+&lt;div id="id01"&gt;&lt;/div&gt;
+</pre>
+
+<a href="https://gist.github.com/cagartner/4c4dd7a6d5fa53e1f368">Fonte[1]</a> - 
+<a href="https://www.w3schools.com/js/tryit.asp?filename=tryjson_http">w3schools</a>

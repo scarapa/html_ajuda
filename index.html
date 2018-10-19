@@ -43,7 +43,12 @@
 
                 function injetarURL(link) {
                     link = "include/" + link + ".html";
-                    $("#page-wrapper").load(link)
+                    //$("#page-wrapper").load(link);                    
+
+                    $("#page-wrapper").load(link, function() {
+
+                        $("#page-wrapper").prepend('<li>teste</li>');
+                    });
                 }
             });
         </script>
@@ -77,7 +82,6 @@
                                     <li><a href="#banco/estrutura"><i class="glyphicon glyphicon-th fa-fw"></i> Estrutura DDL</a></li>
                                     <li><a href="#banco/functions"><i class="mdi mdi-function fa-fw"></i> Functions</a></li>
                                     <li><a href="#banco/loop"><i class="fa fa-repeat fa-fw"></i> Loop/Ponteiros/Cursor</a></li>                                    
-                                    <li><a href="#banco/outros"><i class="fa fa-question-circle fa-fw"></i> Outros</a></li>
                                     <li><a href="#banco/pivot"><i class="fa fa-question-circle fa-fw"></i> Pivot/Unpivot</a></li>
                                     <li><a href="#banco/schema"><i class="fa fa-file fa-fw"></i> Schema</a></li>                                    
                                     <li><a href="#banco/terminal"><i class="fa fa-terminal fa-fw"></i> Terminal</a></li>
@@ -135,10 +139,8 @@
                             </li>
                             <li>
                                 <a href="#firebase">
-
                                     <i class="mdi mdi-fire adjust-dashboard-icon adjust-dashboard-firebase-icon"></i> 
                                     <span class="margin-title-field">Firebase</span> <span class="fa arrow"></span>
-
                                 </a>
                                 <ul class="nav nav-second-level collapse">
                                     <li><a href="#firebase/introducao"><i class="fa fa-file-o fa-fw"></i> Introdução</a></li>
@@ -202,7 +204,8 @@
                                     <li><a href="#html/componentes"><i class="glyphicon glyphicon-wrench"></i> Componentes</a></li>
                                     <li><a href="#html/dicas"><i class="fa fa-lightbulb-o fa-fw"></i> Dicas</a></li>                                     
                                     <li><a href="#html/dom"><i class="fa fa-sitemap fw"></i> DOM</a></li>
-                                    <li><a href="#html/formulario"><i class="fa fa-edit fw"></i> Formulario</a></li>                                    
+                                    <li><a href="#html/formulario"><i class="fa fa-edit fw"></i> Formulario</a></li>
+                                    <li><a href="#html/mapa_caracter"><i class="fa fa-keyboard-o fw"></i> Mapa de Caracter</a></li>
                                     <li><a href="#html/popup"><i class="mdi mdi-checkbox-multiple-blank-outline fw"></i> Popup</a></li>
                                     <li><a href="#html/window"><i class="mdi mdi-checkbox-multiple-blank-outline fw"></i> Window</a></li>
 
@@ -227,18 +230,19 @@
                                 <ul class="nav nav-second-level collapse">
                                     <li><a href="#javascript/arquivo"><i class="fa fa-file-text-o fw"></i> Ajuda.js</a></li>
                                     <li><a href="#javascript/array"><i class="fa fa-list-ul fw"></i> Array</a></li>
-                                    <li><a href="#javascript/componentes"><i class="glyphicon glyphicon-inbox fa-fw"></i> Componentes</a></li>                                    
                                     <li><a href="#javascript/classe"><i class="fa fa-file-text fa-fw"></i> Classe</a></li>                                    
+                                    <li><a href="#javascript/css"><i class="fa fa-css3 fa-fw"></i> CSS</a></li>                                    
                                     <li><a href="#javascript/console"><i class="fa fa-terminal fa-fw"></i> Console</a></li>
                                     <li><a href="#javascript/eventos"><i class="glyphicon glyphicon-retweet"></i> Eventos</a></li>
-                                    <li><a href="#javascript/erros"><i class="fa fa-warning fa-fw"></i> ERROS</a></li>                                    
                                     <li><a href="#javascript/data"><i class="fa fa-calendar fa-fw"></i> Data</a></li>
                                     <li><a href="#javascript/imagem"><i class="fa fa-picture-o fa-fw "></i> Imagem</a></li>
                                     <li><a href="#javascript/location"><i class="fa fa-anchor fa-fw"></i> Location</a></li>
                                     <li><a href="#javascript/loop"><i class="fa fa-repeat fa-fw"></i> Loop</a></li>                                    
                                     <li><a href="#javascript/objeto"><i class="mdi mdi-cube-outline "></i> Objeto</a></li>
-                                    <li><a href="#javascript/regex"><i class="mdi mdi-cube-outline "></i> Reg[EX]</a></li>                                    
+                                    <li><a href="#javascript/regex"><i class="mdi mdi-cube-outline "></i> Reg[EX]</a></li>
+                                    <li><a href="#javascript/requisicao"><i class="fa fa-cloud-upload fa-fw"></i> Requisição/Request</a></li>
                                     <li><a href="#javascript/seletor"><i class="glyphicon glyphicon-filter fa-fw"></i> Seletores</a></li>
+                                    <li><a href="#javascript/erros"><i class="fa fa-warning fa-fw"></i> ERROS</a></li>                                           
                                     <li>
                                         <a href="#javascript-exemplos"><i class="fa fa-code fa-fw"></i> Exemplos <span class="fa arrow"></span></a>
                                         <ul class="nav nav-third-level collapse">
