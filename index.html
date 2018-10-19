@@ -43,7 +43,12 @@
 
                 function injetarURL(link) {
                     link = "include/" + link + ".html";
-                    $("#page-wrapper").load(link)
+                    //$("#page-wrapper").load(link);                    
+
+                    $("#page-wrapper").load(link, function() {
+
+                        $("#page-wrapper").prepend('<li>teste</li>');
+                    });
                 }
             });
         </script>
