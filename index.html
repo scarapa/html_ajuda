@@ -31,30 +31,34 @@
         <script src="js/html2canvas.js"></script>
 
         <script>
+
             $(document).ready(function () {
-                var link = window.location.hash.replace('#', '', 'g');
+                var link = window.location.hash.replace('#','','g');
                 injetarURL(link);
 
                 $("#side-menu ul li a").click(function () {
                     var link = $(this).attr('href')
-                    link = link.replace('#', '', 'g');
+                    link = link.replace('#','','g');
                     injetarURL(link)
                 });
 
                 function injetarURL(link) {
-                    link = "include/" + link + ".html";
+                    var arquivo = link+".html";
+                    var url = "include/"+arquivo;
                     //$("#page-wrapper").load(link);                    
-
-                    $("#page-wrapper").load(link, function() {
-
-                        $("#page-wrapper").prepend('<li>teste</li>');
+                    $("#page-wrapper").load(url, function() {
+                        $("#page-wrapper").prepend(arquivo);
                     });
                 }
             });
+
+            function carregarMain(){
+                alert('')
+            }
         </script>
     </head>
 
-    <body>
+     <body onload="carregarMain();">
         <div id="wrapper">
             <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
@@ -234,6 +238,7 @@
                                     <li><a href="#javascript/css"><i class="fa fa-css3 fa-fw"></i> CSS</a></li>                                    
                                     <li><a href="#javascript/console"><i class="fa fa-terminal fa-fw"></i> Console</a></li>
                                     <li><a href="#javascript/eventos"><i class="glyphicon glyphicon-retweet"></i> Eventos</a></li>
+                                    <li><a href="#javascript/eventos_mouse"><i class="glyphicon glyphicon-retweet"></i> Eventos Mouse</a></li>                                    
                                     <li><a href="#javascript/data"><i class="fa fa-calendar fa-fw"></i> Data</a></li>
                                     <li><a href="#javascript/imagem"><i class="fa fa-picture-o fa-fw "></i> Imagem</a></li>
                                     <li><a href="#javascript/location"><i class="fa fa-anchor fa-fw"></i> Location</a></li>
