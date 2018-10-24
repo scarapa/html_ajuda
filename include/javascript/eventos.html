@@ -2,8 +2,36 @@
     table tr th {text-align:center;}
     table tr td:first-child {padding:10px 5px;text-align:right;font-weight: bold;}
 </style>
+Toda vez que ocorre a interação com um documento web, um evento é disparado. Carregar ou fechar uma página caracteriza ocorrência de dois eventos distintos; em outras palavaras; evento é qualquer ocorrência interativa com um elemento de marcação.
+<br><br>
 
-Basicamente existe 5 tipos de eventos
+<h3>Manipulador De Evento</h3>
+É uma função a ser executada quando o evento é disparado.
+
+
+<h3>Disparador De Evento</h3>
+É o elemento HTML ao qual foi atrelado uma manipulador de evento.
+
+<h3>Manipulador-padrão De Evento</h3>
+O termo default event handler, que um tradução livre, significa manipulador padrao de evento, é uma funca padrao do navegador executada quando ocorrem determinados tipos de eventos.
+<br><br>
+
+Toda vez que se um manipulador de evento a um HTML, ele é executado antes do manipulador padrao
+<br><br>
+
+o DOM 2 preve os metodos addEventListener() e removeEventListener() destinados a atrelar e desatrelar respectivamente eventos a um nó do DOM.
+
+<h3>Manipulador De Evento no <b>INTERNET EXPLORER/IE</b></h3>
+
+O navegador Internet Explorer 9 suporte a manipulação de eventos com o uso DOM 2, contudo as versões anteriores
+
+
+<!--
+<h4>addEventListener</h4>
+O exemplo a seguir demonstra o uso desse método para definir uma função manipuladora do evento click atrelada a um botão.
+-->
+
+Basicamente existe 5 tipos de eventos:
 <ul>
 	<li>Mouse</li>
 	<li>Teclado</li>
@@ -11,46 +39,3 @@ Basicamente existe 5 tipos de eventos
 	<li>Mutação</li>
 	<li>Proprietários</li>
 </ul>
-
-<table border="1">
-	<tr>
-		<th>MÉTODO</th>
-		<th>DESCRIÇÃO</th>
-	</tr>
-	<tr>
-		<td>onclick</td>
-		<td>acionado quando o elemento é <b>CLICADO!</b></td>
-	</tr>
-	<tr>
-		<td>ondblclick</td>
-		<td>mesmo do onclick, diferença é o clique <b>DUPLO.</b></td>
-	</tr>	
-	<tr>
-		<td>onchange</td>
-		<td>Mudança de status/valor do elemento</td>
-	</tr>	
-	<tr>
-		<td>onload</td>
-		<td>praticamente usado junto com o document ready ou com body</td>
-	</tr>	
-	<tr>
-		<td>onkeydown</td>
-		<td>o pressionar da tecla movimento de descida</td>
-	</tr>
-	<tr>
-		<td>onkeyup</td>
-		<td>o pressionar da tecla movimento de subida</td>
-	</tr>	
-	<tr>
-		<td>onkeypress</td>
-		<td>pressionar da tecla</td>
-	</tr>	
-	<tr>
-		<td>onblur</td>
-		<td>saida do foco do elemento</td>
-	</tr>	
-	<tr>
-		<td>onfocus</td>
-		<td>entrada do foco no elemento</td>
-	</tr>	
-</table>
