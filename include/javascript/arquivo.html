@@ -1,7 +1,7 @@
 <h2><i class="fa fa-file-text-o fw"></i> AJUDA.JS</h2>
 
 <h3>Arquivo com as funções amplamente utilizadas nos mais diversos sistemas</h3>
-<pre><code>
+<pre>
 function converterDataEUAtoBR(data) {
     if(data.length == 0) return "";    
     var data = data.toString().split("-");
@@ -150,7 +150,23 @@ function mascaraGenerica(elemento , mascara){
     &#125;
 }
 
-</code></pre>
+
+//retorno 1 == NUMERO
+//retorno 2 == STRING
+//retorno 3 == SPECIAL    
+
+function buscarTipo(valor){
+    var charEspecial = "~`!#$%^&*+=-[]\\\';,/{}|\":<>?.";  
+    var charLetra = /^[a-zA-Z]+$/;    
+    var charNumero = /^[0-9]+$/;
+    var stCharEspecialMascara;
+    if(valor.match(charNumero) ){ return 1; }
+    if(valor.match(charLetra) ){ return 2; }    
+    stCharEspecialMascara = (charEspecial.indexOf(valor) > -1) ? charEspecial.indexOf(valor):-1;
+    if (stCharEspecialMascara > -1) {return 3;}
+    return 0;
+}
+</pre>
 
 Para usar a função <code>mascara()</code>
 <pre>
