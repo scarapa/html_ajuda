@@ -1,0 +1,15 @@
+Como muitos outros sistemas de controle de versão, Git tem uma maneira para disparar scripts personalizados quando certas ações importantes ocorrerem. Existem dois grupos desses hooks: lado cliente e lado servidor. Os hooks do lado cliente são para operações do cliente, tais como commit e merge. Os hooks do lado servidor são para operações de servidor, como recebimento de um push. Você pode usar estes hooks para todo tipo de coisa, e você vai aprender sobre alguns deles aqui.
+<br><br>
+
+Os <code>hooks</code> são todos armazenados no subdiretório hooks do diretório Git. Na maioria dos projetos, é em <code><b>.git/hooks</b></code>. Por padrão, o Git preenche este diretório com um monte de scripts de exemplo, muitos dos quais são úteis por si só, mas eles também documentam os valores de entrada de cada script. Todos os exemplos são escritos como shell scripts, com um pouco de Perl, mas todos os scripts executáveis ​​devidamente nomeados irão funcionar bem — você pode escrevê-los em Ruby ou Python ou em que você quiser. Para as versões do Git superiores a 1.6, esses hooks de exemplo terminam com .sample; você precisa renomeá-los. Para versões anteriores a 1.6 do Git, os arquivos de exemplo são nomeados corretamente, mas não são executáveis.
+<br><br>
+
+Para ativar um script de hook, coloque um arquivo no subdiretório hooks do seu diretório Git que é nomeado de forma adequada e é executável. A partir desse ponto, ele deve ser chamado. Eu vou cobrir a maior parte dos nomes dos arquivos de hook importantes aqui.
+<br><br>
+
+<h2>Hooks do Lado Cliente</h2>
+Há um monte de hooks do lado do cliente. Esta seção divide eles em committing-workflow hooks, e-mail-workflow scripts, e o resto dos scripts do lado cliente.
+<h3>Committing-Workflow Hooks</h3>
+
+
+<a href="https://git-scm.com/book/pt-br/v1/Customizando-o-Git-Hooks-do-Git">Fonte</a>
