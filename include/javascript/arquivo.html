@@ -166,6 +166,26 @@ function buscarTipo(valor){
     if (stCharEspecialMascara > -1) {return 3;}
     return 0;
 }
+
+
+/* ELEMENTO COM ESSA CLASSE VAI RESPEITAR A MASCARA 23:59 */
+var elementos = document.querySelectorAll(".mascaraHorario");
+for (var i = 0; i < elementos.length; i++) {
+    elementos[i].addEventListener('keyup', function(event){
+        if(this.value!="undefined"){
+            if( (typeof this.value[0] != "undefined") && (this.value[0]>2) ){
+                this.value = "";
+            }
+            if( (typeof this.value[1] != "undefined") && (this.value[1]>9) ){
+                this.value = this.value[0]
+            }
+            if( (this.value[0]>=2) && (this.value[1]>=4) ){
+                this.value = this.value.substring(0,1);
+            }
+            if( this.value[3]>5){this.value = this.value.substring(0,3);}
+        }
+    });         
+} 
 </pre>
 
 Para usar a função <code>mascara()</code>
