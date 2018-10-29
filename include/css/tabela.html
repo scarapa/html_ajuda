@@ -1,0 +1,82 @@
+<h3>Inserir coluna com numeração automática</h3>
+<pre><kbd>CSS</kbd>
+.tableNumeracaoAutomatica tr:not(.fble_htr) {
+    counter-increment: rowNumber;
+}
+
+.tableNumeracaoAutomatica tr:not(.fble_htr) td:first-child::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;
+}
+<kbd>HTML</kbd>
+&lt;table class="tableNumeracaoAutomatica">
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;#&lt;/th&gt;
+			&lt;th&gt;NOME&lt;/th&gt;
+			&lt;th&gt;SOBRENOME&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;/td&gt;
+			&lt;td&gt;Ronaldo&lt;/td&gt;						
+			&lt;td&gt;Oliveira&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;/td&gt;
+			&lt;td&gt;Douglas&lt;/td&gt;						
+			&lt;td&gt;Silva&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;/td&gt;
+			&lt;td&gt;Bernardo&lt;/td&gt;						
+			&lt;td&gt;Ferreira&lt;/td&gt;
+		&lt;/tr&gt;					
+	&lt;/tbody&gt;
+&lt;/table&gt;
+</pre>
+
+<code>Exemplo</code><br/>
+
+<div class="col-lg-3">
+	<div class="panel panel-default">
+		<div class="table-responsive">
+			<table class="tableNumeracaoAutomatica">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>NOME</th>
+						<th>SOBRENOME</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td></td>
+						<td>Ronaldo</td>						
+						<td>Oliveira</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>Douglas</td>						
+						<td>Silva</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>Bernardo</td>						
+						<td>Ferreira</td>
+					</tr>					
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>	
+
+<br clear="all">
+
+<h3>Linhas com cores alternadas</h3>
+<pre></pre>
+
+<a href="https://www.maujor.com/tutorial/altrow.php">Fonte[1]</a>
+<a href="http://www.digitaldev.com.br/2012/01/27/intercalando-cores-entre-linhas-de-uma-tabela-ou-lista-usando-css3/">Fonte[2]</a>

@@ -1,0 +1,167 @@
+
+<style type="text/css">
+table tr th{font-size: 12pt;padding:5px 10px;background: graytext}
+table tr td{padding:5px 10px;border-bottom: 1px solid #c1c1c1}
+table tr:nth-child(even) {background: #ccc}
+table tr:nth-child(odd) {background: #EEE}
+
+table#tabelaSugestaoIcones {}
+table#tabelaSugestaoIcones tr td:nth-child(1) {text-align: right} 
+table#tabelaSugestaoIcones tr td:nth-child(2) {text-align: center} 
+table#tabelaSugestaoIcones tr td:nth-child(3) {text-align: left} 
+
+table#tabelaSugestaoMenu tr td:nth-child(1) {text-align: center;font-size:13pt;} 
+table#tabelaSugestaoMenu tr td:nth-child(2) {text-align: left} 
+table#tabelaSugestaoMenu tbody tr:not(.fble_htr) {counter-increment: rowNumber;}
+table#tabelaSugestaoMenu tbody tr:not(.fble_htr) td:first-child::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;
+}
+
+table#tabelaSugestaoCaracter tr td{text-align: center;}
+table#tabelaSugestaoCaracter tr td:nth-child(2) {border-right:1px solid black;} 
+
+
+div.divSugestoes{border:1px solid black;border-radius: 5px;padding: 5px;float:left;margin:10px;}
+</style>
+
+<div class="divSugestoes">
+	<h3>Sugestões de icones</h3>
+	<table id="tabelaSugestaoIcones">
+		<tr>
+			<th>SUGESTAO</th>
+			<th>ICONE</th>
+			<th>CODIGO</th>
+			<th>OBJETIVO</th>			
+		</tr>
+		<tr>
+			<td>Inicio</td>
+			<td><i class="fa fa-flag-o fa-2x"></i></td>
+			<td>fa fa-flag-o</td>
+			<td>Como se iniciar um projeto novo</td>			
+		</tr>				
+		<tr>
+			<td>Instalação</td>
+			<td><i class="fa fa-gear fa-2x"></i></td>
+			<td>fa fa-gear</td>
+			<td>Processo de instalação</td>			
+		</tr>
+		<tr>
+			<td>Introdução</td>
+			<td><i class="fa fa-book fa-2x"></i></td>
+			<td>fa fa-book fa-fw</td>
+			<td>Resumo dos conceitos mais importantes da ferramenta/aplicação</td>			
+		</tr>	
+		<tr>
+			<td>Configuração</td>
+			<td><i class="fa fa-gears fa-2x"></i></td>
+			<td>fa fa-gears</td>
+			<td>Processo de configuração</td>
+		</tr>
+		<tr>
+			<td>Dicas</td>
+			<td><i class="fa fa-lightbulb-o fa-2x"></i></td>
+			<td>fa fa-lightbulb-o</td>
+			<td>Local destinado com as coisas mais corriqueiras utilizadas</td>			
+		</tr>
+		<tr>
+			<td>Erros</td>
+			<td><i class="fa fa-times-circle fa-2x"></i></td>
+			<td>fa fa-times-circle fa-fw</td>
+			<td>Registro dos erros e suas soluções</td>			
+		</tr>
+	</table>
+</div>
+
+<div class="divSugestoes">
+	<h3>Sugestões de Ordenação<br/>de Menus</h3>
+	<table id="tabelaSugestaoMenu">
+		<thead>
+			<tr>
+				<th style="font-size:14pt;text-align: center;">#</th>
+				<th>ORDEM</th>
+			</tr>
+		</thead>		
+		<tbody>		
+			<tr>
+				<td></td>
+				<td>Introdução</td>
+			</tr>	
+			<tr>
+				<td></td>		
+				<td>Instalação</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Configuração</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Inicio</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td> ... </td>
+			</tr>	
+		</tbody>		
+		<tfoot>
+			<tr>
+				<td>Xº</td>
+				<td>Dicas</td>
+			</tr>			
+			<tr>
+				<td><b style="color:red;">ULTIMO</b></td>
+				<td>Erros</td>
+			</tr>
+		</tfoot>
+	</table>
+</div>
+
+
+<div class="divSugestoes">
+	<h3>Caracteres Especiais<br>Mais Usados</h3>
+	<table id="tabelaSugestaoCaracter">
+		<thead>
+			<tr>
+				<th style="font-size:14pt;text-align: center;">COD</th>				
+				<th>CAR.</th>
+				<th style="font-size:14pt;text-align: center;border-left:1px solid black">COD</th>
+				<th>CAR.</th>				
+			</tr>
+		</thead>		
+		<tbody>		
+			<tr>
+				<td>&amp;nbsp;</td>
+				<td title="espaco"></td>
+				<td></td>
+				<td></td>				
+			</tr>	
+			<tr>
+				<td>&amp;lt;</td>
+				<td title="menor que"> < </td>				
+				<td>&amp;gt;</td>		
+				<td title="maior que"> > </td>
+
+			</tr>
+			<tr>
+				<td>&amp;le;</td>
+				<td title="menor ou igual"> &le; </td>				
+				<td>&amp;ge; </td>		
+				<td title="maior ou igual"> &ge; </td>
+			</tr>
+			<tr>
+				<td>&amp;#123;</td>		
+				<td title="abre chaves"> { </td>
+				<td>&amp;#125;</td>
+				<td title="fecha chaves"> } </td>
+			</tr>			
+			<tr>
+				<td>&amp;#39;</td>		
+				<td title="aspas simples"> ' </td>
+				<td>&amp;#34;</td>
+				<td title="aspas duplas"> " </td>
+			</tr>				
+		</tbody>		
+	</table>
+</div>

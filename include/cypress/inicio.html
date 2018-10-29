@@ -1,19 +1,10 @@
-<h2>1º STARTANDO o projeto</h2>
+<h3>1º STARTANDO o projeto</h3>
 Iniciar o projeto e a criacao do json
 <pre>$ npm init -y</pre>
 
 <code>OBSERVACAO</code>, o conceito de dependencias de execucao e de desenvolvimento.<br>
 Esses conceitos ficam armazenados no package.json (devDependencies/dependencies)
-
-Instalar o CYPRESS , um
-<pre>$ npm install --save-dev</pre>
-ou 
-<pre>$ npm i -D cypress</pre>
-ou para instalar <b>GLOBALMENTE</b>
-<pre>$ npm install cypress -g</pre>
-
-<code>OBSERVACAO</code> para <b>DESINSTALAR o CYPRESS GLOBALMENTE</b>
-<pre>$ npm uninstall -g cypress</pre>
+<br><br>
 
 Agora iremos abrir o arquivo (package.json) para editarmos 
 <pre>$ code package.json</pre>
@@ -30,12 +21,16 @@ Após a instalacao , executar o <b>Cypress</b>
 <pre>$ cypress open</pre>
 
 <h3>2º ARMAZENAMENTO DOS TESTES</h3>
-São dos arquivos importantantissimos para que o teste funcione 
+São dos arquivos importantantissimos para que o teste funcione , <b>commands.js</b> e o segundo o nome que <b>VOCE ESCOLHER</b>
 
-<code>MEU_PROJETO\cypress\support\commands.js</code><br/>
+<h4>cypress\support\commands.js</h4>
+Local onde ficam armazenados o modo e local de acesso ao(s) sistema(s), exemplo abaixo:
+
+
+<h4>cypress\integration\01\NOME_DO_TESTE.JS</h4>
 É recomendável que cria uma pasta para isolarmos nossos testes de outros testes, no exemplo, criamos a pasta <b>01</b>
-<code>MEU_PROJETO\cypress\integration\01\NOME_DO_TESTE.JS</code>
 
-<!-- <h2>2º Armazenamento</h2>
+
+<!-- <h3>2º Armazenamento</h3>
 Para armazenar os testes, deve ser posto na pasta <b>cypress</b> e com a extensão <b>.spec.js</b>
 -->

@@ -1,0 +1,22 @@
+<h3>IE - Modo de Documento Emulado</h3>
+<b>Modo de documento emulado <span style="color:red">NÃO É</span></b> a mesma coisa que <b>modo de compatibilidade</b>
+<br><br>
+Em algumas versões de IE, não existem determinados métodos <b>javascript e muitos métodos jQuery</b>, portanto alterar o modo de compatibilidade pode diminuir esses erros.
+<br><br>
+
+Em alguns casos, pode ser necessário restringir uma página da Web a um modo de documento suportado por uma versão mais antiga do Windows Internet Explorer. 
+Aqui, vemos o cabeçalho compatível com <code>x-ua-compatible</code>, que permite que uma página da Web seja exibida como se fosse visualizada por uma versão anterior do navegador.
+<br><br>
+<pre>
+&lt;html&gt;
+	&lt;head&gt;
+		&lt;!-- Use Internet Explorer 9 Standards mode --&gt;
+		<b style="color:red">&lt;meta http-equiv="x-ua-compatible" content="IE=9"&gt;</b>
+		&lt;title&gt;My webpage&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+  		&lt;p&gt;Content goes here.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt; 
+</pre>
+<a href="https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/compatibility/jj676915(v=vs.85)">microsoft</a>
