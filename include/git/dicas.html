@@ -13,3 +13,10 @@ ou pesquisando pelo <strong>NOME DO SEU BRANCH</strong>
 <h3>Listar todos os arquivos commitados no dia</h3>    
 <pre>$ git log --since="1 day ago" --name-only --pretty=format: | sort | uniq </pre>
 <a href="https://stackoverflow.com/questions/8016645/git-list-all-files-added-modified-on-a-day-or-week-month">Fonte</a>
+
+<h3><b>NÃO</b> incluir arquivo no COMMIT</h3>    
+NÃO incluir determinado arquivo que faz parte da sua configuração local, exemplo: retirar o arquivo editado por você da sua arvore de modificacoes , no nosso exemplo esse arquivo é de acesso de banco de dados; não tem necessidade de seu colega ou outra pessoa saber seu usuário e senha de banco.<br>
+<code>Sintaxe:</code>
+<pre>$ git checkout <b style="color:red">NOME_ARQUIVO</b></pre>
+<code>Exemplo:</code>
+<pre>$ git checkout <b>Database.php</b></pre>
