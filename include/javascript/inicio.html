@@ -1,0 +1,18 @@
+window.onload parece ser o mais amplamente suportado. De fato, alguns dos navegadores mais modernos, em certo sentido, substituíram document.onload por window.onload. Os problemas de suporte ao navegador são provavelmente a razão pela qual muitas pessoas estão começando a usar bibliotecas como o jQuery para lidar com a verificação de que o documento está pronto da seguinte forma:
+
+<pre>
+window.tdiff = []; fred = function(a,b){return a-b;};
+window.document.onload = function(e){ 
+	console.log("document.onload 2", e, Date.now() ,window.tdiff,  
+	(window.tdiff[0] = Date.now()) && window.tdiff.reduce(fred) ); 
+}
+window.onload = function(e){ 
+	console.log("window.onload 2", e, Date.now() ,window.tdiff, 
+	(window.tdiff[1] = Date.now()) && window.tdiff.reduce(fred) ); 
+}	
+</pre>
+
+<a href="https://stackoverflow.com/questions/588040/window-onload-vs-document-onload">Fonte</a>
+
+
+document.getElementsByTagName("a[href='javascript/array']");
