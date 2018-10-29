@@ -1,11 +1,32 @@
+<h3>.GET()</h3>
+é utilizado para buscar algum elemento na tela, funciona de forma semelhando a seleção de elementos do jQuery e ao comando document.querySelector do javascript padrão. Dentro do pode estar um id, classe, elemento, qualquer coisa que identifique o que deve ser selecionado;
+<pre>cy.get('seletor')</pre>
+
+<h3>.VISIT('url')</h3>
+redireciona para a url incluída;
+<pre>cy.visit(‘url’)</pre>
+
+<h3>.LOGIN()</h3>
+comando criado no arquivo commands.js para facilitar o login dentro dos sistemas da casa;
+<pre>cy.login(‘’)</pre>
+
+<h3>.WAIT()</h3>
+faz com o teste “espere” por determinado tempo em milissegundos, caso alguma rotina precise esperar alguma ação acontecer para seguir a execução normal do teste;
+Assim como o javascript padrão, o cypress permite encadear comando, como os exemplos abaixo:
+<pre>cy.wait(‘tempo’)</pre>
+
+<h3>.CLICK()</h3>
+busca o elemento e efetua o click;
+<pre>cy.get('seletor').click()</pre>
+
+<h3>.CHECK()</h3>
+busca o elemento (radio button ou checkbox) e faz a marcação;
+<pre>cy.get('seletor').check()</pre>
+
 <h3>.SELECT()</h3>
 Utilizado para selecionar um valor no elemento SELECT
-<pre>cy.get('SELETOR')<b style="color:red">.select('VALOR');</b></pre>
+<pre>cy.get('seletor')<b style="color:red">.select('VALOR');</b></pre>
 
 <h3>.TYPE()</h3>
 Utilizado para escrever dentro do input tipo texto
-<pre>cy.get('SELETOR')<b style="color:red">.type("Fulano da Silva");</b></pre>
-
-
-<h3></h3>
-<pre></pre>
+<pre>cy.get('seletor')<b style="color:red">.type("Fulano da Silva");</b></pre>
