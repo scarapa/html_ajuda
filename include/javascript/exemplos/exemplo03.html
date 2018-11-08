@@ -1,0 +1,51 @@
+<h3>Remover - Tabela</h3>
+
+<table id="tabelaCliente" border='1'>
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>NOME</th>
+			<th>SOBRENOME</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>1</td>
+			<td>Roberto</td>
+			<td>Alam</td>
+			<td><i class="fa fa-remove fw" onclick="deletarLinha(1)"></i></td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>Luisa</td>
+			<td>Alam</td>
+			<td><i class="fa fa-remove fw" onclick="deletarLinha(2)"></i></td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>Tonia Laura</td>
+			<td>Ferreira</td>
+			<td><i class="fa fa-remove fw" onclick="deletarLinha(3)"></i></td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td>Jose</td>
+			<td>Alam</td>
+			<td><i class="fa fa-remove fw" onclick="deletarLinha(4)"></i></td>
+		</tr>
+		<tr>
+			<td>5</td>
+			<td>Eloa</td>
+			<td>Alam</td>
+			<td><i class="fa fa-remove fw" onclick="deletarLinha(5)"></i></td>
+		</tr>
+	</tbody>
+</table>
+
+<script>
+	function deletarLinha(valor){
+		document.getElementById("tabelaCliente").deleteRow(valor); 
+	}
+</script>
+
+<a href="https://www.w3schools.com/jsref/met_table_deleterow.asp">w3schools</a>
