@@ -1,0 +1,58 @@
+A propriedade z-index trabalha com um eixo que não é muito conhecido e tampouco usado pela maioria dos desenvolvedores, o eixo Z. O eixo Z é o eixo responsável pelo cálculo e posicionamento da profundidade de algum elemento, ou seja, é aquele que irá determinar se o elemento estará mais próximo ou mais afastado da tela.
+<br><br>
+
+Basicamente, os eixos X, Y e Z funcionam da seguinte forma, imagine o cenário de um prédio:<br>
+<ul>
+    <li>X=> Quantidade de metros da parte da frente do prédio;</li>
+    <li>Z=> Quantidade de metros da porta da frente ao fundo do prédio;</li>
+    <li>Y=> Altura do prédio;</li>
+</ul>
+
+Agora chega de tentar entender na teoria como essa propriedade funciona e vamos ver ela funcionando na prática:
+<br><br>
+
+
+<pre><kbd>CSS</kbd>
+<kbd>HTML</kbd>	
+</pre>
+<style type="text/css">
+	div.box1{
+		width:100px;height: 100px;
+		display: table;
+	}
+	.posicao1{background: red;}
+	.posicao2{background: green;}	
+	.posicao3{background: blue;}
+	
+</style>
+
+<div class="box1 posicao1"></div>
+<div class="box1 posicao2"></div>
+<div class="box1 posicao3"></div>
+
+<br clear="all">
+
+<pre><kbd>CSS</kbd>
+<kbd>HTML</kbd>	
+</pre>
+<style type="text/css">
+	div.box2{
+		width:100px;height: 100px;
+		display: table;
+		position: absolute;
+		top:0;
+	}
+	.posicao4{background: red;}
+	.posicao5{background: green;left:15px;}	
+	.posicao6{background: blue;left:30px;}		
+</style>
+<div style="position:relative;">
+	<div class="box2 posicao4"></div>
+	<div class="box2 posicao5"></div>
+	<div class="box2 posicao6"></div>
+</div>
+<br clear="all"><br clear="all"><br clear="all"><br clear="all"><br clear="all"><br clear="all">
+
+
+<a href="https://www.devmedia.com.br/css-z-index-entendendo-sobre-o-eixo-z-na-web/28698">Fonte[1]</a>
+ <a href="http://www.criarweb.com/artigos/propiedade-z-index.html">Fonte[2]</a>

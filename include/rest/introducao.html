@@ -1,3 +1,27 @@
-https://pt.stackoverflow.com/questions/45783/o-que-%C3%A9-rest-e-restful
-https://becode.com.br/o-que-e-api-rest-e-restful/	
-https://www.restapitutorial.com/lessons/httpmethods.html
+
+A Representational State Transfer (REST), em português Transferência de Estado Representacional, é uma abstração da arquitetura da World Wide Web, mais precisamente, é um estilo arquitetural que consiste de um conjunto coordenado de restrições arquiteturais aplicadas a componentes, conectores e elementos de dados dentro de um sistema de hipermídia distribuído.
+<br><br>
+
+O REST ignora os detalhes da implementação de componente e a sintaxe de protocolo com o objetivo de focar nos papéis dos componentes, nas restrições sobre sua interação com outros componentes e na sua interpretação de elementos de dados significantes.
+<br><br>
+
+Ele foi definido oficialmente pela W3C. Frequentemente aplicado à web services fornecendo APIs para acesso a um serviço qualquer na web. Ele usa integralmente as mensagens HTTP para se comunicar através do que já é definido no protocolo sem precisar "inventar" novos protocolos específicos para aquela aplicação.Você trabalha essencialmente com componentes, conectores e dados.
+
+
+<ul>
+    <li>Ele usa o protocolo HTTP (verbos, accept headers, códigos de estado HTTP, Content-Type) de forma explícita e representativa para se comunicar. URIs são usados para expor a estrutura do serviço. Utiliza uma notação comum para transferência de dados como XML ou JSON.</li>
+    <li>Não possui estado entre essas comunicações, ou seja, cada comunicação é independente e uniforme (padronizada) precisando passar toda informação necessária.</li>
+    <li>Ele deve facilitar o cache de conteúdo no cliente.</li>
+    <li>Deve ter clara definição do que faz parte do cliente e do servidor. O cliente não precisa saber como o servidor armazena dados, por exemplo. Assim cada implementação não depende da outra e se torna mais escalável.</li>
+    <li>Permite o uso em camadas também facilitando a escalabilidade, confiabilidade e segurança.</li>
+    <li>Frequentemente é criado com alguma forma de extensibilidade.</li>
+</ul>
+Falhando em um dos cinco primeiros itens, a arquitetura não pode ser classificada formalmente como RESTful. Mas nem todo mundo se apega ao formalismo.Exemplo:
+<pre>http://example.com/apagar/produto/1234</pre>
+significa que você está pedindo para apagar o <code><b>produto de ID 1234.</b></code> Há quem diga que isto está errado e já que a ênfase é em cima dos recursos e não das operações. Deveria usar assim:
+
+<pre>http://example.com/produto/1234 (utilizando o verbo DELETE)</pre>
+
+<a href="https://pt.stackoverflow.com/questions/45783/o-que-%C3%A9-rest-e-restful">Fonte[1]</a> 
+<a href="https://becode.com.br/o-que-e-api-rest-e-restful">Fonte[2]</a> 
+<a href="https://www.restapitutorial.com/lessons/httpmethods.html">Fonte[3]</a>
