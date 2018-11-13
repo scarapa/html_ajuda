@@ -41,3 +41,19 @@
 		<td>entrada do foco no elemento</td>
 	</tr>	
 </table>
+<br><br>
+No campo de eventos, o Jquery é o melhor, se você quer ouvir um evento de click usamos o <code>click(function(){})</code> ou <code>on('click', function(){})</code>, com Javascript e sem Jquery também é simples.
+<pre>const button = document.querySelector(".btn");
+button.addEventListener('click', function (event) {
+	event.preventDefault();
+});	</pre>
+
+No código acima eu simplesmente pego o elemento pela classe btn e adiciono um evento de click com addEventListener, isso quer dizer que quando eu clicar no link a ação dentro do function será executada, neste caso, previnir qualquer ação padrão (o click no link não deverá fazer nada, é o que o event.preventDefault() faz).
+<br><br>
+Se você quiser ter acesso ao elemento que foi clicado pode usar p event.target, vamos mudar a cor do botão quando ele for clicado?
+<pre>const button = document.querySelector(".btn");
+button.addEventListener('click', function (event) {
+	event.preventDefault();
+	event.target.style.backgroundColor = "#ff0000";
+});</pre>
+<a href="https://blog.schoolofnet.com/2018/10/como-parar-de-usar-o-jquery/">Fonte</a>
