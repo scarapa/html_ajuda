@@ -48,7 +48,7 @@
                 function injetarURL(link) {
                     let arquivo, icone,texto, cabecalho , url;
                     if(link!=""){
-                        arquivo = link
+                        arquivo = link;
                         icone = $("a[href$='"+arquivo+"']").children().attr('class')
                         texto = arquivo.toUpperCase().replace("/", "&nbsp;&raquo;&nbsp;");       
                         cabecalho = "<h2 class='"+icone+" fa-2x'>&nbsp;"+texto+"</h2><hr>";

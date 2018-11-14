@@ -22,6 +22,115 @@ significa que você está pedindo para apagar o <code><b>produto de ID 1234.</b>
 
 <pre>http://example.com/produto/1234 (utilizando o verbo DELETE)</pre>
 
+
+<h3>Sobre Requisições HTTP</h3>
+
+Toda as vezes que acessamos algo via browser (navegador), várias requisicões são disparadas. Quando acessa uma página qualquer, uma requisição pelo conteúdo dessa página é criado. Quando esse conteúdo retornar, o browser monta (renderiza) a página, mas essa página requer outros recursos como imagens, fontes, folhas de estilo (css). Para cada recurso, o navegador irá fazer uma nova requisição.
+<br/><br/>
+
+Essas requisições são compostas, principalmente, de três informações:
+<ul>
+    <li>URL: Endereço que irá receber a requisição;</li>
+    <li>Verbo/Método: Comando que se deseja que seja feito;</li>
+    <li>Corpo: Informações que enviamos, como dados de um formulário, por exemplo.</li>
+</ul>
+
+Quantos aos Verbos, existem 4 que são os mais utilizados:
+<table border="1">
+	<tr>
+		<th>GET</th>
+		<td>Usado para trazer informações</td>
+	</tr>
+	<tr>
+		<th>POST</th>
+		<td>Para criar/adicionar informações</td>
+	</tr>
+	<tr>
+		<th>PUT</th>
+		<td>Para atulizar informações</td>
+	</tr>
+	<tr>
+		<th>DELETE</th>
+		<td>Para excluir informações</td>
+	</tr>			
+</table>
+
+
+<h3>Serviço RESTful</h3>
+
+São serviços que possuem comportamento REST. Ou seja, usando o mesmo design, seu comportamento irá mudar de acordo com a maneira que é consumido
+
+Por exemplo, temos a URL (endpoint) abaixo:<br>
+<code>http://www.contoso.com/alunos</code>
+<br><br>
+
+Se queremos trazer a lista de alunos, basta realizamos uma requisição GET:
+
+<pre>Request:
+[GET] http://www.contoso.com/alunos
+Body: empty</pre>
+
+A resposta será algo como:
+
+<pre>Response:
+HTTP Code 200 OK
+[
+    { id: 1, nome: "Thiago Lunardi" },
+    { id: 2, nome: "Joe Satriani"}
+]</pre>
+
+Mas, se eu quiser adicionar um novo aluno, uso o mesmo design, mas consumindo de outra forma, com requisição POST:
+
+<pre>Request:
+[POST] http://www.contoso.com/alunos
+Body: { "nome: "Slash" }
+
+HTTP Code 201 Created
+{ id: 3, nome: "Slash" }
+
+Continuando, para saber mais detalhes sobre um aluno:
+
+Request:
+[GET] http://www.contoso.com/alunos/1
+Body: empty
+
+Response:
+HTTP Code 200 OK
+{ 
+    id: 1, 
+    nome: "Thiago Lunardi",
+    github: "https://github.com/ThiagoLunardi",
+    website: "http://thiagolunardi.net",
+    blog: "https://medium.com/@thiagolunardi",
+}</pre>
+
+Para atualizar informações de um ano, da mesma forma, usamos o mesmo design, e apenas mudamos a forma de consumir o recurso, e ele terá um comportamento diferente:
+
+<pre>Request:
+[PUT] http://www.contoso.com/alunos/1
+Body: { "twitter": "@thiagolunardi13" }
+
+Response:
+HTTP Code 200 OK
+{ 
+    id: 1, 
+    nome: "Thiago Lunardi",
+    github: "https://github.com/ThiagoLunardi",
+    website: "http://thiagolunardi.net",
+    blog: "https://medium.com/@thiagolunardi",
+    twitter: "@thiagolunardi13"
+}</pre>
+
+Para excluir:
+
+<pre>Request:
+[DELETE] http://www.contoso.com/alunos/1
+Body: empty
+
+Response:
+HTTP Code 204 No Content</pre>
+
+
 <a href="https://pt.stackoverflow.com/questions/45783/o-que-%C3%A9-rest-e-restful">Fonte[1]</a> 
 <a href="https://becode.com.br/o-que-e-api-rest-e-restful">Fonte[2]</a> 
 <a href="https://www.restapitutorial.com/lessons/httpmethods.html">Fonte[3]</a>
