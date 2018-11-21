@@ -1,8 +1,10 @@
 ﻿
 A vantagem de usar FUNCTION ao invés de PROCEDURE é de que a FUNCTION pode ser usada junto com o SELECT<br/>
-<h3>SINTAXE</h3>
-1 -> Criar a function , exemplo abaixo function que retorna o dia útil para tras no calendário.
-<pre>
+<h3>1 - OBJETIVO</h3>
+Criar a function que retorna o dia útil para tras no calendário.
+
+<h3>2 - CODIGO</h3>
+<pre><kbd>SQLSERVER</kbd>
 CREATE FUNCTION FERIASBUSCARPROXIMODIAUTIL(@data DATE)
 	RETURNS date
 	BEGIN
@@ -36,26 +38,47 @@ CREATE FUNCTION FERIASBUSCARPROXIMODIAUTIL(@data DATE)
 			END
 		END--WHILE
 		RETURN @data
-	END
+	END</pre>
 
-
-SELECT dbo.FERIASBUSCARPROXIMODIAUTIL('2018-01-05')
-</pre>
-
-<h3>UTILIZAÇÃO</h3>
+<h3>3 - UTILIZAÇÃO</h3>
  Para utilizar a mesma é muito simples, basta jogar no SQL.
-<pre>
+<pre><kbd>SQLSERVER</kbd>
+SELECT dbo.FERIASBUSCARPROXIMODIAUTIL('2018-01-05');
+--OU
 SELECT 
 	* ,dbo.teste( CONVERT(DATE,dt_documento) ) 
-FROM tblDocumento FROM tabela 
-</pre>
+FROM tblDocumento FROM tabela </pre>
 
 Pode ser utilizada até com JOIN
-<pre>
-SELECT * FROM  t_usuarios tbl_u
+<pre>SELECT * FROM  t_usuarios tbl_u
 	INNER JOIN udf_emprestimosAtraso() udf_e ON udf_e.cd_usuario = tbl_u.cd_usuario
 WHERE nome LIKE '%jeniffer%'
 ORDER BY nome
 </pre>	
 <i>GUILHERME DAMBROS </i>- 05/01/2018</br>
 <a href="https://pt.stackoverflow.com/questions/66872/como-executar-uma-procedure-em-um-select">Fonte[1]</a>
+
+<hr>
+
+<h3>1 - OBJETIVO</h3>
+Criar a function que retorna uma linha de resultados(pode ser mais de uma linha).
+
+<h3>2 - CODIGO</h3>
+<pre><kbd>SQLSERVER</kbd>
+CREATE FUNCTION [dbo].[BUSCARULTIMOSTATUS]( @cd_documento INT)
+RETURNS TABLE
+AS	RETURN ( 
+	SELECT * FROM (
+		SELECT 
+			MAX(s1.cd_status_documento) AS 'id_status_documento' 
+		FROM tblStatus_Documento s1
+		GROUP BY s1.cd_documento
+	) s1, (SELECT * FROM tblStatus_Documento) s2
+	WHERE cd_documento = @cd_documento AND s1.id_status_documento = s2.cd_status_documento
+)</pre>
+
+
+<h3>3 - UTILIZAÇÃO</h3>
+<pre><kbd>SQLSERVER</kbd>
+SELECT * FROM dbo.BUSCARULTIMOSTATUS(14341);
+</pre>
