@@ -1,4 +1,18 @@
-A ideia utilizada pelo JSON para representar informações é tremendamente simples: para cada valor representado, atribui-se um nome (ou rótulo) que descreve o seu significado. Esta sintaxe é derivada da forma utilizada pelo JavaScript para representar informações. Por exemplo, para representar o ano de 2012, utiliza-se a seguinte sintaxe: 
+<h2><i class="fa fa-book fa-fw"> Introdução</i></h2>
+JSON (JavaScript Object Notation - Notação de Objetos JavaScript) é uma formatação leve de troca de dados. Para seres humanos, é fácil de ler e escrever. Para máquinas, é fácil de interpretar e gerar. Está baseado em um subconjunto da linguagem de programação JavaScript, Standard ECMA-262 3a Edição -Dezembro - 1999. JSON é em formato texto e completamente independente de linguagem, pois usa convenções que são familiares às linguagens C e familiares, incluindo C++, C#, Java, JavaScript, Perl, Python e muitas outras. Estas propriedades fazem com que JSON seja um formato ideal de troca de dados.
+<br><br>
+JSON está constituído em duas estruturas:
+<ul>
+    <li>Uma coleção de pares nome/valor. Em várias linguagens, isto é caracterizado como um object, record, struct, dicionário, hash table, keyed list, ou arrays associativas.</li>
+    <li>Uma lista ordenada de valores. Na maioria das linguagens, isto é caracterizado como uma array, vetor, lista ou sequência.</li>
+</ul>
+Estas são estruturas de dados universais. Virtualmente todas as linguagens de programação modernas as suportam, de uma forma ou de outra. É aceitavel que um formato de troca de dados que seja independente de linguagem de programação se baseie nestas estruturas.
+<br><br>
+Em JSON, os dados são apresentados desta forma:
+<br><br>
+Um objeto é um conjunto desordenado de pares nome/valor. Um objeto começa com { (chave de abertura) e termina com } (chave de fechamento). Cada nome é seguido por : (dois pontos) e os pares nome/valor são seguidos por , (vírgula).
+<br><br>
+
 <pre>"ano": 2012</pre>
 Um par nome/valor deve ser representado pelo nome entre aspas duplas, seguido de dois pontos, seguido do valor. Os valores podem possuir apenas <code>3 tipos básicos</code>: numérico (inteiro ou real), booleano e string. As Listagens 2, 3, 4 e 5 apresentam exemplos. Observe que os valores do tipo string devem ser representados entre aspas.
 <table>
@@ -66,5 +80,34 @@ Por fim, é importante citar que a palavra-chave “null” deve ser utilizada p
 <pre>"site":null</pre>
 
 Para validar o JSON <a href="https://jsonlint.com/">JSONLINT</a>
-<br><br>
-<a href="https://www.devmedia.com.br/json-tutorial/25275">Fonte</a>
+
+<h3>Como Utilizar ?</h3>
+Para utilizarmos iremos dividir em etapas:
+<ol>
+	<li>Arquivo JSON válido</li>
+	<li>Codigo JS de requisição dos dados</li>
+	<li>Codigo JS de recebimento e tratamento dos dados</li>
+	<li>Exibindo/listando os dados</li>
+</ol>
+<h4>1 - Arquivo JSON</h4>
+O arquivo JSON em questão é o <a href="exemplos/carros.json" target="_blank">carros.json</a> já validado.
+
+<h4>2 - REQUISIÇÃO</h4>
+Para fins de entendimento de código, utilizaremos o método contido no arquivo ajuda.js <code>ajaxGenericoGet()</code>, para entender como o método funciona basta <a href="#">clicar aqui</a>. O código abaixo faz a requisição e inseri os dados capturados na variavel <code>loadCarros</code>
+<pre><kbd>javaScript</kbd>
+var loadCarros = ajaxGenericoGet('carros.json');</pre>
+Nesse momento os dados estão no formato de <code>ARRAY</code>.
+
+<h4>3 - REQUISIÇÃO</h4>
+Utilização do método <code>$.parseJSON</code> é para transformarmos o array recebido num objeto <code>JSON</code>
+<pre><kbd>javaScript</kbd>
+loadCarros = $.parseJSON(loadCarros);</pre>
+
+<h4>4 - EXIBIÇÃO</h4>
+Para finalizar iremos exibir os dados, esse item fica bem a critério do desenvolverdor.
+<pre><kbd>javaScript</kbd>
+</pre>
+
+<a href="https://www.devmedia.com.br/json-tutorial/25275">Fonte[1]</a>
+<a href="https://www.json.org/json-pt.html">Fonte[2]</a>
+<a href="https://pt.wikipedia.org/wiki/JSON">Fonte[3]</a>
