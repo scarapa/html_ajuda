@@ -75,3 +75,20 @@ function myFunction(arr) {
 
 <a href="https://gist.github.com/cagartner/4c4dd7a6d5fa53e1f368">Fonte[1]</a> - 
 <a href="https://www.w3schools.com/js/tryit.asp?filename=tryjson_http">w3schools</a>
+
+<hr>
+<h4>Exemplo 03</h4>
+<pre><kbd>JAVASCRIPT</kbd>
+&lt;script&gt;
+function reqListener () {
+  console.log(this.responseText);
+};
+
+var oReq = new XMLHttpRequest();
+oReq.onload = reqListener;
+oReq.open("get", "yourFile.txt", true);
+oReq.send(); 
+&lt;/script&gt;
+</pre>
+
+<a href="https://developer.mozilla.org/pt-BR/docs/Web/API/XMLHttpRequest/Usando_XMLHttpRequest">Fonte</a>
