@@ -209,3 +209,23 @@ SELECT @MIN+FLOOR((@MAX-@MIN+1)*RAND(CONVERT(VARBINARY,NEWID())));
 
 <a href="https://stackoverflow.com/questions/7878287/generate-random-int-value-from-3-to-6">stackoverflow</a>
 
+
+<h3>SERVIDOR - Identificando</h3>
+<pre><kbd>SQLSERVER</kbd>
+DECLARE @servidor VARCHAR(30);
+DECLARE @AMBIENTE VARCHAR(30);
+SELECT @servidor = @@SERVERNAME;
+IF(@servidor='mercurio')
+    SET @AMBIENTE = '10.1.1.19\VENUS';
+ELSE
+    SET @AMBIENTE = '10.1.1.19\DESENV';
+
+SELECT @AMBIENTE,@servidor
+</pre>
+Retorno:<br>
+<table border="1">
+    <tr><th>AMBIENTE</th><th>SERVIDOR</th></tr>
+    <tr><td>10.1.1.19\DESENV</td><td>SATURNO</td></tr>
+</table>
+<a href="https://stackoverflow.com/questions/16088151/how-to-find-server-name-of-sql-server-management-studio">Fonte[1]</a>
+<a href="https://docs.microsoft.com/pt-br/sql/t-sql/functions/servername-transact-sql?view=sql-server-2017">Fonte[2]</a>
