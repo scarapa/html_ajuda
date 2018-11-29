@@ -21,3 +21,20 @@
 <a href="https://stackoverflow.com/questions/44839648/no-application-encryption-key-has-been-specified-new-laravel-app">stackoverflow</a>
 
 <hr>
+
+<h3>Erro em comunicação IONIC 3 com LARAVEL 5.7</h3>
+<code>
+	Access to XMLHttpRequest at 'http://localhost:8000/' from origin 'http://localhost:8100/'<br>
+	has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on <br>
+	the requested resource.
+</code>
+<BR/>Solução:<br>
+<pre><code>$ composer require barryvdh/laravel-cors</code></pre>
+Depois de executar o comando acima, adicionar o HandleCors middleware ao grupo desejado no arquivo <code>app/Http/Kernel.php</code>
+<pre><code>protected $middlewareGroups = [
+    'web' => [
+        // ...
+        \Barryvdh\Cors\HandleCors::class,
+    ],
+];</code></pre>
+<a href="https://github.com/barryvdh/laravel-cors">Github</a>
