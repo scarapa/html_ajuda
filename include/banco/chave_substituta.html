@@ -1,0 +1,80 @@
+<h3>DEFINIÇÃO</h3>
+Chave Surrogada ou Substituta , um requisito básico no desenvolvimento de um banco de dados é ter uma chave primária para cada tabela. Podemos especificar uma chave primária de duas formas:
+<ul>
+    <li>Usar os próprios dados armazenados como chave primária - Por exemplo, usar o CPF armazenado de um cliente como chave primária de uma tabela de Clientes. Chamamos a esse tipo de chave de Chave Natural.</li>
+    <li>Usar um campo criado especificamente para ser chave primária, com valores gerados artificialmente, por exemplo por meio de uma sequência de números em auto-incremento. Esse tipo de chave é chamada de Chave Surrogada (Surrogate key) ou Chave Substituta.</li>
+</ul>
+
+No geral, uma chave surrogada é um valor numérico inteiro, sem significado específico para o registro que representa - seu valor não é derivado dos dados armazenados no banco de dados.
+<br><br>
+Por conta disso, os valores de chave surrogada geralmente não são apresentados aos usuários em uma consulta, pois são irrelevantes fora de seu contexto.
+Características de Chaves Substitutas
+<br><br>
+Uma chave substituta precisa obedecer a algumas regras para ser considerada válida:
+<ul>
+    <li>Seu valor deve ser gerado automaticamente pelo sistema</li>
+    <li>Não pode ser manipulável ou alterável pelo usuário</li>
+    <li>O valor deve ser único, sem reutilização</li>
+    <li>Não possuir nenhum significado semântico</li>
+    <li>Não deve ser composta de outros valores presentes na tabela</li>
+    <li>Não ser visível ao usuário e nem para a aplicação que acessa o banco de dados.</li>
+</ul>
+
+<h3>Gerando Chaves Surrogadas</h3>
+Podemos gerar chaves surrogadas de várias formas, dependendo do SGBD considerado. Por exemplo, no MySQL usamos a palavra-chave <b>AUTO_INCREMENT</b>, ao passo que no Microsoft SQL Server usamos <b>IDENTITY</b>, no PostgreSQL o tipo serial, e no Oracle Database, <b>SEQUENCE</b>.
+<br><br>
+Uma das vantagens de se utilizar chaves surrogadas é a não necessidade de inserir valores neste campo durante inserção de dados em uma tabela, haja vista que os valores são gerados automaticamente - apesar de que neste caso, o sistema pode utilizar mais recursos durante a inserção dos dados, pois precisa gerar o valor da chave.
+<br><br>
+
+<h3>Exemplo</h3>
+No exemplo abaixo, temos uma tabela de produtos em estoque em um pequeno mercado. Note que existe um campo, batizado de "ID", cujo valor é um número sequencial, sem significado nenhum para os produtos em si. Esta é a chave primária surrogada, pois seus valores são gerados automaticamente pelo sistema cada vez que um novo produto é cadastrado:
+<br><br>
+
+<table style="height: 21px; width: 541px;" border='1'>
+<tbody>
+<tr>
+<td style="width: 42px;">ID</td>
+<td style="width: 173px;">Nome_Produto</td>
+<td style="width: 105px;">Quant_Prod</td>
+<td style="width: 112px;">Preco_Prod</td>
+<td style="width: 107px;">Categ_Prod</td>
+</tr>
+<tr>
+<td style="width: 42px;"><strong>1</strong></td>
+<td style="width: 173px;">Lata de Sardinha</td>
+<td style="width: 105px;">25</td>
+<td style="width: 112px;">3,99</td>
+<td style="width: 107px;">Enlatados</td>
+</tr>
+<tr>
+<td style="width: 42px;"><strong>2</strong></td>
+<td style="width: 173px;">Biscoito de Leite</td>
+<td style="width: 105px;">30</td>
+<td style="width: 112px;">1,65</td>
+<td style="width: 107px;">Doces</td>
+</tr>
+<tr>
+<td style="width: 42px;"><strong>3</strong></td>
+<td style="width: 173px;">Salame Italiano</td>
+<td style="width: 105px;">12</td>
+<td style="width: 112px;">56,20</td>
+<td style="width: 107px;">Embutidos</td>
+</tr>
+<tr>
+<td style="width: 42px;"><strong>4</strong></td>
+<td style="width: 173px;">Milho em Conserva</td>
+<td style="width: 105px;">30</td>
+<td style="width: 112px;">2,50</td>
+<td style="width: 107px;">Enlatados</td>
+</tr>
+<tr>
+<td style="width: 42px;"><strong>5</strong></td>
+<td style="width: 173px;">Chocolate Kit-Kat</td>
+<td style="width: 105px;">37</td>
+<td style="width: 112px;">3,50</td>
+<td style="width: 107px;">Doces</td>
+</tr>
+</tbody>
+</table>
+
+<a href="http://www.bosontreinamentos.com.br/bancos-de-dados/o-que-e-uma-chave-surrogada-em-bancos-de-dados/">Fonte[1]</a>
