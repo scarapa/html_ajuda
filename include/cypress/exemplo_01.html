@@ -1,0 +1,28 @@
+<style type="text/css">
+section.contagem h3:not(.fble_htr) {counter-increment: rowNumber;}
+section.contagem h3::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;
+}	
+</style>
+
+<h2>Projeto do ZERO</h2>
+<ol>
+	<li>Abertura do Cypress</li>
+	<li>Criar NOVO projeto(pasta)</li>
+</ol>
+
+<section class="contagem">
+	<h3>Abertura do Cypress</h3>
+	Para abrir a aplicação basta ir para o diretório de instalação da apliacação, nesse caso, <code>cd /BETO/TESTE/testes/</code> e digitar o comando abaixo:
+	<pre>$ cypress open</pre>
+	Uma tela muito parecida como abaixo deverá ser aberta.
+	<div style="text-align:center" class="col-lg-12">
+		<img id="imagem" src="./images/cypress_01.jpg" style="border:1px solid black;border-radius: 5px">
+	</div>	
+
+	<h3>Criar NOVO projeto(pasta)</h3>
+	Com a IDE da sua escolha aberta, vamos criar a nova pasta do projeto em <code>cypress/integration</code>
+	<pre>$ mkdir sisorg</pre>
+</section>
