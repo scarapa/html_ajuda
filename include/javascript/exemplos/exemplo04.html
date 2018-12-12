@@ -1,0 +1,40 @@
+<h3>LOAD</h3>
+Funcionalidade semelhante ao LOAD do jQuery
+
+<pre><kbd>JS</kbd>
+window.onload = function(e){
+	document.getElementById('wrapper').innerHTML =  loadPage('contato.html')
+
+	function loadPage(href){
+    	var xmlhttp = new XMLHttpRequest();
+    	xmlhttp.open("GET", href, false);
+    	xmlhttp.send();
+		return xmlhttp.responseText;
+	}
+
+    //MENU
+    var elementos = document.querySelectorAll(".sidebar li");
+    for (var i = 0; i < elementos.length; i++) {
+
+        elementos[i].addEventListener('click', function (event) {
+            link = this.innerText.toLowerCase();
+            link = link+".html";
+            document.getElementById("wrapper").innerHTML = loadPage(link);
+        });
+    } 	
+}	
+</pre>
+
+
+<pre><kbd>HTML</kbd>
+&lt;div id="sidebar&gt;
+    &lt;div id="menu&gt;
+        &lt;ul class="sidebar&gt;
+            &lt;li&gt;HOME&lt;/li&gt;
+            &lt;li&gt;CONTATO&lt;/li&gt;
+            &lt;li&gt;LISTA&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="wrapper&gt;&lt;/div&gt;	
+</pre>
