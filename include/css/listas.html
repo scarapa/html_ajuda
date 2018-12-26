@@ -1,20 +1,26 @@
 
-
+<style>
+ol.nested{ counter-reset: item}
+li.nested{ display: block}
+li.nested:before{
+    content: counters(item, ".") ". ";
+    counter-increment: item
+}
+</style>
 <h3>Lista e Sublista numeradas</h3>
 
 <pre><kbd>HTML</kbd>
 &lt;ol class="nested"&gt;
-&lt;li class="nested"&gt;item 1&lt;/li&gt;
-&lt;li class="nested"&gt;item 2
-    &lt;ol class="nested"&gt;
-        &lt;li class="nested"&gt;subitem 1&lt;/li&gt;
-        &lt;li class="nested"&gt;subitem 2&lt;/li&gt;
-    &lt;/ol&gt;&lt;/li&gt;
-&lt;li class="nested"&gt;item 3&lt;/li&gt;
+	&lt;li class="nested"&gt;item 1&lt;/li&gt;
+	&lt;li class="nested"&gt;item 2
+	    	&lt;ol class="nested"&gt;
+		        &lt;li class="nested"&gt;subitem 1&lt;/li&gt;
+		        &lt;li class="nested"&gt;subitem 2&lt;/li&gt;
+	    	&lt;/ol&gt;
+	&lt;/li&gt;
+	&lt;li class="nested"&gt;item 3&lt;/li&gt;
 &lt;/ol&gt;
-</pre>
-
-<pre><kbd>CSS</kbd>
+<kbd>CSS</kbd>
 ol.nested{ counter-reset: item}
 li.nested{ display: block}
 li.nested:before{
@@ -22,8 +28,40 @@ li.nested:before{
     counter-increment: item
 }
 </pre>
+<code>SAIDA:</code>
+<ol class="nested">
+	<li class="nested">item 1</li>
+	<li class="nested">item 2
+    	<ol class="nested">
+	        <li class="nested">subitem 1</li>
+	        <li class="nested">subitem 2</li>
+    	</ol>
+	</li>
+	<li class="nested">item 3</li>
+</ol>
+
+<hr>
+
+<h3>Lista e Sublista numeradas[2]</h3>
+Numerando os H3's dentro das sections
+<pre><kbd>CSS</kbd>
+.contagem h3:not(.fble_htr) {counter-increment: rowNumber;}
+.contagem h3::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;
+}
+<kbd>HTML</kbd>	
+&lt;section class="contagem"&gt;
+	&lt;h3&gt;Aqui o Titulo&lt;/h3&gt;
+	...
+	Post aqui
+&lt;/section&gt; </pre>
 
 
+
+
+<hr>
 <h3>Ordenação de Listas</h3>
 
 O atributo <code>type</code> da tag <code>&lt;ol&gt</code> define o tipo do marcador de item da lista:
