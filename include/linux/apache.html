@@ -1,0 +1,66 @@
+
+<ol>
+	<li>Instalação</li>
+	<li>Configurar - Remover Diretorio HTML</li>
+	<li>Configurar - Servidor para URLs amigaveis</li>
+</ol>
+
+<h2>Instalação</h2>
+<pre>$ sudo apt install apache2</pre>
+Verificando a versão <code>$ apache2 -v</code>
+<pre>Server version: Apache/2.4.27 (Debian)
+Server built:   2017-07-16T21:01:10</pre>
+
+<hr>
+
+<h2>Configurar - Remover Diretorio HTML</h2>
+Primeiramente acessar o arquivo em <code> sudo nano /etc/apache2/sites-enabled/000-default.conf</code>, dentro do arquivo altere a seguinte linha:
+<pre>DocumentRoot /var/www/html</pre>
+para
+<pre><b>DocumentRoot /var/www/</b></pre>
+<hr>
+
+<h2>Configurar Servidor para URLs amigaveis </h2>
+Após instalação do apache2 e das outras ferramentas é necessário configurar o servidor para receber link como esse, <code>www.amigos.com/treta/1</code> , bem vamos lá !
+<br><br>
+
+Acessar o arquivo <code>/etc/apache2/apache2.conf</code>:
+<br><br>
+
+<pre><code>&lt;Directory /&gt;
+	Options FollowSymLinks Indexes
+	AllowOverride All
+	#Require all denied
+&lt;/Directory&gt;
+
+&lt;Directory /usr/share&gt;
+    AllowOverride None
+    Require all granted
+&lt;/Directory&gt;
+
+&lt;Directory /var/www/&gt;
+	Options Indexes FollowSymLinks MultiViews
+	DirectoryIndex index.php
+	AllowOverride All
+	Order allow,deny
+	Allow from all
+	Require all granted
+&lt;/Directory&gt;
+
+&lt;FilesMatch "^\.ht"&gt;
+    #Require all denied
+&lt;/FilesMatch&gt;
+</pre></code>
+
+Caso de erro 500
+<pre>Internal Server Error</pre>
+Erro no log:
+<pre>var/www/blog/site/.htaccess: Invalid command 'RewriteEngine', perhaps misspelled or defined by a module not included in the server configuration</pre>
+A solução foi instalar o modulo via terminal:
+<pre><code>$ sudo a2enmod rewrite && sudo service apache2 restart</code></pre>
+Exemplo do conteúdo do arquivo .htaccess abaixo que fica localizado na pasta raiz de dominio:
+<pre><code>RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php</code></pre>
+No caso existem 2 arquivos(index.php e .htaccess) no projeto , na pasta <b>site</b> e na pasta <b>sistema</b>
