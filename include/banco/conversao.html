@@ -14,3 +14,11 @@ Retorno dos SQL's acima
 <br clear="all">
 <h3>Convertendo para String</h3>
 <pre><code>SELECT CONVERT(VARCHAR(8),1235.53)</code></pre>
+
+<h3>REPLACE</h3>
+O MySQL <b>REPLACE()</b> substitui todas as ocorrências de uma substring dentro de uma string.
+<pre>REPLACE(str, find_string, replace_with)</pre>
+exemplo:
+<pre>UPDATE posts SET post = REPLACE(post,'microsof','linux') WHERE post LIKE '%microsoft%'</pre>
+<a href="https://www.w3resource.com/mysql/string-functions/mysql-replace-function.php">Fonte[1]</a> 
+<a href="https://stackoverflow.com/questions/5956993/mysql-string-replace">Fonte[2]</a>
