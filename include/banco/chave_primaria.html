@@ -1,0 +1,23 @@
+A chave primária, ou primary key, é o conceito mais básico relacionado à organização em um banco de dados. Toda tabela irá possuir uma, e somente uma, chave primária. Essa chave é utilizada como o <b>identificador único</b> da tabela, sendo, então, representada, por aquele campo (ou campos) que não receberá valores repetidos.
+<br><br>
+
+Por causa disso, existe uma lista de características que deve ser levada em consideração ao definir uma chave primária:
+<ul>
+	<li>Chaves primárias não podem ser nulas;</li>
+	<li>Chaves primárias não podem ser nulas;</li>
+	<li>Normalmente, chaves primárias são incrementadas automaticamente pelo banco de dados, ou seja, não há necessidade de passarmos esse valor em um <b>INSERT</b>. Entretanto, essa é uma opção configurada na criação da base de dados que não é obrigatória. Nos casos em que ela (incremento automático) não é definida, é preciso garantir que não haverá valores repetidos nessa coluna;</li>
+	<li>São as chaves para o relacionamento entre entidades, ou tabelas, da base de dados. Assim, haverá, na tabela relacionada, uma <b>referência</b> a essa chave primária (que será, na tabela relacionada, a chave estrangeira).</li>
+</ul>
+
+Para criarmos uma chave primária, precisamos de um código como o mostrado na Listagem 
+<pre>CREATE TABLE Pessoa (
+	ID_Pessoa integer PRIMARY KEY AUTOINCREMENT,
+	Nome varchar(255),
+	Endereco varchar(255),
+	Cidade varchar(255)
+);	
+</pre>
+Linha 03: campo ID_Pessoa da tabela. Gera um campo de valores inteiros (integer), com uma constraint PRIMARY KEY que indica que esse campo se trata da chave primária da tabela. Note, ainda, que o definimos como sendo de auto incremento (AUTOINCREMENT);
+<br><br>
+
+Vale ressaltar que a chave primária é essencial para o funcionamento da base de dados, representando um registro único que facilita buscas e garante que cada valor dentro da tabela será diferente do outro.
