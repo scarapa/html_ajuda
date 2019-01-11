@@ -64,3 +64,17 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php</code></pre>
 No caso existem 2 arquivos(index.php e .htaccess) no projeto , na pasta <b>site</b> e na pasta <b>sistema</b>
+
+<hr>
+
+<h2>Criar link simbolico / symbolic link</h2>
+Primeiramente iremos deletar a pasta <code>var/www</code>
+<pre>$ sudo rm -rf /var/www/</pre>
+
+Criar o link simbolico; estando o ponteiro na RAIZ(<CODE><B>~</B></CODE>)
+<pre>$ sudo ln -s /media/beto/PROGRAMAS/www/ /var/</pre>
+
+Para deletar o link simbolico
+<pre>$ sudo unlink www</pre>
+
+<a href="https://www.vivaolinux.com.br/topico/Iniciantes-no-Linux/atalho-para-pasta-na-linha-de-comando">Fonte[1]</a> <a href="https://linoxide.com/linux-how-to/remove-symbolic-link/">Fonte[2]</a>
