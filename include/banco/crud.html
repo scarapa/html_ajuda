@@ -42,6 +42,14 @@
 <a href="http://www.dellanio.com/diferenca-entre-comandos-ddl-dml-dcl-e-tcl/">Fonte</a>
 <br clear="all">
 
+<h3>INSERT - RECUPERANDO O AUTOINCREMENT</h3>
+<pre><kbd>sqlserver</kbd>
+INSERT INTO tabela_nome (nome,matricula) VALUES('ROBERTO',11);
+SELECT IDENT_CURRENT('tabela_nome');
+</pre>
+
+<a href="https://blog.sqlauthority.com/2007/03/25/sql-server-identity-vs-scope_identity-vs-ident_current-retrieve-last-inserted-identity-of-record/">Fonte</a>
+
 <h3> SQLSERVER : CONCATENAR/AGRUPAR STRING</h3>	
 <div class="col-lg-3">
 	<div class="panel panel-default">
@@ -184,7 +192,7 @@ FROM Data ;
 <br clear="all">
 <a href="https://msdn.microsoft.com/pt-br/library/ms181765(v=sql.120).aspx">msdn.microsoft</a>
 
-<h3>SELECT COM INSERT</h3>
+<h3>SQLSERVER - SELECT COM INSERT</h3>
 <pre><code>SELECT * INTO <strong>NOME_NOVATABELA</strong> FROM <strong>TABELAATUAL</strong></code></pre>
 <code>OBS1: Pode escolher as colunas e inserir valores estaticos no <strong>SELECT</strong></code><br/>
 <code>OBS2: Pode por condição(WHERE) no <strong>SELECT</strong></code><br>
@@ -196,3 +204,6 @@ Exemplo abaixo:
 	<strong>WHERE</strong> no_nota < 6;</code></pre>
 <br clear="all">
 
+<h3>MYSQL - SELECT COM INSERT</h3>
+<pre>INSERT INTO tabela-destino (campo1, campo2...) SELECT campo1,campo2... FROM tabela-origem;</pre>
+<a href="https://codare.aurelio.net/2008/05/17/mysql-insert-com-select-na-mesma-query/">Fonte[1]</a>

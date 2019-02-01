@@ -1,6 +1,10 @@
 
 <h3>Arquivo com as funções amplamente utilizadas nos mais diversos sistemas</h3>
 <pre>
+/************************/
+/********* DATA *********/
+/************************/
+$('.data').mask('00/00/0000');    
 function converterDataEUAtoBR(data) {
     if(data.length == 0) return "";    
     var data = data.toString().split("-");
@@ -13,6 +17,9 @@ function converterDataBRtoEUA(data) {
     return data[2] + "-" + data[1] + "-" + data[0];
 }
 
+/************************/
+/********* AJAX *********/
+/************************/
 function replaceTudo(string, caracterProcurar, caracterSubstituir) {
     var i = 0;
     var novaString = "";
@@ -108,18 +115,36 @@ function ajaxGenericoPost(rota, variaveis) {
     return tmp;
 }
 
+/*********************/ 
+/***** MONETARIO *****/
+/*********************/ 
+$('.decimal').maskMoney({decimal:".", thousands:".",precision: 0});
 $( ".dinheiro" ).blur(function() {
     if( $(this).val() == "") { $(this).val('0,00'); }
 });  
 $(".dinheiro").maskMoney({decimal:",", thousands:"."});
 
+function converterBancoParaMoedaBR(numero) {
+    if(!validarTipoNumero(numero)){ return numero}
+    var numero =""+numero+"";
+    numero = numero.toFixed(2).split('.');
+    numero[0] = numero[0].split(/(?=(?:...)*$)/).join('.');
+    return numero.join(',');
+
+}
+
+/*********************/ 
+/****** VALIDAR ******/
+/*********************/ 
+function validarTipoNumero(numero){
+    if(isNaN(numero)){ return false; }
+    if(numero == null) { return false;}
+    if(numero == 'undefined') { return false;}
+    return true;
+}
 $('.soNumero').keyup(function() {
     $(this).val($(this).val().replace(/[^\d]/, ''));
 });
-
-$('.data').mask('00/00/0000');
-
-$('.decimal').maskMoney({decimal:".", thousands:".",precision: 0});
 
 $('.numeroSomentePonto').keydown(function() {
 	$(this).val($(this).val().replace(",", "."));
@@ -128,7 +153,7 @@ $('.numeroSomentePonto').keydown(function() {
 $(".cpf").mask("999.999.999-99");
 $(".cep").mask("99999-999");
 
-function rtrim(str) { return str.replace(/s+$/," ") ; }
+
 
 function mascaraGenerica(elemento , mascara){
     var charEspecial = "~`!#$%^&*+=-[]\\\';,/{}|\":<>?.";       
@@ -185,6 +210,104 @@ for (var i = 0; i < elementos.length; i++) {
         }
     });         
 } 
+
+/*********************/ 
+/****** STRING *******/
+/*********************/ 
+function rtrim(str) { return str.replace(/s+$/," ") ; }
+function arrayRetirarVazio(array){
+    var arrayNovo = [];
+    for (var i in array) {
+        if( array[i].toString().trim() != ""){
+            arrayNovo.push(array[i]);
+        }
+    }           
+    return arrayNovo;
+}
+
+function stringContarAparicao(palavra, char) {
+    palavra = palavra.toLowerCase();
+    var c = 0 ;
+    for (var i = 0; i < palavra.length; i++) {
+        if( palavra[i] == char) { c++;  }
+    }
+    return c;
+}
+
+/******************************/ 
+/****** CSS - ELEMENTOS *******/
+/******************************/ 
+/*  st_zerar => incluir => 0 = selecione  */
+function limparSelect(elemento,st_zerar){
+    document.getElementById(elemento).innerHTML = "";    
+    if(st_zerar){
+        var select = document.getElementById(elemento);
+        var option = document.createElement("option");
+        option.text = "SELECIONE";
+        option.value = 0;
+        select.appendChild(option);      
+    }
+}
+
+function carregarSelect(elemento,dados,colunaValor,colunaTexto){
+    var select = document.getElementById(elemento);    
+    for (var i = 0; i < dados.length; i++) {
+        var option = document.createElement("option");
+        option.text = dados[i][colunaTexto];
+        option.value = dados[i][colunaValor];
+        select.appendChild(option);
+    }      
+}
+
+function desabilitarBotao(id_elemento,flag){
+    if(flag){
+        document.getElementById(id_elemento).classList.add("habilitarBotao");
+        document.getElementById(id_elemento).classList.remove("desabilitarBotao");
+    }else{
+        document.getElementById(id_elemento).classList.add("desabilitarBotao");
+        document.getElementById(id_elemento).classList.remove("habilitarBotao");
+    }
+}
+
+function desabilitarElemento(elemento_id="",elemento_nome="",elemento_classe="",flag){
+    if(elemento_id != ""){
+        if(flag){
+            document.getElementById(elemento_id).classList.add("elementoHabilitar");
+            document.getElementById(elemento_id).classList.remove("elementoDesabilitar");
+        }else{
+            document.getElementById(elemento_id).classList.add("elementoDesabilitar");
+            document.getElementById(elemento_id).classList.remove("elementoHabilitar");
+        }
+    }else if(elemento_nome != "" ){
+        if(flag){
+            document.getElementsByName(elemento_nome).classList.add("elementoHabilitar");
+            document.getElementsByName(elemento_nome).classList.remove("elementoDesabilitar");
+        }else{
+            document.getElementsByName(elemento_nome).classList.add("elementoDesabilitar");
+            document.getElementsByName(elemento_nome).classList.remove("elementoHabilitar");
+        }
+        
+    }else if(elemento_classe != ""){
+        
+        var elemento = document.querySelectorAll("."+elemento_classe+"");
+        var numberclass =  document.querySelectorAll("."+elemento_classe+"").length; 
+        if(flag){
+            for(var i = 0; i< numberclass; i++) {
+                elemento[i].classList.add("elementoHabilitar");
+                elemento[i].classList.remove("elementoDesabilitar");
+            }
+            
+        }else{
+            for(var i = 0; i< numberclass; i++) {
+                elemento[i].classList.remove("elementoHabilitar");
+                elemento[i].classList.add("elementoDesabilitar");
+            }            
+        }        
+        
+    }else{
+        //NAO FAZ NADA
+    }
+}
 </pre>
 
 Para usar a função <code>mascara()</code>

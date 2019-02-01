@@ -21,5 +21,15 @@ Nas distribuições como Ubuntu, ou nele baseadas, os pacotes necessários podem
 <pre>$ sudo apt-get install openssh-client
 $ sudo apt-get install openssh-server
 </pre>
-
 <a href="https://www.vivaolinux.com.br/dica/Acesso-remoto-a-seu-GNULinux-via-linha-de-comando">Viva o Linux</a>
+
+<hr>
+
+<h3>Copiar arquivo remoto -> local</h3>
+Para podermos copiar arquivos da maquina remota para a maquina local. Primeiramente é preciso estar logado na maquina local.
+<br>
+Sintaxe para copiar
+<pre>$ scp -r <b>pasta ou arquivo maquina remota</b> 10.10.10.10:<b>pasta destino maquina local</b>
+$ scp -r <b>git_tutorial.pdf</b> 192.168.0.17:<b>/home/beto/Documentos</b></pre>
+
+<a href="https://kb.iweb.com/hc/en-us/articles/230241568-Copying-a-file-to-another-server-through-SSH">Fonte</a>

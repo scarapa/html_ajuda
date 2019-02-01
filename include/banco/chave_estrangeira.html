@@ -1,0 +1,39 @@
+A chave estrangeira, ou foreign key, é um conceito ligeiramente diferente. Ela não diz respeito, especificamente, a uma tabela, mas sim a um relacionamento entre tabelas. De forma sucinta, a chave estrangeira é uma referência, em uma tabela, a uma chave primária de outra tabela. Para facilitar a compreensão, tomemos como exemplo duas tabelas: <b>Pessoa e Carro</b>. Para montarmos um relacionamento entre elas, poderíamos ter, na tabela <b>Carro</b>, o campo <b>ID_Pessoa</b> fazendo referência à chave primária da tabela <b>Pessoa</b>.
+<br><br>
+
+Diferentemente da chave primária, a chave estrangeira:
+<ul>
+	<li>Pode ser nula (NOT NULL);</li>
+	<li>É um campo em uma tabela que faz referência a um campo que é chave primária em outra tabela;</li>
+	<li>É possível ter mais de uma (ou nenhuma) em uma tabela.</li>
+</ul>
+
+Um alerta: sobre as chaves estrangeiras aceitarem o valor null, é preciso ter cuidado. Embora não haja, efetivamente, nenhum problema com isso, tal característica pode gerar o que é chamado de “registro órfão”, isto é, um registro sem dados para um determinado relacionamento. Por exemplo, um registro de Pessoa que não possui Carro. Embora comum na realidade, é preciso levar em consideração essa regra de negócio na aplicação para evitar problemas.
+
+<pre>CREATE TABLE Carro (
+    ID_Carro integer PRIMARY KEY AUTOINCREMENT,
+    Nome varchar(255),
+    Marca varchar(255),
+    ID_Pessoa integer,
+    <b>CONSTRAINT</b> fk_PesCarro <b>FOREIGN KEY</b> (ID_Pessoa) <b>REFERENCES</b> Pessoa (ID_Pessoa)
+);
+</pre>	
+Linha 07: definição da chave estrangeira propriamente dita. Para isso, observe que adicionamos uma constraint chamada “fk_PesCarro” (nome padrão: misto dos nomes das tabelas relacionadas com o prefixo “fk”) como uma <b>FOREIGN KEY</b> (chave estrangeira) e associamos essa foreign key ao campo <b>ID_Pessoa</b> da tabela Carro. Ainda na mesma linha, definimos a referência propriamente dita (palavra-chave <b>REFERENCES</b>) à tabela Pessoa, especificamente ao campo <b>ID_Pessoa</b> da tabela Pessoa.
+
+<pre>CREATE TABLE Carro(
+	ID_Carro integer PRIMARY KEY AUTOINCREMENT,
+	Nome varchar(255),
+	Marca varchar(255),
+	ID_Pessoa integer,
+);
+<b>ALTER TABLE</b> Carro <b>ADD CONSTRAINT</b> fk_PesCarro <b>FOREIGN KEY</b> (ID_Pessoa) <b>REFERENCES</b> Pessoa (ID_Pessoa)	</pre>
+Linha 10: comando para adição da constraint com nome “fk_PesCarro”, do tipo FOREIGN KEY, para o campo ID_Pessoa da tabela Carro. Observe, também, a referência (palavra-chave REFERENCES) ao campo ID_Pessoa da tabela Pessoa.
+<br><br>
+
+Os blocos de comandos 1 e 2 fazem a mesma coisa, mas por caminhos diferentes. A chave estrangeira gerada é a mesma, bem como o relacionamento entre as tabelas Pessoa e Carro.
+<br><br>
+
+Um ponto digno de nota é que tanto as chaves estrangeiras quanto as chaves primárias podem ser compostas, ou seja, envolverem mais de um campo da tabela. Esse tipo de situação, no entanto, não é muito comum, pois prejudica principalmente a performance do acesso aos dados através de <b>comandos select</b>.
+<br><br>
+
+<a href="https://www.devmedia.com.br/sql-aprenda-a-utilizar-a-chave-primaria-e-a-chave-estrangeira/37636">devmedia</a>

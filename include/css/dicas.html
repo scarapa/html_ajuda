@@ -113,3 +113,18 @@ exemplo<br>
 Fonte: <a href="https://stackoverflow.com/questions/25248005/css-auto-numbers-for-table-rows-not-first">stackoverflow</a>
 , <a href="https://stackoverflow.com/questions/17012421/auto-number-table-rows">Fonte[2]</a>
 
+<h3>Bloquear Elemento</h3>
+Aqui vai uma opção interessante, sempre que você desabilita o componente, o mesmo não é submitido no POST, abaixo uma maneira de bloquear no form entretando submeter a informação contida no mesmo!
+
+<pre><kbd>CSS</kbd>
+.desabilitado {background:#A0A0A0}
+</pre>
+
+<pre><kbd>JS</kbd>
+$(".desabilitar").bind("keyup keydown click change", function(){  return false; });
+$(".desabilitar").attr("disabled","disabled");	
+</pre>
+
+<pre><kbd>HTML</kbd>
+&lt;input type="text" name="nm_titular" value="Roberto" class="form desabilitar" /&gt;
+</pre>
