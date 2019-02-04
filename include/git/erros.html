@@ -23,7 +23,7 @@ git pull</pre>
 
 <hr>
 
-<h3>Não faz o push</h3>
+<h3>Não faz o PUSH</h3>
 Mensagem de erro:<br/>
 <code>To prevent you from losing history, non-fast-forward updates were rejected Merge the remote changes (e.g. 'git pull') before pushing again.  See the 'Note about fast-forwards' section of 'git push --help' for details.</code>
 
@@ -33,3 +33,15 @@ Solução:<br/>
 
 <a href="https://stackoverflow.com/questions/3598355/i-am-not-able-to-push-on-git">stackoverflow</a> - 
 <a href="http://blog.locaweb.com.br/artigos/git-alem-do-push-e-pull-dicas-pra-voce-que-chegou-na-semana-passada/">Fonte 2</a>
+
+<hr>
+
+<h3>Não faz PULL</h3>
+Mensagem de erro:<br/>
+<code>git error  cannot lock ref 'refs/remotes/origin/master':</code>
+<pre>git gc --prune=now
+
+git remote prune origin
+
+git pull origin master</pre>
+<a href="https://stackoverflow.com/questions/2998832/git-pull-fails-unable-to-resolve-reference-unable-to-update-local-ref">Fonte</a>
