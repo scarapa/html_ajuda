@@ -133,6 +133,7 @@ SELECT
 SELECT * INTO <strong>nova_tabela</strong> FROM <strong>tabela_atual</strong></pre>
 <a href="https://imasters.com.br/artigo/12083/sql-server/como-copiar-estrutura-de-tabelas-no-sql-server?trace=1519021197&source=single">Fonte</a>
 
+<hr>
 
 <h3>Criar coluna <b>AUTOINCREMENT</b></h3>
 <pre><kbd>SQLSERVER</kbd>
@@ -150,6 +151,8 @@ SET IDENTITY_INSERT [TableName] OFF
 </pre>
 Fonte: Guilherme Dambros
 
+<hr>
+
 <h3>Exportando SCRIPT de banco de dados</h3>
 <pre><kbd>MYSQL</kbd>
 mysqldump -u usuario -p banco_de_dados > arquivo.sql
@@ -159,8 +162,8 @@ Onde:<br>
 <i>banco_de_dados:</i> nome do banco de dados que será exportado<br>
 <i>arquivo.sql:</i> nome do arquivo para o qual os dados serão gravados<br>
 Em seguida será solicitada a senha do usuário Mysql<br>
-Fonte:
-<a href="http://www.isoftsolutions.com.br/exportando-e-importando-banco-de-dados-no-mysql-pela-linha-de-comandos/">isoftsolutions</a>
+Fonte:<a href="http://www.isoftsolutions.com.br/exportando-e-importando-banco-de-dados-no-mysql-pela-linha-de-comandos/">isoftsolutions</a>
+<hr>
 
 <h3>Encontrar palavra na string</h3>
 <pre><code><kbd>SQLSERVER</kbd>
@@ -200,11 +203,10 @@ Retorno
 <pre><kbd>SQLSERVER</kbd>
 DECLARE @MIN INT=001; 
 DECLARE @MAX INT=100; 
-SELECT @MIN+FLOOR((@MAX-@MIN+1)*RAND(CONVERT(VARBINARY,NEWID())));
-</pre>
-
+SELECT @MIN+FLOOR((@MAX-@MIN+1)*RAND(CONVERT(VARBINARY,NEWID())));</pre>
 <a href="https://stackoverflow.com/questions/7878287/generate-random-int-value-from-3-to-6">stackoverflow</a>
 
+<hr>
 
 <h3>SERVIDOR - Identificando</h3>
 <pre><kbd>SQLSERVER</kbd>
@@ -234,17 +236,14 @@ Retorno:<br>
 Case: esse erro aconteceu quando tentava executar numa query o tipo INT , usar as aspas(''') para escapar nao funcionava.
 <pre><kbd>SQLSERVER</kbd>
 DECLARE @selectsql NVARCHAR(4000), @cnt INT;
-
 SELECT @selectsql = N'SELECT @cnt = COUNT(*) FROM Vwbckup'
-
 PRINT @selectsql
-
 PRINT @cnt
-
 EXEC sp_executesql @selectsql,  N'@cnt int output',  @cnt OUTPUT ;
-
 SELECT @cnt </pre>
-<a href="https://stackoverflow.com/questions/13607076/conversion-failed-when-converting-the-varchar-value-select-to-data-type-int?rq=1">Fonte</a>
+<a href="https://stackoverflow.com/questions/13607076/conversion-failed-when-converting-the-varchar-value-select-to-data-type-int?rq=1">Fonte[1]</a> 
+<a href="http://csharp-video-tutorials.blogspot.com/2017/05/dynamic-sql-output-parameter.html">Fonte[2]</a> 
+<a href="https://www.youtube.com/watch?v=na07ZODz-Gk">youtube</a>
 
 <hr>
 
