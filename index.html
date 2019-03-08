@@ -20,6 +20,7 @@
         <link href="css/whhg.css" rel="stylesheet" charset="utf-8">
         <link href="css/style.css" rel="stylesheet">
         <link href="css/checkbox3.min.css" rel="stylesheet">
+        <link href="css/datepicker.css" rel="stylesheet">
         <!-- <link href="css/select2.min.css" rel="stylesheet"> -->
         <link href="css/select2.1.css" rel="stylesheet">
 
@@ -30,11 +31,14 @@
         <!-- <script src="js/select2.min.js"></script> -->
         <script src="js/select2.1.js"></script>
         <script src="js/html2canvas.js"></script>
+        <script src="js/bootstrap-datepicker_1.6.1.js"></script>
 
         <script>
-            
-            //$(document).ready(function () {
-
+            /*
+            $(document).ready(function () {
+              
+            });
+            */
             window.onload = function(e){
                 var link = window.location.hash.replace('#','','g');
                 injetarURL(link);
@@ -44,6 +48,11 @@
                     link = link.replace('#','','g');
                     injetarURL(link)
                 });
+                
+                $(".calendario").datepicker({
+                    format: 'dd/mm/yyyy',                
+                    language: "pt-BR"
+                });    
 
                 function injetarURL(link) {
                     let arquivo, icone,texto, cabecalho , url;
@@ -68,8 +77,11 @@
                         $("#page-wrapper").prepend(cabecalho);
                     });
                 }
-            }                
-            //});
+
+             
+            }             
+
+
 
         </script>
     </head>
@@ -197,7 +209,8 @@
                                     <li><a href="#framework/alertas"><i class="mdi mdi-alert fa-fw"></i> Alertas</a></li>                                    
                                     <li><a href="#framework/botao"><i class="fa fa-hand-o-down"></i> Botões</a></li>
                                     <li><a href="#framework/botao_toggle"><i class="fa fa-hand-o-down"></i> Botão Toggle</a></li>
-                                    <li><a href="#framework/checkbox"><i class="fa fa-check-square fa-fw"></i> Checkbox</a></li>                                    
+                                    <li><a href="#framework/calendario"><i class="fa fa-calendar fa-fw"></i> Calendario</a></li>                                    
+                                    <li><a href="#framework/checkbox"><i class="fa fa-check-square fa-fw"></i> Checkbox</a></li>
                                     <li><a href="#framework/fontes"><i class="mdi mdi-function fa-fw"></i> Fontes</a></li>                                    
                                     <li><a href="#framework/form"><i class="fa fa-edit fa-fw"></i> Form</a></li>
                                     <li><a href="#framework/grid"><i class="fa fa-table fa-fw"></i> GRID</a></li>
