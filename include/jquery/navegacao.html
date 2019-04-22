@@ -1,0 +1,240 @@
+<style>
+    .conteudo ol{ counter-reset: item }
+    .conteudo li{ display: block }
+    .conteudo li:before{
+        content: counters(item, ".") ". ";
+        counter-increment: item
+    }
+    #childen {}
+</style>    
+Os exemplos abaixo serão sob o codigo abaixo:
+<pre><kbd>HTML</kbd>
+&lt;ol&gt;
+    &lt;li&gt;nivel&lt;/li&gt;
+    &lt;li&gt;nivel
+        &lt;ol&gt;
+            &lt;li&gt;sub nivel&lt;/li&gt;
+        &lt;/ol&gt;
+    &lt;/li&gt;
+    &lt;li&gt;nivel
+        &lt;ol&gt;
+            &lt;li&gt;sub nivel&lt;/li&gt;
+            &lt;li&gt;sub nivel
+                &lt;ol&gt;
+                    &lt;li&gt;sub sub nivel&lt;/li&gt;
+                    &lt;li&gt;sub sub nivel
+                        &lt;ol&gt;
+                            &lt;li&gt;sub sub sub nivel&lt;/li&gt;
+                            &lt;li&gt;sub sub sub nivel&lt;/li&gt;
+                        &lt;/ol&gt;
+                    &lt;/li&gt;
+                &lt;/ol&gt;
+            &lt;/li&gt;
+            &lt;li&gt;sub nivel&lt;/li&gt;
+        &lt;/ol&gt;
+    &lt;/li&gt;
+    &lt;li&gt;nivel&lt;/li&gt;
+&lt;/ol&gt;
+</pre>
+
+<hr>
+
+<h3>children</h3>
+<pre>$( "#children > li" ).click(function() {
+    $(this).children().css( "color", "red" );
+});</pre>
+<div id="children" class="conteudo">
+	<ol>
+		<li>nivel</li>
+		<li>nivel
+			<ol>
+				<li>sub nivel</li>
+			</ol>
+		</li>
+		<li>nivel
+			<ol>
+				<li>sub nivel</li>
+				<li>sub nivel
+					<ol>
+						<li>sub sub nivel</li>
+						<li>sub sub nivel
+							<ol>
+								<li>sub sub sub nivel</li>
+								<li>sub sub sub nivel</li>
+							</ol>
+						</li>
+					</ol>
+				</li>
+				<li>sub nivel</li>
+			</ol>
+		</li>
+		<li>nivel</li>
+	</ol>
+</div>
+
+<hr>
+
+<h3>next</h3>
+Metodo desconsidera os <b>filhos</b> pega o proximo <b>irmão</b> ou <b>superior</b>
+<div id="next" class="conteudo">
+	<ol>
+		<li>nivel</li>
+		<li>nivel
+			<ol>
+				<li>sub nivel</li>
+			</ol>
+		</li>
+		<li>nivel
+			<ol>
+				<li>sub nivel</li>
+				<li>sub nivel
+					<ol>
+						<li>sub sub nivel</li>
+						<li>sub sub nivel
+							<ol>
+								<li>sub sub sub nivel</li>
+								<li>sub sub sub nivel</li>
+							</ol>
+						</li>
+					</ol>
+				</li>
+				<li>sub nivel</li>
+			</ol>
+		</li>
+		<li>nivel</li>
+	</ol>
+</div>
+
+<hr>
+
+<h3>nextAll</h3>
+<div id="nextAll" class="conteudo">
+	<ol>
+		<li>nivel</li>
+		<li>nivel
+			<ol>
+				<li>sub nivel</li>
+			</ol>
+		</li>
+		<li>nivel
+			<ol>
+				<li>sub nivel</li>
+				<li>sub nivel
+					<ol>
+						<li>sub sub nivel</li>
+						<li>sub sub nivel
+							<ol>
+								<li>sub sub sub nivel</li>
+								<li>sub sub sub nivel</li>
+							</ol>
+						</li>
+					</ol>
+				</li>
+				<li>sub nivel</li>
+			</ol>
+		</li>
+		<li>nivel</li>
+	</ol>
+</div>
+
+<hr>
+
+<h3>parent</h3>
+<div id="parent" class="conteudo">
+	<ol>
+		<li>nivel</li>
+		<li>nivel
+			<ol>
+				<li>sub nivel</li>
+			</ol>
+		</li>
+		<li>nivel
+			<ol>
+				<li>sub nivel</li>
+				<li>sub nivel
+					<ol>
+						<li>sub sub nivel</li>
+						<li>sub sub nivel
+							<ol>
+								<li>sub sub sub nivel</li>
+								<li>sub sub sub nivel</li>
+							</ol>
+						</li>
+					</ol>
+				</li>
+				<li>sub nivel</li>
+			</ol>
+		</li>
+		<li>nivel</li>
+	</ol>
+</div>
+
+<hr>
+
+<h3>parents</h3>
+<div id="parents" class="conteudo">
+	<ol>
+		<li>nivel</li>
+		<li>nivel
+			<ol>
+				<li>sub nivel</li>
+			</ol>
+		</li>
+		<li>nivel
+			<ol>
+				<li>sub nivel</li>
+				<li>sub nivel
+					<ol>
+						<li>sub sub nivel</li>
+						<li>sub sub nivel
+							<ol>
+								<li>sub sub sub nivel</li>
+								<li>sub sub sub nivel</li>
+							</ol>
+						</li>
+					</ol>
+				</li>
+				<li>sub nivel</li>
+			</ol>
+		</li>
+		<li>nivel</li>
+	</ol>
+</div>
+<h3>prev</h3>
+<h3>siblings</h3>
+<h3>slice</h3>
+
+<h3>filter</h3>
+<h3>find</h3>
+
+
+<script type="text/javascript">
+$(document).ready(function () {
+	//CHILDREN
+	$(document).on('click', '#children li', function(){
+		console.log ( $(this).children() )
+	 	$(this).children().css( "color", "red" );
+	});
+	//NEXT
+	$(document).on('click', '#next li', function(){
+		console.log ( $(this).next() )
+	 	$(this).next().css( "color", "red" );
+	});	
+	//NEXTALL
+	$(document).on('click', '#nextAll li', function(){
+		console.log ( $(this).nextAll() )
+	 	$(this).nextAll().css( "color", "red" );
+	});	
+	//parent
+	$(document).on('click', '#parent li', function(){
+		console.log ( $(this).parent() )
+	 	$(this).parent().css( "color", "red" );
+	});		
+
+	//parents
+	$(document).on('click', '#parents li', function(){
+		console.log ( $(this).parents() )
+	 	$(this).parents().css( "color", "red" );
+	});		
+});	
+</script>
