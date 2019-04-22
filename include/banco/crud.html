@@ -6,32 +6,25 @@
 			<table class="table">
 				<tbody>
 					<tr>
-						<th>SELECT</th>
-						<td>recuperar dados do banco de dados</td>
+						<th>SELECT</th><td>recuperar dados do banco de dados</td>
 					</tr>
 					<tr>
-						<th>INSERT</th>
-						<td>inserir dados em uma tabela</td>
+						<th>INSERT</th><td>inserir dados em uma tabela</td>
 					</tr>
 					<tr>
-						<th>UPDATE</th>
-						<td>atualiza os dados existentes em uma tabela</td>
+						<th>UPDATE</th><td>atualiza os dados existentes em uma tabela</td>
 					</tr>
 					<tr>
-						<th>DELETE</th>
-						<td>exclui registros de uma tabela,</td>
+						<th>DELETE</th><td>exclui registros de uma tabela,</td>
 					</tr>
 					<tr>
-						<th>CALL</th>
-						<td>chamar um subprograma PL / SQL</td>
+						<th>CALL</th><td>chamar um subprograma PL / SQL</td>
 					</tr>
 					<tr>
-						<th>EXPLAIN PLAN</th>
-						<td>explicar o caminho de acesso aos dados</td>
+						<th>EXPLAIN PLAN</th><td>explicar o caminho de acesso aos dados</td>
 					</tr>
 					<tr>
-						<th>LOCK TABLE</th>
-						<td>controle de concorrência</td>
+						<th>LOCK TABLE</th><td>controle de concorrência</td>
 					</tr>					
 				</tbody>
 			</table>
@@ -42,13 +35,47 @@
 <a href="http://www.dellanio.com/diferenca-entre-comandos-ddl-dml-dcl-e-tcl/">Fonte</a>
 <br clear="all">
 
+<h2>INSERT</h2>
+
 <h3>INSERT - RECUPERANDO O AUTOINCREMENT</h3>
 <pre><kbd>sqlserver</kbd>
 INSERT INTO tabela_nome (nome,matricula) VALUES('ROBERTO',11);
 SELECT IDENT_CURRENT('tabela_nome');
 </pre>
 
+<hr>
+
+<h3>SELECT COM INSERT</h3>
+<pre><kbd>sqlserver</kbd>
+<code>SELECT * INTO <strong>NOME_NOVATABELA</strong> FROM <strong>TABELAATUAL</strong></code></pre>
+<code>OBS1: Pode escolher as colunas e inserir valores estaticos no <strong>SELECT</strong></code><br/>
+<code>OBS2: Pode por condição(WHERE) no <strong>SELECT</strong></code><br>
+Exemplo abaixo:
+<pre><code><strong>INSERT INTO</strong> alunos 
+	<strong>SELECT</strong> 
+		id,nome,'REPROVADOS' AS 'ds_obs' 
+	<strong>FROM</strong> alunos 
+	<strong>WHERE</strong> no_nota < 6;</code></pre>
+
+<hr>
+
+<h3>MYSQL - SELECT COM INSERT</h3>
+<pre>INSERT INTO tabela-destino (campo1, campo2...) SELECT campo1,campo2... FROM tabela-origem;</pre>
+<a href="https://codare.aurelio.net/2008/05/17/mysql-insert-com-select-na-mesma-query/">Fonte[1]</a>
+
+
 <a href="https://blog.sqlauthority.com/2007/03/25/sql-server-identity-vs-scope_identity-vs-ident_current-retrieve-last-inserted-identity-of-record/">Fonte</a>
+
+<hr>
+
+<h2>UPDATE</h2>
+<h3>UPDATE com DATABASES DIFERENTES</h3>
+<pre><kbd>mysql</kbd>
+UPDATE     tabela1
+INNER JOIN tabela2 ON tabela1.id = tabela2.id
+SET tabela1.dado1 = tabela1.dado1 + tabela2.dado2;</pre>
+<a href="https://pt.stackoverflow.com/questions/163532/como-fazer-um-update-usando-dados-de-duas-tabelas-diferentes">stackoverflow</a>
+
 
 <h3> SQLSERVER : CONCATENAR/AGRUPAR STRING</h3>	
 <div class="col-lg-3">
@@ -192,18 +219,4 @@ FROM Data ;
 <br clear="all">
 <a href="https://msdn.microsoft.com/pt-br/library/ms181765(v=sql.120).aspx">msdn.microsoft</a>
 
-<h3>SQLSERVER - SELECT COM INSERT</h3>
-<pre><code>SELECT * INTO <strong>NOME_NOVATABELA</strong> FROM <strong>TABELAATUAL</strong></code></pre>
-<code>OBS1: Pode escolher as colunas e inserir valores estaticos no <strong>SELECT</strong></code><br/>
-<code>OBS2: Pode por condição(WHERE) no <strong>SELECT</strong></code><br>
-Exemplo abaixo:
-<pre><code><strong>INSERT INTO</strong> alunos 
-	<strong>SELECT</strong> 
-		id,nome,'REPROVADOS' AS 'ds_obs' 
-	<strong>FROM</strong> alunos 
-	<strong>WHERE</strong> no_nota < 6;</code></pre>
-<br clear="all">
 
-<h3>MYSQL - SELECT COM INSERT</h3>
-<pre>INSERT INTO tabela-destino (campo1, campo2...) SELECT campo1,campo2... FROM tabela-origem;</pre>
-<a href="https://codare.aurelio.net/2008/05/17/mysql-insert-com-select-na-mesma-query/">Fonte[1]</a>

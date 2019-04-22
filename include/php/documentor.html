@@ -1,0 +1,187 @@
+<ul>
+    <li>@abstract</li>
+        Use a tag @abstract para declarar uma classe como abstrata, bem como para declarar quais métodos devem ser redefinidos em uma classe filha.
+        <br>
+        A tag @abstract é válida apenas no PHP 4, o PHP 5 possui uma palavra-chave abstract.    
+
+    <li>@access</li>
+        @access controla a documentação do phpDocumentor de um elemento.
+        <br>
+        Se @access for privado, o elemento não será documentado, a menos que seja especificado pela opção de linha de comando --parseprivate.    
+    <li>@author</li>
+        A tag @author é usada para documentar o autor de qualquer elemento que possa ser documentado (variável global, incluir, constante, função, definir, classe, variável, método, página). phpDocumentor irá pegar qualquer texto entre colchetes angulares
+
+    <li>@category</li>
+        A tag @category é usada para organizar grupos de pacotes juntos. Isso é diretamente aplicável ao XML: DocBook / peardoc2 Converter e pode ser usado por outros conversores. Outros conversores empacotados com o phpDocumentor ignoram a categoria, mas isso pode mudar em versões futuras. Também é possível especificar dinamicamente a categoria usando a opção de linha de comando -dc, --defaultcategoryname.
+
+    <li>@copyright</li>
+        A tag @copyright é usada para documentar as informações de direitos autorais de qualquer elemento que possa ser documentado (variável global, inclusão, constante, função, definição, classe, variável, método, página). O phpDocumentor exibirá a sequência de direitos autorais inalterada.
+        <br>
+        NOVIDADE v1.2 - @copyright agora é herdado por classes filhas de uma turma pai, consulte in-line {@inheritdoc}.    
+    <li>@deprecated</li>
+        A marca @deprecated é usada para documentar a versão de reprovação ou outras informações de qualquer elemento que possa ser documentado, exceto para a página (variável global, inclusão, constante, função, definição, classe, variável, método). Se presente, o phpDocumentor exibirá a seqüência de versão / informação opcional inalterada.
+        <br>
+        Use @depreciado para notificar os usuários sobre elementos obsoletos que não devem mais ser usados    
+    
+    <li>@example</li>
+        A tag de exemplo pode ser usada para analisar um arquivo de exemplo para realce de sintaxe e vinculação à documentação. Esta tag versátil tenta ler o arquivo do caminho completo especificado e aceitará qualquer caminho que http://www.php.net/fopen aceitará. O phpDocumentor verifica o caminho para garantir que o arquivo recuperado tenha uma extensão .php válida, conforme definido no phpDocumentor.ini, e abra o arquivo. Ele analisará o arquivo e gerará a fonte realçada pela sintaxe com números de linha, links para a documentação e adicionará um link para a documentação desse arquivo.
+        <br>
+        Se for dado um caminho absoluto, o phpDocumentor não procurará mais o arquivo de exemplo. Se for fornecido um caminho relativo (nenhum c: \ ou principal), o phpDocumentor procurará arquivos de exemplos primeiro no diretório especificado pela linha de comandos -ed, --examplesdir, se presente. A partir do phpDocumentor 1.2.1, ele procurará o arquivo em um subdiretório examples / / do diretório do arquivo atual. Caso contrário, ele procurará por um subdiretório chamado "examples" no diretório de análise de nível superior e, se não for encontrado, no diretório de nível superior.
+        <br>        
+        O diretório de análise de nível superior é simplesmente o diretório que todos os arquivos analisados ​​têm em comum.
+        <br>        
+        A tag @filesource tem um objetivo semelhante, mas, em vez de analisar um arquivo separado, analisa a origem do arquivo atual.
+        <br>        
+        Para fazer um exemplo de código sequencial, use a tag html <code> ou a nova tag {@example} in-line  </code>
+
+    <li>@final</li>
+        Use a tag para declarar um método que não pode ser substituído em uma classe filha.
+        <br>
+        A tag é válida apenas no PHP 4, o PHP 5 possui uma palavra-chave final.
+
+    <li>@filesource</li>
+        A tag @filesource só pode ser usada em um DocBlock no nível da página, ela será ignorada em qualquer outro lugar. O phpDocumentor analisa a origem do arquivo atual e produz o código-fonte realçado pela sintaxe com números de linha, links para a documentação e, em seguida, adiciona um link ao arquivo gerado na documentação.
+        <br>
+        A tag @example tem um objetivo semelhante, mas foi projetada para analisar e criar um link para um arquivo de exemplo externo.
+        <br>
+        @filesource só funciona com o PHP 4.3.0+ devido ao uso da extensão do tokenizer, que não era estável antes do PHP 4.3.0. Vá para http://www.php.net e faça o download do PHP 4.3.0 para usar @filesource    
+
+    <li>@global</li>
+        Como não há uma maneira padrão de declarar variáveis ​​globais, o phpDocumentor requer que uma tag @global seja usada em um bloco de documentos que precede a definição de uma variável global. Para suportar o uso anterior de @global, há uma sintaxe alternativa que se aplica aos DocBlocks que precedem uma função, usada para documentar o uso de variáveis ​​globais. Em outras palavras, existem dois usos de @global: definição e uso de função.
+        <br>
+        O phpDocumentor não tentará analisar automaticamente quaisquer variáveis ​​globais. Apenas uma tag @global é permitida pela variável global DocBlock. Uma variável global DocBlock deve ser seguida pela definição da variável global antes que qualquer outro elemento ou DocBlock ocorra na origem, ou um erro será gerado.
+        <br>
+        O tipo de dados deve ser um tipo de PHP válido ou "misto".
+        <br>
+        $ varname deve ser o nome EXATO da variável global conforme é declarado na fonte (use @name para alterar o nome exibido pela documentação)
+        <br>
+        A sintaxe function / method @global é usada para documentar o uso de variáveis ​​globais em uma função, e NÃO DEVE ter um $ iniciando a terceira palavra. O tipo de dados será ignorado se uma correspondência for feita entre a variável global declarada e uma variável documentada no projeto.
+        <br>
+        phpDocumentor verificará se o tipo especificado é o nome de uma classe que foi analisada. Em caso afirmativo, ele fará um link para essa classe como o tipo em vez de apenas o tipo.
+        <br>
+        phpDocumentor exibirá a descrição opcional não modificada    
+
+    <li>@ignore</li>
+        Use @ignore para evitar que o phpDocumentor documente um elemento, como um elemento duplicado.
+
+    <li>@internal</li>
+        Use para facilitar a criação de dois conjuntos de documentação, um para desenvolvedores avançados ou para uso interno da empresa, e outro para o público geral do PHP. Use esta tag ou seu primo inline {@internal}}
+        <br>
+        @internal responde à linha de comando -pp, --parseprivate, já que @internal e --parseprivate compartilham o mesmo propósito. Em ambos os casos, a intenção é permitir a criação de dois conjuntos de documentação, um para uso público e outro para um subconjunto de desenvolvedores, seja os desenvolvedores do projeto ou aqueles que desejam estender o projeto. Em essência, ele permite a criação de documentação em nível de usuário e em nível de programador a partir da mesma fonte, e é um dos recursos mais úteis do phpDocumentor.    
+
+    <li>@license</li>
+        Você pode usar a tag <b>@license</b> para documentar qualquer elemento (incluir, página, classe, função, definir, método, variável)
+        <br>
+        URL é qualquer Localizador Uniforme de Recursos válido que aponte para o texto completo de uma licença. A descrição da licença é opcional    
+
+    <li>@link</li>
+        Você pode usar a tag @link para documentar qualquer elemento (incluir, página, classe, função, definição, método, variável). As diretrizes para dar o nome do elemento a @link são as mesmas descritas na página de manual @see.
+        A menos que seja vinculado a um elemento, o @link assume que os argumentos transmitidos são URLs totalmente formados. De um modo geral, se você quiser vincular a documentação de um elemento, use @see ou inline {@link} ... você pode usar @link, mas as outras opções são melhores.
+        <br>
+        URL é qualquer Localizador Uniforme de Recursos válido (http://www.example.com, telnet: //example.com, ftp://ftp.example.com, mailto: email@example.com, etc.)
+        <br>        
+        Observe que, a partir da versão 1.2.0, é possível especificar uma descrição curta para o link usar como o texto do link em vez do URL.    
+
+    <li>@method</li>
+        Mostra um método "mágico" que é encontrado dentro da classe.
+        <br>
+        returntype deve ser um tipo PHP válido ou "misto". O phpDocumentor exibirá a descrição opcional não modificada, e o padrão será "void" se o returntype não estiver presente.    
+
+    <li>@name </li>
+        O phpDocumentor reconhece a tag <b>@name</b> na variável global DocBlocks (em conjunto com @global), e usa-a para renomear uma variável global para documentação para torná-la mais legível. Um nome de variável global DEVE começar com um sinal de dólar ($) ou o phpDocumentor irá ignorar a tag e gerar um erro.    
+
+    <li>@package</li>
+        Só pode ser usado para documentar páginas ou classes procedurais.
+        <br>
+        Pacotes são usados ​​para ajudá-lo a agrupar logicamente elementos relacionados. Você escreve classes para agrupar funções relacionadas e dados, e o phpDocumentor representa o conteúdo de arquivos (funções, definições e inclusões) como "Páginas de Procedimentos". Um pacote é usado para agrupar classes e páginas procedurais da mesma maneira que um diretório agrupa arquivos relacionados.
+        <br>
+        Se encontrado em um DocBlock de nível de página, packagename especifica o pacote ao qual pertencem todas as funções, includes e define no arquivo php. Se encontrado em um DocBlock de nível de classe, packagename especifica o pacote ao qual a classe pertence.
+        Se não estiver presente, o pacote de uma classe é definido como padrão ou o valor da opção de linha de comando -dn, mesmo que o pacote de nível de página esteja definido como outro valor. Isso pode ser alterado pela opção de linha de comando -dn ou --defaultpackagename. PACOTES DEVEM SER UMA PALAVRA SEM ESPAÇOS OU LINHAS RECENTES CONTENDO LETRAS, DÍGITOS E "_", "-", "[" ou "]"
+        <br>
+        @package agrupa arquivos php juntos para documentação.
+        <br>
+        Existem duas maneiras de analisar uma tag @package:
+            - pacote de nível de página (define, funções, inclui / requer)<br>
+            - pacote de nível de classe (classe, todas as suas variáveis ​​e métodos)<br>
+        
+        Se um arquivo contiver funções e definições, elas serão empacotadas por um DocBlock de nível de página. Um DocBlock de nível de página é um DocBlock no topo de um arquivo que precede outro DocBlock. Em outras palavras, não é emparelhado com nenhum elemento phpDocumentor (include, function, define, class, função de classe, variável de classe).    
+
+    <li>@param</li>
+    NOTA: a partir de 0.4.1, o <b>@param</b> pode documentar o estilo phpdoc.de, com o paramount $ opcional
+    <br>
+    O tipo de dados deve ser um tipo PHP válido (int, string, bool, etc), um nome de classe para o tipo de objeto ou simplesmente "mixed". Além disso, você pode listar vários tipos de dados para um único parâmetro, delimitando-os com o canal (por exemplo, "@param int | string $ p1"). Você pode documentar os parâmetros listados ou quaisquer parâmetros opcionais que serão analisados ​​pelas funções PHP padrão func_num_args () / get_func_arg (). O formato de nome recomendado para os parâmetros listados com func_get_arg () é:
+    <br>
+        <ul>
+            <li>$paramname se houver apenas um parâmetro</li>
+            <li>$paramname, ... se o número de parâmetros for ilimitado</li>
+        </ul>
+    <br>
+    O phpDocumentor exibirá a descrição opcional não modificada.
+    <br>
+    Note que o $paramname, ... será mostrado nos documentos de saída tanto na lista de parâmetros como na assinatura da função. Se você não está indicando no código real que o parâmetro é opcional (via "$ paramname = 'um valor padrão'"), então você deve mencionar na descrição do parâmetro que o parâmetro é opcional.    
+    
+    <li>@property</li>
+    Mostra uma variável de propriedade "mágica" encontrada dentro da classe.
+    <br>
+    O tipo de dados deve ser um tipo de PHP válido ou "misto". O phpDocumentor exibirá a descrição opcional não modificada e será padronizada como "mista" se o tipo de dados não estiver presente.
+    <br>
+    Presume-se que a propriedade esteja disponível para operações de leitura e gravação. Se a propriedade for somente leitura, você deverá usar a tag @property-read. Se a propriedade for somente escrita, use @ property-write.    
+
+    <li>@return</li>
+    A tag @return é usada para documentar o valor de retorno de funções ou métodos. @returns é um alias para @return para suportar formatos de tags de outros documentadores automáticos
+    <br>
+    O tipo de dados deve ser um tipo PHP válido (int, string, bool, etc), um nome de classe para o tipo de objeto retornado ou simplesmente "mixado". Se você quiser mostrar explicitamente vários tipos de retorno possíveis, liste-os delimitados por canal sem espaços (por exemplo, "@return int | string"). Se um nome de classe for usado como o tipo de dados na tag @return, o phpDocumentor criará automaticamente um link para a documentação dessa classe. Além disso, se uma função retornar vários valores possíveis, separe-os usando o | caractere, e phpDocumentor irá analisar quaisquer nomes de classe no valor de retorno. O phpDocumentor exibirá a descrição opcional não modificada.    
+    
+    <li>@see</li>
+        A tag pode ser usada para documentar qualquer elemento (variável global, incluir, página, classe, função, definir, método, variável)
+        <br>
+        <b>@see</b> exibe apenas links para a documentação do elemento. Se você quiser exibir um hiperlink, use @link ou inline {@link}
+        
+        Novo na versão 1.2: Você pode vincular a qualquer função definida na versão atual do php usando o nome da função. Esta ligação é feita usando a função padrão do php http://www.php.net/get_defined_functions, e então depende da versão do php que é usada para executar o phpDocumentor. Uma vantagem deste método é que o destaque da função será atualizado automaticamente com uma atualização do php sem qualquer alteração no código subjacente. Você também pode se conectar diretamente a qualquer parte do site php usando o pacote falso sobrescrito PHP_MANUAL (como em PHP_MANUAL # get_defined_functions, ou PHP_MANUAL # support.php)
+        <br>
+        Juntamente com inline {@link}, a tag @see está entre os recursos mais úteis do phpDocumentor. Com esta tag, você pode criar um link para qualquer elemento (exceto include / require) na documentação com uma ampla variedade de opções. O parser @see pode ser informado exatamente onde procurar usando alguma pontuação básica:
+        <ul>
+            <li><b>::</b> - Esta é a substituição do escopo da classe. Use-o para dizer ao analisador @see qual classe procurar pelo elemento especificado, como classname :: methodname () ou classname :: $ variablename.</li>
+            <li><b>()</b> - Quando presente no final do nome do elemento, como elementname (), isso diz ao analisador @see para procurar por uma função ou método.</li>
+            <li><b>$</b> - Quando presente no início do nome do elemento, como $ elementname, isso diz ao analisador @see para procurar por uma variável na classe atual.</li>
+        </ul>    
+        No entanto, <b>@see</b> também é inteligente o suficiente para reconhecer taquigrafia. Se <b>@see</b> receber um nome de elemento sem pontuação, ele procurará um elemento nesta ordem:
+        <ul>
+            <li>é elementname o nome de uma classe?</li>
+            <li>é elementname o nome de uma página procedural? (file.ext)</li>
+            <li>é elementname o nome de um define?</li>
+    
+            <li>se o DocBlock que contém o @see estiver em uma classe:
+                <ul>
+                    <li>é elementname um método?</li>
+                    <li>é elementname uma variável?</li>
+                </ul>
+            </li>
+            <li>é elementname uma função?</li>
+        </ul>
+        <b>@see</b> a análise é um pouco mais lenta quando passa um nome de elemento sem pontuação, especialmente se o nome do elemento for uma função, portanto use-o com moderação em projetos grandes (mais de 500 elementos com @sees em seus blocos de notas). O melhor uso para o nome de elemento sem pontuação está em um projeto cujos nomes de classes estão em fluxo.    
+
+    <li>@since </li>
+        Pode ser usada para documentar a versão de lançamento de qualquer elemento que possa ser documentado (variável global, inclusão, constante, função, definição, classe, variável, método, página). phpDocumentor exibirá a string de versão / info inalterada.
+        <br>
+        Use para documentar revisões, como em "Esta função faz parte deste pacote desde a versão 2.0"    
+    
+    <li>@static</li>
+        Use a tag para declarar uma variável ou um método como estático. Elementos estáticos podem ser chamados sem referência a um objeto de classe instanciado, como em class :: variable e class :: method ().
+    
+    <li>@staticvar</li>
+    <li>@subpackage</li>
+
+    <li>@todo</li>
+        Use @todo para documentar mudanças planejadas em um elemento que não tenha sido implementado. O phpDocumentor exibirá a sequência de informações inalterada.
+        <br>
+        A tag @todo pode ser usada para documentar mudanças futuras em quase qualquer elemento que possa ser documentado (variável global, constante, função, definição, classe, variável, método, página). Desde v1.3.0, @todo não pode mais ser usado em um elemento "include".    
+
+    <li>@tutorial</li>
+    <li>@uses</li>
+    <li>@var</li>
+    <li>@version</li>
+</ul>
+
+
+<a href="https://manual.phpdoc.org/HTMLSmartyConverter/HandS/phpDocumentor/tutorial_tags.pkg.html">Fonte</a>
