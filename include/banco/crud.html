@@ -45,7 +45,7 @@ SELECT IDENT_CURRENT('tabela_nome');
 
 <hr>
 
-<h3>SELECT COM INSERT</h3>
+<h3>SELECT COM INSERT E ESTRUTURA</h3>
 <pre><kbd>sqlserver</kbd>
 <code>SELECT * INTO <strong>NOME_NOVATABELA</strong> FROM <strong>TABELAATUAL</strong></code></pre>
 <code>OBS1: Pode escolher as colunas e inserir valores estaticos no <strong>SELECT</strong></code><br/>
@@ -59,6 +59,16 @@ Exemplo abaixo:
 
 <hr>
 
+<h3>SELECT COM INSERT E SEM ESTRUTURA</h3>
+<pre><kbd>sqlserver</kbd>
+<b style="color:blue">INSERT INTO</b> table-name (column-names) 
+    <b style="color:blue">SELECT</b>
+    	column-names
+    <b style="color:blue">FROM</b> table-name
+    <b style="color:blue">WHERE</b> condition</pre>
+<a href="https://www.dofactory.com/sql/insert">Fonte</a>
+<hr>
+
 <h3>MYSQL - SELECT COM INSERT</h3>
 <pre>INSERT INTO tabela-destino (campo1, campo2...) SELECT campo1,campo2... FROM tabela-origem;</pre>
 <a href="https://codare.aurelio.net/2008/05/17/mysql-insert-com-select-na-mesma-query/">Fonte[1]</a>
@@ -69,13 +79,23 @@ Exemplo abaixo:
 <hr>
 
 <h2>UPDATE</h2>
-<h3>UPDATE com DATABASES DIFERENTES</h3>
+<h3>UPDATE com TABELAS DIFERENTES</h3>
 <pre><kbd>mysql</kbd>
-UPDATE     tabela1
-INNER JOIN tabela2 ON tabela1.id = tabela2.id
-SET tabela1.dado1 = tabela1.dado1 + tabela2.dado2;</pre>
+<b style="color:blue">UPDATE</b> tabela1
+	<b style="color:gray">INNER JOIN</b> tabela2 ON tabela1.id = tabela2.id
+<b style="color:blue">SET</b> tabela1.dado1 = tabela1.dado1 + tabela2.dado2;</pre>
 <a href="https://pt.stackoverflow.com/questions/163532/como-fazer-um-update-usando-dados-de-duas-tabelas-diferentes">stackoverflow</a>
 
+<br clear="all">
+
+<pre><kbd>mssql</kbd>
+<span style="font-weight:bold;color:#FF00FF">UPDATE</span> tabela_1
+	<b style="color:blue">SET</b> indice = 'teste 1' 
+<b style="color:blue">FROM</b> tabela_1
+	<b style="color:gray">LEFT JOIN</b> tabela_2 <b style="color:blue">ON</b> tabela_1.cd_ident = tabela_2.cd_ident
+<b style="color:blue">WHERE</b> tabela_1.cd_ident = 157
+</pre>
+<a href="https://social.msdn.microsoft.com/Forums/pt-BR/6efe3146-9077-4e42-9a69-56469dc23951/update-com-inner-join?forum=analysisservicespt">microsoft</a>
 
 <h3> SQLSERVER : CONCATENAR/AGRUPAR STRING</h3>	
 <div class="col-lg-3">
