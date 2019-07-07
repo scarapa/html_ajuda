@@ -1,0 +1,44 @@
+<h3>Eventos do ciclo de vida</h3>
+<div style="margin:0 auto;width:100%;text-align:center;"><img src="./images/ionic_vida_de_ciclo.png" style="width:80%;border:1px solid black"/></div>
+<br clear="all">
+Os eventos do Ionic 2 Navigation são bastante semelhantes aos do iOS. Veja um diagrama que explica como eles funcionam:
+<br><br>
+
+<b>ionViewDidLoad</b><br>
+Disparado somente quando uma visão é armazenada na memória. Este evento NÃO é disparado ao entrar em uma exibição que já está em cache. É um bom lugar para tarefas relacionadas ao init.
+<br><br>
+
+<b>ionViewWillEnter</b><br>
+é acionado quando você entra em uma página antes de se tornar a ativa. Use-o para tarefas que você deseja fazer toda vez que entrar na visualização (definindo ouvintes de eventos, atualizando uma tabela, etc.).
+<br><br>
+
+<b>ionViewDidEnter</b><br>
+Disparado ao entrar em uma página, depois que ela se torna a página ativa. Bastante semelhante ao anterior.
+<br><br>
+
+<b>ionViewWillLeave</b><br>
+Disparado quando você deixa uma página, antes de deixar de ser a ativa. Use-o para coisas que você precisa executar toda vez que estiver deixando uma página (desative os ouvintes de eventos, etc.).
+<br><br>
+
+<b>ionViewDidLeave</b><br>
+Disparado quando você deixa uma página, depois que ela deixa de ser a ativa. Semelhante ao anterior.
+<br><br>
+
+<b>ionViewWillUnload</b><br>
+Disparado quando uma visão será completamente removida (depois de deixar uma exibição não armazenada em cache).
+<br><br>
+
+<h3>Nav guards</h3>
+Existem dois outros métodos poderosos relacionados a esses eventos: guardas nav. Esses métodos são focados no controle de acesso à exibição (com fins de autenticação).
+<br><br>
+
+<b>ionViewCanEnter</b><br>
+Disparado antes de entrar em uma visão, permite que você controle se a visão pode ser acessada ou não (retornando verdadeiro ou falso).
+<br><br>
+
+<b>ionViewCanLeave</b><br>
+Disparado antes de deixar uma visão, permite que você controle se a visão pode ser deixada ou não.
+<br><br>
+
+<b style="color:red">É importante destacar que os Guardas de Navegação são executados antes de qualquer outro método de evento de ciclo de vida.</b><br>
+<a href="https://ionicframework.com/blog/navigating-lifecycle-events/">Fonte</a>
