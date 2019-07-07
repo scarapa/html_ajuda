@@ -1,6 +1,9 @@
-﻿
+﻿<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+
 <script type="text/javascript">
-  $('#nome').select2();
+  	$('#nome').select2();
+   	$('.js-example-basic-multiple').select2();
 </script>
 
 <h2><i class="fa fa-search-plus fa-fw"></i> Select</h2>
@@ -19,5 +22,79 @@
 		<option>Tonia Laura</option>
 		<option>Vagner</option>						
 	</select>
-
 </div>
+
+<br clear="all">
+
+<h2>Multi-select boxes (pillbox)</h2>
+<h3>Select2 also supports multi-value select boxes. The select below is declared with the multiple attribute.</h3>
+
+<div class="s2-example">
+  <p>
+	<select class="js-example-basic-multiple" name="states[]" multiple="multiple">
+  <optgroup label="Alaskan/Hawaiian Time Zone" data-select2-id="62">
+    <option value="AK" data-select2-id="63">Alaska</option>
+    <option value="HI" data-select2-id="64">Hawaii</option>
+  </optgroup>
+  <optgroup label="Pacific Time Zone" data-select2-id="65">
+    <option value="CA" data-select2-id="66">California</option>
+    <option value="NV" data-select2-id="67">Nevada</option>
+    <option value="OR" data-select2-id="68">Oregon</option>
+    <option value="WA" data-select2-id="69">Washington</option>
+  </optgroup>
+  <optgroup label="Mountain Time Zone" data-select2-id="70">
+    <option value="AZ" data-select2-id="71">Arizona</option>
+    <option value="CO" data-select2-id="72">Colorado</option>
+    <option value="ID" data-select2-id="73">Idaho</option>
+    <option value="MT" data-select2-id="74">Montana</option>
+    <option value="NE" data-select2-id="75">Nebraska</option>
+    <option value="NM" data-select2-id="76">New Mexico</option>
+    <option value="ND" data-select2-id="77">North Dakota</option>
+    <option value="UT" data-select2-id="78">Utah</option>
+    <option value="WY" data-select2-id="79">Wyoming</option>
+  </optgroup>
+  <optgroup label="Central Time Zone" data-select2-id="80">
+    <option value="AL" data-select2-id="81">Alabama</option>
+    <option value="AR" data-select2-id="82">Arkansas</option>
+    <option value="IL" data-select2-id="83">Illinois</option>
+    <option value="IA" data-select2-id="84">Iowa</option>
+    <option value="KS" data-select2-id="85">Kansas</option>
+    <option value="KY" data-select2-id="86">Kentucky</option>
+    <option value="LA" data-select2-id="87">Louisiana</option>
+    <option value="MN" data-select2-id="88">Minnesota</option>
+    <option value="MS" data-select2-id="89">Mississippi</option>
+    <option value="MO" data-select2-id="90">Missouri</option>
+    <option value="OK" data-select2-id="91">Oklahoma</option>
+    <option value="SD" data-select2-id="92">South Dakota</option>
+    <option value="TX" data-select2-id="93">Texas</option>
+    <option value="TN" data-select2-id="94">Tennessee</option>
+    <option value="WI" data-select2-id="95">Wisconsin</option>
+  </optgroup>
+  <optgroup label="Eastern Time Zone" data-select2-id="96">
+    <option value="CT" data-select2-id="97">Connecticut</option>
+    <option value="DE" data-select2-id="98">Delaware</option>
+    <option value="FL" data-select2-id="99">Florida</option>
+    <option value="GA" data-select2-id="100">Georgia</option>
+    <option value="IN" data-select2-id="101">Indiana</option>
+    <option value="ME" data-select2-id="102">Maine</option>
+    <option value="MD" data-select2-id="103">Maryland</option>
+    <option value="MA" data-select2-id="104">Massachusetts</option>
+    <option value="MI" data-select2-id="105">Michigan</option>
+    <option value="NH" data-select2-id="106">New Hampshire</option>
+    <option value="NJ" data-select2-id="107">New Jersey</option>
+    <option value="NY" data-select2-id="108">New York</option>
+    <option value="NC" data-select2-id="109">North Carolina</option>
+    <option value="OH" data-select2-id="110">Ohio</option>
+    <option value="PA" data-select2-id="111">Pennsylvania</option>
+    <option value="RI" data-select2-id="112">Rhode Island</option>
+    <option value="SC" data-select2-id="113">South Carolina</option>
+    <option value="VT" data-select2-id="114">Vermont</option>
+    <option value="VA" data-select2-id="115">Virginia</option>
+    <option value="WV" data-select2-id="116">West Virginia</option>
+  </optgroup>
+</select><span class="select2 select2-container select2-container--default select2-container--below" dir="ltr" data-select2-id="60" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--multiple" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="-1"><ul class="select2-selection__rendered"><li class="select2-search select2-search--inline"><input class="select2-search__field" type="search" tabindex="0" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" role="textbox" aria-autocomplete="list" placeholder="" style="width: 0.75em;"></li></ul></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+  </p>
+</div>
+
+<br><br>
+<a href="https://select2.org/getting-started/basic-usage">Fonte</a>

@@ -1,0 +1,24 @@
+<h3>SELECT</h3>
+
+<pre>
+</pre>
+
+<h3>CHECKBOX</h3>
+<h4> - VERIFICAR MARCACAO</h4>
+
+<pre class="codificacao codigoJS">
+$("#idComponente").click( function(){
+    //SE ESTIVER CHECHADO RETORNA <span style="color:blue">TRUE</span>
+    if ( <b>$(this).is(':checked')</b> ){
+        //MARCA TODOS OS INPUTS
+        $("input[type='checkbox']").prop( "checked", true );
+    }else{
+        //DESMARCA TODOS OS INPUTS        
+        $("input[type='checkbox']").prop( "checked", false );
+    }
+});</pre>
+
+
+<h4>REMOVER LINK</h4>
+<pre>$("a").removeAttr("href");</pre>
+<a href="https://www.tutorialrepublic.com/faq/how-to-remove-attribute-from-an-html-element-in-jquery.php">Fonte</a>
