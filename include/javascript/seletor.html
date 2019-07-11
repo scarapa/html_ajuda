@@ -7,7 +7,7 @@
 	<li>document.querySelectorAll</li>
 </ol>
 
-<h3>ID</h3>
+<h3>1 - ID</h3>
 <pre>document.getElementById("demo");</pre>
 
 <pre>
@@ -16,7 +16,7 @@ x.style.color = "red";
 </pre>
 
 
-<h3>CLASSE</h3>
+<h3>2 - CLASSE</h3>
 <pre>var x = document.getElementsByClassName("example");</pre>
 
 <pre>
@@ -28,42 +28,40 @@ for (i = 0; i < x.length; i++) {
 </pre>
 
 
-<h3>NOME</h3>
+<h3>3 - NAME</h3>
+3.1
 <pre>var x = document.getElementsByName("fname");</pre>
-
+3.2
 <pre>var x = document.getElementsByName("animal");
 for(var i = 0; i < x.length; i++) {
     if (x[i].type == "checkbox") {
         x[i].checked = true;
     }
 } </pre>
-
-<h3>SELETOR</h3>
-<pre>
-<kbd>querySelectorAll</kbd>
-	var x = querySelectorAll("animal");
-
-<kbd>querySelector</kbd>
-	var x = querySelector("animal");	
-</pre>
-
-<pre>
-var x = document.getElementsByName("animal");
+3.3
+<pre>var x = document.getElementsByName("animal");
 var i;
 for (i = 0; i < x.length; i++) {
-    if (x[i].type == "checkbox") {
-        x[i].checked = true;
-    }
+	if (x[i].type == "checkbox") {
+		x[i].checked = true;
+	}
 } 	
 </pre>
 
+<h3>5 - querySelector</h3>	
+<pre><kbd>querySelector</kbd>
+	var x = querySelector("animal");	
+</pre>
+
+<h3>6 - querySelectorAll</h3>
+<pre><kbd>querySelectorAll</kbd>
+	var x = querySelectorAll("animal");</pre>
 
 <h3>VALIDAR RADIO/CHECKBOX</h3>
 <pre><kbd>HTML</kbd>
 
 <kbd>JS</kbd>
-var valor = document.querySelector("input[name=tipo_contrato]:checked").value 
-</pre>
+var valor = document.querySelector("input[name=tipo_contrato]:checked").value</pre>
 
 <h3>VALIDAR RADIO/CHECKBOX</h3>
 <pre><kbd>HTML</kbd>
