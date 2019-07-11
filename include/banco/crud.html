@@ -69,13 +69,19 @@ Exemplo abaixo:
 <a href="https://www.dofactory.com/sql/insert">Fonte</a>
 <hr>
 
+
 <h3>MYSQL - SELECT COM INSERT</h3>
 <pre>INSERT INTO tabela-destino (campo1, campo2...) SELECT campo1,campo2... FROM tabela-origem;</pre>
 <a href="https://codare.aurelio.net/2008/05/17/mysql-insert-com-select-na-mesma-query/">Fonte[1]</a>
-
-
 <a href="https://blog.sqlauthority.com/2007/03/25/sql-server-identity-vs-scope_identity-vs-ident_current-retrieve-last-inserted-identity-of-record/">Fonte</a>
 
+<h3>SQLSERVER - RECUPERAR VALOR CHAVE PRIMARIA</h3>
+<pre><kbd>sqlserver</kbd>
+INSERT INTO DadosIdentity (Nome, CPF, DataNascimento) VALUES (‘Luan Moreno M. Maciel’,’02236655177′,’1988-07-20′)
+
+SELECT @@IDENTITY AS ValorRetornado</pre>
+<a href="https://luanmorenodba.com/2012/02/08/identity-scope_identity-e-ident_currentdiferenas/">Fonte[1]</a> 
+<a href="https://docs.microsoft.com/pt-br/sql/t-sql/functions/scope-identity-transact-sql?view=sql-server-2017">Fonte[2]</a>
 <hr>
 
 <h2>UPDATE</h2>
@@ -238,5 +244,3 @@ FROM Data ;
 </div>
 <br clear="all">
 <a href="https://msdn.microsoft.com/pt-br/library/ms181765(v=sql.120).aspx">msdn.microsoft</a>
-
-

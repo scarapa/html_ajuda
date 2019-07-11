@@ -1,11 +1,15 @@
-
+<h3>SELETOR após o document ready estar pronto é preciso usar o evento ON; exemplo abaixo.</h3>
+<h4 style="color:red">DEPRECEADO</h4>
+<pre>$( "table" ).<strong style="color:red">delegate</strong>( "td", "click", function() {
+	$( this ).toggleClass( "chosen" );
+});
+</pre>
 
 <h3>SELETOR após o document ready estar pronto é preciso usar o evento ON; exemplo abaixo.</h3>
 <pre>$(document).<strong style="color:red">on</strong>('click', '.botaoDeletar', function(){ 
 	alert( $(this).attr('rel') ); 
 });
 </pre>
-
 
 <h3>REMOVER LINK</h3>
 <pre>$("a").removeAttr("href");</pre>
