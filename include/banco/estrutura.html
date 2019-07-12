@@ -69,12 +69,18 @@ insert into dbo.pessoa (id_documento,nm_pessoa) values (1,'Tonia');
 insert into dbo.pessoa (id_documento,nm_pessoa) values (2,'Luisa');
 </pre>
 
+<hr>
 
-
-<h3>ADICIONANDO COLUNA</h3>
-<pre><code><kbd>SQLSERVER</kbd>
-<strong>ALTER TABLE</strong> nome_tabela <strong>ADD</strong> column_b <strong>TIPO</strong> NULL, column_c INT NULL ;</code></pre>
+<h2>COLUNAS</h2>
+<h3>ADICIONAR COLUNA</h3>
+<pre><kbd>SQLSERVER</kbd>
+<strong>ALTER TABLE</strong> nome_tabela <strong>ADD</strong> column_b <strong>TIPO</strong> NULL, column_c INT NULL ;</pre>
 <a href="https://msdn.microsoft.com/pt-br/library/ms190238(v=sql.120).aspx">msdn</a>
+
+<h3>REMOVER COLUNA</h3>
+<pre><kbd>SQLSERVER</kbd>
+<strong>ALTER TABLE</strong> dbo.tabela <strong>DROP COLUMN</strong> coluna_nome ;  </pre>
+<a href="https://docs.microsoft.com/pt-br/sql/relational-databases/tables/delete-columns-from-a-table?view=sql-server-2017">msdn</a>
 
 <h3>ALTERAR O TIPO DA COLUNA</h3>
 <pre><code><kbd>MYSQL</kbd>
@@ -84,6 +90,9 @@ insert into dbo.pessoa (id_documento,nm_pessoa) values (2,'Luisa');
 <strong>ALTER TABLE</strong> nome_tabela <strong>ALTER COLUMN</strong> nome_coluna <strong>TIPO</strong></code></pre>
 <a href="https://msdn.microsoft.com/pt-br/library/ms190238(v=sql.120).aspx">msdn</a>
 
+<hr>
+
+<h2>CHAVES</h2>
 <h3>CRIAR CHAVE PRIMARIA - PK</h3>
 <pre><kbd>SQLSERVER</kbd>
 ALTER TABLE <b>dbo.NOME_TABELA</b> ADD CONSTRAINT <b>PK_NOME_CHAVE</b> PRIMARY KEY(<b>NOME_COLUNA</b>)
@@ -109,9 +118,6 @@ Exemplos abaixo:
 <h3>Resetar o valor de campo autoincrement</h3>
 <pre><code><kbd>SQLSERVER</kbd>
 DELETE FROM <strong>tabela_nome</strong> DBCC CHECKIDENT ('<strong>database_nome</strong>..<strong>tabela_nome</strong>',RESEED, 0);</code></pre>
-
-<h3>REMOVER COLUNA</h3>
-<pre><code><strong>ALTER TABLE</strong> nome_tabela <strong>DROP COLUMN</strong> nome_coluna ;</code></pre>
 
 
 <br clear="all">
