@@ -1,0 +1,34 @@
+<style>
+h1,h2,h3,h4{margin:0px;padding:0px;}
+h2{margin-left:15px;}
+h3{margin-left:35px;}
+h3{margin-left:55px;}
+</style>
+<h2>Criar Projeto Localmente com <span style="color:red">ANGULAR</span></h2>
+<pre class="terminal">$ ionic start ciclo_vida blank --type=angular</pre>
+
+<hr>
+
+<h2>Estrutura</h2>
+<h3>Criar pagina</h3>
+<pre class="terminal">$ ionic g page <strong style="color:red">nome_pagina</strong></pre>
+
+<h3>Criar Provider/Service</h3>
+<pre class="terminal">$ ionic g service <strong style="color:red">nome_provider</strong></pre>
+
+<hr>
+
+<h2>Banco de Dados</h2>
+<h3>Exportar</h3>
+<pre class="terminal">$ adb -d shell "run-as <b>[PACOTE]</b> cat <b>[PASTA DEVICE]</b>" > <b>[PASTA MAQUINA LOCAL]</b></pre>
+Conforme exemplo abaixo:
+<pre class="terminal">$ adb -d shell "<b>run-as io.ionic.starter</b> cat <b>databases/emater.db</b>" > <b>~/Documentos/android.db</b></pre>
+
+<hr>
+
+<h2>Startar Projeto </h2>
+<h3>Localmente</h3>
+<pre class="terminal">$ ionic serve</pre>
+
+<h3>Device Android</h3>
+<pre class="terminal">$ ionic cordova run android --device</pre>
