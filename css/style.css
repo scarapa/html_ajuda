@@ -40,3 +40,7 @@ fieldset.title {
 	margin:-3px -1px -5px -5px !important;
 	font-size:1.8em;
 }
+.centro{width:100%;margin:0 auto;text-align: center}
+.centralizar{width:100%;margin:0 auto;text-align: center}
+.bp{border:1px solid black;}
+.br{border:1px solid #c7254e;border-radius: 5px}

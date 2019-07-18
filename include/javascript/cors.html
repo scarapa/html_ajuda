@@ -1,0 +1,37 @@
+CORS (Cross-Origin Resource Sharing) é uma especificação do W3C que, quando implementado pelo navegador, permite que um site acesse recursos de outro site mesmo estando em domínios diferentes.
+<br><br>
+
+<h2>Habilitando CORS no FIREFOX</h2>
+<h3>1. Digite na URL</h3>
+<code>about:config</code><br/>
+Abrirá uma janela de confirmação
+<br><br>
+
+<h3>2. Clicar em aceitar</h3>
+<div class="centro">
+	<img src="./images/cors_firefox_01.jpg" style="width:70%" >
+</div>
+<br><br>
+Isso fará aparecer todas as configurações do navegador
+<br><br>
+
+<h3>3. Pesquisar pelo tipo origin</h3>
+<div class="centro">
+	<img src="./images/cors_firefox_02.jpg" style="width:70%" >
+</div>
+<br><br>
+
+<h3>4. Localize o valor <code>security.fileuri.strict_origin_policy</code><br/>
+<div class="centro">
+	<img src="./images/cors_firefox_03.jpg" style="width:70%" >
+</div>
+<br><br>
+
+<h3>5. Altere o valor</h3>
+Para alterar o valor para <b>false</b>, basta clicar 2x
+<div class="centro">
+	<img src="./images/cors_firefox_04.jpg" style="width:70%" >
+</div>
+<br><br>
+<a href="http://testingfreak.com/how-to-fix-cross-origin-request-security-cors-error-in-firefox-chrome-and-ie/">Fonte[1]</a>
+<a href="https://stackoverflow.com/questions/25504851/how-to-enable-cors-on-firefox">Fonte[2]</a>
