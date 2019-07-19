@@ -1,0 +1,30 @@
+Stored Procedure, que traduzido significa Procedimento Armazenado, é uma conjunto de comandos em SQL que podem ser executados de uma só vez, como em uma função. Ele armazena tarefas repetitivas e aceita parâmetros de entrada para que a tarefa seja efetuada de acordo com a necessidade individual.
+<br><br>
+Um Stored Procedure pode reduzir o tráfego na rede, melhorar a performance de um banco de dados, criar tarefas agendadas, diminuir riscos, criar rotinas de processsamento, etc.
+<br><br>
+
+Por todas estas e outras funcionalidades é que os stored procedures são de extrema importância para os DBAs e desenvolvedores.
+<br><br>
+
+A principal VANTAGEM da procedure para a function é de que a procedure você consegue executar INSERTs
+<br><br>
+
+<pre class="codigo codigoMySQL">
+USE BancoDados
+GO
+CREATE PROCEDURE Busca --- Declarando o nome da procedure
+@CampoBusca VARCHAR (20) --- Declarando variável (note que utilizamos o @ antes do nome da variável)
+AS
+SELECT 
+    Codigo, Descrição --- Consulta
+FROM NomeTabela
+WHERE 
+    Descricao = @CampoBusca --- Utilizando variável como filtro para a consulta	
+</pre>
+
+Para executar uma procedure basta utiilizar a cláusula EXECUTE seguido pelo nome da procedure e na frente o valor a ser utilizado como parâmetro Exemplo:
+<pre class="codigo codigoMySQL">EXECUTE Busca 'DEVMEDIA'</pre>
+
+
+<a href="https://www.devmedia.com.br/introducao-aos-stored-procedures-no-sql-server/7904">devmedia</a><br>
+<a href="https://docs.microsoft.com/pt-br/sql/t-sql/statements/create-procedure-transact-sql?view=sql-server-2017">microsoft</a>
