@@ -57,3 +57,13 @@ button.addEventListener('click', function (event) {
 	event.target.style.backgroundColor = "#ff0000";
 });</pre>
 <a href="https://blog.schoolofnet.com/2018/10/como-parar-de-usar-o-jquery/">Fonte</a>
+
+<hr>
+
+
+<pre>const lista = document.querySelectorAll("ol li");
+lista.forEach((elem, index) => {
+    elem.addEventListener('click', () => {
+      alert('POSICAO DO LI É: '+(index+1))
+    });
+});</pre>
