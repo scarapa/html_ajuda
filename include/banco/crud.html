@@ -37,10 +37,21 @@
 
 <h2>INSERT</h2>
 
+<h3>Montando INSERT apartir do SELECT</h3>
+Codigo SQL abaixo foi montando com o intuito de exportar os dados da tabela municipio do <b>MySQL</b> para o <b>SQLite</b><br/>
+Para unir os campos valorados com textoé um pouco diferente do <code>sqlserver 2008</code>, foi necessário a utilizar a função <strong>CONCAT</strong>
+<pre class="codigo MySQL">
+<strong style="color:blue;">SELECT </strong>
+    <b>CONCAT</b>(<span style="color:red">'["INSERT INTO municipio (id_municipio,ds_municipio) VALUES ('</span>,id_municipio,<span style="color:red">','''</span>,ds_municipio,<span style="color:red">''')"] '</span>) AS 'municipio'
+<strong style="color:blue;">FROM</strong> municipio</pre>
+<a href="https://stackoverflow.com/questions/15368753/cast-int-to-varchar">Fonte</a>
+
+<hr>
+
 <h3>INSERT - RECUPERANDO O AUTOINCREMENT</h3>
 <pre><kbd>sqlserver</kbd>
-INSERT INTO tabela_nome (nome,matricula) VALUES('ROBERTO',11);
-SELECT IDENT_CURRENT('tabela_nome');
+<strong style="color:blue;">INSERT INTO</strong> tabela_nome (nome,matricula) <strong style="color:blue;">VALUES</strong> ('ROBERTO',11);
+<strong style="color:blue;">SELECT</strong> IDENT_CURRENT('tabela_nome');
 </pre>
 
 <hr>

@@ -1,4 +1,20 @@
-﻿<h3>Verificar deadlock</h3>
+﻿<h3>Derrubando Usuarios</h3>
+Caso haja a necessidade de <code>DERRUBAR USUARIOS</code> por qualquer circustancia há uma funcionalidade<br>
+você pode ter que derrubar os usuarios para fazer um export ou import de determinada database por exemplo.
+<pre class="codificacao codigoSQLSERVER"><kbd>SQLSERVER</kbd>
+<span style="color:blue">USE</span> [master]
+
+<span style="color:blue">ALTER DATABASE</span> [SISCLAS_DEV]
+<span style="color:blue">SET SINGLE_USER</span> <span style="color:green">--SETA como usuário unico para fechar conexões antes de restaurar backup</span>
+
+    <b>CODIGO ANSISQL</b>
+
+<span style="color:blue">SET MULTI_USER;</span> <span style="color:green">--volta para multi user depois de restaurar</span>
+<span style="color:blue">GO</span></pre>    
+
+<a href="https://docs.microsoft.com/pt-br/sql/relational-databases/databases/set-a-database-to-single-user-mode?view=sql-server-2017">docs.microsoft</a>
+
+<h3>Verificar deadlock</h3>
 <pre><kbd>SQLSERVER</kbd>
 SELECT  L.request_session_id AS SPID, 
     DB_NAME(L.resource_database_id) AS DatabaseName,
