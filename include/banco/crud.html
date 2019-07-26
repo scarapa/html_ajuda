@@ -44,6 +44,14 @@ Para unir os campos valorados com textoé um pouco diferente do <code>sqlserver 
 <strong style="color:blue;">SELECT </strong>
     <b>CONCAT</b>(<span style="color:red">'["INSERT INTO municipio (id_municipio,ds_municipio) VALUES ('</span>,id_municipio,<span style="color:red">','''</span>,ds_municipio,<span style="color:red">''')"] '</span>) AS 'municipio'
 <strong style="color:blue;">FROM</strong> municipio</pre>
+Retorno:
+<pre>["INSERT INTO municipio (id_municipio,ds_municipio) VALUES (4300034,'Aceguá')"] 	
+["INSERT INTO municipio (id_municipio,ds_municipio) VALUES (4300059,'Água Santa')"] 	
+["INSERT INTO municipio (id_municipio,ds_municipio) VALUES (4300109,'Agudo')"] 	
+["INSERT INTO municipio (id_municipio,ds_municipio) VALUES (4300208,'Ajuricaba')"] 	
+...</pre>
+Agora é só copiar e colar aonde deseja!
+<br><br>
 <a href="https://stackoverflow.com/questions/15368753/cast-int-to-varchar">Fonte</a>
 
 <hr>
