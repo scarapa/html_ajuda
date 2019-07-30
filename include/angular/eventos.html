@@ -1,0 +1,11 @@
+<h2>Data Binding - Interpolação</h2>
+<pre class="codificacao"><kbd>HTML</kbd>
+&lt;input type="text" <b>(keyup)</b>="onKeyUp($event)"&gt;</pre>
+
+<pre class="codificacao"><kbd>CLASSE</kbd>
+onKeyUp(eventol: KeyboarEvent){
+    console.log( (&lt;HTMLInputElement&gt;evento.target).value ) 
+}</pre>
+
+<h3>Two way data binding</h3>
+<input type="text" [ngModel]="nome" (ngModelChange)="nome=$event">

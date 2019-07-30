@@ -1,0 +1,64 @@
+<style type="text/css">
+	table {border-collapse: collapse;}
+	table tr td {padding:3px 5px;}
+	table tr td:nth-child(1){text-align: right}
+	table tr td:nth-child(2){text-align: left}
+</style>
+
+Diretivas são extensões da linguagem HTML, que fornecem a possibilidade de estender/ampliar o comportamento de elementos HTML. Este recurso permite a implementação de novos comportamentos de forma declarativa.
+<br><br>
+Ao selecionar um elemento HTML, a diretiva pode ampliar seu comportamento de diversas formas:
+<ul>
+	<li>para adicionar um novo HTML,</li>
+	<li>associar eventos à funções Javascript,</li>
+	<li>manipular o DOM.</li>
+</ul>
+<br>
+<div class="centro"><img src="./images/angular_diretivas_01.jpg" class="bp" style="width:60%"></div>
+<br><br>
+<span style="font-weight: bold;font-size: 140%">Exemplo de Diretivas no AngularJS</span>
+<table border="1">
+	<tbody>
+		<tr>
+			<td>ng-app</td>
+			<td>Declara um elemento como o elemento raiz da aplicação, ocasionando a mudança do comportamento padrão da tag.</td>
+		</tr>
+		<tr>
+			<td>ng-bind</td>
+			<td>Muda o texto de um elemento HTML automaticamente, de acordo com o seu resultado, vindo das regras de negócio.</td>
+		</tr>
+		<tr>
+			<td>ng-model</td>
+			<td>É similar ao ng-bind, mas permite ligação direta bidirecional (two-way data binding ) entre a view e o escopo do aplicativo.</td></tr><tr><td>ng-class</td><td>Permite atributos de classe serem carregados dinamicamente.
+			</td>
+		</tr>
+		<tr>
+			<td>ng-click</td>
+			<td>Permite instanciar o evento de click, semelhante ao onclick.</td></tr><tr><td>ng-controller</td><td>Especifica um controller JavaScript para aquele HTML em questão.
+			</td>
+		</tr>
+		<tr>
+			<td>ng-repeat</td>
+			<td>Instancia um elemento por item de um array.</td>
+		</tr>
+		<tr>
+			<td>ng-show &amp; ng-hide</td>
+			<td>Mostra ou esconde um elemento HTML de acordo com o resultado de uma expressão booleana.</td>
+		</tr>
+		<tr>
+			<td>ng-switch</td>
+			<td>Instancia um template, em uma lista de escolhas, dependendo do valor obtido pela expressão.</td>
+		</tr>
+		<tr>
+			<td>ng-view</td>
+			<td>A diretiva base para manipulação de rotas, resolvendo um JSON antes de renderizar os modelos acionados por controladores especificados.</td>
+		</tr>
+		<tr>
+			<td>ng-if</td>
+			<td>Declaração básica de um 'if' que permite mostrar um elemento se a condição for verdadeira.</td>
+		</tr>
+	</tbody>
+</table>
+<br><br>
+Fonte:<a href="https://www.portalgsti.com.br/2017/08/o-que-sao-diretivas-no-angularjs-e-como-usar.html">portalgsti</a> 
+<a href="http://www.macoratti.net/18/06/ang_diret1.htm">Fonte[1]</a>
