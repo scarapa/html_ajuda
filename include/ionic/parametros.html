@@ -1,0 +1,137 @@
+<style type="text/css">
+	table {border-collapse: collase;}
+	table tr td{padding: 5px 20px}
+</style>
+<h2>Como Passar Parametros Entre Telas !?</h2>
+Adicionado desde o Angular 7.2 , o seu aplicativo Ionic 4 deve estar habilitado.
+<br><br>
+Isso é quase como você deseja, simples e limpo, apenas anexando qualquer informação aos extras adicionais de roteamento e, em seguida, desembrulhando-os na sua página.
+<br><br>
+
+Você pode adicionar qualquer objeto que você queira
+<br><br>
+
+<h3>1. Criar a estrutura</h3>
+<pre class="terminal">$ ionic g page contato</pre>
+
+<h3>2. Codificando HOME</h3>
+Na pagina <code>home</code> estára o nosso form de <b>ENVIO</b> das informações DIGITADAS.<br><br/>
+
+<h4>2.1 home.HTML</h4>
+<pre><kbd>home.page.html</kbd>
+&lt;ion-header&gt;
+  &lt;ion-toolbar&gt;
+    &lt;ion-title&gt;HOME&lt;/ion-title&gt;
+  &lt;/ion-toolbar&gt;
+&lt;/ion-header&gt;
+
+&lt;ion-content padding&gt;
+  &lt;h1&gt;NOME: &lt;/h1&gt;
+  &lt;ion-input placeholder="Nome" style="border:1px solid black" [(ngModel)]="nome"&gt;&lt;/ion-input&gt;
+  &lt;h1&gt;SOBRENOME: &lt;/h1&gt;  
+  &lt;ion-input placeholder="Sobrenome" style="border:1px solid black" [(ngModel)]="sobrenome"&gt;&lt;/ion-input&gt;
+  &lt;button style="font-weight:bold;font-size:200%;width:100%;padding:20px 0;margin-top:15px;background:CornflowerBlue ;color:white;" (click)="teste()"&gt;ENVIAR&lt;/button&gt;
+&lt;/ion-content&gt;</pre>
+
+Deverá ficar mais ou menos assim ...<br/>
+<br clear="all">
+<div class="centro"><img src="./images/ionic_parametros_01.jpg" style="width:20%;margin:10px;border:1px solid black"></div>
+<br clear="all">
+
+<h4>2.2 home.TS</h4>
+<pre><kbd>home.page.ts</kbd>
+import { Component } from '@angular/core';
+import {  Router, NavigationExtras } from '@angular/router';
+
+@Component({
+  selector: 'app-home',
+  templateUrl: 'home.page.html',
+  styleUrls: ['home.page.scss'],
+})
+export class HomePage {
+  public nome:string;
+  public sobrenome:string;
+  <span style="color:darkgreen ">// CRIANDO O OBJETO</span>
+  <b style="color:red">variaveis</b> = { name: '', sobrenome: '',};
+
+  constructor(public router: Router) { }
+
+  teste(){
+    <span style="color:darkgreen ">// SETANDO AS VARIAVEIS DA TELA NO OBJETO</span>
+    <b style="color:red">this.variaveis = { name:this.nome,sobrenome:this.sobrenome };</b>
+    let navigationExtras: NavigationExtras = {
+      state: {
+        <b style="color:red">variaveis: this.variaveis</b> 
+      }
+    };    
+    <span style="color:darkgreen ">// NAVEGANDO ATÉ A ROTA DESTINO</span>
+    this.router.navigate(['contato'],<b style="color:red">navigationExtras</b>);
+  }
+}</pre>
+
+<h3>3. Codificando CONTATO</h3>
+
+<table border=0>
+	<thead>
+		<tr>
+			<th>3.1 contato.html</th>
+			<th>3.2 contato.TS</th>			
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td valign="top">
+<pre><kbd>contato.page.html</kbd>
+&lt;ion-header&gt;
+  &lt;ion-toolbar&gt;
+    &lt;ion-title&gt;contato&lt;/ion-title&gt;
+  &lt;/ion-toolbar&gt;
+&lt;/ion-header&gt;
+
+&lt;ion-content&gt;
+  &lt;p&gt; NOME &lt;/p&gt; 
+  &lt;h1&gt; {{nome}} &lt;/h1&gt; 
+  &lt;p&gt;SOBRENOME:&lt;/p&gt;   
+  &lt;h1&gt; {{sobrenome}} &lt;/h1&gt; 
+&lt;/ion-content&gt;</pre>		
+			</td>
+			<td>
+<pre><kbd>contato.page.ts</kbd>
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+
+@Component({
+  selector: 'app-contato',
+  templateUrl: './contato.page.html',
+  styleUrls: ['./contato.page.scss'],
+})
+export class ContatoPage implements OnInit {
+    private nome:string ='';
+    private sobrenome:string ='';
+    data: any;
+
+    constructor(public router: Router, public route: ActivatedRoute) { }
+
+    ngOnInit() { this.montarTela() }
+
+    montarTela(){
+        if (this.router.getCurrentNavigation().extras.state) {
+            this.data = this.router.getCurrentNavigation().extras.state.variaveis;
+            <span style="color:red">this.nome = this.data.name;</span>
+            <span style="color:red">this.sobrenome = this.data.sobrenome;</span>
+        }
+    }	
+}</pre>	
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<br><br>
+Resultado Final:<br>
+<img src="./images/ionic_parametros_02.jpg" style="margin:10px;border:1px solid black">
+
+<br clear="all">
+
+<a href="https://ionicacademy.com/pass-data-angular-router-ionic-4/">Fonte[1]</a>
+<a href="https://www.youtube.com/watch?v=PDMO90y5EKY&list=PLiPB5iCKp3cvelTG5M0jpOO5cSQpa6nUt&index=9">Fonte[2]</a>
