@@ -1,0 +1,103 @@
+<style type="text/css">
+	#tabelaShape{border-collapse: collapse;border:1px solid black;}
+	#tabelaShape thead tr th{background: black;color:white;text-align: center;padding:5px 20px;}	
+	#tabelaShape tbody tr th{text-align: right;padding:2px;}
+	#tabelaShape tbody tr td{text-align: left;padding:2px;}
+</style>
+O mapa de imagens serve para criar um link distinto em partes distintas de uma mesma imagem. Por exemplo, em um site de antropologia há um desenho de um corpo humano; cada parte do corpo deve ter um link diferente; tal link levaria a outra página que falaria sobre aquela parte do corpo. Por exemplo, ao clicar na cabeça do boneco, o usuário seria redirecionado para a página cabeça.html; por outro lado, ao clicar no braço do boneco, então o usuário seria levado a braço.html.
+<br><br>
+Para se criar uma função como essa sem utilizar o mapa de imagens, seria necessário criar uma imagem diferente para cada link. Com o mapa de imagens, basta codificar que dentro daquele mapa serão definidas regiões específicas para vários links.
+<br><br>
+
+<h3>Tipo de Marcações/Shapes</h3>
+<table id="tabelaShape">
+	<thead>
+		<tr>
+			<th>TIPO</th>
+			<th>TAG</th>
+		</tr>	
+	</thead>
+	<tbody>
+		<tr>
+			<th>RETANGULO</th>
+			<td>rect</td>
+		</tr>
+		<tr>
+			<th>CIRCULO</th>
+			<td>circle</td>
+		</tr>	
+		<tr>
+			<th>POLIGONAL</th>
+			<td>poly</td>
+		</tr>
+	</tbody>
+</table>
+
+Exemplo 01:<br>	
+<pre>
+&lt;map name="shape"&gt;
+    &lt;area shape="rect" alt="parte 1" coords="0, 0, 100, 100" href="parte1.html"/&gt;
+    &lt;area shape="circle" alt="parte 2" coords="100, 100, 25" href="parte2.html"/&gt;
+    &lt;area shape="poly" alt="parte 3" coords="116, 207, 186, 299, 49, 296" href="parte3.html"/&gt;
+&lt;/map&gt;
+&lt;img src="imagem.jpg" usemap="#shape"/&gt;
+</pre>
+No exemplo acima, a imagem foi mapeada segundo o mapa #shape, definido antes da mesma. Como se pôde ver, existem três tipos de marcação: rect, que faz um mapa em forma retangular; circle, que cria um mapa em forma de círculo; e poly, que cria um mapa em forma de polígono, ou seja, de muitas faces (indefinidamente). A forma como se dá tal mapeamento é através das coordenadas dos pixels dentro da imagem, e não da tela toda. Para cada tipo de mapa usa-se uma técnica de mapeamento diferente. Veremos, a seguir, os detalhes de cada tipo de mapeamento.
+
+<h3>Rect</h3>
+<table style="float: left;margin:5px 15px;">
+	<tr>
+		<td><img src="./images/maparea_01.jpg"></td>	
+	</tr>
+	<tr>
+		<td style="text-align: center;">Exemplo de rect</td>	
+	</tr>	
+</table>Para se criar em retângulo, deve-se especificar as coordenadas do vértice (parte pontuda) da parte superior esquerda e do vértice inferior direito. Por exemplo, se eu quero um quadrado começando na parte superior esquerda da imagem, sendo esse quadrado de tamanho 100 pixels por 100 pixels, as coordenadas seriam essas: 
+<br><br>
+
+<b>coords = “0, 0, 100, 100”.</b>
+<br><br>
+
+Se ao invés de “0,0” eu pusesse “10,10”, o quadrado ficaria dez pixels a mais para baixo e dez pixels a mais para a direita.
+<br clear="all">
+
+<h3>Circle</h3>
+<table style="float: left;margin:5px 15px;">
+	<tr>
+		<td><img src="./images/maparea_02.jpg"></td>	
+	</tr>
+	<tr>
+		<td style="text-align: center;">Exemplo de circle</td>	
+	</tr>	
+</table>Criar um círculo, por sua vez, é um pouco diferente. Primeiramente deve-se escrever as coordenadas do centro do círculo, e depois o quanto esse círculo terá de raio (medida do centro ao extremo, ou seja, metade da medida de extremo a extremo). A medida do centro se dá com quantos pixels deve-se ficar afastado do extremo esquerdo da imagem, e a quantidade de pixels que devem ficar afastados do topo extremo da imagem. Por exemplo, se eu quero que o centro do círculo fique 500 pixels a direita da extrema esquerda da imagem, e 250 pixels abaixo do extremo topo do mesmo, e que o círculo tenha 10 pixels de raio (ou 20 pixels de extremo a extremo) as coordenadas são essas: coord=”500, 250, 10”.
+<br><br>
+
+<br clear="all">
+
+<h3>Poly</h3>
+<table style="float: left;margin:5px 15px;">
+	<tr>
+		<td><img src="./images/maparea_03.jpg"></td>	
+	</tr>
+	<tr>
+		<td style="text-align: center;">Exemplo de poly</td>	
+	</tr>	
+</table>No caso de um triângulo, deve-se pôr as três coordenadas de cada um dos vértices do triângulo; por exemplo: 0, 498, 465, 0, 930, 249.
+<br><br>
+Como eu já expliquei, só é preciso especificar os vértices, nesse caso são apenas três. A ligação AC é automática, pois o primeiro sempre se liga automaticamente ao último.
+<br><br>
+Para criar um polígono com mais faces, faz-se da mesma forma, mas com mais de três vértices; por exemplo: 0, 249, 465, 0, 930, 249, 465, 498.
+<br><br>
+<br clear="all">
+<table style="float: left;margin:5px 15px;">
+	<tr>
+		<td><img src="./images/maparea_04.jpg"></td>	
+	</tr>
+	<tr>
+		<td style="text-align: center;">Exemplo de poly</td>	
+	</tr>	
+</table>Nesse último caso, eu citei quatro coordenadas, então o mapa ficou com forma de losango. Vale lembrar que não existe um número máximo de vértices a serem usadas.
+
+<br clear="all">
+<a href="http://www.linhadecodigo.com.br/artigo/3445/introducao-ao-html-usando-image-maps.aspx">Fonte[1]</a> - 
+<a href="https://www.w3schools.com/tags/tag_map.asp">Fonte[2]</a> - <a href="https://www.youtube.com/watch?v=6PMgqzGGDRU">Fonte[3]</a>
