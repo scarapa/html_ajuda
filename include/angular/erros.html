@@ -1,0 +1,65 @@
+<h2>Cannot find module '<b>@angular/router</b>'</h2>
+Aconteceu depois de fazer atualização angular.
+<pre class="terminal">$ npm i @angular/router -s</pre>
+<a href="https://stackoverflow.com/questions/48451312/angular-4-to-angular-5-cannot-find-module-angular-router?rq=1">stackoverflow</a>
+
+<hr>
+
+<h2>Cannot find module <b>'@angular/platform-browser'</b></h2>
+Instalar dependencia ...
+<pre class="terminal">$ npm i @angular/core -s</pre>
+
+<hr>
+
+<h2>Cannot find module '<b>@angular/core</b>'</h2>
+Aconteceu depois de fazer atualização angular.
+<pre class="terminal">$ npm i @angular/core -s</pre>
+<a href="https://stackoverflow.com/questions/48451312/angular-4-to-angular-5-cannot-find-module-angular-router?rq=1">stackoverflow</a>
+
+<hr>
+
+<h2>An unhandled exception occurred: Could not find the implementation for builder @ionic/angular-toolkit:cordova-build</h2>
+No momento(02/08/2019) existe uma incompatibilidade do <b>@ionic/angular-toolkit</b> com o <b>Angular 8</b>
+<pre class="terminal"></pre>
+
+<hr>
+
+<h2>Could not resolve all artifacts for configuration 'classpath'</h2>
+<pre>
+* What went wrong:
+A problem occurred evaluating project ':app'.
+> Could not resolve all artifacts for configuration 'classpath'.
+   > Could not find lint-gradle-api.jar (com.android.tools.lint:lint-gradle-api:26.1.2).
+     Searched in the following locations:
+         https://jcenter.bintray.com/com/android/tools/lint/lint-gradle-api/26.1.2/lint-gradle-api-26.1.2.jar
+
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+BUILD FAILED in 0s
+  Command: /Users/../Desktop/flutter_app/android/gradlew app:properties`</pre>	
+
+Solução foi editar esse metodos no <code>build.gradle</code>
+<ul>
+	<li>mavenCentral()</li>
+	<li>jcenter()</li>
+</ul>
+por isso
+<ul>
+	<li>maven { url "https://maven.google.com" }</li>
+	<li>jcenter { url "http://jcenter.bintray.com/"}</li>
+</ul>
+
+Nesses 3 arquivos
+<ul>
+	<li>platforms/android/build.gradle</li>
+	<li>platforms/android/app/build.gradle</li>
+	<li>platforms/android/CordovaLib/build.gradle</li>
+</ul>
+
+<a href="https://forum.ionicframework.com/t/build-fails-on-android-could-not-resolve-all-files-for-configuration/119024">ionicframework</a><br>
+<a href="https://github.com/flutter/flutter/issues/23553">github</a>
+
+<hr>
