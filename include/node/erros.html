@@ -1,0 +1,18 @@
+<h3>cb() never called!</h3>
+Erro ao rodar o comando <code>$ npm install</code>
+<pre class="terminal"><font color="#CC0000">Unhandled rejection Error: EACCES: permission denied, open &apos;/home/USUARIO/.npm/_cacache/tmp/82d7bfc5&apos;</font>
+
+<span style="background-color:#2E3436"><font color="#D3D7CF">npm</font></span> <span style="background-color:#2E3436"><font color="#CC0000">ERR!</font></span> cb() never called!
+
+<span style="background-color:#2E3436"><font color="#D3D7CF">npm</font></span> <span style="background-color:#2E3436"><font color="#CC0000">ERR!</font></span> This is an error with npm itself. Please report this error at:
+<span style="background-color:#2E3436"><font color="#D3D7CF">npm</font></span> <span style="background-color:#2E3436"><font color="#CC0000">ERR!</font></span>     &lt;https://npm.community&gt;
+
+<span style="background-color:#2E3436"><font color="#D3D7CF">npm</font></span> <span style="background-color:#2E3436"><font color="#CC0000">ERR!</font></span> A complete log of this run can be found in:
+<span style="background-color:#2E3436"><font color="#D3D7CF">npm</font></span> <span style="background-color:#2E3436"><font color="#CC0000">ERR!</font></span>     /home/USUARIO/.npm/_logs/2019-08-09T22_08_30_884Z-debug.log
+</pre>
+
+Solução:
+<pre class="terminal">$ sudo npm cache verify
+$ sudo npm cache clean --force</pre>
+<a href="https://stackoverflow.com/questions/15393821/npm-err-cb-never-called?page=1&tab=votes#tab-top" target="_blank">stackoverflow</a>
+<hr>
