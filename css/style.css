@@ -44,3 +44,9 @@ fieldset.title {
 .centralizar{width:100%;margin:0 auto;text-align: center}
 .bp{border:1px solid black;}
 .br{border:1px solid #c7254e;border-radius: 5px}
+.terminal {
+	background: #300A24 !important;
+	color: white !important;
+	border-radius: 5px;
+	border: 1px solid white;
+}
