@@ -19,10 +19,32 @@ h3{margin-left:55px;}
 <hr>
 
 <h2>Banco de Dados</h2>
-<h3>Exportar</h3>
+<h3>Salvar pelo TERMINAL</h3>
 <pre class="terminal">$ adb -d shell "run-as <b>[PACOTE]</b> cat <b>[PASTA DEVICE]</b>" > <b>[PASTA MAQUINA LOCAL]</b></pre>
 Conforme exemplo abaixo:
-<pre class="terminal">$ adb -d shell "<b>run-as io.ionic.starter</b> cat <b>databases/emater.db</b>" > <b>~/Documentos/android.db</b></pre>
+<pre class="terminal">$ adb -d shell "<b>run-as br.tche.emater.expointer</b> cat <b>databases/expointer.db</b>" > <b>~/Documentos/android.db</b></pre>
+
+<h3>Salvar pelo ANDROID STUDIO</h3>
+Pode-se salvar o banco de dados da aplicação , para isso abrimos o Android Studio e exploramos o device da seguinte forma:
+<code>Menu >> View >> Tool Windows >> Device Explorer</code>
+<div class="centro"><img src="./images/ionic_android_studio_banco_01.jpg" style="width:60%"></div>
+<br>
+
+basta seguir o caminho da apliacao no explorador:
+<code>data >> data >> <b>nome do pacote</b> >> databases >> <b>nome da base</b></code>
+<div class="centro"><img src="./images/ionic_android_studio_banco_02.jpg" style="width:60%"></div>
+
+
+<h3>Leitura - SQLITE</h3>
+Para abrir e testar querys pode fazer a utilização de ferramente online ou programa local ...
+<h4>online - sqliteonline</h4>
+
+<div class="centro"><img src="./images/sqliteonline.jpg" style="width:60%"></div>
+<a href="https://sqliteonline.com/" target="_blank">sqliteonline</a>
+
+<h4>programa - DB Browser</h4>
+<div class="centro"><img src="./images/sqlite.png" style="width:60%"></div>
+<a href="https://sqlitebrowser.org/dl/" target="_blank">DB Browser</a> , disponivel para <b>TODOS</b> os sistemas operacionais.
 
 <hr>
 

@@ -1,0 +1,45 @@
+<h2>Não cria o projeto</h2>
+erro ao executar o comando <code>$ ionic cordova run android --device</code>
+<pre class="terminal">FAILURE: Build failed with an exception.
+
+* Where:
+Script &apos;/media/beto/PROGRAMAS/www/emater/expointer/platforms/android/CordovaLib/cordova.gradle&apos; line: 68
+
+* What went wrong:
+A problem occurred evaluating project &apos;:app&apos;.
+&gt; No installed build tools found. Install the Android build tools version 19.1.0 or higher.
+
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+BUILD FAILED in 0s</pre>
+Solução:
+<pre>$ export ANDROID_HOME=$HOME/Android/Sdk
+$ export PATH=$PATH:$ANDROID_HOME/tools</pre>
+e rodar o comando novamente <code>$ ionic cordova run android --device</code>
+<pre class="terminal">BUILD SUCCESSFUL in 1m 11s
+44 actionable tasks: 44 executed
+Built the following apk(s): 
+	/media/beto/PROGRAMAS/www/emater/expointer/platforms/android/app/build/outputs/apk/debug/app-debug.apk
+&gt; <font color="#06989A">native-run android --app platforms/android/app/build/outputs/apk/debug/app-debug.apk --device</font>
+<font color="#AAAAAA">[native-run] Selected hardware device 0053214577</font>
+<font color="#AAAAAA">[native-run] Installing platforms/android/app/build/outputs/apk/debug/app-debug.apk...</font>
+<font color="#AAAAAA">[native-run] Starting application activity br.tche.emater.expointer/br.tche.emater.expointer.MainActivity...</font>
+<font color="#AAAAAA">[native-run] Run Successful</font>
+</pre>
+<hr>
+
+<h2>ERRO - NÃO GERA PAGINA</h2>
+<code>Error: Cannot find module '@ionic/app-scripts'</code><br>
+Para resolver isso foi preciso rodar o comando abaixo:
+<pre>$ npm install @ionic/app-scripts@latest --save-dev</pre>
+<a href="https://stackoverflow.com/questions/44381358/error-cannot-find-module-ionic-app-scripts">stackoverflow</a>
+
+<hr>
+
+<h2>ERRO - NÃO GERA PAGINA - Parte 02</h2>
+<code>Error: ENOENT: no such file or directory, scandir</code><br>
+Solução foi <b>DELETAR</b> a pasta <b>node_modules</b> do projeto e rodar esse comando.
+<pre>$ npm install @ionic/app-scripts@latest --save-dev</pre>
