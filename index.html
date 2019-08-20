@@ -64,7 +64,7 @@
                         arquivo = link;
                         icone = $("a[href$='"+arquivo+"']").children().attr('class')
                         texto = arquivo.toUpperCase().replace("/", "&nbsp;&raquo;&nbsp;");       
-                        cabecalho = "<h2 class='"+icone+" fa-2x'>&nbsp;"+texto+"</h2><hr>";
+                        cabecalho = "<h2><i class='"+icone+" fa-2x'></i>&nbsp;"+texto+"</h2><hr>";
                         url = "include/"+arquivo;
                     }else{
                         arquivo = "home";
@@ -317,14 +317,18 @@
                             <li>
                                 <a href="#ionic"><i class="fa fa-tablet fa-fw fa-2x adjust-dashboard-icon"></i><span class="margin-title-field">Ionic</span><span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level collapse">
-                                    <li><a href="#ionic/introducao"><i class="fa fa-book fa-fw"></i> Introdução</a></li>                                    
+                                    <li><a href="#ionic/introducao"><i class="fa fa-book fa-fw"></i> Introdução</a></li>
                                     <li><a href="#ionic/instalacao"><i class="fa fa-gears fa-fw"></i> Instalação</a></li>
                                     <li><a href="#ionic/inicio"><i class="fa fa-flag-o fa-fw"></i> Inicio</a></li>
+                                    <li><a href="#ionic/carregando"><i class="icon-loadingalt fa-fw"></i> Carregando | Loading</a></li>
                                     <li><a href="#ionic/ciclo_de_vida"><i class="fa fa-refresh fa-fw"></i> Ciclo de Vida</a></li>
                                     <li><a href="#ionic/comandos"><i class="fa fa-terminal fa-fw"></i> Comandos</a></li>
                                     <li><a href="#ionic/configuracao"><i class="icon-controlpanelalt fa-fw"></i> Configuração</a></li>
                                     <li><a href="#ionic/estrutura"><i class="fa fa-sitemap fa-fw"></i> Estrutura</a></li>
-                                    <li><a href="#ionic/parametros"><i class="fa fa-refresh fa-fw"></i> Parametros</a></li>                                    
+                                    <li><a href="#ionic/geolocalizacao"><i class="fa fa-map-marker fa-fw"></i> GeoLocalização</a></li>
+                                    <li><a href="#ionic/modal"><i class="mdi mdi-content-duplicate fa-fw"></i> Modal</a></li>
+                                    <li><a href="#ionic/parametros"><i class="fa fa-refresh fa-fw"></i> Parametros</a></li>
+                                    <li><a href="#ionic/popover"><i class="mdi mdi-content-duplicate fa-fw"></i> Popover</a></li>
                                     <li><a href="#ionic/erros"><i class="fa fa-times-circle fa-fw"></i> ERROS</a></li>
                                     <li>
                                         <a href="#ionic-casos"><i class="fa fa-code fa-fw"></i> Casos <span class="fa arrow"></span></a>

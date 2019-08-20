@@ -1,4 +1,3 @@
-
 <style type="text/css">
 table tr th{font-size: 12pt;padding:5px 10px;background: graytext}
 table tr td{padding:5px 10px;border-bottom: 1px solid #c1c1c1}
@@ -165,3 +164,39 @@ div.divSugestoes{border:1px solid black;border-radius: 5px;padding: 5px;float:le
 		</tbody>		
 	</table>
 </div>
+<br clear="all">
+<hr>
+
+<div class="divSugestoes" style="width: 100% !important">
+
+	<table style="width: 100% !important">
+		<tr>
+			<td><h3>Gerar HTML Codificado</h3>	</td>
+		</tr>
+		<tr>
+			<td><textarea id="gerarHtmlTextarea" style="width:100%;height: 300px"></textarea></td>
+		</tr>
+		<tr>
+			<td><button id="gerarHtmlButton" name="gerarHtmlButton" onclick="gerarHtml(document.getElementById('gerarHtmlTextarea').value)">GERAR</button></td>
+		</tr>
+	</table>
+</div>
+<br clear="all">
+<hr>
+<script>
+	function replaceAll(str, de, para){
+	    var pos = str.indexOf(de);
+	    while (pos > -1){
+	        str = str.replace(de, para);
+	        pos = str.indexOf(de);
+	    }
+	    return (str);
+	}
+
+
+	function gerarHtml(ele){
+		ele = replaceAll( replaceAll(ele,"<","&lt;") ,">" ,"&gt;") ;
+		document.getElementById('gerarHtmlTextarea').value = ele;
+		document.getElementById('gerarHtmlTextarea').focus();
+	}
+</script>
