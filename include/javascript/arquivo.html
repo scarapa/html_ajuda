@@ -20,22 +20,6 @@ function converterDataBRtoEUA(data) {
 /************************/
 /********* AJAX *********/
 /************************/
-function replaceTudo(string, caracterProcurar, caracterSubstituir) {
-    var i = 0;
-    var novaString = "";
-    if(string == undefined) return string;
-    while (i <= string.length) {
-        if (typeof string[i] !== 'undefined') {
-            if (string[i] == caracterProcurar) {
-                novaString += caracterSubstituir;
-            } else {
-                novaString += string[i];
-            }
-        }
-        i++;
-    }
-    return novaString;
-}
 
 function ajaxGenericoGet(url, variaveis) {
     var tmp = [];
@@ -214,6 +198,47 @@ for (var i = 0; i < elementos.length; i++) {
 /*********************/ 
 /****** STRING *******/
 /*********************/ 
+
+// SOLUÇÃO ELEGANTE
+String.prototype.replaceAll = function(de, para){
+    var str = this;
+    var pos = str.indexOf(de);
+    while (pos > -1){
+        str = str.replace(de, para);
+        pos = str.indexOf(de);
+    }
+    return (str);
+}
+
+// SOLUÇÃO SIMPLES
+function replaceAll(str, de, para){
+    var pos = str.indexOf(de);
+    while (pos > -1){
+        str = str.replace(de, para);
+        pos = str.indexOf(de);
+    }
+    return (str);
+}
+// fonte: https://www.codigofonte.com.br/codigos/funcao-replaceall-em-javascript
+
+
+function replaceTudo(string, caracterProcurar, caracterSubstituir) {
+    var i = 0;
+    var novaString = "";
+    if(string == undefined) return string;
+    while (i <= string.length) {
+        if (typeof string[i] !== 'undefined') {
+            if (string[i] == caracterProcurar) {
+                novaString += caracterSubstituir;
+            } else {
+                novaString += string[i];
+            }
+        }
+        i++;
+    }
+    return novaString;
+}
+
 function rtrim(str) { return str.replace(/s+$/," ") ; }
 function arrayRetirarVazio(array){
     var arrayNovo = [];

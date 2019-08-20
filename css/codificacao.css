@@ -1,0 +1,26 @@
+#page-wrapper pre{line-height: .75em;}
+#page-wrapper pre.codificacao {
+    background-color:#eee;
+    overflow:auto;
+    margin:0 0 1em;
+    padding:.2em 1em; 
+    line-height: .55em !important;
+}
+
+#page-wrapper pre .codificacao code,#page-wrapper pre.codificacao .line-number {
+    /* Ukuran line-height antara teks di dalam tag <code> dan <span class="line-number"> harus sama! */
+    font:normal normal 12px/14px "Courier New",Courier,Monospace;
+    color:black;
+    display:block;
+}
+
+#page-wrapper pre.codificacao .line-number {
+    float:left;
+    margin:0 1em 0 -1em;
+    border-right:2px solid #6ce26c;
+    text-align:right;
+}
+
+#page-wrapper pre.codificacao .line-number span { display:block; padding:0 .55em 0 1em; }
+#page-wrapper pre.codificacao .cl { display:block; clear:both; }
+
