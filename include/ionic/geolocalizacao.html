@@ -1,0 +1,421 @@
+<h1>4 exemplos de utilização do Google Maps/Geolocalização</h1>
+
+<h2>Obter uma chave de API</h2>
+<ul>
+	<li>Acesse Google API Console.</li>
+	<li>Crie ou selecione um projeto.</li>
+	<li>Clique em Continue para ativar a API e serviços relacionados.</li>
+	<li>Na página Credentials, obtenha uma chave de API.</li>
+	<li>Copie o código gerado para ser usado mais tarde nesse tutorial.</li>
+</ul>
+    
+    
+Você pode acessar a documentação do Google para gerar uma chave de API <a href="https://developers.google.com/maps/documentation/javascript/get-api-key">clicando aqui.</a>
+
+<h2>1. Criar o aplicativo</h2>
+<pre class="terminal">$ ionic start <b style="color:red">geolocalizacao</b> blank</pre>
+
+<h2>2. Instalar o plugin de geolocalização do Ionic Native</h2>
+<pre class="terminal">ionic cordova plugin add cordova-plugin-geolocation --variable GEOLOCATION_USAGE_DESCRIPTION="To locate you"
+npm install --save @ionic-native/geolocation</pre>
+
+No arquivo app.module.ts adicionar a o provider 'Geolocation'
+<pre class="">import { BrowserModule } from '@angular/platform-browser';
+import { ErrorHandler, NgModule } from '@angular/core';
+import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { StatusBar } from '@ionic-native/status-bar';
+
+import { MyApp } from './app.component';
+import { HomePage } from '../pages/home/home';
+
+import { Geolocation } from '@ionic-native/geolocation';
+
+@NgModule({
+  declarations: [
+    MyApp,
+    HomePage
+  ],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(MyApp)
+  ],
+  bootstrap: [IonicApp],
+  entryComponents: [
+    MyApp,
+    HomePage
+  ],
+  providers: [
+    StatusBar,
+    SplashScreen,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Geolocation
+  ]
+})
+export class AppModule {}</pre>
+
+<h2>3. Adicionar a API do Google Maps</h2>
+Adicionar o script abaixo no arquivo <b>index.html</b>
+<pre class="">&lt;script src="http://maps.google.com/maps/api/js?key=SUA KEY AQUI"&gt;&lt;/script&gt;</pre>
+
+Arquivo <b>index.html</b> completo
+<pre class="">&lt;!DOCTYPE html&gt;
+&lt;html lang="en" dir="ltr"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Ionic App&lt;/title&gt;
+  &lt;meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"&gt;
+  &lt;meta name="format-detection" content="telephone=no"&gt;
+  &lt;meta name="msapplication-tap-highlight" content="no"&gt;
+ 
+  &lt;link rel="icon" type="image/x-icon" href="assets/icon/favicon.ico"&gt;
+  &lt;link rel="manifest" href="manifest.json"&gt;
+  &lt;meta name="theme-color" content="#4e8ef7"&gt;
+ 
+  &lt;!-- add to homescreen for ios --&gt;
+  &lt;meta name="apple-mobile-web-app-capable" content="yes"&gt;
+  &lt;meta name="apple-mobile-web-app-status-bar-style" content="black"&gt;
+ 
+  &lt;script src="http://maps.google.com/maps/api/js?key=SUA KEY AQUI"&gt;&lt;/script&gt;
+  &lt;!-- cordova.js required for cordova apps (remove if not needed) --&gt;
+  &lt;script src="cordova.js"&gt;&lt;/script&gt;
+ 
+  &lt;!-- un-comment this code to enable service worker
+  &lt;script&gt;
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() =&gt; console.log('service worker installed'))
+        .catch(err =&gt; console.error('Error', err));
+    }
+  &lt;/script&gt;--&gt;
+ 
+  &lt;link href="build/main.css" rel="stylesheet"&gt;
+ 
+&lt;/head&gt;
+&lt;body&gt;
+ 
+  &lt;!-- Ionic's root component and where the app will load --&gt;
+  &lt;ion-app&gt;&lt;/ion-app&gt;
+ 
+  &lt;!-- The polyfills js is generated during the build process --&gt;
+  &lt;script src="build/polyfills.js"&gt;&lt;/script&gt;
+ 
+  &lt;!-- The vendor js is generated during the build process
+       It contains all of the dependencies in node_modules --&gt;
+  &lt;script src="build/vendor.js"&gt;&lt;/script&gt;
+ 
+  &lt;!-- The main bundle js is generated during the build process --&gt;
+  &lt;script src="build/main.js"&gt;&lt;/script&gt;
+ 
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<h2>4. Criar as páginas</h2>
+<pre class="terminal">$ ionic g page exemplo1
+$ ionic g page exemplo2
+$ ionic g page exemplo3
+$ ionic g page exemplo4</pre>
+
+<h3>4.1 Página Exemplo1</h3>
+Arquivo exemplo1.ts
+<pre class="">import { Component } from '@angular/core';
+import { IonicPage } from 'ionic-angular';
+
+@IonicPage()
+@Component({
+  selector: 'page-exemplo1',
+  templateUrl: 'exemplo1.html',
+})
+export class Exemplo1Page {
+  imoveis: Array<Imovel>;
+
+  constructor() { }
+
+  ionViewDidLoad() {
+    this.getImoveis();
+  }
+
+  getImoveis() {
+    this.imoveis = [
+      new Imovel('Apartamento com 2 Quartos para Venda ou Aluguel, 80 m²', 295.000, 'Rua Eduardo Viviani', '400', 'Boa Vista', 'Juiz de Fora', 'MG'),
+      new Imovel('Parque Jardim dos Bandeirantes, 80 m²', 152.074, 'Avenida Garcia Rodrigues Paes', '0', 'Jóckey Club', 'Juiz de Fora', 'MG'),
+      new Imovel('Apartamento com 2 Quartos à Venda, 72 m²', 138.000, 'Rua Aurora Tôrres', '10', 'Santa Luzia', 'Juiz de Fora', 'MG')];
+  }}
+
+export class Imovel {
+  nome: string;
+  valor: number;
+  logradouro: string;
+  numero: string;
+  bairro: string;
+  cidade: string;
+  estado: string
+  mapa: string;
+
+  constructor(nome: string, valor: number, logradouro: string, numero: string, bairro: string, cidade: string, estado: string) {
+    this.nome = nome;
+    this.valor = valor;
+    this.logradouro = logradouro;
+    this.numero = numero;
+    this.bairro = bairro;
+    this.cidade = cidade;
+    this.estado = estado;
+    this.mapa = this.getMapa();
+  }
+
+  private getEndereco() {
+    return this.logradouro + ', ' + this.numero + ' - ' + this.bairro + ', ' + this.cidade + ' - ' + this.estado;
+  }
+
+  private getMapa() {
+    return 'https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=400x400&markers=color:red|' + this.getEndereco() + '&key=AIzaSyCxqgKqZMHNzOV2TETOwjRJAUpuh3aeK1c'
+  }
+}</pre>
+
+Arquivo exemplo1.html
+<pre class="">&lt;ion-header&gt;
+  &lt;ion-navbar&gt;
+    &lt;ion-title&gt;Google maps&lt;/ion-title&gt;
+  &lt;/ion-navbar&gt;
+&lt;/ion-header&gt;
+
+&lt;ion-content padding&gt;
+  &lt;ion-card *ngFor="let imovel of imoveis"&gt;
+    &lt;div class="mapa"&gt;
+      &lt;img src="{{ imovel.mapa }}"&gt;
+    &lt;/div&gt;
+    &lt;ion-item&gt;
+      &lt;h2 text-wrap&gt;{{ imovel.nome }}&lt;/h2&gt;
+      &lt;p&gt;{{ imovel.valor | currency:'BRL' }}&lt;/p&gt;
+    &lt;/ion-item&gt;
+  &lt;/ion-card&gt;
+&lt;/ion-content&gt;</pre>
+
+<h3>4.2 Página Exemplo2</h3>
+Arquivo exemplo2.ts
+<pre class="">import { Component } from '@angular/core';
+import { IonicPage } from 'ionic-angular';
+
+declare var google;
+
+@IonicPage()
+@Component({
+  selector: 'page-exemplo2',
+  templateUrl: 'exemplo2.html',
+})
+export class Exemplo2Page {
+  map: any;
+
+  constructor() { }
+
+  ionViewDidLoad() {
+    const position = new google.maps.LatLng(-21.763409, -43.349034);
+
+    const mapOptions = {
+      zoom: 18,
+      center: position,
+      disableDefaultUI: true
+    }
+
+    this.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+    const marker = new google.maps.Marker({
+      position: position,
+      map: this.map,
+
+      //Titulo
+      title: 'Minha posição',
+
+      //Animção
+      animation: google.maps.Animation.DROP, // BOUNCE
+
+      //Icone
+      icon: 'assets/imgs/pessoa.png'
+    });
+  }
+}</pre>
+
+Arquivo <b>exemplo2.html</b>
+<pre class="">
+&lt;ion-header&gt;
+  &lt;ion-navbar&gt;
+    &lt;ion-title&gt;Google maps&lt;/ion-title&gt;
+  &lt;/ion-navbar&gt;
+&lt;/ion-header&gt;
+&lt;ion-content padding&gt;
+  &lt;div #map id="map"&gt;&lt;/div&gt;
+&lt;/ion-content&gt;</pre>
+
+Arquivo <b>exemplo2.scss</b>
+<pre>page-exemplo2 {
+  #map {
+    height: 100%;
+  }
+}</pre>
+
+<h3>4.3 Página Exemplo3</h3>
+Arquivo exemplo3.ts
+<pre> import { Component } from '@angular/core';
+import { IonicPage } from 'ionic-angular';
+import { Geolocation } from '@ionic-native/geolocation';
+
+declare var google;
+
+@IonicPage()
+@Component({
+  selector: 'page-exemplo3',
+  templateUrl: 'exemplo3.html',
+})
+export class Exemplo3Page {
+  map: any;
+
+  constructor(private geolocation: Geolocation) { }
+
+  ionViewDidLoad() {
+    this.geolocation.getCurrentPosition()
+      .then((resp) => {
+        const position = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
+
+        const mapOptions = {
+          zoom: 18,
+          center: position
+        }
+
+        this.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+        const marker = new google.maps.Marker({
+          position: position,
+          map: this.map
+        });
+
+      }).catch((error) => {
+        console.log('Erro ao recuperar sua posição', error);
+      });
+  }
+}</pre>
+
+Arquivo <b>exemplo3.html</b>
+<pre class="codificacao codigoHTML">
+&lt;ion-header&gt;
+  &lt;ion-navbar&gt;
+    &lt;ion-title&gt;Google maps&lt;/ion-title&gt;
+  &lt;/ion-navbar&gt;
+&lt;/ion-header&gt;
+&lt;ion-content padding&gt;
+  &lt;div #map id="map"&gt;&lt;/div&gt;
+&lt;/ion-content&gt;</pre>
+
+Arquivo exemplo3.scss
+<pre>page-exemplo3 {
+  #map {
+    height: 100%;
+  }
+}	</pre>
+
+<h2>4.4 Página Exemplo4</h2>
+Arquivo <b>exemplo4.ts</b>
+<pre>import { Component } from '@angular/core';
+import { IonicPage } from 'ionic-angular';
+
+declare var google;
+
+@IonicPage()
+@Component({
+  selector: 'page-exemplo4',
+  templateUrl: 'exemplo4.html',
+})
+export class Exemplo4Page {
+  directionsService = new google.maps.DirectionsService();
+  directionsDisplay = new google.maps.DirectionsRenderer();
+  map: any;
+  startPosition: any;
+  originPosition: string;
+  destinationPosition: string;
+
+  constructor() { }
+
+  ionViewDidLoad() {
+    this.initializeMap();
+  }
+
+  initializeMap() {
+    this.startPosition = new google.maps.LatLng(-21.763409, -43.349034);
+
+    const mapOptions = {
+      zoom: 18,
+      center: this.startPosition,
+      disableDefaultUI: true
+    }
+
+    this.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    this.directionsDisplay.setMap(this.map);
+
+    const marker = new google.maps.Marker({
+      position: this.startPosition,
+      map: this.map,
+    });
+  }
+
+  calculateRoute() {
+    if (this.destinationPosition && this.originPosition) {
+      const request = {
+        // Pode ser uma coordenada (LatLng), uma string ou um lugar
+        origin: this.originPosition,
+        destination: this.destinationPosition,
+        travelMode: 'DRIVING'
+      };
+
+      this.traceRoute(this.directionsService, this.directionsDisplay, request);
+    }
+  }
+
+  traceRoute(service: any, display: any, request: any) {
+    service.route(request, function (result, status) {
+      if (status == 'OK') {
+        display.setDirections(result);
+      }
+    });
+  }
+}</pre>
+
+Arquivo <b>exemplo4.html</b>
+<pre>&lt;ion-header&gt;
+  &lt;ion-navbar&gt;
+    &lt;ion-title&gt;Google maps&lt;/ion-title&gt;
+  &lt;/ion-navbar&gt;
+&lt;/ion-header&gt;
+
+&lt;ion-content padding&gt;
+  &lt;ion-list&gt;
+    &lt;ion-item&gt;
+      &lt;ion-label&gt;De onde?&lt;/ion-label&gt;
+      &lt;ion-input type="text" [(ngModel)]="originPosition"&gt;&lt;/ion-input&gt;
+    &lt;/ion-item&gt;
+
+    &lt;ion-item&gt;
+      &lt;ion-label&gt;Para onde?&lt;/ion-label&gt;
+      &lt;ion-input type="text" [(ngModel)]="destinationPosition"&gt;&lt;/ion-input&gt;
+    &lt;/ion-item&gt;
+
+    &lt;div padding&gt;
+      &lt;button ion-button (click)="calculateRoute()"&gt;Traçar rota&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/ion-list&gt;
+
+  &lt;div #map id="map"&gt;&lt;/div&gt;
+&lt;/ion-content&gt;</pre>
+
+Arquivo <b>exemplo4.scss</b>
+<pre>page-exemplo4 {
+  #map {
+    height: 80%;
+  }
+}</pre>
+
+
+
+
+
+<a href="https://www.youtube.com/watch?time_continue=2&v=RLoVLt7IbOE">Youtube</a> - <a href="https://github.com/fabricadecodigo/IonicGoogleMapsBasicExample">GITHUB</a>
+
