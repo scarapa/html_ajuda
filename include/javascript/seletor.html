@@ -54,41 +54,24 @@ for (i = 0; i < x.length; i++) {
 </pre>
 
 <h3>6 - querySelectorAll</h3>
-<pre><kbd>querySelectorAll</kbd>
-	var x = querySelectorAll("animal");</pre>
-
-<h3>VALIDAR RADIO/CHECKBOX</h3>
+Listar os links da <b>SIDEBAR</b> no click
 <pre><kbd>HTML</kbd>
-
-<kbd>JS</kbd>
-var valor = document.querySelector("input[name=tipo_contrato]:checked").value</pre>
-
-<h3>VALIDAR RADIO/CHECKBOX</h3>
-<pre><kbd>HTML</kbd>
-&lt;label&gt;&lt;input type="radio" value="0" name="flag"&gt;NAO&lt;/label&gt;
-&lt;label&gt;&lt;input type="radio" value="1" name="flag"&gt;SIM&lt;/label&gt;
-<kbd>JS</kbd>
-var valor = document.querySelector("input[name=tipo_contrato]:checked").value 
+&lt;div id="sidebarTeste"&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#01"&gt;Apresentação&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#02"&gt;Definição de API&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#03"&gt;Autenticação JWT&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#04"&gt;HttpClientModule&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#05"&gt;Requisições GET&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;	
+&lt;/div&gt;	
 </pre>
 
-<code>Exemplo</code>
-<table border=1>
-	<tr>
-		<td><label><input type="radio" value="0" name="flag" onclick="testeSeletor()">NAO</label></td>
-		<td><label><input type="radio" value="1" name="flag" onclick="testeSeletor()">SIM</label></td>
-	</tr>
-	<tr>
-		<td>VALOR É: </td>
-		<td id="valorSeletor"></td>
-	</tr>	
-</table>
-<script>
-	function testeSeletor(){
-		var valor = document.querySelector("input[name=flag]:checked").value;
-		document.getElementById("valorSeletor").innerHTML=valor;
-	}
-</script>
+<pre><kbd>JS</kbd>
+var aulas = document.querySelectorAll("ul li");
+for (var i = 0; i < aulas.length; i++) {
+    aulas[i].addEventListener('click', function (event) {
+        console.log('POSICAO DO LI É: '+posicao)
+    });
+}  </pre>
 
-<br clear="all"><br clear="all">
-
-<a href="https://blog.schoolofnet.com/2018/10/como-parar-de-usar-o-jquery/">Fonte</a>
