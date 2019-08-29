@@ -1,61 +1,61 @@
-﻿<h2><i class="fa fa-circle-o fa-fw"></i> Radio Button</h2>
-
-
-<div class="radio3">
+﻿<div class="radio3">
   <input type="radio" value="option1" name="radio1" id="radio1">
-  <label for="radio1">
-	Option one is this and that&mdash;be sure to include why it's great
-  </label>
+  <label for="radio1">Option one is this and that&mdash;be sure to include why it's great</label>
 </div>
 
 <div class="radio3">
   <input type="radio" value="option2" name="radio1" id="radio2">
-  <label for="radio2">
-	Option two can be something else and selecting it will deselect option one
-  </label>
+  <label for="radio2">Option two can be something else and selecting it will deselect option one</label>
 </div>
 
+<hr>
+
+<h3>Com Icones Alterando CSores</h3>
 <div>
   <div class="radio3 radio-check radio-inline">
-	<input type="radio" checked="" value="option1" name="radio2" id="radio4">
-	<label for="radio4">
-	  Option 1
-	</label>
+  	<input type="radio" checked="" value="option1" name="radio2" id="radio4">
+  	<label for="radio4">Option 1</label>
   </div>
-  <div class="radio3 radio-check radio-success radio-inline">
-	<input type="radio" value="option2" name="radio2" id="radio5">
-	<label for="radio5">
-	  Option 2
-	</label>
+    <div class="radio3 radio-check radio-inline radio-success">
+  	<input type="radio" value="option2" name="radio2" id="radio5">
+  	<label for="radio5">Option 2</label>
   </div>
-  <div class="radio3 radio-check radio-warning radio-inline">
-	<input type="radio" value="option3" name="radio2" id="radio6">
-	<label for="radio6">
-	  Option 3
-	</label>
+  <div class="radio3 radio-check radio-inline radio-warning">
+  	<input type="radio" value="option3" name="radio2" id="radio6">
+  	<label for="radio6">Option 3</label>
   </div>
 </div>
 
 <div>
   <div class="radio3 radio-check radio-inline">
-	<input type="radio" value="asc" name="radio3" id="superAsc">
-	<label for="superAsc">Option 1</label>
+  	<input type="radio" value="asc" name="radio3" id="superAsc">
+  	<label for="superAsc">Option 1</label>
   </div>
   <div class="radio3 radio-check radio-inline">
-	<input type="radio" value="desc" name="radio3" id="superDesc">
-	<label for="superDesc">Option 2</label>
+  	<input type="radio" value="desc" name="radio3" id="superDesc">
+  	<label for="superDesc">Option 2</label>
   </div>
 </div>
 
 <hr>
 <h3>Radio Mudando de ICONE</h3>
+<pre class="codigo">
+&lt;style&gt;
+  input[type='radio'].icon-checkbox{display:none}
+  input[type='radio'].icon-checkbox+label .unchecked{display:inline}
+  input[type='radio'].icon-checkbox+label .checked{display:none}
+  input[type='radio']:checked.icon-checkbox{display:none}
+  input[type='radio']:checked.icon-checkbox+label .unchecked{display:none}
+  input[type='radio']:checked.icon-checkbox+label .checked{display:inline}
+&lt;/style&gt; 
+</pre>
 <style>
-input[type='radio'].icon-checkbox{display:none}
-input[type='radio'].icon-checkbox+label .unchecked{display:inline}
-input[type='radio'].icon-checkbox+label .checked{display:none}
-input[type='radio']:checked.icon-checkbox{display:none}
-input[type='radio']:checked.icon-checkbox+label .unchecked{display:none}
-input[type='radio']:checked.icon-checkbox+label .checked{display:inline}
+  input[type='radio'].icon-checkbox{display:none}
+  input[type='radio'].icon-checkbox+label .unchecked{display:inline}
+  input[type='radio'].icon-checkbox+label .checked{display:none}
+  input[type='radio']:checked.icon-checkbox{display:none}
+  input[type='radio']:checked.icon-checkbox+label .unchecked{display:none}
+  input[type='radio']:checked.icon-checkbox+label .checked{display:inline}
 </style>
 <input type="radio" id="checkbox1" class="icon-checkbox" name="radioTeste"/>
 <label for="checkbox1" class="fa fa-3x">
