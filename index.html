@@ -15,7 +15,8 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/sb-admin-2.css" rel="stylesheet">
         <link href="css/metisMenu.css" rel="stylesheet">
-        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="css/fontawesome-NOVO.css" rel="stylesheet" type="text/css">
+        <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
         <link href="css/materialdesignicons.css" rel="stylesheet">
         <link href="css/devicon.min.css" rel="stylesheet" charset="utf-8">
         <link href="css/whhg.css" rel="stylesheet" charset="utf-8">
@@ -35,57 +36,7 @@
         <script src="js/bootstrap-datepicker_1.6.1.js"></script>
         <script src="js/codificacao.js"></script>
 
-        <script>
-            $(document).ready(function () {
-                init();
-            });
-            function init(){ 
-                $('pre.codificacao').exibirNoConsole(); 
-            }      
 
-            window.onload = function(e){
-                var link = window.location.hash.replace('#','','g');
-                injetarURL(link);
-
-                $("#side-menu ul li a").click(function () {
-                    var link = $(this).attr('href')
-                    link = link.replace('#','','g');
-                    injetarURL(link)
-                });
-                
-                $(".calendario").datepicker({
-                    format: 'dd/mm/yyyy',                
-                    language: "pt-BR"
-                });    
-
-                function injetarURL(link) {
-                    let arquivo, icone,texto, cabecalho , url;
-                    if(link!=""){
-                        arquivo = link;
-                        icone = $("a[href$='"+arquivo+"']").children().attr('class')
-                        texto = arquivo.toUpperCase().replace("/", "&nbsp;&raquo;&nbsp;");       
-                        cabecalho = "<h2><i class='"+icone+" fa-2x'></i>&nbsp;"+texto+"</h2><hr>";
-                        url = "include/"+arquivo;
-                    }else{
-                        arquivo = "home";
-                        icone = "fa fa-home";
-                        texto = "HOME"
-                        cabecalho = "<h2 class='"+icone+" fa-2x'>&nbsp;"+texto+"</h2><hr>";
-                        url = "include/"+arquivo;
-                    }
-                    url = "include/"+arquivo+".html";
-
-                    //LIMPAR O MAIN
-                    $("#page-wrapper").html('');                    
-                    $("#page-wrapper").load(url, function() {
-                        $("#page-wrapper").prepend(cabecalho);
-                    });
-                }
-                init()                
-            }             
-
-            
-        </script>
     </head>
 
      <body>
@@ -326,7 +277,8 @@
                             <li>
                                 <a href="#icones"><i class="fa fa-edit fa-fw"></i><span class="margin-title-field">Icones</span><span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level collapse">
-                                    <li><a href="#icones/awesome">Font Awesome</a></li>
+                                    <li><a href="#icones/awesome-novo"> Font Awesome <i class="fas fa-certificate" style="color:red;"></i> <span style="color:red;font-weight: bold">NOVO</span></a></li>
+                                    <li><a href="#icones/awesome">Font Awesome</a></li>                                    
                                     <li><a href="#icones/glyphicon">Glyphcon</a></li>
                                     <li><a href="#icones/material">Material</a></li>
                                     <li><a href="#icones/devicon">Devicon</a></li>
@@ -549,4 +501,68 @@
         </div>
         <div id="page-wrapper"></div>
     </body>
+    <script>
+            $(document).ready(function () {
+                init();
+            });
+            /*
+            function init(){ 
+                $('pre.codificacao').exibirNoConsole(); 
+                document.getElementById("wrapper").innerHTML = loadPage("./include/sidebar.html");
+            }      
+
+            $(document).on('click', '#side-menu li', function(){ 
+                console.log( $(this) ); 
+            });
+
+            function loadPage(href){
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("GET", href, false);
+                xmlhttp.send();
+                return xmlhttp.responseText;
+            }             
+            */
+
+            window.onload = function(e){
+                var link = window.location.hash.replace('#','','g');
+                injetarURL(link);
+                $("#side-menu ul li a").click(function () {
+                    var link = $(this).attr('href')
+                    link = link.replace('#','','g');
+                    injetarURL(link)
+                });
+                
+                $(".calendario").datepicker({
+                    format: 'dd/mm/yyyy',                
+                    language: "pt-BR"
+                });    
+
+                function injetarURL(link) {
+                    let arquivo, icone,texto, cabecalho , url;
+                    if(link!=""){
+                        arquivo = link;
+                        icone = $("a[href$='"+arquivo+"']").children().attr('class')
+                        texto = arquivo.toUpperCase().replace("/", "&nbsp;&raquo;&nbsp;");       
+                        cabecalho = "<h2><i class='"+icone+" fa-2x'></i>&nbsp;"+texto+"</h2><hr>";
+                        url = "include/"+arquivo;
+                    }else{
+                        arquivo = "home";
+                        icone = "fa fa-home";
+                        texto = "HOME"
+                        cabecalho = "<h2 class='"+icone+" fa-2x'>&nbsp;"+texto+"</h2><hr>";
+                        url = "include/"+arquivo;
+                    }
+                    url = "include/"+arquivo+".html";
+
+                    //LIMPAR O MAIN
+                    $("#page-wrapper").html('');                    
+                    $("#page-wrapper").load(url, function() {
+                        $("#page-wrapper").prepend(cabecalho);
+                    });
+                }
+                init()                
+            }             
+
+            
+        </script>    
 </html>
