@@ -1,0 +1,69 @@
+Para um desenvolvimento mais rápido para dispositivos móveis, use classes de exibição responsivas para mostrar e ocultar elementos por dispositivo. Evite criar versões totalmente diferentes do mesmo site; oculte o elemento responsivamente para cada tamanho de tela.
+<br><br>
+
+Para ocultar elementos, basta usar a classe <code>.d-none</code> ou uma das classes <code>.d- {sm, md, lg, xl} -one</code> para qualquer variação de tela responsiva.
+<br><br>
+
+Para mostrar um elemento apenas em um determinado intervalo de tamanhos de tela, você pode combinar uma classe <code>.d -* -none</code> com uma classe <code>.d-*-*</code>, por exemplo <code>.d-none .d-none .d-md-block .d-xl-none</code> ocultará o elemento para todos os tamanhos de tela, exceto em dispositivos médios e grandes.
+<br><br>
+
+<table border="1" id="tabelaGrid">
+  <thead>
+    <tr>
+      <th>Screen Size</th>
+      <th>Class</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Hidden on all</td>
+      <td><code class="highlighter-rouge">.d-none</code></td>
+    </tr>
+    <tr>
+      <td>Hidden only on xs</td>
+      <td><code class="highlighter-rouge">.d-none .d-sm-block</code></td>
+    </tr>
+    <tr>
+      <td>Hidden only on sm</td>
+      <td><code class="highlighter-rouge">.d-sm-none .d-md-block</code></td>
+    </tr>
+    <tr>
+      <td>Hidden only on md</td>
+      <td><code class="highlighter-rouge">.d-md-none .d-lg-block</code></td>
+    </tr>
+    <tr>
+      <td>Hidden only on lg</td>
+      <td><code class="highlighter-rouge">.d-lg-none .d-xl-block</code></td>
+    </tr>
+    <tr>
+      <td>Hidden only on xl</td>
+      <td><code class="highlighter-rouge">.d-xl-none</code></td>
+    </tr>
+    <tr>
+      <td>Visible on all</td>
+      <td><code class="highlighter-rouge">.d-block</code></td>
+    </tr>
+    <tr>
+      <td>Visible only on xs</td>
+      <td><code class="highlighter-rouge">.d-block .d-sm-none</code></td>
+    </tr>
+    <tr>
+      <td>Visible only on sm</td>
+      <td><code class="highlighter-rouge">.d-none .d-sm-block .d-md-none</code></td>
+    </tr>
+    <tr>
+      <td>Visible only on md</td>
+      <td><code class="highlighter-rouge">.d-none .d-md-block .d-lg-none</code></td>
+    </tr>
+    <tr>
+      <td>Visible only on lg</td>
+      <td><code class="highlighter-rouge">.d-none .d-lg-block .d-xl-none</code></td>
+    </tr>
+    <tr>
+      <td>Visible only on xl</td>
+      <td><code class="highlighter-rouge">.d-none .d-xl-block</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<a href="https://getbootstrap.com/docs/4.0/utilities/display/">bootstrap</a>
