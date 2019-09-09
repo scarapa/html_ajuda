@@ -1,0 +1,17 @@
+Exemplo
+<pre>&lt;script language="JavaScript"&gt;
+document.onkeydown = checkKeycode
+function checkKeycode(e) {
+var keycode;
+if (window.event)
+	{keycode = window.event.keyCode;}
+else if (e)
+	{keycode = e.which;}
+alert("keycode: " + keycode);
+}
+&lt;/script&gt;</pre>
+
+<a href="http://gcctech.org/csc/javascript/javascript_keycodes.htm">Fonte[1]</a><br>
+<a href="http://gcctech.org/csc/javascript/keycodeExample.html">Fonte[2]</a><br>
+<a href="http://gcctech.org/csc/javascript/keycodeExample.html">Fonte[3]</a><br>
+<a href="https://www.w3schools.com/jsref/event_key_keycode.asp">Fonte[4]</a>
