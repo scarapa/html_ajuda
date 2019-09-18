@@ -1,32 +1,26 @@
-﻿
-
-É um link simbólico, isto é, um alias ou atalho para um programa ou arquivo.
+﻿É um link simbólico, isto é, um alias ou atalho para um programa ou arquivo.
 
 É um arquivo especial existente no FileSystem e apontando para outro arquivo ou diretório. Se você acessar o link simbólico de um aplicativo, ele parece transparente para o aplicativo e você realmente acessará o arquivo ou o diretório ao qual o link simbólico está apontando.
 
 Embora um link simbólico apareça com permissões de arquivos e propriedades de usuários / grupos, os direitos de acesso são determinados apenas pelas permissões de destino e pelos proprietários de usuários / grupos.
 
-Criar o link:
+<h2>Criar o link</h2>
 <pre>$ ln -s <destination file or directory> <name of the symlink> </pre>
 
-Deletar o link:
+<h2>Deletar o link</h2>
 <pre>$ rm [name of the symlink]</pre>
 
+<hr>
 
 Caso de uso, montar um pendrive/hd e criar um link na pasta /var/www com nome de 'dados'
-
 <pre>$ cd /var/www
-$ ln -s /media/beto/DADOS/ dados
-</pre>
+$ ln -s /media/beto/DADOS/ dados</pre>
 
-<code>Erro1: Sem acesso do link pelo <b>APACHE</b></code>
-<pre>Forbidden
+<hr>
 
-You don't have permission to access /dados on this server.
-Apache/2.4.23 (Debian) Server at localhost Port 80</pre>
-
-1 - Acessar 
-
+Montar em <code>/var/www/fotos/</code> a pasta <b>fotos</b> localizada em <code>OUTRO DISCO</code>
+<pre class="terminal">$ cd /var/www/
+<font color="#8AE234"><b>beto@desk</b></font>:<font color="#729FCF"><b>/var/www</b></font>$ ln -s /media/beto/DADOS/FOTOS fotos</pre>
 
 <a href="https://wiki.debian.org/SymLink">fonte</a><br/>
 <a href="https://superuser.com/questions/244245/how-do-i-get-apache-to-follow-symlinks"></a>
