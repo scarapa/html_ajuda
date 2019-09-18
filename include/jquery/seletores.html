@@ -1,5 +1,6 @@
+
 <h3>ID</h3>
-<pre><code> $( "#resultado" )</code></pre>
+<pre>$( "#resultado" )</pre>
 
 <h3>CLASSE</h3>
 <pre><code>$( ".soNumero" )</code></pre>
@@ -36,6 +37,20 @@ Retorna boolean true/false
 
 <hr>
 
+<h3>RADIO</h3>
+<h4>Pegar o valor do radio com o mesmo ID e NAME</h4>
+<label><input type="radio" id="genero" name="genero" value="masc">Masculino</label>
+<label><input type="radio" id="genero" name="genero" value="fem">Feminino</label>
+<code>SOLUÇÃO :</code> <span style="font-weight: bold;" id="valorRadioComThis"></span>
+
+<br>
+Codigo
+<pre>$("input[name='genero']").click(function() {
+    let valor = $(this)[0].value 
+});</pre>
+<br>
+<hr>
+
 <h3>Usar seletor após o document ready estar pronto é preciso usar o evento ON</h3>
 Exemplo abaixo.<br/>
 <pre><code>$(document).<strong style="color:red">on</strong>('click', '.botaoDeletar', function(){
@@ -46,3 +61,12 @@ No caso do exemplo acima foi utilizado o evento <strong>click</strong> e a class
 <a href="https://stackoverflow.com/questions/10011802/how-to-get-this-selected-option-in-jquery">stackoverflow</a>
 
 <br clear="all"><br clear="all">
+
+<script>
+	$(document).ready(function() {
+        $("input[name='genero']").click(function() {
+            $("#valorRadioComThis").html( $(this)[0].value );
+        });	
+	});
+
+</script>
