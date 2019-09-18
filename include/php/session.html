@@ -1,0 +1,23 @@
+Sessões são uma forma simples de armazenar dados para usuários individuais usando um ID de sessão único. Sessões podem ser usadas para persistir informações entre requisições de páginas. IDs de sessão normalmente são enviados ao navegador através de cookies de sessão e o ID é usado para recuperar dados da sessão existente. A ausência de um ID ou cookie de sessão permite que o PHP saiba que deve criar uma nova sessão e gerar um novo ID de sessão. 
+<br><br>
+
+<h3>Iniciar SESSAO</h3>
+Inicia uma nova sessão ou resume uma sessão existente
+<pre class="codigo codigoHTML">session_start();</pre>
+
+<hr>
+
+<h3>Destruir SESSAO</h3>
+<pre class="codigo codigoHTML">session_destroy();</pre>
+
+<hr>
+
+<h3>Salvar SESSAO em local definido</h3>
+Obtém e/ou define o caminho para armazenamento da sessão atual.<br><br>
+
+<code>OBSERVAÇÃO:</code>Se informado, o caminho onde os dados são salvos será alterado. session_save_path() precisa ser chamada antes de <b>session_start()</b> para isto. 
+<pre>session_save_path("/var/www/PROJETO/session/");</pre>
+
+<a href="https://stackoverflow.com/questions/17242346/php-session-lost-after-redirect">Fonte[1]</a>
+<a href="https://www.experts-exchange.com/questions/21302058/PHP-Session-lost-after-redirect-page.html">Fonte[2]</a>
+<a href="https://www.experts-exchange.com/questions/23455864/php-session-variables-are-lost-after-header-is-called.html">Fonte[3]</a>
