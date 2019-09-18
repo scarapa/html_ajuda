@@ -1,0 +1,24 @@
+<h2>1 MSSQL</h2>
+
+
+<h3>1.1 CRIAR</h3>
+
+
+<hr>
+<h3>1.2 MODIFICAR</h3>
+
+
+<hr>
+<h3>1.3 DELETE</h3>
+
+Mensagem:<br>
+<code>Mensagem 547, Nível 16, Estado 0, Linha 4
+The INSERT statement conflicted with the FOREIGN KEY constraint "<b>FK__tblAluno___cd_En__3A4CA8FD</b>". The conflict occurred in database "<b>DATABASE</b>", table "<b>TABELA</b>", column '<b>COLUNA</b>'.</code>
+<br><br>
+
+Como Apagar restrição <code>FK__tblAluno___cd_En__3A4CA8FD</code> ?
+Para isso é preciso a permissão <b>ALTER</b> na tabela.
+<pre><kbd>mssql</kbd>
+ALTER TABLE <b>tabela</b> DROP CONSTRAINT <b>FK__tblAluno___cd_En__3A4CA8FD</b>;  </pre>
+
+<a href="https://docs.microsoft.com/pt-br/sql/relational-databases/tables/delete-check-constraints?view=sql-server-2017">microsoft</a>
