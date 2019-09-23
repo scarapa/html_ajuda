@@ -1,3 +1,11 @@
+<style type="text/css">
+article {  counter-reset: meucontador; }
+article h3::before{
+    counter-increment: meucontador;
+    content: counter(meucontador) " - ";
+}
+</style>
+
 <ol>
 	<li>document.getElementById</li>
 	<li>document.getElementsByClassName</li>
@@ -6,72 +14,72 @@
 	<li>document.querySelector</li>
 	<li>document.querySelectorAll</li>
 </ol>
+<article>
+    <h3>ID</h3>
+    <pre>document.getElementById("demo");</pre>
 
-<h3>1 - ID</h3>
-<pre>document.getElementById("demo");</pre>
-
-<pre>
-var x = document.getElementById("demo");
-x.style.color = "red";  	
-</pre>
-
-
-<h3>2 - CLASSE</h3>
-<pre>var x = document.getElementsByClassName("example");</pre>
-
-<pre>
-var x = document.getElementsByClassName("example");
-var i;
-for (i = 0; i < x.length; i++) {
-    x[i].style.backgroundColor = "red";
-} 	
-</pre>
+    <pre>
+    var x = document.getElementById("demo");
+    x.style.color = "red";  	
+    </pre>
 
 
-<h3>3 - NAME</h3>
-3.1
-<pre>var x = document.getElementsByName("fname");</pre>
-3.2
-<pre>var x = document.getElementsByName("animal");
-for(var i = 0; i < x.length; i++) {
-    if (x[i].type == "checkbox") {
-        x[i].checked = true;
-    }
-} </pre>
-3.3
-<pre>var x = document.getElementsByName("animal");
-var i;
-for (i = 0; i < x.length; i++) {
-	if (x[i].type == "checkbox") {
-		x[i].checked = true;
-	}
-} 	
-</pre>
+    <h3>CLASSE</h3>
+    <pre>var x = document.getElementsByClassName("example");</pre>
 
-<h3>5 - querySelector</h3>	
-<pre><kbd>querySelector</kbd>
-	var x = querySelector("animal");	
-</pre>
+    <pre>
+    var x = document.getElementsByClassName("example");
+    var i;
+    for (i = 0; i < x.length; i++) {
+        x[i].style.backgroundColor = "red";
+    } 	
+    </pre>
 
-<h3>6 - querySelectorAll</h3>
-Listar os links da <b>SIDEBAR</b> no click
-<pre><kbd>HTML</kbd>
-&lt;div id="sidebarTeste"&gt;
-    &lt;ul&gt;
-        &lt;li&gt;&lt;a href="#01"&gt;Apresentação&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href="#02"&gt;Definição de API&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href="#03"&gt;Autenticação JWT&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href="#04"&gt;HttpClientModule&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href="#05"&gt;Requisições GET&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;	
-&lt;/div&gt;	
-</pre>
 
-<pre><kbd>JS</kbd>
-var aulas = document.querySelectorAll("ul li");
-for (var i = 0; i < aulas.length; i++) {
-    aulas[i].addEventListener('click', function (event) {
-        console.log('POSICAO DO LI É: '+posicao)
-    });
-}  </pre>
+    <h3>NAME</h3>
+    3.1
+    <pre>var x = document.getElementsByName("fname");</pre>
+    3.2
+    <pre>var x = document.getElementsByName("animal");
+    for(var i = 0; i < x.length; i++) {
+        if (x[i].type == "checkbox") {
+            x[i].checked = true;
+        }
+    } </pre>
+    3.3
+    <pre>var x = document.getElementsByName("animal");
+    var i;
+    for (i = 0; i < x.length; i++) {
+        if (x[i].type == "checkbox") {
+            x[i].checked = true;
+        }
+    } 	
+    </pre>
 
+    <h3>5 - querySelector</h3>	
+    <pre><kbd>querySelector</kbd>
+        var x = querySelector("animal");	
+    </pre>
+
+    <h3>querySelectorAll</h3>
+    Listar os links da <b>SIDEBAR</b> no click
+    <pre><kbd>HTML</kbd>
+    &lt;div id="sidebarTeste"&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="#01"&gt;Apresentação&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#02"&gt;Definição de API&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#03"&gt;Autenticação JWT&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#04"&gt;HttpClientModule&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#05"&gt;Requisições GET&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;	
+    &lt;/div&gt;	
+    </pre>
+
+    <pre><kbd>JS</kbd>
+    var aulas = document.querySelectorAll("ul li");
+    for (var i = 0; i < aulas.length; i++) {
+        aulas[i].addEventListener('click', function (event) {
+            console.log('POSICAO DO LI É: '+posicao)
+        });
+    }  </pre>
+</article>

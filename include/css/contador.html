@@ -1,0 +1,60 @@
+<style type="text/css">
+artigo {  counter-reset: meucontador; }
+artigo h3::before{
+    counter-increment: meucontador;
+    content: counter(meucontador) " - ";
+}
+</style>
+
+Os contadores fazem parte do CSS 2, então já possuem suporte por boa parte dos navegadores. Mesmo assim, são poucas as pessoas que conhecem ou fazem uso deles.
+<br><br>
+Para quem nunca viu pode parecer meio estranho, mas vamos ver de modo simples como usá-los!
+<br><br>
+
+Basicamente são 3 partes;
+<ol>
+    <li><code>SELECIONAR</code> determinado parte do DOM o qual quer se fazer a contagem </li>
+    <li><code>EXIBIR</code> o contador</li>
+    <li><code>INCREMENTAR</code> o contador selecionado</li>
+</ol>
+<h3><b>INICIALIZANDO</b> o contador</h3>
+Primeiro vamos imaginar que os contadores são simplesmente variáveis, exatamente como as das linguagens de programação. Então, vamos começar com a declaração:
+<pre>artigo{ counter-reset: meucontador; }</pre>
+
+<h3><b>EXIBINDO</b> o contador</h3>
+<pre>artigo h3::before{
+    counter-increment: meucontador;
+}</pre>
+
+<h3><b>INCREMENTANDO</b> o contador</h3>
+<pre>artigo h3::before{
+    counter-increment: meucontador;
+    content: counter(meucontador) " - ";
+}</pre>
+Diferente do counter-reset, que reinicia o nosso contador, o counter-increment incrementa o valor.
+<br><br>
+
+Exemplo:
+<pre>
+&lt;artigo&gt;
+    &lt;h3&gt;Capitulo&lt;/h3&gt;
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi deleniti reprehenderit obcaecati impedit, eaque, tempora non harum quos, maxime vero reiciendis delectus recusandae libero veniam debitis deserunt doloribus beatae quam.     
+    &lt;h3&gt;Capitulo&lt;/h3&gt;
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi deleniti reprehenderit obcaecati impedit, eaque, tempora non harum quos, maxime vero reiciendis delectus recusandae libero veniam debitis deserunt doloribus beatae quam.     
+    &lt;h3&gt;Capitulo&lt;/h3&gt;
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi deleniti reprehenderit obcaecati impedit, eaque, tempora non harum quos, maxime vero reiciendis delectus recusandae libero veniam debitis deserunt doloribus beatae quam.     
+&lt;/artigo&gt;
+</pre>
+Resultado
+<artigo>
+    <h3>Capitulo</h3>
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi deleniti reprehenderit obcaecati impedit, eaque, tempora non harum quos, maxime vero reiciendis delectus recusandae libero veniam debitis deserunt doloribus beatae quam.     
+    <h3>Capitulo</h3>
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi deleniti reprehenderit obcaecati impedit, eaque, tempora non harum quos, maxime vero reiciendis delectus recusandae libero veniam debitis deserunt doloribus beatae quam.     
+    <h3>Capitulo</h3>
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi deleniti reprehenderit obcaecati impedit, eaque, tempora non harum quos, maxime vero reiciendis delectus recusandae libero veniam debitis deserunt doloribus beatae quam.     
+</artigo>
+
+<br><br>
+<a href="https://www.treinaweb.com.br/blog/criando-contadores-apenas-com-css/">treinaweb</a><br>
+<a href="https://webdesign.tutsplus.com/pt/tutorials/quick-tip-using-css-counters-to-style-incremental-elements--cms-23497">webdesign</a>
