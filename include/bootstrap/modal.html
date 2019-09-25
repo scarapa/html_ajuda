@@ -1,0 +1,68 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">EXEMPLO</button>
+
+<h3>Codigo:</h3>
+<pre class="codigo codigoHTML">
+&lt;div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"&gt;
+    &lt;div class="modal-dialog" role="document"&gt;
+        &lt;div class="modal-content"&gt;
+            &lt;div class="modal-header"&gt;
+                &lt;h5 class="modal-title" id="exampleModalLabel"&gt;Modal title&lt;/h5&gt;
+                &lt;button type="button" class="close" data-dismiss="modal" aria-label="Close"&gt;
+                    &lt;span aria-hidden="true"&gt;&times;&lt;/span&gt;
+                &lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div class="modal-body"&gt;...&lt;/div&gt;
+            &lt;div class="modal-footer"&gt;
+                &lt;button type="button" class="btn btn-secondary" data-dismiss="modal"&gt;Close&lt;/button&gt;
+                &lt;button type="button" class="btn btn-primary"&gt;Save changes&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+<h3>Abrir Modal</h3>
+<b>NORMAl :</b><code>data-toggle="modal" data-target="#idModal"</code><br>
+<b>jQuery :</b><code>$("#exampleModal").modal('show')</code><br>
+
+
+<h3>Fechar Modal</h3>
+<b>NORMAl :</b><code>data-dismiss="modal"</code><br>
+<b>jQuery :</b><code>$("#exampleModal").modal('hide')</code><br>
+
+<h3>Metodos</h3>
+<h4>.modal(options)</h4>
+
+<ul>
+	<li>.modal('toggle')</li>
+	<li>.modal('show')</li>
+	<li>.modal('hide')</li>
+	<li>.modal('handleUpdate')</li>
+	<li>.modal('dispose')</li>
+</ul>
+
+
+<h3>DICAS</h3>
+
+<h4>Scrol no modal-body</h4>
+
+
+<!-- EXEMPLO 1 -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  	<div class="modal-dialog" role="document">
+	    <div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  		<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">...</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+	    </div>
+  	</div>
+</div>
+
