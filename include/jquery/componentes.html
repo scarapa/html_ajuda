@@ -1,10 +1,20 @@
-<h3>SELECT</h3>
+<style type="text/css">
+#page-wrapper{ counter-reset: contadorPai;  }
+#page-wrapper h3::before{
+    counter-increment: contadorPai;
+    content: counter(contadorPai) " - ";
+}
+h3{ counter-reset: contadorFilho;  }
+h4{margin-left:25px;}
+h4::before{
+    counter-increment: contadorFilho;
+    content: counter(contadorPai)"."counter(contadorFilho) " - ";
+}
+</style>
 
-<pre>
-</pre>
 
 <h3>CHECKBOX</h3>
-<h4> - VERIFICAR MARCACAO</h4>
+<h4>VERIFICAR MARCACAO</h4>
 
 <pre class="codificacao codigoJS">
 $("#idComponente").click( function(){
@@ -18,7 +28,87 @@ $("#idComponente").click( function(){
     }
 });</pre>
 
+<hr>
+
+<h3>RADIO BUTTON</h3>
+HTML:
+<pre class="codigo codigoHTML">
+&lt;label&gt;&lt;input type="radio" name="genero" value="1"&gt;Masculino&lt;/label&gt;&lt;br&gt;
+&lt;label&gt;&lt;input type="radio" name="genero" value="2"&gt;Feminino&lt;/label&gt;&lt;br&gt;	</pre>
+
+<label><input type="radio" name="genero" value="1">Masculino</label><br>
+<label><input type="radio" name="genero" value="2">Feminino</label><br>
+
+
+<h4>Pegar valor <b>SELECIONADO</b></h4>
+<pre>$("input[name='genero']:checked").val();</pre>
+Resultado: <span id="resultadoRadio" style="color:red;font-weight: bold;"></span>
+
+<h4><b>SELECIONAR</b> pelo valor</h4>
+<pre>$("input[name='genero'][value='2']").prop('checked', true);</pre>
+
+<h4><b>VALIDAR</b> seleção</h4>
+<pre>$('[name="genero"]').is(":checked")</pre>
+<input type="button" value="CLICAR AQUI" id="botaoResultadoRadioValidacao"> => (<span id="resultadoRadioValidacao" style="color:red;font-weight: bold;"></span>)
+
+<h4><b>LIMPAR</b> radio button</h4>
+<pre>$('[name="genero"]').prop('checked',false)</pre>
+<input type="button" value="DESMARCAR RADIO" id="botaoDesmarcarRadio">
+
+<hr>
+
+<h3>SELECT</h3>
+HTML:
+<pre class="codigo codigoHTML">&lt;select name="veiculo" id="veiculo"&gt;
+    &lt;option value="0"&gt;--Selecione&lt;/option&gt;
+    &lt;option value="1"&gt;Barco&lt;/option&gt;
+    &lt;option value="2"&gt;Carro&lt;/option&gt;
+    &lt;option value="3"&gt;Caminhao&lt;/option&gt;
+    &lt;option value="4"&gt;Moto&lt;/option&gt;
+&lt;/select</pre>
+
+Veiculo Tipo: 
+<select name="veiculo" id="veiculo">
+	<option value="0">--Selecione</option>
+	<option value="1">Barco</option>
+	<option value="2">Carro</option>
+	<option value="3">Caminhao</option>
+	<option value="4">Moto</option>
+</select><br><br>
+
+<h4><b>SELECIONAR</b> pelo valor</h4>
+<pre class="codigo codigoJS">$("#veiculo").val(2)</pre>
+
+<h4>Pegar Texto do Option <b>SELECIONADO</b></h4>
+Texto:<span id="resultadoSelectTexto" style="color:red;font-weight: bold;"></span><br>
+Codigo: <pre class="codigo codigoJS">$("#veiculo option:selected").text()</pre>
+
+<hr>
+
+<h3>LINK</h3>
 
 <h4>REMOVER LINK</h4>
 <pre>$("a").removeAttr("href");</pre>
 <a href="https://www.tutorialrepublic.com/faq/how-to-remove-attribute-from-an-html-element-in-jquery.php">Fonte</a>
+
+<script>
+// RADIO	
+$("input[name='genero']").click(function(){
+	$("#resultadoRadio").html( $("input[name='genero']:checked"). val() );
+});
+
+$("#botaoResultadoRadioValidacao").click(function(){
+    let flag = ( $('[name="genero"]').is(":checked") === true) ? '"marcado opcao"' : '"nenhuma opcao selecionada"' ;
+    $("#resultadoRadioValidacao").html( flag )
+});
+
+$("#botaoDesmarcarRadio").click(function(){
+    $('[name="genero"]').prop('checked',false);
+});
+
+
+// SELECT	
+$("#veiculo").change(function(){
+	$("#resultadoSelectTexto").html( $("#veiculo option:selected").text() );
+});	
+</script>
