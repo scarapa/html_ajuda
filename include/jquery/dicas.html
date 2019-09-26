@@ -5,12 +5,23 @@
 });
 </pre>
 
+<hr>
+
 <h3>SELETOR após o document ready estar pronto é preciso usar o evento ON; exemplo abaixo.</h3>
 <pre>$(document).<strong style="color:red">on</strong>('click', '.botaoDeletar', function(){ 
 	alert( $(this).attr('rel') ); 
 });
 </pre>
 
+<hr>
+
+<h3>VERIFICAR A EXISTENCIA DE ELEMENTO NO DOM</h3>
+<pre>$('elemId').length</pre>
+Se o resultado for 0(ZERO) <code>NÃO EXISTE</code> !!!<br><br>
+<a href="https://stackoverflow.com/questions/4592493/check-if-element-exists-in-jquery">stackoverflow</a>
+<hr>
+
 <h3>REMOVER LINK</h3>
 <pre>$("a").removeAttr("href");</pre>
 <a href="https://www.tutorialrepublic.com/faq/how-to-remove-attribute-from-an-html-element-in-jquery.php">Fonte</a>
+
