@@ -1,13 +1,29 @@
 Uma vez com NodeJS e o NPM instalados, é necessário instalar 2 módulos globais.
 
-<pre class="terminal">$ npm install -g ionic cordova</pre>
-Uma vez com esses dois módulos instalados, usaremos o gerador do Ionic CLI para criar um novo projeto.
-<br><br>
+<h2>1ª Criar o projeto</h2>
+Após entrar na pasta aonde se quer criar o projeto, digitar o comando, 
+abaixo para baixar o projeto baseado nas abas flutuantes. 
+<br>
+<code><b>OBS:</b>Existem outros tipos de projetos.</code>
+<pre>$ ionic start myApp tabs</pre>
 
-Existe 2 formas de iniciar o projeto, pode ser com uma a pagina em branco[1] ou já startando com uma estrutura definida[2]
+Após baixar , basta entrar na pasta do projeto, no exemplo a pasta do projeto é:<b>myApp</b> 
+<pre>$ cd ./myApp/</pre> 
 
-<h2>1. Iniciando projeto em branco</h2>
-<pre class="terminal">$ ionic start <strong style="color:red">nome_do_projeto</strong> blank --type=angular</pre>
+Agora executaremos o comando para rodar a aplicação
+<pre>$ ionic serve</pre>
+
+Deve demorar um pouco, mas o retorno deve ser algo parecido com isso:
+<pre>[INFO] Development server running!
+       
+        Local: http://localhost:8100
+        External: http://192.168.0.17:8100
+        DevApp: myApp@8100 on desk
+        
+        Use Ctrl+C to quit this process
+ 
+ [INFO] Browser window opened to http://localhost:8100!</pre>
+Se chegarmos até aqui, basta abrir o navegador com a url: <code>http://localhost:8100</code>
 
 <h2>2. Iiniciando projeto definido</h2>
 <pre>$ ionic start</pre>
