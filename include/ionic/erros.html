@@ -43,3 +43,26 @@ Para resolver isso foi preciso rodar o comando abaixo:
 <code>Error: ENOENT: no such file or directory, scandir</code><br>
 Solução foi <b>DELETAR</b> a pasta <b>node_modules</b> do projeto e rodar esse comando.
 <pre>$ npm install @ionic/app-scripts@latest --save-dev</pre>
+
+<hr>
+
+<h2>Atualizar NodeJS</h2>
+<pre class="terminal"><font color="#AAAAAA">[ng] You are running version v8.10.0 of Node.js, which is not supported by Angular CLI 8.0+.</font>
+<font color="#AAAAAA">[ng] The official Node.js version that is supported is 10.9 or greater.</font>
+<font color="#AAAAAA">[ng] Please visit https://nodejs.org/en/ to find instructions on how to update Node.js.</font>
+
+<font color="#AAAAAA">[</font><span style="background-color:#2E3436"><font color="#EF2929"><b>ERROR</b></font></span><font color="#AAAAAA">] </font><font color="#34E2E2"><b>ng</b></font><font color="#EF2929"><b> has unexpectedly closed (exit code 3).</b></font>
+		
+		The Ionic CLI will exit. Please check any output above for error
+		details.
+</pre>
+
+Solucao:
+<pre>$ sudo npm cache clean -f
+$ sudo npm install -g n
+$ sudo n stable</pre>
+
+<pre class="terminal">$ node -v</pre>
+Retorno: <code>v10.16.3</code> 
+<br clear="all">
+<a href="https://askubuntu.com/questions/426750/how-can-i-update-my-nodejs-to-the-latest-version">Fonte</a>
