@@ -7,6 +7,22 @@
     }
     #childen {}
 </style>    
+métodos importantes para navegação pelo DOM
+<ol>
+	<li><a href="#children">children</a></li>
+	<li>filter</li>
+	<li>find</li>	
+	<li>next</li>
+	<li>nextAll</li>
+	<li>parent</li>
+	<li>parents</li>
+	<li>prev</li>
+	<li>siblings</li>
+	<li><a href="#slice">slice</a></li>
+</ol>
+
+
+
 Os exemplos abaixo serão sob o codigo abaixo:
 <pre><kbd>HTML</kbd>
 &lt;ol&gt;
@@ -39,7 +55,7 @@ Os exemplos abaixo serão sob o codigo abaixo:
 
 <hr>
 
-<h3>children</h3>
+<h3 id="childen">children()</h3>
 <pre>$( "#children > li" ).click(function() {
     $(this).children().css( "color", "red" );
 });</pre>
@@ -71,10 +87,17 @@ Os exemplos abaixo serão sob o codigo abaixo:
 		<li>nivel</li>
 	</ol>
 </div>
-
 <hr>
 
-<h3>next</h3>
+<h3>filter</h3>
+encontra os elementos que atendem à expressão solicitada que sejam <b>descendentes</b> do seletor.
+<hr>
+
+<h3>find</h3>
+filtra e devolve todos os elementos que coincidam com o seletor e <b>também</b> a expressão filtrada.
+<hr>
+
+<h3>next()</h3>
 Metodo desconsidera os <b>filhos</b> pega o proximo <b>irmão</b> ou <b>superior</b>
 <div id="next" class="conteudo">
 	<ol>
@@ -107,7 +130,7 @@ Metodo desconsidera os <b>filhos</b> pega o proximo <b>irmão</b> ou <b>superior
 
 <hr>
 
-<h3>nextAll</h3>
+<h3>nextAll()</h3>
 <div id="nextAll" class="conteudo">
 	<ol>
 		<li>nivel</li>
@@ -139,7 +162,8 @@ Metodo desconsidera os <b>filhos</b> pega o proximo <b>irmão</b> ou <b>superior
 
 <hr>
 
-<h3>parent</h3>
+<h3>parent()</h3>
+Busca o primeiro ascendente e quando passamos nele um seletor – como .parent(‘ul’), por exemplo – só retorna o primeiro ascendente se ele fizer match com o seletor (se for uma ul, no caso). Se o ascendente direto não for uma ul, nesse caso, não retorna nada, ou melhor, apenas um objeto jQuery vazio!
 <div id="parent" class="conteudo">
 	<ol>
 		<li>nivel</li>
@@ -171,7 +195,9 @@ Metodo desconsidera os <b>filhos</b> pega o proximo <b>irmão</b> ou <b>superior
 
 <hr>
 
-<h3>parents</h3>
+<h3>parents()</h3>
+Busca todos os ascendentes e passando um parâmetro como seletor – exemplo: .parents(‘ul’) – busca todos os ascendentes que combinem com esse seletor, ou seja, neste caso seriam todas as tags ul ascendentes.
+ 
 <div id="parents" class="conteudo">
 	<ol>
 		<li>nivel</li>
@@ -200,12 +226,16 @@ Metodo desconsidera os <b>filhos</b> pega o proximo <b>irmão</b> ou <b>superior
 		<li>nivel</li>
 	</ol>
 </div>
-<h3>prev</h3>
-<h3>siblings</h3>
-<h3>slice</h3>
+<hr>
 
-<h3>filter</h3>
-<h3>find</h3>
+<h3>prev</h3>
+<hr>
+
+<h3>siblings</h3>
+<hr>
+
+<h3 id="slice">slice</h3>
+<hr>
 
 
 <script type="text/javascript">
