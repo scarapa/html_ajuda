@@ -1,0 +1,20 @@
+<pre class="codigo codigoPHP">
+&lt;?php
+$url = 'https://api.flightplandatabase.com/search/plans?fromICAO=EHAM&toName=Kennedy&limit=1';
+$curl = curl_init($url);
+curl_setopt($curl, CURLOPT_HTTPHEADER, array('Accept: application/json'));
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+$data = curl_exec($curl);
+$datasearch = json_decode($data, true);
+
+if(!empty($datasearch)) {
+    $datasearch = $datasearch[0];
+    echo $datasearch["id"];
+} else {
+    echo "Data not fetched.";
+}
+
+curl_close($curl);
+?&gt;
+</pre>
+<a href="https://stackoverflow.com/questions/46016227/get-json-data-using-curl">stackoverflow</a>
