@@ -1,0 +1,58 @@
+<h3>Síncrona</h3>
+Quando uma requisição é enviada, o processo remetente é bloqueado até que ocorra uma resposta, ou seja, não é possível enviar novas requisições até que nossa requisição atual seja finalizada, existe sincronismo entre as requisições.
+
+<h3>Assíncrona</h3>
+Em uma requisição assíncrona, não existe sincronismo entre as requisições, sendo assim, podemos enviar diversas requisições em paralelo, onde cada resposta retorna quando estiver pronta.
+
+<h3>Exemplo usando FETCH</h3>
+<pre class="codigoHTML"><kbd>HTML</kbd>
+&lt;input type="text" name="pesquisar" id="pesquisar"&gt;
+
+<kbd>JS</kbd>
+//1 
+$("#pesquisar").keyup(function(){ pesquisarAlunos() });
+
+//2 METODO ASSINCRONO
+async function pesquisarAlunos() {
+	//SE A DIV LOANDING NAO ESTIVER ATIVA -> CHAMA
+	if( $(".loading").length == 0 ) loading();
+	//CAMINHO DO ARQUIVO PHP
+	let url = include/geral/ajax.php?model=cursista&controle=1";
+	if( $("#nm_aluno").val().toString() != "" ){ url += "&nm_aluno="+$("#nm_aluno").val()+""; }
+
+	try {
+		fetch( url )
+		.then( response => response.json() ) 
+		.then(result => {
+			//LIMPA A TABELA
+			$("#tabelaGridPesquisar tbody").html('')
+			//CARREGA OS DADOS NA TABELA
+			carregarDadosGrid(result)
+		})
+		.catch(err => {
+			// trata se alguma das promises falhar
+			console.error('Failed retrieving information', err);
+		});
+	}catch (err) {
+		console.log('fetch failed', err);
+	}
+}
+
+
+function carregarDadosGrid(dados){
+	if(dados.length > 0){
+		linha = "";
+		c = 1;
+		for (const item of dados) {
+			linha += "<tr><td>"+c+"</td><td></td><td>"+item.cd_aluno+"</td><td>"+item.nm_aluno+"</td><td>"+item.no_rg+"</td><td>"+item.no_cpf_mascarado+"</td><td>"+item.dt_nasc_br+"</td></tr>";
+			c++;
+		}
+		$("#tabelaGridPesquisar tbody").html(linha);
+	}
+}
+</pre>
+
+
+<a href="https://braziljs.org/blog/fetch-api-e-o-javascript/" target="_blank">braziljs</a> 
+<a href="http://www.diogomatheus.com.br/blog/php/requisicoes-sincronas-e-assincronas/" target="_blank">Fonte[2]</a> 
+<a href="https://pt.stackoverflow.com/questions/51268/qual-a-diferen%C3%A7a-entre-comunica%C3%A7%C3%A3o-ass%C3%ADncrona-e-s%C3%ADncrona">stackoverflow</a>
