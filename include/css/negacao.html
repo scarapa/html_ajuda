@@ -1,0 +1,28 @@
+A pseudo-classe CSS de <b>negação</b>, <code>:not(X)</code>, é uma notação funcional que recebe um seletor simples X como argumento. 
+Ela seleciona um elemento que não é representado por seu argumento. X não pode conter outro seletor de negação.
+<br clear="all">
+exemplo: Para retirarmos a borda da ultima linha, tinhamos que resetar as propriedades do ultimo item, caso do exemplo abaixo , o item 3<br>
+<style type="text/css">
+#exemplo1 li { border-bottom: 2px solid red; width:100px;}
+#exemplo1 li:last-child { border-bottom: 0; }
+</style>
+<ul id="exemplo1">
+	<li>item 1</li>
+	<li>item 2</li>
+	<li>item 3</li>
+</ul>
+<pre class="codificacao codigoHTML"><kbd>CSS</kbd>
+#exemplo1 li { border-bottom: 2px solid red}
+#exemplo1 li:last-child { border-bottom: 0; }
+</pre>
+
+Algo mais elegante seria mais ou menos assim ...<br>
+<pre class="codificacao codigoHTML"><kbd>CSS</kbd>
+#exemplo1 li:<b style="color:red">not(:last-child)</b> { border-bottom: 2px solid red}
+</pre>
+
+<a href="https://developer.mozilla.org/pt-BR/docs/Web/CSS/:not" target="_blank">mozilla</a><br>
+<a href="https://pt.stackoverflow.com/questions/98883/aplicar-css-a-todos-elementos-exceto-alguns-espec%C3%ADficos" target="_blank">stackoverflow</a><br>
+<a href="https://www.felipefialho.com/blog/css-o-fodastico-not/" target="_blank">felipefialho.com/blog/css-o-fodastico-not/" target="_blank"></a><br>
+</a><br>
+
