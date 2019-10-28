@@ -4,26 +4,72 @@ Como o Bootstrap foi desenvolvido para ser móvel primeiro, usamos várias consu
 O Bootstrap usa principalmente os seguintes intervalos de consulta de mídia - ou pontos de interrupção - em nossos arquivos Sass de origem para nosso layout, sistema de grade e componentes.
 <br><br>
 
-<pre>
-/* Small devices (landscape phones, 576px and up) */
+<pre>/* .col-sm => Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
 
 }
 
- /* Medium devices (tablets, 768px and up) */
+ /* .col-md => Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
 
 }
 
- /* Large devices (desktops, 992px and up) */
+ /* col-lg => Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
 
 }
 
- /* Extra large devices (large desktops, 1200px and up) */
+ /* col-xl => Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
     
 }</pre>
 
 <a href="https://getbootstrap.com/docs/4.3/layout/overview/">getbootstrap</a><br>
-<a href="https://www.mydevice.io/">mydevice</a>
+<a href="https://www.mydevice.io/">mydevice</a><br>
+<a href="https://www.chiefofdesign.com.br/media-queries-css-introducao-a-diferentes-resolucoes-de-tela/">chiefofdesign</a>
+
+<h3>FIREBUG - Dispositivos</h3>
+<table>
+	<tr>
+		<th>#</th>
+		<th>NOME</th>
+		<th>DEVICE</th>
+		<th>CLASS</th>
+		<th>WIDTH</th>
+	</tr>
+	<tr>
+		<td></td>
+		<td>Extra Small</td>
+		<td></td>
+		<td>col-</td>
+		<td> < 576 px</td>
+	</tr>	
+	<tr>
+		<td></td>
+		<td>Small</td>
+		<td>phones</td>
+		<td>col-sm-</td>
+		<td>576 px</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>Medium</td>		
+		<td>tablet</td>
+		<td>col-md-</td>
+		<td>768 px</td>
+	</tr>		
+	<tr>
+		<td></td>
+		<td>Large</td>
+		<td>desktops</td>
+		<td>col-lg-</td>
+		<td>992 px</td>
+	</tr>	
+	<tr>
+		<td></td>
+		<td>Extra Large</td>
+		<td>Large desktops</td>
+		<td>col-xl-</td>
+		<td> > 1200 px</td>
+	</tr>		
+</table>
