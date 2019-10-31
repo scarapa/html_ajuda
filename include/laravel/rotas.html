@@ -1,0 +1,150 @@
+<style>
+body{ counter-reset: contadorExterno; }
+body h3::before{
+    counter-increment: contadorExterno;
+    content: counter(contadorExterno) " - ";
+}	
+
+h3{ counter-reset: contadorInterno; }
+h4::before{
+	margin-left:25px;
+    counter-increment: contadorInterno;
+    content: counter(contadorExterno)"."counter(contadorInterno) " - ";
+}	
+
+</style>
+<ol>
+	<li>Parametros</li>
+	<li>Parametros Opcionais</li>
+	<li>Parametros com Regras</li>
+	<li>Agrupamento de Rotas</li>
+	<li>Nomeando Rotas</li>
+	<li>Redirecionamento Requisicoes</li>
+	<li>Metodos HTTP</li>
+</ol>
+
+<h2>Listar Rotas</h2>
+<pre class="terminal">$ php artisan route:list</pre>
+
+<h3>Parametros</h3>
+<pre class="codigo codigoPHPLaravel">
+Route::get('/'),funcion(){
+	return view('welcome');
+});</pre>
+
+<pre class="codigo codigoPHPLaravel">
+Route::get('/{nome}/{sobrenome}'),funcion($nome,$sobrenome){
+	return "$nome e $sobrenome";
+	// ou pode ser echo
+	echo "$nome e $sobrenome";
+});</pre>
+
+<h3>Parametros Opcionais</h3>
+<pre class="codigo codigoPHPLaravel">
+Route::get('/seunome/{nome}'),funcion($nome=nul){
+	if(isset($nome))
+		echo "sem nome";
+	else
+		echo "seu nome $nome";
+});</pre>
+
+<h3>Parametros com Regras</h3>
+Pode ser utilizado <b>REGEX</b> nas regra nos <b>PARAMETROS</b>, afim de validação.
+<pre class="codigo codigoPHPLaravel">
+Route::get('/rotacomregras/{nome}/{n}'),funcion($nome,$n){
+	for($i=0;$i<$n;$i++){
+		echo " ola , seja bem vindo $nome \\n";
+	}
+});</pre>
+
+<h4>REGEX </h4>
+Utilizando REGEX em um parametro, para aceitar SOMENTE caracteres no parametro NOME
+<pre class="codigo codigoPHPLaravel">
+Route::get('/rotacomregras/{nome}/{n}'),funcion($nome,$n){
+	//view
+})->where('nome','[A-Za-z]+');</pre>
+
+Utilizando REGEX para aceita SOMENTE numeros no parametro NUMERO
+<pre class="codigo codigoPHPLaravel">
+Route::get('/rotacomregras/{nome}/{n}'),funcion($nome,$n){
+	//view
+})->where('n','[0-9]+');</pre>
+
+<h4>REGEX - MULTIPLOS PARAMETROS</h4>
+<pre class="codigo codigoPHPLaravel">
+Route::get('/rotacomregras/{nome}/{n}'),funcion($nome,$n){
+	//view
+})->where('nome','[A-Za-z]+')->where('n','[0-9]+');</pre>
+
+<h3>Agrupamento</h3>
+Subsituir o metodo <b><code>GET</code></b> por <b><code>PREFIX</code></b> e o metodo <b><code>GROUP</code></b>
+<pre class="codigo codigoPHPLaravel">
+Route::prefix('/app')->group(funcion(){
+	
+	Route::get('/',function(){
+		return "Meu App";
+	});
+
+	Route::get('/user',function(){
+		return "User";
+	});	
+
+	Route::get('/profile',function(){
+		return "Meu Profile";
+	});	
+
+});</pre>
+
+
+<h3>Nomeando </h3>
+
+<pre class="codigo codigoPHPLaravel">
+Route::prefix('/app')->group(funcion(){
+	Route::get('/',function(){
+		return "Meu App";
+	})->name('app');
+
+	Route::get('/user',function(){
+		return "User";
+	})->name('app.user');	
+});</pre>	
+E no HTML se utiliza a funcao
+<pre class="codigo codigoHTML">
+&lt;ul&gt;
+	&lt;li&gt;&lt;a href="{{route('app')}}"&gt;APP&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href="{{route('app.user')}}"&gt;User&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href="{{route('app.profile')}}"&gt;Profile&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</pre>
+
+<h3>Redirecionamento</h3>
+<h4>Sintaxe</h4>
+<pre class="codigo codigoPHPLaravel">Route::redirect('URI','URI',301);</pre>
+
+Existe mais de uma forma de redirecionar, mas abaixo tem 2 exemplos dos metodos mais utilizados
+<h4>Metodo 1</h4>
+redirecinar de <b>todosprodutos</b> para <b>produtos</b>
+<pre class="codigo codigoPHPLaravel">Route::redirect('todosprodutos','produtos',301);</pre>
+
+<h4>Metodo 2</h4>
+<pre class="codigo codigoPHPLaravel">
+Route::get('todosprodutos',function(){
+	return redirect()->route('meusprodutos');
+});
+</pre>
+
+<h3>Metodos HTTP</h3>
+Preciso 'chamar' a biblioteca ao arquivo de rotas
+<pre class="codigo codigoHTML">use Illuminate\Http\Request;</pre>
+
+<h4>Lista de Metodos/Verbos</h4>
+<ol>
+	<li>get</li>
+	<li>post</li>
+	<li>putch</li>
+	<li>patch</li>
+	<li>delete</li>
+</ol>
+
+<h4>SINTAXE</h4>
+<pre class="codigo codigoPHPLaravel">Route::<b style="color:Red">get</b>('/',function(){ return "Meu App";});</pre>
+

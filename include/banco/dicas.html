@@ -5,11 +5,11 @@ você pode ter que derrubar os usuarios para fazer um export ou import de determ
 <span style="color:blue">USE</span> [master]
 
 <span style="color:blue">ALTER DATABASE</span> [SISCLAS_DEV]
-<span style="color:blue">SET SINGLE_USER</span> <span style="color:green">--SETA como usuário unico para fechar conexões antes de restaurar backup</span>
+<span style="color:blue">SET SINGLE_USER WITH ROLLBACK IMMEDIATE</span> <span style="color:green">--SETA como usuário unico para fechar conexões antes de restaurar backup</span>
 
     <b>CODIGO ANSISQL</b>
 
-<span style="color:blue">SET MULTI_USER;</span> <span style="color:green">--volta para multi user depois de restaurar</span>
+<span style="color:blue">SET MULTI_USER WITH ROLLBACK IMMEDIATE;</span> <span style="color:green">--volta para multi user depois de restaurar</span>
 <span style="color:blue">GO</span></pre>    
 
 <a href="https://docs.microsoft.com/pt-br/sql/relational-databases/databases/set-a-database-to-single-user-mode?view=sql-server-2017">docs.microsoft</a>

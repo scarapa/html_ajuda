@@ -1,0 +1,38 @@
+<style>
+body{ counter-reset: contadorExterno; }
+body h3::before{
+    counter-increment: contadorExterno;
+    content: counter(contadorExterno) " - ";
+}	
+
+h3{ counter-reset: contadorInterno; }
+h4::before{
+	margin-left:25px;
+    counter-increment: contadorInterno;
+    content: counter(contadorExterno)"."counter(contadorInterno) " - ";
+}	
+
+</style>
+<ol>
+	<li>Criando</li>
+	<li>Requisicoes HTTP</li>
+	<li>Associando ROTAS ao CONTROLADOR</li>
+	<li>Metodo Index</li>
+	<li>Metodos Create e Store</li>
+	<li>Armazenando na Sessao</li>
+	<li>Metodo Show</li>
+	<li>Metodo Edit e Update</li>
+	<li>Metodo Destroy</li>
+	<li>Correcao do Index</li>
+</ol>
+
+<h3>Criando</h3>
+<h3>Requisicoes HTTP</h3>
+<h3>Associando ROTAS ao CONTROLADOR</h3>
+<h3>Metodo Index</h3>
+<h3>Metodos Create e Store</h3>
+<h3>Armazenando na Sessao</h3>
+<h3>Metodo Show</h3>
+<h3>Metodo Edit e Update</h3>
+<h3>Metodo Destroy</h3>
+<h3>Correcao do Index</h3>
