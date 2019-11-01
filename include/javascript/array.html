@@ -1,15 +1,32 @@
-﻿
+﻿<style>
+body{ counter-reset: contadorAga3; }
+body h3::before{
+    counter-increment: contadorAga3;
+    content: counter(contadorAga3) " - ";
+}	
 
-<h3>INICIALIZANDO</h3>
-<pre>var cars = []; 
-var cars = new Array("Saab", "Volvo", "BMW");</pre>
+h3{ counter-reset: contadorAga4; }
+h4::before{
+	margin-left:25px;
+    counter-increment: contadorAga4;
+    content: counter(contadorAga3)"."counter(contadorAga4) " - ";
+}	
+h4{ counter-reset: contadorAga5; }
+h5::before{
+	margin-left:55px;
+    counter-increment: contadorAga5;
+    content: counter(contadorAga3)"."counter(contadorAga4)"."counter(contadorAga5) " - ";
+}	
+</style>
+<h3>Inicializando</h3>
+<h4>Vazio</h4>
+<pre>var cars = [];</pre> 
+
+<h4>Populado</h4>
+<pre>var cars = new Array("Saab", "Volvo", "BMW");</pre>
 
 <h3>ACESSANDO</h3>
 <pre>var name = cars[0];</pre>
-
-<h3>MÉTODOS</h3>
-<pre> var x = cars.length;   // A propriedade length retorna o número de elementos
-var y = cars.sort();   // O método sort () classifica arrays </pre>
 
 <h3>LOOPING</h3>
 <pre>var fruits, text, fLen, i;
@@ -26,132 +43,115 @@ for (i = 0; i < fLen; i++) {
 fruits.push("Lemon");</pre>
 
 <h3>TODOS</h3>
-<pre>Possibilita testar todos os elementos do seu array. Caso algum dos elementos não passe pela condição definida por você, o retorno será false.</pre>
-<pre>const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];</pre>
-<pre>const ages = [20, 25, 19, 21, 42];</pre>
-<code>
-// ES5
+Possibilita testar todos os elementos do seu array. Caso algum dos elementos não passe pela condição definida por você, o retorno será false.
+<pre><kbd>ES5</kbd>
+const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];	
+const ages = [20, 25, 19, 21, 42];
 function isGreaterThan(age) {
   return age >= 18;
 }
 const greater = ages.every(isGreaterThan);
 
-// ES6
+<kbd>ES6</kbd>
 const isGreaterThan = (age) => age > 18;
 const greater = ages.every(isGreaterThan);
 
 console.log(greater); // true
-</code>
+</pre>
 
 <h3>INCLUI</h3>
-<pre>Possibilita verificar se um element existe ou não no array definido.</pre>
-<pre>const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];</pre>
-<pre>const ages = [20, 25, 19, 21, 42];</pre>
-<code>
-console.log(beers.includes('Skol')); // false
-> false
+Possibilita verificar se um element existe ou não no array definido.
+<pre>const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];
+const ages = [20, 25, 19, 21, 42];
 
+console.log(beers.includes('Skol')); // false
 console.log(ages.includes(25)); // true
-> true
-</code>
+</pre>
 
 <h3>FILTRAR</h3>
-<pre>Este método possibilita a criação de filtros de forma rápida e fácil em seus arrays.</pre>
-<pre>const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];</pre>
-<pre>const ages = [20, 25, 19, 21, 42];</pre>
-<code>
-// ES5
+Este método possibilita a criação de filtros de forma rápida e fácil em seus arrays.
+<pre>
+const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];
+const ages = [20, 25, 19, 21, 42];
+<kbd>// ES5</kbd>
 function startWithS(word) {
   return word.indexOf('S') === 0;
 }
-
-// ES6
+<kbd>ES6</kbd>
 const startWithS = (word) => word.indexOf('S') === 0;
-
 const beersStartWithS = beers.filter(startWithS);
-
-console.log(beersStartWithS); // [0: 'San Diego', 1: Saint Bier]
-> [0: 'San Diego', 1: Saint Bier]
-</code>
+console.log(beersStartWithS); 
+// [0: 'San Diego', 1: Saint Bier]
+</pre>
 
 <h3>PROCURAR</h3>
-<pre>Faça uma busca em seu array de um ou mais elementos que se encaixam no filtro definido por você.</pre>
-<pre>const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];</pre>
-<pre>const ages = [20, 25, 19, 21, 42];</pre>
-<code>
-// ES5
+Faça uma busca em seu array de um ou mais elementos que se encaixam no filtro definido por você.
+<pre>const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];
+const ages = [20, 25, 19, 21, 42];
+<kbd>ES5</kbd>
 function findSanDiego(element) {
   return element === 'San Diego';
 }
-
-// ES6
+<kbd>ES6</kbd>
 const findSanDiego = (element) => element === 'San Diego';
-
 const beerSanDiego = beers.find(findSanDiego);
-
 console.log(beerSanDiego); // 'San Diego'
-> 'San Diego'
-</code>
+> 'San Diego'</pre>
 
 <h3>MAPEAR</h3>
-<pre>Este método percorre todos os elementos do array, executando funções para cada elemento e retornando um novo array como resultado.</pre>
-<pre>const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];</pre>
-<pre>const ages = [20, 25, 19, 21, 42];</pre>
-<code>
-// ES5
+Este método percorre todos os elementos do array, executando funções para cada elemento e retornando um novo array como resultado.
+<pre>const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];
+const ages = [20, 25, 19, 21, 42];
+<kbd>ES5</kbd>
 function upAge(age) {
   return age + 1;
 }
 
-// ES6
+<kbd>ES6</kbd>
 const upAge = (age) => age + 1;
-
 const newAges = ages.map(upAge);
-
 console.log(newAges); // [0: 21, 1: 26, 2: 20, 3: 22, 4: 43]
 > [0: 21, 1: 26, 2: 20, 3: 22, 4: 43]
-</code>
+</pre>
 
 <h3>ALGUM</h3>
-<pre>Este método verifica se ao menos um elemento satisfaz a condição definida por você.</pre>
-<pre>const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];</pre>
-<pre>const ages = [20, 25, 19, 21, 42];</pre>
-<code>
-// ES5
+Este método verifica se ao menos um elemento satisfaz a condição definida por você.
+<pre>
+const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];
+const ages = [20, 25, 19, 21, 42];
+<kbd>ES5</kbd>
 function hasHeinekenOrSaint(beer) {
   return (beer === 'Saint Bier' || beer === 'Heineken');
 }
 
-// ES6
+<kbd>ES6</kbd>
 const hasHeinekenOrSaint = (beer) => (beer === 'Saint Bier' || beer === 'Heineken');
-
 const heinekenSaint = beers.some(hasHeinekenOrSaint);
-
 console.log(heinekenSaint); // true
-> true
-</code>
+</pre>
 
 <h3>REDUZIR</h3>
-<pre>Você pode utilizar o método reduce para alguns casos, sendo um deles para facilitar cálculos. .</pre>
-<pre>const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];</pre>
-<pre>const ages = [20, 25, 19, 21, 42];</pre>
-<code>
-// ES5
+Você pode utilizar o método reduce para alguns casos, sendo um deles para facilitar cálculos.
+<pre>const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];
+const ages = [20, 25, 19, 21, 42];
+<kbd>ES5</kbd>
 function reducerAge(accumulator, age) {
   return accumulator + age;
 }
-
-// ES6
+<kbd>ES6</kbd>
 const reducerAge = (accumulator, age) => accumulator + age;
-
 const sumAges = ages.reduce(reducerAge);
-
 console.log(sumAges); // 127
-> 127
-</code>
+</pre>
+
+<h3>MÉTODOS ESPECIAIS/DIFERENTES</h3>
+<h4>Tamanho</h4>
+<pre> var x = cars.length;   // A propriedade length retorna o número de elementos</pre>
+<h4>Ordenacao</h4>
+<pre>var y = cars.sort();   // O método sort () classifica arrays </pre>
 
 
-<h3>REMOVER</h3>
+<h4>Remover/Deletar elemento</h4>
 <pre class="codigo codigoJS"><kbd>JS</kbd>
 const numeros = [1,2,3,4,5,6,7,8,9,10];
 //o numero 5 esta na chave 4
@@ -160,3 +160,36 @@ numeros.splice(indexNumeroCinco,1);
 console.log(numeros);
 // Array(11) [1,2,3,4,,6,7,8,9,10]</pre>
 <a href="https://www.instagram.com/p/B3ZtYOnhNSc/?igshid=182y7tiwaepcf">fabricadecodigo</a>
+
+<h4>Validar/Verificar elemento</h4>
+Esse metodo verifica se uma determinada condicao é atendida por algum elemento do array
+<br><br>
+<h5>Sintaxe</h5>
+<pre>array.some(callbackfn:(value,index,array)=>{});</pre>
+<ul>
+	<li><code>callbackfn: </code>funcao para verificar determinada condicao</li>
+	<li><code>value: </code>valor atual</li>
+	<li><code>indice: </code>chave do valor atual</li>
+	<li><code>array: </code>manipulado</li>
+</ul>
+
+<h5>Exemplo 1</h5>
+condicao verdadeira
+<pre class="codigo codigoJS">const numero = [10,20,30,40,50];
+const resultado = numeros.some(value,index,array) =>{
+	return value > 10;
+});
+//true</pre>
+Retorna <code>TRUE</code> porque condição é <b>VERDADEIRA!!!</b>
+
+<h5>Exemplo 2</h5>
+Condicao FALSA!
+<pre class="codigo codigoJS">const numero = [10,20,30,40,50];
+const resultado = numeros.some(value,index,array) =>{
+	return value > 80;
+});
+//false</pre>
+Retorna <code>FALSE</code> porque condição é <b>FALSA!!!</b>
+<br clear="all">
+<br clear="all">
+<a href="https://www.instagram.com/p/B4U7inuhpsV/?utm_source=ig_web_copy_link" target="_blank">Fabricadecodigo</a>
