@@ -1,1 +1,123 @@
-modal.html
+<code>src\app\app.module.ts</code>
+<pre class="codigo codigoHTML">
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouteReuseStrategy } from '@angular/router';
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { ModalPageModule } from './pages/modal/modal.module';
+
+@NgModule({
+  declarations: [AppComponent],
+  entryComponents: [],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,ModalPageModule],
+  providers: [
+    StatusBar,
+    SplashScreen,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}	</pre>
+
+
+
+<code>src\app\home\home.page.html</code>
+<pre class="codigo codigoHTML">&lt;ion-header&gt;
+  &lt;ion-toolbar&gt;
+    &lt;ion-title&gt;
+      Ionic Blank
+    &lt;/ion-title&gt;
+  &lt;/ion-toolbar&gt;
+&lt;/ion-header&gt;
+
+&lt;ion-content&gt;
+  &lt;div class="ion-padding"&gt;
+    &lt;h1&gt;PAGINA PRINCIPAL&lt;/h1&gt;
+    &lt;h2&gt;Nome:&lt;/h2&gt;
+    &lt;input type="text" [(ngModel)]="nome" readonly&gt;
+    &lt;h2&gt;Idade:&lt;/h2&gt;
+    &lt;input type="text" [(ngModel)]="idade" readonly&gt;
+    &lt;ion-button expand="full" fill="clear" color="primary" (click)="abrirModal()"&gt;ABRIR MODAL&lt;/ion-button&gt;
+  &lt;/div&gt;
+&lt;/ion-content&gt;</pre>
+
+<code>src\app\home\home.page.ts</code>
+<pre class="codigo codigoHTML">import { Component } from '@angular/core';
+import { ModalPage } from '../pages/modal/modal.page';
+import { ModalController } from '@ionic/angular';
+
+@Component({
+  selector: 'app-home',
+  templateUrl: 'home.page.html',
+  styleUrls: ['home.page.scss'],
+})
+export class HomePage {
+
+  constructor(public modalController:ModalController) {}
+
+  private nome:string;
+  private idade:string;
+
+  async abrirModal(ev: Event){
+    const modal = await this.modalController.create({
+      component:ModalPage,
+      componentProps: {
+        ev: Event,
+        translucent: true
+      }
+    });
+    modal.present();
+
+    modal.onDidDismiss().then(retorno => {
+      this.nome =  ( typeof retorno.data.nome !== 'undefined')? retorno.data.nome : 'undefined';
+      this.idade =( typeof retorno.data.idade !== 'undefined')? retorno.data.idade : 'undefined';
+      //this.montarTela();
+    });  
+  }    
+}
+
+</pre>
+
+<code>src\app\pages\modal\modal.page.html</code>
+<pre class="codigo codigoHTML">&lt;ion-header&gt;
+  &lt;ion-toolbar&gt;
+    &lt;ion-title&gt;modal&lt;/ion-title&gt;
+  &lt;/ion-toolbar&gt;
+&lt;/ion-header&gt;
+
+&lt;ion-content&gt;
+    &lt;h1&gt;MODAL&lt;/h1&gt;
+    &lt;h2&gt;Insira o NOME:&lt;/h2&gt;
+    &lt;input type="text" [(ngModel)]="nome" value="roberto"&gt;
+    &lt;h2&gt;Insira a IDADE:&lt;/h2&gt;
+    &lt;input type="text" [(ngModel)]="idade" value="37"&gt;   
+    &lt;ion-button expand="full" fill="clear" color="primary" (click)="fecharModal()"&gt;FECHAR&lt;/ion-button&gt; 
+&lt;/ion-content&gt;
+</pre>
+
+<code>src\app\pages\modal\modal.page.ts</code>
+<pre class="codigo codigoHTML">import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+
+@Component({
+  selector: 'app-modal',
+  templateUrl: './modal.page.html',
+  styleUrls: ['./modal.page.scss'],
+})
+export class ModalPage implements OnInit {
+
+    nome:string;
+    idade:string;
+
+  constructor(private modalController: ModalController) { }
+
+  ngOnInit() { }
+  
+  fecharModal(){
+    this.modalController.dismiss({'nome':this.nome,'idade':this.idade});
+  }
+}</pre>
