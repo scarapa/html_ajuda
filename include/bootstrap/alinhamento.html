@@ -1,0 +1,226 @@
+<style>
+body{ counter-reset: contadorExterno; }
+body h3::before{
+    counter-increment: contadorExterno;
+    content: counter(contadorExterno) " - ";
+}	
+
+h3{ counter-reset: contadorInterno; }
+h4::before{
+	margin-left:25px;
+    counter-increment: contadorInterno;
+    content: counter(contadorExterno)"."counter(contadorInterno) " - ";
+}	
+</style>
+
+<h3>Texto</h3>
+<h4>Alinhamento</h4>
+Realinhe facilmente o texto aos componentes com as classes de alinhamento de texto
+
+<div class="row">
+	<div class="col-md-6">
+		<img src="./images/bootstrap_texto_alinhamento_01.jpg" class="bp" style="width: 100%">
+	</div>
+	<div class="col-md-6">
+<pre class="codigo codigoHTML">
+&lt;p class="text-left"&gt;Left aligned text on all viewport sizes.&lt;/p&gt;
+&lt;p class="text-center"&gt;Center aligned text on all viewport sizes.&lt;/p&gt;
+&lt;p class="text-right"&gt;Right aligned text on all viewport sizes.&lt;/p&gt;
+
+&lt;p class="text-sm-left"&gt;Left aligned text on viewports sized SM (small) or wider.&lt;/p&gt;
+&lt;p class="text-md-left"&gt;Left aligned text on viewports sized MD (medium) or wider.&lt;/p&gt;
+&lt;p class="text-lg-left"&gt;Left aligned text on viewports sized LG (large) or wider.&lt;/p&gt;
+&lt;p class="text-xl-left"&gt;Left aligned text on viewports sized XL (extra-large) or wider.&lt;/p&gt;
+</pre>
+	</div>
+</div>
+
+<h4>Text wrapping and overflow</h4>
+<div class="row">
+	<div class="col-md-2"><img src="./images/bootstrap_texto_alinhamento_02.jpg" class="bp" style="width: 100%"></div>
+	<div class="col-md-6">
+<pre class="codigo codigoHTML">
+&lt;div class="badge badge-primary text-wrap" style="width: 6rem;"&gt;
+  This text should wrap.
+&lt;/div&gt;
+</pre>
+	</div>
+</div>
+
+<br clear="all">
+
+<div class="row">
+	<div class="col-md-2"><img src="./images/bootstrap_texto_alinhamento_03.jpg" class="bp" style="width: 100%"></div>
+	<div class="col-md-6">
+<pre class="codigo codigoHTML">
+&lt;div class="text-nowrap bd-highlight" style="width: 8rem;"&gt;
+  This text should overflow the parent.
+&lt;/div&gt;
+</pre>
+	</div>
+</div>
+<br clear="all">
+
+Para um conteúdo mais longo, você pode adicionar uma classe .text-truncate para truncar o texto com reticências. Requer exibição: bloco embutido ou exibição: bloco.
+<div class="row">
+	<div class="col-md-2"><img src="./images/bootstrap_texto_alinhamento_04.jpg" class="bp" style="width: 100%"></div>
+	<div class="col-md-6">
+<pre class="codigo codigoHTML">
+&lt;!-- Block level --&gt;
+&lt;div class="row"&gt;
+  &lt;div class="col-2 text-truncate"&gt;
+    Praeterea iter est quasdam res quas ex communi.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Inline level --&gt;
+&lt;span class="d-inline-block text-truncate" style="max-width: 150px;"&gt;
+  Praeterea iter est quasdam res quas ex communi.
+&lt;/span&gt;
+</pre>
+	</div>
+</div>
+
+<h4>Word break</h4>
+Evite que longas sequências de texto quebrem o layout de seus componentes usando .text-break para definir overflow-wrap: break-word (e word-break: break-word para compatibilidade com o IE e Edge).
+<div class="row">
+	<div class="col-md-4"><img src="./images/bootstrap_texto_alinhamento_05.jpg" class="bp" style="width: 100%"></div>
+	<div class="col-md-6">
+<pre class="codigo codigoHTML">
+&lt;p class="text-break"&gt;mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm&lt;/p&gt;	
+</pre>
+	</div>
+</div>
+<br clear="all">
+<a href="https://getbootstrap.com/docs/4.3/utilities/text/" target="_blank">Bootstap4</a>
+<hr>
+<h3>Flex</h3>
+Criação de contêiner flexbox e transformar elementos filhos diretos em itens flex. Os contêineres e itens flexíveis podem ser modificados ainda mais com propriedades flexíveis adicionais.
+
+<h4>Direction</h4>
+Defina a direção dos itens flexíveis em um contêiner flexível com os utilitários de direção. Na maioria dos casos, você pode omitir a classe horizontal aqui, pois o padrão do navegador é linha. No entanto, você pode encontrar situações em que precisou definir explicitamente esse valor (como layouts responsivos).
+<br><br>
+Use .flex-row para definir uma direção horizontal (o padrão do navegador) ou .flex-row-reverse para iniciar a direção horizontal do lado oposto.
+<br clear="all">
+<div class="row">
+	<div class="col-md-4">
+		<img src="./images/bootstrap_flex_01.jpg">		
+	</div>	
+	<div class="col-md-6">
+<pre class="codigo codigoHTML">&lt;div class="d-flex flex-row bd-highlight mb-3"&gt;
+  &lt;div class="p-2 bd-highlight"&gt;Flex item 1&lt;/div&gt;
+  &lt;div class="p-2 bd-highlight"&gt;Flex item 2&lt;/div&gt;
+  &lt;div class="p-2 bd-highlight"&gt;Flex item 3&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="d-flex flex-row-reverse bd-highlight"&gt;
+  &lt;div class="p-2 bd-highlight"&gt;Flex item 1&lt;/div&gt;
+  &lt;div class="p-2 bd-highlight"&gt;Flex item 2&lt;/div&gt;
+  &lt;div class="p-2 bd-highlight"&gt;Flex item 3&lt;/div&gt;
+&lt;/div&gt;</pre>
+	</div>
+</div>
+
+Use .flex-column to set a vertical direction, or .flex-column-reverse to start the vertical direction from the opposite side.
+<div class="row">
+	<div class="col-md-4"><img src="./images/bootstrap_flex_02.jpg"></div>
+	<div class="col-md-6">
+<pre class="codigo codigoHTML">
+&lt;div class="d-flex flex-column bd-highlight mb-3"&gt;
+  &lt;div class="p-2 bd-highlight"&gt;Flex item 1&lt;/div&gt;
+  &lt;div class="p-2 bd-highlight"&gt;Flex item 2&lt;/div&gt;
+  &lt;div class="p-2 bd-highlight"&gt;Flex item 3&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="d-flex flex-column-reverse bd-highlight"&gt;
+  &lt;div class="p-2 bd-highlight"&gt;Flex item 1&lt;/div&gt;
+  &lt;div class="p-2 bd-highlight"&gt;Flex item 2&lt;/div&gt;
+  &lt;div class="p-2 bd-highlight"&gt;Flex item 3&lt;/div&gt;
+&lt;/div&gt;</pre>
+	</div>
+</div>
+
+<h4>Justify content</h4>
+<div class="row">
+	<div class="col-md-4"><img src="./images/bootstrap_flex_03.jpg"></div>
+	<div class="col-md-6">
+<pre class="codigo codigoHTML">
+&lt;div class="d-flex justify-content-start"&gt;...&lt;/div&gt;
+&lt;div class="d-flex justify-content-end"&gt;...&lt;/div&gt;
+&lt;div class="d-flex justify-content-center"&gt;...&lt;/div&gt;
+&lt;div class="d-flex justify-content-between"&gt;...&lt;/div&gt;
+&lt;div class="d-flex justify-content-around"&gt;...&lt;/div&gt;
+</pre>		
+	</div>
+</div>
+
+<h4>Align items</h4>
+Use os utilitários de alinhamento de itens nos contêineres do flexbox para alterar o alinhamento dos itens flex no eixo cruzado (o eixo y a ser iniciado, o eixo x se a direção da flexão: coluna). Escolha entre início, fim, centro, linha de base ou extensão (padrão do navegador).
+<div class="row">
+	<div class="col-md-4"><img src="./images/bootstrap_flex_04.jpg"></div>
+	<div class="col-md-6">
+<pre class="codigo codigoHTML">
+&lt;div class="d-flex align-items-start"&gt;...&lt;/div&gt;
+&lt;div class="d-flex align-items-end"&gt;...&lt;/div&gt;
+&lt;div class="d-flex align-items-center"&gt;...&lt;/div&gt;
+&lt;div class="d-flex align-items-baseline"&gt;...&lt;/div&gt;
+&lt;div class="d-flex align-items-stretch"&gt;...&lt;/div&gt;	
+</pre>
+	</div>
+</div>
+
+<br clear="all">
+<a href="https://getbootstrap.com/docs/4.3/utilities/flex/" target="_blank">Bootstrap 4</a>
+
+
+<h3>Float</h3>
+<h4>Classes</h4>
+<div class="row">
+	<div class="col-md-4"><img src="./images/bootstrap_float_01.jpg" class="bp" style="width: 100%"></div>
+	<div class="col-md-6">
+<pre class="codigo codigoHTML">
+&lt;div class="float-left"&gt;Float left on all viewport sizes&lt;/div&gt;&lt;br&gt;
+&lt;div class="float-right"&gt;Float right on all viewport sizes&lt;/div&gt;&lt;br&gt;
+&lt;div class="float-none"&gt;Don't float on all viewport sizes&lt;/div&gt;
+</pre>
+	</div>
+</div>
+
+
+<h4>Responsividade</h4>
+<div class="row">
+	<div class="col-md-4">
+<pre>
+Float left on viewports sized SM (small) or wider
+Float left on viewports sized MD (medium) or wider
+Float left on viewports sized LG (large) or wider
+Float left on viewports sized XL (extra-large) or wider	</pre>
+	</div>
+	<div class="col-md-6">
+<pre class="codigo codigoHTML">
+&lt;div class="float-sm-left"&gt;Float left on viewports sized SM (small) or wider&lt;/div&gt;&lt;br&gt;
+&lt;div class="float-md-left"&gt;Float left on viewports sized MD (medium) or wider&lt;/div&gt;&lt;br&gt;
+&lt;div class="float-lg-left"&gt;Float left on viewports sized LG (large) or wider&lt;/div&gt;&lt;br&gt;
+&lt;div class="float-xl-left"&gt;Float left on viewports sized XL (extra-large) or wider&lt;/div&gt;&lt;br&gt;
+</pre>
+	</div>
+</div>
+
+<ul>
+	<li>.float-left</li>
+	<li>.float-right</li>
+	<li>.float-none</li>
+	<li>.float-sm-left</li>
+	<li>.float-sm-right</li>
+	<li>.float-sm-none</li>
+	<li>.float-md-left</li>
+	<li>.float-md-right</li>
+	<li>.float-md-none</li>
+	<li>.float-lg-left</li>
+	<li>.float-lg-right</li>
+	<li>.float-lg-none</li>
+	<li>.float-xl-left</li>
+	<li>.float-xl-right</li>
+	<li>.float-xl-none</li>
+</ul>
+
+<br clear="all">
+<a href="https://getbootstrap.com/docs/4.3/utilities/float/" target="_blank">Bootstrap 4</a>
