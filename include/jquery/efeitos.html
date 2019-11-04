@@ -1,0 +1,79 @@
+<style type="text/css">
+	table thead tr th { border-bottom:1px solid #ccc; }
+	table tbody tr { counter-increment: rowNumber; }
+	table tbody tr td{ 	padding:2px 5px; border-bottom:1px solid #ccc;	}
+	table tbody tr td:nth-child(2){
+		text-align: right;
+		padding:0 3px;
+	}
+	table tbody tr td:first-child::before {
+	    content: counter(rowNumber);
+	    min-width: 1em;
+	    margin-right: 0.5em;
+	}
+
+</style>
+<table>
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>METODO</th>
+			<th>DESCRICAO</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td></td><td>animate()</td><td>Executa uma animação personalizada nos elementos selecionados</td>
+		</tr>
+		<tr>
+			<td></td><td>clearQueue()</td><td>Remove todas as funções enfileiradas restantes dos elementos selecionados</td>
+		</tr>		
+		<tr>
+			<td></td><td>delay()</td><td>Define um atraso para todas as funções na fila nos elementos selecionados</td>
+		</tr>
+		<tr>
+			<td></td><td>dequeue()</td><td>Remove a próxima função da fila e, em seguida, executa a função</td>
+		</tr>
+		<tr>
+			<td></td><td>fadeIn()</td><td>Desvanece-se nos elementos selecionados</td>
+		</tr>
+		<tr>
+			<td></td><td>fadeOut()</td><td>Desvanece os elementos selecionados</td>
+		</tr>		
+		<tr>
+			<td></td><td>fadeTo()</td><td>Diminui / diminui os elementos selecionados para uma dada opacidade</td>
+		</tr>
+		<tr>
+			<td></td><td>fadeToggle()</td><td>Alterna entre os métodos fadeIn () e fadeOut ()</td>
+		</tr>
+		<tr>
+			<td></td><td>finish()</td><td>Pára, remove e conclui todas as animações em fila para os elementos selecionados</td>
+		</tr>
+		<tr>
+			<td></td><td>hide()</td><td>Oculta os elementos selecionados</td>
+		</tr>		
+		<tr>
+			<td></td><td>queue()</td><td>Mostra as funções na fila nos elementos selecionados</td>
+		</tr>
+		<tr>
+			<td></td><td>show()</td><td>Mostra os elementos selecionados</td>
+		</tr>			
+		<tr>
+			<td></td><td>slideDown()</td><td>Desliza para baixo (mostra) os elementos selecionados</td>
+		</tr>		
+		<tr>
+			<td></td><td>slideToggle()</td><td>Desliza para baixo (mostra) os elementos selecionados</td>
+		</tr>
+		<tr>
+			<td></td><td>slideUp()</td><td>Desliza (oculta) os elementos selecionados</td>
+		</tr>			
+		<tr>
+			<td></td><td>stop()</td><td>Interrompe a animação atualmente em execução para os elementos selecionados</td>
+		</tr>		
+		<tr>
+			<td></td><td>toggle()</td><td>Alterna entre os métodos hide () e show ()</td>
+		</tr>
+	</tbody>
+</table> 	
+
+<a href="https://www.w3schools.com/jquery/jquery_ref_effects.asp" target="_blank">w3schools</a>
