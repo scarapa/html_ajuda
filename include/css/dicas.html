@@ -1,4 +1,3 @@
-
 <h3>Virar icone</h3>
 <style type="text/css">
 .rotate-45 {
@@ -26,9 +25,23 @@
     min-width: 1em;
     margin-right: 0.5em;
 }
+
+#teste{
+    margin:0px auto;
+    width:150px;height: 150px;
+    border:2px solid red;
+    overflow: hidden;
+}
+#teste > img.testeImagem {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+#tabelaCentralizarImagem {border:1px solid red;}
+
 </style>
-<pre><code>    
-.rotate-45 {
+<pre>.rotate-45 {
 	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0.5);
 	-webkit-transform: rotate(45deg);
 	-moz-transform: rotate(45deg);
@@ -43,8 +56,7 @@
 	-ms-transform: rotate(90deg);
 	-o-transform: rotate(90deg);
 	transform: rotate(90deg);
-}
-</code></pre>
+}</pre>
 
 exemplo<br>
 <i class="fa fa-cubes fa-fw"></i><br>
@@ -132,8 +144,44 @@ $(".desabilitar").attr("disabled","disabled");
 </pre>
 
 <hr>
-<h3>Contadores</h3>
+<h3>CENTRALIZAR IMAGEM EM DIV</h3>
+A principal dificuldade aqui é centralizar o CENTRO na imagem muitoooo maior que a DIV que ela está condida
 
-https://webdesign.tutsplus.com/pt/tutorials/quick-tip-using-css-counters-to-style-incremental-elements--cms-23497
-<br>
-https://www.treinaweb.com.br/blog/criando-contadores-apenas-com-css/
+<pre class="codigo codigoHTML"><kbd>HTML</kbd>
+&lt;div id="teste"&gt;
+	&lt;img src="images/maparea_02.jpg" class="testeImagem"&gt;
+&lt;/div&gt;</pre>
+
+<pre class="codigo codigoCSS"><kbd>CSS</kbd>
+#teste{
+    width:150px;height: 150px;
+    border:2px solid red;
+    overflow: hidden;
+}
+#teste > img.testeImagem {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}</pre>
+
+
+<table id="tabelaCentralizarImagem">
+	<tr>
+		<th>codificada</th>
+		<th>sem codigo</th>
+	</tr>		
+	<tr>
+		<td>
+			<div id="teste">
+				<img src="images/maparea_02.jpg" class="testeImagem">
+			</div>			
+		</td>
+		<td>
+			<img src="images/maparea_02.jpg">			
+		</td>
+	</tr>
+</table>
+
+<a href="https://guide.freecodecamp.org/html/tutorials/center-an-image-using-text-align-center/" target="_blank">Fonte</a>
