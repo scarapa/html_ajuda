@@ -2,8 +2,19 @@
 Criando um projeto com o nome de <code><b>extranet</b></code> com a ultima versao do laravel!
 <pre class="terminal">$ composer create-project --prefer-dist laravel/laravel <code><b>extranet</b></code></pre>
 
+<code>OBSERVAÇÃO</code><br>
+Atualmente <b>novembro/2019</b> o laravel está na versão <b>6.0</b>, como proceder caso deseja-se instalar a versão <b>5.8</b>?<br>
+Para isso basta executar o comando dessa forma:
+<pre class="terminal">composer create-project --prefer-dist laravel/laravel <b>NOME_DO_PROJETO</b> "5.8.*"</pre>
+
 <h2>Server</h2>
+comando para levantar servido HTTP
 <pre class="terminal">$ php artisan serve</pre>
-
-
 https://medium.com/@avinicius.adorno/modularizando-o-laravel-5-a7ba1b19bd6e
+
+<h2>Versão</h2>
+comando para exibir a versão instalada do laravel no projeto
+<pre class="terminal">$ php artisan --version</pre>
+<code>retorno:</code><br>
+<pre class="terminal">Laravel Framework <span style="color:green">5.8.35</span></pre>
+<a href="https://tecadmin.net/check-laravel-version/" target="_blank">Fonte</a>

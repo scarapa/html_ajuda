@@ -11,9 +11,9 @@ h4::before{
     counter-increment: contadorInterno;
     content: counter(contadorExterno)"."counter(contadorInterno) " - ";
 }	
-
 </style>
 <ol>
+	<li>Introdução</li>
 	<li>Criando</li>
 	<li>Requisicoes HTTP</li>
 	<li>Associando ROTAS ao CONTROLADOR</li>
@@ -26,13 +26,60 @@ h4::before{
 	<li>Correcao do Index</li>
 </ol>
 
+
+<h3>Introdução</h3>
+<h4>Conceito</h4>
+<div class="col-lg-5 col-md-12 col-sm-10 col-xs-11">
+	<img src="images/laravel_mvc_01.jpg" style="width:100%" class="bp">
+</div>
+<br clear="all">
+<h4>Pasta</h4>
+<code>app\Http\Controllers</code>
+
 <h3>Criando</h3>
+<pre class="terminal">$ php artisan make:controller MeuControllador</pre>
+
+Criando controler com metodos padrões
+<pre class="terminal">$ php artisan make:controller NomeControlador --resource</pre>
+
 <h3>Requisicoes HTTP</h3>
+Criando metodo que automatiza todos os metodos , exemplo o <b>controller de clientes</b>
+<pre>Route::resource('clientes','ClienteControlador');</pre>
+Exibindo todas rotas:
+<pre class="terminal">$ php artisan route:list</pre>
+Retorno:
+<pre class="terminal">
++--------+-----------+-------------------------+------------------+-------------------------------------------------+--------------+
+| Domain | Method    | URI                     | Name             | Action                                          | Middleware   |
++--------+-----------+-------------------------+------------------+-------------------------------------------------+--------------+
+|        | GET|HEAD  | /                       |                  | Closure                                         | web          |
+|        | GET|HEAD  | api/user                |                  | Closure                                         | api,auth:api |
+|        | GET|HEAD  | categorias              |                  | App\Http\Controllers\categoria@index            | web          |
+|        | GET|HEAD  | clientes                | clientes.index   | App\Http\Controllers\ClienteControlador@index   | web          |
+|        | POST      | clientes                | clientes.store   | App\Http\Controllers\ClienteControlador@store   | web          |
+|        | GET|HEAD  | clientes/create         | clientes.create  | App\Http\Controllers\ClienteControlador@create  | web          |
+|        | GET|HEAD  | clientes/{cliente}      | clientes.show    | App\Http\Controllers\ClienteControlador@show    | web          |
+|        | PUT|PATCH | clientes/{cliente}      | clientes.update  | App\Http\Controllers\ClienteControlador@update  | web          |
+|        | DELETE    | clientes/{cliente}      | clientes.destroy | App\Http\Controllers\ClienteControlador@destroy | web          |
+|        | GET|HEAD  | clientes/{cliente}/edit | clientes.edit    | App\Http\Controllers\ClienteControlador@edit    | web          |
++--------+-----------+-------------------------+------------------+-------------------------------------------------+--------------+</pre>
+
 <h3>Associando ROTAS ao CONTROLADOR</h3>
-<h3>Metodo Index</h3>
-<h3>Metodos Create e Store</h3>
-<h3>Armazenando na Sessao</h3>
-<h3>Metodo Show</h3>
-<h3>Metodo Edit e Update</h3>
-<h3>Metodo Destroy</h3>
+<h3>Metodos</h3>
+	<h4>Index</h4>
+	mostrar todos os elementos
+	<h4>Create</h4>
+	criar um NOVO elemento
+	<h4>Store</h4>
+	salvar o novo elemento
+	<h4>Show</h4>
+	exibir determinado elemento
+	<h4>Edit</h4>
+	editar determinado elemento
+	<h4>Update</h4>
+	alterar de terminado elemento JA EXISTENTE
+	<h4>Destroy</h4>
+	deletar elemento
+	<h4>Armazenando na Sessao</h4>	
+
 <h3>Correcao do Index</h3>
