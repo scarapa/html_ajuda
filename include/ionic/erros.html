@@ -1,3 +1,23 @@
+<h2>Variaveis de ambiente</h2>
+Erro ao tentar rodar no dispositivo
+<pre class="terminal">$ ionic cordova run android</pre>
+<pre class="terminal"><font color="#4E9A06">cordova run android</font>
+Android Studio project detected
+Failed to find &apos;ANDROID_HOME&apos; environment variable. Try setting it manually.
+Failed to find &apos;android&apos; command in your &apos;PATH&apos;. Try update your &apos;PATH&apos; to include path to valid SDK directory.
+<font color="#AAAAAA">[</font><span style="background-color:#2E3436"><font color="#EF2929"><b>ERROR</b></font></span><font color="#AAAAAA">] </font><font color="#EF2929"><b>An error occurred while running subprocess </b></font><font color="#8AE234"><b>cordova</b></font><font color="#EF2929"><b>.</b></font>
+        
+<font color="#4E9A06">cordova run android</font> exited with exit code 1.
+
+Re-running this command with the <font color="#4E9A06">--verbose</font> flag may provide more 
+information.</pre>
+
+<code>Solucao:</code>
+<pre>$ export ANDROID_HOME=$HOME/Android/Sdk
+$ export PATH=$PATH:$ANDROID_HOME/tools</pre>
+
+<hr>
+
 <h2>Não cria o projeto</h2>
 erro ao executar o comando <code>$ ionic cordova run android --device</code>
 <pre class="terminal">FAILURE: Build failed with an exception.
