@@ -1,0 +1,58 @@
+<style>
+body{ counter-reset: contadorAga1; }
+h2{ counter-reset: contadorAga3; }
+body h3::before{
+    counter-increment: contadorAga3;
+    content: counter(contadorAga3) " - ";
+}	
+
+h3{ counter-reset: contadorAga4; }
+h4::before{
+	margin-left:25px;
+    counter-increment: contadorAga4;
+    content: counter(contadorAga3)"."counter(contadorAga4) " - ";
+}	
+</style>
+
+<ol>
+    <li>BACKGROUND - Propriedades</li>
+    <li>Fundo com MULTIPLAS imagens</li>
+    <li>Fundo Transparente</li>
+</ol>
+
+<h3>BACKGROUND - Propriedades</h3>
+<pre>
+<b>background-color</b>...........define a cor do fundo;
+<b>background-image</b>...........define uma imagem de fundo;
+<b>background-repeat</b>..........define a maneira como a imagem de fundo é posicionada;
+<b>background-attachment</b>......define se a imagem de fundo "rola" ou não com a tela;
+<b>background-position</b>........define como e onde a imagem de fundo é posicionada;
+<b>background-clip</b>............define a área do box onde a imagem de fundo é aplicada;
+<b>background-origin</b>..........define a posição de origem da imagem no box;
+<b>background-size</b>............define as dimensões da imagem no box;
+<b>background</b>.................maneira abreviada para declarar todas as propriedades anteriores;</pre>
+
+<a href="https://tableless.com.br/css3-trabalhando-com-multiplas-imagens-background-images/" target="_blank">tableless</a>
+
+<hr>
+
+<h3>Fundo com MULTIPLAS imagens</h3>
+<pre class="codigo codigoHTML">
+#example1 {
+  background-image: url(img_flwr.gif), url(paper.gif);
+  background-position: right bottom, left top;
+  background-repeat: no-repeat, repeat;
+}</pre>
+<a href="https://www.w3schools.com/css/css3_backgrounds.asp" target="_blank">w3schools</a>
+
+<hr>
+
+<h3>Fundo Transparente</h3>
+<pre class="codigo codigoHTML">
+&lt;div style="background-color:rgba(0, 0, 0, 0.5);"&gt;
+   &lt;div&gt;
+      Text added.
+   &lt;/div&gt;
+&lt;/div&gt;	
+</pre>
+<a href="https://stackoverflow.com/questions/10422949/css-background-opacity" target="blank">stackoverflow</a>
