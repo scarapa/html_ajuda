@@ -1,0 +1,101 @@
+<style>
+body{ counter-reset: contadorExterno; }
+body h3::before{
+    counter-increment: contadorExterno;
+    content: counter(contadorExterno) " - ";
+}	
+
+h3{ counter-reset: contadorInterno; }
+h4::before{
+	margin-left:25px;
+    counter-increment: contadorInterno;
+    content: counter(contadorExterno)"."counter(contadorInterno) " - ";
+}	
+</style>
+Uma das maiores diferenças do TypeScript para o JavaScript é a tipagem de suas variáveis. Em JavaScript podemos atribuir um valor numérico para uma variável e logo depois mudar este valor para booleano, para uma string, um array ou mesmo um objeto e tudo estará ok.
+
+No TypeScript temos os tipos bem definidos e são eles:
+<ol>
+	<li>String</li>
+	<li>Boolean</li>
+	<li>Number</li>
+	<li>Array</li>
+	<li>Tuple</li>
+	<li>Enum</li>
+	<li>Any</li>
+	<li>Void</li>
+</ol>
+
+<h3>String</h3>
+String é um tipo básico e fundamental no JavaScript tanto para construção aplicativos web e mobile quanto para a construção de programas no lado do servidor. Como em outras linguagens, usamos o tipo string para nos referirmos a tipos de dados textuais. Assim como o JavaScript, o TypeScript também usa aspas duplas (“) ou aspas simples (‘) para envolver os dados da string.
+<pre>let text: string = 'Valor da string';
+text = 'Mudei o valor';</pre>
+
+<hr>
+
+<h3>Boolean</h3>
+Sem dúvidas é o tipo mais básico de dados que tanto o JavaScript quando o TypeScript tem, ele recebe apenas o valor true/false.
+<pre>let isValid: boolean = true;
+isValid = false;</pre>
+
+<hr>
+
+<h3>Number</h3>
+No TypeScript assim como no JavaScript, todos os números são valores de ponto flutuante e recebem o tipo number. Além dos literais hexadecimais e decimais, o TypeScript também suporta literais binários e octal introduzidos no ECMAScript 2015.
+<pre>let num: number;
+num = 4;
+num = 5 + 8;
+
+let anotherNum: number = 5.8;
+let hexNum: number = 0xf00d;
+let binaryNum: number = 0b1010;
+let octalNum: number = 0o744;</pre>
+
+<hr>
+
+<h3>Array</h3>
+O array é um tipo muito utilizado em JavaScript. E em TypeSript podemos declará-la de duas maneiras.
+<pre>let arr: string[] = ['Arroz', 'Feijão', 'Couve', 'Bisteca de Porco'];
+let arrGeneric: Array<string> = ['Arroz', 'Feijão', 'Couve', 'Bisteca de Porco'];
+</pre>
+
+<hr>
+
+<h3>Tuple</h3>
+<pre>let tuple: [string, number, string, number];
+tuple = ['hello', 1, 'world', 2];
+
+console.log(tuple[0]);
+console.log(tuple[1]);</pre>
+
+<hr>
+
+<h3>Enum</h3>
+Enum é um tipo de dados que não existe no JavaScript mas foi adicionado ao TypScript com o intuito de fornecer nomes mais amigáveis a conjuntos de valores numéricos. Enums são muito comuns em linguagens como Java e C#.
+<pre>enum Color {Red, Green, Blue, Yellow};
+enum AnotherColor {Red = 1, Green = 2, Blue = 4, Yellow};</pre>
+
+<hr>
+
+<h3>Any</h3>
+Any é um tipo de dados muito utilizado para quem está migrando do JavaScript para o TypeScript ou quem está recebendo os dados de uma outra biblioteca e não sabe seu valor.
+
+E ele literalmente quer dizer qualquer um. Então declarando uma variável como o tipo any podemos atribuir qualquer valor para ela.
+<pre>let qualquer: any;
+qualquer = 'String';
+qualquer = 4;
+qualquer = true;</pre>
+
+<hr>
+
+<h3>Void</h3>
+O tipo void é muito usado junto com funções, serve para dizer que o valor é vazio, não é atribuído nada.
+<pre>function print(msg: string ): void {
+  console.log(`Função sem retorno: ${msg}`);
+}
+
+print('Escreve algo na tela');</pre>
+
+<hr>
+
+<a href="https://bognarjunior.wordpress.com/2018/09/16/typescript-tipos-de-dados/">Fonte</a>

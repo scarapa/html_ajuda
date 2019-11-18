@@ -1,62 +1,82 @@
 <style>
-h1,h2,h3,h4{margin:0px;padding:0px;}
-h2{margin-left:15px;}
-h3{margin-left:35px;}
-h3{margin-left:55px;}
-</style>
-<h2>Criar Projeto Localmente com <span style="color:red">ANGULAR</span></h2>
-<pre class="terminal">$ ionic start <strong style="color:red">nome_projeto</strong> blank --type=angular</pre>
+h3,h4,h5{margin:0px;padding:0px;}
+h3{margin-left:15px;}
+h4{margin-left:35px;}
+h4{margin-left:55px;}
 
+body{ counter-reset: contadorExterno; }
+body h3::before{
+    counter-increment: contadorExterno;
+    content: counter(contadorExterno) " - ";
+}	
+
+h3{ counter-reset: contadorInterno; }
+h4::before{
+	margin-left:25px;
+    counter-increment: contadorInterno;
+    content: counter(contadorExterno)"."counter(contadorInterno) " - ";
+}		
+</style>
+
+<ol>
+	<li>Criar Projeto</li>
+	<li>Estrutura</li>
+	<li>Banco de Dados</li>
+	<li>Startar Projeto</li>
+</ol>
+
+<h3>Criar Projeto Localmente com <span style="color:red">ANGULAR</span></h3>
+<pre class="terminal">$ ionic start <strong style="color:red">nome_projeto</strong> blank --type=angular</pre>
 <hr>
 
-<h2>Estrutura</h2>
-<h3>Criar pagina</h3>
+<h3>Estrutura</h3>
+<h4>Criar pagina</h4>
 <pre class="terminal">$ ionic g page <strong style="color:red">nome_pagina</strong></pre>
 
-<h3>Criar Provider/Service</h3>
+<h4>Criar Provider/Service</h4>
 <pre class="terminal">$ ionic g service <strong style="color:red">nome_provider</strong></pre>
 
 <hr>
 
-<h2>Banco de Dados</h2>
-<h3>Salvar pelo TERMINAL</h3>
+<h3>Banco de Dados</h3>
+<h4>Salvar pelo TERMINAL</h4>
 <pre class="terminal">$ adb -d shell "run-as <b>[PACOTE]</b> cat <b>[PASTA DEVICE]</b>" > <b>[PASTA MAQUINA LOCAL]</b></pre>
 Conforme exemplo abaixo:
 <pre class="terminal">$ adb -d shell "<b>run-as br.tche.emater.expointer</b> cat <b>databases/expointer.db</b>" > <b>~/Documentos/android.db</b></pre>
 
-<h3>Salvar pelo ANDROID STUDIO</h3>
+<h4>Salvar pelo ANDROID STUDIO</h4>
 Pode-se salvar o banco de dados da aplicação , para isso abrimos o Android Studio e exploramos o device da seguinte forma:
 <code>Menu >> View >> Tool Windows >> Device Explorer</code>
-<div class="centro"><img src="./images/ionic_android_studio_banco_01.jpg" style="width:60%"></div>
+<div class="centro"><img src="./images/ionic_android_studio_banco_01.jpg" style="width:40%"></div>
 <br>
 
 basta seguir o caminho da apliacao no explorador:
 <code>data >> data >> <b>nome do pacote</b> >> databases >> <b>nome da base</b></code>
-<div class="centro"><img src="./images/ionic_android_studio_banco_02.jpg" style="width:60%"></div>
+<div class="centro"><img src="./images/ionic_android_studio_banco_02.jpg" style="width:40%"></div>
 
 
-<h3>Leitura - SQLITE</h3>
+<h4>Leitura - SQLITE</h4>
 Para abrir e testar querys pode fazer a utilização de ferramente online ou programa local ...
-<h4>online - sqliteonline</h4>
+<h5>online - sqliteonline</h5>
 
-<div class="centro"><img src="./images/sqliteonline.jpg" style="width:60%"></div>
+<div class="centro"><img src="./images/sqliteonline.jpg" style="width:40%"></div>
 <a href="https://sqliteonline.com/" target="_blank">sqliteonline</a>
 
-<h4>programa - DB Browser</h4>
-<div class="centro"><img src="./images/sqlite.png" style="width:60%"></div>
+<h5>programa - DB Browser</h5>
+<div class="centro"><img src="./images/sqlite.png" style="width:40%"></div>
 <a href="https://sqlitebrowser.org/dl/" target="_blank">DB Browser</a> , disponivel para <b>TODOS</b> os sistemas operacionais.
 
 <hr>
 
-<h2>Startar Projeto </h2>
-<h3>Localmente</h3>
+<h3>Startar Projeto</h3>
+<h4>Localmente</h4>
 <pre class="terminal">$ ionic serve</pre>
 
-<h3>Localmente 2 ambientes</h3>
+<h4>Localmente 2 ambientes</h4>
 <pre class="terminal">$ ionic serve --labs</pre>
 
-<h3>Device Android DISPOSITIVO</h3>
+<h4>Device Android DISPOSITIVO</h4>
 <pre class="terminal">$ ionic cordova run android --device</pre>
 
-<h3>Device Android EMULADOR</h3>
+<h4>Device Android EMULADOR</h4>
 <pre class="terminal">$ ionic cordova run android --emulator</pre>

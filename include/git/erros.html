@@ -1,24 +1,37 @@
-﻿
+﻿<style>
+body{ counter-reset: contadorExterno; }
+body h3::before{
+    counter-increment: contadorExterno;
+    content: counter(contadorExterno) " - ";
+}	
+
+h3{ counter-reset: contadorInterno; }
+h4::before{
+	margin-left:25px;
+    counter-increment: contadorInterno;
+    content: counter(contadorExterno)"."counter(contadorInterno) " - ";
+}	
+</style>
 
 <h3>Não faz o push</h3>
 <code>Unable to rewind rpc post data - try increasing http.postBuffer error: <br/>RPC failed; result=65, HTTP code = 301</code>
 <BR/>Solução encontrada:<br>
-<pre><code>$ git config http.postBuffer 524288000</code></pre>
+<pre class="terminal">$ git config http.postBuffer 524288000</pre>
 <a href="https://stackoverflow.com/questions/2702731/git-fails-when-pushing-commit-to-github">stackoverflow</a>
+
+<hr>
 
 <h3>error: Your local changes to the following files would be overwritten by merge</h3>
 Erro completo abaixo:
-<pre>
-error: Your local changes to the following files would be overwritten by merge
+<pre>error: Your local changes to the following files would be overwritten by merge
 *** LISTA DE ARQUIVOS ***
 Please commit your changes or stash them before you merge.
-Aborting
-</pre>
+Aborting</pre>
 Acontece porque a sua versão é anterior a verão atual, portanto antes de fazer o commit e o push você precisa atualizar para que os conflitos sejam locais
 e nao no server.<br><br>
 Solução:<br/>
-<pre>git checkout HEAD^ CAMINHO/DO/ARQUIVO
-git pull</pre>
+<pre class="terminal">$ git checkout HEAD^ CAMINHO/DO/ARQUIVO
+$ git pull</pre>
 <a href="https://stackoverflow.com/questions/14318234/how-to-ignore-error-on-git-pull-about-my-local-changes-would-be-overwritten-by-m">stackoverflow</a>
 
 <hr>
@@ -29,7 +42,7 @@ Mensagem de erro:<br/>
 
 <br/>Isso aconteceu depois que tentei fazer o <b>COMMIT</b> antes do <b>PULL</b>
 Solução:<br/>
-<pre>$git push --force</pre>
+<pre class="terminal">$ git push --force</pre>
 
 <a href="https://stackoverflow.com/questions/3598355/i-am-not-able-to-push-on-git">stackoverflow</a> - 
 <a href="http://blog.locaweb.com.br/artigos/git-alem-do-push-e-pull-dicas-pra-voce-que-chegou-na-semana-passada/">Fonte 2</a>
@@ -39,9 +52,25 @@ Solução:<br/>
 <h3>Não faz PULL</h3>
 Mensagem de erro:<br/>
 <code>git error  cannot lock ref 'refs/remotes/origin/master':</code>
-<pre>git gc --prune=now
-
-git remote prune origin
-
-git pull origin master</pre>
+<pre class="terminal">$ git gc --prune=now
+$ git remote prune origin
+$ git pull origin master</pre>
 <a href="https://stackoverflow.com/questions/2998832/git-pull-fails-unable-to-resolve-reference-unable-to-update-local-ref">Fonte</a>
+
+<hr>
+
+<h3>Repository NOT FOUND !!!</h3>
+<h4>verificar sem tem permissão !!!</h4>
+<pre class="terminal">$ ssh -T git@github.com</pre>
+<code>retorno</code>
+<pre>> Hi username! You've successfully authenticated, but GitHub does not
+> provide shell access.</pre>
+
+<h4>caso tenha, REMOVER repositorio atual</h4>
+<pre class="terminal">$ git remote rm origin</pre>
+
+<h4>ADICIONAR repositorio</h4>
+<pre class="terminal">$ git remote add origin  https://<b style="color:red">USERNAME:PASSWORD</b>@github.com/username/reponame.git</pre>
+
+<a href="https://help.github.com/en/github/creating-cloning-and-archiving-repositories/error-repository-not-found">help.github</a><br>
+<a href="https://stackoverflow.com/questions/10116373/git-push-error-repository-not-found">stackoverflow</a><br>
