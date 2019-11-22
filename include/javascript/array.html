@@ -17,20 +17,55 @@ h5::before{
     counter-increment: contadorAga5;
     content: counter(contadorAga3)"."counter(contadorAga4)"."counter(contadorAga5) " - ";
 }	
+h5{ counter-reset: contadorAga6; }
+h6::before{
+    margin-left:75px;
+    counter-increment: contadorAga6;
+    content: counter(contadorAga3)"."counter(contadorAga4)"."counter(contadorAga5)"."counter(contadorAga6) " - ";
+}   
 </style>
-<h3>Inicializando</h3>
-<h4>Vazio</h4>
-<pre>var cars = [];</pre> 
 
-<h4>Populado</h4>
-<pre>var cars = new Array("Saab", "Volvo", "BMW");</pre>
+<ol>
+    <li>Startar Array
+        <ol>
+            <li>Vazio</li>
+            <li>Populado</li>
+        </ol>
+    </li>
+    <li>Looping</li>
+    <li>Adicionar Elementos</li>
+    <li>Remover Elementos</li>
+    <li>
+        Principais metodos
+        <ol>
+            <li>length()</li>
+            <li>sort()</li>
+            <li>includes()</li>
+            <li>filter()</li>
+            <li>every()</li>
+            <li>find()</li>
+            <li>map()</li>
+        </ol>
+    </li>
+    <li>Metodos diferentes
+        <ol>
+            <li>some()</li>
+            <li>reduce()</li>
+        </ol>
+    </li>
+    <li>Destruturação</li>
+</ol>
 
-<h3>ACESSANDO</h3>
-<pre>var name = cars[0];</pre>
+
+<h3>Startar Array</h3>
+    <h4>Vazio</h4>
+    <pre>var cars = [];</pre> 
+
+    <h4>Populado</h4>
+    <pre>var cars = new Array("Saab", "Volvo", "BMW");</pre>
 
 <h3>LOOPING</h3>
-<pre>var fruits, text, fLen, i;
-
+<pre class="codigo codigoJS">var fruits, text, fLen, i;
 fruits = ["Banana", "Orange", "Apple", "Mango"];
 fLen = fruits.length;
 text = "&#60ul&#62";
@@ -38,14 +73,60 @@ for (i = 0; i < fLen; i++) {
     text += "&#60li&#62" + fruits[i] + "&#60/ li&#62";
 }</pre>
 
-<h3>ADICIONANDO</h3>
-<pre>var fruits = ["Banana", "Orange", "Apple", "Mango"];
+<h3>Adicionar elementos</h3>
+Adicionar elemento
+<pre class="codigo codigoJS">var fruits = ["Banana", "Orange", "Apple", "Mango"];
 fruits.push("Lemon");</pre>
 
-<h3>TODOS</h3>
-Possibilita testar todos os elementos do seu array. Caso algum dos elementos não passe pela condição definida por você, o retorno será false.
-<pre><kbd>ES5</kbd>
-const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];	
+<h3>Remover elementos</h3>
+<pre class="codigo codigoJS"><kbd>JS</kbd>
+const numeros = [1,2,3,4,5,6,7,8,9,10];
+//o numero 5 esta na chave 4
+const indexNumeroCinco = numeros.indexOf(5);
+numeros.splice(indexNumeroCinco,1);
+console.log(numeros);
+// Array(11) [1,2,3,4,,6,7,8,9,10]</pre>
+<a href="https://www.instagram.com/p/B3ZtYOnhNSc/?igshid=182y7tiwaepcf">fabricadecodigo</a>
+
+<h3>Principais Metodos</h3>
+
+    <h4>length</h4>
+    Tamanho do array
+    <pre class="codigo codigoJS"> var x = cars.length;   // A propriedade length retorna o número de elementos</pre>
+    
+    <h4>sort()</h4>
+    Ordenacação do array
+    <pre>var y = cars.sort();   // O método sort () classifica arrays </pre>
+
+    <h4>includes()</h4>
+    Possibilita verificar se um element existe ou não no array definido.
+<pre>const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];
+const ages = [20, 25, 19, 21, 42];
+
+console.log(beers.includes('Skol')); // false
+console.log(ages.includes(25)); // true
+</pre>
+
+    <h4>filter()</h4>
+    Este método possibilita a criação de filtros de forma rápida e fácil em seus arrays.
+<pre class="codigo codigoJS">
+    const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];
+    const ages = [20, 25, 19, 21, 42];
+    <kbd>// ES5</kbd>
+    function startWithS(word) {
+      return word.indexOf('S') === 0;
+    }
+    <kbd>ES6</kbd>
+    const startWithS = (word) => word.indexOf('S') === 0;
+    const beersStartWithS = beers.filter(startWithS);
+    console.log(beersStartWithS); 
+    // [0: 'San Diego', 1: Saint Bier]
+</pre>
+
+    <h4>every</h4>
+    Possibilita testar todos os elementos do seu array. Caso algum dos elementos não passe pela condição definida por você, o retorno será false.
+<pre class="codigo codigoJS"><kbd>ES5</kbd>
+const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];    
 const ages = [20, 25, 19, 21, 42];
 function isGreaterThan(age) {
   return age >= 18;
@@ -59,34 +140,9 @@ const greater = ages.every(isGreaterThan);
 console.log(greater); // true
 </pre>
 
-<h3>INCLUI</h3>
-Possibilita verificar se um element existe ou não no array definido.
-<pre>const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];
-const ages = [20, 25, 19, 21, 42];
-
-console.log(beers.includes('Skol')); // false
-console.log(ages.includes(25)); // true
-</pre>
-
-<h3>FILTRAR</h3>
-Este método possibilita a criação de filtros de forma rápida e fácil em seus arrays.
-<pre>
-const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];
-const ages = [20, 25, 19, 21, 42];
-<kbd>// ES5</kbd>
-function startWithS(word) {
-  return word.indexOf('S') === 0;
-}
-<kbd>ES6</kbd>
-const startWithS = (word) => word.indexOf('S') === 0;
-const beersStartWithS = beers.filter(startWithS);
-console.log(beersStartWithS); 
-// [0: 'San Diego', 1: Saint Bier]
-</pre>
-
-<h3>PROCURAR</h3>
-Faça uma busca em seu array de um ou mais elementos que se encaixam no filtro definido por você.
-<pre>const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];
+    <h4>find()</h4>
+    Faça uma busca em seu array de um ou mais elementos que se encaixam no filtro definido por você.
+<pre class="codigo codigoJS">const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];
 const ages = [20, 25, 19, 21, 42];
 <kbd>ES5</kbd>
 function findSanDiego(element) {
@@ -98,9 +154,9 @@ const beerSanDiego = beers.find(findSanDiego);
 console.log(beerSanDiego); // 'San Diego'
 > 'San Diego'</pre>
 
-<h3>MAPEAR</h3>
-Este método percorre todos os elementos do array, executando funções para cada elemento e retornando um novo array como resultado.
-<pre>const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];
+    <h4>map()</h4>
+    Este método percorre todos os elementos do array, executando funções para cada elemento e retornando um novo array como resultado.
+<pre class="codigo codigoJS">const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];
 const ages = [20, 25, 19, 21, 42];
 <kbd>ES5</kbd>
 function upAge(age) {
@@ -114,9 +170,11 @@ console.log(newAges); // [0: 21, 1: 26, 2: 20, 3: 22, 4: 43]
 > [0: 21, 1: 26, 2: 20, 3: 22, 4: 43]
 </pre>
 
-<h3>ALGUM</h3>
-Este método verifica se ao menos um elemento satisfaz a condição definida por você.
-<pre>
+
+<h3>MÉTODOS ESPECIAIS/DIFERENTES</h3>
+    <h4>some()</h4>
+    Este método verifica se ao menos um elemento satisfaz a condição definida por você.
+<pre class="codigo codigoJS">
 const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];
 const ages = [20, 25, 19, 21, 42];
 <kbd>ES5</kbd>
@@ -130,9 +188,43 @@ const heinekenSaint = beers.some(hasHeinekenOrSaint);
 console.log(heinekenSaint); // true
 </pre>
 
-<h3>REDUZIR</h3>
-Você pode utilizar o método reduce para alguns casos, sendo um deles para facilitar cálculos.
-<pre>const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];
+    <h5>Validar/Verificar elemento</h5>
+    Esse metodo verifica se uma determinada condicao é atendida por algum elemento do array
+    <br><br>
+
+        <h6>Sintaxe</h6>
+        <pre>array.some(callbackfn:(value,index,array)=>{});</pre>
+        <ul>
+            <li><code>callbackfn: </code>funcao para verificar determinada condicao</li>
+            <li><code>value: </code>valor atual</li>
+            <li><code>indice: </code>chave do valor atual</li>
+            <li><code>array: </code>manipulado</li>
+        </ul>
+
+        <h6>Exemplo 1</h6>
+        condicao verdadeira
+<pre class="codigo codigoJS">const numero = [10,20,30,40,50];
+const resultado = numeros.some(value,index,array) =>{
+    return value > 10;
+});
+//true</pre>
+Retorna <code>TRUE</code> porque condição é <b>VERDADEIRA!!!</b>
+
+        <h6>Exemplo 2</h6>
+        Condicao FALSA!
+<pre class="codigo codigoJS">const numero = [10,20,30,40,50];
+const resultado = numeros.some(value,index,array) =>{
+    return value > 80;
+});
+//false</pre>
+Retorna <code>FALSE</code> porque condição é <b>FALSA!!!</b>
+<br clear="all">
+<br clear="all">
+<a href="https://www.instagram.com/p/B4U7inuhpsV/?utm_source=ig_web_copy_link" target="_blank">Fabricadecodigo</a>
+
+    <h4>reduce()</h4>
+    Você pode utilizar o método reduce para alguns casos, sendo um deles para facilitar cálculos.
+<pre class="codigo codigoJS">const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];
 const ages = [20, 25, 19, 21, 42];
 <kbd>ES5</kbd>
 function reducerAge(accumulator, age) {
@@ -144,52 +236,30 @@ const sumAges = ages.reduce(reducerAge);
 console.log(sumAges); // 127
 </pre>
 
-<h3>MÉTODOS ESPECIAIS/DIFERENTES</h3>
-<h4>Tamanho</h4>
-<pre> var x = cars.length;   // A propriedade length retorna o número de elementos</pre>
-<h4>Ordenacao</h4>
-<pre>var y = cars.sort();   // O método sort () classifica arrays </pre>
 
 
-<h4>Remover/Deletar elemento</h4>
-<pre class="codigo codigoJS"><kbd>JS</kbd>
-const numeros = [1,2,3,4,5,6,7,8,9,10];
-//o numero 5 esta na chave 4
-const indexNumeroCinco = numeros.indexOf(5);
-numeros.splice(indexNumeroCinco,1);
-console.log(numeros);
-// Array(11) [1,2,3,4,,6,7,8,9,10]</pre>
-<a href="https://www.instagram.com/p/B3ZtYOnhNSc/?igshid=182y7tiwaepcf">fabricadecodigo</a>
 
-<h4>Validar/Verificar elemento</h4>
-Esse metodo verifica se uma determinada condicao é atendida por algum elemento do array
-<br><br>
-<h5>Sintaxe</h5>
-<pre>array.some(callbackfn:(value,index,array)=>{});</pre>
-<ul>
-	<li><code>callbackfn: </code>funcao para verificar determinada condicao</li>
-	<li><code>value: </code>valor atual</li>
-	<li><code>indice: </code>chave do valor atual</li>
-	<li><code>array: </code>manipulado</li>
-</ul>
+<h3>Destruturação</h3>
+A técnica de desestruturação consiste em extrair dados de arrays e objetos. Exemplo de objeto abaixo:
+<pre class="codigo codigoJS">
+const usuario = {
+    id:1,
+    nome:'Roberto',
+    email:'teste@teste.com',
+    endereco:{
+        uf:'RS',
+        cidade:'Porto Alegre'
+    }
+}</pre>
 
-<h5>Exemplo 1</h5>
-condicao verdadeira
-<pre class="codigo codigoJS">const numero = [10,20,30,40,50];
-const resultado = numeros.some(value,index,array) =>{
-	return value > 10;
-});
-//true</pre>
-Retorna <code>TRUE</code> porque condição é <b>VERDADEIRA!!!</b>
+<h4>Maneira Antiga</h4>
 
-<h5>Exemplo 2</h5>
-Condicao FALSA!
-<pre class="codigo codigoJS">const numero = [10,20,30,40,50];
-const resultado = numeros.some(value,index,array) =>{
-	return value > 80;
-});
-//false</pre>
-Retorna <code>FALSE</code> porque condição é <b>FALSA!!!</b>
-<br clear="all">
-<br clear="all">
-<a href="https://www.instagram.com/p/B4U7inuhpsV/?utm_source=ig_web_copy_link" target="_blank">Fabricadecodigo</a>
+<pre class="codigo codigoJS">
+const nome = usuario.nome;
+const email = usuario.email;
+const cidade = usuario.endereco.cidade;</pre>
+Da maneira antiga para pegar as informacoes de nome , email e cidade precisa-se de 3 linhas de codigo.
+
+<h4>Maneira NOVA</h4>
+<pre class="codigo codigoJS">const {nome , email , endereco:{cidade} } = usuario</pre>
+<a href="https://www.instagram.com/p/B4z03LvhXNR/?igshid=2lef0rci964u">Insta-FabricaDeCodigo</a>
