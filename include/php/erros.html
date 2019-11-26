@@ -26,3 +26,13 @@ e outra bem mais elegante :
 
 <a href="http://phpbrasil.com/phorum/read.php?1,175192">Fonte</a>
 
+<h3>__PHP_Incomplete_Class Object</h3>
+problema ao tentar recuperar um objeto na <b>SESSION</b>
+<blockquote style="background: #fff8dc">
+  <p><strong>Notice</strong>: main(): The script tried to execute a method or access a property of an incomplete object. Please ensure that the class definition "unknown" of the object you are trying to operate on was loaded <em>before</em> unserialize() gets called or provide a __autoload() function to load the class definition in /var/www/lab/index.php on line 5</p>
+</blockquote>
+<code>SOLUCAO:</code> o session_start(); tem de ser <b>DEPOIS</b>
+
+<a href="https://pt.stackoverflow.com/questions/75109/o-que-%C3%A9-essa-tal-classe-php-incomplete-class">stackoverflow</a> 
+<a href="https://stackoverflow.com/questions/965611/forcing-access-to-php-incomplete-class-object-properties">stackoverflow</a> 
+<a hef="https://stackoverflow.com/questions/1055728/php-session-with-an-incomplete-object">stackoverflow</a>
