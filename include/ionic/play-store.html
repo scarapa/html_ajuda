@@ -1,0 +1,79 @@
+<style>
+body{ counter-reset: contadorExterno; }
+body h3::before{
+    counter-increment: contadorExterno;
+    content: counter(contadorExterno) " - ";
+}   
+
+h3{ counter-reset: contadorInterno; }
+h4::before{
+    margin-left:25px;
+    counter-increment: contadorInterno;
+    content: counter(contadorExterno)"."counter(contadorInterno) " - ";
+}   
+</style>
+<ol>
+    <li>gerando o apk de producao</li>
+    <li>geracao da chave, importante estar no diretorio RAIZ do projeto</li>
+    <li>assinar o APK
+        <ol>
+            <li>assinar baseado em APK</li>
+            <li>ssinar baseado em AAB</li>
+        </ol>
+    </li>
+    <li>rodar o comando ZIPALIGN do Android SDK 
+        <ol>
+            <li>rodar baseado em .APK</li>
+            <li>rodar baseado em AAB</li>
+        </ol>
+    </li>
+</ol>
+
+<h3>gerando o apk de producao</h3>
+<pre class="terminal">$ ionic cordova build android --prod --release</pre>
+
+
+<h3>geracao da chave, importante estar no diretorio RAIZ do projeto</h3>
+<pre class="terminal">$ keytool -genkey -v -keystore my-release-key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias my-alias</pre>
+<pre>
+Informe a senha da área de armazenamento de chaves:
+Informe novamente a nova senha:
+Qual é o seu nome e o seu sobrenome?
+  [Unknown]:  Emater-RS Ascar
+Qual é o nome da sua unidade organizacional?
+  [Unknown]:  GTI/NSI
+Qual é o nome da sua empresa?
+  [Unknown]:  Emater-RS Ascar
+Qual é o nome da sua Cidade ou Localidade?
+  [Unknown]:  Porto Alegre
+Qual é o nome do seu Estado ou Município?
+  [Unknown]:  RS
+Quais são as duas letras do código do país desta unidade?
+  [Unknown]:  BR
+CN=Emater-RS Ascar, OU=GTI/NSI, O=Emater-RS Ascar, L=Porto Alegre, ST=RS, C=BR Está correto?
+  [não]:  sim
+
+Gerando o par de chaves RSA de 2.048 bit e o certificado autoassinado (SHA256withRSA) com uma validade de 10.000 dias
+        para: CN=Emater-RS Ascar, OU=GTI/NSI, O=Emater-RS Ascar, L=Porto Alegre, ST=RS, C=BR
+Informar a senha da chave de <my-alias>
+        (RETURN se for igual à senha da área do armazenamento de chaves):
+[Armazenando my-release-key.jks]
+
+Warning:
+O armazenamento de chaves JKS usa um formato proprietário. É recomendada a migração para PKCS12, que é um formato de padrão industrial que usa "keytool -importkeystore -srckeystore my-release-key.jks -destkeystore my-release-key.jks -deststoretype pkcs12".
+</pre>
+<h3>assinar o APK</h3>
+
+	<h4>assinar baseado em APK</h4>
+<pre class="terminal">jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.jks platforms\android\app\build\outputs\apk\release\app-release-unsigned.apk my-alias</pre>
+
+	<h4>assinar baseado em AAB</h4>
+<pre class="terminal">jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.jks platforms\android\app\build\outputs\bundle\release\app.aab my-alias</pre>
+
+<h3>rodar o comando ZIPALIGN do Android SDK</h3>
+
+   <h4>rodar baseado em .APK</h4>
+<pre class="terminal">C:\Users\49583\AppData\Local\Android\Sdk\build-tools\29.0.2\zipalign.exe -v 4  platforms\android\app\build\outputs\apk\release\app-release-unsigned.apk Emater-na-Expointer.apk</pre>
+
+	<h4>rodar baseado em AAB</h4>
+<pre class="terminal">C:\Users\49583\AppData\Local\Android\Sdk\build-tools\29.0.2\zipalign.exe -v 4 platforms\android\app\build\outputs\bundle\release\app.aab Emater-na-Expointer.aab</pre>

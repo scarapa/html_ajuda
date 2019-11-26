@@ -1,4 +1,4 @@
-<h2>Variaveis de ambiente</h2>
+<h3>Variaveis de ambiente</h3>
 Erro ao tentar rodar no dispositivo
 <pre class="terminal">$ ionic cordova run android</pre>
 <pre class="terminal"><font color="#4E9A06">cordova run android</font>
@@ -18,7 +18,7 @@ $ export PATH=$PATH:$ANDROID_HOME/tools</pre>
 
 <hr>
 
-<h2>Não cria o projeto</h2>
+<h3>Não cria o projeto</h3>
 erro ao executar o comando <code>$ ionic cordova run android --device</code>
 <pre class="terminal">FAILURE: Build failed with an exception.
 
@@ -51,7 +51,7 @@ Built the following apk(s):
 </pre>
 <hr>
 
-<h2>ERRO - NÃO GERA PAGINA</h2>
+<h3>ERRO - NÃO GERA PAGINA</h3>
 <code>Error: Cannot find module '@ionic/app-scripts'</code><br>
 Para resolver isso foi preciso rodar o comando abaixo:
 <pre>$ npm install @ionic/app-scripts@latest --save-dev</pre>
@@ -59,14 +59,14 @@ Para resolver isso foi preciso rodar o comando abaixo:
 
 <hr>
 
-<h2>ERRO - NÃO GERA PAGINA - Parte 02</h2>
+<h3>ERRO - NÃO GERA PAGINA - Parte 02</h3>
 <code>Error: ENOENT: no such file or directory, scandir</code><br>
 Solução foi <b>DELETAR</b> a pasta <b>node_modules</b> do projeto e rodar esse comando.
 <pre>$ npm install @ionic/app-scripts@latest --save-dev</pre>
 
 <hr>
 
-<h2>Atualizar NodeJS</h2>
+<h3>Atualizar NodeJS</h3>
 <pre class="terminal"><font color="#AAAAAA">[ng] You are running version v8.10.0 of Node.js, which is not supported by Angular CLI 8.0+.</font>
 <font color="#AAAAAA">[ng] The official Node.js version that is supported is 10.9 or greater.</font>
 <font color="#AAAAAA">[ng] Please visit https://nodejs.org/en/ to find instructions on how to update Node.js.</font>
@@ -87,9 +87,9 @@ Retorno: <code>v10.16.3</code>
 <br clear="all">
 <a href="https://askubuntu.com/questions/426750/how-can-i-update-my-nodejs-to-the-latest-version">Fonte</a>
 
-
 <hr>
-<h2>Erro ao tentar levantar projeto no device</h2>
+
+<h3>Erro ao tentar levantar projeto no device</h3>
 <pre class="terminal">
 [native-run] Error: Command failed: C:\Users\49583\AppData\Local\Android\Sdk\platform-tools\adb -s 0054824656 shell getprop
 [native-run] error: device unauthorized.
@@ -97,3 +97,17 @@ Retorno: <code>v10.16.3</code>
 [native-run] Try 'adb kill-server' if that seems wrong.
 [native-run] Otherwise check for a confirmation dialog on your device.</pre>
 <code>SOLUCAO:</code> aceitar no dispositivo que o computador o acesse.
+
+<hr>
+
+<h3>Aplicação não sobe no DEVICE</h3>
+<pre class="terminal">BUILD SUCCESSFUL in 53s
+42 actionable tasks: 2 executed, 40 up-to-date
+Built the following apk(s):
+        E:\EMATER\institucional\platforms\android\app\build\outputs\apk\debug\app-debug.apk
+[native-run] ERR_NO_DEVICE: No hardware devices found. Not attempting emulator because --device was specified.
+[<b style="color:Red">ERROR</b>] An error occurred while running subprocess <b style="color:#29B8DB">native-run</b>.
+
+        <b style="color:#29B8DB">native-run.cmd android --app platforms\android\app\build\outputs\apk\debug\app-d...</b> exited with exit code 1.
+
+        Re-running this command with the --verbose flag may provide more information.</pre>
