@@ -19,14 +19,75 @@ h4::before{
 </style>
 
 <ol>
-	<li>Criar Projeto</li>
+	<li>NOVO Projeto</li>
 	<li>Estrutura</li>
 	<li>Banco de Dados</li>
 	<li>Startar Projeto</li>
 </ol>
 
-<h3>Criar Projeto Localmente com <span style="color:red">ANGULAR</span></h3>
+<h3>NOVO Projeto</h3>
+Atualmente existe alguns templates/esqueletos de projetos, assim como no android studio, conforme imagem abaixo.
+<br>
+<div class="centro">
+	<img src="images/android_studio_novo_projeto_01.jpg" style="width:40%">
+</div>
+Para vermos as opções de templates executar comando abaixo:<br>
+<pre class="terminal">$ ionic start --list</pre>
+<code>Retorno</code>
+<pre class="terminal">
+Starters for @ionic/angular (--type=angular)
+
+name         | description
+--------------------------------------------------------------------------------------
+tabs         | A starting project with a simple tabbed interface
+sidemenu     | A starting project with a side menu with navigation in the content area
+blank        | A blank starter project
+my-first-app | An example application that builds a camera with gallery
+conference   | A kitchen-sink application that shows off all Ionic has to offer
+
+
+Starters for @ionic/react (--type=react)
+
+name       | description
+------------------------------------------------------------------------------------
+blank      | A blank starter project
+sidemenu   | A starting project with a side menu with navigation in the content area
+tabs       | A starting project with a simple tabbed interface
+conference | A kitchen-sink application that shows off all Ionic has to offer
+
+
+Starters for Ionic 2/3 (--type=ionic-angular)
+
+name     | description
+----------------------------------------------------------------------------------------------------------------
+tabs     | A starting project with a simple tabbed interface
+sidemenu | A starting project with a side menu with navigation in the content area
+blank    | A blank starter project
+super    | A starting project complete with pre-built pages, providers and best practices for Ionic development.
+tutorial | A tutorial based project that goes along with the Ionic documentation
+aws      | AWS Mobile Hub Starter
+
+
+Starters for Ionic 1 (--type=ionic1)
+
+name     | description
+---------------------------------------------------------------------------------------------
+tabs     | A starting project for Ionic using a simple tabbed interface
+sidemenu | A starting project for Ionic using a side menu with navigation in the content area
+blank    | A blank starter project for Ionic
+maps     | An Ionic starter project using Google Maps and a side menu
+</pre>
+
+<h4>Criar Projeto EM BRANCO</h4>
+Criar Projeto Localmente com <span style="color:red">ANGULAR</span>
 <pre class="terminal">$ ionic start <strong style="color:red">nome_projeto</strong> blank --type=angular</pre>
+
+<h4>Criar Projeto COM TEMPLATE</h4>
+Criar Projeto Localmente com <span style="color:red">ANGULAR</span>
+<pre class="terminal">$ ionic start <strong style="color:red">nome_projeto</strong> sidemenu --type=angular</pre>
+
+<a href="https://ionicframework.com/docs/cli/commands/start">ionicframework</a>
+
 <hr>
 
 <h3>Estrutura</h3>

@@ -1,34 +1,68 @@
-﻿
+﻿<style>
+body{ counter-reset: contadorExterno; }
+body h3::before{
+    counter-increment: contadorExterno;
+    content: counter(contadorExterno) " - ";
+}	
 
-<h3>Historico com os últimos comandos executados</h3>
-<pre>$ history | grep -i 'git' </pre>
+h3{ counter-reset: contadorInterno; }
+h4::before{
+	margin-left:25px;
+    counter-increment: contadorInterno;
+    content: counter(contadorExterno)"."counter(contadorInterno) " - ";
+}	
+</style>
 
-<h3>Adicionar todos os arquivos ao commit</h3> 
-<pre>$ git add .</pre>
+<ol>
+	<li>Historio</li>
+	<li>Commit</li>
+	<li>Branch</li>
+	<li>Log</li>
+</ol>
 
-<h3>Adicionar apenas um arquivo ao commit</h3> 
-<pre>$ git add caminho_do_arquivo</pre>
+<h3>HISTORICO</h3>
+<h4>Historico com os últimos comandos executados</h4>
+<pre class="terminal">$ history | grep -i 'git' </pre>
 
-<h3>Encapsula REALMENTE todos arquivos e adicionar a mensagem ao mesmo</h3>
-<pre>$ git commit -m "mensagem"</pre>
+<hr>
 
-<h3>Comando importantissimo, é o que REALMENTE envia os arquivos para nuvem.</h3>
-<pre>$ git push -u origin master</pre>
+<h3>COMMITs</h3>
+<h4>Adicionar todos os arquivos ao commit</h4> 
+<pre class="terminal">$ git add .</pre>
 
-<h3>Verifica o status do branch atual</h3>
-<pre>$ git status</pre>
+<h4>Adicionar apenas um arquivo ao commit</h4> 
+<pre class="terminal">$ git add caminho_do_arquivo</pre>
 
-<h3>CRIAR Branch novo e ao mesmo tempo mudar para ele</h3>
-<pre>$ git checkout -b nome_branch</pre>
+<h4>Encapsula REALMENTE todos arquivos e adicionar a mensagem ao mesmo</h4>
+<pre class="terminal">$ git commit -m "mensagem"</pre>
 
-<h3>RETORNAR para o Branch MASTER</h3>
-<pre>$ git checkout master</pre>
+<h4>Comando importantissimo, é o que REALMENTE envia os arquivos para nuvem.</h4>
+<pre class="terminal">$ git push -u origin master</pre>
 
-<h3>REMOVER o Branch</h3> 
-<pre>$ git branch -D nome_branch</pre>
+<h4>Verifica o status do branch atual</h4>
+<pre class="terminal">$ git status</pre>
 
-<h3>ALTERAR o nome do Branch</h3> 
-<pre>$ git branch -m nome_atual nome_novo</pre>
+<h4>CRIAR Branch novo e ao mesmo tempo mudar para ele</h4>
+<pre class="terminal">$ git checkout -b nome_branch</pre>
 
-<h3>LISTAR Branchs</h3> 
-<pre>$ git branch</pre>
+<hr>
+
+<h3>BRANCH</h3>
+<h4>RETORNAR para o Branch MASTER</h4>
+<pre class="terminal">$ git checkout master</pre>
+
+<h4>REMOVER o Branch</h4> 
+<pre class="terminal">$ git branch -D nome_branch</pre>
+
+<h4>ALTERAR o nome do Branch</h4> 
+<pre class="terminal">$ git branch -m nome_atual nome_novo</pre>
+
+<h4>LISTAR Branchs</h4> 
+<pre class="terminal">$ git branch</pre>
+
+<h4>RESETAR branch</h4> 
+<pre class="terminal">$ git checkout -f</pre>
+ou
+<pre class="terminal">$ git reset --HARD</pre>
+<h3>LOGs</h3>
+

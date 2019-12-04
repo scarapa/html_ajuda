@@ -1,34 +1,46 @@
 ﻿
 <h3>Adicionar TODOS os arquivos</h3>
-<pre><code>$ git add .</code></pre>
+<pre class="terminal">$ git add .</pre>
+
+<hr>
 
 <h3>Adicionar os arquivos INDIVIDUALMENTE</h3>
-<pre><code>$ git add CAMINHO/ARQUIVO</code></pre>
+<pre class="terminal">$ git add CAMINHO/ARQUIVO</pre>
+
+<hr>
 
 <h3>Adiciona os arquivos por pasta no exemplo do comando é a pasta include</h3>
-<pre><code>$ git add include/*</code></pre>
+<pre class="terminal">$ git add include/*</pre>
+
+<hr>
 
 <h3>Commitar arquivos DELETADOS</h3>
-<pre>$ git add --all</pre>
-<pre>$ git add -A</pre>
+<pre class="terminal">$ git add --all</pre>
+<pre class="terminal">$ git add -A</pre>
 
 <h5>A diferença do $ git add . é que o --all também atualiza os ficheiros removidos. O add . não faz nenhuma ação com ficheiros removidos.</h5>
 <a href="https://pt.stackoverflow.com/questions/42357/como-comitar-arquivos-exclu%C3%ADdos-do-projeto-local">Fonte</a>
 
+<hr>
 
 <h3>Commitar TODOS os arquivos e incluir a mensagem de commit ao mesmo tempo</h3>
-<pre><code>$ git commit -am "mensagem"</code></pre>
+<pre class="terminal">$ git commit -am "mensagem"</pre>
 
 <h3>Alterar MENSAGEM antes do PUSH</h3>
 <h5>O <code>$ git commit --amend</code> vai abrir seu editor, com o conteúdo da mensagem do último commit e você pode editar tranquilamente.</h5>
-<pre>$ git commit --amend</pre>
 <a href="https://pt.stackoverflow.com/questions/61429/como-editar-uma-mensagem-de-commit-incorreta-no-git/61438">stackoverflow</a>
 
+<hr>
 
 <h3>Listar arquivos do commit</h3>
 Para listar TODOS os arquivos do COMMIT é necessário saber o hash do commit, tal dado consegue-se na interface web.<br/><br/>
 <code>SINTAXE:</code>
-<pre>$ git show --name-only <b>HASH</b></pre>
+<pre class="terminal">$ git show --name-only <b>HASH</b></pre>
 <code>EXEMPLO:</code>
-<pre>$ git show --name-only 11c19cb2</pre>
+<pre class="terminal">$ git show --name-only 11c19cb2</pre>
 <a href="https://stackoverflow.com/questions/424071/how-to-list-all-the-files-in-a-commit">stackoverflow</a>
+
+<hr>
+
+<h3>Voltar commit</h3>
+<pre class="terminal">$ git reset --hard hash-do-commit</pre>
