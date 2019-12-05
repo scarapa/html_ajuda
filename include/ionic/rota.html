@@ -1,0 +1,49 @@
+<code>lista.page.html</code>
+<pre><kbd>HTML</kbd>
+&lt;ion-button size="small" item-left class="toolbarIconeVoltar" (click)="navigationVoltar('feiralista')"&gt;
+    &lt;ion-icon name="arrow-round-back"&gt;&lt;/ion-icon&gt;
+&lt;/ion-button&gt;</pre>
+
+<code>lista.page.ts</code>
+<pre>
+import { Component, OnInit } from '@angular/core';<span style="color:red">
+import { NavController } from '@ionic/angular';
+import { Router, ActivatedRoute } from '@angular/router';
+</span>
+export class ListaPage implements OnInit {
+
+    public listagem = new Array&lt;any&gt;();
+    public listagemCompleta = [];
+    public filtro = [];
+    private banca: string = 'undefined';
+    private id_municipio: string = 'undefined';
+    private id_categoria: string = 'undefined';
+    private ds_ordenacao: string = 'undefined';
+    public total: number = 0;
+
+    constructor(public navCtrl: NavController, public router: Router, public route: ActivatedRoute) { }
+
+    ngOnInit() {  }
+	<span style="color:red">
+    public navigationVoltar(page): void { this.navCtrl.navigateBack(page); }
+    public navigationAvancar(page, id): void { this.router.navigate(['/bancadetalhe', id]); }
+	</span>
+    pad(num, size) {
+        var s = "000000000" + num;
+        return s.substr(s.length - size);
+    }
+}</pre>
+
+<code>app-routing.module.ts</code>
+<pre>
+const routes: Routes = [
+  { path: '', redirectTo: 'home', pathMatch: 'full'},
+  { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomePageModule) },
+  { path: 'unidades', loadChildren: () => import('./unidades/unidades.module').then(m => m.UnidadesPageModule) },
+  { path: 'eventos', loadChildren: './eventos/eventos.module#EventosPageModule' },
+  { path: 'tarefas', loadChildren: './tarefas/tarefas.module#TarefasPageModule' },<span style="color:red">
+  { path: 'feira-edit<b>:/id</b>', loadChildren: './feiras/feira-edit/feira-edit.module#FeiraEditPageModule' },</span>
+  { path: 'feira-list', loadChildren: './feiras/feira-list/feira-list.module#FeiraListPageModule' }
+ ];</pre>
+
+ <a href="https://ionicacademy.com/ionic-routing-navigation/">ionicacademy</a>
