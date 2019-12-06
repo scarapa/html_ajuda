@@ -1,0 +1,20 @@
+select 
+
+<pre><kbd>HTML</kbd>
+&lt;ion-select id="something" name="something" [(ngModel)]="something"  (ionChange)="something($event)" data-live-search="true"&gt;
+    &lt;ion-option *ngFor="let s of something" [value]="s.id"&gt;{{s.name}}&lt;/ion-option&gt;
+&lt;/ion-select&gt;
+&lt;ion-button (click)= "clicked()" &gt;Hit Me!&lt;/ion-button&gt;
+
+
+<kbd>TS</kbd>
+clicked(){
+  //call your function 
+  //use this.lastSelected for your function.
+}
+
+something($event) = {
+   this.lastselected = $event.target.value;
+}</pre>
+<a href="https://stackoverflow.com/questions/51516879/how-to-handle-ion-select-ok-button">stackoverflow</a><br>
+<a href="https://stackoverflow.com/questions/52348751/ionic-how-to-get-the-click-event-on-oktext">stackoverflow</a>
