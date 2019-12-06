@@ -110,18 +110,30 @@ console.log(ages.includes(25)); // true
     <h4>filter()</h4>
     Este método possibilita a criação de filtros de forma rápida e fácil em seus arrays.
 <pre class="codigo codigoJS">
-    const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];
-    const ages = [20, 25, 19, 21, 42];
-    <kbd>// ES5</kbd>
-    function startWithS(word) {
-      return word.indexOf('S') === 0;
-    }
-    <kbd>ES6</kbd>
-    const startWithS = (word) => word.indexOf('S') === 0;
-    const beersStartWithS = beers.filter(startWithS);
-    console.log(beersStartWithS); 
-    // [0: 'San Diego', 1: Saint Bier]
+const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];
+const ages = [20, 25, 19, 21, 42];
+<kbd>// ES5</kbd>
+function startWithS(word) {
+  return word.indexOf('S') === 0;
+}
+
+<kbd>ES6</kbd>
+const startWithS = (word) => word.indexOf('S') === 0;
+const beersStartWithS = beers.filter(startWithS);
+console.log(beersStartWithS); 
+// [0: 'San Diego', 1: Saint Bier]
+
+//OU MAIS DIRETAMENTE CONFORME ABAIXO:
+
+var myArray = [
+ {id:1, name:"bob"},
+ {id:2, name:"dan"},
+ {id:3, name:"barb"},
+]
+var item = myArray.find(item => item.id === 2);
+console.log(item.name);
 </pre>
+<a href="https://stackoverflow.com/questions/7364150/find-object-by-id-in-an-array-of-javascript-objects">stackoverflow</a>
 
     <h4>every</h4>
     Possibilita testar todos os elementos do seu array. Caso algum dos elementos não passe pela condição definida por você, o retorno será false.
