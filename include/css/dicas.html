@@ -1,5 +1,28 @@
-<h3>Virar icone</h3>
 <style type="text/css">
+body{ counter-reset: contadorAga3; }
+body h3::before{
+    counter-increment: contadorAga3;
+    content: counter(contadorAga3) " - ";
+}	
+
+h3{ counter-reset: contadorAga4; }
+h4::before{
+	margin-left:25px;
+    counter-increment: contadorAga4;
+    content: counter(contadorAga3)"."counter(contadorAga4) " - ";
+}	
+h4{ counter-reset: contadorAga5; }
+h5::before{
+	margin-left:55px;
+    counter-increment: contadorAga5;
+    content: counter(contadorAga3)"."counter(contadorAga4)"."counter(contadorAga5) " - ";
+}	
+h5{ counter-reset: contadorAga6; }
+h6::before{
+    margin-left:75px;
+    counter-increment: contadorAga6;
+    content: counter(contadorAga3)"."counter(contadorAga4)"."counter(contadorAga5)"."counter(contadorAga6) " - ";
+}  
 .rotate-45 {
 	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0.5);
 	-webkit-transform: rotate(45deg);
@@ -38,9 +61,22 @@
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
+}
 #tabelaCentralizarImagem {border:1px solid red;}
-
 </style>
+
+<ol>
+	<li>Girar Icone</li>
+	<li>Rotacionar Icone</li>
+	<li>Linhas em Tabelas</li>
+	<li>Bloquear Elemento</li>
+	<li>Centralizar imagem em DIV</li>
+	<li>Criar fonte de Icones</li>
+</ol>
+
+<hr>
+
+<h3>Girar icone</h3>
 <pre>.rotate-45 {
 	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0.5);
 	-webkit-transform: rotate(45deg);
@@ -68,15 +104,19 @@ exemplo<br>
 <a href="https://stackoverflow.com/questions/25786905/css3-rotation-when-hover-a-font-awesome-icon">stackoverflow</a>
 <a href="https://code.tutsplus.com/pt/tutorials/the-30-css-selectors-you-must-memorize--net-16048">tutsplus</a>
 
-<h3>Girar / Rodar</h3>
+<hr>
+
+<h3>Rotacionar / Rodar</h3>
 <code>fa-spin</code>
 <br clear="all">
 <i class="fa fa-gear fa-spin fa-5x"></i>
 <br clear="all">
 <a href="https://www.w3schools.com/icons/tryit.asp?filename=tryicons_fa-gear">w3schools</a>
 <br clear="all">
+
 <hr>
-<h2>TABELA - Numero em linhas</h2>
+
+<h3>TABELA - Numero em linhas</h3>
 <pre>
 <kbd>CSS</kbd>
 .tableNumeracaoAutomatica tr:not(.fble_htr) {
@@ -185,3 +225,42 @@ A principal dificuldade aqui é centralizar o CENTRO na imagem muitoooo maior qu
 </table>
 
 <a href="https://guide.freecodecamp.org/html/tutorials/center-an-image-using-text-align-center/" target="_blank">Fonte</a>
+
+<hr>
+
+<h3>Criar fonte de Icones</h3>
+Usaremos o INKSCAPE
+<h4>Definir tamanho do desenho</h4>
+<code>Menu >> Arquivo >> Propriedadas do desenho</code> O ideal que seja <b>1024px X 1024px</b>, conforme imagem abaixo:
+<div class="centro">
+	<img src="./images/css_inkscape_fonte_001.jpg" style="width:30%">
+</div>
+
+<h4>Definir nome e familia da fonte</h4>
+<code>menu >> texto >> Editor de Fontes SVG</code>
+<div class="centro">
+	<img src="./images/css_inkscape_fonte_002.jpg" style="width:30%">
+</div>
+
+
+A imagem que será trabalhada é<b>OBRIGATORIO</b> importar uma do tipo SVG, senão da erro!!!
+<br>
+<h4>DESAGRUPAR Imagem</h4>
+Clicar na imagem com o botão direito e selecionar a opção 'desagrupar'.
+
+<h4>UNION</h4>
+<code>Menu >> Caminho >> União</code>
+
+Após isso , em <code>Editor de Fontes SVG</code> clicar na expressao correspondente e no botão [Obter curva da seleção/Capturar curvas da seleção]
+<div class="centro">
+	<img src="./images/css_inkscape_fonte_003.jpg" style="width:30%">
+</div>
+
+Se tudooooo deu certo deverá ficar conforme imagem abaixo.
+<div class="centro">
+	<img src="./images/css_inkscape_fonte_004.jpg" style="width:30%">
+</div>
+<br><br>
+<a href="https://velhobit.com.br/design/como-criar-sua-propria-fonte-e-a-usar-como-icone.html">velhobit</a><br>
+<a href="http://blog.ti.lemaf.ufla.br/2017/02/21/iconesparafonte/">lemaf</a>
+<a href="https://www.youtube.com/watch?time_continue=297&v=_YHEByuf9As&feature=emb_logo">youtube</a>
