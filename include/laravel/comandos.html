@@ -46,6 +46,7 @@ remove o arquivo de rota do cache
  apresenta todas as rotas registradas na aplicação
 <pre class="terminal">$ php artisan route:list</pre>
 
+<hr>
 
 <h3>Aplicacao</h3>
 Caso sua aplicação esteja em produção e você precise realizar alguma manutenção que a aplicação necessite ficar alguns minutos fora
@@ -61,8 +62,16 @@ Assim que a equipe de desenvolvimento concluir a manutenção basta apenas digit
 Apresenta o ambiente de desenvolvimento que está sendo utilizado.
 <pre class="terminal">$ php artisan env</pre>
 
-<h3></h3>
-<pre class="terminal"></pre>
+<hr>
+
+<h3>Servidor</h3>
+
+<h4>Local</h4>
+<pre class="terminal">$ php artisan serve</pre>
+
+<h4>Remoto</h4>
+<pre class="terminal">php artisan serve --host 192.168.20.20 --port 8000</pre>
+<a href="https://stackoverflow.com/questions/28956911/how-can-i-access-my-laravel-app-from-another-pc" target="_blank">stackoverflow</a>
 
 
 <a href="http://devsoftbr.blogspot.com/2017/05/artisan-comandos-poderosos-no-laravel.html">Fonte[1]</a> 
