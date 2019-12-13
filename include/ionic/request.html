@@ -1,0 +1,60 @@
+<style>
+body{ counter-reset: contadorExterno; }
+body h3::before{
+    counter-increment: contadorExterno;
+    content: counter(contadorExterno) " - ";
+}	
+
+h3{ counter-reset: contadorInterno; }
+h4::before{
+	margin-left:25px;
+    counter-increment: contadorInterno;
+    content: counter(contadorExterno)"."counter(contadorInterno) " - ";
+}	
+</style>
+
+O módulo de requisições/request não vem habilitado por padrão/default.<br>
+
+<pre class="terminal">$ ionic cordova plugin add cordova-plugin-advanced-http
+$ ionic cordova plugin add cordova-plugin-advanced-http</pre>
+
+<code>src\app\app.module.ts</code>
+<pre>...
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+
+<span class="red bold">import { HttpClientModule } from '@angular/common/http';</span>
+
+@NgModule({
+  declarations: [AppComponent],
+  entryComponents: [],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,<span class="red bold">HttpClientModule</span>],
+  providers: [
+    StatusBar,
+    SplashScreen,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+  ], ....
+</pre>
+
+<code>src\app\services\previsao.service.ts</code>
+<pre><span class="red bold">import { HttpClient } from '@angular/common/http';</span>
+
+constructor(<span class="red bold">private http: HttpClient</span>) {}
+
+...
+
+this.http.get('http://ionic.io', {}, {})
+  .then(data => {
+    console.log(data.status);
+    console.log(data.data); // data received by server
+    console.log(data.headers);
+  })
+  .catch(error => {
+    console.log(error.status);
+    console.log(error.error); // error message as string
+    console.log(error.headers);
+  });</pre>
+
+<a href="https://ionicframework.com/docs/native/http">ionicframework</a><br>
+<a href="https://github.com/charles-s-franca/ionic-3-para-iniciantes">github - charles-s-franca</a><br>
+<a href="https://www.freakyjolly.com/ionic-4-httpclient-crud-service-tutorial-to-consume-restful-server-api/#more-2792">freakyjolly</a>

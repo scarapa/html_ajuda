@@ -50,3 +50,6 @@ fieldset.title {
 	border-radius: 5px;
 	border: 1px solid white;
 }
+
+.bold{font-weight: bold}
+.red{color:#c7254e;}
