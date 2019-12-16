@@ -1,0 +1,53 @@
+<ul>
+	<li>045 - Criação de um database em Windows</li>
+	<li>046 - Criação de um database em Linux</li>
+	<li>047 - Introdução a migrações</li>
+	<li>048 - Criando migrations</li>
+	<li>049 - Criando tabela Marcas</li>
+	<li>050 - Adicionando um campo a uma tabela</li>
+	<li>051 - Relacionamento muitos para muitos</li>
+	<li>052 - Atributo nullable</li>
+	<li>053 - Outros comandos</li>
+</ul>
+
+<div id="046">
+	<h3>046 - Criação de um database em Linux</h3>
+	criar database
+	<pre>mysql> create database laravel_produtos</pre>
+
+	exibir databases
+	<pre>mysql> show database</pre>
+
+	acessar database
+	<pre>mysql> use laravel_produtos</pre>
+
+	exibir tabelas
+	<pre>mysql> show tables</pre>
+
+	exibir <b>COLUNAS</b> da tabela products
+	<pre>mysql> describe products</pre>
+
+	Comando para criar usuario com todas permissoes
+	<pre>$ sudo mysql 
+mysql > GRANT ALL PRIVILEGES ON *.* TO 'user'@'localhost' IDENTIFIED BY 'user';
+</div>
+
+<hr>
+
+<div id="048">
+	<h3>048 - Criando migrations</h3>
+	<pre class="terminal">$ php artisan make:migration create_feira</pre>
+
+	Aplicando as migracoes
+	<pre class="terminal">$ php artisan migrate</pre>
+</div>
+
+<hr>
+
+<div id="050">
+	<h3>Adicionando um campo a uma tabela</h3>
+	<pre class="terminal">php artisan make:migration add_marca_to_products --table=products
+</div>
+
+<hr>
+
