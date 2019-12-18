@@ -30,6 +30,27 @@
 	<pre class="terminal">php artisan tinker;</pre>
 	'incluir' o model antes'
 	<pre class="terminal">App\NOME-DA-CLASSE</pre>
+	1º forma de SALVAR
+<pre class="terminal">
+//1º Instanciando a classe		
+use App\Feiras\Categoria
+$categoria = new Categoria
+
+//2º Setando o objeto
+$categoria->descricao="Mel"
+$categoria->cd_matricula=49583
+$categoria->dt_criacao="2019-03-09 14:35:12.000"
+
+$categoria->save()
+</pre>
+
+	2º forma de SALVAR
+<pre class="terminal">
+//1º Instanciando a classe		
+use App\Feiras\Categoria
+$categoria = Categoria::create(["descricao"=>"mel","cd_matricula"=>49583,"dt_criacao"=>"2019-03-09 14:35:12.000"])
+</pre>	
+	
 </div>
 
 
