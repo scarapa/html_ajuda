@@ -1,0 +1,61 @@
+<h3>Validar rede de internet</h3>
+
+criar o projeto, no caso de uso abaixo foi <code></code>
+<pre class="terminal">$ ionic start network-1 blank --type=angular</pre>
+
+<pre class="terminal">
+$ ionic integrations enable capacitor
+$ npx cap init network com.your.app	</pre>
+
+levantar servidor ionic
+<pre class="terminal">$ ionic serve</pre>
+
+<pre>
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Plugins, PluginListenerHandle, NetworkStatus } from '@capacitor/core'
+
+const { Network } = Plugins;
+
+@Component({
+    selector: 'app-home',
+    templateUrl: 'home.page.html',
+    styleUrls: ['home.page.scss'],
+})
+export class HomePage implements OnInit , OnDestroy{
+
+    public networkListener:PluginListenerHandle;
+    public networkStatus:NetworkStatus;
+
+    constructor() { }
+    
+    async ngOnInit() {
+        this.networkListener = Network.addListener('networkStatusChange',status=>{
+            console.log('status', status)
+            this.networkStatus = status;
+        });
+        this.networkStatus = await Network.getStatus();        
+    }
+
+    ngOnDestroy() {
+        this.networkListener.remove();
+    }
+}</pre>
+
+<pre><kbd>HTML</kbd>
+&lt;ion-header&gt;
+    &lt;ion-toolbar [color]="networkStatus && networkStatus.connected? 'primary' : 'dark'"&gt;
+        &lt;ion-title&gt;
+            Ionic Blank
+        &lt;/ion-title&gt;
+    &lt;/ion-toolbar&gt;
+&lt;/ion-header&gt;
+
+&lt;ion-content fullscreen&gt;
+    &lt;h1&gt;STATUS&lt;/h1&gt;
+    &lt;h2&gt;{{ networkStatus.connected ? 'ONLINE': 'OFFLINE' }}&lt;/h2&gt;
+&lt;/ion-content&gt;	
+</pre>
+
+
+<a href="https://www.youtube.com/watch?v=DZo2iF_l038">youtube</a><br>
+<a href="https://www.youtube.com/watch?v=DZo2iF_l038">youtube - Vikas Kumar</a>
