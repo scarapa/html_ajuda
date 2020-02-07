@@ -20,12 +20,12 @@
         <link href="css/materialdesignicons.css" rel="stylesheet">
         <link href="css/devicon.min.css" rel="stylesheet" charset="utf-8">
         <link href="css/whhg.css" rel="stylesheet" charset="utf-8">
-        <link href="css/style.css" rel="stylesheet">
         <link href="css/checkbox3.min.css" rel="stylesheet">
         <link href="css/datepicker.css" rel="stylesheet">
         <!-- <link href="css/select2.min.css" rel="stylesheet"> -->
         <link href="css/select2.1.css" rel="stylesheet">
-
+        <link href="css/style.css" rel="stylesheet">
+        
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/metisMenu.min.js"></script>
@@ -145,13 +145,13 @@
                 arquivo = link;
                 icone = $("a[href$='"+arquivo+"']").children().attr('class')
                 texto = arquivo.toUpperCase().replace("/", "&nbsp;&raquo;&nbsp;");       
-                cabecalho = "<h2><i class='"+icone+" fa-2x'></i>&nbsp;"+texto+"</h2><hr>";
+                cabecalho = "<h1><i class='"+icone+" fa-2x'></i>&nbsp;"+texto+"</h1><hr>";
                 url = "include/"+arquivo;
             }else{
                 arquivo = "home";
                 icone = "fa fa-home";
                 texto = "HOME"
-                cabecalho = "<h2 class='"+icone+" fa-2x'>&nbsp;"+texto+"</h2><hr>";
+                cabecalho = "<h1 class='"+icone+" fa-2x'>&nbsp;"+texto+"</h1><hr>";
                 url = "include/"+arquivo;
             }
             url = "include/"+arquivo+".html";

@@ -1,0 +1,82 @@
+<style>
+body{ counter-reset: contadorAga2; }
+body h2::before{
+    counter-increment: contadorAga2;
+    content: counter(contadorAga2) " - ";
+}	
+
+h2{ counter-reset: contadorAga3; }
+h3::before{
+	margin-left:25px;
+    counter-increment: contadorAga3;
+    content: counter(contadorAga2)"."counter(contadorAga3) " - ";
+}	
+</style>
+
+<ol>
+	<li>Introdução</li>
+	<li>Instalação</li>
+	<li>Configuração no Dispositivo</li>
+	<li>Comandos</li>
+	<li>Fontes</li>
+</ol>
+
+
+<h2>Introdução</h2>
+
+Na prática, esta ferramenta do pacote SDK, permite que os utilizadores possam aceder e gerir o seu dispositivo Android ou a instância do emulador.
+<br><br>
+
+Além da comunicação entre computador e dispositivo Android, o ADB permite ainda que se instalem aplicações, que se copie informação entre o PC e o equipamento Android e também que se corram alguns comandos na shell do Android. Mas como posso eu usar o ADB?
+
+<div class="centro" style="width:30%;">
+	<img src="images/adb_001.jpg">
+</div>
+
+<h2>Instalação</h2>
+Antes de começar a usar o ADB o seu PC deve realizar os seguintes passos:
+<ul>
+    <li>Download e instalação do Java SDK <a href="http://java.sun.com/javase/downloads/widget/jdk6.jsp">(download aqui)</a></li>
+    <li>Download e instalação do Android SDK <a href="http://developer.android.com/sdk/index.html">(download aqui)</a></li>
+    <li>Extrair o Android SDK por exemplo para <b>c:\android-sdk-windows</b> e instalar usando o executável SDK Manager</li>
+</ul>
+
+<code>Nota1:</code> O adb pode ser obtido à parte, sem ter de realizar este processo. No entanto, vamos explicar o processo, usando o android-sdk
+<br><br>
+<code>Nota2:</code> Verificar na instalação do pacotes, se o item “Android SDK Plataform-tools” está seleccionado.
+<br><br>
+
+<div class="centro" style="width:50%;">
+	<img src="images/adb_002.jpg">
+</div>
+
+<h2>Configuração no Dispositivo</h2>
+Para que tudo funcione correctamente, dentro do Android deverá ir a Definições >Aplicações > Desenvolvimento e activar Depuração USB
+<div class="centro" style="width:30%;">
+	<img src="images/adb_003.jpg">
+</div>
+Feitas as configurações, basta ligar o cabo entre o smartphone e o PC, abrir a linha de comandos e considerado que o android-sdk-windows esta em C: vamos para  c:\android-sdk-windows\platform-tools
+
+<h2>Comandos</h2>
+Dentro de android-sdk-windows\platform-tools encontram-se várias ferramentas que permitem que o PC interaja com o dispositivo móvel Android. <br>
+Aqui ficam alguns comandos:
+<h3>LISTAR DISPOSITIVOS</h3>
+<pre class="terminal">$ adb devices</pre>
+
+<h3>ENVIAR ARQUIVOS PARA DO DISPOSITIVO </h3>
+<pre class="terminal">$ adb push </pre>
+<kbd>WINDOWS</kbd>
+<pre class="terminal">$ adb push e:\Emater_institucional-0-0-4.apk sdcard/Emater.apk</pre>
+
+<h3>PEGAR ARQUIVOS DO DISPOSITIVO</h3>
+<pre class="terminal">$ adb pull </pre>
+
+<h3>PEGAR DATABASE</h3>
+<kbd>WINDOWS</kbd>
+<pre class="terminal">$ C:\Users\49583\AppData\Local\Android\Sdk\platform-tools\adb exec-out run-as br.tche.emater.institucional cat databases/emater.db > emater.db</pre>
+
+<h2>Fontes</h2>
+<ul>
+	<li><a href="https://pplware.sapo.pt/smartphones-tablets/android/como-usar-o-android-debug-bridge-adb/">pplware.sapo</a></li>
+	<li><a href="https://www.androidpit.com.br/adb-drivers-android-windows">androidpit</a></li>
+</ul>

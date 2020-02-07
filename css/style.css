@@ -15,20 +15,12 @@
 	transform: rotate(90deg);
 }
 footer { padding-top: 15px !important}
+h1{margin:0px;padding:0px;}
 h2 {margin:0px;padding:10px 0;}
 
-.fields {
-	margin-bottom: 35px;
-}
-
-fieldset.title {
-	padding: 1em;
-}
-
-.margin-title-field {
-	margin-left: 5px;
-}
-
+.fields { margin-bottom: 35px; }
+fieldset.title { padding: 1em; }
+.margin-title-field { margin-left: 5px;}
 .adjust-dashboard-icon {
 	float: left;
 	margin: -3px -4px 0 -10px;

@@ -74,3 +74,10 @@ $ git pull origin master</pre>
 
 <a href="https://help.github.com/en/github/creating-cloning-and-archiving-repositories/error-repository-not-found">help.github</a><br>
 <a href="https://stackoverflow.com/questions/10116373/git-push-error-repository-not-found">stackoverflow</a><br>
+
+<h3>NAO FAZ PUSH</h3>
+erro: <code>fatal: refusing to merge unrelated histories</code>
+
+A solução para conseguir fazer o push foi trazer o projeto com o comando abaixo
+<pre class="terminal">$ git pull origin master --allow-unrelated-histories</pre>
+<a href="https://github.community/t5/How-to-use-Git-and-GitHub/How-to-deal-with-quot-refusing-to-merge-unrelated-histories-quot/td-p/12619" target="_blank">Fonte</a>
