@@ -75,3 +75,24 @@ const routes: Routes = [
  ];</pre>
 
  <a href="https://ionicacademy.com/ionic-routing-navigation/">ionicacademy</a>
+
+
+Se você deseja animar para frente use (<b>forward</b>) ou para trás(<b>backward</b>), 
+<pre><kbd>HTML</kbd>
+&lt;ion-header&gt;
+ &lt;ion-toolbar color="primary"&gt;
+   &lt;ion-title&gt;Dashboard&lt;/ion-title&gt;
+ &lt;/ion-toolbar&gt;
+&lt;/ion-header&gt;
+
+&lt;ion-content padding&gt;
+ &lt;ion-button expand="block" routerLink="/details/42" routerDirection="forward"&gt;
+   Details
+ &lt;/ion-button&gt;
+
+ &lt;ion-button expand="block" routerLink="/" routerDirection="root"&gt;
+   Logout
+ &lt;/ion-button&gt;
+&lt;/ion-content&gt;</pre>
+
+<a href="https://ionicframework.com/blog/navigating-the-change-with-ionic-4-and-angular-router/">ionicframework</a>

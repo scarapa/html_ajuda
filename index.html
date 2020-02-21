@@ -129,7 +129,14 @@
         var link = window.location.hash.replace('#','','g');
         injetarURL(link);
         $(document).on('click',"#side-menu ul li a",function () {
-            var link = $(this).attr('href')
+            let link = $(this).attr('href')
+            link = link.replace('#','','g');
+            injetarURL(link)
+        });
+
+        //links DIRETOS , SEM submenus
+        $(document).on('click',"#side-menu li a",function () {
+            let link = $(this).attr('href')
             link = link.replace('#','','g');
             injetarURL(link)
         });
@@ -155,6 +162,7 @@
                 url = "include/"+arquivo;
             }
             url = "include/"+arquivo+".html";
+            console.log(url)
 
             //LIMPAR O MAIN
             $("#page-wrapper").html('');                    

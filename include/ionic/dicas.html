@@ -1,3 +1,19 @@
 <h3>CSS</h3>
 
 <a href="https://medium.com/@pliniopjn/como-usar-o-font-awesome-no-ionic-3-x-em-5-passos-simples-a97f82bee171">medium</a>
+
+
+<h3>BANCO</h3>
+<h4>Montando INSERT SQLSERVER</h4>
+
+exemplo de tabela abaixo:
+<table>
+	<tr><th>id</th><th>descricao</th></tr>
+	<tr><td>1</td><td>Roberto</td></tr>
+	<tr><td>2</td><td>Guilherme</td></tr>
+	<tr><td>3</td><td>Jorge</td></tr>
+	<tr><td colspan="2">....</td></tr>
+	<tr><td>nº</td><td>Douglas</td></tr>
+</table>
+
+<pre>SELECT '["INSERT INTO FEIRA_CATEGORIA (id,descricao) VALUES ('+CAST(id AS VARCHAR)+','''+CAST(descricao AS VARCHAR)+''');",[]],' FROM FEIRAS.categorias</pre>

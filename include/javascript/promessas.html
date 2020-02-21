@@ -36,3 +36,20 @@ calcularMulta(valorBase:number):Promise&lt;number&gt;{
 		}
 	});
 }</pre>
+
+<h2>promise.all</h2>
+O método <b>Promise.all(iterable)</b> retorna uma única Promise que resolve quando todas as promises no argumento iterável forem resolvidas ou quando o iterável passado como argumento não contém promises. É rejeitado com o motivo da primeira promise que foi rejeitada.
+<pre>const promise1 = Promise.resolve(3);
+const promise2 = 42;
+const promise3 = new Promise(function(resolve, reject) {
+  setTimeout(resolve, 100, 'foo');
+});
+
+Promise.all([promise1, promise2, promise3]).then(function(values) {
+  console.log(values);
+});</pre>
+<code>retorno</code>
+<pre>// expected output: Array [3, 42, "foo"]</pre>
+
+<h2>promise.race</h2>
+<pre></pre>
