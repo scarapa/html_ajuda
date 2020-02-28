@@ -123,3 +123,31 @@ See "C:\Users\49583\AppData\Local\Temp\ng-57452o\angular-errors.log" for further
         <span style="color:#29B8DB">ng.cmd run app:ionic-cordova-build --platform=android</span> exited with exit code 127.
 
         Re-running this command with the --verbose flag may provide more information.</pre>
+
+
+<h3>Erro no deploy</h3>
+<pre class="terminal">* What went wrong:
+Execution failed for task ':app:mergeReleaseResources'.
+> java.util.concurrent.ExecutionException: com.android.builder.internal.aapt.v2.Aapt2InternalException: AAPT2 aapt2-3.3.0-5013011-windows Daemon #2: Unexpected error during compile 'E:\EMATER\institucional\institucional\platforms\android\app\src\main\res\drawable-port-xxxhdpi\screen.png', attempting to stop daemon.
+    This should not happen under normal circumstances, please file an issue if it does.
+
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+BUILD FAILED in 13s
+[ERROR] An error occurred while running subprocess cordova.
+
+        cordova.cmd build android --release exited with exit code 1.</pre>
+<code>SOLUCAO:</code> abre o arquivo <b>platforms\android\build.gradle</b> e insira o seguinte codigo abaixo em <b>allprojects</b>
+<pre> allprojects {
+    // Workaround for https://issuetracker.google.com/117900475
+    // Remove when upgrading to AGP 3.4 or higher.
+    configurations.matching { it.name == '_internal_aapt2_binary' }.all { config ->
+        config.resolutionStrategy.eachDependency { details ->
+            details.useVersion("3.5.0-alpha03-5252756")
+        }
+    }
+}</pre>
+<a href="https://stackoverflow.com/questions/52712063/build-failing-during-merge-resources-with-android-gradle-plugin-3-3-0/54615423#54615423">stackoverflow</a>
