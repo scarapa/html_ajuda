@@ -18,6 +18,7 @@ h3::before{
 	<li>Instalação</li>
 	<li>Configuração no Dispositivo</li>
 	<li>Comandos</li>
+	<li>virtualizacao</li>
 	<li>Fontes</li>
 </ol>
 
@@ -75,8 +76,41 @@ Aqui ficam alguns comandos:
 <kbd>WINDOWS</kbd>
 <pre class="terminal">$ C:\Users\49583\AppData\Local\Android\Sdk\platform-tools\adb exec-out run-as br.tche.emater.institucional cat databases/emater.db > emater.db</pre>
 
+<h3>DADOS DO CARTAO DE MEMORIA</h3>
+<kbd>WINDOWS</kbd>
+<pre class="terminal">$ C:\Users\49583\AppData\Local\Android\Sdk\platform-tools\adb pull /sdcard/</pre>
+
+
+<h3>run-as:package not debuggable</h3>
+<a href="https://blog.shvetsov.com/2013/02/access-android-app-data-without-root.html">Fonte</a>
+
+<h2>Virtualizacao</h2>
+<h3>Abrindo Virtualizacao SEM ANDROID STUDIO</h3>
+<kbd>WINDOWS</kbd>
+Esse recurso é muito impostante , visto que visa economizar memoria ram, recurso muitoooo importante.<br>
+Isso funciona, mas antes as imagens <b style="color:red">TEM DE SER BAIXADAS</b> com o <b>ANDROID STUDIO</b><br>
+Primeiramente vamos na pasta aonde está instalado o sdk, caso nao saiba, abra o Android Studio e vá em <code>menu >> tolls >> SDK Manager</code> 
+<br><br>
+<div class="centro">
+    <img src="./images/android-studio-caminho-sdk.jpg" style="width: 50%;">
+</div>
+
+No meu caso o caminho do emaulador é:<code>C:\Users\49583\AppData\Local\Android\Sdk\<b style="color:red">emaulator</b></code><br><br>
+Para listar as imagens utilize o comando:
+<pre>.\emulator.exe -list-avds</pre>
+no meu caso retornou 3 imagens ...
+<pre>4.7_WXGA_API_24
+4.7_WXGA_API_25
+Pixel_2_API_28</pre>
+Para executar basta usar esse comando:
+<pre>emulator.exe -avd "4.7_WXGA_API_24"</pre>
+
+<a href="https://windowsloop.com/launch-avd-manager-without-android-studio/">windowsloop</a>
+
+
 <h2>Fontes</h2>
 <ul>
 	<li><a href="https://pplware.sapo.pt/smartphones-tablets/android/como-usar-o-android-debug-bridge-adb/">pplware.sapo</a></li>
-	<li><a href="https://www.androidpit.com.br/adb-drivers-android-windows">androidpit</a></li>
+    <li><a href="https://www.androidpit.com.br/adb-drivers-android-windows">androidpit</a></li>
+    <li><a href="https://windowsloop.com/launch-avd-manager-without-android-studio/">windowsloop</a>
 </ul>
