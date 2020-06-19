@@ -1,0 +1,46 @@
+<pre>
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+
+
+class HelpScreen extends StatefulWidget {
+    @override
+    HelpScreenState createState() {
+    return HelpScreenState();
+    }
+}
+
+class HelpScreenState extends State&lt;HelpScreen&gt; {
+    WebViewController _controller;
+
+    @override
+    Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(title: Text('Help')),
+        body: WebView(
+        initialUrl: 'about:blank',
+        onWebViewCreated: (WebViewController webViewController) {
+            _controller = webViewController;
+            _loadHtmlFromAssets();
+        },
+        ),
+    );
+    }
+
+    _loadHtmlFromAssets() async {
+    String fileText = await rootBundle.loadString('assets/help.html');
+    _controller.loadUrl( Uri.dataFromString(
+        fileText,
+        mimeType: 'text/html',
+        encoding: Encoding.getByName('utf-8')
+    ).toString());
+    }
+}    
+</pre>
+
+<a href="https://stackoverflow.com/questions/44816042/flutter-read-text-file-from-assets/54133627#54133627">Fonte 1</a>
+<a href="https://medium.com/flutter/the-power-of-webviews-in-flutter-a56234b57df2">Fonte 2</a>
+<a href="https://stackoverflow.com/questions/53831312/how-to-render-a-local-html-file-with-flutter-dart-webview">stackoverflow</a>

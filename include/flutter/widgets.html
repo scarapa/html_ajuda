@@ -1,0 +1,40 @@
+<h2>Widgets</h2>
+Assim, os Widgets são as partes da sua interface de usuário. Um Text é um widget. Buttons são widgets. As caixas de seleção são widgets. Imagens são widgets. E a lista continua. Na verdade, tudo na interface do usuário é um widget. Até mesmo o aplicativo em si é um widget !
+<br><br>
+
+Você pode pensar em um Widget como uma View do Android ou UIView do iOS, mas uma forma mais precisa de pensar é ver um widget como um template ou modelo, e, que o Flutter usa esses templates/modelos para criar os elementos de visualização debaixo dos panos e renderizá-los na tela do dispositivo.
+<br><br>
+
+Quando você entende que os widgets são quase tudo que afeta a aparência e o comportamento da interface, faz sentido que haja muito mais widgets do que apenas elementos estruturais, como botões, texto e imagens. Por exemplo, o padding é um widget. Columns são widgets. Styles são widgets e até detetores de gestos são widgets.
+<br><br>
+
+<h2>Árvores de Widgets</h2>
+Os widgets são organizados em uma árvore de widgets numa hierarquia : pai e filho. Toda a árvore de widgets é o que forma o layout que você vê na tela.
+<br><br>
+Por exemplo, aqui está a árvore de widgets para o aplicativo de demonstração padrão quando você inicia um novo projeto. Os widgets visíveis são marcados com linhas vermelhas.(Os outros widgets nessa árvore são usados para layout e adição de funcionalidade.)
+<br><br>
+
+<h2>Tipos de Widgets</h2>
+Os Widgets são imutáveis. Ou seja, eles não podem ser alterados. Quaisquer propriedades que eles contêm são finais e só podem ser definidas quando o widget for inicializado. Isso os mantém leves, de modo que é barato recriá-los quando a árvore de widgets for alterada.
+<br><br>
+
+Existem dois tipos de widgets: <br>
+1) sem estado ou StatelessWidget <br>
+2) com estado ou StatefulWidget<br><br>
+
+1-) Widgets sem estado são widgets que não armazenam nenhum estado. Ou seja, eles não armazenam valores que podem mudar. Por exemplo, um ícone é sem estado; você define a imagem do ícone quando a cria e depois não muda mais. Um widget de texto também é sem estado.
+<br><br>
+Você pode dizer: "Mas espere, você pode alterar o valor do texto". É verdade, mas se você quiser alterar o valor do texto, basta criar um novo widget inteiro com o novo texto. O widget Text não armazena uma propriedade de texto que pode ser alterada.
+<br><br>
+2-) O segundo tipo de widget é chamado de widget com estado. Isso significa que ele pode acompanhar as alterações e atualizar a interface do usuário com base nessas alterações.
+<br><br>
+Agora você pode dizer: "Mas você disse que os widgets são imutáveis! Como eles podem acompanhar as mudanças?" 
+<br><br>
+Sim, o próprio widget stateful é imutável, mas ele cria um objeto State que controla as alterações. Quando os valores no objeto State mudam, ele cria um novo widget inteiro com os valores atualizados. Assim, um widget leve (blueprint) é recriado, mas o estado persiste entre as alterações.
+<br><br>
+Um widget com estado é útil para algo como uma caixa de seleção. Quando um usuário clica nela, o estado(check) da verificação é atualizado.
+<br><br>
+Outro exemplo é um widget Image. O recurso de imagem pode não estar disponível quando o widget for criado (como se estivesse sendo baixado), portanto, um widget sem estado não é uma opção. Quando a imagem estiver disponível, ela pode ser definida atualizando o estado.
+<br><br>
+
+<a href="http://www.macoratti.net/19/06/flut_widgt1.htm" target="_blank">Fonte</a>

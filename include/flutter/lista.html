@@ -1,0 +1,96 @@
+<p>
+Exibir uma lista de dados é uma das tarefas básicas em aplicativos para celulares, e, o Flutter inclui o Widget ListView que torna muito fácil realizar esta tarefa.
+O Widget ListView é uma lista rolável de widgets organizados linearmente, sendo um dos widget de rolagem mais usado.
+</p>
+
+<p>
+Ele exibe seus filhos um após o outro na direção da rolagem; sendo que no eixo cruzado, os filhos são obrigadas a preencher o ListView.
+Se não for nulo, o itemExtent força os filhos a ter a determinada extensão na direção de rolagem. A especificação de um itemExtent é mais eficiente do que permitir que os filhos determinem sua própria extensão, pois o mecanismo de rolagem pode usar o conhecimento prévio da extensão dos filhos para economizar trabalho, por exemplo, quando a posição de rolagem muda drasticamente.
+</p>
+
+Existem quatro opções para construir um ListView:
+<ol>
+    <li>O construtor padrão recebe uma List&lt;Widget&gt; explícita de filhos. Esse construtor é apropriado para exibições de lista com um pequeno número de filhos, pois a construção da Lista requer trabalho para cada filho que possa ser exibido na lista, em vez de apenas os filhos que estão realmente visíveis.</li>
+    <li>O construtor ListView.builder usa um IndexedWidgetBuilder, que cria os filhos sob demanda. Esse construtor é apropriado para exibições de lista com um número grande (ou infinito) de filhos, porque o construtor é chamado apenas para aqueles filhos que estão realmente visíveis.</li>
+    <li>O construtor ListView.separated usa dois IndexedWidgetBuilders: o itemBuilder cria itens filhos sob demanda, e o separatorBuilder também cria filhos separadores que aparecem entre os itens filhos. Esse construtor é apropriado para exibições de lista com um número fixo de filhos.</li>
+    <li>O construtor ListView.custom usa um SliverChildDelegate, que permite personalizar aspectos adicionais do modelo filho. Por exemplo, um SliverChildDelegate pode controlar o algoritmo usado para estimar o tamanho de filhos que não estão realmente visíveis.</li>
+</ol>
+
+<h3>Criando um ListView padrão</h3>
+
+<p>
+Vamos usar o construtor ListView padrão que é perfeito para criar listas que contêm apenas alguns itens. Usaremos também o Widget ListTile integrado, para dar aos nossos itens uma estrutura visual.
+A seguir a estrutura básica do código usado para criar uma lista com 3 itens:
+</p>
+
+<pre>
+ListView(
+    children: &lt;Widget&gt;[
+        ListTile(
+        leading: Icon(Icons.map),
+        title: Text('Mapa'),
+        ),
+        ListTile(
+        leading: Icon(Icons.photo_album),
+        title: Text('Album'),
+        ),
+        ListTile(
+        leading: Icon(Icons.phone),
+        title: Text('Fone'),
+        ),
+    ],
+    );    
+</pre>
+
+Um ListTile contém de uma a três linhas de texto, opcionalmente flanqueadas por ícones ou outros widgets, como caixas de seleção. Os ícones ou outros widgets para um ListTile são definidos usando os parâmetros leading e trailing.
+<table style="width:100%">
+    <tr>
+        <td style="width:50%">
+<pre>
+    import 'package:flutter/material.dart';
+    
+    void main() => runApp(MyApp());
+    
+    class MyApp extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {
+        final title = 'Lista Básica';
+    
+        return MaterialApp(
+            title: title,
+            home: Scaffold(
+            appBar: AppBar(
+                title: Text(title),
+            ),
+            body: ListView(
+                children: <Widget>[
+                ListTile(
+                    leading: Icon(Icons.map),
+                    title: Text('Mapa'),
+                ),
+                ListTile(
+                    leading: Icon(Icons.photo_album),
+                    title: Text('Álbum'),
+                ),
+                ListTile(
+                    leading: Icon(Icons.phone),
+                    title: Text('Fone'),
+                ),
+                ],
+            ),
+            ),
+        );
+        }
+    }    
+    </pre>
+        </td>
+        <td>
+            <div style="margin:0 auto;text-align: center;">
+                <img src="./images/flutter-list-view-01.jpg" style="width:60%;border:0.5px solid black">
+            </div>
+        </td>
+    </tr>
+</table>
+<br clear="all">
+<br clear="all">
+<a href="http://www.macoratti.net/19/06/flut_lisb1.htm">macoratti</a>

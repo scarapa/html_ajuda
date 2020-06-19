@@ -263,3 +263,16 @@ FROM Data ;
 </div>
 <br clear="all">
 <a href="https://msdn.microsoft.com/pt-br/library/ms181765(v=sql.120).aspx">msdn.microsoft</a>
+
+<h3>Reiniciar coluna identity - Zerar identity - Reset Identity</h3>
+Para reiniciar a numeração de uma coluna Identiy de uma tabela do SQL Server, utilize o comando:
+<pre><kbd>mssql</kbd>
+DBCC CHECKIDENT('[tabela]', RESEED, 0)	</pre>
+<a href="https://educoutinho.com.br/sql-server/reiniciar-coluna-identity-zerar-identity-reset-identity/" target="_blank">Fonte</a>
+
+<h3>SET IDENTITY_INSERT </h3>
+Permite inserir valores explícitos na coluna de identidade de uma tabela.
+<pre><kbd>mssql</kbd>
+<span style="color:green">// SET IDENTITY_INSERT [ [ database_name . ] schema_name . ] table_name { ON | OFF } </span>
+<b>SET IDENTITY_INSERT</b> tabela <b>ON</b>;  </pre>
+<a href="https://docs.microsoft.com/pt-br/sql/t-sql/statements/set-identity-insert-transact-sql?view=sql-server-ver15" target="_blank">Fonte</a>

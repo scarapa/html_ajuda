@@ -1,0 +1,31 @@
+<h2>Conecção banco de dados</h2>
+<pre>
+Database _db;
+
+Future&lt;Database&gt; get db async {
+    if (_db != null) {
+    return _db;
+    } else {
+    _db = await initDb();
+    return _db;
+    }
+}
+
+Future&lt;Database&gt; initDb() async {
+    final databasesPath = await getDatabasesPath();
+    final path = join(databasesPath, "contacts.db");
+    return await openDatabase(
+        path, version: 1, onCreate: (db, newerVersion) async {
+            await db.execute("CREATE TABLE $contactTable ($idColumn INTEGER PRIMARY KEY , $nameColumn TEXT , $emailColumn TEXT , $phoneColumn TEXT , $imgColumn TEXT ); ");
+        }   
+    );
+}
+}        
+</pre>
+<ul>
+
+    <li><a href="https://flutter.dev/docs/cookbook/persistence/sqlite">flutter.dev</a></li>
+    <li><a href="http://www.macoratti.net/19/08/flut_accsqlite1.htm">macoratti</a></li>
+    <li><a href="https://www.flutterbrasil.com/read-blog/17_introducao-a-base-de-dados-sqflite.html">flutterbrasil</a></li>
+    <li><a href="https://balta.io/blog/flutter-sqlite">balta.io</a></li>
+</ul>
