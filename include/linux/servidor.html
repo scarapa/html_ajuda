@@ -1,0 +1,150 @@
+<style>
+    body{ counter-reset: contadorAga2; }
+    body h2::before{
+        counter-increment: contadorAga2;
+        content: counter(contadorAga2) " - ";
+    }	
+    
+    h2{ counter-reset: contadorAga3; }
+    h3::before{
+        margin-left:25px;
+        counter-increment: contadorAga3;
+        content: counter(contadorAga2)"."counter(contadorAga3) " - ";
+    }	
+</style>
+
+<h2>Apache</h2>
+<h3>Instalação</h3>
+<pre class="terminal">$ sudo apt install apache2</pre>
+
+<h3>Configuração</h3>
+Necessário configurar o apache para ler URL AMIGAVEIS, para isso ir até a pasta do apache
+<pre class="terminal">$ cd /etc/apache/ 
+$ sudo nano apache2.conf</pre>
+
+Configurações abaixo
+<pre>
+&lt;Directory /var/www/&gt;
+    Options Indexes FollowSymLinks MultiViews
+    DirectoryIndex index.php
+    AllowOverride All
+    Order allow,deny
+    Allow from all
+    Require all granted
+&lt;/Directory&gt;
+</pre>
+
+Reiniciando ...
+<pre class="terminal">$ sudo /etc/init.d/apache2 restart</pre>
+
+Mesmo assim ainda pode apresentar o <code>erro 500 - Internal Server Error</code>; para resolver tal problema a solução é digitar comando abaixo:
+<pre class="terminal">$ sudo a2enmod rewrite && sudo service apache2 restart</pre>
+<a href="https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-18-04-quickstart-pt">digitalocean</a>
+
+<h2>MYSQL</h2>
+<h3>Instalação</h3>
+<pre class="terminal">$ sudo apt install mysql-server</pre>
+
+<h3>Configuração</h3>
+<pre class="terminal">$ sudo mysql_secure_installation</pre>
+Você será solicitado a configurar o <code>VALIDATE PASSWORD PLUGIN</code>, que é usado para testar a força das senhas dos usuários do MySQL e melhorar a segurança. 
+<br><br>
+Existem três níveis de política de validação de senha, baixa, média e forte. Pressione <b>ENTER</b> se não desejar configurar o plug-in de validação de senha.
+<br><br>
+Para efetuar login no servidor MySQL como o usuário root, digite:
+<pre class="terminal">$ sudo mysql</pre>
+
+Você verá o shell do MySQL como mostrado abaixo:
+<pre>
+    Welcome to the MySQL monitor.  Commands end with ; or \g.
+    Your MySQL connection id is 8
+    Server version: 5.7.22-0ubuntu18.04.1 (Ubuntu)
+    
+    Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+    
+    Oracle is a registered trademark of Oracle Corporation and/or its
+    affiliates. Other names may be trademarks of their respective
+    owners.
+    
+    Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+</pre>
+
+Se você deseja efetuar login no servidor MySQL como root a partir de um programa externo como o phpMyAdmin, você tem duas opções.
+<br><br>
+O primeiro é alterar o método de autenticação de auth_socket para mysql_native_password. Você pode fazer isso executando o seguinte comando:
+<br><br>
+<pre>
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'very_strong_password';
+mysql> FLUSH PRIVILEGES;
+</pre>
+
+A segunda opção recomendada é criar um novo usuário administrativo com acesso a todos os bancos de dados:
+<br><br>
+<pre>mysql> GRANT ALL PRIVILEGES ON *.* TO 'administrator'@'localhost' IDENTIFIED BY 'very_strong_password';</pre>
+
+<a href="https://www.digitalocean.com/community/tutorials/como-instalar-o-mysql-no-ubuntu-18-04-pt">digitalocean</a><br/>
+<a href="https://linuxize.com/post/how-to-install-mysql-on-ubuntu-18-04/">linuxize</a>
+
+<h2>Phpmyadmin</h2>
+<h3>Instalação</h3>
+<pre class="terminal">$ sudo apt-get install phpmyadmin php-mbstring php-gettext -y</pre>
+
+Durante a instalação, você será solicitado a selecionar o servidor da web a ser usado, Figura Abaixo. Certifique-se de selecionar apache2.
+<div class="centro">
+    <img class="bp" src="images/linux-servidor-phpmyadmin-01.jpg" style="width: 65%;">
+</div>
+
+<h3>Acessando</h3>
+Abra o navegador e digite:<code>http://localhost/phpmyadmin</code>
+
+O usuario <b>phpmyadmin</b> não possui permissão de administrador, mas já é possivel saber se funcionou
+<pre>usuario: phpmyadmin
+senha: escolhida</pre>
+
+
+<h3>Concedendo Permissões</h3>
+Para corrigir esse problema, volte para a janela do terminal no seu servidor e entre no MySQL com o comando:
+<pre class="terminal">$ sudo mysql -u root -p</pre>
+
+Uma vez no prompt do MySQL, você precisa conceder as permissões apropriadas para o usuário phpmyadmin com os comandos:
+<pre>GRANT ALL PRIVILEGES ON *.* TO 'phpmyadmin'@'localhost';
+FLUSH PRIVILEGES;
+EXIT</pre>
+
+Efetue logout da GUI do phpMyAdmin e efetue login novamente (ainda usando o usuário phpmyadmin). Agora você deve ter privilégios totais para o MySQL com esse usuário.
+<pre>CREATE USER <b>USERNAME</b> IDENTIFIED by '<b>PASSWORD</b>';
+GRANT ALL PRIVILEGES ON *.* TO 'username'@'localhost';
+FLUSH PRIVILEGES;
+EXIT</pre>
+
+onde <b>USERNAME</b> é um nome de usuário exclusivo e <b>PASSWORD</b> é uma senha forte e exclusiva. Com este usuário criado, agora você pode fazer login no phpMyAdmin com essas credenciais e começar a trabalhar.
+
+Aproveite o poder e a simplicidade do phpMyAdmin no Ubuntu 18.04.
+
+<a href="https://www.techrepublic.com/article/how-to-install-phpmyadmin-on-ubuntu-18-04/">Fonte</a>
+
+<h2>Samba</h2>
+<h3>Instalação</h3>
+<pre class="terminal">$ sudo apt install samba</pre>
+
+<h3>Configuração</h3>
+<pre class="terminal">$ sudo nano /etc/samba/smb.conf.</pre>
+Deixar o arquivo com essas configurações abaixo:
+<pre>
+[servidor]
+    path = /var/www
+    browseable = yes
+    writable = yes
+    guest ok = yes
+    public = yes
+    create mask = 0765
+</pre>    
+
+
+<h2>SSH</h2>
+<h3>Instalação</h3>
+<pre class="terminal">$ sudo apt-get install openssh-server</pre>
+
+<h3>Configuração</h3>
+Verificando se a porta 22 está aberta
+<pre class="terminal">$ sudo nano /etc/ssh/sshd_config</pre>
