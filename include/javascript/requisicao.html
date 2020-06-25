@@ -107,3 +107,19 @@ oReq.send();
 </pre>
 <a href="https://braziljs.org/artigos/fetch-api-e-o-javascript/">braziljs</a><br>
 <a href="https://schneide.blog/2018/08/08/decoding-non-utf8-server-responses-using-the-fetch-api/">Fonte</a>
+
+<h5>Fecth com PARAMETROS</h5>
+<pre>
+  var url = new URL('https://sl.se')
+
+  var params = {lat:35.696233, long:139.570431} // or:
+  var params = [['lat', '35.696233'], ['long', '139.570431']]
+  
+  url.search = new URLSearchParams(params).toString();
+  
+  fetch(url)
+</pre>
+<a href="https://stackoverflow.com/questions/35038857/setting-query-string-using-fetch-get-request">stackoverflow</a><br>
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/URL/searchParams">mozilla</a>
+
+
