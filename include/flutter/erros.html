@@ -1,0 +1,41 @@
+<h2>Bottom overfload</h2>
+
+<div class="centro center">
+    <img src="images/flutter-bottom-overfload.jpg" style="width:20%;border:1px solid black">
+</div>
+<br><br>
+
+Para corrigir tal problema , bastou inserir no body o widget <b>SingleChildScrollView</b>, conforme abaixo
+<br><br>
+<pre>
+return Scaffold(
+    body: <b>SingleChildScrollView</b>(
+        child: Container(
+        child: Column(
+            //mainAxisSize: MainAxisSize.max,
+            children: &lt;Widget&gt;[
+            Container(
+                child: GridView.builder(
+                shrinkWrap: true,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount:
+                        (Orientation == Orientation.portrait) ? 3 : 2),
+                itemCount: _thumbs.length,
+                itemBuilder: (BuildContext context, int index) {
+                    return _thumbCard(context, index);
+                },
+                ),
+            ),
+            Container(
+                child: Text('teste'),
+            )
+            ],
+        ),
+        ),
+    ),
+);  
+</pre>
+
+<h2>SingleChildScrollView nao funciona scrool da tela</h2>
+
+<a href="https://api.flutter.dev/flutter/widgets/Expanded-class.html">api.flutter</a>
