@@ -1,0 +1,29 @@
+Primeiramente temos que fazer <a href="https://ngrok.com/download" target="_blank">DOWNLOAD</a> da ferramenta, extraia aonde quizer.
+<br clear="all">
+<br clear="all">
+
+Execute o comando 
+<pre class="terminal">ngrok http 80</pre>
+
+Executado algo parecido deverá aparecer
+<pre>
+    ngrok by @inconshreveable                                                                               (Ctrl+C to quit)
+
+    Session Status                online
+    Session Expires               7 hours, 59 minutes
+    Version                       2.3.35
+    Region                        United States (us)
+    Web Interface                 http://127.0.0.1:4040
+    Forwarding                    http://2055f98b0861.ngrok.io -> http://localhost:80
+    Forwarding                    https://2055f98b0861.ngrok.io -> http://localhost:80
+    
+    Connections                   ttl     opn     rt1     rt5     p50     p90
+                                  0       0       0.00    0.00    0.00    0.00    
+</pre>
+
+Pronto, você poderá utilizar por <b>7h59m</b> esse dominio <code>http://2055f98b0861.ngrok.io</code> nas suas APIs, para fins de teste.
+<br clear="all">
+<br clear="all">
+
+<a href="https://stackoverflow.com/questions/43490688/ngrok-and-laravel">stackoverflow</a> <br>
+<a href="https://www.youtube.com/watch?v=wKSCZPwUSas" target="_blank">youtube</a> <br>

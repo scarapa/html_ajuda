@@ -1,0 +1,28 @@
+<h3>SIZE</h3>
+<pre>android:textSize="25sp"</pre>
+<a href="https://respostas.guj.com.br/47810-como-alterar-o-tamanho-da-fonte-do-texto-de-textview-" target="_blank">Fonte</a>
+<h3>BOLD</h3>
+pode setar no xml
+<pre>
+&lt;TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Calculadora Salario Liquido"
+    android:layout_marginTop="41dp"
+    android:layout_marginLeft="120dp"
+    <b style="color:red">android:textStyle="bold"</b>
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintHorizontal_bias="0.40"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.116" /&gt;   
+</pre>
+
+pode setar no codigo
+<pre>
+TextView questionValue = (TextView) findViewById(R.layout.TextView01);
+questionValue.setTypeface(null, Typeface.BOLD);    
+</pre>
+
+<a href="https://stackoverflow.com/questions/4792260/how-do-you-change-text-to-bold-in-android">stackoverflow</a>

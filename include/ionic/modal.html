@@ -1,3 +1,16 @@
+Criar projeto
+<pre class="terminal">$ ionic start NOME_PROJETO blank --type=angular</pre>
+
+entrar na pasta do projeto
+<pre class="terminal">$ cd NOME_PROJETO</pre>
+
+baixar as dependencias
+<pre class="terminal">$ npm install</pre>
+
+criar a pagina de modal seguindo a estrutura desse projeto
+<pre class="terminal">$ ionic g page pages/modal</pre>
+
+Alterar os arquivos abaixos
 <code>src\app\app.module.ts</code>
 <pre class="codigo codigoHTML">
 import { NgModule } from '@angular/core';
@@ -8,12 +21,12 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ModalPageModule } from './pages/modal/modal.module';
+<b style="color:Red">import { ModalPageModule } from './pages/modal/modal.module';</b>
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,ModalPageModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,<b style="color:Red">ModalPageModule</b>],
   providers: [
     StatusBar,
     SplashScreen,
@@ -22,8 +35,6 @@ import { ModalPageModule } from './pages/modal/modal.module';
   bootstrap: [AppComponent]
 })
 export class AppModule {}	</pre>
-
-
 
 <code>src\app\home\home.page.html</code>
 <pre class="codigo codigoHTML">&lt;ion-header&gt;
@@ -78,9 +89,7 @@ export class HomePage {
       //this.montarTela();
     });  
   }    
-}
-
-</pre>
+}</pre>
 
 <code>src\app\pages\modal\modal.page.html</code>
 <pre class="codigo codigoHTML">&lt;ion-header&gt;
@@ -102,22 +111,24 @@ export class HomePage {
 <code>src\app\pages\modal\modal.page.ts</code>
 <pre class="codigo codigoHTML">import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-
 @Component({
-  selector: 'app-modal',
-  templateUrl: './modal.page.html',
-  styleUrls: ['./modal.page.scss'],
+	selector: 'app-modal',
+	templateUrl: './modal.page.html',
+	styleUrls: ['./modal.page.scss'],
 })
 export class ModalPage implements OnInit {
 
-    nome:string;
-    idade:string;
+	nome:string;
+	idade:string;
 
-  constructor(private modalController: ModalController) { }
+	constructor(private modalController: ModalController) { }
 
-  ngOnInit() { }
-  
-  fecharModal(){
-    this.modalController.dismiss({'nome':this.nome,'idade':this.idade});
-  }
+	ngOnInit() { }
+
+	fecharModal(){
+		this.modalController.dismiss({'nome':this.nome,'idade':this.idade});
+	}
 }</pre>
+
+levantar/iniciar projeto
+<pre class="terminal">$ ionic serve</pre>

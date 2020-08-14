@@ -1,16 +1,44 @@
 <style>
-body{ counter-reset: contadorAga2; }
-body h2::before{
-    counter-increment: contadorAga2;
-    content: counter(contadorAga2) " - ";
-}	
+    body{ counter-reset: aga2 }
+    h2::before{
+        counter-increment: aga2;
+        content: counter(aga2) " - ";
+        width:100%;
+    }	
+    h2{ 
+        font-weight: bold;
+        counter-reset: aga3;
+        border-bottom:5px solid #333; 
+        padding:0 0 -10px 0 !important;
+        margin-bottom: 20px;
+        margin-top: 20px;        
+    }
 
-h2{ counter-reset: contadorAga3; }
-h3::before{
-	margin-left:25px;
-    counter-increment: contadorAga3;
-    content: counter(contadorAga2)"."counter(contadorAga3) " - ";
-}	
+    h3::before{
+        counter-increment: aga3;
+        content: counter(aga2)"."counter(aga3) " - ";
+    }	
+    h3{ counter-reset: aga4; }
+
+    h4::before{
+        margin-left:25px;
+        counter-increment: aga4;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4) " - ";
+    }	
+    h4{ counter-reset: aga5; }
+
+    h5::before{
+        margin-left:25px;
+        counter-increment: aga5;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5) " - ";
+    }
+    h5{ counter-reset: aga6; }	    
+    
+    h6::before{
+        margin-left:25px;
+        counter-increment: aga6;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5)"."counter(aga6) " - ";
+    }
 </style>
 
 <ol>
@@ -18,7 +46,8 @@ h3::before{
 	<li>Instalação</li>
 	<li>Configuração no Dispositivo</li>
 	<li>Comandos</li>
-	<li>virtualizacao</li>
+	<li>Virtualizacao</li>
+	<li>Erros</li>
 	<li>Fontes</li>
 </ol>
 
@@ -80,9 +109,104 @@ Aqui ficam alguns comandos:
 <kbd>WINDOWS</kbd>
 <pre class="terminal">$ C:\Users\49583\AppData\Local\Android\Sdk\platform-tools\adb pull /sdcard/</pre>
 
+<h3>Instalando aplicativo</h3>
+<pre>
+$ adb devices
+List of devices attached
+emulator-5554 device
+emulator-5555 device
+
+$ adb -s emulator-5555 install helloWorld.apk </pre>
+<a href="https://developer.android.com/studio/command-line/adb?hl=pt-br">developer.android</a>
+
+<h3>ADB SHELL</h3>
+|Para navegar nas pastas/bancos utilize o adb shell
+<pre class="terminal">$ adb shell</pre>
+<pre>generic_x86:/</pre>
+
+<pre class="terminal">$ cd /storage/emulated</pre>
+<pre>permission denied</pre>
+
+
+<h4>permission denied</h4>
+<pre>D:\android-sdk-windows\platform-tools>adb shell find /data -name *.db
+find: permission denied
+
+D:\android-sdk-windows\platform-tools>adb shell test
+test: permission denied
+
+D:\android-sdk-windows\platform-tools>adb remount
+remount failed: No such file or directory
+</pre>
+
+reiniciando as permissoes
+<pre class="terminal">$ adb root</pre>
+<a href="https://stackoverflow.com/questions/7399028/android-adb-permission-denied">stackoverflow</a>
+
+<h4>Listando pacotes/packages</h4>
+<pre class="terminal">$ pm list packages</pre>
+
 
 <h3>run-as:package not debuggable</h3>
-<a href="https://blog.shvetsov.com/2013/02/access-android-app-data-without-root.html">Fonte</a>
+<h4>Listar e localizar o pacote/aplicativo a fazer backup</h4>
+<pre class="terminal">adb shell pm list packages -f -3</pre>
+<pre class="">
+    package:/data/app/org.telegram.messenger-Q4wNXx7ZKlt-EXMkszrViQ==/base.apk=org.telegram.messenger
+    package:/data/app/com.google.android.apps.docs.editors.docs-0oZpjQlmySTen1_LqjJIdg==/base.apk=com.google.android.apps.docs.editors.docs
+    package:/data/app/com.whatsapp-6miTPJuvCToRHLt5fRoIdQ==/base.apk=com.whatsapp
+    package:/data/app/com.alphainventor.filemanager-Vcw96rr4SY1sy0NsXGzR9Q==/base.apk=com.alphainventor.filemanager
+    package:/data/app/br.com.cea.appb2c-7zCbhV8g34iucoWyWdtVqQ==/base.apk=br.com.cea.appb2c
+    package:/data/app/com.luizalabs.mlapp-nR4k0GQRSIOAtEPi5NVUHQ==/base.apk=com.luizalabs.mlapp
+    package:/data/app/us.zoom.videomeetings-NajwtEbOzp4ZxQRigsb--Q==/base.apk=us.zoom.videomeetings
+    package:/data/app/br.com.yellow-SWXAGEbi1rkv7-PG4sB6qQ==/base.apk=br.com.yellow
+    <span style="color:white;background: red;border:1px solid red">package:/data/app/br.tche.emater.institucional-hnOQungwyD4L_Iba4l5DTg==/base.apk=br.tche.emater.institucional</span>
+    package:/data/app/br.tche.emater.expointer-mElNQQeneZUgCh-TYYojvQ==/base.apk=br.tche.emater.expointer
+    package:/data/app/com.opera.mini.native-CINzfLziOUsHpr7_nyIs_Q==/base.apk=com.opera.mini.native
+    package:/data/app/br.com.zap.imoveis-zbPNpzY7oGJlyLQXLCv1wg==/base.apk=br.com.zap.imoveis
+    package:/data/app/com.tozelabs.tvshowtime-9t0JDtMrcE072JdCv_vgOQ==/base.apk=com.tozelabs.tvshowtime
+    package:/data/app/com.b2w.submarino--aJ26EG4Zl-S_3Jg0lnHZA==/base.apk=com.b2w.submarino
+    package:/data/app/com.taxis99-4ayCliSyD0yzJ6Wc6_eg4Q==/base.apk=com.taxis99
+    package:/data/app/br.com.petrobras.br.ma02-uSFvHjh7_SJe3yKIDEGiDA==/base.apk=br.com.petrobras.br.ma02
+    package:/data/app/habibs.alphacode.com.br-16Ej1xSTbr6xjlF6CQdYdw==/base.apk=habibs.alphacode.com.br    
+</pre>
+Em vermelho pacote de nosso interesse.
+
+<h4>Fazer backup do pacote</h4>
+<pre class="terminal">
+//adb backup -noapk com.app.packagename
+adb backup -noapk br.tche.emater.institucional
+</pre>
+Precisa ser confirmado no dispositivo o backup, pode-se incluir uma senha criptografada.
+<div class="centro">
+    <img src="images/android-adb-not-debuggable-001.jpg" style="width:40%;border:1px solid black" />
+</div>
+Concluido o backup você terá um arquivo com a extensão .ab, no nosso exemplo ficou <b>backup.ab</b>
+
+<h4>Transformar o arquivo</h4>
+Agora precisamos transformar o arquivo <b>backup.ab</b> num arquivo <b>.tar</b>
+<br clear="all">
+<br clear="all">
+Este é basicamente um arquivo tar desinflado (compactado) em Java. Portanto, para inflar (descompactar) 
+algo que seu Mac/linux entenda, você tem duas opções, dependendo da configuração:
+<br clear="all">
+<br clear="all">
+Você pode usar o <code>openssl</code> para extrair o arquivo morto:
+<pre class="terminal">dd if=backup.ab bs=24 skip=1|openssl zlib -d > mybackup.tar; tar -xvf mybackup.tar</pre>
+Se der erro você pode tentar com python
+<pre class="terminal">
+dd if=backup.ab bs=1 skip=24 | python -c "import zlib,sys;sys.stdout.write(zlib.decompress(sys.stdin.read()))" | tar -xvf -\n   
+</pre>    
+
+Depois de gerado o arquivo pode descompactar com o <b>winrar</b> e está pronto !!!
+<br clear="all">
+<br clear="all">
+Fontes:<br>
+<a href="https://android.stackexchange.com/questions/48609/how-can-i-access-the-files-in-data-data-and-copy-them-into-memory-card-withou">android.stackexchange</a> <br>
+<a href="https://medium.com/@k1d_bl4ck/how-to-extract-the-database-and-other-things-from-an-enterprise-android-app-2194a52b249b">medium</a> <br>
+<hr>
+<a href="https://blog.shvetsov.com/2013/02/access-android-app-data-without-root.html">blog.shvetsov</a> <br>
+<a href="https://mobizoo.com.br/tutoriais/backup-via-adb/">mobizoo</a><br>
+<a href="https://www.systutorials.com/how-to-install-the-zlib-library-in-ubuntu/">zlib</a><br>
 
 <h2>Virtualizacao</h2>
 <h3>Abrindo Virtualizacao SEM ANDROID STUDIO</h3>
@@ -107,7 +231,22 @@ Para executar basta usar esse comando:
 
 <a href="https://windowsloop.com/launch-avd-manager-without-android-studio/" target="_blank">windowsloop</a>
 
+<h2>Error initializing ADB</h2>
+<div class="centro"><img src="images/android-studio-erro-initializing-adb-01.jpg" style="width: 40%;"></div>
 
+<h3>Solucao 01</h3>
+<ul>
+	<li>Feche Android-Studio </li>
+	<li>Abra o CMD <code class="teclado">win</code> + <code class="teclado">r</code></li>
+	<li>navegue até a pasta <kbd>platform-tools</kbd></li>
+	<li><pre>C:\Users\[user]\AppData\Local\Android\android-sdk\platform-tools</pre></li>
+	<li>digite <kbd>adb.exe start-server</kbd> pressione<code class="teclado">Enter</code></li>
+	<li>Abra Android Studio novamente</li>
+</ul>
+
+<a href="https://stackoverflow.com/questions/49340436/error-initializing-adb-unable-to-create-debug-bridge-unable-to-start-adb-serve">Fonte[1]</a>
+<a href="https://stackoverflow.com/questions/47506261/android-studio-error-initializing-adb-android-debug-bridge-not-found">Fonte[2]</a>
+<a href="https://stackoverflow.com/questions/54167187/android-studio-3-2-1-error-initializing-adb-android-debug-bridge-not-found">Fonte[3]</a>
 <h2>Fontes</h2>
 <ul>
 	<li><a href="https://pplware.sapo.pt/smartphones-tablets/android/como-usar-o-android-debug-bridge-adb/">pplware.sapo</a></li>

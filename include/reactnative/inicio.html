@@ -1,0 +1,74 @@
+<ol>
+    <li>Criar Projeto</li>
+    <li>1º Escolher o tipo de projeto</li>
+    <li>Escolher como ira vir o projeto</li>
+    <li>Definir Plataforma</li>
+</ol>
+
+<h2>Criar Projeto</h2>
+<pre class="terminal">$ npx create-react-native-app <span style="color:red">NOME-PROJETO</span></pre>
+
+<h2>Escolher o tipo de projeto</h2>
+<li>Default new app</li>
+<li>Template from expo</li>
+
+<h2>Escolher como ira vir o projeto</h2>
+<li>blank</li>
+<li>with-animated-splash-screen</li>
+<li>with-apollo</li>
+<li>with-auth0</li>
+<li>with-custom-font</li>
+<li>with-drawer-navigation</li>
+<li>with-electron</li>
+<li>with-facebook-auth</li>
+<li>with-firebase-storage-upload</li>
+<li>with-formdata-image-upload</li>
+
+<pre class="terminal">
+    To run your project, navigate to the directory and run one of the following npm commands.
+
+    - cd projeto01
+    - npm run android
+    - npm run ios # you need to use macOS to build the iOS project - use the Expo app if you need to do iOS development without a Mac
+    - npm run web    
+</pre>
+
+Entrar na pasta do projeto como nas instrucoes acima
+<pre class="terminal">$ cd NOME-PROJETO</pre>
+
+<h2>Definir Plataforma</h2>
+<pre class="terminal">$ npm run android</pre>
+
+<pre class="terminal">
+    'expo-cli' não é reconhecido como um comando interno
+    ou externo, um programa operável ou um arquivo em lotes.
+    This command requires Expo CLI.
+    Do you want to install it globally [Y/n]?   
+</pre>
+
+<hr>
+
+<span style="font-size:20pt">Utilizando o expo-cli para criar projeto</span>
+<pre class="terminal">$ npx <span style="color:red">expo-cli</span> init shows-app</pre>
+escolha o template:
+<pre class="terminal">
+    ? Choose a template: (Use arrow keys)
+    ----- Managed workflow -----
+  > blank                 a minimal app as clean as an empty canvas
+    blank (TypeScript)    same as blank but with TypeScript configuration
+    tabs (TypeScript)     several example screens and tabs using react-navigation and TypeScript
+    ----- Bare workflow -----
+    minimal               bare and minimal, just the essentials to get you started
+    minimal (TypeScript)  same as minimal but with TypeScript configuration
+</pre>
+
+começando o projeto:
+<pre class="terminal">
+    To run your project, navigate to the directory and run one of the following npm commands.
+
+    - cd shows-app
+    - npm start # you can open iOS, Android, or web from here, or run them directly with the commands below.
+    - npm run android
+    - npm run ios # requires an iOS device or macOS for access to an iOS simulator
+    - npm run web
+</pre>

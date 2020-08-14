@@ -1,0 +1,158 @@
+<style>
+    body{ counter-reset: aga2 }
+    h2::before{
+        counter-increment: aga2;
+        content: counter(aga2) " - ";
+        width:100%;
+    }	
+    h2{ 
+        font-weight: bold;
+        counter-reset: aga3;
+        border-bottom:5px solid #333; 
+        padding:0 0 -10px 0 !important;
+        margin-bottom: 20px;
+        margin-top: 20px;        
+    }
+
+    h3::before{
+        counter-increment: aga3;
+        content: counter(aga2)"."counter(aga3) " - ";
+    }	
+    h3{ counter-reset: aga4; }
+
+    h4::before{
+        margin-left:25px;
+        counter-increment: aga4;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4) " - ";
+    }	
+    h4{ counter-reset: aga5; }
+
+    h5::before{
+        margin-left:25px;
+        counter-increment: aga5;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5) " - ";
+    }
+    h5{ counter-reset: aga6; }	    
+    
+    h6::before{
+        margin-left:25px;
+        counter-increment: aga6;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5)"."counter(aga6) " - ";
+    }
+    table tr td{padding:10px}
+    table tr td img{border:1px solid gray}
+</style>
+
+
+<ol>
+    <li>Container</li>
+    <li>GridView</li>
+    <li>ListView</li>
+    <li>Stack</li>
+    <li>Card</li>
+    <li>ListTile</li>
+    
+</ol>
+
+<h2>Container</h2>
+Muitos layouts fazem uso liberal de Containers para separar widgets usando preenchimento ou para adicionar bordas ou margens. 
+Você pode alterar o plano de fundo do dispositivo colocando todo o layout em um contêiner e alterando sua cor ou imagem de 
+plano de fundo.
+<table>
+    <tr>
+        <td>
+            <pre>
+widget _buildImageColumn() => Container(
+    decoration: BoxDecoration(
+        color: Colors.black26,
+    ),
+    child: Column(
+        children: [
+        _buildImageRow(1),
+        _buildImageRow(3),
+        ],
+    ),
+);</pre>
+        </td>
+        <td><img src="images/flutter-layout-container-01.jpg"></td>
+    </tr>
+</table>
+
+<h2>GridView</h2>
+Use o GridView para colocar os widgets como uma lista bidimensional. 
+O GridView fornece duas listas pré-fabricadas ou você pode criar sua própria grade personalizada. 
+Quando um GridView detecta que seu conteúdo é muito longo para caber na caixa de renderização, ele rola automaticamente
+<table>
+    <tr>
+        <td><img src="images/flutter-layout-gridview-01.jpg"></td>
+        <td><img src="images/flutter-layout-gridview-02.jpg"></td>
+    </tr>
+    <tr>
+        <td>Usa GridView.extent para criar uma grade com blocos com no máximo 150 pixels de largura.</td>
+        <td>
+            Usa GridView.count para criar uma grade com 2 blocos de largura no modo retrato e 3 blocos de 
+            largura no modo paisagem. Os títulos são criados definindo a propriedade rodapé para cada GridTile.
+        </td>
+    </tr>    
+</table>
+
+<h2>ListView</h2>
+O ListView, um widget semelhante a uma coluna, fornece rolagem automaticamente quando seu conteúdo é 
+muito longo para sua caixa de renderização.
+<table>
+    <tr>
+        <td><img src="images/flutter-layout-listview-01.jpg"></td>
+        <td><img src="images/flutter-layout-listview-02.jpg"></td>
+    </tr>
+    <tr>
+        <td>Usa o ListView para exibir uma lista de empresas usando o ListTiles. Um divisor separa os teatros dos restaurantes.</td>
+        <td>Usa o ListView para exibir as cores da paleta Material Design para uma família de cores específica</td>
+    </tr>    
+</table>
+
+<h2>Stack</h2>
+Use Stack para organizar os widgets sobre um widget base - geralmente uma imagem. 
+Os widgets podem sobrepor total ou parcialmente o widget base.
+<table>
+    <tr>
+        <td><img src="images/flutter-layout-stack-01.jpg"></td>
+        <td><img src="images/flutter-layout-stack-02.jpg"></td>
+    </tr>
+    <tr>
+        <td>Usa Stack para sobrepor um contêiner (que exibe seu texto em um fundo preto translúcido) na parte superior de um CircleAvatar. A pilha compensa o texto usando a propriedade align e Alignments.</td>
+        <td>Usa Stack para sobrepor um gradiente à parte superior da imagem. O gradiente garante que os ícones da barra de ferramentas sejam distintos da imagem.</td>
+    </tr>    
+</table>
+
+<h2>Card</h2>
+Um cartão, da biblioteca Material, contém pepitas de informações relacionadas e pode ser composto 
+de praticamente qualquer widget, mas geralmente é usado com o ListTile. O cartão tem um único filho, 
+mas seu filho pode ser uma coluna, linha, lista, grade ou outro widget que suporte vários filhos. 
+Por padrão, um cartão reduz seu tamanho para 0 por 0 pixels. Você pode usar o SizedBox para restringir o tamanho de um cartão.
+
+No Flutter, um cartão apresenta cantos levemente arredondados e uma sombra projetada, proporcionando um 
+efeito 3D. Alterar a propriedade de elevação de um cartão permite controlar o efeito de sombra projetada. 
+Definir a elevação para 24, por exemplo, eleva visualmente o cartão da superfície e faz com que a sombra fique mais dispersa.
+ Para obter uma lista dos valores de elevação suportados, consulte Elevação nas diretrizes de material. 
+ A especificação de um valor não suportado desativa completamente a sombra projetada.
+<table>
+    <tr>
+        <td><img src="images/flutter-layout-card-01.jpg"></td>
+        <td><img src="images/flutter-layout-card-02.jpg"></td>
+    </tr>
+    <tr>
+        <td>Um Card contendo 3 ListTiles e dimensionado envolvendo-o com uma SizedBox. Um divisor separa o primeiro e o segundo ListTiles.</td>
+        <td>Um Card contendo uma imagem e texto.</td>
+    </tr>    
+</table>
+
+<h2>ListTile</h2>
+Use o ListTile, um widget de linha especializado da biblioteca Material, para uma maneira fácil de criar uma linha contendo até 3 linhas de texto e ícones iniciais e finais opcionais. O ListTile é mais comumente usado no Card ou no ListView, mas pode ser usado em outros lugares.
+<table>
+    <tr>
+        <td><img src="images/flutter-layout-listtitle-01.jpg"></td>
+        <td><img src="images/flutter-layout-listtitle-02.jpg"></td>
+    </tr>
+</table>
+
+<a href="https://flutter.dev/docs/development/ui/layout" target="_blank">flutter.dev</a>

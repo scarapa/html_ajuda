@@ -1,4 +1,48 @@
-﻿<kbd>DML</kbd> – Data Manipulation Language (DML) são utilizados para o gerenciamento de dados dentro de objetos do banco. Alguns exemplos:
+﻿<style>
+    body{ counter-reset: aga2 }
+    h2::before{
+        counter-increment: aga2;
+        content: counter(aga2) " - ";
+        width:100%;
+    }	
+    h2{ 
+        font-weight: bold;
+        counter-reset: aga3;
+        border-bottom:5px solid #333; 
+        padding:0 0 -10px 0 !important;
+        margin-bottom: 20px;
+        margin-top: 20px;        
+    }
+
+    h3::before{
+        counter-increment: aga3;
+        content: counter(aga2)"."counter(aga3) " - ";
+    }	
+    h3{ counter-reset: aga4; }
+
+    h4::before{
+        margin-left:25px;
+        counter-increment: aga4;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4) " - ";
+    }	
+    h4{ counter-reset: aga5; }
+
+    h5::before{
+        margin-left:25px;
+        counter-increment: aga5;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5) " - ";
+    }
+    h5{ counter-reset: aga6; }	    
+    
+    h6::before{
+        margin-left:25px;
+        counter-increment: aga6;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5)"."counter(aga6) " - ";
+    }
+</style>
+
+
+<kbd>DML</kbd> – Data Manipulation Language (DML) são utilizados para o gerenciamento de dados dentro de objetos do banco. Alguns exemplos:
 <br><br>
 <div class="col-lg-8">
 	<div class="panel panel-default">
@@ -35,6 +79,12 @@
 <a href="http://www.dellanio.com/diferenca-entre-comandos-ddl-dml-dcl-e-tcl/">Fonte</a>
 <br clear="all">
 
+<ol>
+	<li>INSERT</li>
+	<li>UPDATE</li>
+	<li></li>
+</ol>
+
 <h2>INSERT</h2>
 
 <h3>Montando INSERT apartir do SELECT</h3>
@@ -66,15 +116,16 @@ Agora é só copiar e colar aonde deseja!
 
 <h3>SELECT COM INSERT E ESTRUTURA</h3>
 <pre><kbd>sqlserver</kbd>
-<code>SELECT * INTO <strong>NOME_NOVATABELA</strong> FROM <strong>TABELAATUAL</strong></code></pre>
+SELECT * INTO <strong>NOME_NOVATABELA</strong> FROM <strong>TABELAATUAL</strong>
+</pre>
 <code>OBS1: Pode escolher as colunas e inserir valores estaticos no <strong>SELECT</strong></code><br/>
 <code>OBS2: Pode por condição(WHERE) no <strong>SELECT</strong></code><br>
 Exemplo abaixo:
-<pre><code><strong>INSERT INTO</strong> alunos 
+<pre><strong>INSERT INTO</strong> alunos 
 	<strong>SELECT</strong> 
 		id,nome,'REPROVADOS' AS 'ds_obs' 
 	<strong>FROM</strong> alunos 
-	<strong>WHERE</strong> no_nota < 6;</code></pre>
+	<strong>WHERE</strong> no_nota < 6;</pre>
 
 <hr>
 
@@ -121,6 +172,21 @@ SELECT @@IDENTITY AS ValorRetornado</pre>
 <b style="color:blue">WHERE</b> tabela_1.cd_ident = 157
 </pre>
 <a href="https://social.msdn.microsoft.com/Forums/pt-BR/6efe3146-9077-4e42-9a69-56469dc23951/update-com-inner-join?forum=analysisservicespt">microsoft</a>
+
+<h3>UPDATE - em valores nulos</h3>
+<pre><kbd>SQLITE</kbd>
+UPDATE noticia SET st_lida = <b>coalesce</b>(st_lida,0) + 1 WHERE cod_noticia = 31153;
+</pre>
+
+<pre><kbd>MSSQL</kbd>
+UPDATE noticia SET st_lida = <b>ISNULL</b>(st_lida,0) + 1 WHERE cod_noticia = 31153;	
+</pre>
+
+<pre><kbd>MySQL</kbd>
+UPDATE noticia SET st_lida = <b>IFNULL</b>(st_lida,0) + 1 WHERE cod_noticia = 31153;		
+</pre>
+<a href="https://stackoverflow.com/questions/21030990/android-null-from-sum">stackoverflow</a> 
+<a href="https://www.w3schools.com/sql/sql_isnull.asp">w3schools</a>
 
 <h3> SQLSERVER : CONCATENAR/AGRUPAR STRING</h3>	
 <div class="col-lg-3">
@@ -179,7 +245,7 @@ Iremos agrupar os alunos pela numero de turma.<br/>
 
 <br clear="all">
 <div class="col-lg-6">
-<pre><code><kbd>SQLSERVER</kbd>
+<pre><kbd>SQLSERVER</kbd>
 SELECT
 	e.turma
 	,STUFF(
@@ -189,7 +255,7 @@ WHERE b.turma = e.turma
 	FOR XML PATH('')), 1, 2, '') AS 'cd_matricula'    
 FROM tblEmail e
 GROUP BY e.turma
-</code></pre>
+</pre>
 </div>
 <br clear="all">
 
@@ -229,7 +295,7 @@ Exemplos:<br/>
 PAGINA->1 ; INICIO->1 ; FIM->20<br/>
 PAGINA->2 ; INICIO->21 ; FIM->40<br/>
 PAGINA->3 ; INICIO->41 ; FIM->60<br/>...
-<pre><code><kbd>SQLSERVER</kbd>
+<pre><kbd>SQLSERVER</kbd>
 WITH paginacao AS
 (
 SELECT 
@@ -242,13 +308,13 @@ SELECT * FROM paginacao p
 WHERE 1 = 1
 AND ( indice BETWEEN $indice_inicio AND $indice_fim )
 ORDER BY chave_primaria ASC 
-</code></pre>
+</pre>
 
 <h3>BETWEEN</h3>
 O operador BETWEEN seleciona valores dentro de um determinado intervalo. Os valores podem ser números, texto ou datas.
 <br/>
 O operador BETWEEN é inclusivo: os valores de início e final estão incluídos.
-<pre><code>SELECT * FROM table_name WHERE coluna <strong>BETWEEN</strong> valor1 AND valor2; </code></pre>
+<pre>SELECT * FROM table_name WHERE coluna <strong>BETWEEN</strong> valor1 AND valor2;</pre>
 <a href="https://www.w3schools.com/sql/sql_between.asp">w3schools</a>
 
 <h3>CASE</h3>

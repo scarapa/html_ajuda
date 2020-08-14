@@ -1,0 +1,52 @@
+<style>
+    body{ counter-reset: aga2 }
+    h2::before{
+        counter-increment: aga2;
+        content: counter(aga2) " - ";
+    }	
+    h2{ counter-reset: aga3; }
+
+    h3::before{
+        counter-increment: aga3;
+        content: counter(aga2)"."counter(aga3) " - ";
+    }	
+    h3{ counter-reset: aga4; }
+
+    h4::before{
+        margin-left:25px;
+        counter-increment: aga4;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4) " - ";
+    }	
+    h4{ counter-reset: aga5; }
+
+    h5::before{
+        margin-left:25px;
+        counter-increment: aga5;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5) " - ";
+    }
+    h5{ counter-reset: aga6; }	    
+    
+    h6::before{
+        margin-left:25px;
+        counter-increment: aga6;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5)"."counter(aga6) " - ";
+    }
+</style>
+
+<ol>
+    <li>select</li>
+    <li>join</li>
+    <li>where</li>
+    <li>order</li>
+</ol>
+<h2>SELECT</h2>
+
+<h2>JOIN</h2>
+
+<h2>WHERE</h2>
+
+<h2>ORDER</h2>
+<pre>$this->sale-><b>orderBy('id','desc')</b>->take(10)->get()</pre>
+
+<a href="https://pt.stackoverflow.com/questions/160164/como-trazer-apenas-os-ultimos-registros-com-laravel-5-2">stackoverflow</a> 
+<a href="https://jansenfelipe.com.br/2015/05/27/laravel-como-criar-uma-lista-de-registros-ordenacao/">jansenfelipe</a>

@@ -45,3 +45,9 @@ fieldset.title { padding: 1em; }
 
 .bold{font-weight: bold}
 .red{color:#c7254e;}
+code {border:1px solid gray}
+code.teclado{
+	color:#242729 !important;
+	font-family: Arial,"Helvetica Neue",Helvetica,sans-serif !important;
+	padding: .3em .6em;
+}

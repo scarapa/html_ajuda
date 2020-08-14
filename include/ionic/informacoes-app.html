@@ -1,0 +1,60 @@
+<h3>Exibir informacoes do app do config.xml</h3>
+
+<pre class="terminal">$ npm install -g @ionic/cli</pre>
+
+<pre class="terminal">
+$ ionic cordova plugin add cordova-plugin-app-version
+$ npm install @ionic-native/app-version</pre>
+
+<kbd>app.module.ts</kbd>
+<pre>
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouteReuseStrategy } from '@angular/router';
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+<b style="color:red">import { AppVersion } from '@ionic-native/app-version/ngx';</b>
+
+@NgModule({
+    declarations: [AppComponent],
+    entryComponents: [],
+    imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+    providers: [
+    StatusBar,
+    SplashScreen,
+    <b style="color:red">AppVersion,</b>
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    ],
+    bootstrap: [AppComponent]
+})
+export class AppModule {}</pre> 
+
+<kbd>.ts</kbd>
+<pre>
+AppName:string;
+PackageName:string;
+VersionCode:string|number;
+VersionNumber:string;
+
+constructor(private appVersion: AppVersion) {
+    //Application Name
+    this.appVersion.getAppName().then(value => {
+        this.AppName = value;
+    }).catch(err => {
+        alert(err);
+    });
+
+    //Version numvber  
+    this.appVersion.getVersionNumber().then(value => {
+        this.VersionNumber = value;
+    }).catch(err => {
+        alert(err);
+    });
+}
+</pre>
+
+<a href="https://www.freakyjolly.com/ionic-4-get-app-version-name-version-code-and-package-name-using-ionic-native-plugin/#.XyluOjVv81I">freakyjolly</a> 
+<a href="https://forum.ionicframework.com/t/app-version-not-showing/95599/16">forum.ionicframework</a>

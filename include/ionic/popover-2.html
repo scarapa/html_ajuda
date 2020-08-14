@@ -1,0 +1,152 @@
+<style type="text/css">
+.danger{color:red;font-weight: bold;}
+</style>
+Criar projeto
+<pre class="terminal">$ ionic start popover002 blank --type=angular</pre>
+
+entrar na pasta do projeto
+<pre class="terminal">$ cd popover002</pre>
+
+baixar as dependencias
+<pre class="terminal">$ npm install</pre>
+
+criar a componentizacao , nesse exemplo será o popover , vamos criar uma pasta <b>component</b> para insermos todos os nossos componentes
+<pre class="terminal">$ ionic g page popovercomponent</pre>
+
+O interessante é que seja possamos  utiliza-lo em <b>QUALQUER</b> tela.
+
+<kbd>app.module.ts</kbd>
+<pre>
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouteReuseStrategy } from '@angular/router';
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+<b class="danger">import {PopovercomponentPageModule} from '../app/popovercomponent/popovercomponent.module';</b>
+
+@NgModule({
+    declarations: [AppComponent],
+    entryComponents: [],
+    imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,<b class="danger">PopovercomponentPageModule</b>],
+    providers: [
+    StatusBar,
+    SplashScreen,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    ],
+    bootstrap: [AppComponent]
+})
+export class AppModule {}</pre>
+
+<kbd>home.page.ts</kbd>
+<pre>
+import { Component } from '@angular/core';
+import { PopoverController } from '@ionic/angular';
+<b class="danger">import { PopovercomponentPage } from '../popovercomponent/popovercomponent.page';</b>
+
+@Component({
+    selector: 'app-home',
+    templateUrl: 'home.page.html',
+    styleUrls: ['home.page.scss'],
+})
+export class HomePage {
+    public items:any;
+    constructor(private popover: PopoverController) {
+        //LISTA DE ITENS QUE SERA EXIBIDO NO POPOVER 
+        <b class="danger">
+        this.items=[
+            {'item':'teste 1'},
+            {'item':'teste 2'},
+            {'item':'teste 3'},
+        ]
+        </b>
+    }
+
+    //VOCE PODE POR O NOME QUE QUISER NESSE METODO
+    createPopover(eve,<b class="danger">params</b>) {
+        this.popover.create({
+            component: PopovercomponentPage,
+            showBackdrop: false,
+            cssClass: 'my-custom-class',
+            translucent: true,
+            event:eve,
+            <b class="danger">componentProps:{
+                'dados':params
+            }</b>
+        }).then((popoverElement) => {
+            popoverElement.present();
+        })
+
+        //ESSE METODO QUE RECEBE PARAMETROS DO POPOVER
+        popover.onDidDismiss().then((retorno) => {
+            this.popover_id_municipio = retorno.data.id_municipio;
+            this.popover_id_categoria = retorno.data.popover_id_categoria;
+        });
+    
+    }
+}</pre>
+
+<kbd>home.page.html</kbd>
+<pre>
+&lt;ion-header&gt;
+	&lt;ion-toolbar&gt;
+		&lt;ion-title&gt;modal&lt;/ion-title&gt;
+		&lt;ion-buttons slot="end"&gt;
+			&lt;ion-button <b class="danger">(click)="createPopover($event,this.items)"</b>&gt;
+				&lt;ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical" &gt;&lt;/ion-icon&gt;
+			&lt;/ion-button&gt;
+		&lt;/ion-buttons&gt;
+	&lt;/ion-toolbar&gt;
+&lt;/ion-header&gt;
+&lt;ion-content&gt;
+	&lt;ion-buton <b class="danger">(click)="createPopover($event)"</b>&gt;ABRIR POPOVER&lt;/ion-buton&gt;
+&lt;/ion-content&gt;    
+</pre>
+
+<kbd>popovercomponent.page.ts</kbd>
+<pre>
+import { Component, OnInit } from '@angular/core';
+<b class="danger">import { PopoverController, NavParams } from '@ionic/angular';</b>
+
+@Component({
+    selector: 'app-popovercomponent',
+    templateUrl: './popovercomponent.page.html',
+    styleUrls: ['./popovercomponent.page.scss'],
+})
+export class PopovercomponentPage implements OnInit {
+
+    constructor(
+        private popover: PopoverController, 
+        public navParams: NavParams
+    ) { }
+
+    public items:any;
+
+    ngOnInit() {
+        <b class="danger">this.items = this.navParams.data.dados;</b>
+    }
+
+    closePopover() {
+        this.popover.dismiss();
+    }
+}</pre>
+
+<kbd>popovercomponent.page.html</kbd>
+<pre>
+&lt;ion-content&gt;
+	&lt;ion-list&gt;
+		&lt;ion-item *ngFor="let item of items" button&gt;
+			&lt;ion-col&gt;{{item.item}}&lt;/ion-col&gt;
+		&lt;/ion-item&gt;
+		&lt;ion-item lines="none" detail="false" (click)="closePopover()"&gt;Close&lt;/ion-item&gt;
+	&lt;/ion-list&gt;
+&lt;/ion-content&gt;    
+</pre>
+
+<ul>
+    <li><a href="https://www.youtube.com/watch?v=SmqREl04j_0" target="_blank">youtube 01</a></li>
+    <li><a href="https://www.youtube.com/watch?v=NvdHJ1HFc9U" target="_blank">youtube 02</a></li>
+    <li><a href="https://stackoverflow.com/questions/45095859/ionic-3-passing-data-to-popover" target="_blank">stackoverflow</a> </li>
+</ul>

@@ -1,0 +1,39 @@
+<code>onClick()</code>
+Isso é chamado quando o usuário toca no item (no modo de toque) ou atribui foco ao item com as teclas de navegação ou o trackball e pressiona a tecla “enter” ou o pressiona no trackball.
+<br clear="all">
+<br clear="all">
+
+<code>onLongClick()</code>
+Isso é chamado quando o usuário mantém o item pressionado (no modo de toque) ou atribui foco ao item com as teclas de navegação ou o trackball e mantém pressionada a tecla “enter” ou o trackball (por um segundo).
+<br clear="all">
+<br clear="all">
+
+<code>onFocusChange()</code>
+Isso é chamado quando o usuário navega para ou do item usando as teclas de navegação ou o trackball.
+<br clear="all">
+<br clear="all">
+
+<code>onKey()</code>
+Isso é chamado quando o usuário está com foco no item e pressiona ou solta uma tecla de hardware no dispositivo.
+<br clear="all">
+<br clear="all">
+
+<code>onTouch()</code>
+Isso é chamado quando o usuário realiza uma ação qualificada como um toque de evento, incluindo o pressionamento, a liberação ou qualquer outro gesto de movimento na tela (dentro dos limites do item).
+<br clear="all">
+<br clear="all">
+
+<code>onCreateContextMenu()</code>
+Isso é chamado quando um menu de contexto está sendo construído (como resultado de um “clique longo”). Consulte a discussão sobre menus de contexto no guia do desenvolvedor de Menus.
+<br clear="all">
+<br clear="all">
+
+Esses métodos são os únicos habitantes das respectivas interfaces. 
+Para definir um desses métodos e lidar com seus eventos, implemente a interface aninhada na Activity 
+ou defina-a como uma classe anônima. Em seguida, passe uma instância da sua implementação para o 
+respectivo método View.set...<code>Listener()</code>.
+Por exemplo: chame <code>setOnClickListener()</code> e passe-o à implementação de OnClickListener.
+
+ <br clear="all">
+<br clear="all">
+<a href="https://developer.android.com/guide/topics/ui/ui-events?hl=pt-br#java" target="_blank">developer.android</a>

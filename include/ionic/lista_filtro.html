@@ -1,0 +1,41 @@
+<h3>Filtrar lista por busca em Input</h3>
+<kbd>HTML</kbd>
+<pre>
+&lt;ion-header&gt;
+    &lt;ion-toolbar&gt;
+        &lt;ion-buttons slot="start"&gt;
+            &lt;ion-back-button&gt;&lt;/ion-back-button&gt;
+        &lt;/ion-buttons&gt;
+        &lt;ion-title&gt;Previsão do Tempo&lt;/ion-title&gt;
+    &lt;/ion-toolbar&gt;
+&lt;/ion-header&gt;
+
+//ABAIXO ESTA A LISTA ...
+&lt;ion-content fullscreen="true"&gt;
+    &lt;ion-searchbar search-icon="search-circle" show-cancel-button="focus" placeholder="Digite a localidade" <b style="color:red">(ionInput)="filtroLocalidade($event)"</b>&gt;&lt;/ion-searchbar&gt;
+    &lt;hr&gt;
+    &lt;ion-list&gt;
+        &lt;ion-item *ngFor="let item of dados" routerLink="/previsao-show/{{item.cd_cidade}}"&gt;
+          &lt;ion-label&gt;{{item.nm_cidade}}&lt;/ion-label&gt;
+        &lt;/ion-item&gt;
+    &lt;/ion-list&gt;
+&lt;/ion-content&gt;    
+</pre>
+
+<kbds>.ts</kbds>
+<pre>
+async filtroLocalidade(<b style="color:red">evt</b>) {
+    this.dados = this.servico.previsaoCidades();
+    let termoPesquisado:String ;
+    termoPesquisado = <b style="color:red">evt.srcElement.value</b>;
+    if(termoPesquisado.toString().length > 0){
+        this.dados = this.dados.filter(localidade => {
+            return (localidade.nm_cidade.toString().toLowerCase().indexOf(termoPesquisado.toLowerCase()) > -1);
+        });
+    }
+}    
+</pre>
+
+
+
+<a href="https://javebratt.com/searchbar-firebase/" target="_blank">Jorge Vergara</a>

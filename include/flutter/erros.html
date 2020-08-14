@@ -37,5 +37,18 @@ return Scaffold(
 </pre>
 
 <h2>SingleChildScrollView nao funciona scrool da tela</h2>
+<pre>
+child: Container(
+    child: GridView.count(
+        crossAxisCount: 3,
+        shrinkWrap: true,
+        <b style="color:red">scrollDirection: Axis.vertical,
+        physics: NeverScrollableScrollPhysics(),</b>
+        children: _list.map((p) => ProductManagment(p)).toList(),
+    ), 
+</pre>
+Necessário inserir as duas propriedades em vermelho
 
+
+<a href="https://stackoverflow.com/questions/53717521/flutter-grid-view-is-not-scrolling">stackoverflow</a>
 <a href="https://api.flutter.dev/flutter/widgets/Expanded-class.html">api.flutter</a>

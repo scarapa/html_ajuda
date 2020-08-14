@@ -10,51 +10,75 @@ Verificando no console.log
 Saida: <code> Object { nome="Roberto",  idade="35",  uf="RS"} </code>
 
 <h2>Destructuring</h2>
+<pre>
+const person = {
+	name: 'Harry',
+	age: '17'
+}
 
-<pre><code>
-	const person = {
-		name: 'Harry',
-		age: '17'
-	}
+function createPerson({name, age}) {
+	return `Seu nome é ${name}, com a idade de ${age}`;
+}
 
-	function createPerson({name, age}) {
-		return `Seu nome é ${name}, com a idade de ${age}`;
-	}
-
-	function createPerson(person) {
-		const { name, age } = person;
-		return `Seu nome é ${name} com a idade de ${age}`; 
-	}
-</code></pre>
+function createPerson(person) {
+	const { name, age } = person;
+	return `Seu nome é ${name} com a idade de ${age}`; 
+}
+</pre>
 
 <h2>Template Literals</h2>
+<pre>
+const dog = {
+	name: 'Rufus',
+	size: 'Big',
+	color: 'Black',
+	age: 10
+}
 
-<pre><code>
-	const dog = {
-		name: 'Rufus',
-		size: 'Big',
-		color: 'Black',
-		age: 10
-	}
+const { name, size, color } = dog
 
-	const { name, size, color } = dog
+function dogAge(str, age) {
+	const ageStr = age > 5 ? 'velho' : 'novo';
+	return `${str[0]}${ageStr} com ${age} anos`;
+}
 
-	function dogAge(str, age) {
-		const ageStr = age > 5 ? 'velho' : 'novo';
-		return `${str[0]}${ageStr} com ${age} anos`;
-	}
-
-	const bio = dogAge`Esse cachorro é ${dog.age}`;
-</code></pre>
+const bio = dogAge`Esse cachorro é ${dog.age}`;
+</pre>
 
 <h2>Spread</h2>
+<pre>
+const person = { name: 'Harry' }
+const personDetails = { age: '19', job: 'none' }
 
-<pre><code>
-
-	const person = { name: 'Harry' }
-	const personDetails = { age: '19', job: 'none' }
-
-	const mergePerson = { ...person, ...personDetails };
-</code></pre>
-
+const mergePerson = { ...person, ...personDetails };
+</pre>
 <a href="https://www.youtube.com/watch?v=Mus_vwhTCq0">Fonte</a>
+<h2>Find</h2>
+<pre>
+var myArray = [
+ {id:1, name:"bob"},
+ {id:2, name:"dan"},
+ {id:3, name:"barb"},
+]
+var item = myArray.find(item => item.id === 2);
+console.log(item.name);
+</pre>
+<a href="https://stackoverflow.com/questions/7364150/find-object-by-id-in-an-array-of-javascript-objects" target="_blank">stackoverflow</a>
+
+<h2>Filter</h2>
+<pre>
+	var heroes = [
+	{name: “Batman”, franchise: “DC”},
+	{name: “Ironman”, franchise: “Marvel”},
+	{name: “Thor”, franchise: “Marvel”},
+	{name: “Superman”, franchise: “DC”}
+];
+
+var marvelHeroes =  heroes.filter(function(hero) {
+	return hero.franchise == “Marvel”;
+});	
+// [ {name: “Ironman”, franchise: “Marvel”}, {name: “Thor”, franchise: “Marvel”} ]
+</pre>
+<a href="https://alligator.io/js/filter-array-method/">alligator</a>
+<a href="https://medium.com/@programadriano/javascript-conhecendo-map-filter-e-reduce-ce072d8f0ec5">medium</a>
+<a href="https://medium.com/@programadriano/javascript-entendendo-a-diferen%C3%A7a-entre-map-x-foreach-366a77fc7e82">medium</a>

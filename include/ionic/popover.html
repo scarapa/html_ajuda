@@ -1,4 +1,5 @@
-<pre class=""><kbd>src\app\app.module.ts</kbd>
+<kbd>src\app\app.module.ts</kbd>
+<pre>
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -14,7 +15,7 @@ import { PopoverPageModule } from './pages/popover/popover.module';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,PopoverPageModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,<b style="color:Red">PopoverPageModule</b>],
   providers: [
     StatusBar,
     SplashScreen,
@@ -25,31 +26,33 @@ import { PopoverPageModule } from './pages/popover/popover.module';
 export class AppModule {}	
 </pre>
 
-<pre class=""><kbd>src\app\home\home.page.html</kbd>
-<ion-header>
-	<ion-toolbar>
-		<ion-title>VARIAVEIS - Home</ion-title>
-	</ion-toolbar>
-</ion-header>
-<ion-content padding>
-  
-	<ion-item>
-  		<h1>VALOR: </h1><ion-input [(ngModel)]="value" clearInput></ion-input>
-    </ion-item>
-    <h1>MODAL: </h1>
-    <ion-item>municipio: {{ modal_id_municipio }}</ion-item>
-    <ion-item>categoria: {{ modal_id_categoria }}</ion-item>    
-    <h1>POPOVER: </h1>
-    <ion-item>municipio: {{ popover_id_municipio }}</ion-item>
-    <ion-item>categoria: {{ popover_id_categoria }}</ion-item>
-  
-  <ion-button expand="full" [routerLink]="['/second',value]">Envio Por Rota</ion-button>
-  <ion-button expand="full" (click)="pushPage()">Push</ion-button>
-  <ion-button expand="full" (click)="openModal()">Open Modal</ion-button>
-  <ion-button expand="full" (click)="openPopover($event)">Open Popover</ion-button>
-</ion-content></pre>
+<kbd>src\app\home\home.page.html</kbd>
+<pre>
+&lt;ion-header&gt;
+	&lt;ion-toolbar&gt;
+		&lt;ion-title&gt;VARIAVEIS - Home&lt;/ion-title&gt;
+	&lt;/ion-toolbar&gt;
+&lt;/ion-header&gt;
+&lt;ion-content padding&gt;
+	&lt;ion-item&gt;
+		&lt;h1&gt;VALOR: &lt;/h1&gt;&lt;ion-input [(ngModel)]="value" clearInput&gt;&lt;/ion-input&gt;
+	&lt;/ion-item&gt;
+	&lt;h1&gt;MODAL: &lt;/h1&gt;
+	&lt;ion-item&gt;municipio: {{ modal_id_municipio }}&lt;/ion-item&gt;
+	&lt;ion-item&gt;categoria: {{ modal_id_categoria }}&lt;/ion-item&gt;    
+	&lt;h1&gt;POPOVER: &lt;/h1&gt;
+	&lt;ion-item&gt;municipio: {{ popover_id_municipio }}&lt;/ion-item&gt;
+	&lt;ion-item&gt;categoria: {{ popover_id_categoria }}&lt;/ion-item&gt;
 
-<pre class=""><kbd>src\app\home\home.page.ts</kbd>
+	&lt;ion-button expand="full" [routerLink]="['/second',value]"&gt;Envio Por Rota&lt;/ion-button&gt;
+	&lt;ion-button expand="full" (click)="pushPage()"&gt;Push&lt;/ion-button&gt;
+	&lt;ion-button expand="full" (click)="openModal()"&gt;Open Modal&lt;/ion-button&gt;
+	&lt;ion-button expand="full" (click)="openPopover($event)"&gt;Open Popover&lt;/ion-button&gt;
+&lt;/ion-content&gt;
+</pre>
+
+<kbd>src\app\home\home.page.ts</kbd>
+<pre class="">
 import { Component } from '@angular/core';
 import { NavController, ModalController, PopoverController,Events } from '@ionic/angular';
 import { ModalPage } from '../pages/modal/modal.page';
@@ -62,88 +65,89 @@ import { modalController } from '@ionic/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  value = 0;
+  	value = 0;
 
-  modal_id_municipio:number;
-  modal_id_categoria:number;
-  popover_id_municipio:number;
-  popover_id_categoria:number;
+	modal_id_municipio:number;
+	modal_id_categoria:number;
+	popover_id_municipio:number;
+	popover_id_categoria:number;
 
-  constructor(
-    public nav: NavController,
-    public modalController:ModalController,
-    public popoverController:PopoverController,
-    public events: Events
-  ) { }
+	constructor(
+		public nav: NavController,
+		public modalController:ModalController,
+		public popoverController:PopoverController,
+		public events: Events
+	) { }
 
-  ionViewDidLoad(){
-    this.events.subscribe('teste recebimento',(data) => {
-      console.log(data)
-    });
-  }
+	ionViewDidLoad(){
+		this.events.subscribe('teste recebimento',(data) => {
+		console.log(data)
+		});
+	}
 
   async openPopover(ev: Event){
     const popover = await this.popoverController.create({
-      component:PopoverPage,
-      componentProps: {
-        ev: Event,
-        translucent: true
-      },        
-    });
-
-    popover.onDidDismiss().then((retorno) => {
-      this.popover_id_municipio = retorno.data.id_municipio;
-      this.popover_id_categoria = retorno.data.popover_id_categoria;
+		component:PopoverPage,
+		componentProps: {
+			ev: Event,
+			translucent: true
+		},        
+	});
+	
+	//ESSE METODO QUE RECEBE PARAMETROS DO POPOVER
+    popover.<b>onDidDismiss()</b>.then((retorno) => {
+		this.popover_id_municipio = retorno.data.id_municipio;
+		this.popover_id_categoria = retorno.data.popover_id_categoria;
     });
 
     return await popover.present();
-  }
+  	}
   montarTela(){}  
 }</pre>
 
+<kbd>src\app\pages\feira\banca\popover\popover.page.html</kbd>
+<pre class="codigo">
+&lt;div padding&gt;
+	&lt;ion-list&gt;
+		&lt;h1&gt;FILTROS&lt;/h1&gt;
+		&lt;section&gt;
+			&lt;ion-item&gt;
+				&lt;ion-label&gt;Municípios&lt;/ion-label&gt;
+				&lt;ion-select ok-text="OK" cancel-text="Cancelar" [(ngModel)]="id_municipio"&gt;
+					&lt;ion-select-option *ngFor="let municipio of arrayMunicipios" value="{{ municipio.id_municipio }}"&gt;{{ municipio.ds_municipio }} &lt;/ion-select-option&gt;        
+				&lt;/ion-select&gt;
+			&lt;/ion-item&gt;
+		&lt;/section&gt;    
+		&lt;br&gt;&lt;br&gt;
 
-<pre class="codigo"><kbd>src\app\pages\feira\banca\popover\popover.page.html</kbd>
-<div padding>
-  <ion-list>
-    <h1>FILTROS</h1>
-    <section>
-      <ion-item>
-        <ion-label>Municípios</ion-label>
-        <ion-select ok-text="OK" cancel-text="Cancelar" [(ngModel)]="id_municipio">
-          <ion-select-option *ngFor="let municipio of arrayMunicipios" value="{{ municipio.id_municipio }}">{{ municipio.ds_municipio }} </ion-select-option>        
-        </ion-select>
-      </ion-item>
-    </section>    
-    <br><br>
+		&lt;section&gt;
+			&lt;ion-item&gt;
+			&lt;ion-label&gt;Categoria&lt;/ion-label&gt;
+			&lt;ion-select ok-text="OK" cancel-text="Cancelar" [(ngModel)]="id_municipio"&gt;
+				&lt;ion-select-option *ngFor="let categoria of arrayCategorias" value="{{ categoria.id_truncado }}"&gt;{{ categoria.ds_titulo }} &lt;/ion-select-option&gt;
+			&lt;/ion-select&gt;
+			&lt;/ion-item&gt;
+		&lt;/section&gt;      
+		&lt;br&gt;&lt;br&gt;
 
-    <section>
-      <ion-item>
-        <ion-label>Categoria</ion-label>
-        <ion-select ok-text="OK" cancel-text="Cancelar" [(ngModel)]="id_municipio">
-          <ion-select-option *ngFor="let categoria of arrayCategorias" value="{{ categoria.id_truncado }}">{{ categoria.ds_titulo }} </ion-select-option>
-        </ion-select>
-      </ion-item>
-    </section>      
-    <br><br>
+		&lt;h1&gt;ORDENAÇÃO&lt;/h1&gt;
+		&lt;section&gt;
+			&lt;ion-radio-group [(ngModel)]="ds_ordenacao"&gt;
+			&lt;ion-item&gt;
+				&lt;ion-label&gt;Nome&lt;/ion-label&gt;
+				&lt;ion-radio slot="start" color="primary" value="ds_banca"&gt;&lt;/ion-radio&gt;
+			&lt;/ion-item&gt;
 
-    <h1>ORDENAÇÃO</h1>
-    <section>
-      <ion-radio-group [(ngModel)]="ds_ordenacao">
-        <ion-item>
-          <ion-label>Nome</ion-label>
-          <ion-radio slot="start" color="primary" value="ds_banca"></ion-radio>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>Numero</ion-label>
-          <ion-radio slot="start" color="primary" value="no_banca"></ion-radio>
-        </ion-item>
-      </ion-radio-group>      
-    </section>
-    <br><br>
-    <ion-item button color="danger" (click)="closePopover()">
-      <ion-icon name="close" slot="start"></ion-icon>Aplicar
-    </ion-item>
-  </ion-list>
-</div>	
+			&lt;ion-item&gt;
+				&lt;ion-label&gt;Numero&lt;/ion-label&gt;
+				&lt;ion-radio slot="start" color="primary" value="no_banca"&gt;&lt;/ion-radio&gt;
+			&lt;/ion-item&gt;
+			&lt;/ion-radio-group&gt;      
+		&lt;/section&gt;
+		&lt;br&gt;&lt;br&gt;
+		&lt;ion-item button color="danger" (click)="closePopover()"&gt;
+			&lt;ion-icon name="close" slot="start"&gt;&lt;/ion-icon&gt;Aplicar
+		&lt;/ion-item&gt;
+	&lt;/ion-list&gt;
+&lt;/div&gt;	
 </pre>
