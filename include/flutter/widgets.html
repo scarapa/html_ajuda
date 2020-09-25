@@ -1,3 +1,75 @@
+<style>
+    body{ counter-reset: aga2 }
+    h2::before{
+        counter-increment: aga2;
+        content: counter(aga2) " - ";
+        width:100%;
+    }	
+    h2{ 
+        font-weight: bold;
+        counter-reset: aga3;
+        border-bottom:5px solid #333; 
+        padding:0 0 -10px 0 !important;
+        margin-bottom: 20px;
+        margin-top: 20px;        
+    }
+
+    h3::before{
+        counter-increment: aga3;
+        content: counter(aga2)"."counter(aga3) " - ";
+    }	
+    h3{ counter-reset: aga4; }
+
+    h4::before{
+        margin-left:25px;
+        counter-increment: aga4;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4) " - ";
+    }	
+    h4{ counter-reset: aga5; }
+
+    h5::before{
+        margin-left:25px;
+        counter-increment: aga5;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5) " - ";
+    }
+    h5{ counter-reset: aga6; }	    
+    
+    h6::before{
+        margin-left:25px;
+        counter-increment: aga6;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5)"."counter(aga6) " - ";
+    }
+    #capitulos > ul{ counter-reset: contador_um ;list-style: none;}
+    #capitulos > ul > li::before{
+        counter-increment: contador_um;
+        content: counter(contador_um) ": ";
+    }	
+    
+    #capitulos > ul > li > ul{ 
+        padding-left:20px !important;
+        counter-reset: contador_dois;
+        list-style: none;
+        list-style-type: none;
+        list-style-position: unset;
+    }
+    #capitulos > ul > li > ul > li::before{
+        counter-increment: contador_dois;
+        content: counter(contador_um)"."counter(contador_dois) ": ";
+    }	
+
+    #capitulos > ul > li > ul > li > ul{ 
+        padding-left:20px !important;
+        counter-reset: contador_tres;
+        list-style: none;
+        list-style-type: none;
+        list-style-position: unset;
+    }
+    
+    #capitulos > ul > li > ul > li > ul > li::before{
+        counter-increment: contador_tres;
+        content: counter(contador_um)"."counter(contador_dois)"."counter(contador_tres) ": ";
+    }	
+</style>
 <h2>Widgets</h2>
 Assim, os Widgets são as partes da sua interface de usuário. Um Text é um widget. Buttons são widgets. As caixas de seleção são widgets. Imagens são widgets. E a lista continua. Na verdade, tudo na interface do usuário é um widget. Até mesmo o aplicativo em si é um widget !
 <br><br>
@@ -36,5 +108,287 @@ Um widget com estado é útil para algo como uma caixa de seleção. Quando um u
 <br><br>
 Outro exemplo é um widget Image. O recurso de imagem pode não estar disponível quando o widget for criado (como se estivesse sendo baixado), portanto, um widget sem estado não é uma opção. Quando a imagem estiver disponível, ela pode ser definida atualizando o estado.
 <br><br>
+
+
+<h2>Lista/Catalogo de Widgets</h2>
+<div id="capitulos">
+    <ul>
+        <li>Accessibility
+            <ul>
+                <li>ExcludeSemantics</li>
+                <li>MergeSemantics</li>
+                <li>Semantics</li>
+            </ul>
+        </li>
+        <li>Animation and Motion
+            <ul>
+                <li>AnimatedAlign</li>
+                <li>AnimatedBuilder</li>
+                <li>AnimatedContainer</li>
+                <li>AnimatedCrossFade</li>
+                <li>AnimatedDefaultTextStyle</li>
+                <li>AnimatedListState</li>
+                <li>AnimatedModalBarrier</li>
+                <li>AnimatedOpacity</li>
+                <li>AnimatedPhysicalModel</li>
+                <li>AnimatedPositioned</li>
+                <li>AnimatedSize</li>
+                <li>AnimatedWidget</li>
+                <li>AnimatedWidgetBaseState</li>
+                <li>DecoratedBoxTransition</li>
+                <li>FadeTransition</li>
+                <li>Hero</li>
+                <li>PositionedTransition</li>
+                <li>RotationTransition</li>
+                <li>ScaleTransition</li>
+                <li>SizeTransition</li>
+                <li>SlideTransition</li>
+            </ul>        
+        </li>
+        <li>Assets, Images, and Icons
+            <ul>
+                <li>AssetBundle</li>
+                <li>Icon</li>
+                <li>Image</li>
+                <li>RawImage</li>
+            </ul>        
+        </li>
+        <li>Async
+            <ul>
+                <li>FutureBuilder</li>
+                <li>StreamBuilder</li>
+            </ul>         
+        </li>
+        <li>Basics
+            <ul>
+                <li>Appbar</li>
+                <li>Column</li>
+                <li>Container</li>
+                <li>FlutterLogo</li>
+                <li>Icon</li>
+                <li>Image</li>
+                <li>Placeholder</li>
+                <li>RaisedButton</li>
+                <li>Row</li>
+                <li>Scaffold</li>            
+                <li>Text</li>            
+            </ul>         
+        </li>
+        <li>Cupertino (iOS-style widgets)
+            <ul>
+                <li>CupertinoActionSheet</li>
+                <li>CupertinoActivityIndicator</li>
+                <li>CupertinoAlertDialog</li>
+                <li>CupertinoButton</li>
+                <li>CupertinoContextMenu</li>
+                <li>CupertinoDatePicker</li>
+                <li>CupertinoDialog</li>
+                <li>CupertinoDialogAction</li>
+                <li>CupertinoFullscreenDialogTransition</li>
+                <li>CupertinoNavigationBar</li>
+                <li>CupertinoPageScaffold</li>
+                <li>CupertinoPageTransition</li>
+                <li>CupertinoPicker</li>
+                <li>CupertinoPopupSurface</li>
+                <li>CupertinoScrollbar</li>
+                <li>CupertinoSegmentedControl</li>
+                <li>CupertinoSlider</li>
+                <li>CupertinoSlidingSegmentedControl</li>
+                <li>CupertinoSwitch</li>
+                <li>CupertinoTabBar</li>
+                <li>CupertinoTabScaffold</li>
+                <li>CupertinoTabView</li>
+                <li>CupertinoTextField</li>
+                <li>CupertinoTimerPicker</li>
+            </ul>         
+        </li>
+        <li>Input
+            <ul>
+                <li>Form</li>
+                <li>FormField</li>
+                <li>RawKeyboardListener</li>
+            </ul>         
+        </li>
+        <li>Interaction Models
+            <ul>
+                <li>Touch interactions
+                    <ul>
+                        <li>AbsorbPointer</li>
+                        <li>Dismissible</li>
+                        <li>DragTarget</li>
+                        <li>Draggable</li>
+                        <li>GestureDetector</li>
+                        <li>IgnorePointer</li>
+                        <li>InteractiveViewer</li>
+                        <li>LongPressDraggable</li>
+                        <li>Scrollable</li>
+                    </ul>         
+                </li>
+                <li>Routing
+                    <ul>
+                        <li>Hero</li>
+                        <li>Navigator</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>        
+        <li>Layout
+            <ul>
+                <li>Single-child layout widgets
+                    <ul>
+                        <li>Align</li>
+                        <li>AspectRatio</li>
+                        <li>Baseline</li>
+                        <li>Center</li>
+                        <li>ConstrainedBox</li>
+                        <li>Container</li>
+                        <li>CustomSingleChildLayout</li>
+                        <li>Expanded</li>
+                        <li>FittedBox</li>
+                        <li>FractionallySizedBox</li>
+                        <li>IntrinsicHeight</li>
+                        <li>IntrinsicWidth</li>
+                        <li>LimitedBox</li>
+                        <li>Offstage</li>
+                        <li>OverflowBox</li>
+                        <li>Padding</li>
+                        <li>SizedBox</li>
+                        <li>SizedOverflowBox</li>
+                        <li>Transform</li>
+                    </ul>                 
+                </li>
+                <li>Multi-child layout widgets
+                    <ul>
+                        <li>Column</li>
+                        <li>CustomMultiChildLayout</li>
+                        <li>Flow</li>
+                        <li>GridView</li>
+                        <li>IndexedStack</li>
+                        <li>LayoutBuilder</li>
+                        <li>ListBody</li>
+                        <li>ListView</li>
+                        <li>Row</li>
+                        <li>Stack</li>
+                        <li>Table</li>
+                        <li>Wrap</li>
+                    </ul>                 
+                </li>
+            </ul>          
+        </li>
+        <li>Material Components
+            <ul>
+                <li>App structure and navigation
+                    <ul>
+                        <li>Appbar</li>
+                        <li>BottomNavigationBar</li>
+                        <li>Drawer</li>
+                        <li>MaterialApp</li>
+                        <li>Scaffold</li>
+                        <li>SliverAppBar</li>
+                        <li>TabBar</li>
+                        <li>TabBarView</li>
+                        <li>WidgetsApp</li>
+                    </ul>
+                </li>
+                <li>Buttons
+                    <ul>
+                        <li>ButtonBar</li>
+                        <li>DropdownButton</li>
+                        <li>FlatButton</li>
+                        <li>FloatingActionButton</li>                    
+                        <li>IconButton</li>                    
+                        <li>OutlineButton</li>                    
+                        <li>PopupMenuButton</li>                    
+                        <li>RaisedButton</li>                    
+                    </ul>
+                </li>
+                <li>Input and selections
+                    <ul>
+                        <li>Checkbox</li>
+                        <li>Date & Time Pickers</li>
+                        <li>Radio</li>
+                        <li>Slider</li>                    
+                        <li>Switch</li>                    
+                        <li>TextField</li>                    
+                    </ul>
+                </li>
+                <li>Dialogs, alerts, and panels
+                    <ul>
+                        <li>AlertDialog</li>
+                        <li>BottomSheet</li>
+                        <li>ExpansionPanel</li>
+                        <li>SimpleDialog</li>                    
+                        <li>SnackBar</li>                    
+                    </ul>
+                </li>
+                <li>Information displays
+                    <ul>
+                        <li>Card</li>
+                        <li>Chip</li>
+                        <li>CircularProgressIndicator</li>
+                        <li>DataTable</li>                    
+                        <li>GridView</li>                    
+                        <li>Icon</li>                    
+                        <li>Image</li>                    
+                        <li>LinearProgressIndicator</li>                    
+                        <li>Tooltip</li>                    
+                    </ul>
+                </li>    
+                <li>Layout
+                    <ul>
+                        <li>Divider</li>
+                        <li>ListTile</li>
+                        <li>Stepper</li>
+                    </ul>
+                </li>                    
+            </ul>          
+        </li>    
+            
+        <li>Painting and effects
+            <ul>
+                <li>BackdropFilter</li>
+                <li>ClipOval</li>
+                <li>ClipPath</li>
+                <li>ClipRect</li>
+                <li>CustomPaint</li>
+                <li>DecoratedBox</li>
+                <li>FractionalTranslation</li>
+                <li>Opacity</li>
+                <li>RotatedBox</li>
+                <li>Transform</li>
+            </ul>          
+        </li>
+        <li>Scrolling
+            <ul>
+                <li>CustomScrollView</li>
+                <li>GridView</li>
+                <li>ListView</li>
+                <li>NestedScrollView</li>
+                <li>NotificationListener</li>
+                <li>PageView</li>
+                <li>RefreshIndicator</li>
+                <li>ScrollConfiguration</li>
+                <li>Scrollable</li>
+                <li>Scrollbar</li>
+                <li>SingleChildScrollView</li>
+            </ul>          
+        </li>
+        <li>Styling
+            <ul>
+                <li>MediaQuery</li>
+                <li>Padding</li>
+                <li>Theme</li>
+            </ul>          
+        </li>
+        <li>Text
+            <ul>
+                <li>DefaultTextStyle</li>
+                <li>RichText</li>
+                <li>Text</li>
+            </ul>          
+        </li>
+    </ul>
+</div>
+<a href="https://flutter.dev/docs/development/ui/widgets">flutter.dev</a><br>
 
 <a href="http://www.macoratti.net/19/06/flut_widgt1.htm" target="_blank">Fonte</a>

@@ -1,0 +1,41 @@
+<h2>Criação</h2>
+É preciso colocar o metodo de criacao na PRIMEIRA activity
+
+<pre>
+try{
+    //criar banco
+    SQLiteDatabase bancoDados = openOrCreateDatabase("NOME-DO-BANCO" , MODE_PRIVATE , null);
+
+    //criar tabela
+    bancoDados.execSQL(" CREATE TABLE IF NOT EXISTS alunos ( id PRIMARY KEY , nome VARCHAR(50 ) ; ");
+
+    //populando
+    bancoDados.execSQL(" INSERT INTO alunos (nome) VALUES ('Roberto ') ;") ;
+    bancoDados.execSQL(" INSERT INTO alunos (nome) VALUES ('Tonia ') ;") ;
+    bancoDados.execSQL(" INSERT INTO alunos (nome) VALUES ('Luisa ') ;") ;
+}catch( Exception e){
+    e.printStackTrace();
+}</pre>
+
+<h2>Buscar Dados</h2>
+<pre>
+    try{
+        SQLiteDatabase bancoDados = openOrCreateDatabase("NOME-DO-BANCO" , MODE_PRIVATE , null);
+        Cursor cursor = bancoDados.rawQuery(" SELECT id,nome FROM alunos ", null);
+
+        // indices da tabela
+        int indiceNome = cursor.getColumnIndex("nome");
+
+        // voltar o cursor para o primeiro item
+        cursor.moveToFirst();
+
+        while( cursor != null){
+            //Log.i("nome: ", cursor.getString(1) );
+            Log.i("nome: ", cursor.getString(indiceNome) );
+            cursor.moveToNext();
+        }
+    }catch( Exception e){
+        e.printStackTrace();
+    }</pre>    
+
+</pre>

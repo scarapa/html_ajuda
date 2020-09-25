@@ -1,0 +1,179 @@
+<h2>Criar Componente</h2>
+<pre>
+import 'package:flutter/material.dart';
+class SettingsWidget extends StatefulWidget {
+    SettingsWidget({Key key}) : super(key: key);
+    @override
+    _SettingsWidgetState createState() =&gt; new _SettingsWidgetState();
+}
+
+class _SettingsWidgetState extends State&lt;SettingsWidget&gt; {
+    @override
+    Widget build(BuildContext context) {
+    return new Container(
+        color: Colors.white,
+        child: new Center(
+        child: new Text("Hello Medium"),
+        ),
+    );
+    }
+}
+</pre>
+
+<pre>
+List _cities = ["Cluj-Napoca", "Bucuresti", "Timisoara", "Brasov", "Constanta"];
+
+List&lt;DropdownMenuItem&lt;String&gt;&gt; _dropDownMenuItems;
+String _currentCity;
+
+@override
+void initState() {
+    _dropDownMenuItems = getDropDownMenuItems();
+    _currentCity = _dropDownMenuItems[0].value;
+    super.initState();
+}
+// here we are creating the list needed for the DropDownButton
+List&lt;DropdownMenuItem&lt;String&gt;&gt; getDropDownMenuItems() {
+    List&lt;DropdownMenuItem&lt;String&gt;&gt; items = new List();
+    for (String city in _cities) {
+    // here we are creating the drop down menu items, you can customize the item right here
+    // but I'll just use a simple text for this
+    items.add(new DropdownMenuItem(
+        value: city,
+        child: new Text(city)
+    ));
+    }
+    return items;
+}
+</pre>
+
+
+<pre>
+@override
+Widget build(BuildContext context) {
+    return new Container(
+        color: Colors.white,
+        child: new Center(
+            child:
+            new DropdownButton(
+            value: _currentCity,
+            items: _dropDownMenuItems,
+            onChanged: changedDropDownItem,
+            )
+        )
+    );
+}
+
+void changedDropDownItem(String selectedCity) {
+    print("Selected city $selectedCity, we are going to refresh the UI");
+    setState(() {
+    _currentCity = selectedCity;
+    });
+}    
+</pre>
+
+<pre>
+import 'package:flutter/material.dart';
+class SettingsWidget extends StatefulWidget {
+    SettingsWidget({Key key}) : super(key: key);
+
+    @override
+    _SettingsWidgetState createState() =&gt; new _SettingsWidgetState();
+}
+
+class _SettingsWidgetState extends State&lt;SettingsWidget&gt; {
+
+    List _cities = ["Cluj-Napoca", "Bucuresti", "Timisoara", "Brasov", "Constanta"];
+
+    List&lt;DropdownMenuItem&lt;String&gt;&gt; _dropDownMenuItems;
+    String _currentCity;
+
+    @override
+    void initState() {
+    _dropDownMenuItems = getDropDownMenuItems();
+    _currentCity = _dropDownMenuItems[0].value;
+    super.initState();
+    }
+
+    List&lt;DropdownMenuItem&lt;String&gt;&gt; getDropDownMenuItems() {
+    List&lt;DropdownMenuItem&lt;String&gt;&gt; items = new List();
+    for (String city in _cities) {
+        items.add(new DropdownMenuItem(
+            value: city,
+            child: new Text(city)
+        ));
+    }
+    return items;
+    }
+
+    @override
+    Widget build(BuildContext context) {
+    return new Container(
+        color: Colors.white,
+        child: new Center(
+            child: new Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: &lt;Widget&gt;[
+                new Text("Please choose your city: "),
+                new Container(
+                padding: new EdgeInsets.all(16.0),
+                ),
+                new DropdownButton(
+                value: _currentCity,
+                items: _dropDownMenuItems,
+                onChanged: changedDropDownItem,
+                )
+            ],
+            )
+        ),
+    );
+    }
+
+    void changedDropDownItem(String selectedCity) {
+    setState(() {
+        _currentCity = selectedCity;
+    });
+    }
+}
+</pre>
+<a href="https://medium.com/@boldijar.paul/comboboxes-in-flutter-cabc9178cc95">stackoverflow</a>
+
+<h2>Estilisando</h2>
+<pre>
+Container(
+    padding:
+        EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+    decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10)),
+    
+    // dropdown below..
+    child: DropdownButton&lt;String&gt;(
+        value: dropdownValue,
+        icon: Icon(Icons.arrow_drop_down),
+        iconSize: 42,
+        underline: SizedBox(),
+        onChanged: (String newValue) {
+            setState(() {
+            dropdownValue = newValue;
+            });
+        },
+        items: &lt;String&gt;[
+            'One',
+            'Two',
+            'Three',
+            'Four'
+        ].map&lt;DropdownMenuItem&lt;String&gt;&gt;((String value) {
+            return DropdownMenuItem&lt;String&gt;(
+            value: value,
+            child: Text(value),
+            );
+        }).toList()),
+    )
+</pre>
+
+
+<a href="https://stackoverflow.com/questions/46530527/how-should-i-customize-dropdownbuttons-and-dropdownmenuitems-in-flutter">stackoverflow</a><br>
+<a href="https://medium.com/@yashodgayashan/flutter-dropdown-button-widget-469794c886d0">medium</a><br>
+<a href="https://www.coderzheaven.com/2019/04/16/dropdown-list-in-flutter/"coderzheaven></a>

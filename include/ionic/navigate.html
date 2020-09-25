@@ -1,11 +1,53 @@
+<style>
+    body{ counter-reset: aga2 }
+    h2::before{
+        counter-increment: aga2;
+        content: counter(aga2) " - ";
+        width:100%;
+    }	
+    h2{ 
+        font-weight: bold;
+        counter-reset: aga3;
+        border-bottom:5px solid #333; 
+        padding:0 0 -10px 0 !important;
+        margin-bottom: 20px;
+        margin-top: 20px;        
+    }
+
+    h3::before{
+        counter-increment: aga3;
+        content: counter(aga2)"."counter(aga3) " - ";
+    }	
+    h3{ counter-reset: aga4; }
+
+    h4::before{
+        margin-left:25px;
+        counter-increment: aga4;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4) " - ";
+    }	
+    h4{ counter-reset: aga5; }
+
+    h5::before{
+        margin-left:25px;
+        counter-increment: aga5;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5) " - ";
+    }
+    h5{ counter-reset: aga6; }	    
+    
+    h6::before{
+        margin-left:25px;
+        counter-increment: aga6;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5)"."counter(aga6) " - ";
+    }
+</style>
 <ol>
     <li>Botao</li>
     <li>Rota</li>
-    <li></li>
+    <li>Parametros</li>
 </ol>
 
 
-<h3>Botao</h3>
+<h2>Botao</h2>
 2 botões de extrema importância para a navegação sãos os botões: <br/>
 (<i class="fa fa-navicon"></i>) extende o menu na esquerda<br>
 (<i class="fa fa-arrow-left"></i>) retorna uma página
@@ -24,7 +66,7 @@
 <hr>
 
 
-<h3>Rota</h3>
+<h2>Rota</h2>
 
 <code>lista.page.html</code>
 <pre><kbd>HTML</kbd>
@@ -96,3 +138,39 @@ Se você deseja animar para frente use (<b>forward</b>) ou para trás(<b>backwar
 &lt;/ion-content&gt;</pre>
 
 <a href="https://ionicframework.com/blog/navigating-the-change-with-ionic-4-and-angular-router/">ionicframework</a>
+
+<h2>Parametros pela Rota</h2>
+Passando multiplos parametros pela rota
+<br/><br/>
+
+<code>app-routing.module.ts</code>
+<pre>
+{
+    path: 'page1/:id1/:id2',
+    loadChildren: () => import('./pages/page1/page1.module').then(m => m.Page1PageModule)
+},
+....   
+</pre>
+<code>page.html</code>
+<pre>
+&lt;ion-item button [routerLink]="['/', 'page1', id1,id2]" &gt;Go to Page1 &lt;/ion-item&gt;
+// ou 
+&lt;ion-item button routerLink="/feira-home/{{id1}}/{{id2}}" &lt;/ion-item&gt;
+</pre>
+
+<code>page1.page.ts</code>
+<pre>
+import { ActivatedRoute, Router} from '@angular/router';
+
+..
+constructor(private route : ActivatedRoute, private router : Router){}
+
+ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+        let id1 = params.get('id1');
+        let id2 = params.get('id2');
+    });
+}    
+</pre>
+
+<a href="https://stackoverflow.com/questions/60825844/how-to-pass-multiple-route-parameters-in-ionic-angular">stackoverflow</a>

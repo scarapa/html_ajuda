@@ -1,6 +1,6 @@
 
 <h3>1 - Construção do método genérico</h3>
-<pre><code>
+<pre>
 function ajaxGenericoGet(url, variaveis) {
     var tmp = [];
     $.ajax({
@@ -38,21 +38,21 @@ function ajaxGenericoGet(url, variaveis) {
     });
     return tmp;
 }
-</code></pre>
+</pre>
 
 <h3>2 - Gerando e enviando os dados</h3>
 Basicamente são 2 parametros , urlController pra onde será enviados os dados e o segundo parametro arrayVariaveis , são os 
 dados propriamente ditos
-<pre><code>var arrayVariaveis = {ajax: 1, metodo: 1, data_festa: '15/11/1981'};
+<pre>var arrayVariaveis = {ajax: 1, metodo: 1, data_festa: '15/11/1981'};
 var dados = ajaxGenericoGet(urlController, arrayVariaveis);
-</code></pre>
+</pre>
 
 <h3>3 - Recebendo os dados no PHP</h3>
-<pre><code>header("Content-type: application/json");
+<pre>header("Content-type: application/json");
 
 if ( (isset($_GET['ajax'])) && ($_GET['metodo'] == 1) ) {
     $data = $_REQUEST['data_festa'];
     $aniversario = new Festa();
     echo $aniversario->buscarFesta($data);
 }
-</code></pre>
+</pre>

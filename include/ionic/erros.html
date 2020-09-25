@@ -111,6 +111,7 @@ Built the following apk(s):
         <b style="color:#29B8DB">native-run.cmd android --app platforms\android\app\build\outputs\apk\debug\app-d...</b> exited with exit code 1.
 
         Re-running this command with the --verbose flag may provide more information.</pre>
+<hr>
 
 <h3>Aplicação não sobe no DEVICE</h3>
 <pre class="terminal">PS E:\EMATER\institucional\institucional> <span style="color: yellow">ionic</span> cordova run android --device
@@ -124,6 +125,7 @@ See "C:\Users\49583\AppData\Local\Temp\ng-57452o\angular-errors.log" for further
 
         Re-running this command with the --verbose flag may provide more information.</pre>
 
+<hr>
 
 <h3>Erro no deploy</h3>
 <pre class="terminal">* What went wrong:
@@ -152,10 +154,59 @@ BUILD FAILED in 13s
 }</pre>
 <a href="https://stackoverflow.com/questions/52712063/build-failing-during-merge-resources-with-android-gradle-plugin-3-3-0/54615423#54615423">stackoverflow</a>
 
+<hr>
+
 <h3>ANDROID_SDK_ROOT=undefined</h3>
 
+<hr>
 
 <h3>ionic.ps1 não pode ser carregado</h3>
 <h5>ionic.ps1 não pode ser carregado porque a execução de scripts foi desabilitada neste sistema. Para obter mais informações, consulteabout_Execution_Policies em https://go.microsoft.com/fwlink/?LinkID=135170.</h5>
 Não era possivel instalar o <code>ionic</code> atraves do comando no terminal <code>npm install -g ionic</code>
 <a href="https://support.microsoft.com/pt-br/help/2411920/you-can-t-run-scripts-in-azure-active-directory-module-for-windows-pow">Fonte</a>
+
+<hr>
+
+<h3>ERROR TypeError: Cannot read property 'data' of undefined</h3>
+Esse erro aparece quando tenta navegar de uma pagina para outra.
+<pre style="color:Red">ERROR TypeError: Cannot read property 'data' of undefined
+at Object.eval [as updateDirectives] (PrevisaoShowPage.html:13)
+at Object.debugUpdateDirectives [as updateDirectives] (vendor-es2015.js:77031)
+at checkAndUpdateView (vendor-es2015.js:76043)
+at callViewAction (vendor-es2015.js:76409)
+at execComponentViewsAction (vendor-es2015.js:76337)
+at checkAndUpdateView (vendor-es2015.js:76050)
+at callViewAction (vendor-es2015.js:76409)
+at execEmbeddedViewsAction (vendor-es2015.js:76366)
+at checkAndUpdateView (vendor-es2015.js:76044)
+at callViewAction (vendor-es2015.js:76409) </pre>
+
+<code>Solucao:</code><br>
+Inserir antes do <b>ngFor</b> o <b>ngIf</b> para nao ocorrer o loop sem que os dados ainda nao tenham chegado no loop, exemplo abaixo
+<pre>
+&lt;ion-content fullscreen="true"&gt;
+    &lt;div id="divPrevisao" <b style="color:red">*ngIf="this.dados"</b>&gt;
+        &lt;table class="tabelaPrevisao"&gt;
+            &lt;div <b style="color:red">*ngFor="let opcao of this.dados.data"</b>&gt;
+                &lt;div *ngIf="this.opcao"&gt;
+                    &lt;tr&gt;
+                        &lt;td class="previsao-imagem" valign=top&gt;
+                            &lt;img src="http://www.emater.tche.br/site/imagens/portal-tempo/realistic/128px/{{opcao.text_icon.icon.day}}.png"&gt;
+                        &lt;/td&gt;
+                        &lt;td class="previsao-data"&gt;
+                            {{opcao.dia_semana}} &lt;br&gt;
+                            {{opcao.dia_mes}}/{{opcao.mes_abreviado}} 
+                            &lt;/td&gt;
+                        &lt;td class="previsao-frase"&gt;{{opcao.text_icon.text.phrase.reduced}}&lt;/td&gt;                        
+                        &lt;td class="previsao-temperatura"&gt;
+                            &lt;span class="previsao-temperatura-max"&gt;{{opcao.temperature.max}}°&lt;/span&gt;&lt;br&gt;
+                            &lt;span class="previsao-temperatura-min"&gt;{{opcao.temperature.min}}°&lt;/span&gt;
+                        &lt;/td&gt;
+                    &lt;/tr&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+&lt;/ion-content&gt;    
+</pre>
+

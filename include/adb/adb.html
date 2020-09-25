@@ -90,8 +90,31 @@ Feitas as configurações, basta ligar o cabo entre o smartphone e o PC, abrir a
 <h2>Comandos</h2>
 Dentro de android-sdk-windows\platform-tools encontram-se várias ferramentas que permitem que o PC interaja com o dispositivo móvel Android. <br>
 Aqui ficam alguns comandos:
+
 <h3>LISTAR DISPOSITIVOS</h3>
 <pre class="terminal">$ adb devices</pre>
+retorno:
+<pre>
+    List of devices attached
+    emulator-5554   device    
+</pre>
+<a href="https://stackoverflow.com/questions/18370219/how-to-use-adb-in-android-studio-to-view-an-sqlite-db">stackoverflow</a>
+
+<h3>ACESSAR DISPOSITIVOS</h3>
+<pre class="terminal">$ adb -s emulator-<b style="color:Red">xxxx</b> shell</pre>
+o que está em <b style="color:Red">vermelho</b> tem que ser trocado pelo dispositivo, conforme abaixo:
+<pre class="terminal">adb -s emulator-5554 shell</pre>
+retorno:
+<pre>generic_x86_arm:/ $</pre>
+<a href="https://stackoverflow.com/questions/18370219/how-to-use-adb-in-android-studio-to-view-an-sqlite-db">stackoverflow</a>
+
+<h3>LISTAR PACOTES/APKs</h3>
+Depois de estar dentro do dispositivo entre com o comando:
+<pre class="terminal">$ pm list packages</pre>
+Procurando por algo especifico
+<pre class="terminal">$ pm list packages | grep atajo</pre>
+<a href="https://stackoverflow.com/questions/18370219/how-to-use-adb-in-android-studio-to-view-an-sqlite-db">stackoverflow</a><br>
+<a href="https://medium.com/@k1d_bl4ck/how-to-extract-the-database-and-other-things-from-an-enterprise-android-app-2194a52b249b">medium</a>
 
 <h3>ENVIAR ARQUIVOS PARA DO DISPOSITIVO </h3>
 <pre class="terminal">$ adb push </pre>

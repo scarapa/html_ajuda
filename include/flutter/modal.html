@@ -1,0 +1,233 @@
+<style>
+    body{ counter-reset: aga2 }
+    h2::before{
+        counter-increment: aga2;
+        content: counter(aga2) " - ";
+        width:100%;
+    }	
+    h2{ 
+        font-weight: bold;
+        counter-reset: aga3;
+        border-bottom:5px solid #333; 
+        padding:0 0 -10px 0 !important;
+        margin-bottom: 20px;
+        margin-top: 20px;        
+    }
+
+    h3::before{
+        counter-increment: aga3;
+        content: counter(aga2)"."counter(aga3) " - ";
+    }	
+    h3{ counter-reset: aga4; }
+
+    h4::before{
+        margin-left:25px;
+        counter-increment: aga4;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4) " - ";
+    }	
+    h4{ counter-reset: aga5; }
+
+    h5::before{
+        margin-left:25px;
+        counter-increment: aga5;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5) " - ";
+    }
+    h5{ counter-reset: aga6; }	    
+    
+    h6::before{
+        margin-left:25px;
+        counter-increment: aga6;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5)"."counter(aga6) " - ";
+    }
+    .destaque{color:red;}
+</style>
+Retorno de dados de um widget modal 
+
+<div class="centro center">
+    <img src="images/flutter-modal-paramentros-001.jpg" style="width:40%" class="bp">
+</div>
+<h2>chamada do metodo</h2>
+Primeiramente o modal é chamado atraves de um metodo onPressed comum de qualquer lugar, 
+passando o contexto
+<pre>_modalAdicionarProducaoLeite(context);</pre>
+
+<h2>Criacao do metodo do Modal</h2>
+Nesse <b>MESMO</b> arquivo, teremos o metodo criador do modal e no mesmo método
+ o retorno dos dados.
+<pre>
+_modalAdicionarProducaoLeite(BuildContext context) async {
+    var retornoLista = await showDialog(
+        context: context,
+        builder: (context) {
+            return ModalConcentradoDialog();
+        }
+    );
+    //SE A LISTA VIER PREENCHIDA
+    if(retornoLista != null) {
+        adicionarConcentrado(int.parse( retornoLista[0] ) , int.parse( retornoLista[1] ) , double.parse( retornoLista[2] ) );
+    }
+}    
+</pre>
+
+<h2>Janela Modal</h2>
+Em <b>OUTRO</b> arquivo, teremos o nosso modal.<br>
+<code>ConcentradoModalDialog.dart</code>
+<pre>
+    import 'package:flutter/material.dart';
+    import 'package:proposta_app/models/sisleite/Concentrado.dart';
+    
+    class ModalConcentradoDialog extends StatefulWidget {
+      @override
+      _ModalConcentradoDialogState createState() =&gt; _ModalConcentradoDialogState();
+    }
+    
+    class _ModalConcentradoDialogState extends State&lt;ModalConcentradoDialog&gt; {
+    
+        List&lt;DropdownMenuItem&lt;String&gt;&gt; dropDownConcentradoItems;
+        var _concentradoLista = new List&lt;Concentrado&gt;();
+        List&lt;DropdownMenuItem&lt;Concentrado&gt;&gt; _dropDownConcentradoItems;
+        Concentrado concentrado = new Concentrado();
+        Concentrado concentradoSelecionado;
+    
+        final _concentradoQuantidadeController = TextEditingController();
+        final _concentradoValorGastoController = TextEditingController();
+    
+        @override
+        void initState() {
+            _buscar_listaConcentrado();
+            super.initState();
+        }
+    
+        _buscar_listaConcentrado() async {
+            _concentradoLista = await concentrado.buscar();
+            setState(() {
+                _dropDownConcentradoItems = getDropDownConcentradoMenuItems(_concentradoLista);
+                concentradoSelecionado = _dropDownConcentradoItems[0].value;
+            });
+        }
+    
+        void _changedDropDownConcentradoItem(Concentrado concentradoSelecionado) {
+            setState(() {
+                concentradoSelecionado = concentradoSelecionado;
+            });
+        }
+    
+        List&lt;DropdownMenuItem&lt;Concentrado&gt;&gt; getDropDownConcentradoMenuItems(concentrados) {
+            List&lt;DropdownMenuItem&lt;Concentrado&gt;&gt; items = new List();
+            for (Concentrado concentrado in concentrados) {
+                items.add(
+                    new DropdownMenuItem(
+                        value: concentrado,
+                        child: new SizedBox(
+                            width: 170,
+                            child: new Text(concentrado.titulo)
+                        )
+                    )
+                );
+            }
+            return items;
+        }
+      @override
+      Widget build(BuildContext context) {
+          return
+              Scaffold(
+                  backgroundColor: Colors.black12,
+                  body: Center(
+                      child: Container(
+                          width: 250,
+                          height: 300 ,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                          ),
+                          child: Column(
+                              children: &lt;Widget&gt;[
+                                  Row(
+                                      children: &lt;Widget&gt;[
+                                          Icon(Icons.spa),
+                                          Container(
+                                              padding: EdgeInsets.all(10.0),
+                                              child: new DropdownButton(
+                                                  value: concentradoSelecionado,
+                                                  items: _dropDownConcentradoItems,
+                                                  onChanged: _changedDropDownConcentradoItem,
+                                              ),
+                                          ),
+                                      ],
+                                  ),
+                                  Row(
+                                      children: &lt;Widget&gt;[
+                                          Icon(Icons.filter_9_plus),
+                                          new Flexible(
+                                              child: Padding(
+                                                  padding: EdgeInsets.all(10.0),
+                                                  child: TextField(
+                                                      keyboardType: TextInputType.number,
+                                                      decoration: InputDecoration(
+                                                          hintText: "Quantidade",
+                                                          border: new OutlineInputBorder(
+                                                              borderRadius: BorderRadius.circular(25),
+                                                          ),
+                                                      ),
+                                                      controller: _concentradoQuantidadeController,
+                                                  ),
+                                              ),
+                                          ),
+                                      ],
+                                  ),
+                                  Row(
+                                      children: &lt;Widget&gt;[
+                                          Icon(Icons.filter_9_plus),
+                                          new Flexible(
+                                              child: Padding(
+                                                  padding: EdgeInsets.all(10.0),
+                                                  child: TextField(
+                                                      keyboardType: TextInputType.number,
+                                                      decoration: InputDecoration(
+                                                          hintText: "Valor Gasto",
+                                                          border: new OutlineInputBorder(
+                                                              borderRadius: BorderRadius.circular(25),
+                                                          ),
+                                                      ),
+                                                      controller: _concentradoValorGastoController,
+                                                  ),
+                                              ),
+                                          ),
+                                      ],
+                                  ),
+                                  Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      children: &lt;Widget&gt;[
+                                          RaisedButton(
+                                              child: Text("CANCELAR"),
+                                              onPressed: (){
+                                                  Navigator.of(context).pop();
+                                              },
+                                          ),
+                                          RaisedButton(
+                                              child: Text("SALVAR"),
+                                              onPressed: (){
+                                                  <b class="destaque">var lista = _adicionarConcentrado();
+                                                  Navigator.pop(context, lista);</b>
+                                              },
+                                          ),
+                                      ],
+                                  )
+    
+                              ],
+                          ),
+                      ),
+                  ),
+              );
+      }
+    <b class="destaque">
+    _adicionarConcentrado(){
+        List&lt;dynamic&gt; lista = [];
+        lista.add( concentradoSelecionado.id );
+        lista.add( _concentradoQuantidadeController.text );
+        lista.add( _concentradoValorGastoController.text );
+        return lista;
+    }</b>
+}
+</pre>
+
+<a href="https://stackoverflow.com/questions/51219330/flutter-run-function-after-showdialog-is-dismissed">stackoverflow</a>

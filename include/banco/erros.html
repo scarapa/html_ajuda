@@ -1,17 +1,18 @@
-﻿<h3>SQLSERVER - ERRO: Heterogeneous queries</h3>
+﻿
+<h3>SQLSERVER - ERRO: Heterogeneous queries</h3>
 Quando aparecer essa mensagem de erro: <br/><br/>
 <code><span style="font-style:italic;">Heterogeneous queries require the ANSI_NULLS and ANSI_WARNINGS options to be set for the connection. 
 This ensures consistent query semantics. Enable these options and then reissue your query.</span></code><br/><br/>
 Isso acontence as vezes por conta de que você esteja executando uma consulta em um servidor vinculado que não é uma caixa do SQL Server, 
 então é mais do que provável que você precise ativar esses dois recursos para padronizar a maneira como determinados operadores de comparação são manipulados em Diferentes bases de dados.
 Solução:
-<pre><code>mssql_query("SET ANSI_NULLS ON ; SET ANSI_WARNINGS ON ;");</code></pre>
+<pre>mssql_query("SET ANSI_NULLS ON ; SET ANSI_WARNINGS ON ;");</pre>
 <a href="https://stackoverflow.com/questions/13354665/sql-linked-server-query-error-on-php">Fonte</a>
 
 
 <h3>SQLSERVER - ERRO: erro na consulta de string com acentuação</h3>			
 Quando aparecer essa mensagem de erro: <br/><br/>
-<pre><code>WHERE (p.nm_produtor COLLATE sql_latin1_general_cp1251_ci_as) LIKE ('álvaro%' COLLATE sql_latin1_general_cp1251_ci_as)</code></pre>
+<pre>WHERE (p.nm_produtor COLLATE sql_latin1_general_cp1251_ci_as) LIKE ('álvaro%' COLLATE sql_latin1_general_cp1251_ci_as)</pre>
 <a href="http://www.devmedia.com.br/eliminando-caracteres-especiais-de-strings-no-sql-server-collate/25286">Fonte 1</a>		
 
 
@@ -20,13 +21,13 @@ Quando aparecer essa mensagem de erro: <br/><br/>
 <code><span style="font-style:italic;">Cannot insert explicit value for identity column in table 'NOME_SUA_TABELA' when IDENTITY_INSERT is set to OFF.</span></code><br/><br/>
 Isso acontece porque na sua tabela existe o relacionamento de ser chave estrangeira em outra tabela, mas é possível FORÇAR  o insert.<br/>
 Solução:
-<pre><code>mssql_query("SET IDENTITY_INSERT tblCad_Etapas ON;");</code></pre>
+<pre>mssql_query("SET IDENTITY_INSERT tblCad_Etapas ON;");</pre>
 
 <h3>SQLSERVER - ERRO AO TENTAR CRIAR FK - CHAVE ESTRANGEIRA</h3>
 <code><span style="font-style:italic;">SQLSERVER Msg 547, Level 16, State 0, Line 2 The ALTER TABLE statement conflicted with the FOREIGN KEY constraint ...</span></code><br/><br/>
 Isso acontece porque não se pode construir a integridade das chaves já populado.<br/>
 Solução: limpar a base e dar comando de construção, exemplo abaixo:
-<pre><code>ALTER TABLE PEDIDOS ADD CONSTRAINT FK_COD_CLI FOREIGN KEY (COD_CLI) REFERENCES CLIENTES(COD);</code></pre>
+<pre>ALTER TABLE PEDIDOS ADD CONSTRAINT FK_COD_CLI FOREIGN KEY (COD_CLI) REFERENCES CLIENTES(COD);</pre>
 <a href="http://www.devmedia.com.br/criando-banco-e-tabelas-garantindo-a-integridade-dos-dados/24426">DEVMEDIA</a>
 
 <h3>SQLSERVER - ERRO:Implicit conversion of varchar</h3>
@@ -37,3 +38,41 @@ A solução abaixo:
 <pre>CAST(e.ds_Esreg COLLATE sql_latin1_general_cp1251_ci_as AS VARCHAR(100))+' - '+CAST(u.ds_uniop COLLATE sql_latin1_general_cp1251_ci_as AS VARCHAR(100))</pre>
 
 <br clear="all">
+
+
+<style>
+d1 {
+    margin: 0;
+    padding: 0.3em;
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #ff0000;
+}
+p {
+    margin: 0;
+    padding: 0.5em;
+    border: 0.1em solid red;
+    background-color: #ffeeee;
+} 
+</style>
+
+<h3>phpMyAdmin - Erro</h3>
+<d1>phpMyAdmin - Erro</d1>
+<p>A extensão <a href="./url.php?url=https%3A%2F%2Fphp.net%2Fmanual%2Fpt_BR%2Fbook.mysqli.php" target="Documentation"><em>mysqli</em></a> não está presente. Por favor, verifique a configuração do PHP. Verifique <a href="./doc/html/faq.html#faqmysql" target="documentation">nossa documentação</a> para mais informações.</p>
+
+<h4>Descobrindo o php.ini no terminal</h4>
+Se você tem acesso a um terminal pode exibir todas as informações do php.ini direto no terminal, para isso digite:
+<pre class="terminal">$ php -i</pre>
+E para facilitar a identificação do caminho completo do seu arquivo de configuração do PHP (php.ini) execute o seguinte comando no terminal:
+<pre class="terminal">$ php -i | grep 'Configuration File'</pre>
+<a href="https://odesenvolvedor.com.br/como-encontrar-o-php-inir.html">odesenvolvedor</a>
+
+<code>SOLUCAO</code>
+Siga este comando para limpar as configurações antigas:
+<pre class="terminal">$ sudo apt purge php7.2-* phpmyadmin</pre>
+Depois de removido, reinstale os pacotes:
+<pre class="terminal">$ sudo apt install apache2 php7.2 php7.2-mysql # Add other dependent if you need ...</pre>
+Agora, <b>mysqli</b> deve existir em <b>/etc/php/7.2/mods-available/20-mysqli.ini</b>
+<a href="https://stackoverflow.com/questions/53911221/error-in-phpmyadmin-mysqli-extension-is-missing">stackoverflow</a>
+

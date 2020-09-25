@@ -1,0 +1,51 @@
+<h2>SnackBar</h2>
+O toast no flutter é chamado de <b>SNACKBAR</b> é funcionar melhor dentro do layout Scaffold.
+<br><br>
+Exemplo 1:
+<pre>
+    import 'package:flutter/material.dart';
+
+    void main() => runApp(SnackBarDemo());
+    
+    class SnackBarDemo extends StatelessWidget {
+      @override
+      Widget build(BuildContext context) {
+        return MaterialApp(
+          title: 'SnackBar Demo',
+          home: Scaffold(
+            appBar: AppBar(
+              title: Text('SnackBar Demo'),
+            ),
+            body: SnackBarPage(),
+          ),
+        );
+      }
+    }
+    
+    class SnackBarPage extends StatelessWidget {
+      @override
+      Widget build(BuildContext context) {
+        return Center(
+          child: RaisedButton(
+            onPressed: () {
+              final snackBar = SnackBar(
+                content: Text('Yay! A SnackBar!'),
+                action: SnackBarAction(
+                  label: 'Undo',
+                  onPressed: () {
+                    // Some code to undo the change.
+                  },
+                ),
+              );
+    
+              // Find the Scaffold in the widget tree and use
+              // it to show a SnackBar.
+              Scaffold.of(context).showSnackBar(snackBar);
+            },
+            child: Text('Show SnackBar'),
+          ),
+        );
+      }
+    }</pre>
+<a href="https://flutter.dev/docs/cookbook/design/snackbars" target="_blank">flutter.dev</a>
+      

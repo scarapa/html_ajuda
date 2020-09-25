@@ -1,0 +1,153 @@
+<style>
+    body{ counter-reset: aga2 }
+    h2::before{
+        counter-increment: aga2;
+        content: counter(aga2) " - ";
+        width:100%;
+    }	
+    h2{ 
+        font-weight: bold;
+        counter-reset: aga3;
+        border-bottom:5px solid #333; 
+        padding:0 0 -10px 0 !important;
+        margin-bottom: 20px;
+        margin-top: 20px;        
+    }
+
+    h3::before{
+        counter-increment: aga3;
+        content: counter(aga2)"."counter(aga3) " - ";
+    }	
+    h3{ counter-reset: aga4; }
+
+    h4::before{
+        margin-left:25px;
+        counter-increment: aga4;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4) " - ";
+    }	
+    h4{ counter-reset: aga5; }
+
+    h5::before{
+        margin-left:25px;
+        counter-increment: aga5;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5) " - ";
+    }
+    h5{ counter-reset: aga6; }	    
+    
+    h6::before{
+        margin-left:25px;
+        counter-increment: aga6;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5)"."counter(aga6) " - ";
+    }
+</style>
+
+
+<div style="float:left;width:30%;margin:10px 40px 10px 20px;">
+    <img src="images/flutter-campos-mascara-001.jpg" class="bp">
+</div>
+
+<h2>Biblioteca brasil_fields 0.4.0</h2>
+Este package facilita o desenvolvimento com a linguagem Dart em projetos que utilizam campos com os padrões e formatos brasileiros.
+
+<h2>Instalacao - Inserir dependencia</h2>
+inserir no <code>pubspec.yaml</code>
+<pre>dependencies:
+    brasil_fields: ^0.4.0</pre>
+
+Baixando pacote
+<pre class="terminal">$ flutter pub get</pre>
+ou clicar em <b>pub get</b> no arquivo <code>pubspec.yaml</code>
+
+<h2>Mascaras/Formatos</h2>
+<ul>
+    <li>CPF (999.999.99-99)</li>
+    <li>CNPJ (99.999.999/9999-99)</li>
+    <li>CEP (99.999-999)</li>
+    <li>Real (R$) (20.550)</li>
+    <li>Centavos (R$) (20,90)</li>
+    <li>Telefone ( (99) 9999-9999)</li>
+    <li>Data (01/01/1900)</li>
+    <li>Hora (23:59)</li>
+    <li>Cartão bancário (0000 1111 2222 3333 4444)</li>
+    <li>Validade de cartão bancário (12/24)</li>
+    <li>Altura (2,22)</li>
+    <li>Peso (111,1)</li>
+    <li>Cpf ou Cnpj (se adapta conforme os números são inseridos)</li>
+</ul>
+
+
+<h2>Utilizando</h2>
+
+<h3>Helper</h3>
+Criar um arquivo na pasta <b>helpers</b> o arquivo de widgets, no meu caso escolhi esse nome:<code>LinhaFormatter.dart</code>
+<pre>
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+class LinhaFormatter extends StatelessWidget {
+    final String text;
+    final TextInputFormatter formatter;
+    final TextEditingController controller;
+    const LinhaFormatter({
+        Key key,
+        @required this.text,
+        @required this.formatter,
+        @required this.controller,
+    }) : super(key: key);
+
+    @override
+    Widget build(BuildContext context) {
+        return Row(
+            children: &lt;Widget&gt;[
+                ( this.text != null) ?
+                Container(
+                    width: MediaQuery.of(context).size.width / 4.5,
+                    child: Text(
+                        text,style: const TextStyle(fontSize: 20),
+                    ),
+                )
+                    :
+                Container(),
+                ( this.text != null) ?  const SizedBox(width: 16) : const SizedBox(width: 0,),
+
+                Expanded(
+                    child: TextField(
+                        controller: controller,
+                        decoration: const InputDecoration(
+                            border: const OutlineInputBorder(),
+                        ),
+                        inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                            formatter,
+                        ],
+                        keyboardType: TextInputType.number,
+                    ),
+                ),
+            ],
+        );
+    }
+}</pre>
+
+<h3>Utilizando</h3>
+Para utilizarmos precisamos SEMPRE importar esses arquivos:
+<pre>import 'package:brasil_fields/brasil_fields.dart';
+import 'package:flutter_mascaras/helper/LinhaFormatter.dart';</pre>
+
+<h3>Campo</h3>
+O campo com algum texto:
+<pre>
+LinhaFormatter(
+    text: 'CPF',
+    formatter: CpfInputFormatter(),
+    controller: null,
+),</pre>
+O mesmo campo sem texto
+<pre>
+LinhaFormatter(
+    <b style="color:red">text: null,</b>
+    formatter: CpfInputFormatter(),
+    controller: null,
+),</pre>
+
+<a href="https://pub.dev/packages/brasil_fields">pub.dev</a><br>
+<a href="https://github.com/rubensdemelo/brasil_fields">github - brasil_fields</a>

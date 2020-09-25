@@ -3,13 +3,13 @@
 <pre>$( "#resultado" )</pre>
 
 <h3>CLASSE</h3>
-<pre><code>$( ".soNumero" )</code></pre>
+<pre>$( ".soNumero" )</pre>
 
 <h3>NOME/NAME</h3>
-<pre><code>$("input[name='nome']")</code></pre>
+<pre>$("input[name='nome']")</pre>
 
 <h3>COMPOSTO - NOME & ATRIBUTO</h3>
-<pre><code>$("input[name='nome'][rel='cd_familia']")</code></pre>
+<pre>$("input[name='nome'][rel='cd_familia']")</pre>
 
 <h3>CHECKBOX</h3>
 <pre>// MARCAR #x
@@ -23,15 +23,15 @@ $( "#x" ).prop( "checked", false );
 <hr>
 
 VALIDAR inputs checkados 
-<pre><code>$("input[name='documentos[]']:checked")</code></pre>
-<pre><code>$("input[name='documentos[]']").is(':checked')</code></pre>
+<pre>$("input[name='documentos[]']:checked")</pre>
+<pre>$("input[name='documentos[]']").is(':checked')</pre>
 Retorna boolean true/false 
 
 <hr>
 
 <h3>SELECTCOMBO</h3>
 <h4>Pegar a descrição/texto do option selecionado</h4>
-<pre><code>$("#opcao option:selected").text().toString().toUpperCase();</code></pre>
+<pre>$("#opcao option:selected").text().toString().toUpperCase();</pre>
 <h4>Pegar a descrição/texto do option selecionado utilizando o <span style="color:red">$(this)</span></h4>
 <pre><span style="color:red">$(this)</span>.find('option:selected').text();</pre>
 
@@ -53,9 +53,9 @@ Codigo
 
 <h3>Usar seletor após o document ready estar pronto é preciso usar o evento ON</h3>
 Exemplo abaixo.<br/>
-<pre><code>$(document).<strong style="color:red">on</strong>('click', '.botaoDeletar', function(){
+<pre>$(document).<strong style="color:red">on</strong>('click', '.botaoDeletar', function(){
 	alert( $(this).attr('rel') )
-});</code></pre>
+});</pre>
 No caso do exemplo acima foi utilizado o evento <strong>click</strong> e a classe <strong>.botaoDeletar</strong> de #seletor
 <br/>
 <a href="https://stackoverflow.com/questions/10011802/how-to-get-this-selected-option-in-jquery">stackoverflow</a>

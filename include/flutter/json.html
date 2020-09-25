@@ -1,3 +1,33 @@
+<h2>BIBLIOTECA / DEPENDENCIA</h2>
+Para isso vamos precisar incluir no arquivo <b>pubspec.yaml</b> a referência ao pacote <b>http: ^0.12.0.0</b> conforme abaixo:
 
+<pre>dependencies:
+    flutter:
+      sdk: flutter
+  
+  
+    # The following adds the Cupertino Icons font to your application.
+    # Use with the CupertinoIcons class for iOS style icons.
+    cupertino_icons: ^0.1.3
+    <b style="color:red">http: ^0.12.2</b>
+</pre>
 
-<a href="http://www.macoratti.net/19/09/flut_lvwjson1.htm">macoratti</a>
+Importar nos arquivos necessários:
+<pre>import 'package:http/http.dart';</pre>
+<a href="http://www.macoratti.net/19/09/flut_lvwjson1.htm">macoratti</a><br>
+<a href="https://pub.dev/packages/http">pub.dev</a>
+
+<hr>
+
+<h2>JSON</h2>
+
+<pre>import 'dart:convert';
+
+  var jsonData = '{ "nome" : "Paulo", "email" : "paulo@hotmail.com"  }';
+  
+  var parsedJson = json.decode(jsonData);
+  
+  print('${parsedJson.runtimeType} : $parsedJson');
+</pre>
+
+<a href="http://www.macoratti.net/19/08/flut_pjson1.htm">macoratti</a>

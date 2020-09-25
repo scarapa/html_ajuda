@@ -1,0 +1,11 @@
+Dentro da lista(<b">ListTitle</b>), temos um metodo que vai por a tela atual no topo da pilha através do metodo <b>push</b>,
+para navegar para outra tela utiliza-se o widget <b>MaterialPageRoute</b>
+<pre>
+return ListTitle(
+    title: Text('titulo') ,
+    onTap: () => <b style="color:red">Navigator.push</b>(
+        context , 
+        <b  style="color:red">MaterialPageRoute</b>( builder: (context) => <b  style="color:red">NOME-DA-TELA()</b> )
+    )
+)
+</pre>

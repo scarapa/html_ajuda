@@ -1,0 +1,61 @@
+<ol>
+    <li>Solucao 1</li>
+    <li>Solucao 2</li>
+</ol>
+
+<h2>Solucao 01</h2>
+A imagem para TODOS os tipos de telas fica em <code>app/src/main/res/drawable</code> , a imagem tem de ficar nesse diretorio.
+
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;!-- Modify this file to customize your launch splash screen --&gt;
+&lt;layer-list xmlns:android="http://schemas.android.com/apk/res/android"&gt;
+    &lt;item android:drawable="@android:color/white" /&gt;
+
+    &lt;!-- You can insert your own image assets here --&gt;
+    &lt;item&gt;
+        &lt;bitmap
+            android:gravity="center"
+            android:src="@drawable/igti" /&gt;
+    &lt;/item&gt;
+&lt;/layer-list&gt;</pre>
+
+<h2>Solucao 02</h2>
+
+Criar uma tela normal e fazer um timer passando para outra tela.
+<pre>
+import 'dart:async';
+import 'package:flutter/material.dart';
+import 'package:flutter_carwashing/telas/servicoListTela.dart';
+
+class splashTela extends StatefulWidget {
+    @override
+    _splashTelaState createState() =&gt; _splashTelaState();
+}
+
+class _splashTelaState extends State&lt;splashTela&gt; {
+
+    <b style="color:red">@override
+    void initState() {
+    // TODO: implement initState
+    super.initState();
+    Timer( Duration(seconds: 1) , ()=&gt;
+        Navigator.push( context,  MaterialPageRoute( builder: (context) =&gt; servicoListTela() ) ),
+    );
+    }</b>
+
+    @override
+    Widget build(BuildContext context) {
+    return Container(
+        decoration: new BoxDecoration(color: Colors.green),
+        child: Column(
+        mainAxisAlignment: MainAxisAlignment.center ,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+            Image.asset("images/igti.png"),
+        ],
+        ),
+    );
+    }
+}</pre>
+<a href="https://www.youtube.com/watch?v=FNBuo-7zg2Q" target="_blank">Fonte</a>

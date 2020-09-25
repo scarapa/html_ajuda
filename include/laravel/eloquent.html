@@ -44,6 +44,32 @@
 <h2>JOIN</h2>
 
 <h2>WHERE</h2>
+<pre>
+public function getMunicipios(){
+    <span style="color:red;font-weight: bold;">$objeto = Municipio::where('cd_municipio','!=','99999')-&gt;orderBy('ds_Municipio')-&gt;get();</span>
+    $retorno = [];
+
+    try{
+        $retorno['status'] = 200;
+        $retorno['dados'] = $objeto;
+    }catch(\Illuminate\Database\QueryException $ex){
+        $retorno['status'] = 500;
+        $retorno['dados']=[];
+    }
+    header('Access-Control-Allow-Origin: *');
+    header('Content-Type: application/json');
+    echo json_encode($retorno);
+} 
+</pre>
+Retorno:
+<pre class="terminal">
+^ Illuminate\Database\Eloquent\Collection {#2084 ▼
+    #items: array:497 [▶]
+    }    
+</pre>
+<a href="https://stackoverflow.com/questions/33374289/laravel-where-query-not-working">stackoverflow</a><br>
+<a href="https://laravel.com/docs/7.x/eloquent">laravel</a>
+
 
 <h2>ORDER</h2>
 <pre>$this->sale-><b>orderBy('id','desc')</b>->take(10)->get()</pre>

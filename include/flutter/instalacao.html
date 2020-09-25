@@ -1,0 +1,218 @@
+<style>
+    body{ counter-reset: aga2 }
+    h2::before{
+        counter-increment: aga2;
+        content: counter(aga2) " - ";
+        width:100%;
+    }	
+    h2{ 
+        font-weight: bold;
+        counter-reset: aga3;
+        border-bottom:5px solid #333; 
+        padding:0 0 -10px 0 !important;
+        margin-bottom: 20px;
+        margin-top: 20px;        
+    }
+
+    h3::before{
+        counter-increment: aga3;
+        content: counter(aga2)"."counter(aga3) " - ";
+    }	
+    h3{ counter-reset: aga4; }
+
+    h4::before{
+        margin-left:25px;
+        counter-increment: aga4;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4) " - ";
+    }	
+    h4{ counter-reset: aga5; }
+
+    h5::before{
+        margin-left:25px;
+        counter-increment: aga5;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5) " - ";
+    }
+    h5{ counter-reset: aga6; }	    
+    
+    h6::before{
+        margin-left:25px;
+        counter-increment: aga6;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5)"."counter(aga6) " - ";
+    }
+</style>
+
+<h2>baixando pacote <kbd>windows 10</kbd></h2>
+acessar:<a href="https://flutter.dev/docs/get-started/install" target="_blank"> https://flutter.dev/docs/get-started/install</a>
+setar as variavreis do dart e do flutter para poder rodar pelo terminal
+<br/><br/>
+Descompactar o arquivo <button>flutter_windows_1.20.2-stable.zip</button> aonde voce quiser !!!
+
+<h2>setar as variavies de ambiente</h2>
+setar as variavreis do dart e do flutter para poder rodar pelo terminal
+<br/><br/>
+
+painel de controle >> sistema e seguranca >> seguranca :: configuracoes avancadas do sistema
+<div class="centro">
+    <img src="images/flutter-instalacao-001.jpg"  style="width:40%">
+</div>
+
+As minha variaveis ficaram assim:
+<pre>D:\flutter\bin    
+D:\flutter\bin\cache\dart-sdk\bin</pre>
+<div class="centro" >
+    <img src="images/flutter-instalacao-002.jpg" style="width:40%">
+</div>
+
+Para testar basta abrir um terminal e digitar : flutter
+<pre class="terminal">
+    ╔════════════════════════════════════════════════════════════════════════════╗
+    ║                 Welcome to Flutter! - https://flutter.dev                  ║
+    ║                                                                            ║
+    ║ The Flutter tool uses Google Analytics to anonymously report feature usage ║
+    ║ statistics and basic crash reports. This data is used to help improve      ║
+    ║ Flutter tools over time.                                                   ║
+    ║                                                                            ║
+    ║ Flutter tool analytics are not sent on the very first run. To disable      ║
+    ║ reporting, type 'flutter config --no-analytics'. To display the current    ║
+    ║ setting, type 'flutter config'. If you opt out of analytics, an opt-out    ║
+    ║ event will be sent, and then no further information will be sent by the    ║
+    ║ Flutter tool.                                                              ║
+    ║                                                                            ║
+    ║ By downloading the Flutter SDK, you agree to the Google Terms of Service.  ║
+    ║ Note: The Google Privacy Policy describes how data is handled in this      ║
+    ║ service.                                                                   ║
+    ║                                                                            ║
+    ║ Moreover, Flutter includes the Dart SDK, which may send usage metrics and  ║
+    ║ crash reports to Google.                                                   ║
+    ║                                                                            ║
+    ║ Read about data we send with crash reports:                                ║
+    ║ https://flutter.dev/docs/reference/crash-reporting                         ║
+    ║                                                                            ║
+    ║ See Google's privacy policy:                                               ║
+    ║ https://policies.google.com/privacy                                        ║
+    ╚════════════════════════════════════════════════════════════════════════════╝
+</pre>
+
+<h2>Instalando dependencias</h2>
+<pre class="terminal">$ flutter doctor</pre>
+
+<pre class="terminal">
+    [✓] Flutter (Channel stable, 1.20.2, on Microsoft Windows [versÃ£o 10.0.18362.1016], locale pt-BR)
+
+    [!] Android toolchain - develop for Android devices (Android SDK version 30.0.1)
+        ! Some Android licenses not accepted.  To resolve this, run: flutter doctor --android-licenses
+    [!] Android Studio (version 4.0)
+        ✗ Flutter plugin not installed; this adds Flutter specific functionality.
+        ✗ Dart plugin not installed; this adds Dart specific functionality.
+    [!] VS Code (version 1.47.2)
+        ✗ Flutter extension not installed; install from
+          https://marketplace.visualstudio.com/items?itemName=Dart-Code.flutter
+    [!] Connected device
+        ! No devices available
+    
+    ! Doctor found issues in 4 categories.    
+</pre>
+
+<h3>Android toolchain</h3>
+Abra o Android Studio e a aba SDK Tools e instale todos os componentes. 
+O componente Android SDK Tools (Obsolete) só vai aparecer quando você desmarcar a opção Hide Obsolete Packages perto do botão OK. Clique em apply e aguarde mais um pouco.
+<div class="centro">
+    <img src="images/flutter-instalacao-003.jpg"  style="width:70%">
+</div>
+Após a instalação basta rodar o comando como sugerido
+<pre class="terminal">flutter doctor --android-licenses</pre>
+E obviamente aceitar (y)
+<pre class="terminal">
+    [✓] Flutter (Channel stable, 1.20.2, on Microsoft Windows [versÃ£o 10.0.18362.1016], locale pt-BR)
+
+    [✓] Android toolchain - develop for Android devices (Android SDK version 30.0.2)
+    [!] Android Studio (version 4.0)
+        ✗ Flutter plugin not installed; this adds Flutter specific functionality.
+        ✗ Dart plugin not installed; this adds Dart specific functionality.
+    [!] VS Code (version 1.47.2)
+        ✗ Flutter extension not installed; install from
+          https://marketplace.visualstudio.com/items?itemName=Dart-Code.flutter
+    [!] Connected device
+        ! No devices available
+    
+    ! Doctor found issues in 3 categories.
+</pre>
+
+<h2>Android Studio</h2>
+<div class="centro">
+    <img src="images/flutter-instalacao-004.jpg"  style="width:70%">
+    <br clear="all">
+    <br clear="all">
+    <img src="images/flutter-instalacao-005.jpg"  style="width:70%">    
+</div>
+<pre class="terminal">
+    Doctor summary (to see all details, run flutter doctor -v):
+    [✓] Flutter (Channel stable, 1.20.2, on Microsoft Windows [versÃ£o 10.0.18362.1016], locale pt-BR)
+    [✓] Android toolchain - develop for Android devices (Android SDK version 30.0.2)
+    [✓] Android Studio (version 4.0)
+    [!] VS Code (version 1.47.2)
+        ✗ Flutter extension not installed; install from
+          https://marketplace.visualstudio.com/items?itemName=Dart-Code.flutter
+    [!] Connected device
+        ! No devices available
+    
+    ! Doctor found issues in 2 categories.    
+</pre>
+
+<h3> VS Code</h3>
+Abra o VS Code e aperte CTRL + SHIFT + X para abrir buscar extensões. 
+Digite Dart na barra de busca e instale a versão do autor Dart Code (tem um botão verde escrito install)
+<div class="centro">
+    <img src="images/flutter-instalacao-006.jpg"  style="width:70%">  
+</div>
+
+Após instalar o plugin do Dart, digite Flutter e também instale a versão do autor Dart Code
+<div class="centro">
+    <img src="images/flutter-instalacao-007.jpg"  style="width:70%">  
+</div>
+
+rodar o comando: <pre class="terminal">$ flutter doctor</pre>
+
+Saída:
+<pre class="terminal">
+    Doctor summary (to see all details, run flutter doctor -v):
+    [✓] Flutter (Channel stable, 1.20.2, on Microsoft Windows [versÃ£o 10.0.18362.1016], locale pt-BR)
+    
+    [✓] Android toolchain - develop for Android devices (Android SDK version 30.0.2)
+    [✓] Android Studio (version 4.0)
+    [✓] VS Code (version 1.47.2)
+    [!] Connected device
+        ! No devices available
+    
+    ! Doctor found issues in 1 category.    
+</pre>
+
+PRONTO !!
+
+<!-- Após a instalação, vamos adicionar o caminho do Android SDK nas variáveis de ambiente do Windows. Para isso, abra o CMD em modo administrador. Digite os seguintes comandos:
+<br/><br/>
+
+Aqui é a hora de usar o Android SDK Location , o meu caminho e: <kbd>C:\Users\beto-note\AppData\Local\Android\Sdk</kbd>, o comando vai ficar assim:
+<pre class="terminal">setX /M ANDROID_HOME "C:\Users\beto-note\AppData\Local\Android\Sdk"</pre>
+ERRO: acesso ao caminho do Registro negado.
+set ANDROID_HOME=C:\Users\beto-note\AppData\Local\Android\Sdk
+Logo apoós inserir esses comandos individualmente.
+<pre class="terminal">setX /M PATH "%ANDROID_HOME%\tools;%PATH%"</pre>
+
+<pre class="terminal">setX /M PATH "%ANDROID_HOME%\platform-tools;%PATH%"</pre> -->
+
+<a href="https://medium.com/flutter-comunidade-br/instalando-e-configurando-flutter-no-windows-cae74711df1e">Fonte</a><br/>
+<a href="https://flutter.dev/docs/get-started/install/windows">flutter.dev</a>
+
+<h2>Android Studio - Device Explorer NÃO EXIBE <kbd>windows 10</kbd></h2>
+
+Abra o projeto Flutter e verifique o Log de eventos se a estrutura Android foi detectada. 
+Em caso afirmativo, clique em Configurar e pronto.
+<div class="centro center">
+    <img src="images/flutter-android-studio-device-explorer-01.jpg" style="width:40%"><br><br>     
+    <img src="images/flutter-android-studio-device-explorer-02.jpg" style="width:40%"><br><br>     
+    <img src="images/flutter-android-studio-device-explorer-03.jpg" style="width:40%"><br>    
+</div>
+
+<a href="https://stackoverflow.com/questions/51608762/device-file-explorer-option-missing-in-flutter-android-studio">stackoverflow</a>
+

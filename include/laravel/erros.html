@@ -1,5 +1,27 @@
-
-
+<style>
+    body{ counter-reset: aga2 }
+    h3::before{
+        counter-increment: aga2;
+        content: counter(aga2) " - ";
+        width:100%;
+    }	
+    h3{ 
+        font-weight: bold;
+        counter-reset: aga3;
+        border-bottom:5px solid #333; 
+        padding:0 0 -10px 0 !important;
+        margin-bottom: 20px;
+        margin-top: 20px;        
+    }
+    #tabelaCodigo{
+        width:95%;
+        border-collapse: collapse;
+        border:1px solid black;
+    }
+    #tabelaCodigo th{}
+    #tabelaCodigo td{ width:50px;border:1px solid red}
+    #tabelaCodigo td pre{ width:50%;}
+</style>
 
 <h3>Failed opening required autoload.php</h3>
 <pre>
@@ -9,7 +31,7 @@
   (include_path='.:/usr/share/php') in /home/guilhermedambros/project-name/artisan on line 18
 </pre>
 <BR/>Solução:<br>
-<pre><code>$ composer install</code></pre>
+<pre class="terminal">$ composer install</pre>
 <a href="https://stackoverflow.com/questions/28468625/laravel-5-failed-opening-required-bootstrap-vendor-autoload-php/36395204">stackoverflow</a>
 
 <hr>
@@ -17,7 +39,7 @@
 <h3>Application key</h3>
 <code>RuntimeException<br>No application encryption key has been specified.</code>
 <BR/>Solução:<br>
-<pre><code>$ php artisan key:generate</code></pre>
+<pre class="terminal">$ php artisan key:generate</pre>
 <a href="https://stackoverflow.com/questions/44839648/no-application-encryption-key-has-been-specified-new-laravel-app">stackoverflow</a>
 
 <hr>
@@ -29,12 +51,159 @@
 	the requested resource.
 </code>
 <BR/>Solução:<br>
-<pre><code>$ composer require barryvdh/laravel-cors</code></pre>
+<pre class="terminal">$ composer require barryvdh/laravel-cors</pre>
 Depois de executar o comando acima, adicionar o HandleCors middleware ao grupo desejado no arquivo <code>app/Http/Kernel.php</code>
-<pre><code>protected $middlewareGroups = [
+<pre>protected $middlewareGroups = [
     'web' => [
         // ...
         \Barryvdh\Cors\HandleCors::class,
     ],
-];</code></pre>
+];</pre>
 <a href="https://github.com/barryvdh/laravel-cors">Github</a>
+
+<h3>artisan nao funciona</h3>
+<pre class="terminal">$ php artisan serve</pre>
+<pre class="terminal">
+PHP Warning:  require(N:\EMATER\xampp\htdocs\extranet-portal/vendor/autoload.php): failed to open stream: No such file or directory in
+N:\EMATER\xampp\htdocs\extranet-portal\artisan on line 18
+
+Warning: require(N:\EMATER\xampp\htdocs\extranet-portal/vendor/autoload.php): failed to open stream: No such file or directory in N:\E
+MATER\xampp\htdocs\extranet-portal\artisan on line 18
+PHP Fatal error:  require(): Failed opening required 'N:\EMATER\xampp\htdocs\extranet-portal/vendor/autoload.php' (include_path='N:\EM
+ATER\xampp\php\PEAR') in N:\EMATER\xampp\htdocs\extranet-portal\artisan on line 18
+
+Fatal error: require(): Failed opening required 'N:\EMATER\xampp\htdocs\extranet-portal/vendor/autoload.php' (include_path='N:\EMATER\
+xampp\php\PEAR') in N:\EMATER\xampp\htdocs\extranet-portal\artisan on line 18  
+</pre>
+não encontra a pasta <code>vendor</code> nem o arquivo <code>autoload.php</code>
+<br><br>
+
+<code>solucao:</code>
+<pre class="terminal">$ composer upgrade 
+$ composer udpate	
+</pre>
+
+<a href="https://stackoverflow.com/questions/28468625/laravel-5-failed-opening-required-bootstrap-vendor-autoload-php" target="_blank">stackoverflow</a>
+
+<h3>SQLSTATE[22007]: [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]</h3>
+Mensagem de erro COMPLETA:<br>
+<code>SQLSTATE[22007]: [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]A conversão de um tipo de dados nvarchar em um tipo de dados datetime resultou em um valor fora do intervalo.</code>
+<br><br>
+
+<code>SOLUCAO</code>
+<pre>
+    // CAMPOS/COLUNAS A SEREM ALTERADAS
+    protected $dates = ['data_registro', 'created_at', 'updated_at', 'deleted_at'];
+    
+    //FORMATO
+    <b style="color:red">protected $dateFormat = "Y-d-m H:i:s.v";</b>
+
+    public function fromDateTime($value)
+    {
+        $date = str_replace('/', '-', $value);
+        return date(<b style="color:red">$this-&gt;dateFormat</b>, strtotime($date));
+    }
+
+    public function setDataRegistroAttribute($date) {
+        $date = str_replace('/', '-', $date);
+        $date = date(<b style="color:red">$this-&gt;dateFormat</b>, strtotime($date));
+        $this-&gt;attributes['data_registro'] = $date;
+    }
+
+    public function setUpdatedAt($date) {
+        $date = str_replace('/', '-', $date);
+        $date = date(<b style="color:red">$this-&gt;dateFormat</b>, strtotime($date));
+        $this-&gt;attributes['updated_at'] = $date;   
+    }
+
+    public function setCreatedAt($date){
+        $date = str_replace('/', '-', $date);
+        $date = date(<b style="color:red">$this-&gt;dateFormat</b>, strtotime($date));
+        $this-&gt;attributes['created_at'] = $date;   
+    }    
+</pre>
+
+<h3>Erro no arquivo de rotas</h3>
+Erro ao executar comando <code>php artisan route:lsit</code>
+<pre>
+Illuminate\Contracts\Container\BindingResolutionException
+
+Target class [App\Http\Controllers\ApiController] does not exist.
+
+at N:\EMATER\xampp\htdocs\extranet\vendor\laravel\framework\src\Illuminate\Container\Container.php:811
+    807|
+    808|         try {
+    809|             $reflector = new ReflectionClass($concrete);
+    810|         } catch (ReflectionException $e) {
+> 811|             throw new BindingResolutionException("Target class [$concrete] does not exist.", 0, $e);
+    812|         }
+    813|
+    814|         // If the type is not instantiable, the developer is attempting to resolve
+    815|         // an abstract type such as an Interface or Abstract Class and there is
+
+1   [internal]:0
+    Illuminate\Foundation\Console\RouteListCommand::Illuminate\Foundation\Console\{closure}(Object(Illuminate\Routing\Route))
+
+2   N:\EMATER\xampp\htdocs\extranet\vendor\laravel\framework\src\Illuminate\Container\Container.php:809
+    ReflectionException::("Class App\Http\Controllers\ApiController does not exist")
+ </pre>
+
+<code>Solução </code>
+no arquivo de rotas <code>routes\api.php</code> havia uma rota não existente .
+<pre>
+Route::group(['middleware' =&gt; ['auth:api']], function () {
+    <b style="color:red">Route::get('/users', 'ApiController@users')-&gt;name('users');</b>
+
+    Route::post('atendimento', 'Atendimento\AtendimentosController@salvar_atendimento');
+    Route::post('enviar_protocolos', 'Atendimento\AtendimentosController@enviar_protocolos');
+    ...
+});
+</pre>
+bastou comentar essa rota.
+
+<h3>Falha no metodo sync()</h3>
+Não estava salvando CORRETAMENTE os itens do objeto.<br>
+<table id="tabelaCodigo">
+    <tr>
+        <th>ANTES</th>
+        <th>DEPOIS</th>
+    </tr>
+    <tr>
+        <td>
+<div>
+$objeto-&gt;save();
+
+$sync_data = [];
+if (!empty($request['producao_leite_concentrado'])) {
+    for ($i=0; $i &lt; count($request['producao_leite_concentrado']); $i++) {
+        $sync_data[$i]['id_producao_leite'] = $request-&gt;id;
+        $sync_data[$i]['id_concentrado'] = $request['producao_leite_concentrado'][$i]["idConcentrado"];
+        $sync_data[$i]['quantidade_utilizada'] = $request['producao_leite_concentrado'][$i]['quantidadeUtilizada'];
+        $sync_data[$i]['valor_gasto_concentrado'] = $request['producao_leite_concentrado'][$i]['valorGastoConcentrado'];
+    }
+    $objeto-&gt;concentrados()-&gt;sync($sync_data);
+}
+</div>            
+        </td>
+        <td>
+            <!-- <pre>
+$objeto-&gt;save();
+
+$sync_data = [];
+<b style="color:red">$objeto-&gt;concentrados()-&gt;detach();</b>
+if (!empty($request['producao_leite_concentrado'])) {
+    for ($i=0; $i &lt; count($request['producao_leite_concentrado']); $i++) {
+        $sync_data[$i]['id_producao_leite'] = $request-&gt;id;
+        $sync_data[$i]['id_concentrado'] = $request['producao_leite_concentrado'][$i]["idConcentrado"];
+        $sync_data[$i]['quantidade_utilizada'] = $request['producao_leite_concentrado'][$i]['quantidadeUtilizada'];
+        $sync_data[$i]['valor_gasto_concentrado'] = $request['producao_leite_concentrado'][$i]['valorGastoConcentrado'];
+    }
+    $objeto-&gt;concentrados()-&gt;sync($sync_data);
+}  
+            </pre>                         -->
+        </td>
+    </tr>
+</table>
+
+Após inserir o metodo <b>detach()</b> antes do for, nao deu mais o problema de salvar errado.
+<a href="https://stackoverflow.com/questions/40489712/laravel-sync-not-working-with-empty-array">stackoverflow</a>

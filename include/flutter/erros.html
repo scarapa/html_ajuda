@@ -1,3 +1,36 @@
+<style>
+    body{ counter-reset: aga2 }
+    h2::before{
+        counter-increment: aga2;
+        content: counter(aga2) " - ";
+        width:100%;
+    }	
+    h2{ 
+        font-weight: bold;
+        counter-reset: aga3;
+        border-bottom:5px solid #333; 
+        padding:0 0 -10px 0 !important;
+        margin-bottom: 20px;
+        margin-top: 20px;        
+    }
+
+    h3::before{
+        counter-increment: aga3;
+        content: counter(aga2)"."counter(aga3) " - ";
+    }	
+    h3{ counter-reset: aga4; }
+
+    h4::before{
+        margin-left:25px;
+        counter-increment: aga4;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4) " - ";
+    }	
+    h4{ counter-reset: aga5; }
+
+
+</style>
+
+
 <h2>Bottom overfload</h2>
 
 <div class="centro center">
@@ -7,8 +40,7 @@
 
 Para corrigir tal problema , bastou inserir no body o widget <b>SingleChildScrollView</b>, conforme abaixo
 <br><br>
-<pre>
-return Scaffold(
+<pre>return Scaffold(
     body: <b>SingleChildScrollView</b>(
         child: Container(
         child: Column(
@@ -33,8 +65,7 @@ return Scaffold(
         ),
         ),
     ),
-);  
-</pre>
+);</pre>
 
 <h2>SingleChildScrollView nao funciona scrool da tela</h2>
 <pre>
@@ -52,3 +83,133 @@ Necessário inserir as duas propriedades em vermelho
 
 <a href="https://stackoverflow.com/questions/53717521/flutter-grid-view-is-not-scrolling">stackoverflow</a>
 <a href="https://api.flutter.dev/flutter/widgets/Expanded-class.html">api.flutter</a>
+
+<hr>
+
+Outra alternativa é <b>SEMPRE</b> por na tag <b>BODY</b> o layout <b>LISTVIEW</b>
+<pre>
+...
+body:ListView(
+    children: &lt;Widget&gt;[
+        //CONTEUDO AQUI DENTRO
+    ]
+)
+... 
+</pre>
+<hr>
+<h2>NAO CONSTROI PROJETO</h2>
+<pre class="terminal" style="color:red !important">
+    FAILURE: Build failed with an exception.
+
+    * Where:
+    Settings file 'C:\Users\49583\AndroidStudioProjects\carwashing\android\settings.gradle' line: 11
+    
+    * What went wrong:
+    A problem occurred evaluating settings 'android'.
+    > Could not read script 'C:\Users\49583\Flutter\packages\flutter_tools\gradle\app_plugin_loader.gradle' as it does not exist.
+    
+    * Try:
+    Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+    
+    * Get more help at https://help.gradle.org
+    
+    BUILD FAILED in 10s
+    Finished with error: Gradle task assembleDebug failed with exit code 1
+    
+</pre>
+Você pode contornar isso regenerando seu android / settings.gradle enquanto estiver no estável (certifique-se de usar o controle de origem!).
+<pre class="terminal">
+    $ rm android/settings.gradle 
+    $ flutter create .
+</pre>
+<a href="https://github.com/flutter/flutter/issues/55619" target="_blank">github</a>
+
+<h2>Dropdown - overflow</h2>
+
+<table>
+    <tr>
+        <td>
+<pre>
+List&lt;DropdownMenuItem&lt;Concentrado&gt;&gt; getDropDownConcentradoMenuItems(concentrados) {
+    List&lt;DropdownMenuItem&lt;Concentrado&gt;&gt; items = new List();
+    for (Concentrado concentrado in concentrados) {
+        items.add(
+            new DropdownMenuItem(
+                value: concentrado,
+                child: new Text(concentrado.titulo)
+            )
+        );
+    }
+    return items;
+}    
+</pre>
+        </td>
+        <td>
+            <div class="centro center">
+                <img src="images/flutter-dropdown-overflow-01.jpg" style="width:80%" class="bp">
+            </div>
+        </td>
+    </tr>
+</table>
+<br clear="all">
+<code>Solução</code>
+<table>
+    <tr>
+        <td>
+<pre>
+List&lt;DropdownMenuItem&lt;Concentrado&gt;&gt; getDropDownConcentradoMenuItems(concentrados) {
+    List&lt;DropdownMenuItem&lt;Concentrado&gt;&gt; items = new List();
+    for (Concentrado concentrado in concentrados) {
+        items.add(
+            new DropdownMenuItem(
+                value: concentrado,
+                child: new SizedBox(
+                    width: 170,
+                    child: new Text(concentrado.titulo)
+                )
+            )
+        );
+    }
+    return items;
+}       
+</pre>
+        </td>
+        <td>
+            <div class="centro center">
+                <img src="images/flutter-dropdown-overflow-02.jpg" style="width:80%" class="bp">
+            </div>            
+        </td>
+    </tr>
+</table>
+<a href="https://stackoverflow.com/questions/47032262/flutter-dropdownbutton-overflow">stackoverflow</a><br>
+
+<h2>Erro ao baixar dependencia</h2>
+Ao tentar baixar a biblioteca <b>brasil_fields</b> da erro 
+<h3>Instalacao</h3>
+<pre>dependencies:
+    brasil_fields: ^0.4.0</pre>
+
+<pre class="terminal">$ flutter pub get</pre>
+<code>ERRO</code>
+<pre>The current Dart SDK version is 2.7.0.
+
+Because flutter_mascaras depends on brasil_fields &gt;=0.0.9 which requires SDK version &gt;=2.7.2 &lt;3.0.0, version solving failed.
+Running "flutter pub get" in flutter_mascaras...
+pub get failed (1; Because flutter_mascaras depends on brasil_fields &gt;=0.0.9 which requires SDK version &gt;=2.7.2 &lt;3.0.0,
+version solving failed.) </pre>
+
+Bem como foi dito , a versao DARK é <code>2.7.0</code> e precisa ser no minino a <code>2.7.2</code><br>
+<code>Solucao</code> Atualizar o framework com o comando abaixo
+<pre class="terminal">$ flutter upgrade</pre>
+verificando ...
+<pre class="terminal">$ flutter --version</pre>
+<pre class="terminal">
+Flutter 1.20.4 • channel stable • https://github.com/flutter/flutter.git
+Framework • revision fba99f6cf9 (11 days ago) • 2020-09-14 15:32:52 -0700
+Engine • revision d1bc06f032
+Tools • Dart 2.9.2    
+</pre>
+<code>OBSERVACAO:</code> o comando <kbd>$ dart --version</kbd> também é util<br>
+<pre class="terminal">Dart SDK version: 2.9.2 (stable) (Wed Aug 26 12:44:28 2020 +0200) on "windows_x64"</pre>
+<a href="https://stackoverflow.com/questions/59170895/how-to-update-dart-sdk-to-latest-stable-version-in-flutter">stackoverflow</a><br>
+<a href="https://pub.dev/packages/brasil_fields">brasil_fields</a>

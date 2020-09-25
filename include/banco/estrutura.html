@@ -1,4 +1,53 @@
-﻿
+﻿<style>
+    body{ counter-reset: aga2 }
+    h2::before{
+        counter-increment: aga2;
+        content: counter(aga2) " - ";
+        width:100%;
+    }	
+    h2{ 
+        font-weight: bold;
+        counter-reset: aga3;
+        border-bottom:5px solid #333; 
+        padding:0 0 -10px 0 !important;
+        margin-bottom: 20px;
+        margin-top: 20px;        
+    }
+
+    h3::before{
+        counter-increment: aga3;
+        content: counter(aga2)"."counter(aga3) " - ";
+    }	
+    h3{ counter-reset: aga4; }
+
+    h4::before{
+        margin-left:25px;
+        counter-increment: aga4;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4) " - ";
+    }	
+    h4{ counter-reset: aga5; }
+
+    h5::before{
+        margin-left:25px;
+        counter-increment: aga5;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5) " - ";
+    }
+    h5{ counter-reset: aga6; }	    
+    
+    h6::before{
+        margin-left:25px;
+        counter-increment: aga6;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5)"."counter(aga6) " - ";
+    }
+</style>
+
+<ol>
+	<li>CRIANDO</li>
+	<li>COLUNAS</li>
+	<li></li>
+	<li></li>
+</ol>
+
 <kbd>DDL</kbd> – Data Definition Language ( DDL) são usadas para definir a estrutura de banco de dados ou esquema. Alguns exemplos:
 <br><br>
 <div class="col-lg-8">
@@ -35,6 +84,7 @@
 
 <br clear="all">
 
+<h2>CRIANDO TABELA</h2>
 <h3>CRIANDO TABELA - PK</h3>
 Criando a estrutura de uma tabela simples, a coluna id é autoincrement(identity) e chave primária(PK).
 <pre><kbd>SQLSERVER</kbd>
@@ -83,11 +133,11 @@ insert into dbo.pessoa (id_documento,nm_pessoa) values (2,'Luisa');
 <a href="https://docs.microsoft.com/pt-br/sql/relational-databases/tables/delete-columns-from-a-table?view=sql-server-2017">msdn</a>
 
 <h3>ALTERAR O TIPO DA COLUNA</h3>
-<pre><code><kbd>MYSQL</kbd>
-<strong>ALTER TABLE</strong> nome_tabela <strong>MODIFY</strong> nome_coluna <strong>TIPO</strong></code></pre>
+<pre><kbd>MYSQL</kbd>
+<strong>ALTER TABLE</strong> nome_tabela <strong>MODIFY</strong> nome_coluna <strong>TIPO</strong></pre>
 
-<pre><code><kbd>SQLSERVER</kbd>
-<strong>ALTER TABLE</strong> nome_tabela <strong>ALTER COLUMN</strong> nome_coluna <strong>TIPO</strong></code></pre>
+<pre><kbd>SQLSERVER</kbd>
+<strong>ALTER TABLE</strong> nome_tabela <strong>ALTER COLUMN</strong> nome_coluna <strong>TIPO</strong></pre>
 <a href="https://msdn.microsoft.com/pt-br/library/ms190238(v=sql.120).aspx">msdn</a>
 
 <hr>
@@ -101,23 +151,23 @@ ALTER TABLE <b>dbo.NOME_TABELA</b> ADD CONSTRAINT <b>PK_NOME_CHAVE</b> PRIMARY K
 
 
 <h3>CRIAR CHAVE ESTRANGEIRA - FK</h3>
-<pre><code><kbd>SQLSERVER</kbd>
-<strong>ALTER TABLE</strong> PEDIDOS <strong>ADD CONSTRAINT</strong> FK_COD_CLI <strong>FOREIGN KEY</strong> (COD_CLI) <strong>REFERENCES</strong> CLIENTES(COD);</code></pre>
+<pre><kbd>SQLSERVER</kbd>
+<strong>ALTER TABLE</strong> PEDIDOS <strong>ADD CONSTRAINT</strong> FK_COD_CLI <strong>FOREIGN KEY</strong> (COD_CLI) <strong>REFERENCES</strong> CLIENTES(COD);</pre>
 <a href="http://www.devmedia.com.br/criando-banco-e-tabelas-garantindo-a-integridade-dos-dados/24426">DEVMEDIA</a>
 
-<h3>SETAR VALOR PADRÃO EM COLUNA</h3>
+<h2>SETAR VALOR PADRÃO EM COLUNA</h2>
 Sintaxe:
-<pre><code><strong>ALTER TABLE</strong> tabela_nome <strong>ADD</strong> campo_nome campo_tipo NOT NULL <strong>DEFAULT</strong> campo_valor ;</code></pre>
+<pre><strong>ALTER TABLE</strong> tabela_nome <strong>ADD</strong> campo_nome campo_tipo NOT NULL <strong>DEFAULT</strong> campo_valor ;</pre>
 Exemplos abaixo:
-<pre><code><strong>ALTER TABLE</strong> ponto <strong>ADD</strong> status BOOLEAN NOT NULL DEFAULT '1'
+<pre><strong>ALTER TABLE</strong> ponto <strong>ADD</strong> status BOOLEAN NOT NULL DEFAULT '1'
 <strong>ALTER TABLE</strong> log <strong>ADD</strong> dt_insert DATETIME NOT NULL <strong>DEFAULT</strong> getdate() ;
-</code></pre>
+</pre>
 <a href="https://pt.stackoverflow.com/questions/72631/setar-valor-padr%C3%A3o-para-coluna-de-uma-tabela-j%C3%A1-existente">Fonte</a>
 
 
-<h3>Resetar o valor de campo autoincrement</h3>
-<pre><code><kbd>SQLSERVER</kbd>
-DELETE FROM <strong>tabela_nome</strong> DBCC CHECKIDENT ('<strong>database_nome</strong>..<strong>tabela_nome</strong>',RESEED, 0);</code></pre>
+<h2>Resetar o valor de campo autoincrement</h2>
+<pre><kbd>SQLSERVER</kbd>
+DELETE FROM <strong>tabela_nome</strong> DBCC CHECKIDENT ('<strong>database_nome</strong>..<strong>tabela_nome</strong>',RESEED, 0);</pre>
 
 
 <br clear="all">

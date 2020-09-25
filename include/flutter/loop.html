@@ -1,0 +1,76 @@
+<h2>Listas</h2>
+<pre>
+class Pessoa {
+    String nome;
+    int idade;
+    
+    Pessoa(this.nome, this.idade);
+}
+    
+void main() {
+    List&lt;String&gt; nomes = ["Daniel", "Mari", "Thiago"];
+    
+    print(nomes[0]);
+    
+    nomes.add("Marcos");
+    print(nomes);
+    
+    print(nomes.length);
+    
+    nomes.removeAt(2);
+    print(nomes);
+    
+    nomes.insert(1, "Thiago");
+    print(nomes);
+    
+    print(nomes.contains("Daniel"));
+    
+    List&lt;Pessoa&gt; pessoas = List();
+    pessoas.add(Pessoa("Marcelo", 30));
+    pessoas.add(Pessoa("João", 20));
+    
+    for(Pessoa p in pessoas){
+        print(p.nome);
+    }
+    
+}
+</pre>
+
+<h2>Map</h2>
+<pre>
+class InfosPessoa {
+
+    int idade;
+    
+    InfosPessoa(this.idade);
+}
+    
+void main() {
+    
+    Map&lt;String, InfosPessoa&gt; pessoas = Map(); 
+        pessoas["João"] = InfosPessoa(30);
+    pessoas["Marcelo"] = InfosPessoa(20);
+    
+    print(pessoas["João"].idade);
+    print(pessoas.keys);
+    
+    pessoas.remove("João");
+    print(pessoas.keys);
+    
+    
+    Map&lt;int, String&gt; ddds = Map();
+    ddds[11] = "São Paulo";
+    ddds[19] = "Campinas";
+    ddds[13] = "Não sei";
+    
+    print(ddds);
+    
+    Map&lt;String, dynamic&gt; pessoa = Map();
+    pessoa["nome"] = "Enzo";
+    pessoa["idade"] = 10;
+    pessoa["altura"] = 1.50;
+    
+    print(pessoa);
+    
+}    
+</pre>
