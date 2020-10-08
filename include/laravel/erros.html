@@ -1,17 +1,43 @@
 <style>
     body{ counter-reset: aga2 }
-    h3::before{
+    h2::before{
         counter-increment: aga2;
         content: counter(aga2) " - ";
         width:100%;
     }	
-    h3{ 
+    h2{ 
         font-weight: bold;
         counter-reset: aga3;
         border-bottom:5px solid #333; 
         padding:0 0 -10px 0 !important;
         margin-bottom: 20px;
         margin-top: 20px;        
+    }
+
+    h3::before{
+        counter-increment: aga3;
+        content: counter(aga2)"."counter(aga3) " - ";
+    }	
+    h3{ counter-reset: aga4; }
+
+    h4::before{
+        margin-left:25px;
+        counter-increment: aga4;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4) " - ";
+    }	
+    h4{ counter-reset: aga5; }
+
+    h5::before{
+        margin-left:25px;
+        counter-increment: aga5;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5) " - ";
+    }
+    h5{ counter-reset: aga6; }	    
+    
+    h6::before{
+        margin-left:25px;
+        counter-increment: aga6;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5)"."counter(aga6) " - ";
     }
     #tabelaCodigo{
         width:95%;
@@ -23,7 +49,7 @@
     #tabelaCodigo td pre{ width:50%;}
 </style>
 
-<h3>Failed opening required autoload.php</h3>
+<h2>Failed opening required autoload.php</h2>
 <pre>
   PHP Warning:  require(/home/user/project-name/vendor/autoload.php):
   failed to open stream: No such file or directory in /home/user/project-name/artisan on line 18
@@ -36,7 +62,7 @@
 
 <hr>
 
-<h3>Application key</h3>
+<h2>Application key</h2>
 <code>RuntimeException<br>No application encryption key has been specified.</code>
 <BR/>Solução:<br>
 <pre class="terminal">$ php artisan key:generate</pre>
@@ -44,7 +70,7 @@
 
 <hr>
 
-<h3>Erro em comunicação IONIC 3 com LARAVEL 5.7</h3>
+<h2>Erro em comunicação IONIC 3 com LARAVEL 5.7</h2>
 <code>
 	Access to XMLHttpRequest at 'http://localhost:8000/' from origin 'http://localhost:8100/'<br>
 	has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on <br>
@@ -61,7 +87,7 @@ Depois de executar o comando acima, adicionar o HandleCors middleware ao grupo d
 ];</pre>
 <a href="https://github.com/barryvdh/laravel-cors">Github</a>
 
-<h3>artisan nao funciona</h3>
+<h2>artisan nao funciona</h2>
 <pre class="terminal">$ php artisan serve</pre>
 <pre class="terminal">
 PHP Warning:  require(N:\EMATER\xampp\htdocs\extranet-portal/vendor/autoload.php): failed to open stream: No such file or directory in
@@ -83,9 +109,140 @@ não encontra a pasta <code>vendor</code> nem o arquivo <code>autoload.php</code
 $ composer udpate	
 </pre>
 
+<h2>composer upgrade NAO FUNCIONA</h2>
+comando: 
+<pre class="terminal">$ composer upgrade</pre>
+Mensagem de erro
+<pre style="background:red;color:white">
+    [RuntimeException]
+    File at "/192.168.0.120/SERVIDOR/laravel-carwashing/database/seeds/DatabaseSeeder.php" does not exist, check your c
+    lassmap definitions
+</pre>
+
+<hr>
+
+<h2>componser install NAO FUNCIONA</h2>
+Ao tentar executar o comando 
+<pre class="terminal">$ php artisan --version</pre>
+mensagem de erro
+<pre style="background: black;color:yellow">
+    Package jakub-onderka/php-console-color is abandoned, you should avoid using it. Use php-parallel-lint/php-console-color instead.
+    Package jakub-onderka/php-console-highlighter is abandoned, you should avoid using it. Use php-parallel-lint/php-console-highlighter instead.
+    Package phpunit/php-token-stream is abandoned, you should avoid using it. No replacement was suggested.    
+</pre>
+<code>SOLUCAO:</code> A pasta do composer no linux <b>/home/USUARIO/.composer</b> estava sem permissao de escrita, basta dar o comando
+<pre class="terminal">sudo chmod 775 -R /home/USUARIO/.composer</pre>
+
+<pre class="terminal">
+$ php artisan --version
+// RETORNO
+Laravel Framework 5.8.38
+</pre>
 <a href="https://stackoverflow.com/questions/28468625/laravel-5-failed-opening-required-bootstrap-vendor-autoload-php" target="_blank">stackoverflow</a>
 
-<h3>SQLSTATE[22007]: [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]</h3>
+<h2>ERROS npm run dev</h2>
+<h3>Erro [001]</h3>
+<pre class="terminal"><span style="color:red !important">
+ERROR in ./resources/js/app.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+Error: Cannot find module '@babel/core'
+Require stack:
+- /var/www/laravel-carwashing/node_modules/babel-loader/lib/index.js
+- /var/www/laravel-carwashing/node_modules/loader-runner/lib/loadLoader.js
+- /var/www/laravel-carwashing/node_modules/loader-runner/lib/LoaderRunner.js
+- /var/www/laravel-carwashing/node_modules/webpack/lib/NormalModule.js
+- /var/www/laravel-carwashing/node_modules/webpack/lib/NormalModuleFactory.js
+- /var/www/laravel-carwashing/node_modules/webpack/lib/Compiler.js
+- /var/www/laravel-carwashing/node_modules/webpack/lib/webpack.js
+- /var/www/laravel-carwashing/node_modules/webpack-cli/bin/utils/validate-options.js
+- /var/www/laravel-carwashing/node_modules/webpack-cli/bin/utils/convert-argv.js
+- /var/www/laravel-carwashing/node_modules/webpack-cli/bin/cli.js
+- /var/www/laravel-carwashing/node_modules/webpack/bin/webpack.js
+    babel-loader@8 requires Babel 7.x (the package '@babel/core'). If you'd like to use Babel 6.x ('babel-core'), you should install 'babel-loader@7'.
+    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:965:15)
+    at Function.Module._load (internal/modules/cjs/loader.js:841:27)
+    at Module.require (internal/modules/cjs/loader.js:1025:19)
+    at require (/var/www/laravel-carwashing/node_modules/v8-compile-cache/v8-compile-cache.js:161:20)
+    at Object.<anonymous> (/var/www/laravel-carwashing/node_modules/babel-loader/lib/index.js:10:11)
+    at Module._compile (/var/www/laravel-carwashing/node_modules/v8-compile-cache/v8-compile-cache.js:194:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1157:10)
+    at Module.load (internal/modules/cjs/loader.js:985:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:878:14)
+    at Module.require (internal/modules/cjs/loader.js:1025:19)
+    at require (/var/www/laravel-carwashing/node_modules/v8-compile-cache/v8-compile-cache.js:161:20)
+    at loadLoader (/var/www/laravel-carwashing/node_modules/loader-runner/lib/loadLoader.js:18:17)
+    at iteratePitchingLoaders (/var/www/laravel-carwashing/node_modules/loader-runner/lib/LoaderRunner.js:169:2)
+    at runLoaders (/var/www/laravel-carwashing/node_modules/loader-runner/lib/LoaderRunner.js:365:2)
+    at NormalModule.doBuild (/var/www/laravel-carwashing/node_modules/webpack/lib/NormalModule.js:295:3)
+    at NormalModule.build (/var/www/laravel-carwashing/node_modules/webpack/lib/NormalModule.js:446:15)
+    at Compilation.buildModule (/var/www/laravel-carwashing/node_modules/webpack/lib/Compilation.js:739:10)
+    at /var/www/laravel-carwashing/node_modules/webpack/lib/Compilation.js:981:14
+    at /var/www/laravel-carwashing/node_modules/webpack/lib/NormalModuleFactory.js:409:6
+    at /var/www/laravel-carwashing/node_modules/webpack/lib/NormalModuleFactory.js:155:13
+    at AsyncSeriesWaterfallHook.eval [as callAsync] (eval at create (/var/www/laravel-carwashing/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:4:1)
+    at AsyncSeriesWaterfallHook.lazyCompileHook (/var/www/laravel-carwashing/node_modules/tapable/lib/Hook.js:154:20)
+    at /var/www/laravel-carwashing/node_modules/webpack/lib/NormalModuleFactory.js:138:29
+    at /var/www/laravel-carwashing/node_modules/webpack/lib/NormalModuleFactory.js:346:9
+    at processTicksAndRejections (internal/process/task_queues.js:79:11)
+    @ multi ./resources/js/app.js ./resources/sass/app.scss /js/app[0]
+</span>
+ERROR in multi ./resources/js/app.js ./resources/sass/app.scss
+Module not found: Error: Can't resolve 'css-loader' in '/var/www/laravel-carwashing'
+    @ multi ./resources/js/app.js ./resources/sass/app.scss /js/app[1]
+npm ERR! code ELIFECYCLE
+npm ERR! errno 2
+npm ERR! @ development: `cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js`
+npm ERR! Exit status 2
+npm ERR!
+npm ERR! Failed at the @ development script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:</pre>
+Solucao: 
+<pre class="terminal">$ npm install -D babel-loader @babel/core @babel/preset-env webpack</pre>
+<a href="https://github.com/babel/babel/issues/8599">github</a>
+    
+<h3>ERRO [002]</h3>
+<pre class="terminal">ERROR in multi ./resources/js/app.js ./resources/sass/app.scss Module not found: Error: Can't resolve 'css-loader'</pre>
+Solucao
+<pre class="terminal">
+$ npm cache clean -f
+$ rm -rf node_modules/ package-lock.json
+$ npm i    </pre>
+<a href="https://github.com/JeffreyWay/laravel-mix/issues/983">github</a>
+
+<hr>
+
+<h3>Erro [003]</h3>
+<pre class="terminal">cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js </pre>
+<code>Solucao</code> Limpar TUDO e reinstalar TUDO
+<pre class="terminal">
+$ npm cache clean -f
+$ rm -rf node_modules/ package-lock.json    
+$ composer install
+$ npm install
+$ npm run dev
+</pre>
+retorno 
+<pre>DONE  Compiled successfully in 12799ms                                                                      19:42:06
+
+Asset      Size   Chunks             Chunk Names
+/css/app.css   179 KiB  /js/app  [emitted]  /js/app
+/js/app.js  1.07 MiB  /js/app  [emitted]  /js/app
+</pre>
+
+<hr>
+
+<h2>Erro 500</h2>
+NESSE CASO , a solucao foi criar um arquivo <kbd>.env</kbd>
+
+<hr>
+
+<h2>No application encryption key has been specified.</h2>
+Necessário criar uma key
+<pre class="terminal">$ php artisan key:generate</pre>
+
+<h2>SQLSTATE[22007]: [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]</h2>
 Mensagem de erro COMPLETA:<br>
 <code>SQLSTATE[22007]: [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]A conversão de um tipo de dados nvarchar em um tipo de dados datetime resultou em um valor fora do intervalo.</code>
 <br><br>
@@ -123,9 +280,9 @@ Mensagem de erro COMPLETA:<br>
     }    
 </pre>
 
-<h3>Erro no arquivo de rotas</h3>
-Erro ao executar comando <code>php artisan route:lsit</code>
-<pre>
+<h2>Erro no arquivo de rotas</h2>
+Erro ao executar comando <code>php artisan route:list</code>
+<pre class="terminal">
 Illuminate\Contracts\Container\BindingResolutionException
 
 Target class [App\Http\Controllers\ApiController] does not exist.
@@ -161,7 +318,7 @@ Route::group(['middleware' =&gt; ['auth:api']], function () {
 </pre>
 bastou comentar essa rota.
 
-<h3>Falha no metodo sync()</h3>
+<h2>Falha no metodo sync()</h2>
 Não estava salvando CORRETAMENTE os itens do objeto.<br>
 <table id="tabelaCodigo">
     <tr>

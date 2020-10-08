@@ -1,0 +1,193 @@
+<style>
+    body{ counter-reset: aga2 }
+    h2::before{
+        counter-increment: aga2;
+        content: counter(aga2) " - ";
+        width:100%;
+    }	
+    h2{ 
+        font-weight: bold;
+        counter-reset: aga3;
+        border-bottom:5px solid #333; 
+        padding:0 0 -10px 0 !important;
+        margin-bottom: 20px;
+        margin-top: 20px;        
+    }
+
+    h3::before{
+        counter-increment: aga3;
+        content: counter(aga2)"."counter(aga3) " - ";
+    }	
+    h3{ counter-reset: aga4; }
+
+    h4::before{
+        margin-left:25px;
+        counter-increment: aga4;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4) " - ";
+    }	
+    h4{ counter-reset: aga5; }
+
+    h5::before{
+        margin-left:25px;
+        counter-increment: aga5;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5) " - ";
+    }
+    h5{ counter-reset: aga6; }	    
+    
+    h6::before{
+        margin-left:25px;
+        counter-increment: aga6;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5)"."counter(aga6) " - ";
+    }
+</style>
+
+
+
+<ol>
+    <li>Tamanho</li>
+    <li>Row / Column</li>
+    <li>Align</li>
+</ol>
+
+<h2>Tamanho</h2>
+<h3>MediaQuery</h3>
+<pre>width:MediaQuery.of(context).size.width</pre>
+<h3>Double</h3>
+<pre>double.infinity</pre>
+
+<h2>Row / Column</h2>
+As propriedades mainAxisAlignment e crossAxisAlignment são volateis, porque o seu comportamento varia conforme o <b>EIXO PRINCIPAL</b>.
+<br><br>
+Se o <b>EIXO PRINCIPAL</b> for um widget <b>COLUMN()</b> o eixo principal é <b>VERTICAL</b> , portanto o 
+mainAxisAlignment trabalho na vertical , caso o widget seja um <b>ROW()</b> o eixo principal é <b>HORIZONTAL</b>
+
+<h3>Row</h3>
+
+<h4>MainAxisAlignment</h4>
+
+<div class="col-lg-12">
+    <div class="col-lg-3" style="text-align: center;">
+        <b style="color:black;margin:10px 0">.center</b>
+        <br>
+        <img src="images/flutter-row-main-center.png">
+    </div>
+    <div class="col-lg-3" style="text-align: center;">
+        <b style="color:black;margin:10px 0">.start</b>
+        <br>
+        <img src="images/flutter-row-main-start.png">
+    </div>
+    <div class="col-lg-3" style="text-align: center;">
+        <b style="color:black;margin:10px 0">.end</b>
+        <br>
+        <img src="images/flutter-row-main-end.png">
+    </div>
+</div>
+<div class="col-lg-12">
+    <div class="col-lg-3" style="text-align: center;">
+        <b style="color:black;margin:10px 0">.spaceEvenly</b>
+        <br>
+        <img src="images/flutter-row-main-spaceEvenly.png">
+    </div>
+    <div class="col-lg-3" style="text-align: center;">
+        <b style="color:black;margin:10px 0">.spaceAround</b>
+        <br>
+        <img src="images/flutter-row-main-spaceAround.png">
+    </div>
+    <div class="col-lg-3" style="text-align: center;">
+        <b style="color:black;margin:10px 0">.spaceBetween</b>
+        <br>
+        <img src="images/flutter-row-main-spaceBetween.png">
+    </div>
+</div>
+<br clear="all">
+
+<h4>CrossAxisAlignment</h4>
+<div class="col-lg-12">
+    <div class="col-lg-3" style="text-align: center;">
+        <b style="color:black;margin:10px 0">.center</b>
+        <br>
+        <img src="images/flutter-row-cross-center.png">
+    </div>
+    <div class="col-lg-3" style="text-align: center;">
+        <b style="color:black;margin:10px 0">.start</b>
+        <br>
+        <img src="images/flutter-row-cross-start.png">
+    </div>
+    <div class="col-lg-3" style="text-align: center;">
+        <b style="color:black;margin:10px 0">.end</b>
+        <br>
+        <img src="images/flutter-row-cross-end.png">
+    </div>
+    <div class="col-lg-3" style="text-align: center;">
+        <b style="color:black;margin:10px 0">.stretch</b>
+        <br>
+        <img src="images/flutter-row-cross-stretch.png">
+    </div>
+</div>
+<br clear="all">
+
+<h3>Column</h3>
+<h4>MainAxisAlignment</h4>
+
+<div class="col-lg-12">
+    <div class="col-lg-2" style="text-align: center;">
+        <b style="color:black;margin:10px 0">.center</b>
+        <br>
+        <img src="images/flutter-column-main-center.png">
+    </div>
+    <div class="col-lg-2" style="text-align: center;">
+        <b style="color:black;margin:10px 0">.start</b>
+        <br>
+        <img src="images/flutter-column-main-start.png">
+    </div>
+    <div class="col-lg-2" style="text-align: center;">
+        <b style="color:black;margin:10px 0">.end</b>
+        <br>
+        <img src="images/flutter-column-main-end.png">
+    </div>
+    <div class="col-lg-2" style="text-align: center;">
+        <b style="color:black;margin:10px 0">.spaceEvenly</b>
+        <br>
+        <img src="images/flutter-column-main-spaceEvenly.png">
+    </div>
+    <div class="col-lg-2" style="text-align: center;">
+        <b style="color:black;margin:10px 0">.spaceAround</b>
+        <br>
+        <img src="images/flutter-column-main-spaceAround.png">
+    </div>
+    <div class="col-lg-2" style="text-align: center;">
+        <b style="color:black;margin:10px 0">.spaceBetween</b>
+        <br>
+        <img src="images/flutter-column-main-spaceBetween.png">
+    </div>
+</div>
+<br clear="all">
+
+<h4>CrossAxisAlignment</h4>
+<div class="col-lg-12">
+    <div class="col-lg-2" style="text-align: center;">
+        <b style="color:black;margin:10px 0">.center</b>
+        <br>
+        <img src="images/flutter-column-cross-center.png">
+    </div>
+    <div class="col-lg-2" style="text-align: center;">
+        <b style="color:black;margin:10px 0">.start</b>
+        <br>
+        <img src="images/flutter-column-cross-start.png">
+    </div>
+    <div class="col-lg-2" style="text-align: center;">
+        <b style="color:black;margin:10px 0">.end</b>
+        <br>
+        <img src="images/flutter-column-cross-end.png">
+    </div>
+    <div class="col-lg-2" style="text-align: center;">
+        <b style="color:black;margin:10px 0">.stretch</b>
+        <br>
+        <img src="images/flutter-column-cross-stretch.png">
+    </div>
+</div>
+<br clear="all">
+
+<h2>Align</h2>
+
+<a href="http://flutterexamples.com/">FONTE</a>

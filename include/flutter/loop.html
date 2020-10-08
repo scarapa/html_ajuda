@@ -74,3 +74,29 @@ void main() {
     
 }    
 </pre>
+
+<h3>Percorrendo uma lista com MAP</h3>
+Uma lista de um widget,duas formas diferentes de exibição
+<h4>Primeira forma</h4>
+<pre>
+Column(
+    children: _transaction.map( (tr){
+        return Card(
+            child: Text(tr.title),
+        );
+    }).toList(),
+),    
+</pre>
+
+<h4>Segunda forma</h4>
+<pre>
+Column(
+    children: &lt;Widget&gt;[
+        ..._transaction.map( (tr){
+            return Card(
+                child: Text(tr.title),
+            );
+        })
+    ],
+),    
+</pre>

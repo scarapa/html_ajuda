@@ -30,9 +30,37 @@
 
 </style>
 
+<h2>Erro de Instalação</h2>
+Acontece esse erro ao tentar começar a Instalação
+<pre class="terminal">$ flutter doctor</pre>
+Erro:
+<pre class="terminal">\flutter\bin\cache foi inesperado neste momento.</pre>
+
+<code>Solução:</code> ocorre esse porque <b style="color:Red">NÃO É POSSIVEL</b> instalar a pasta <kbd>flutter</kbd> nas pastas abaixo do sistema operacional.
+<ul>
+    <li>C:\Program Files</li>
+    <li>C:\Program Files (x86)</li>
+</ul>
+
+<a href="https://stackoverflow.com/questions/49779059/flutter-installation-not-working">stackoverflow</a><br>
+<a href="https://www.clubedohardware.com.br/topic/532674-problema-dos-de-foi-inesperado-neste-momento/">clubedohardware</a><br>
+
+<h2>Erro de Instalação</h2>
+Dart SDK is not configured
+<div class="centro center">
+    <img src="images/flutter-erro-instalacao-dart-sdk-001.jpg" style="width:60%" class="bp">
+</div>
+<br clear="all">
+<br clear="all">
+
+<code>SOLUCAO</code>
+<div class="centro center">
+    <img src="images/flutter-erro-instalacao-dart-sdk-002.jpg" style="width:60%" class="bp">
+</div>
+
+<hr>
 
 <h2>Bottom overfload</h2>
-
 <div class="centro center">
     <img src="images/flutter-bottom-overfload.jpg" style="width:20%;border:1px solid black">
 </div>
@@ -213,3 +241,63 @@ Tools • Dart 2.9.2
 <pre class="terminal">Dart SDK version: 2.9.2 (stable) (Wed Aug 26 12:44:28 2020 +0200) on "windows_x64"</pre>
 <a href="https://stackoverflow.com/questions/59170895/how-to-update-dart-sdk-to-latest-stable-version-in-flutter">stackoverflow</a><br>
 <a href="https://pub.dev/packages/brasil_fields">brasil_fields</a>
+
+<h2>Snackbar nao funiona</h2>
+<pre class="terminal">The following assertion was thrown while handling a gesture:
+Scaffold.of() called with a context that does not contain a Scaffold.
+No Scaffold ancestor could be found starting from the context that was passed to Scaffold.of(). This
+usually happens when the context provided is from the same StatefulWidget as that whose build
+function actually creates the Scaffold widget being sought.
+There are several ways to avoid this problem. The simplest is to use a Builder to get a context that
+is "under" the Scaffold. For an example of this, please see the documentation for Scaffold.of():</pre>    
+
+Essa exceção ocorre porque você está usando o contexto do widget que instanciou o Scaffold. Não é o contexto de um filho de Scaffold.
+<br><br>
+<code>Solucao:</code>
+Você pode usar uma GlobalKey. A única desvantagem é que usar a GlobalKey pode não ser a maneira mais eficiente de fazer isso.
+<br><br>
+Uma coisa boa sobre isso é que você também pode passar essa chave para outra classe de widgets customizados que não contenha nenhum scaffold.
+<pre>
+class HomePage extends StatelessWidget {
+    <b style="color:red">final _scaffoldKey = GlobalKey&lt;ScaffoldState&gt;();</b> \\ new line
+    @override
+    Widget build(BuildContext context) {
+        return Scaffold(
+        <b style="color:red">key: _scaffoldKey,</b>                           \\ new line
+        appBar: AppBar(
+            title: Text('SnackBar Playground'),
+        ),
+        body: Center(
+            child: RaisedButton(
+            color: Colors.pink,
+            textColor: Colors.white,
+            onPressed: _displaySnackBar(context),
+            child: Text('Display SnackBar'),
+            ),
+        ),
+        );
+    }
+    _displaySnackBar(BuildContext context) {
+        final snackBar = SnackBar(content: Text('Are you talkin\' to me?'));
+        <b style="color:red">_scaffoldKey.currentState.showSnackBar(snackBar);</b>   \\ edited line
+    }
+}    
+</pre>
+
+<a href="https://stackoverflow.com/questions/51304568/scaffold-of-called-with-a-context-that-does-not-contain-a-scaffold"></a>
+
+<hr>
+
+<h2>MissingPluginException</h2>
+
+<pre class="terminal" style="color:Red !important">MissingPluginException(No implementation found for method listen on channel plugins.flutter.io/connectivity_status)</pre>
+
+Solucao, comandos abaixo nessa ordem
+<pre class="terminal">
+$ flutter clean
+$ flutter pub get
+$ flutter clean
+$ flutter run    
+</pre>
+
+<a href="https://stackoverflow.com/questions/58080990/no-implementation-found-for-method-getapplicationdocumentsdirectory-on-channel-p">stackoverflow</a>

@@ -1,0 +1,129 @@
+<style>
+    body{ counter-reset: aga2 }
+    h2::before{
+        counter-increment: aga2;
+        content: counter(aga2) " - ";
+        width:100%;
+    }	
+    h2{ 
+        font-weight: bold;
+        counter-reset: aga3;
+        border-bottom:5px solid #333; 
+        padding:0 0 -10px 0 !important;
+        margin-bottom: 20px;
+        margin-top: 20px;        
+    }
+
+    h3::before{
+        counter-increment: aga3;
+        content: counter(aga2)"."counter(aga3) " - ";
+    }	
+    h3{ counter-reset: aga4; }
+
+    h4::before{
+        margin-left:25px;
+        counter-increment: aga4;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4) " - ";
+    }	
+    h4{ counter-reset: aga5; }
+
+    h5::before{
+        margin-left:25px;
+        counter-increment: aga5;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5) " - ";
+    }
+    h5{ counter-reset: aga6; }	    
+    
+    h6::before{
+        margin-left:25px;
+        counter-increment: aga6;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5)"."counter(aga6) " - ";
+    }
+</style>
+
+Exemplos de gestos incluem tocar, arrastar e escalar.
+<br><br>
+
+O sistema de gestos no Flutter tem duas camadas separadas. A primeira camada possui eventos de ponteiro brutos que descrevem a localização e o movimento dos ponteiros (por exemplo, toques, mouse e estiletes) na tela. A segunda camada tem gestos que descrevem ações semânticas que consistem em um ou mais movimentos do ponteiro.
+<br><br>
+
+<h2>Pointers</h2>
+Os ponteiros representam dados brutos sobre a interação do usuário com a tela do dispositivo. Existem quatro tipos de eventos de ponteiro
+
+<h3>PointerDownEvent</h3>
+O ponteiro entrou em contato com a tela em um local específico.
+
+<h3>PointerMoveEvent</h3>
+O ponteiro mudou de um local para outro na tela.
+
+<h3>PointerUpEvent</h3>
+O ponteiro parou de entrar em contato com a tela.
+
+<h3>PointerCancelEvent</h3>
+A entrada deste ponteiro não é mais direcionada a este aplicativo.
+<br><br>
+
+Com o ponteiro para baixo, a estrutura faz um teste de clique em seu aplicativo para determinar qual widget existe no local onde o ponteiro entrou em contato com a tela. O evento de ponteiro para baixo (e eventos subsequentes para esse ponteiro) são então despachados para o widget mais interno encontrado pelo teste de clique. A partir daí, os eventos borbulham na árvore e são despachados para todos os widgets no caminho do widget mais interno para a raiz da árvore. Não há mecanismo para cancelar ou impedir que eventos de ponteiro sejam enviados posteriormente.
+<br><br>
+
+Para ouvir eventos de ponteiro diretamente da camada de widgets, use um widget Listener. No entanto, geralmente, considere usar gestos (conforme discutido abaixo) em vez
+<br><br>
+
+<h2>Gestures</h2>
+Gestos representam ações semânticas (por exemplo, tocar, arrastar e dimensionar) que são reconhecidas a partir de vários eventos de ponteiro individuais, potencialmente até mesmo vários ponteiros individuais. Os gestos podem despachar vários eventos, correspondentes ao ciclo de vida do gesto (por exemplo, arrastar para iniciar, arrastar para atualizar e arrastar para finalizar):
+
+<h3>Tap</h3>
+
+<h4>onTapDown</h4>
+Um ponteiro que pode causar um toque entrou em contato com a tela em um local específico.
+
+<h4>onTapUp</h4>
+Um ponteiro que acionará um toque parou de entrar em contato com a tela em um local específico.
+
+<h4>onTap</h4>
+The pointer that previously triggered the onTapDown has also triggered onTapUp which ends up causing a tap.
+
+<h4>onTapCancel</h4>
+O ponteiro que acionou anteriormente o onTapDown não vai acabar causando um toque.
+
+<h3>Double tap</h3>
+<h4>onDoubleTap</h4>
+O usuário bateu na tela no mesmo local duas vezes em rápida sucessão.
+
+<h3>Long press</h3>
+<h4>onLongPress</h4>
+Um ponteiro permaneceu em contato com a tela no mesmo local por um longo período de tempo.
+
+<h3>Vertical drag</h3>
+<h4>onVerticalDragStart</h4>
+Um ponteiro entrou em contato com a tela e pode começar a se mover verticalmente.
+
+<h4>onVerticalDragUpdate</h4>
+Um ponteiro que está em contato com a tela e se movendo verticalmente moveu-se na direção vertical.
+
+<h4>onVerticalDragEnd</h4>
+Um ponteiro que estava anteriormente em contato com a tela e se movendo verticalmente não está mais em contato com a tela e estava se movendo a uma velocidade específica quando parou de contatar a tela.
+
+<h3>Horizontal drag</h3>
+<h4>onHorizontalDragStart</h4>
+Um ponteiro entrou em contato com a tela e pode começar a se mover horizontalmente.
+
+<h4>onHorizontalDragUpdate</h4>
+Um ponteiro que está em contato com a tela e se movendo horizontalmente se moveu na direção horizontal.
+
+<h4>onHorizontalDragEnd</h4>
+Um ponteiro que estava anteriormente em contato com a tela e se movendo horizontalmente não está mais em contato com a tela e estava se movendo a uma velocidade específica quando parou de contatar a tela.
+
+<h3>Pan</h3>
+
+<h4>onPanStart</h4>
+Um ponteiro entrou em contato com a tela e pode começar a se mover horizontal ou verticalmente. Esse retorno de chamada causa uma falha se onHorizontalDragStart ou onVerticalDragStart estiver definido.
+
+<h4>onPanUpdate</h4>
+Um ponteiro que está em contato com a tela e se move na direção vertical ou horizontal. Esse retorno de chamada causa uma falha se onHorizontalDragUpdate ou onVerticalDragUpdate estiver definido.
+
+<h4>onPanEnd</h4>
+Um ponteiro que estava anteriormente em contato com a tela não está mais em contato com a tela e está se movendo a uma velocidade específica quando parou de contatar a tela. Esse retorno de chamada causa uma falha se onHorizontalDragEnd ou onVerticalDragEnd estiver definido.
+<br><br>
+
+<a href="https://flutter.dev/docs/development/ui/advanced/gestures" target="_blank">flutter.dev</a>

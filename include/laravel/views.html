@@ -1,0 +1,41 @@
+<h2>Criando a pasta layouts</h2>
+<code>resources\views\layouts</code>
+
+<h2>index.blade.php</h2>
+criar o arquivo <code>resources\views\index.blade.php</code>
+<pre>
+@extends('layouts.app')
+
+@section('body')
+    &lt;h1&gt;Hello Word&lt;/h1&gt;
+@endsection    
+</pre>
+
+<h2>app.blade.php</h2>
+criar o arquivo <code>resources\views\layouts\app.blade.php</code>
+<pre>
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;link href="{{ asset('css/app.css')}}" rel="stylesheet"&gt;
+        &lt;title&gt;Categorias&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div class="container"&gt;
+            &lt;main role="main"&gt;
+                @hasSection('body')
+                    @yield('body')
+                @endif
+            &lt;/main&gt;
+        &lt;/div&gt;
+        &lt;script src="{{ asset('js/app.js')}}" type="text/javascript"&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;    
+</pre>
+
+<h2>Alterando Rota</h2>
+arquivo <code>routes\web.php</code>
+<pre>
+Route::get('/', function () {
+    return view('index');
+});
+</pre>

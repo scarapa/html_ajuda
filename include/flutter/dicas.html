@@ -1,0 +1,80 @@
+<h2>Links Importantes</h2>
+
+<ul>
+    <li><b>flutterexamples</b> - exemplos
+        <ul>
+            <li><a href="http://flutterexamples.com/" target="_blank">flutterexamples</a></li>
+        </ul>
+    </li>    
+    <li><b>kodestat</b> - exemplos completos de funcionalidades
+        <ul>
+            <li><a href="https://kodestat.gitbook.io/flutter/" target="_blank">kodestat</a></li>
+        </ul>
+    </li>
+    <li><b>Dartpad</b> - teste de codigos
+        <ul>
+            <li><a href="https://dart.dev/" target="_blank">link</a>
+        </ul>
+    </li>
+    <li><b>Grupo BR Facebook</b>
+        <ul>
+            <li><a href="https://www.facebook.com/groups/brflutter/" target="_blank">facebook</a></li>
+        </ul>
+    </li>
+    <li><b>fluttercode</b> - pagina de assuntos gerais
+        <ul>
+            <li><a href="https://fluttercode.com.br/" target="_blank">fluttercode</a></li>
+        </ul>
+    </li>
+    <li><b>Temas</b>
+        <ul>
+            <li><a href="https://codecanyon.net/item/flutter-ui-components/23808528?irgwc=1&clickid=W3c2Xi3qCxyOWYGwUx0Mo3IRUkiSYa2nOXAITk0&iradid=275988&irpid=2305834&iradtype=ONLINE_TRACKING_LINK&irmptype=mediapartner&mp_value1=&utm_campaign=af_impact_radius_2305834&utm_medium=affiliate&utm_source=impact_radius" target="_blank">codecanyon</a></li>
+        </ul>
+    </li>    
+    <li><b>40 temas de UI do Flutter</b>
+        <ul>
+            <li><a href="https://fluttercode.com.br/40-lindos-temas-de-ui-do-flutter-para-desenvolvedores/?fbclid=IwAR0GSAujt7trSAH40Vtg_kjEyaurR3D8aYgBNrSoEcpYm-QY42IPW9nMUzA" target="_blank">fluttercode</a></li>
+        </ul>
+    </li>
+
+    <li><b>Responsividade</b> - como deixar o APP responsivo
+        <ul>
+            <li><a href="https://pt.stackoverflow.com/questions/380470/como-fa%C3%A7o-pra-calcular-tamanho-dos-widgets-para-diferentes-resolu%C3%A7%C3%B5es" target="_blank">stackoverflow</a></li>
+        </ul>
+    </li>
+    <li><b>Responsividade 2</b> - como deixar o APP responsivo
+        <ul>
+            <li><a href="https://www.raywenderlich.com/4324124-responsive-design-for-flutter-getting-started" target="_blank">niltonfelipe.wordpress</a></li>
+            <li><a href="https://niltonfelipe.wordpress.com/2020/03/04/design-responsivo-para-flutter-introducao/" target="_blank">traduzido - niltonfelipe.wordpress</a></li>
+        </ul>
+    </li>
+
+
+    
+    <li></li>
+</ul>
+
+
+<h2>Textfield</h2>
+Pegando valores do componente um StatelessWidget
+<pre>
+    // declarando
+    String title = "";
+
+    // elemento
+    TextField(
+        onChanged: (novoValor) => title = novoValor,
+        decoration: InputDecoration(
+          labelText: "Titulo"
+        ),
+      ),
+
+    // elemento botao para exibir o valor da variavel num print
+    FlatButton(
+        onPressed: (){
+          print(valor);
+        },
+        textColor: Colors.purple,
+        child: Text('Nova Transacao'),
+    )
+</pre>

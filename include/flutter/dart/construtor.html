@@ -1,0 +1,116 @@
+<h2>PARAMETROS</h2>
+
+<h3>Parametros POSICIONAIS</h3>
+
+<pre>class Cliente{
+    String nome;
+    String cpf;
+
+    Cliente(String nome, String cpf){
+        this.nome = nome;
+        this.cpf = cpf;
+    }
+}</pre>
+
+ou da forma abaixo:
+
+<pre>class Cliente{
+    String nome;
+    String cpf;
+
+    Cliente(this.nome , this.cpf);
+}</pre>
+
+Construindo ....
+<pre>main(){
+    var c1 = Cliente('Joao','123.456.789-00');
+    print("${c1.nome} ${c1.cpf}")
+}</pre>
+
+
+<h3>Parametros NOMEADOS</h3>
+
+Basta dispor os atributos entre chaves.
+<pre>class Cliente{
+    String nome;
+    String cpf;
+
+    Cliente({this.nome , this.cpf});
+}</pre>
+Isso permite construir objeto da sua forma.<br/>
+Construindo ....
+<pre>main(){
+    var c1 = Cliente(
+        cpf: '123.456.789-00' , 
+        nome:'Joao'
+    );
+    print("${c1.nome} ${c1.cpf}")
+}</pre>
+
+Fazendo dessa forma, não é INCOMUM quando estanciar o objeto, separar os atributos por linhas.
+
+<h3>Parametros OBRIGATORIOS</h3>
+Se quizermos por @required, temos que importar o pacote foundantion
+<pre>import 'package:flutter/foundation.dart';
+
+class Transaction{
+    final String id;
+    final String title;
+    final double value;
+    final DateTime date;
+
+    Transaction({
+        @required this.id ,
+        @required this.title ,
+        @required this.value ,
+        @required this.date
+    });
+}</pre>
+
+<h2>METODOS</h2>
+
+<h3>MIXINS</h3>
+
+
+<h2>ATRIBUTOS</h2>
+
+<h3>GETTERS AND SETTERS</h3>
+<pre>
+class Produto{
+    int codigo;
+    String nome;
+    double preco;
+    double desconto;
+
+    Produto({this.codigo , this.nome , this.preco , this.desconto = 0});
+
+    // PROPRIEDADE QUE CALCULA O DESCONTO
+    double get precoComDesconto{
+        return ( 1 - desconto) * preco;
+    }
+
+    double getPrecoComDesconto(){
+        return ( 1 - desconto) * preco;
+    }
+}
+
+main(){
+    var p1 = Produto(
+        codigo:1,
+        desconto: 0.13,
+        nome:'Caneta',
+        preco: 13.50
+    );
+
+    print( p1.precoComDesconto );
+    // 11.745
+
+    print( p1.getPrecoComDesconto() );
+    // 11.745    
+}
+</pre>
+
+
+
+
+<a href="https://www.youtube.com/watch?v=dL2NxrNewBQ&ab_channel=Cod3rCursos">YOUTUBE - Cod3r</a>
