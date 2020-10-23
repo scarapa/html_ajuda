@@ -13,8 +13,8 @@
         <!-- ########## CSS ########## -->
         <!-- ##########     ########## -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/sb-admin-2.css" rel="stylesheet">
-        <link href="css/metisMenu.css" rel="stylesheet">
+        <!-- <link href="css/sb-admin-2.css" rel="stylesheet">
+        <link href="css/metisMenu.css" rel="stylesheet"> -->
         <link href="css/fontawesome-NOVO.css" rel="stylesheet" type="text/css">
         <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
         <link href="css/materialdesignicons.css" rel="stylesheet">
@@ -40,137 +40,88 @@
     </head>
 
      <body>
-        <div id="wrapper"></div>
-        <div id="page-wrapper"></div>
+        <div id="wrapper">
+            <div id="sidebar"></div>
+            <div id="page-wrapper"></div>
+        </div>
+
     </body>
     <script>
-        $(document).ready(function () {
-            carregarMenu("./include/sidebar.html");
-            init();
-        });
 
-        function carregarMenu(url) {
-            var tmp = [];
-            $.ajax({
-                'async': false,
-                'type': "GET",
-                'global': false,
-                'dataType': 'html',
-                'url': url,
-                'beforeSend': function () {
-                    //abrirCortina();
-                },
-                'success': function (data) {
-                    //return tmp = data
-                    $("#wrapper").html(data)
-                }, 'error': function (jqXHR, exception) {
-                    //console.log('ERRO');
-                    var msg = '';
-                    if (jqXHR.status === 0) {
-                        msg = 'Not connect.\n Verify Network.';
-                    } else if (jqXHR.status == 404) {
-                        msg = 'Requested page not found. [404]';
-                    } else if (jqXHR.status == 500) {
-                        msg = 'Internal Server Error [500].';
-                    } else if (exception === 'parsererror') {
-                        msg = 'Requested JSON parse failed.';
-                    } else if (exception === 'timeout') {
-                        msg = 'Time out error.';
-                    } else if (exception === 'abort') {
-                        msg = 'Ajax request aborted.';
-                    } else {
-                        msg = 'Uncaught Error.\n' + jqXHR.responseText;
-                    }
-                    alert(msg)
+    init();
+
+    async function init() {
+        await carregarSidebar();
+        await carregarMetodos();
+        await carregarPaginaInicial();
+    }
+    async function carregarSidebar(){
+        const sidebar = await loadFileAndPrintToConsole("include/sidebar.html")
+            .then( (dados)=>{
+                return dados;
+            })
+        document.getElementById("sidebar").innerHTML = sidebar;
+        return;
+    } 
+
+    async function carregarMetodos(){
+        var dropdown = document.getElementsByClassName("dropdown-btn");
+        for (var i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var dropdownContent = this.nextElementSibling;
+                if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                } else {
+                    dropdownContent.style.display = "block";
                 }
             });
-            return tmp;
-        }            
+        }
 
-        function init(){ 
-            //$('pre.codificacao').exibirNoConsole(); 
-  
-            let modulo = window.location.hash.replace('#','','g').split("/")[0];
-            if(modulo != ""){ moduloOpen(modulo); }
-
-            //ABRINDO MODULOS
-            $(document).on('click', '#side-menu li', function(){ 
-                let modulo = $(this).children('a').attr('href');
-
-                let st_active = $(this).hasClass("active")
-                //REMOVER TUDO
-                moduloClose();
-
-                //SE CLICAR NO LINK INATIVO, EXPANDE
-                if(st_active == false){
-                    moduloOpen(replaceAll( modulo,"#","" ) )
-                }
+        var navigation = document.querySelectorAll('.sidenav a');
+        for (var k = 0; k < navigation.length; k++) {
+            navigation[k].addEventListener("click", async function() {
+                let modulo = capturarModuloURL();
+                const pagina = await buscarDocumentoServidor("include/"+modulo+".html");
+                await loadPagina(pagina);
+                
             });
-        }      
+        }    
+    }
 
-        function moduloOpen( modulo ){
-            $("#side-menu > li > a[href='#"+modulo+"']").parent('li').addClass('active')
-            $("#side-menu > li > a[href='#"+modulo+"']").siblings('ul').addClass('in')
+    async function buscarDocumentoServidor(pagina){
+        return await loadFileAndPrintToConsole(pagina)
+            .then( (dados)=>{
+                return dados;
+            })
+    }
+
+    async function loadFileAndPrintToConsole(url) {
+        try {
+            const response = await fetch(url);
+            return await response.text();
+
+        } catch (err) {
+            console.error(err);
         }
+    }
 
-        function moduloClose(){
-            $("#side-menu li").removeClass('active')
-            $("#side-menu li ul").removeClass('in')
-        }
+    async function carregarPaginaInicial(){
+        var modulo = capturarModuloURL();
+        pagina = (modulo != "")? "include/"+modulo+".html" :"include/home.html";
+        loadDados = await buscarDocumentoServidor(pagina);
+        await loadPagina(loadDados);
+    }
+    function loadPagina(pagina){
+        document.getElementById("page-wrapper").innerHTML = pagina;
+    }
+    function capturarModuloURL(){
+        // RETIRAR O HASH(#)
+        return window.location.hash.replace('#','','g');
+    }
 
-        function replaceAll(str, de, para){
-            var pos = str.indexOf(de);
-            while (pos > -1){
-                str = str.replace(de, para);
-                pos = str.indexOf(de);
-            }
-            return (str);
-        }
+    function buscarPagina(){
 
-        //FUNCIONALIDADE DE CARREGAR LINKS
-        var link = window.location.hash.replace('#','','g');
-        injetarURL(link);
-        $(document).on('click',"#side-menu ul li a",function () {
-            let link = $(this).attr('href')
-            link = link.replace('#','','g');
-            injetarURL(link)
-        });
-
-        //links DIRETOS , SEM submenus
-        $(document).on('click',"#side-menu li a",function () {
-            let link = $(this).attr('href')
-            link = link.replace('#','','g');
-            injetarURL(link)
-        });
-        
-        $(".calendario").datepicker({
-            format: 'dd/mm/yyyy',                
-            language: "pt-BR"
-        });    
-
-        function injetarURL(link) {
-            let arquivo, icone,texto, cabecalho , url;
-            if(link!=""){
-                arquivo = link;
-                icone = $("a[href$='"+arquivo+"']").children().attr('class')
-                texto = arquivo.toUpperCase().replace("/", "&nbsp;&raquo;&nbsp;");       
-                cabecalho = "<h1><i class='"+icone+" fa-2x'></i>&nbsp;"+texto+"</h1><hr>";
-                url = "include/"+arquivo;
-            }else{
-                arquivo = "home";
-                icone = "fa fa-home";
-                texto = "HOME"
-                cabecalho = "<h1 class='"+icone+" fa-2x'>&nbsp;"+texto+"</h1><hr>";
-                url = "include/"+arquivo;
-            }
-            url = "include/"+arquivo+".html";
-            console.log(url)
-
-            //LIMPAR O MAIN
-            $("#page-wrapper").html('');                    
-            $("#page-wrapper").load(url, function() {
-                $("#page-wrapper").prepend(cabecalho);
-            });
-        }
+    }
     </script>    
 </html>
