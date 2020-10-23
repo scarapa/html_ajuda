@@ -44,6 +44,7 @@
 <h2>JOIN</h2>
 
 <h2>WHERE</h2>
+<h3>Simples</h3>
 <pre>
 public function getMunicipios(){
     <span style="color:red;font-weight: bold;">$objeto = Municipio::where('cd_municipio','!=','99999')-&gt;orderBy('ds_Municipio')-&gt;get();</span>
@@ -70,6 +71,16 @@ Retorno:
 <a href="https://stackoverflow.com/questions/33374289/laravel-where-query-not-working">stackoverflow</a><br>
 <a href="https://laravel.com/docs/7.x/eloquent">laravel</a>
 
+
+<h3>Multiplas Condições / Multiplos wheres</h3>
+<pre>
+// AND
+$results = SomeModel::where('location', $location)-&gt;where('blood_group', $bloodGroup)-&gt;get();
+
+// OR
+$results = SomeModel::where('location', $location)-&gt;orWhere('blood_group', $bloodGroup)-&gt;get();        
+</pre>
+<a href="https://stackoverflow.com/questions/33374289/laravel-where-query-not-working">stackoverflow</a><br>
 
 <h2>ORDER</h2>
 <pre>$this->sale-><b>orderBy('id','desc')</b>->take(10)->get()</pre>

@@ -44,7 +44,7 @@ Fonte[1]Joao Vigini -
 
 
 <h3>Pesquisar o tipo das colunas em tabela especifica</h3>
-<pre><code><kbd>SQLSERVER</kbd>
+<pre><kbd>SQLSERVER</kbd>
 SELECT 
     c.name 'Column Name',
     t.Name 'Data type',
@@ -59,7 +59,7 @@ FROM sys.columns c
     LEFT OUTER JOIN sys.indexes i ON ic.object_id = i.object_id AND ic.index_id = i.index_id
 WHERE
     c.object_id = OBJECT_ID('<strong>NOME_TABELA</strong>')
-</code></pre>
+</pre>
 <a href="https://stackoverflow.com/questions/2418527/sql-server-query-to-get-the-list-of-columns-in-a-table-along-with-data-types-no">stackoverflow</a>
 
 <h2>SGBD SQLSERVER</h2>
@@ -99,9 +99,9 @@ ORDER BY ORDINAL_POSITION;
 <hr>
 
 <h3>Pesquisar o tipo das colunas em tabela especifica[2]</h3>
-<pre><code><kbd>SQLSERVER</kbd>
+<pre><kbd>SQLSERVER</kbd>
 sp_help 'nome_tabela'
-</code></pre>
+</pre>
 <hr>
 
 <h3>Mascarar CPF</h3>
@@ -131,7 +131,7 @@ Ou seja, como o nosso banco é um tipo numerico no BD , ele está gravado dessa 
 	</div>
 </div>
 <br clear="all">
-<pre><code><kbd>SQLSERVER</kbd>
+<pre><kbd>SQLSERVER</kbd>
 SELECT 
 	'345678901' AS 'cpf original'
 	,REPLICATE('0', 11 - LEN('345678901')) + RTRIM('345678901') AS 'cpf com zeros'
@@ -140,7 +140,7 @@ SELECT
 		+SUBSTRING(REPLICATE('0', 11 - LEN('345678901')) + RTRIM('345678901'),7,3)+'-'
 		+SUBSTRING(REPLICATE('0', 11 - LEN('345678901')) + RTRIM('345678901'),10,2) 
 	AS ' cpf mascarado'   
-</code></pre>
+</pre>
 
 <br clear="all">
 
@@ -182,12 +182,12 @@ Fonte:<a href="http://www.isoftsolutions.com.br/exportando-e-importando-banco-de
 <hr>
 
 <h3>Encontrar palavra na string</h3>
-<pre><code><kbd>SQLSERVER</kbd>
+<pre><kbd>SQLSERVER</kbd>
 DECLARE @document varchar(64);  
 SELECT @document = 'Reflectors are vital safety components of your bicycle.';  
 SELECT CHARINDEX('bicycle', @document);  
 GO  
-</code></pre>
+</pre>
 Retorno
 <pre>48</pre>
 
@@ -200,7 +200,7 @@ Ou seja, se o retorno for maior que zero(0) é porque <b>ENCONTROU</b>
 <h3>SQLSERVER: Truncar completando com zeros a esquerda</h3>            
 Na verdade você pode completar com o caracter e sentido(direita ou esquerda) que quizer.<br>
 No exemplo abaixo completei com zeros a esquerda pois o numero identificador do usuario tem que ter 5 de tamanho.
-<pre><code>SELECT 171 AS 'normal' , REPLICATE('0', 5 - LEN(171)) + RTRIM(171) AS 'modificado'</code></pre>
+<pre>SELECT 171 AS 'normal' , REPLICATE('0', 5 - LEN(171)) + RTRIM(171) AS 'modificado'</pre>
 Retorno
 <table border="1">
     <tr>

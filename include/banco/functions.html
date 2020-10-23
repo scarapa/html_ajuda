@@ -1,11 +1,32 @@
-﻿
-A vantagem de usar FUNCTION ao invés de PROCEDURE é de que a FUNCTION pode ser usada junto com o SELECT<br/>
-<h3>1 - OBJETIVO</h3>
-Criar a function que retorna o dia útil para tras no calendário.
+﻿<style>
+    body{ counter-reset: aga2 }
+    h2::before{
+        counter-increment: aga2;
+        content: counter(aga2) " - ";
+        width:100%;
+    }	
+    h2{ 
+        font-weight: bold;
+        counter-reset: aga3;
+        border-bottom:5px solid #333; 
+        padding:0 0 -10px 0 !important;
+        margin-bottom: 20px;
+        margin-top: 20px;        
+    }
 
-<h3>2 - CODIGO</h3>
+    h3::before{
+        counter-increment: aga3;
+        content: counter(aga2)"."counter(aga3) " - ";
+    }	
+    h3{ counter-reset: aga4; }
+</style>
+
+A vantagem de usar FUNCTION ao invés de PROCEDURE é de que a FUNCTION pode ser usada junto com o SELECT<br/>
+
+<h2>BUSCARDIAUTILANTERIOR</h2>
+Criar a function que retorna o dia útil anterior ao dia atual.
 <pre><kbd>SQLSERVER</kbd>
-CREATE FUNCTION FERIASBUSCARPROXIMODIAUTIL(@data DATE)
+CREATE FUNCTION FERIASBUSCARDIAUTILANTERIOR(@data DATE)
 	RETURNS date
 	BEGIN
 		DECLARE @flagErro INT;
@@ -40,30 +61,18 @@ CREATE FUNCTION FERIASBUSCARPROXIMODIAUTIL(@data DATE)
 		RETURN @data
 	END</pre>
 
-<h3>3 - UTILIZAÇÃO</h3>
+ UTILIZAÇÃO
  Para utilizar a mesma é muito simples, basta jogar no SQL.
-<pre><kbd>SQLSERVER</kbd>
-SELECT dbo.FERIASBUSCARPROXIMODIAUTIL('2018-01-05');
---OU
-SELECT 
-	* ,dbo.teste( CONVERT(DATE,dt_documento) ) 
-FROM tblDocumento FROM tabela </pre>
-
-Pode ser utilizada até com JOIN
-<pre>SELECT * FROM  t_usuarios tbl_u
-	INNER JOIN udf_emprestimosAtraso() udf_e ON udf_e.cd_usuario = tbl_u.cd_usuario
-WHERE nome LIKE '%jeniffer%'
-ORDER BY nome
+<pre>
+SELECT dbo.BUSCARDIAUTILANTERIOR('2018-01-05');
 </pre>	
-<i>GUILHERME DAMBROS </i>- 05/01/2018</br>
+
 <a href="https://pt.stackoverflow.com/questions/66872/como-executar-uma-procedure-em-um-select">Fonte[1]</a>
 
 <hr>
 
-<h3>1 - OBJETIVO</h3>
+<h2>BUSCARULTIMOSTATUS</h2>
 Criar a function que retorna uma linha de resultados(pode ser mais de uma linha).
-
-<h3>2 - CODIGO</h3>
 <pre><kbd>SQLSERVER</kbd>
 CREATE FUNCTION [dbo].[BUSCARULTIMOSTATUS]( @cd_documento INT)
 RETURNS TABLE
@@ -77,8 +86,29 @@ AS	RETURN (
 	WHERE cd_documento = @cd_documento AND s1.id_status_documento = s2.cd_status_documento
 )</pre>
 
+UTILIZAÇÃO
+<pre>SELECT * FROM dbo.BUSCARULTIMOSTATUS(14341);</pre>
 
-<h3>3 - UTILIZAÇÃO</h3>
-<pre><kbd>SQLSERVER</kbd>
-SELECT * FROM dbo.BUSCARULTIMOSTATUS(14341);
+<h2>TRUNCAR CPF</h2>
+O Campo CPF atualmente é composto de 11 caracteres numéricos(0-9), para fins de exemplos o nosso CPF terá essa composicao: <b>003.456.789-01</b>
+Ou seja, como o nosso banco é um tipo numerico no BD , ele está gravado dessa forma: <b>345678901</b>
+<pre>
+CREATE FUNCTION [dbo].[TRUNCAR]( @cpf VARCHAR(11))
+RETURNS varchar(11)
+BEGIN
+	RETURN REPLICATE('0', 11 - LEN(@cpf)) + RTRIM(@cpf);
+END
+</pre>			
+
+<h2>MASCARAR CPF</h2>
+<pre>
+CREATE FUNCTION [dbo].[MASCARARCPF]( @cpf VARCHAR(11))
+RETURNS varchar(14)
+BEGIN
+	RETURN 
+		SUBSTRING(REPLICATE('0', 11 - LEN('@cpf')) + RTRIM('@cpf'),0,4)+'.'
+		+SUBSTRING(REPLICATE('0', 11 - LEN('@cpf')) + RTRIM('@cpf'),4,3)+'.'
+		+SUBSTRING(REPLICATE('0', 11 - LEN('@cpf')) + RTRIM('@cpf'),7,3)+'-'
+		+SUBSTRING(REPLICATE('0', 11 - LEN('@cpf')) + RTRIM('@cpf'),10,2) 
+END
 </pre>

@@ -364,3 +364,14 @@ if (!empty($request['producao_leite_concentrado'])) {
 
 Após inserir o metodo <b>detach()</b> antes do for, nao deu mais o problema de salvar errado.
 <a href="https://stackoverflow.com/questions/40489712/laravel-sync-not-working-with-empty-array">stackoverflow</a>
+
+<h2>Erro ao trabalhar com campo data</h2>
+
+<code>Cannot use object of type Illuminate\Support\Carbon as array</code>
+<br><br>
+
+Erro ocorreu quando tentava tranformar o campo <b>created_at</b> em uma String. Para conseguir trabalhar com string
+ foi feito uma gambiarra, utilizado o metdo strtolower , assim foi transformado o campo para string , visto que str_parse esta depreciado
+ e o framework nao aceitou !
+<pre>$dataJson = strtolower( $listaJson[$i]['updated_at'] );</pre>
+<a href="https://laracasts.com/discuss/channels/code-review/cannot-use-object-of-type-carbon-as-array-error">laracasts</a>

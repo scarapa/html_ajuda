@@ -15,6 +15,7 @@
     }
 
     h3::before{
+		margin-left:25px;
         counter-increment: aga3;
         content: counter(aga2)"."counter(aga3) " - ";
     }	
@@ -78,267 +79,305 @@
 <br clear="all">
 <a href="http://www.dellanio.com/diferenca-entre-comandos-ddl-dml-dcl-e-tcl/">Fonte</a>
 <br clear="all">
-
+Abaixo lista da ordem em <b>INGLES</b> de um <b>CRUD</b>
 <ol>
-	<li>INSERT</li>
-	<li>UPDATE</li>
-	<li></li>
+	<li>CREATE - INSERT | inserir</li>
+	<li>READ - SELECT | ler</li>
+	<li>UPDATE | atualizar</li>
+	<li>DELETE | apagar</li>
 </ol>
 
-<h2>INSERT</h2>
+<h2>CREATE - INSERT</h2>
 
-<h3>Montando INSERT apartir do SELECT</h3>
-Codigo SQL abaixo foi montando com o intuito de exportar os dados da tabela municipio do <b>MySQL</b> para o <b>SQLite</b><br/>
-Para unir os campos valorados com textoé um pouco diferente do <code>sqlserver 2008</code>, foi necessário a utilizar a função <strong>CONCAT</strong>
-<pre class="codigo MySQL">
-<strong style="color:blue;">SELECT </strong>
-    <b>CONCAT</b>(<span style="color:red">'["INSERT INTO municipio (id_municipio,ds_municipio) VALUES ('</span>,id_municipio,<span style="color:red">','''</span>,ds_municipio,<span style="color:red">''')"] '</span>) AS 'municipio'
-<strong style="color:blue;">FROM</strong> municipio</pre>
-Retorno:
-<pre>["INSERT INTO municipio (id_municipio,ds_municipio) VALUES (4300034,'Aceguá')"] 	
-["INSERT INTO municipio (id_municipio,ds_municipio) VALUES (4300059,'Água Santa')"] 	
-["INSERT INTO municipio (id_municipio,ds_municipio) VALUES (4300109,'Agudo')"] 	
-["INSERT INTO municipio (id_municipio,ds_municipio) VALUES (4300208,'Ajuricaba')"] 	
-...</pre>
-Agora é só copiar e colar aonde deseja!
-<br><br>
-<a href="https://stackoverflow.com/questions/15368753/cast-int-to-varchar">Fonte</a>
+	<h3>Montando INSERT apartir do SELECT</h3>
+	Codigo SQL abaixo foi montando com o intuito de exportar os dados da tabela municipio do <b>MySQL</b> para o <b>SQLite</b><br/>
+	Para unir os campos valorados com textoé um pouco diferente do <code>sqlserver 2008</code>, foi necessário a utilizar a função <strong>CONCAT</strong>
+	<pre class="codigo MySQL">
+	<strong style="color:blue;">SELECT </strong>
+		<b>CONCAT</b>(<span style="color:red">'["INSERT INTO municipio (id_municipio,ds_municipio) VALUES ('</span>,id_municipio,<span style="color:red">','''</span>,ds_municipio,<span style="color:red">''')"] '</span>) AS 'municipio'
+	<strong style="color:blue;">FROM</strong> municipio</pre>
+	Retorno:
+	<pre>["INSERT INTO municipio (id_municipio,ds_municipio) VALUES (4300034,'Aceguá')"] 	
+	["INSERT INTO municipio (id_municipio,ds_municipio) VALUES (4300059,'Água Santa')"] 	
+	["INSERT INTO municipio (id_municipio,ds_municipio) VALUES (4300109,'Agudo')"] 	
+	["INSERT INTO municipio (id_municipio,ds_municipio) VALUES (4300208,'Ajuricaba')"] 	
+	...</pre>
+	Agora é só copiar e colar aonde deseja!
+	<br><br>
+	<a href="https://stackoverflow.com/questions/15368753/cast-int-to-varchar">Fonte</a>
 
-<hr>
+	<hr>
 
-<h3>INSERT - RECUPERANDO O AUTOINCREMENT</h3>
-<pre><kbd>sqlserver</kbd>
-<strong style="color:blue;">INSERT INTO</strong> tabela_nome (nome,matricula) <strong style="color:blue;">VALUES</strong> ('ROBERTO',11);
-<strong style="color:blue;">SELECT</strong> IDENT_CURRENT('tabela_nome');
-</pre>
+	<h3>INSERT - RECUPERANDO O AUTOINCREMENT</h3>
+	<pre><kbd>sqlserver</kbd>
+	<strong style="color:blue;">INSERT INTO</strong> tabela_nome (nome,matricula) <strong style="color:blue;">VALUES</strong> ('ROBERTO',11);
+	<strong style="color:blue;">SELECT</strong> IDENT_CURRENT('tabela_nome');
+	</pre>
 
-<hr>
+	<hr>
 
-<h3>SELECT COM INSERT E ESTRUTURA</h3>
-<pre><kbd>sqlserver</kbd>
-SELECT * INTO <strong>NOME_NOVATABELA</strong> FROM <strong>TABELAATUAL</strong>
-</pre>
-<code>OBS1: Pode escolher as colunas e inserir valores estaticos no <strong>SELECT</strong></code><br/>
-<code>OBS2: Pode por condição(WHERE) no <strong>SELECT</strong></code><br>
-Exemplo abaixo:
-<pre><strong>INSERT INTO</strong> alunos 
-	<strong>SELECT</strong> 
-		id,nome,'REPROVADOS' AS 'ds_obs' 
-	<strong>FROM</strong> alunos 
-	<strong>WHERE</strong> no_nota < 6;</pre>
+	<h3>SELECT COM INSERT E ESTRUTURA</h3>
+	<pre><kbd>sqlserver</kbd>
+	SELECT * INTO <strong>NOME_NOVATABELA</strong> FROM <strong>TABELAATUAL</strong>
+	</pre>
+	<code>OBS1: Pode escolher as colunas e inserir valores estaticos no <strong>SELECT</strong></code><br/>
+	<code>OBS2: Pode por condição(WHERE) no <strong>SELECT</strong></code><br>
+	Exemplo abaixo:
+	<pre><strong>INSERT INTO</strong> alunos 
+		<strong>SELECT</strong> 
+			id,nome,'REPROVADOS' AS 'ds_obs' 
+		<strong>FROM</strong> alunos 
+		<strong>WHERE</strong> no_nota < 6;</pre>
 
-<hr>
+	<hr>
 
-<h3>SELECT COM INSERT E SEM ESTRUTURA</h3>
-<pre><kbd>sqlserver</kbd>
-<b style="color:blue">INSERT INTO</b> table-name (column-names) 
-    <b style="color:blue">SELECT</b>
-    	column-names
-    <b style="color:blue">FROM</b> table-name
-    <b style="color:blue">WHERE</b> condition</pre>
-<a href="https://www.dofactory.com/sql/insert">Fonte</a>
-<hr>
+	<h3>SELECT COM INSERT E SEM ESTRUTURA</h3>
+	<pre><kbd>sqlserver</kbd>
+	<b style="color:blue">INSERT INTO</b> table-name (column-names) 
+		<b style="color:blue">SELECT</b>
+			column-names
+		<b style="color:blue">FROM</b> table-name
+		<b style="color:blue">WHERE</b> condition</pre>
+	<a href="https://www.dofactory.com/sql/insert">Fonte</a>
+	<hr>
 
 
-<h3>MYSQL - SELECT COM INSERT</h3>
-<pre>INSERT INTO tabela-destino (campo1, campo2...) SELECT campo1,campo2... FROM tabela-origem;</pre>
-<a href="https://codare.aurelio.net/2008/05/17/mysql-insert-com-select-na-mesma-query/">Fonte[1]</a>
-<a href="https://blog.sqlauthority.com/2007/03/25/sql-server-identity-vs-scope_identity-vs-ident_current-retrieve-last-inserted-identity-of-record/">Fonte</a>
+	<h3>MYSQL - SELECT COM INSERT</h3>
+	<pre>INSERT INTO tabela-destino (campo1, campo2...) SELECT campo1,campo2... FROM tabela-origem;</pre>
+	<a href="https://codare.aurelio.net/2008/05/17/mysql-insert-com-select-na-mesma-query/">Fonte[1]</a>
+	<a href="https://blog.sqlauthority.com/2007/03/25/sql-server-identity-vs-scope_identity-vs-ident_current-retrieve-last-inserted-identity-of-record/">Fonte</a>
 
-<h3>SQLSERVER - RECUPERAR VALOR CHAVE PRIMARIA</h3>
-<pre><kbd>sqlserver</kbd>
-INSERT INTO DadosIdentity (Nome, CPF, DataNascimento) VALUES (‘Luan Moreno M. Maciel’,’02236655177′,’1988-07-20′)
+	<h3>SQLSERVER - RECUPERAR VALOR CHAVE PRIMARIA</h3>
+	<pre><kbd>sqlserver</kbd>
+	INSERT INTO DadosIdentity (Nome, CPF, DataNascimento) VALUES (‘Luan Moreno M. Maciel’,’02236655177′,’1988-07-20′)
 
-SELECT @@IDENTITY AS ValorRetornado</pre>
-<a href="https://luanmorenodba.com/2012/02/08/identity-scope_identity-e-ident_currentdiferenas/">Fonte[1]</a> 
-<a href="https://docs.microsoft.com/pt-br/sql/t-sql/functions/scope-identity-transact-sql?view=sql-server-2017">Fonte[2]</a>
-<hr>
+	SELECT @@IDENTITY AS ValorRetornado</pre>
+	<a href="https://luanmorenodba.com/2012/02/08/identity-scope_identity-e-ident_currentdiferenas/">Fonte[1]</a> 
+	<a href="https://docs.microsoft.com/pt-br/sql/t-sql/functions/scope-identity-transact-sql?view=sql-server-2017">Fonte[2]</a>
+	<hr>
+
+	<h3>SET IDENTITY_INSERT </h3>
+	Permite inserir valores explícitos na coluna de identidade de uma tabela.
+	<pre><kbd>mssql</kbd>
+	<span style="color:green">// SET IDENTITY_INSERT [ [ database_name . ] schema_name . ] table_name { ON | OFF } </span>
+	<b>SET IDENTITY_INSERT</b> tabela <b>ON</b>;  </pre>
+	<a href="https://docs.microsoft.com/pt-br/sql/t-sql/statements/set-identity-insert-transact-sql?view=sql-server-ver15" target="_blank">Fonte</a>
+
+<h2>READ - SELECT</h2>
+
+	<h3> SQLSERVER : CONCATENAR/AGRUPAR STRING</h3>	
+
+	<pre>
+// CRIAR TABELAS
+DECLARE @CADCLIENTES TABLE ( [id] INT IDENTITY(1,1) NOT NULL ,[ds_nome] VARCHAR(30) );
+DECLARE @CADCURSOS TABLE ( [id] INT IDENTITY(1,1) NOT NULL ,[ds_nome] VARCHAR(30) );
+DECLARE @CLIENTESTOCURSOS TABLE ( [id] INT IDENTITY(1,1) NOT NULL ,[id_cliente] INT NOT NULL ,[id_curso] INT NOT NULL );
+
+// POPULANDO TABELAS
+INSERT INTO @CADCLIENTES VALUES ('Roberto'),('Jorge'),('Guilherme'),('Douglas');
+INSERT INTO @CADCURSOS VALUES ('Laravel'),('Flutter'),('MySQL'),('MSSQL'),('NodeJS'),('VueJS'),('POO'),('MongoDB'),('Sapiens');
+INSERT INTO @CLIENTESTOCURSOS VALUES
+(1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),
+(2,1),(2,2),(2,3),(2,4),(2,6),
+(3,1),
+(4,1),(4,2),(4,3);
+
+// SELECT
+SELECT
+	e.id_cliente
+	,STUFF(
+		(
+			SELECT 
+				', ' + ds_nome
+			FROM @CLIENTESTOCURSOS b 
+				LEFT JOIN @CADCURSOS cu on cu.id = b.id_curso
+			WHERE b.id_cliente = e.id_cliente 
+
+			FOR XML PATH('')
+		), 1, 2, ''
+	) AS 'id_curso'    
+FROM @CLIENTESTOCURSOS e
+GROUP BY e.id_cliente		
+	</pre>
+
+	<hr>
+
+
+	<div class="col-lg-3">
+		<div class="panel panel-default">
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>TURMA</th><th>MATRICULA</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>2499</td><td>38059</td>
+						</tr>
+						<tr>
+							<td>2499</td><td>48892</td>
+						</tr>
+						<tr>
+							<td>2499</td><td>57099</td>
+						</tr>
+						<tr>
+							<td>2499</td><td>39381</td>
+						</tr>		
+						<tr>
+							<td>2499</td><td>49583</td>
+						</tr>
+						
+						<tr>
+							<td>2498</td><td>38059</td>
+						</tr>
+						<tr>
+							<td>2498</td><td>48892</td>
+						</tr>		
+						<tr>
+							<td>2498</td><td>57099</td>
+						</tr>						
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>	
+
+
+	Para agrupar valor no MYSQL é muito fácil, existe a função group_concat, entretanto no SQLSERVER é mais completo, sigamos com o exemplo ao lado.
+	Iremos agrupar os alunos pela numero de turma.<br/>
+
+	<br clear="all">
+	<div class="col-lg-6">
+	<pre><kbd>SQLSERVER</kbd>
+	SELECT
+		e.turma
+		,STUFF(
+		(SELECT ', ' + cd_matricula
+	FROM tblEmail b 
+	WHERE b.turma = e.turma 
+		FOR XML PATH('')), 1, 2, '') AS 'cd_matricula'    
+	FROM tblEmail e
+	GROUP BY e.turma
+	</pre>
+	</div>
+	<br clear="all">
+
+	Resultado o SQL foi a tabela gerada abaixo:<br/>
+
+	<div class="col-lg-3">
+		<div class="panel panel-default">
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>TURMA</th>
+							<th>MATRICULA</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>2499</td>
+							<td>38059 , 48892 , 57099 , 39381 , 49583</td>
+						</tr>
+						<tr>
+							<td>2498</td>
+							<td>38059 , 48892 , 57099</td>
+						</tr>
+						</tbody>
+				</table>
+			</div>
+		</div>
+	</div>	
+
+	<br clear="all">
+
+	<h3>GERAR TABELA COM INDICE PARA REALIZAR PAGINACAO</h3>
+	Existem duas variaveis como parametros na consulta: $indice_inicio e $indice_fim. <br/>
+	Se você quiser trazer os 20 primeiros reguistros bastar setar $indice_inicio = 1 e a variavel $indice_fim = 20;<br/>
+	Exemplos:<br/>
+	PAGINA->1 ; INICIO->1 ; FIM->20<br/>
+	PAGINA->2 ; INICIO->21 ; FIM->40<br/>
+	PAGINA->3 ; INICIO->41 ; FIM->60<br/>...
+	<pre><kbd>SQLSERVER</kbd>
+	WITH paginacao AS
+	(
+	SELECT 
+		indice = ROW_NUMBER() OVER (ORDER BY chave_primaria) 
+		,c.*
+	FROM NOME_TABELA c
+	WHERE 1 = 1 
+	)
+	SELECT * FROM paginacao p 
+	WHERE 1 = 1
+	AND ( indice BETWEEN $indice_inicio AND $indice_fim )
+	ORDER BY chave_primaria ASC 
+	</pre>
+
+	<h3>BETWEEN</h3>
+	O operador BETWEEN seleciona valores dentro de um determinado intervalo. Os valores podem ser números, texto ou datas.
+	<br/>
+	O operador BETWEEN é inclusivo: os valores de início e final estão incluídos.
+	<pre>SELECT * FROM table_name WHERE coluna <strong>BETWEEN</strong> valor1 AND valor2;</pre>
+	<a href="https://www.w3schools.com/sql/sql_between.asp">w3schools</a>
+
+	<h3>CASE</h3>
+	<div class="col-lg-6">
+	<pre>SELECT 
+	CASE 
+		WHEN MIN(value) <= 0 THEN 0 
+		WHEN MAX(1/value) >= 100 THEN 1 
+	END 
+	FROM Data ;
+	</pre>
+	</div>
+	<br clear="all">
+	<a href="https://msdn.microsoft.com/pt-br/library/ms181765(v=sql.120).aspx">msdn.microsoft</a>
 
 <h2>UPDATE</h2>
-<h3>UPDATE com TABELAS DIFERENTES</h3>
-<pre><kbd>mysql</kbd>
-<b style="color:blue">UPDATE</b> tabela1
-	<b style="color:gray">INNER JOIN</b> tabela2 ON tabela1.id = tabela2.id
-<b style="color:blue">SET</b> tabela1.dado1 = tabela1.dado1 + tabela2.dado2;</pre>
-<a href="https://pt.stackoverflow.com/questions/163532/como-fazer-um-update-usando-dados-de-duas-tabelas-diferentes">stackoverflow</a>
+	<h3>UPDATE com TABELAS DIFERENTES</h3>
+	<pre><kbd>mysql</kbd>
+	<b style="color:blue">UPDATE</b> tabela1
+		<b style="color:gray">INNER JOIN</b> tabela2 ON tabela1.id = tabela2.id
+	<b style="color:blue">SET</b> tabela1.dado1 = tabela1.dado1 + tabela2.dado2;</pre>
+	<a href="https://pt.stackoverflow.com/questions/163532/como-fazer-um-update-usando-dados-de-duas-tabelas-diferentes">stackoverflow</a>
 
-<br clear="all">
+	<br clear="all">
 
-<pre><kbd>mssql</kbd>
-<span style="font-weight:bold;color:#FF00FF">UPDATE</span> tabela_1
-	<b style="color:blue">SET</b> indice = 'teste 1' 
-<b style="color:blue">FROM</b> tabela_1
-	<b style="color:gray">LEFT JOIN</b> tabela_2 <b style="color:blue">ON</b> tabela_1.cd_ident = tabela_2.cd_ident
-<b style="color:blue">WHERE</b> tabela_1.cd_ident = 157
-</pre>
-<a href="https://social.msdn.microsoft.com/Forums/pt-BR/6efe3146-9077-4e42-9a69-56469dc23951/update-com-inner-join?forum=analysisservicespt">microsoft</a>
+	<pre><kbd>mssql</kbd>
+	<span style="font-weight:bold;color:#FF00FF">UPDATE</span> tabela_1
+		<b style="color:blue">SET</b> indice = 'teste 1' 
+	<b style="color:blue">FROM</b> tabela_1
+		<b style="color:gray">LEFT JOIN</b> tabela_2 <b style="color:blue">ON</b> tabela_1.cd_ident = tabela_2.cd_ident
+	<b style="color:blue">WHERE</b> tabela_1.cd_ident = 157
+	</pre>
+	<a href="https://social.msdn.microsoft.com/Forums/pt-BR/6efe3146-9077-4e42-9a69-56469dc23951/update-com-inner-join?forum=analysisservicespt">microsoft</a>
 
-<h3>UPDATE - em valores nulos</h3>
-<pre><kbd>SQLITE</kbd>
-UPDATE noticia SET st_lida = <b>coalesce</b>(st_lida,0) + 1 WHERE cod_noticia = 31153;
-</pre>
+	<h3>UPDATE - em valores nulos</h3>
+	<pre><kbd>SQLITE</kbd>
+	UPDATE noticia SET st_lida = <b>coalesce</b>(st_lida,0) + 1 WHERE cod_noticia = 31153;
+	</pre>
 
-<pre><kbd>MSSQL</kbd>
-UPDATE noticia SET st_lida = <b>ISNULL</b>(st_lida,0) + 1 WHERE cod_noticia = 31153;	
-</pre>
+	<pre><kbd>MSSQL</kbd>
+	UPDATE noticia SET st_lida = <b>ISNULL</b>(st_lida,0) + 1 WHERE cod_noticia = 31153;	
+	</pre>
 
-<pre><kbd>MySQL</kbd>
-UPDATE noticia SET st_lida = <b>IFNULL</b>(st_lida,0) + 1 WHERE cod_noticia = 31153;		
-</pre>
-<a href="https://stackoverflow.com/questions/21030990/android-null-from-sum">stackoverflow</a> 
-<a href="https://www.w3schools.com/sql/sql_isnull.asp">w3schools</a>
-
-<h3> SQLSERVER : CONCATENAR/AGRUPAR STRING</h3>	
-<div class="col-lg-3">
-	<div class="panel panel-default">
-		<div class="table-responsive">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>TURMA</th>
-						<th>MATRICULA</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>2499</td>
-						<td>38059</td>
-					</tr>
-					<tr>
-						<td>2499</td>
-						<td>48892</td>
-					</tr>
-					<tr>
-						<td>2499</td>
-						<td>57099</td>
-					</tr>
-					<tr>
-						<td>2499</td>
-						<td>39381</td>
-					</tr>		
-					<tr>
-						<td>2499</td>
-						<td>49583</td>
-					</tr>
-					
-					<tr>
-						<td>2498</td>
-						<td>38059</td>
-					</tr>
-					<tr>
-						<td>2498</td>
-						<td>48892</td>
-					</tr>		
-					<tr>
-						<td>2498</td>
-						<td>57099</td>
-					</tr>						
-				</tbody>
-			</table>
-		</div>
-	</div>
-</div>	
+	<pre><kbd>MySQL</kbd>
+	UPDATE noticia SET st_lida = <b>IFNULL</b>(st_lida,0) + 1 WHERE cod_noticia = 31153;		
+	</pre>
+	<a href="https://stackoverflow.com/questions/21030990/android-null-from-sum">stackoverflow</a> 
+	<a href="https://www.w3schools.com/sql/sql_isnull.asp">w3schools</a>
 
 
-Para agrupar valor no MYSQL é muito fácil, existe a função group_concat, entretanto no SQLSERVER é mais completo, sigamos com o exemplo ao lado.
-Iremos agrupar os alunos pela numero de turma.<br/>
 
-<br clear="all">
-<div class="col-lg-6">
-<pre><kbd>SQLSERVER</kbd>
-SELECT
-	e.turma
-	,STUFF(
-	(SELECT ', ' + cd_matricula
-FROM tblEmail b 
-WHERE b.turma = e.turma 
-	FOR XML PATH('')), 1, 2, '') AS 'cd_matricula'    
-FROM tblEmail e
-GROUP BY e.turma
-</pre>
-</div>
-<br clear="all">
 
-Resultado o SQL foi a tabela gerada abaixo:<br/>
 
-<div class="col-lg-3">
-	<div class="panel panel-default">
-		<div class="table-responsive">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>TURMA</th>
-						<th>MATRICULA</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>2499</td>
-						<td>38059 , 48892 , 57099 , 39381 , 49583</td>
-					</tr>
-					<tr>
-						<td>2498</td>
-						<td>38059 , 48892 , 57099</td>
-					</tr>
-					</tbody>
-			</table>
-		</div>
-	</div>
-</div>	
 
-<br clear="all">
 
-<h3>GERAR TABELA COM INDICE PARA REALIZAR PAGINACAO</h3>
-Existem duas variaveis como parametros na consulta: $indice_inicio e $indice_fim. <br/>
-Se você quiser trazer os 20 primeiros reguistros bastar setar $indice_inicio = 1 e a variavel $indice_fim = 20;<br/>
-Exemplos:<br/>
-PAGINA->1 ; INICIO->1 ; FIM->20<br/>
-PAGINA->2 ; INICIO->21 ; FIM->40<br/>
-PAGINA->3 ; INICIO->41 ; FIM->60<br/>...
-<pre><kbd>SQLSERVER</kbd>
-WITH paginacao AS
-(
-SELECT 
-	indice = ROW_NUMBER() OVER (ORDER BY chave_primaria) 
-	,c.*
-FROM NOME_TABELA c
-WHERE 1 = 1 
-)
-SELECT * FROM paginacao p 
-WHERE 1 = 1
-AND ( indice BETWEEN $indice_inicio AND $indice_fim )
-ORDER BY chave_primaria ASC 
-</pre>
-
-<h3>BETWEEN</h3>
-O operador BETWEEN seleciona valores dentro de um determinado intervalo. Os valores podem ser números, texto ou datas.
-<br/>
-O operador BETWEEN é inclusivo: os valores de início e final estão incluídos.
-<pre>SELECT * FROM table_name WHERE coluna <strong>BETWEEN</strong> valor1 AND valor2;</pre>
-<a href="https://www.w3schools.com/sql/sql_between.asp">w3schools</a>
-
-<h3>CASE</h3>
-<div class="col-lg-6">
-<pre><code>SELECT 
-   CASE 
-      WHEN MIN(value) <= 0 THEN 0 
-      WHEN MAX(1/value) >= 100 THEN 1 
-   END 
-FROM Data ;
-</code></pre>
-</div>
-<br clear="all">
-<a href="https://msdn.microsoft.com/pt-br/library/ms181765(v=sql.120).aspx">msdn.microsoft</a>
-
-<h3>Reiniciar coluna identity - Zerar identity - Reset Identity</h3>
-Para reiniciar a numeração de uma coluna Identiy de uma tabela do SQL Server, utilize o comando:
-<pre><kbd>mssql</kbd>
-DBCC CHECKIDENT('[tabela]', RESEED, 0)	</pre>
-<a href="https://educoutinho.com.br/sql-server/reiniciar-coluna-identity-zerar-identity-reset-identity/" target="_blank">Fonte</a>
-
-<h3>SET IDENTITY_INSERT </h3>
-Permite inserir valores explícitos na coluna de identidade de uma tabela.
-<pre><kbd>mssql</kbd>
-<span style="color:green">// SET IDENTITY_INSERT [ [ database_name . ] schema_name . ] table_name { ON | OFF } </span>
-<b>SET IDENTITY_INSERT</b> tabela <b>ON</b>;  </pre>
-<a href="https://docs.microsoft.com/pt-br/sql/t-sql/statements/set-identity-insert-transact-sql?view=sql-server-ver15" target="_blank">Fonte</a>
+<h2>DELETE</h2>
+	<h3>Reiniciar coluna identity - Zerar identity - Reset Identity</h3>
+	Para reiniciar a numeração de uma coluna Identiy de uma tabela do SQL Server, utilize o comando:
+	<pre><kbd>mssql</kbd>
+	DBCC CHECKIDENT('[tabela]', RESEED, 0)	</pre>
+	<a href="https://educoutinho.com.br/sql-server/reiniciar-coluna-identity-zerar-identity-reset-identity/" target="_blank">Fonte</a>

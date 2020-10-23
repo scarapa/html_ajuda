@@ -1,0 +1,7 @@
+<h2>Validar Return object</h2>
+<pre>
+$objeto = ProducaoLeite::where('id_usuario',$listaJson[$i]['id_usuario'])-&gt;get();   
+if(isset($objeto[0]-&gt;id)){
+   echo "&lt;pre&gt;OBJETO ";print_r($objeto); echo "&lt;/pre&gt;";
+}</pre>
+<a href="https://stackoverflow.com/questions/30754782/how-to-get-an-item-from-a-collection-in-laravel-5">stackoverflow</a>

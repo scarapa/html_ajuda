@@ -1,0 +1,148 @@
+<style>
+    body{ counter-reset: aga2 }
+    h2::before{
+        counter-increment: aga2;
+        content: counter(aga2) " - ";
+        width:100%;
+    }	
+    h2{ 
+        font-weight: bold;
+        counter-reset: aga3;
+        border-bottom:5px solid #333; 
+        padding:0 0 -10px 0 !important;
+        margin-bottom: 20px;
+        margin-top: 20px;        
+    }
+
+    h3::before{
+        counter-increment: aga3;
+        content: counter(aga2)"."counter(aga3) " - ";
+    }	
+    h3{ counter-reset: aga4; }
+
+    h4::before{
+        margin-left:25px;
+        counter-increment: aga4;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4) " - ";
+    }	
+    h4{ counter-reset: aga5; }
+
+    h5::before{
+        margin-left:25px;
+        counter-increment: aga5;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5) " - ";
+    }
+    h5{ counter-reset: aga6; }	    
+    
+    h6::before{
+        margin-left:25px;
+        counter-increment: aga6;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5)"."counter(aga6) " - ";
+    }
+</style>
+
+Dentro do <b>MaterialApp</b> seta-se uma das propriedades abaixo
+<h2>Cores</h2>
+
+<h3>primaryColor</h3>
+Defina-se uma ÚNICA cor 
+<pre>
+    theme: ThemeData(
+        //primaryColor: Colors.purple,
+      ),
+</pre>
+
+<h3>primarySwatch</h3>
+Essa cor faz parte do MateriColor, isso quer dizer que dentro de uma colorização pode ser usada um expectro de cores
+<pre>
+    theme: ThemeData(
+        primarySwatch: Colors.purple[300],
+      ),
+</pre>
+
+E para utilizar o tema
+<pre>color: Theme.of(context).primaryColor,</pre>
+
+<h3>accentColor</h3>
+Propriedade de cor secundária
+<pre>
+return MaterialApp(
+    home: homePage(),
+    theme: ThemeData(
+        primarySwatch: Colors.purple,
+        <b style="color:red">accentColor: Colors.amber,</b>
+    ),
+);</pre>
+
+<h2>Fontes</h2>
+<h3>Pasta</h3>
+Necessário incluir na pasta desejada as fontes, no meu caso , foram dois tipos de Fontes
+<ul>
+    <li>OpenSans
+        <ul>
+            <li>OpenSans-Regular</li>
+            <li>OpenSans-Bold</li>
+        </ul>
+    </li>
+    <li>Quicksand
+        <ul>
+            <li>Quicksand-Regular</li>
+            <li>Quicksand-Bold</li>
+        </ul>        
+    </li>
+</ul>
+
+<h3>pubspec.yaml</h3>
+Esse arquivo tem que ser muito bem identado, qualquer coisa errada acusa erro.
+<pre>
+fonts:
+    - family: OpenSans
+      fonts:
+        - asset: assets/fonts/OpenSans-Regular.ttf
+        - asset: assets/fonts/OpenSans-Bold.ttf
+          weight: 700
+    - family: Quicksand
+      fonts:
+        - asset: assets/fonts/Quicksand-Regular.ttf
+        - asset: assets/fonts/Quicksand-Bold.ttf
+          weight: 700    
+</pre>
+Utilizando diretamente
+<pre>
+    title: Text("Despesas",
+    style: TextStyle(
+      fontFamily: 'OpenSans'
+    ),
+),    
+</pre>
+
+Utilizando a partir do tema padrao <b>ThemeData.light()</b> existe varias opcoes dentro desse metodo
+<div style="float:left;margin:0 30px 0 15px">
+    <img src="images/flutter-thema-001.jpg" class="bp">
+</div>
+
+A propriedade <b>title</b> está depreceada, a propriedade corretá é <b>headline6</b> conforme codigo abaixo:
+
+<pre>
+return MaterialApp(
+    home: homePage(),
+    theme: ThemeData(
+        primarySwatch: Colors.purple,
+        accentColor: Colors.amber,
+        fontFamily: 'Quicksand',<b style="color:Red">
+        appBarTheme: AppBarTheme(
+            textTheme: ThemeData.light().textTheme.copyWith(
+            headline6: TextStyle(
+                fontFamily: 'OpenSans',
+                fontSize: 20,
+                fontWeight: FontWeight.bold
+                )
+            )
+        ),</b>
+    ),
+);</pre>
+
+<br clear="all">
+Utilizando
+<pre>style: Theme.of(context).textTheme.headline6,</pre>
+

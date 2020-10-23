@@ -28,6 +28,57 @@ Importar nos arquivos necessários:
   var parsedJson = json.decode(jsonData);
   
   print('${parsedJson.runtimeType} : $parsedJson');
+  //_JsonMap : {nome: Paulo, email: paulo@hotmail.com}
 </pre>
 
 <a href="http://www.macoratti.net/19/08/flut_pjson1.htm">macoratti</a>
+
+<hr>
+
+<kbd>class Pesssoa</kbd>
+<pre>
+import 'dart:core';
+import 'dart:convert';
+class Pessoa {
+	int id;
+	String nome;
+
+	Pessoa(this.id, this.nome);
+
+	Map toMap(){
+		var map = new Map&lt;String, dynamic&gt;();
+		map["id"] = id;
+		map["nome"] = nome;
+		return map;
+	}
+
+	@override
+	String toString() {
+		return "{ id:${this.id}, nome:${this.nome} }";
+	}
+}  
+</pre>
+
+Utilizando o metodo toString()
+<pre>
+void main(List&lt;String&gt; args) {
+
+	List&lt;Pessoa&gt; lista = [new Pessoa(1,"Beto") , new Pessoa(2,"Lu"),new Pessoa(3,"Tonia")];
+
+	List jsonList = lista.map( (listagem) =&gt;  listagem ).toList();
+	print(jsonList);
+	//[{ id:1, nome:Beto }, { id:2, nome:Lu }, { id:3, nome:Tonia }]
+}	
+</pre>
+
+Utilizando o metodo toMap()
+<pre>
+void main(List&lt;String&gt; args) {
+
+	List&lt;Pessoa&gt; lista = [new Pessoa(1,"Beto") , new Pessoa(2,"Lu"),new Pessoa(3,"Tonia")];
+	
+	List jsonList = lista.map( (listagem) =&gt; listagem.toMap() ).toList();
+	print(jsonList);
+	//[{ id:1, nome:Beto }, { id:2, nome:Lu }, { id:3, nome:Tonia }]
+}	
+</pre>

@@ -1,0 +1,51 @@
+<h2>Pegar Lista JSON</h2>
+<kbd>JSON</kbd>
+<pre>
+[
+    {
+       "id":1,
+       "id_usuario":13,
+       "cd_municipio":123456
+ 
+    },{
+       "id":2,
+       "id_usuario":12,
+       "cd_municipio":654321
+
+    },{
+       "id":3,
+       "id_usuario":11,
+       "cd_municipio":987654
+ 
+    },{
+       "id":4,
+       "id_usuario":10,
+       "cd_municipio":456789
+    }
+ ]    
+</pre>    
+
+<kbd>Metodo</kbd>
+<pre>
+// PEGA JSON
+$lista = $request-&gt;getContent();
+$listaJson = json_decode($lista, true);
+// PERCORRE A LISTA
+for($i = 0; $i &lt; count($listaJson ) ; $i++){
+    echo "&lt;pre&gt;";print_r($listaJson[$i]); echo "&lt;/pre&gt;";
+}
+</pre>
+<a href="https://stackoverflow.com/questions/46270772/laravel-php-how-to-return-response-with-certain-parameters-in-json-format">stackoverflow</a>
+
+
+<h2>Validar Return object</h2>
+<pre>
+$objeto = ProducaoLeite::where('id_usuario',$listaJson[$i]['id_usuario'])
+   -&gt;where('mes_referencia',$listaJson[$i]['mes_referencia'])
+   -&gt;where('ano_referencia',$listaJson[$i]['ano_referencia'])
+   -&gt;get();   
+
+if(isset($objeto[0]-&gt;id)){
+   echo "&lt;pre&gt;OBJETO ";print_r($objeto); echo "&lt;/pre&gt;";
+}</pre>
+<a href="https://stackoverflow.com/questions/30754782/how-to-get-an-item-from-a-collection-in-laravel-5">stackoverflow</a>

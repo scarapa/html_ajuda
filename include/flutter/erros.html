@@ -301,3 +301,54 @@ $ flutter run
 </pre>
 
 <a href="https://stackoverflow.com/questions/58080990/no-implementation-found-for-method-getapplicationdocumentsdirectory-on-channel-p">stackoverflow</a>
+
+<h2>Não constroi APK</h2>
+<pre>
+    1: Task failed with an exception.
+    -----------
+    * What went wrong:
+    Execution failed for task ':app:mergeDebugJavaResource'.
+    > A failure occurred while executing com.android.build.gradle.internal.tasks.Workers$ActionFacade
+       > File 'com.android.builder.files.ZipCentralDirectory@4c745f95' was deleted, but previous version not found in cache    
+</pre>
+<code>Solucao</code> deletar a pasta build e rodar comando <code>$ flutter run</code>
+
+<pre>
+* What went wrong:
+Execution failed for task ':app:mergeDebugNativeLibs'.
+> A failure occurred while executing com.android.build.gradle.internal.tasks.Workers$ActionFacade
+    > File 'com.android.builder.files.ZipCentralDirectory@5f59aace' was deleted, but previous version not found in cache
+</pre>
+<code>Solucao</code> baixar a versao do SDK, nesse caso da 29 para 28 , em:<kbd>android\app\build.gradle</kbd>
+<pre>
+    if (flutterRoot == null) {
+        //throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+        // comentado linha acima por conta do metodo GradleException()
+        <b style="color:red">throw new Exception("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")</b>
+    }
+    ...
+    
+    android {
+        <b style="color:Red">compileSdkVersion 28</b>
+    
+        sourceSets {
+            main.java.srcDirs += 'src/main/kotlin'
+        }
+    
+        lintOptions {
+            disable 'InvalidPackage'
+        }
+    
+        defaultConfig {
+            // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+            applicationId "br.tche.emater.produtor"
+            minSdkVersion 16
+            <b style="color:Red">targetSdkVersion 28</b>
+            multiDexEnabled true
+            versionCode flutterVersionCode.toInteger()
+            versionName flutterVersionName
+            testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        }    
+</pre>
+<a href="https://stackoverflow.com/questions/55343843/flutter-execution-failed-for-task-appprocessdebugresources">stackoverflow</a>
+

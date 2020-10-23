@@ -1,0 +1,141 @@
+<style>
+    body{ counter-reset: aga2 }
+    h2::before{
+        counter-increment: aga2;
+        content: counter(aga2) " - ";
+        width:100%;
+    }	
+    h2{ 
+        font-weight: bold;
+        counter-reset: aga3;
+        border-bottom:5px solid #333; 
+        padding:0 0 -10px 0 !important;
+        margin-bottom: 20px;
+        margin-top: 20px;        
+    }
+
+    h3::before{
+        counter-increment: aga3;
+        content: counter(aga2)"."counter(aga3) " - ";
+    }	
+    h3{ counter-reset: aga4; }
+
+    h4::before{
+        margin-left:25px;
+        counter-increment: aga4;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4) " - ";
+    }	
+    h4{ counter-reset: aga5; }
+
+
+</style>
+<h2>Tamanho de tela DINAMICO</h2>
+O calculo basicamente é você descontar a altura da appbar menos as porcentagems dos widgets() que você quer distribuir na tela<br>
+<pre>
+    final appBar = AppBar(
+        title: Text("Despesas",
+          style: TextStyle(
+              fontFamily: 'OpenSans'
+          ),
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () =&gt; _openTransactionFormModal(context),
+          )
+        ],
+    );
+
+    <b style="color:red">
+    final disponivelAltura = MediaQuery.of(context).size.height - appBar.preferredSize.height - MediaQuery.of(context).padding.top;
+    </b>
+    return Scaffold(
+      appBar: appBar ,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(<b style="color:red">
+              height: disponivelAltura * 0.3,</b>
+              child: Chart(_recentTransaction),
+            ),
+            Container(<b style="color:red">
+              height: disponivelAltura * 0.7,</b>
+              child: TransactionList(_transaction , _deletarTransaction ),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () =&gt; _openTransactionFormModal(context),
+        child: Icon(Icons.add),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+    );    
+</pre>
+
+<h2>Tamanho de fonte DINAMICO</h2>
+Extremamente importante para aplicações responsivas, o <code>MediaQuery.of(context).textScaleFactor</code> é definido nas configurações do device android
+<pre>
+style: TextStyle(
+    fontFamily: 'OpenSans',
+    <b style="color:Red">fontSize: 10 * MediaQuery.of(context).textScaleFactor,</b>
+),    
+</pre>
+
+<h2>Captando ORIENTAÇÃO de tela</h2>
+Setando numa variavel booleana o valor.
+<pre>
+    bool modoRetrato = MediaQuery.of(context).orientation == Orientation.landscape;
+</pre>
+Mesmo alterando o modo de orientação a tela <b style="color:red">NAO MUDA !</b>
+<div class="centro center">
+    <img src="images/flutter-orientation-001.jpg" class="bp" style="width:40%">
+</div>
+
+<h2>Setando ORIENTAÇÃO UNICA de tela</h2>
+Para bloquear é preciso utilizar a classe <b>SystemChrome</b>
+<pre>
+Widget build(BuildContext context) {
+    <b style="color:red">
+    SystemChrome.setPreferredOrientations([
+        DeviceOrientation.portraitUp
+    ]);</b>
+
+    return MaterialApp(
+        localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate
+        ],
+        supportedLocales: [const Locale('pt', 'BR')],
+        home: homePage(),
+        ...
+</pre>
+Mesmo alterando o modo de orientação a tela <b style="color:red">NAO MUDA !</b>
+<div class="centro center">
+    <img src="images/flutter-orientation-001.jpg" class="bp" style="width:40%">
+</div>
+
+
+
+<h2>Teclando cobrindo Formulario</h2>
+<div class="centro center">
+    <img src="images/flutter-teclado-cobrindo-view-001.png" class="bp" style="width:40%">
+</div>
+<br><br>
+<code>Solucao</code> envolver o card/form em uma <b>SingleChildScrollView</b> e dar 
+um espacamento na margin inferior baseado no tamanho do teclado do device.
+<br><br>
+<pre>
+SingleChildScrollView(
+    child: Card(
+        elevation: 5,
+        child: Padding(
+        padding: EdgeInsets.only(
+            top:10 ,
+            right: 10 ,
+            left: 10 ,<b style="color:red">
+            bottom: 10 + MediaQuery.of(context).viewInsets.bottom,</b>
+        ),
+        ...
+</pre>

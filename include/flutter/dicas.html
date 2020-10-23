@@ -6,16 +6,27 @@
             <li><a href="http://flutterexamples.com/" target="_blank">flutterexamples</a></li>
         </ul>
     </li>    
+    <li><b>codingflutter</b> - exemplos de código e funcionalidades
+        <ul>
+            <li><a href="https://www.codingflutter.com/" target="_blank">codingflutters</a></li>
+        </ul>
+    </li> 
+    
     <li><b>kodestat</b> - exemplos completos de funcionalidades
         <ul>
             <li><a href="https://kodestat.gitbook.io/flutter/" target="_blank">kodestat</a></li>
         </ul>
     </li>
-    <li><b>Dartpad</b> - teste de codigos
+    <li><b>Dartpad</b> - teste de codigos online
         <ul>
             <li><a href="https://dart.dev/" target="_blank">link</a>
         </ul>
     </li>
+    <li><b>FlutLab</b> - teste de codigos online, muitooo completo !
+        <ul>
+            <li><a href="https://flutlab.io/?fbclid=IwAR042qB5VWUSCEMOVgEZD375nmAT0B0eMK9M_Pt0cEEJYYBk2aVUSvh6Sek" target="_blank">flutlab</a>
+        </ul>
+    </li>    
     <li><b>Grupo BR Facebook</b>
         <ul>
             <li><a href="https://www.facebook.com/groups/brflutter/" target="_blank">facebook</a></li>
@@ -48,12 +59,69 @@
             <li><a href="https://niltonfelipe.wordpress.com/2020/03/04/design-responsivo-para-flutter-introducao/" target="_blank">traduzido - niltonfelipe.wordpress</a></li>
         </ul>
     </li>
-
-
-    
     <li></li>
 </ul>
 
+<h2>Tradução </h2>
+No <code>pubspec.yaml</code> adicione o flutter_localizations como:
+<pre>
+dependencies:
+    flutter:
+      sdk: flutter
+    flutter_localizations:
+      sdk: flutter    
+
+    # Você pode utilizar a biblioteca intl para utilizar o DateFormat desta 
+    # forma você consegue formatar as datas referentes as localidade que você deseja.
+    intl: ^0.16.0
+</pre>
+
+Então no seu MaterialApp inicial defina os delegates e as linguagens suportadas:
+<pre>
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:intl/intl.dart';
+
+
+//...
+MaterialApp(
+    localizationsDelegates: [
+    GlobalMaterialLocalizations.delegate,
+    GlobalWidgetsLocalizations.delegate
+    ],
+    supportedLocales: [const Locale('pt', 'BR')],
+);
+</pre>
+
+Uso , exemplo de pegar o dia da semana:
+<pre>
+    // default
+    DateFormat.E().format(weekDay);
+
+    // PORTUGUES
+    DateFormat(DateFormat.WEEKDAY, 'pt_Br').format( weekDay );
+</pre>
+
+<a href="https://pt.stackoverflow.com/questions/399390/flutter-alterar-internacionaliza%C3%A7%C3%A3o-de-nomes-de-datas">stackoverflow</a>
+
+<hr>
+<h2>RaisedButton</h2>
+botão RaisedButton não pega cor de jeito nenhum. Isso acontece porque a propriedade <b>onPressed</b> não está setada!
+<div class="centro center" style="margin:15px">
+    <img src="images/flutter-raisedbutton-desabilitado.png" style="width:40%" class="bp">
+</div>
+
+<code>Solucao</code>
+<pre>
+RaisedButton(
+    color: Theme.of(context).accentColor,
+    onPressed: () {}, //  <b style="color:Red">&lt;-- PRECISA DISSO !!!</b>
+    child: Text(...),
+),
+</pre>
+
+
+<a href="https://stackoverflow.com/questions/53981006/change-color-of-raisedbutton-from-theme-not-working">stackoverflow</a>
+<hr>
 
 <h2>Textfield</h2>
 Pegando valores do componente um StatelessWidget
@@ -77,4 +145,24 @@ Pegando valores do componente um StatelessWidget
         textColor: Colors.purple,
         child: Text('Nova Transacao'),
     )
+</pre>
+
+<h2>Layout</h2>
+<h3>Flexible</h3>
+Baseado no css Flex.<br>
+Existem dois valores na propriedade fit que são muito Importantes e fazem toda diferença
+<ul>
+    <li>fit: FlexFit.loose</li>
+    <li>fit: FlexFit.tight</li>
+</ul>
+
+<h3>Expanded</h3>
+É o mesmo que <b>Flexible</b>, a diferença que tem por default a propriedade <b>FlexFit.tight</b>
+
+
+<h2>Remover Scroll de Listview</h2>
+<pre>
+ListView.builder(
+    physics:NeverScrollableScrollPhysics(),
+)
 </pre>

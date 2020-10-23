@@ -1,0 +1,215 @@
+<style>
+    body{ counter-reset: aga2 }
+    h2::before{
+        counter-increment: aga2;
+        content: counter(aga2) " - ";
+        width:100%;
+    }	
+    h2{ 
+        font-weight: bold;
+        counter-reset: aga3;
+        border-bottom:5px solid #333; 
+        padding:0 0 -10px 0 !important;
+        margin-bottom: 20px;
+        margin-top: 20px;        
+    }
+
+    h3::before{
+        counter-increment: aga3;
+        content: counter(aga2)"."counter(aga3) " - ";
+    }	
+    h3{ counter-reset: aga4; }
+</style>
+
+<ol>
+    <li>Depedencias</li>
+    <li>Enum</li>
+    <li>Classe ConnectivityService </li>
+    <li>Classe NetworkSensitive </li>
+    <li>Classe InternetService - OPCIONAL</li>
+    <li>Widget StreamProvider</li>
+    <li>Como Utilizar !?</li>
+</ol>
+
+<h2>Depedencias</h2>
+<code>pubspec.yaml</code>
+<pre>
+    #internet
+    connectivity: ^0.4.3+1
+    #provider: ^4.0.1
+    provider: ^2.0.1    
+</pre>
+
+<h2>Enum</h2>
+<code>lib/enum/connectivity_status.dart</code>  
+<pre>
+enum ConnectivityStatus {
+    WiFi, Cellular, Offline
+}</pre> 
+
+
+<h2>Classe ConnectivityService</h2>
+<code>lib/services/connectivity_service.dart</code>   
+<pre>
+import 'dart:async';
+import 'package:connectivity/connectivity.dart';
+import '../enum/connectivity_status.dart';
+
+class ConnectivityService {
+    StreamController&lt;ConnectivityStatus&gt; connectionStatusController = StreamController&lt;ConnectivityStatus&gt;();
+
+    ConnectivityService() {
+        Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
+            // Use Connectivity() here to gather more info if you need t
+            connectionStatusController.add(_getStatusFromResult(result));
+        });
+    }
+
+    // Convert from the third part enum to our own enum
+    ConnectivityStatus _getStatusFromResult(ConnectivityResult result) {
+        switch (result) {
+            case ConnectivityResult.mobile:
+            return ConnectivityStatus.Cellular;
+            case ConnectivityResult.wifi:
+            return ConnectivityStatus.WiFi;
+            case ConnectivityResult.none:
+            return ConnectivityStatus.Offline;
+            default:
+            return ConnectivityStatus.Offline;
+        }
+    }
+}</pre>
+
+<h2>Classe NetworkSensitive</h2>
+<code>lib/widgets/network_sensitivity.dart</code>   
+<pre>
+import 'package:flutter/material.dart';
+import '../enum/connectivity_status.dart';
+import 'package:provider/provider.dart';
+
+class NetworkSensitive extends StatelessWidget {
+    final Widget child;
+    final double opacity;
+
+    NetworkSensitive({
+        this.child,
+        this.opacity = 0.5,
+    });
+
+    @override
+    Widget build(BuildContext context) {
+
+    var connectionStatus = Provider.of&lt;ConnectivityStatus&gt;(context);
+    if (connectionStatus == ConnectivityStatus.WiFi) {
+        return child;
+    }
+
+    if (connectionStatus == ConnectivityStatus.Cellular) {
+        return Opacity(
+            opacity: opacity,
+            child: child,
+        );
+    }
+
+    return Opacity(
+        opacity: 0.1,
+        child: child,
+    );
+    }
+}</pre>
+
+<h2>Classe InternetService</h2>
+<code>lib/services/internet_service.dart</code>   
+<pre>
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../enum/connectivity_status.dart';
+import '../widgets/network_sensitivity.dart';
+
+class InternetService extends NetworkSensitive {
+
+    final BuildContext context;
+    var connectionStatus;
+    InternetService(this.context){
+        connectionStatus = Provider.of&lt;ConnectivityStatus&gt;(context);
+    }
+
+    String get status{
+    if (connectionStatus == ConnectivityStatus.WiFi) {
+        return "wifi";
+    }
+
+    if (connectionStatus == ConnectivityStatus.Cellular) {
+        return "movel";
+    }
+
+    return "offline";
+    }
+}    
+</pre>
+
+<h2>Widget StreamProvider</h2>
+Envolvendo o aplicativo num widget que vai ficar <b>ouvindo</b> e esperando alguma mudanca de status, 
+da conexão do device, nesse caso o widget que vai ficar <b>ouvindo,</b> é o <b>StreamProvider</b>
+<code>lib/main.dart</code>   
+<pre>
+import 'package:flutter/material.dart';
+import 'package:flutter_carwashing/enum/connectivity_status.dart';
+import 'package:flutter_carwashing/services/connectivity_service.dart';
+import 'package:flutter_carwashing/telas/homeTela.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
+
+void main() =&gt; runApp( MyApp() );
+
+class MyApp extends StatelessWidget {
+    @override
+    Widget build(BuildContext context) {
+    return
+        StreamProvider&lt;ConnectivityStatus&gt;(
+        builder: (context) =&gt; ConnectivityService().connectionStatusController,
+            child: MaterialApp(
+            localizationsDelegates: [
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate
+            ],
+            supportedLocales: [const Locale('pt', 'BR')],
+            debugShowCheckedModeBanner: false,
+            home:homeTela(),
+            ),
+        );
+    }
+}</pre>
+
+<h2>Como Utilizar</h2>
+<h3>No corpo da Tela</h3>
+Muito simples, envolver no body da nossa tela o widget NetworkSensitive, 
+nessa caso a opacidade da pagina altera
+<pre>
+    body: NetworkSensitive(),    
+</pre>
+
+<h3>initState</h3>
+No exemplo abaixo pode ser validade o tipo de conexão.
+<pre>
+@override
+void initState() {
+    setState(() {
+        InternetService internetService = new InternetService(widget.context);
+        setState(() {
+            _internetController = internetService.status;
+            if (_internetController == "movel") {
+                
+            } else if (_internetController == "offline") {
+                
+            } else {
+                
+            }
+        });
+    });
+    // TODO: implement initState
+    super.initState();
+}    
+</pre>
+
+<a href="https://www.filledstacks.com/post/make-your-flutter-app-network-aware-using-provider-and-connectivity-status/">filledstacks</a>

@@ -1,0 +1,74 @@
+A seguir está o código para o widget no qual usamos a classe de <b>painter</b> personalizada. Este é o código que você pode usar facilmente em qualquer lugar em seu aplicativo flutter.
+<br><br>
+
+A interface usada por <b>CustomPaint e RenderCustomPaint</b>.
+<br><br>
+
+Para implementar um pintor personalizado, crie uma subclasse ou implemente essa interface para definir seu 
+delegado de pintura personalizado. As subclasses de <b>CustomPaint</b> devem implementar os métodos <b>paint e shouldRepaint</b> e, 
+opcionalmente, também podem implementar os métodos hitTest e shouldRebuildSemantics e o getter semanticsBuilder.
+<br><br>
+
+O método <b>paint</b> é chamado sempre que o objeto personalizado precisa ser repintado.
+<br><br>
+
+O método <b>shouldRepaint</b> é chamado quando uma nova instância da classe é fornecida, para verificar se a nova instância 
+realmente representa informações diferentes.
+<pre>
+Container(    
+    width: 300,
+    height: 200,
+    color: Colors.cyan,
+    child: CustomPaint(
+      size: Size(
+                800,500
+            ), //You can Replace this with your desired WIDTH and HEIGHT
+      painter: RPSCustomPainter(),
+    ),
+),    
+</pre>
+
+Aqui está a aula para este design de curvas bonito e atraente. Você pode alterar facilmente a cor do CustomPainter Curves Design.
+Para alterar a cor da curva, basta ir ao RPSCustomPainter
+e mudar a cor de amarelo para azul vermelho e quaisquer outros.
+<br><br>
+Se você deseja apenas um desenho de borda, pode alterar a propriedade de estilo de PaintingStyle.fill para PaintingStyle.stroke
+
+<pre>
+class RPSCustomPainter extends CustomPainter{
+
+    @override
+    void paint(Canvas canvas, Size size) {
+        
+        Paint paint = new Paint()
+        ..color = Colors.yellow
+        ..style = PaintingStyle.fill;
+            
+        Path path = Path();
+        path.moveTo(0,size.height*0.25);
+        path.quadraticBezierTo(size.width*0.06,size.height*0.94,size.width*0.17,size.height*0.37);
+        path.cubicTo(size.width*0.22,size.height*0.36,size.width*0.26,size.height*0.35,size.width*0.30,size.height*0.28);
+        path.cubicTo(size.width*0.36,size.height*0.55,size.width*0.30,size.height*1.06,size.width*0.50,size.height*0.53);
+        path.cubicTo(size.width*0.73,size.height*1.12,size.width*0.62,size.height*0.37,size.width*0.69,size.height*0.28);
+        path.cubicTo(size.width*0.75,size.height*0.38,size.width*0.80,size.height*0.35,size.width*0.83,size.height*0.37);
+        path.cubicTo(size.width*0.81,size.height*0.48,size.width*0.96,size.height*0.95,size.width,size.height*0.25);
+        path.quadraticBezierTo(size.width*0.58,size.height*0.24,0,size.height*0.25);
+        path.close();
+    
+        
+        canvas.drawPath(path, paint);
+    }
+    
+    @override
+    bool shouldRepaint(covariant CustomPainter oldDelegate) {
+        return true;
+    }
+    
+}    
+</pre>
+Agora, se mudarmos as cores do design. O ..color = Colors.red e a cor de fundo para colorir: Colors.teal, o design terá a seguinte aparência.
+<div class="centro center">
+    <img src="images/flutter-paint-001.png" class="bp" style="width:40%">
+</div>
+
+<a href="https://www.codingflutter.com/2020/10/flutter-custom-paint-design-creating.html?fbclid=IwAR1V9IS3Cp34WarpzjZhEUcu2VwzaQoUwkvvTNMexqWZZW-OsVOOk1uWVfs">FONTE</a>

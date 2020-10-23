@@ -1,0 +1,87 @@
+Codigo abaixo servirá de exemplo para as condições.
+<pre>
+import 'dart:html';
+import 'dart:convert';
+import 'dart:math';
+
+class Conta{
+    int id ;
+    int agencia;
+    String name;
+    int saldo;
+    @override
+    toString(){
+        return "id: $id agencia: $agencia - nome: $name - saldo R\$ $saldo";
+    }
+}
+
+void main() async {
+    final _random = new Random();
+    
+    List&lt;String&gt; nomes = ['Antonia Maraninchi','Roberto Aguiar Alam',"Tonia Colvara Ferreira",
+    "Luisa Ferreira Alam","Jose tonias Alam","Gabriela Colvar Ferreira Bisco","Valdir Bispo",
+    "Vagner da Costsa Ortiz","Luiz Eduardo Valente","Rogerio da Cunha Freitas",
+    "Eduardo Vighi Schiller","Angelica","Edson Augusto Martins","Leandro Ferreira Canhada",
+    "Lizandro Ciciliano Tavares","Angelo","Toni","Ricardo Crochemore","Jorge Titoneli","Guilherme Dambros",
+    "Douglas Ristow","Cristiano Moreira","Michel Giacobo Bueno","Roberta Facin","Julia Ferreira Bispo","Marcelo Silva",
+    "Miriam Alam","Cristina da Ceia Ortiz","Anne Crochemore", "Maylen","Marta Crochemore"];
+    
+    List&lt;int&gt; agencias = [050,100,195,200,215,300,400,500];
+    
+    List&lt;Conta&gt; lista = new List();
+
+    for(int i = 0; i &lt; nomes.length ; i++){
+        int numeroRandomico = _random.nextInt(agencias.length);
+        var conta = new Conta();  
+        //conta.id = int.parse( new Random().nextInt(999).toString() );
+        conta.id = i+1;
+        conta.agencia = int.parse( agencias [numeroRandomico].toString() );
+        conta.name = nomes[i].toString();
+        conta.saldo = new Random().nextInt(99999);
+        lista.add(conta);    
+    }
+    var nomesAgencia33 = contasAgencia33.map( (conta)=&gt;conta.name );
+    
+    
+    //PULAR OS 2 PRIMEIROS 
+    //contasAgencia33.skip(2).take(3).toList();
+    
+    //FOREACH
+    //nomesAgencia33.forEach( (name) =&gt; print(name));
+    
+    //contasAgencia33.forEach((conta)=&gt;print(conta.name));
+    //VERIFICAR A CONDICAO EM TODOS OBJETOS , RETORNO BOLEANO
+    //print(contas.every( (conta)=&gt;conta.agencia==33 ));
+    
+    
+}
+</pre>
+<h2>Filtro - WHERE</h2>
+<h3>Filtrar INTEIRO</h3>
+procurar contas com agencia 300
+<pre>lista = lista.where( (item) =&gt; item.agencia == 300).toList();</pre>
+
+<h3>Filtrar STRING EXATA</h3> 
+Filtrar por nome exatamente igual
+<pre>lista = lista.where( (item) =&gt; item.name == "Maylen").toList();</pre>
+
+<h3>Filtrar STRING PARCIAL</h3> 
+Filtrar por nome parcialmente
+<pre>lista = lista.where( (item) =&gt; item.name.toLowerCase().contains('alam') ).toList(); </pre>
+<a href="https://api.dart.dev/stable/2.10.2/dart-core/String/contains.html">api.dart</a>
+
+<h3>Primeiro Item do WHERE</h3>
+<pre>var primeiraConta33 = contas.firstWhere( (conta)=&gt;conta.agencia==33) ;</pre>
+
+<h3>Pegar N da Lista</h3>
+No exemplo abaixo , é pego os 3 primeiros da lista.
+<pre>contasAgencia33.take(<b style="color:red">3</b>).toList();</pre>
+
+<h2>ORDER</h2>
+<h3>CRESCENTE</h3>
+Ordenar por saldo crescente
+<pre>contasAgencia33.sort( (conta1,conta2)=&gt;  conta1.balance - conta2.balance);</pre>
+
+<h3>DECRESCENTE</h3>
+Ordenar por saldo decrescente
+<pre>contasAgencia33.sort( (conta2,conta1)=&gt;  conta2.balance - conta1.balance );</pre>
