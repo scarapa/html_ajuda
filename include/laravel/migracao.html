@@ -51,3 +51,7 @@ mysql > GRANT ALL PRIVILEGES ON *.* TO 'user'@'localhost' IDENTIFIED BY 'user';
 
 <hr>
 
+<code>OBSERVAÇÃO</code>
+Para REEXECUTAR uma migration , é necessário DELETA-LA da TABELA de migrations na database.
+Após isso basta executar o comando novamente ...
+<pre class="terminal">$ php artisan migrate</pre>

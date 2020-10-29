@@ -1,30 +1,28 @@
-﻿
-
-<h3>LISTAR logs</h3> 
+﻿<h3>LISTAR logs</h3> 
 <pre>$ git log</pre>
 
 <h3>LISTAR apenas os arquivos modificados nos commits no log</h3> 
 <pre>$ git log --name-only</pre>
 
 <h3>Verificar os arquivos que foram commitados</h3>
-<pre><code>$ git log --name-status</code></pre>
+<pre>$ git log --name-status</pre>
 
 <h3>ou de um commit especifico *SEU HASH</h3>
-<pre><code>$ git show --pretty="" --name-only <strong>bd61ad98*</strong></code></pre>
+<pre>$ git show --pretty="" --name-only <strong>bd61ad98*</strong></pre>
 
 <h3>Verificar qual o commit de determinado arquivo</h3>
-<pre><code>$ git log --follow <strong>ARQUIVO</strong></code></pre>
+<pre>$ git log --follow <strong>ARQUIVO</strong></pre>
 
 <h3>Verificar o que foi mudado no arquivo, no caso testei somente o primeiro comando.</h3>
-<pre><code>$ git diff HEAD^^ myfile
+<pre>$ git diff HEAD^^ myfile
 ou 
 $ git diff --cached
 ou
 $ git diff --staged
-</code></pre>
+</pre>
 
 <h3>Quando se deseja voltar a versão do arquivo para o ultimo commit</h3>
-<pre><code>$ git checkout HEAD -- my-file.txt</code></pre>
+<pre>$ git checkout HEAD -- my-file.txt</pre>
 
 <h3>Ordebar o git status por datetime:</h3>
 <pre>
@@ -36,6 +34,7 @@ git status -s | while read mode file; do echo $mode $(stat -c %y $file) $file; d
 </pre>
 			 
 <h3>Lista o historico de commits de forma colorida, (Jorge Titoneli)</h3>
-<pre><code>$ git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-</code></pre>
+<pre>
+$ git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+</pre>
 

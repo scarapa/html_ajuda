@@ -56,7 +56,7 @@
         await carregarPaginaInicial();
     }
     async function carregarSidebar(){
-        const sidebar = await loadFileAndPrintToConsole("include/sidebar.html")
+        const sidebar = await buscarDocumentoServidor("include/sidebar.html")
             .then( (dados)=>{
                 return dados;
             })
@@ -81,9 +81,12 @@
         var navigation = document.querySelectorAll('.sidenav a');
         for (var k = 0; k < navigation.length; k++) {
             navigation[k].addEventListener("click", async function() {
+                //console.log(this.getAttribute('href'));
+                let icone = this.childNodes[0];
+                console.log(icone);
                 let modulo = capturarModuloURL();
                 const pagina = await buscarDocumentoServidor("include/"+modulo+".html");
-                await loadPagina(pagina);
+                await loadPagina(pagina,icone);
                 
             });
         }    
@@ -112,7 +115,7 @@
         loadDados = await buscarDocumentoServidor(pagina);
         await loadPagina(loadDados);
     }
-    function loadPagina(pagina){
+    function loadPagina(pagina,icone){
         document.getElementById("page-wrapper").innerHTML = pagina;
     }
     function capturarModuloURL(){
@@ -120,8 +123,5 @@
         return window.location.hash.replace('#','','g');
     }
 
-    function buscarPagina(){
-
-    }
     </script>    
 </html>

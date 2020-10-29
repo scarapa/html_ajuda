@@ -1,48 +1,48 @@
 
 <h3>A > B</h3>
 Este seletor aplica o estilo somente aos filhos diretos de A, ao contrário do mais famoso A B, que seleciona todos os níveis de filhos de A. Este seletor é recomendado quando você deseja criar um estilo apenas para o primeiro nível dos filhos de um determinado elemento.
-<pre><code>    
+<pre>
 ul > li {
    font-weight: bold;
 }
-</code></pre>
+</pre>
 
 <h3>X + Y</h3>
 Esse é chamado de seletor adjacente. Ele selecionará somente o elemento imediatamente após o primeiro elemento. No exemplo acima, selecionará só o primeiro parágrado após cada ul na página, e fará que ele tenha a cor vermelha.
-<pre><code>
+<pre>
 ul + p {
  color: red;
 }
-</code></pre>
+</pre>
 
 <h3>X ~ Y</h3>
 O seletor de irmão é parecido com o seletor X + Y, contudo, é menos restritivo. Enquanto o seletor adjacente (ul + p) só selecionará o primeiro elemento, imediatamente, após o elemento inicial, esse é mais generalista. Ele selecionará, usando o nosso exemplo acima, qualquer elemento p, desde que ele venha depois de um elemento ul. 
-<pre><code>
+<pre>
 ul ~ p {
  color: red;
 }
-</code></pre>
+</pre>
 
 <h3>X[title]</h3>
-<pre><code>
+<pre>
 a[title] {
 	color: green;
 }
-</code></pre>
+</pre>
 Chamado de seletor de atributos, no nosso exemplo acima, ele só selecionará aquelas âncoras com um atributo title. As âncoras que não tiverem esse atributo, não receberão esse estilo em particular. Mas, e se precisarmos ser mais específicos? Bem...
 
 <h3>X:checked</h3>
-<pre><code>
+<pre>
 input[type=radio]:checked {
 	border: 1px solid black;
 }
-</code></pre>
+</pre>
 Essa pseudo-classe somente selecionará o elemento da interface que foi marcado como selecionado – como um botão radio ou checkbox. Simples assim.
 
 <h3>X:after</h3>
 As pseudo-classes before e after são muito boas. Parece que, todos os dias, o pessoal encontra maneiras criativas e efetivas de usá-las. Elas, simplesmente, geram conteúdo ao redor do elemento selecionado.
 Vários aprenderam sobre eles quando foram encontrar o hack do ajuste dos floats (alguns conhecem como clear-fix hack).
-<pre><code>
+<pre>
 .clearfix:after {
   content: "";
   display: block;
@@ -56,34 +56,34 @@ Vários aprenderam sobre eles quando foram encontrar o hack do ajuste dos floats
  *display: inline-block;
  _height: 1%;
 }
-</code></pre>
+</pre>
 Esse hack usa a pseudo-classe :after para adicionar um espaço após o elemento e, então, limpa-lo. É um ótimo truque para se ter em seu cinto de utilidades, principalmente quando a técnica do overflow: hidden; não é possível ser utilizada.
 
 <h3>X:not(selector)</h3>
-<pre><code>
+<pre>
 div:not(#container) {
  color: blue;
 }
-</code></pre>
+</pre>
 A pseudo-classe negação é, particularmente, útil. Digamos que você queira selecionar todas as divs, exceto por aquelas que contenham um identificador nomeado de container. O trecho acima lida com essa tarefa, perfeitamente.
 Ou, se eu quisesse selecionar todos os elementos (o que não é recomendado), exceto pelas tags de parágrafo, poderíamos fazer assim:
-<pre><code>
+<pre>
 *:not(p) {
 	color: green;
 }
-</code></pre>
+</pre>
 
 <h3>X::pseudoElemento</h3>
-<pre><code>
+<pre>
 p::first-line {
 	font-weight: bold;
 	font-size: 1.2em;
 }
-</code></pre>
+</pre>
 Nós podemos usar pseudo-elementos (designados por ::) para estilizar fragmentos de um elemento, como a primeira linha ou uma primeira letra. Lembre-se que essa regra precisa ser aplicada a elementos do tipo bloco para surtirem efeito.
 <h3>Um pseudo-elemento é composto por dois "dois pontos": ::</h3>
 Selecione a Primeira Letra de um Paraágrafo
-<pre><code>
+<pre>
 p::first-letter {
  float: left;
  font-size: 2em;
@@ -91,18 +91,18 @@ p::first-letter {
  font-family: cursive;
  padding-right: 2px;
 }
-</code></pre>
+</pre>
 
 
 <h3>A:first-child / A:last-child</h3>
-<pre><code>
+<pre>
 ul li:first-child {  
    font-weight: bold;  
 }     
 ul li:last-child {  
    font-weight: bold;
 }
-</code></pre>
+</pre>
 
 
 <h3>X:nth-child(n)</h3>
@@ -112,9 +112,9 @@ Atente que o nth-child aceita um número inteiro como parâmetro, entretanto, a 
 <br/>
 Nós podemos, até mesmo, selecionar um número variável de elementos filhos. Por exemplo, nós podemos fazer algo como li:nth-child(4n), para selecionar todos os itens que estejam em uma posição que seja múltipla de quatro. 
 
-<pre><code>li:nth-child(3) {
+<pre>li:nth-child(3) {
  color: red;
-}</code></pre>
+}</pre>
 <a href="http://codigofonte.uol.com.br/artigos/10-seletores-de-css-que-voce-deveria-usar">codigofonte</a>
 <a href="https://code.tutsplus.com/pt/tutorials/the-30-css-selectors-you-must-memorize--net-16048">tutsplus</a>
 

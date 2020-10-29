@@ -166,3 +166,18 @@ ListView.builder(
     physics:NeverScrollableScrollPhysics(),
 )
 </pre>
+
+<h2>IOS</h2>
+Primeiramente fazer o import
+<pre>import 'dart:io';</pre>
+Identificando a plataforna
+<pre>
+Platform.isIOS ? 
+    Container() 
+:
+    FloatingButton()
+</pre>
+
+<h2>NOTCH</h2>
+Devices que possuem o notch podem ocasionar overflow, para isso NAO OCORRER, basta usar o widget abaixo:
+<pre>SafeArea()</pre>

@@ -1,0 +1,38 @@
+
+<h2>CRIAR TRIGGER</h2>
+<h3>SQLITE</h3>
+Para criar um novo gatilho no SQLite, você usa a instrução CREATE TRIGGER , mas só pode dar uma UNICA ACAO <code>INSERT|UPDATE|DELETE</code>, 
+utiliza-se da seguinte maneira:
+<pre>
+CREATE TRIGGER [IF NOT EXISTS] trigger_name 
+    [BEFORE|AFTER|INSTEAD OF] [INSERT|UPDATE|DELETE] 
+    ON table_name
+    [WHEN condition]
+ BEGIN
+  statements;
+ END;    
+</pre>
+
+INSERT
+<pre>
+CREATE TRIGGER coluna_update_at_action_insert AFTER INSERT ON producao_leites
+BEGIN
+    UPDATE producao_leites SET updated_at =  datetime('now','localtime') WHERE id = NEW.id;
+END;    
+  </pre>
+
+UPDATE
+<pre>
+CREATE TRIGGER coluna_update_at_action_update AFTER UPDATE ON producao_leites
+BEGIN
+    UPDATE producao_leites SET updated_at =  datetime('now','localtime') WHERE id = NEW.id;
+END;   
+</pre>
+<a href="https://www.sqlitetutorial.net/sqlite-trigger/">sqlitetutorial</a><br>
+<a href="https://living-sun.com/pt/sqlite/796694-how-to-create-sqlite-trigger-based-on-existence-of-value-in-table-sqlite-triggers.html">living-sun</a><br>
+<a href="http://www.w3big.com/pt/sqlite/sqlite-trigger.html">w3big</a></br>
+
+<h2>DELETAR TRIGGER</h2>
+<h3>SQLITE</h3>
+<pre>DROP TRIGGER [IF EXISTS] trigger_name;</pre>
+<a href="https://www.sqlitetutorial.net/sqlite-trigger/">sqlitetutorial</a>
