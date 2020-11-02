@@ -5,7 +5,7 @@
         <title>AJUDA</title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="" />
+        <meta name="description" content="v2" />
         <meta name="author" content="Roberto Aguiar Alam" />
         <meta name="email" content="scarapa@gmail.com" />        
 		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
@@ -83,10 +83,12 @@
             navigation[k].addEventListener("click", async function() {
                 //console.log(this.getAttribute('href'));
                 let icone = this.childNodes[0];
-                console.log(icone);
-                let modulo = capturarModuloURL();
-                const pagina = await buscarDocumentoServidor("include/"+modulo+".html");
-                await loadPagina(pagina,icone);
+                icone = icone.getAttribute('class');
+                let titulo = capturarModuloURL();
+
+                let pagina = capturarModuloURL();
+                pagina = "include/"+pagina+".html";
+                await loadPagina(pagina,titulo,icone);
                 
             });
         }    
@@ -112,11 +114,20 @@
     async function carregarPaginaInicial(){
         var modulo = capturarModuloURL();
         pagina = (modulo != "")? "include/"+modulo+".html" :"include/home.html";
-        loadDados = await buscarDocumentoServidor(pagina);
-        await loadPagina(loadDados);
+        await loadPagina(pagina);
     }
-    function loadPagina(pagina,icone){
-        document.getElementById("page-wrapper").innerHTML = pagina;
+
+    function loadPagina(pagina,titulo = "",icone = ""){
+
+        if(titulo != "" ){
+            $("#page-wrapper").load(pagina, function() {
+                let cabecalho = "<h1 class='"+icone+" fa-2x'>&nbsp;"+titulo.toUpperCase()+"</h1><hr>";
+                $("#page-wrapper").prepend(cabecalho);
+            });
+        }else{
+            $("#page-wrapper").load(pagina);
+        }
+        
     }
     function capturarModuloURL(){
         // RETIRAR O HASH(#)

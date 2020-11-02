@@ -5,99 +5,140 @@
         content: counters(item, ".") ". ";
         counter-increment: item
     }
-    #childen {}
+	/* CHILDREN */
+    .descendants * { 
+		display: block;
+		border: 2px solid lightgrey;
+		color: lightgrey;
+		padding: 5px;
+		margin: 15px;
+	}
+
+	/* FIND */
+	.ancestors,.ancestors * { 
+		display: block;
+		border: 2px solid lightgrey;
+		color: lightgrey;
+		padding: 5px;
+		margin: 15px;
+	}
+
+	.siblings * { 
+		display: block;
+		border: 2px solid lightgrey;
+		color: lightgrey;
+		padding: 5px;
+		margin: 15px;
+	}
+	.selected { color:red; }
 </style>    
 métodos importantes para navegação pelo DOM
 <ol>
 	<li><a href="#children">children</a></li>
-	<li>filter</li>
-	<li>find</li>	
-	<li>next</li>
-	<li>nextAll</li>
-	<li>parent</li>
-	<li>parents</li>
-	<li>prev</li>
-	<li>siblings</li>
+	<li><a href="#filter">filter</a></li>
+	<li><a href="#filter">find</a></li>	
+	<li><a href="#filter">next</a></li>
+	<li><a href="#filter">nextAll</a></li>
+	<li><a href="#filter">parent</a></li>
+	<li><a href="#filter">parents</a></li>
+	<li><a href="#filter">prev</a></li>
+	<li><a href="#filter">siblings</a></li>
 	<li><a href="#slice">slice</a></li>
 </ol>
-
-
-
-Os exemplos abaixo serão sob o codigo abaixo:
-<pre><kbd>HTML</kbd>
-&lt;ol&gt;
-    &lt;li&gt;nivel&lt;/li&gt;
-    &lt;li&gt;nivel
-        &lt;ol&gt;
-            &lt;li&gt;sub nivel&lt;/li&gt;
-        &lt;/ol&gt;
-    &lt;/li&gt;
-    &lt;li&gt;nivel
-        &lt;ol&gt;
-            &lt;li&gt;sub nivel&lt;/li&gt;
-            &lt;li&gt;sub nivel
-                &lt;ol&gt;
-                    &lt;li&gt;sub sub nivel&lt;/li&gt;
-                    &lt;li&gt;sub sub nivel
-                        &lt;ol&gt;
-                            &lt;li&gt;sub sub sub nivel&lt;/li&gt;
-                            &lt;li&gt;sub sub sub nivel&lt;/li&gt;
-                        &lt;/ol&gt;
-                    &lt;/li&gt;
-                &lt;/ol&gt;
-            &lt;/li&gt;
-            &lt;li&gt;sub nivel&lt;/li&gt;
-        &lt;/ol&gt;
-    &lt;/li&gt;
-    &lt;li&gt;nivel&lt;/li&gt;
-&lt;/ol&gt;
-</pre>
 
 <hr>
 
 <h3 id="childen">children()</h3>
-<pre>$( "#children > li" ).click(function() {
-    $(this).children().css( "color", "red" );
-});</pre>
-<div id="children" class="conteudo">
-	<ol>
-		<li>nivel</li>
-		<li>nivel
-			<ol>
-				<li>sub nivel</li>
-			</ol>
+<pre><kbd>HTML</kbd>
+&lt;div style="width:500px;"&gt;div (grandparent)
+    &lt;ul&gt;ul (direct parent)  
+      &lt;li&gt;li (child 1)
+        &lt;span&gt;span (grandchild)&lt;/span&gt;
+	  &lt;/li&gt;
+	  &lt;li&gt;li (child 2)&lt;/li&gt;
+    &lt;/ul&gt;   
+&lt;/div&gt;
+</pre>
+
+<pre>$("#testeChildren ul").children().css({"color": "red", "border": "2px solid red"});</pre>
+<div class="descendants">
+	<div id="testeChildren" style="width:500px;">div (grandparent)
+		<ul>ul (direct parent)  
+		<li>li (child 1)
+			<span>span (grandchild)</span>
 		</li>
-		<li>nivel
-			<ol>
-				<li>sub nivel</li>
-				<li>sub nivel
-					<ol>
-						<li>sub sub nivel</li>
-						<li>sub sub nivel
-							<ol>
-								<li>sub sub sub nivel</li>
-								<li>sub sub sub nivel</li>
-							</ol>
-						</li>
-					</ol>
-				</li>
-				<li>sub nivel</li>
-			</ol>
-		</li>
-		<li>nivel</li>
-	</ol>
+		<li>li (child 2)</li>
+		</ul>   
+	</div>
 </div>
+
+<a href="http://www.w3bai.com/pt/jquery/tryit.php?filename=tryjquery_traversing_children">w3bai</a>
+
 <hr>
 
-<h3>filter</h3>
+<h3 id="filter">filter</h3>
 encontra os elementos que atendem à expressão solicitada que sejam <b>descendentes</b> do seletor.
+
+<pre><kbd>HTML</kbd>
+&lt;div id="testeFilter"&gt;
+	&lt;p&gt;My name is Donald.&lt;/p&gt;
+	&lt;p class="intro"&gt;I live in Duckburg.&lt;/p&gt;
+	&lt;p class="intro"&gt;I love Duckburg.&lt;/p&gt;
+	&lt;p&gt;My best friend is Mickey.&lt;/p&gt;
+&lt;/div&gt;
+</pre>
+
+<pre><kbd>JQUERY</kbd>
+$("#testeFilter p").filter(".intro").css("background-color", "yellow");
+</pre>
+
+<div id="testeFilter">
+	<p>My name is Donald.</p>
+	<p class="intro">I live in Duckburg.</p>
+	<p class="intro">I love Duckburg.</p>
+	<p>My best friend is Mickey.</p>
+</div>
+
 <hr>
 
-<h3>find</h3>
-filtra e devolve todos os elementos que coincidam com o seletor e <b>também</b> a expressão filtrada.
+<h3 id="find">find</h3>
+Os find() método retorna elementos descendentes do elemento selecionado.
+<br><br>
+Um descendente é uma criança, neto, bisneto, e assim por diante.
+<br><br>
+A árvore DOM: Este método percorrer para baixo ao longo descendentes de elementos DOM, todo o caminho até o último descendente. Apenas a atravessar um único nível para baixo da árvore DOM (para retornar filhos diretos), use os children() método. 
+<br><br>
+<pre>
+&lt;div class="ancestors"&gt;body (great-grandparent)
+	&lt;div id="testeFind" style="width:500px;"&gt;div (grandparent)
+	  &lt;ul&gt;ul (direct parent)  
+		&lt;li&gt;li (child 1)
+		  &lt;span&gt;span (grandchild)&lt;/span&gt;
+		&lt;/li&gt;
+		&lt;li&gt;li (child 2)&lt;/li&gt;
+	  &lt;/ul&gt;   
+	&lt;/div&gt;
+&lt;/div&gt;	
+</pre>
+
+<pre>$("#testeFind ul").find("span").css({"color": "red", "border": "2px solid red"});</pre>
+
+<div class="ancestors" style="width:550px;">body (great-grandparent)
+	<div id="testeFind" style="width:500px;">div (grandparent)
+	  <ul>ul (direct parent)  
+		<li>li (child 1)
+		  <span>span (grandchild)</span>
+		</li>
+		<li>li (child 2)</li>
+	  </ul>   
+	</div>
+</div>
+
+<a href="http://www.w3bai.com/pt/jquery/tryit.php?filename=tryjquery_traversing_find">w3bai</a>
+
 <hr>
 
-<h3>next()</h3>
+<h3 id="next">next()</h3>
 Metodo desconsidera os <b>filhos</b> pega o proximo <b>irmão</b> ou <b>superior</b>
 <div id="next" class="conteudo">
 	<ol>
@@ -130,39 +171,43 @@ Metodo desconsidera os <b>filhos</b> pega o proximo <b>irmão</b> ou <b>superior
 
 <hr>
 
-<h3>nextAll()</h3>
-<div id="nextAll" class="conteudo">
-	<ol>
-		<li>nivel</li>
-		<li>nivel
-			<ol>
-				<li>sub nivel</li>
-			</ol>
-		</li>
-		<li>nivel
-			<ol>
-				<li>sub nivel</li>
-				<li>sub nivel
-					<ol>
-						<li>sub sub nivel</li>
-						<li>sub sub nivel
-							<ol>
-								<li>sub sub sub nivel</li>
-								<li>sub sub sub nivel</li>
-							</ol>
-						</li>
-					</ol>
-				</li>
-				<li>sub nivel</li>
-			</ol>
-		</li>
-		<li>nivel</li>
-	</ol>
-</div>
+<h3 id="nextAll">nextAll()</h3>
+Retornar todos os elementos irmãos próximos abaixo
 
+<pre><kbd>HTML</kbd>
+&lt;div id="testeNextAll" style="width:500px;" class="siblings"&gt;
+	&lt;ul&gt;ul (parent)  
+	  &lt;li&gt;li (sibling)&lt;/li&gt;
+	  &lt;li&gt;li (sibling)&lt;/li&gt;
+	  &lt;li class="start"&gt;li (sibling with class name "start")&lt;/li&gt;
+	  &lt;li&gt;li (the next sibling of li with class name "start")&lt;/li&gt;
+	  &lt;li&gt;li (the next sibling of li with class name "start")&lt;/li&gt;
+	  &lt;li&gt;li (the next sibling of li with class name "start")&lt;/li&gt;
+	&lt;/ul&gt;   
+&lt;/div&gt;	
+</pre>
+
+<pre><kbd>jQuery</kbd>
+$(document).ready(function(){
+	$("#testeNextAll li.start").nextAll().css({"color": "red", "border": "2px solid red"});
+});	
+</pre>
+
+<div id="testeNextAll" style="width:500px;" class="siblings">
+	<ul>ul (parent)  
+	  <li>li (sibling)</li>
+	  <li>li (sibling)</li>
+	  <li class="start">li (sibling with class name "start")</li>
+	  <li>li (the next sibling of li with class name "start")</li>
+	  <li>li (the next sibling of li with class name "start")</li>
+	  <li>li (the next sibling of li with class name "start")</li>
+	</ul>   
+</div>	
+
+<a href="http://www.w3bai.com/pt/jquery/traversing_nextall.html">w3bai</a>
 <hr>
 
-<h3>parent()</h3>
+<h3 id="parent">parent()</h3>
 Busca o primeiro ascendente e quando passamos nele um seletor – como .parent(‘ul’), por exemplo – só retorna o primeiro ascendente se ele fizer match com o seletor (se for uma ul, no caso). Se o ascendente direto não for uma ul, nesse caso, não retorna nada, ou melhor, apenas um objeto jQuery vazio!
 <div id="parent" class="conteudo">
 	<ol>
@@ -195,7 +240,7 @@ Busca o primeiro ascendente e quando passamos nele um seletor – como .parent(�
 
 <hr>
 
-<h3>parents()</h3>
+<h3 id="parents">parents()</h3>
 Busca todos os ascendentes e passando um parâmetro como seletor – exemplo: .parents(‘ul’) – busca todos os ascendentes que combinem com esse seletor, ou seja, neste caso seriam todas as tags ul ascendentes.
  
 <div id="parents" class="conteudo">
@@ -228,33 +273,130 @@ Busca todos os ascendentes e passando um parâmetro como seletor – exemplo: .p
 </div>
 <hr>
 
-<h3>prev</h3>
-<hr>
+<h3 id="prev">prev</h3>
+Retorna o elemento irmão anterior
+<pre><kbd>HTML</kbd>
+&lt;div id="testePrev" style="width:500px;" class="siblings"&gt;
+	&lt;ul&gt;ul (parent)  
+		&lt;li&gt;li (sibling)&lt;/li&gt;
+		&lt;li&gt;li (the previous sibling of li with class name "start")&lt;/li&gt;
+		&lt;li class="start"&gt;li (sibling with class name "start")&lt;/li&gt;
+		&lt;li&gt;li (sibling)&lt;/li&gt;
+		&lt;li&gt;li (sibling)&lt;/li&gt;
+	&lt;/ul&gt;   
+&lt;/div&gt;	
+</pre>
 
-<h3>siblings</h3>
-<hr>
+<pre><kbd>jQuery</kbd>
+$("#testePrev li.start").prev().css({"color": "red", "border": "2px solid red"});
+</pre>
+
+<div id="testePrev" style="width:500px;" class="siblings">
+	<ul>ul (parent)  
+	  <li>li (sibling)</li>
+	  <li>li (the previous sibling of li with class name "start")</li>
+	  <li class="start">li (sibling with class name "start")</li>
+	  <li>li (sibling)</li>
+	  <li>li (sibling)</li>
+	</ul>   
+  </div>
+
+  <a href="http://www.w3bai.com/pt/jquery/tryit.php?filename=tryjquery_traversing_prev">w3bai</a>
+  <hr>
+
+<h3 id="siblings">siblings</h3>
+Retornar todos os elementos irmãos
+
+<pre><kbd>HTML</kbd>
+&lt;div id="testeSiblings" style="width:500px;" class="siblings"&gt;
+	&lt;ul&gt;ul (parent)  
+	  &lt;li&gt;li (the previous sibling of "start")&lt;/li&gt;
+	  &lt;li&gt;li (the previous sibling of "start")&lt;/li&gt;
+	  &lt;li class="start"&gt;li (sibling)&lt;/li&gt;
+	  &lt;li&gt;li (the next sibling of "start")&lt;/li&gt;
+	  &lt;li&gt;li (the next sibling of "start")&lt;/li&gt;
+	&lt;/ul&gt;   
+&lt;/div&gt;</pre>
+
+
+<pre><kbd>jQuery</kbd>
+$("#testeSiblings li.start").siblings().css({"color": "red", "border": "2px solid red"});
+</pre>
+
+<div id="testeSiblings" style="width:500px;" class="siblings">
+	<ul>ul (parent)  
+	  <li>li (the previous sibling of "start")</li>
+	  <li>li (the previous sibling of "start")</li>
+	  <li class="start">li (sibling)</li>
+	  <li>li (the next sibling of "start")</li>
+	  <li>li (the next sibling of "start")</li>
+	</ul>   
+</div>
+
+<a href="http://www.w3bai.com/pt/jquery/tryit.php?filename=tryjquery_traversing_siblings">w3bai</a>
+  <hr>
 
 <h3 id="slice">slice</h3>
-<hr>
+A slice() método selecciona um subconjunto de elementos com base no seu índice.
+<br><br>
+Um subconjunto é um conjunto que faz parte de um conjunto maior.
+<br><br>
+Este método é usado para limitar a seleção de elementos de um grupo, por um ponto inicial e final: o parâmetro start é um índice inicial (começa em 0) do qual deseja criar o subconjunto, eo parâmetro de parada é um ponto final opcional. 
 
+<pre><kbd>HTML</kbd>
+&lt;div id="testeSlice"&gt;
+	&lt;ul&gt;
+		&lt;li class = "above"&gt;list item 0&lt;/li&gt;
+		&lt;li class = "top"&gt;list item 1&lt;/li&gt;
+		&lt;li class = "top"&gt;list item 2&lt;/li&gt;
+		&lt;li class = "middle"&gt;list item 3&lt;/li&gt;
+		&lt;li class = "middle"&gt;list item 4&lt;/li&gt;
+		&lt;li class = "bottom"&gt;list item 5&lt;/li&gt;
+		&lt;li class = "bottom"&gt;list item 6&lt;/li&gt;
+		&lt;li class = "below"&gt;list item 7&lt;/li&gt;
+	 &lt;/ul&gt;
+  &lt;/div&gt;	
+</pre>
+
+<pre>$("#testeSlice li").slice(2, 5).addClass("selected");</pre>
+
+<div id="testeSlice" style="width:500px;" class="siblings">
+	<ul>
+		<li class = "above">list item 0</li>
+		<li class = "top">list item 1</li>
+		<li class = "top">list item 2</li>
+		<li class = "middle">list item 3</li>
+		<li class = "middle">list item 4</li>
+		<li class = "bottom">list item 5</li>
+		<li class = "bottom">list item 6</li>
+		<li class = "below">list item 7</li>
+	</ul>
+</div>
+
+<a href="https://www.tutorialspoint.com/jquery/traversal-slice.htm">tutorialspoint</a>
 
 <script type="text/javascript">
 $(document).ready(function () {
 	//CHILDREN
-	$(document).on('click', '#children li', function(){
-		console.log ( $(this).children() )
-	 	$(this).children().css( "color", "red" );
-	});
+	$("#testeChildren ul").children().css({"color": "red", "border": "2px solid red"})
+
+	//FILTER
+	$("#testeFilter p").filter(".intro").css("background-color", "yellow");
+
+	//FIND 
+	$("#testeFind ul").find("span").css({"color": "red", "border": "2px solid red"});
+
 	//NEXT
 	$(document).on('click', '#next li', function(){
 		console.log ( $(this).next() )
 	 	$(this).next().css( "color", "red" );
 	});	
 	//NEXTALL
-	$(document).on('click', '#nextAll li', function(){
-		console.log ( $(this).nextAll() )
-	 	$(this).nextAll().css( "color", "red" );
-	});	
+	$("#testeNextAll li.start").nextAll().css({"color": "red", "border": "2px solid red"});
+
+	//PREV
+    $("#testePrev li.start").prev().css({"color": "red", "border": "2px solid red"});
+
 	//parent
 	$(document).on('click', '#parent li', function(){
 		console.log ( $(this).parent() )
@@ -266,5 +408,11 @@ $(document).ready(function () {
 		console.log ( $(this).parents() )
 	 	$(this).parents().css( "color", "red" );
 	});		
+
+	//siblings
+	$("#testeSiblings li.start").siblings().css({"color": "red", "border": "2px solid red"});
+
+	//slice
+	$("#testeSlice ul li").slice(2, 5).addClass("selected");
 });	
 </script>

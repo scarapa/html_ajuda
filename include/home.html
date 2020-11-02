@@ -194,13 +194,6 @@ div.divSugestoes{border:1px solid black;border-radius: 5px;padding: 5px;float:le
 </div>
 
 <script>
-	window.document.onload = function(e){ 
-		alert('');
-	}
-	window.onload = function(e){ 
-		alert('');
-	}	
-	alert('');
 	function replaceAll(str, de, para){
 	    var pos = str.indexOf(de);
 	    while (pos > -1){
@@ -216,7 +209,6 @@ div.divSugestoes{border:1px solid black;border-radius: 5px;padding: 5px;float:le
 		alert ("Hello World!");
 	} 
 	function gerarHtml(ele){
-		alert('')
 		ele = replaceAll( replaceAll(ele,"<","&lt;") ,">" ,"&gt;") ;
 		document.getElementById('gerarHtmlTextarea').value = ele;
 		document.getElementById('gerarHtmlTextarea').focus();
