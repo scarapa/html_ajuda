@@ -1,2 +1,100 @@
 
-<h3><i class="fa fa-print fa-fw"></i> Folha de Impressão </h3>
+<h2><i class="fa fa-print fa-fw"></i> Folha de Impressão </h2>
+
+Há duas formas de inserir uma folha de estilos, diretamente no HTML ou em outro arquivo
+<pre>
+    &lt;link rel="stylesheet" type="text/css" href="print.css" media="print" /&gt;    
+</pre>
+
+Ou através de media types no final da sua folha de estilos principal:
+<pre>
+/*CSS para impressão*/
+@media print {
+
+}</pre>
+
+<h3>Resetando</h3>
+<pre>
+* {
+    background:transparent !important;
+    color:#000 !important;
+    text-shadow:none !important;
+    filter:none !important;
+    -ms-filter:none !important;
+}
+
+body {
+    margin:0;
+    padding:0;
+    line-height: 1.4em;
+}</pre>
+
+<h3>Margin da Pagina</h3>
+Definir uma margem única para todo o layout utilizando @page. Já que estamos no 'mundo real' 
+podemos descartar medidas em pixels. Repare que o valor está em centímetros.
+<pre>@page { margin: 0.5cm; }</pre>
+
+<h3>Descartando conteúdo</h3>
+Muitas das áreas de um site não precisam ser impressas, ou, pelo menos não exatamente de maneira idêntica a versão online.
+<br><br>
+Você pode criar duas classes para facilitar este trabalho. 'Print' para os elementos que deseja que sejam mostrados apenas na impressão e “no-print” para aqueles que você quer esconder. 
+
+<pre>
+nav, footer, video, audio, object, embed { 
+    display:none; 
+}    
+.print { display:block; }
+.no-print {  display:none;  }
+</pre>
+
+<h3>Imagens</h3>
+Não queremos que imagens grandes sejam cortadas para fora do papel. Temos duas soluções neste caso: 
+determinar uma largura máxima em um valor fixo como pixels ou estabelecer o tamanho máximo como 100%.
+<pre>img { max-width: 100%; }</pre>
+
+<h3>Sidebar</h3>
+Se a sidebar for algo relevante ao seu leitor, você pode posiciona-la abaixo do texto; senão for, exclu-a
+<pre>
+aside {
+    display:block;
+    page-break-before: always;
+}    
+</pre>
+
+<h3>Textos</h3>
+A maior parte das pessoas imprime em preto e branco pois é mais prático e econômico. Lembre-se disto na hora de 
+definir seus estilos de texto. Nesta hora também é legal aproveitar para reajustar o tamanho, margem, padding e 
+altura da linha dos elementos para garantir uma melhor leiturabilidade.
+<br><br>
+
+Se você estiver utilizando uma fonte display maluca super estilosa para os títulos e parágrafos talvez seja 
+interessante trocar para algo mais “normal”, de preferência serifado já que existe um consenso que 
+este tipo de letra é melhor para a leitura impressa. 
+
+<pre>
+body {
+    font: 12pt Georgia, "Times New Roman", Times, serif;
+    color: #000;
+}
+
+h1 { font-size: 24pt; }
+h2 { font-size: 18pt; }
+h3 { font-size: 14pt; }    
+</pre>
+
+<h3>Links</h3>
+Muitas vezes diferenciamos links de texto apenas por cores. Isto obviamente não vai funcionar para quem imprimir em preto e branco. 
+Vamos garantir que todos fiquem grifadinhos para facilitar a identificação.
+<br><br>
+
+Não é interessante mostrar links internos para imagens ou JavaScript. Para isto utilizamos o seguinte parâmetro.
+<br><br>
+
+Como links muito grandes podem quebrar o parágrafo vale a pena acrescentar mais uma regrinha.
+
+<pre>
+a, a:visited { text-decoration: underline; }    
+a:after, a[href^="javascript:"]:after, a[href^="#"]:after {  content: "";  }
+p a { word-wrap: break-word; }
+</pre>
+<a href="https://tableless.com.br/dicas-de-css-para-impressao/">tableless</a>

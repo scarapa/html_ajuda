@@ -1,0 +1,39 @@
+<h2>Plugins</h2>
+<pre>
+dependencies:
+    ext_storage: ^1.0.3
+    permission_handler: ^5.0.1+1    
+</pre>
+baixando dependencias:
+<pre>$ flutter pub get</pre>
+
+utilizando
+<pre>
+import 'package:ext_storage/ext_storage.dart';
+import 'package:permission_handler/permission_handler.dart';
+</pre>
+
+<h3>Permissões</h3>
+<pre><kbd>android/app/src/profile/AndroidManifest.xml</kbd>
+    &lt;uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /&gt;
+    &lt;uses-permission-sdk-23 android:name="android.permission.READ_EXTERNAL_STORAGE" /&gt;
+</pre>
+
+<pre><kbd>android/app/src/main/AndroidManifest.xml</kbd>
+    &lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.flutter_galeria"&gt;
+    &lt;!-- io.flutter.app.FlutterApplication is an android.app.Application that
+         calls FlutterMain.startInitialization(this); in its onCreate method.
+         In most cases you can leave this as-is, but you if you want to provide
+         additional functionality it is fine to subclass or reimplement
+         FlutterApplication and put your custom class here. --&gt;
+    &lt;uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /&gt;
+    &lt;uses-permission-sdk-23 android:name="android.permission.READ_EXTERNAL_STORAGE" /&gt;
+    ...
+</pre>
+
+<a href="https://stackoverflow.com/questions/54036527/how-to-display-images-from-a-external-storage-path-in-flutter">stackoverflow</a><br>
+<a href="https://pub.dev/packages/ext_storage">ext_storage</a><br>
+<a href="https://pub.dev/packages/permission_handler/install">permission_handler</a><br>
+<a href="https://stackoverflow.com/questions/58075432/how-to-get-files-from-external-storage-in-flutter/62014248#62014248">stackoverflow</a><br>
+<a href="https://developer.android.com/training/permissions/requesting">developer.android</a><br>

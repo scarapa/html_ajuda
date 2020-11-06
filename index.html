@@ -81,15 +81,13 @@
         var navigation = document.querySelectorAll('.sidenav a');
         for (var k = 0; k < navigation.length; k++) {
             navigation[k].addEventListener("click", async function() {
-                //console.log(this.getAttribute('href'));
+                console.log(this.getAttribute('href').toString().replace("#",""));
                 let icone = this.childNodes[0];
                 icone = icone.getAttribute('class');
-                let titulo = capturarModuloURL();
 
-                let pagina = capturarModuloURL();
-                pagina = "include/"+pagina+".html";
+                let titulo = this.getAttribute('href').toString().replace("#","");
+                let pagina = "include/"+titulo+".html";
                 await loadPagina(pagina,titulo,icone);
-                
             });
         }    
     }
