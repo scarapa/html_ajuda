@@ -1,0 +1,90 @@
+PopMenuButton com retorno do valor clicado para a tela inicial.
+<br><br>
+No arquivo principal passar uma funcao(_opcaoPopMenuButton) como parametro.
+<br><br>
+
+<pre><kbd>main.dart</kbd>
+import '../widgets/pop_menu_button.dart';
+
+Scaffold(
+    appBar: AppBar(
+        title: Text('Home'),
+        actions: [<b style="color:red">
+            PopMenuButton(_opcaoPopMenuButton)</b>,
+        ],
+    )
+)
+// Essa funcao é chamada no retorno da opcao selecionada<b style="color:red">
+_opcaoPopMenuButton(String opcao)</b>{
+    if(opcao == "nova-pasta"){
+      // chamar modal para criar nova pasta
+    }else if(opcao == "visualizar"){
+      // chamar moal com opcoes de vizual
+    }else if( opcao == "atualizar"){
+      // atualizar view
+    }else{
+
+    }
+}</pre>
+
+
+<pre><kbd>pop_menu_button.dart</kbd>
+import 'package:flutter/material.dart';
+class PopMenuButton extends StatefulWidget {
+
+    final void Function(String) onSubmit;
+    
+    // FUNCAO RECEBIDA NO CONSTRUTOR DO OBJETO<b style="color:red">
+    const PopMenuButton(this.onSubmit , {Key key } ) : super(key : key);</b>
+
+    @override
+    _PopMenuButtonState createState() =&gt; _PopMenuButtonState();
+}
+
+class _PopMenuButtonState extends State&lt;PopMenuButton&gt; {
+    @override
+    Widget build(BuildContext context) {
+    return PopupMenuButton&lt;String&gt;(<b style="color:Red">
+        // RETORANDO PELA FUNCAO O VALOR SELECIONADO
+        onSelected: (value) =&gt; widget.onSubmit( value.toString() ),</b>
+        itemBuilder: (BuildContext context){
+        return &lt;PopupMenuEntry&lt;String&gt;&gt;[
+            PopupMenuItem(
+                value: "nova-pasta",
+                child: Row(
+                children: [
+                    Icon(Icons.create_new_folder , color: Colors.black,),
+                    Padding(padding: EdgeInsets.symmetric(horizontal: 5.0)),
+                    Text("Novo"),
+                ],
+                )
+            ),
+            PopupMenuItem(
+                value: "visualizar",
+                child: Row(
+                children: [
+                    Icon(Icons.remove_red_eye , color: Colors.black,),
+                    Padding(padding: EdgeInsets.symmetric(horizontal: 5.0)),
+                    Text("Visualizar"),
+                ],
+                )
+            ),
+            PopupMenuItem(
+                value: "atualizar",
+                child: Row(
+                children: [
+                    Icon(Icons.refresh , color: Colors.black,),
+                    Padding(padding: EdgeInsets.symmetric(horizontal: 5.0)),
+                    Text("Atualizar"),
+                ],
+                )
+            ),
+        ];
+        },
+    );
+    }
+}
+</pre>
+
+<a href="https://www.youtube.com/watch?v=jxKI8syAbsc">youtube</a><br>
+<a href="https://ptyagicodecamp.github.io/understanding-flutter-popupmenubutton-widget.html">ptyagicodecamp</a><br>

@@ -26,8 +26,6 @@
         content: counter(aga2)"."counter(aga3)"."counter(aga4) " - ";
     }	
     h4{ counter-reset: aga5; }
-
-
 </style>
 <h2>Tamanho de tela DINAMICO</h2>
 O calculo basicamente é você descontar a altura da appbar menos as porcentagems dos widgets() que você quer distribuir na tela<br>
@@ -116,8 +114,6 @@ Mesmo alterando o modo de orientação a tela <b style="color:red">NAO MUDA !</b
     <img src="images/flutter-orientation-001.jpg" class="bp" style="width:40%">
 </div>
 
-
-
 <h2>Teclando cobrindo Formulario</h2>
 <div class="centro center">
     <img src="images/flutter-teclado-cobrindo-view-001.png" class="bp" style="width:40%">
@@ -138,4 +134,18 @@ SingleChildScrollView(
             bottom: 10 + MediaQuery.of(context).viewInsets.bottom,</b>
         ),
         ...
+</pre>
+
+<h2>Texto Overflow</h2>
+<pre>
+new Text(
+    'Text largeeeeeeeeeeeeeeeeeeeeeee',<b style="color:Red">
+    overflow: TextOverflow.ellipsis,</b>
+    style: new TextStyle(
+      fontSize: 13.0,
+      fontFamily: 'Roboto',
+      color: new Color(0xFF212121),
+      fontWeight: FontWeight.bold,
+	),  
+),
 </pre>

@@ -14,6 +14,16 @@ import 'package:permission_handler/permission_handler.dart';
 </pre>
 
 <h3>Permissões</h3>
+É preciso inserir as permissões nos 3 modulos[<b>debug/profile/main</b>]
+<pre><kbd>android/app/src/debug/AndroidManifest.xml</kbd>
+    &lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.flutter_galeria"&gt;
+    &lt;uses-permission android:name="android.permission.INTERNET"/&gt;
+    &lt;uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /&gt;
+    &lt;uses-permission-sdk-23 android:name="android.permission.READ_EXTERNAL_STORAGE" /&gt;
+&lt;/manifest&gt;
+</pre>
+
 <pre><kbd>android/app/src/profile/AndroidManifest.xml</kbd>
     &lt;uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /&gt;
     &lt;uses-permission-sdk-23 android:name="android.permission.READ_EXTERNAL_STORAGE" /&gt;
@@ -32,8 +42,26 @@ import 'package:permission_handler/permission_handler.dart';
     ...
 </pre>
 
+<h3>Criando diretorio</h3>
+<pre>  
+static Future&lt;String&gt; createFolderInAppDocDir(String folderName) async {
+
+    //Get this App Document Directory
+    final Directory _appDocDir = await getApplicationDocumentsDirectory();
+    //App Document Directory + folder name
+    final Directory _appDocDirFolder =  Directory('${_appDocDir.path}/$folderName/');
+
+    if(await _appDocDirFolder.exists()){ //if folder already exists return path
+        return _appDocDirFolder.path;
+    }else{//if folder not exists create folder and then return its path
+        final Directory _appDocDirNewFolder=await _appDocDirFolder.create(recursive: true);
+        return _appDocDirNewFolder.path;
+    }
+}
+</pre>
 <a href="https://stackoverflow.com/questions/54036527/how-to-display-images-from-a-external-storage-path-in-flutter">stackoverflow</a><br>
 <a href="https://pub.dev/packages/ext_storage">ext_storage</a><br>
 <a href="https://pub.dev/packages/permission_handler/install">permission_handler</a><br>
 <a href="https://stackoverflow.com/questions/58075432/how-to-get-files-from-external-storage-in-flutter/62014248#62014248">stackoverflow</a><br>
 <a href="https://developer.android.com/training/permissions/requesting">developer.android</a><br>
+<a href="https://medium.com/@codinghive.dev/folder-creation-in-flutter-a554c238b7e8">medium</a></br>

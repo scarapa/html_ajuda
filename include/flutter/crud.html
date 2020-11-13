@@ -1,1 +1,128 @@
-<a href="https://medium.com/flutter-community/using-sqlite-in-flutter-187c1a82e8b">medium</a>
+<style>
+    body{ counter-reset: aga3 }
+
+    h3::before{
+        counter-increment: aga3;
+        content: counter(aga3) " - ";
+    }	
+    h3{ counter-reset: aga4; font-weight: bold;}
+
+    h4::before{
+        margin-left:25px;
+        counter-increment: aga4;
+        content: counter(aga3)"."counter(aga4) " - ";
+    }	
+    h4{ counter-reset: aga5; }
+</style>
+
+
+
+<h3>CREATE</h3>
+
+O pacote SQFlite fornece duas maneiras de lidar com essas operações usando consultas 
+RawSQL ou usando o nome da tabela e um mapa que contém os dados:
+
+<h4>rawInsert </h4>
+<pre>newClient(Client newClient) async {
+    final db = await database;
+    var res = await db.rawInsert(
+        "INSERT Into Client (id,first_name)"
+        " VALUES (${newClient.id},${newClient.firstName})"
+    );
+    return res;
+}
+</pre>
+
+
+<h4>insert</h4>
+<pre>newClient(Client newClient) async {
+    final db = await database;
+    var res = await db.insert("Client", newClient.toMap());
+    return res;
+}
+</pre>
+
+Outro exemplo usando o maior ID como um novo ID:
+<pre>
+newClient(Client newClient) async {
+    final db = await database;
+    //get the biggest id in the table
+    var table = await db.rawQuery("SELECT MAX(id)+1 as id FROM Client");
+    int id = table.first["id"];
+    //insert to the table using the new id 
+    var raw = await db.rawInsert(
+        "INSERT Into Client (id,first_name,last_name,blocked)"
+        " VALUES (?,?,?,?)",
+        [id, newClient.firstName, newClient.lastName, newClient.blocked]);
+    return raw;
+    }    
+</pre>
+
+<h3>READ</h3>
+<h4>Obter cliente por id</h4>
+<pre>getClient(int id) async {
+    final db = await database;
+    var res = await  db.query("Client", where: "id = ?", whereArgs: [id]);
+    return res.isNotEmpty ? Client.fromMap(res.first) : Null ;
+}</pre>
+
+No código acima, fornecemos à consulta um id como argumento usando whereArgs. 
+Em seguida, retornamos o primeiro resultado se a lista não estiver vazia, 
+senão retornamos nulo.
+
+<h4>Obtenha todos os clientes com uma condição</h4>
+Neste exemplo, usei rawQuery e mapeei a lista de resultados para uma lista de objetos Client:
+<pre>getAllClients() async {
+    final db = await database;
+    var res = await db.query("Client");
+    List&lt;Client&gt; list =
+        res.isNotEmpty ? res.map((c) =&gt; Client.fromMap(c)).toList() : [];
+    return list;
+}</pre>
+
+Exemplo: Obtenha apenas os clientes bloqueados
+<pre>getBlockedClients() async {
+    final db = await database;
+    var res = await db.rawQuery("SELECT * FROM Client WHERE blocked=1");
+    List&lt;Client&gt; list =
+        res.isNotEmpty ? res.toList().map((c) =&gt; Client.fromMap(c)) : null;
+    return list;
+}</pre>
+
+<h3>UPDATE</h3>
+<h4>Atualizar um cliente existente</h4>
+<pre>updateClient(Client newClient) async {
+    final db = await database;
+    var res = await db.update("Client", newClient.toMap(),
+        where: "id = ?", whereArgs: [newClient.id]);
+    return res;
+}</pre>
+
+Exemplo: bloquear ou desbloquear um cliente:
+<pre>blockOrUnblock(Client client) async {
+    final db = await database;
+    Client blocked = Client(
+        id: client.id,
+        firstName: client.firstName,
+        lastName: client.lastName,
+        blocked: !client.blocked);
+    var res = await db.update("Client", blocked.toMap(),
+        where: "id = ?", whereArgs: [client.id]);
+    return res;
+}</pre>
+
+<h3>DELETE</h3>
+<h4>Excluir um cliente</h4>
+<pre>deleteClient(int id) async {
+    final db = await database;
+    db.delete("Client", where: "id = ?", whereArgs: [id]);
+}</pre>
+
+<h4>Excluir TODOS</h4>
+<pre>deleteAll() async {
+    final db = await database;
+    db.rawDelete("Delete * from Client");
+}</pre>
+<a href="https://medium.com/flutter-community/using-sqlite-in-flutter-187c1a82e8b">medium</a><br>
+<a href="https://pub.dev/packages/sqflite">pub.dev</a><br>
+<a href="https://flutter.dev/docs/cookbook/persistence/sqlite">flutter.dev</a><br>

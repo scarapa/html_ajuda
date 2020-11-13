@@ -1,0 +1,83 @@
+<style>
+    body{ counter-reset: aga3 }
+    h3::before{
+        counter-increment: aga3;
+        content: counter(aga3) " - ";
+    }	
+    h3{ counter-reset: aga4; }
+
+    h4::before{
+        margin-left:25px;
+        counter-increment: aga4;
+        content: counter(aga3)"."counter(aga4) " - ";
+    }	
+    h4{ counter-reset: aga5; }
+
+    h5::before{
+        margin-left:25px;
+        counter-increment: aga5;
+        content: counter(aga3)"."counter(aga4)"."counter(aga5) " - ";
+    }
+    h5{ counter-reset: aga6; }	    
+    
+    h6::before{
+        margin-left:25px;
+        counter-increment: aga6;
+        content: counter(aga3)"."counter(aga4)"."counter(aga5)"."counter(aga6) " - ";
+    }
+</style>
+
+O recurso SharedPreferences é usado para armazenar dados no formato chave-valor no Android e iOS.
+<br><br>
+
+No Flutter SharedPreferences utiliza o NSUserDefaults no iOS e o SharedPreferences no Android, fornecendo um armazenamento persistente para dados simples.
+<br><br>
+
+<h3>Plugin</h3>
+<pre>
+dependencies:
+    flutter:
+      sdk: flutter
+    shared_preferences: ^0.4.3
+</pre>
+
+<h3>Importando</h3>
+<pre>import 'package:shared_preferences/shared_preferences.dart';</pre>
+
+<h3>Utilizando</h3>
+
+<h4>Instancia</h4>
+<pre>SharedPreferences prefs = await SharedPreferences.getInstance();</pre>
+
+<h4>INT</h4>
+<pre><kbd>salvando</kbd>    
+prefs.setInt('idade', 42);
+<kbd>lendo</kbd>
+final idade = prefs.getInt('idade') ?? 0;</pre>
+
+<h4>DOUBLE</h4>
+<pre><kbd>salvando</kbd>
+prefs.setDouble('valor', 1.99);
+<kbd>lendo</kbd>
+final valor = prefs.getDouble('valor') ?? 0.0;</pre>
+
+<h4>BOOL</h4>
+<pre><kbd>salvando</kbd>
+prefs.setBool('ativo', true);
+<kbd>lendo</kbd>
+final ativo = prefs.getBool('ativo') ?? false;</pre>
+
+<h4>STRING</h4>
+<pre><kbd>salvando</kbd>
+prefs.setString('nome', 'Roberto');
+<kbd>lendo</kbd>
+final nome = prefs.getString('nome') ?? '';</pre>
+
+<h4>STRING LIST</h4>
+<pre><kbd>salvando</kbd>
+prefs.setStringList('cursos', ['Fisica','Quimica','Ingles']);
+<kbd>lendo</kbd>
+final cursos = prefs.getStringList('curso') ?? [];</pre>
+
+<a href="http://www.macoratti.net/19/11/flut_shapref1.htm">macoratti</a><br>
+<a href="https://pub.dev/packages/shared_preferences">pub.dev</a>

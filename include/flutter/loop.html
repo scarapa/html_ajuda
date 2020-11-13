@@ -100,3 +100,44 @@ Column(
     ],
 ),    
 </pre>
+
+<h2>forEach</h2>
+<pre>
+void main() {
+    List&lt;String&gt; arquivos = [
+        "download/matrix3.txt","2020/11/foto1.jpg",
+        "VIDEOS","download/logo.png","2020/12/lulu-001.mp4",
+        "2020/06/lulu-002.jpeg","2020/07/lulu-003.avi",
+        "facul/colegio.doc","facul/tcc.doc",
+        "facul/tcc-final.pdf","2019/10/golaco.MOV",
+        "FOTOS",".omega.key"
+    ];    
+    
+    arquivos.forEach( (elemento){
+        print( elemento.toString() );
+    });        
+}    
+</pre>
+
+<pre><kbd>RESULTADO</kbd>
+download/matrix3.txt
+2020/11/foto1.jpg
+VIDEOS
+download/logo.png
+2020/12/lulu-001.mp4
+2020/06/lulu-002.jpeg
+2020/07/lulu-003.avi
+facul/colegio.doc
+facul/tcc.doc
+facul/tcc-final.pdf
+2019/10/golaco.MOV
+FOTOS
+.omega.key
+</pre>
+
+<a href="https://gist.github.com/aruld/1299218">github</a>
+
+
+<h2>for in</h2>
+
+<a href="https://stackoverflow.com/questions/53886373/flutter-dart-wait-a-foreach-ends">stackoverflow</a>
