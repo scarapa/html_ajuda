@@ -1,0 +1,29 @@
+<h2>tipos primitivos</h2>
+int , double ,String , bool
+
+
+<h2>const vs final</h2>
+O Dart fornece palavras-chave const e final para criar variáveis ​​com valores fixos. 
+No entanto, <b>const</b> é uma constante de tempo de compilação significa que seu valor deve ser declarado durante a compilação do programa e final é uma constante de tempo de execução, significa que seu valor pode ser atribuído durante a execução do programa.
+
+<h2>Listas</h2>
+O Dart fornece uma classe List que é usada para construir uma estrutura de dados do tipo Array que pode conter um número fixo ou variável de tipos de dados semelhantes ou dinâmicos. O Dart também fornece sintaxe literal [] para criar listas.
+<pre>
+    List&lt;dynamic&gt; fixedList = new List(3);
+    List&lt;num&gt; fixedNumList = new List(3);
+    List&lt;String&gt; fixedWordsList = new List('Teste 1');
+</pre>
+
+
+<h2>Maps (collection key:value pairs)</h2>
+<pre>
+    var myMap = new Map();
+
+    //criando map com int como chave e a string como valor
+    var fingers = new Map&lt;int,String&gt;();
+    fingers[1] = 'thumb';
+    fingers[2] = 'index';
+</pre>
+Um mapa é mais como um dicionário em Python ou objeto em JavaScript. Basicamente, um mapa é uma coleção de pares chave: valor. 
+O Dart fornece a classe Map para criar um mapa. Um mapa pode conter qualquer tipo de chave e valor.
+<a href="https://medium.com/run-dart/dart-dartlang-introduction-variables-and-data-types-d269ea7d1f8f">medium</a>
