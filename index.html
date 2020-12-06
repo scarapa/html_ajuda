@@ -80,7 +80,8 @@
 
         var navigation = document.querySelectorAll('.sidenav a');
         for (var k = 0; k < navigation.length; k++) {
-            navigation[k].addEventListener("click", async function() {
+            navigation[k].addEventListener("click", async function(e) {
+                e.preventDefault();
                 let icone = this.childNodes[0];
 
                 try {
@@ -89,7 +90,8 @@
                     icone = "";
                 }
 
-                let titulo = this.getAttribute('href').toString().replace("#","");
+                //let titulo = this.getAttribute('href').toString().replace("#","");
+                let titulo = this.getAttribute('href').toString().replace("?","");
                 let pagina = "include/"+titulo+".html";
                 await loadPagina(pagina,titulo,icone);
             });
@@ -115,6 +117,8 @@
 
     async function carregarPaginaInicial(){
         var modulo = capturarModuloURL();
+        console.log('modulo')
+        console.log(modulo)
         pagina = (modulo != "")? "include/"+modulo+".html" :"include/home.html";
         await loadPagina(pagina);
     }
@@ -123,7 +127,7 @@
 
         if(titulo != "" ){
             $("#page-wrapper").load(pagina, function() {
-                let cabecalho = "<h1 class='"+icone+" fa-2x'>&nbsp;"+titulo.toUpperCase()+"</h1><hr>";
+                let cabecalho = "<h1 class='"+icone+" fa-2x' style='width:100% !important;'>&nbsp;"+titulo.toUpperCase()+"</h1><hr>";
                 $("#page-wrapper").prepend(cabecalho);
             });
         }else{
@@ -133,7 +137,7 @@
     }
     function capturarModuloURL(){
         // RETIRAR O HASH(#)
-        return window.location.hash.replace('#','','g');
+        return window.location.hash.replace('?','','g');
     }
 
     </script>    
