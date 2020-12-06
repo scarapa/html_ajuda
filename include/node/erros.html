@@ -18,3 +18,31 @@ $ sudo npm cache clean --force</pre>
 
 <a href="https://stackoverflow.com/questions/15393821/npm-err-cb-never-called?page=1&tab=votes#tab-top" target="_blank">stackoverflow</a>
 <hr>
+
+<h3>Nao executa script - erro ao instalar nodemon</h3>
+<pre class="terminal"> não pode ser carregado porque a execução de scripts foi desabilitada neste sistema. Para obter mais informações, consulte about_Execution_Policies 
+    em https://go.microsoft.com/fwlink/?LinkID=135170.</pre>
+
+<h4>1º Abra o terminal como administrador</h4>
+E pode conferir qual a política de execução atual usando o cmdlet 
+<pre>$ Get-ExecutionPolicy.
+//Restricted</pre>
+
+Permissoes
+<ul>
+    <li>Restricted</li>
+    Não carrega nem executa arquivos de configuração e/ou scripts do Powershell.
+    <li>AllSigned</li>
+    Só executa scripts e arquivos de configuração assinados por um fornecedor confiável, mesmo que o script tenha sido escrito por você mesmo (local).
+    <li>RemoteSigned</li>
+    É basicamente o mesmo que o acima, porém permite a execução de arquivos de configuração e/ou scripts locais.
+    <li>Unrestricted</li>
+    Carrega e executa todos os arquivos de configuração e scripts PowerShell. Pode ser pedida uma confirmação para executar scripts não assinados.
+    <li>Bypass</li>
+    Não há nenhuma restrição.
+    <li>Undefined</li>
+    Remove a política de execução atual. A não ser que ela esteja definida numa diretiva de grupo.
+</ul>
+
+<a href="https://pt.stackoverflow.com/questions/220078/o-que-significa-o-erro-execu%C3%A7%C3%A3o-de-scripts-foi-desabilitada-neste-sistema">stackoverflow</a><br>
+<a href="https://paulosantanna.com/2012/10/14/habilitando-a-execucao-de-scripts-powershell/">paulosantanna</a>

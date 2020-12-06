@@ -1,0 +1,128 @@
+<h2>Maneira Nova</h2>
+<h3>Exportando</h3>
+
+<code>package.json</code>
+<pre>{
+    "name": "teste01",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",<b style="color:red">
+    "type":"module"</b>
+  }
+</pre>  
+
+Arquivo <code>operacoes-matemaricas-module.js</code>, exportando o OBJETO {soma,subtracao}
+<pre>const nome = "Teste de Operacoes";
+
+function soma(a,b){
+    return a+b;
+}
+
+function subtracao(a,b){
+    return a-b;
+}
+
+export default {soma,subtracao,nome}    
+</pre>
+
+Arquivo <code>multiplicacao.js</code>, exportando a FUNCAO multiplicacao
+<pre>function multiplicacao(a,b){
+    return a*b;
+}
+export default multiplicacao;
+</pre>
+
+Arquivo <code>operacoes-nomeadas.js</code>
+<pre>export function divisao(a,b){
+    return a/b;
+}
+
+export function resto(a,b){
+    return a%b;
+}</pre>
+
+<h3>Importando</h3>
+<code>index.js</code>
+<pre>
+import operacoes from "./operacoes-matematicas-module.js";
+import multiplica from "./multiplicacao.js";
+import {divisao,resto} from "./operacoes-nomeadas.js";
+let resultado;
+resultado = operacoes.soma(2,3);
+console.log(resultado);
+//5
+resultado = operacoes.subtracao(2,3);
+console.log(resultado);
+//-1
+resultado = multiplica(2,3);
+console.log(resultado)
+//6
+resultado = divisao(10,2);
+console.log(resultado)
+//5
+resultado = resto(7,2);
+console.log(resultado)
+//1    
+</pre>
+
+<hr>
+
+<h2>Maneira Antiga</h2>
+<h3>Exportando</h3>
+Arquivo <code>operacoes-matemaricas-module.js</code>, exportando o OBJETO {soma,subtracao}
+<pre>const nome = "Teste de Operacoes";
+
+function soma(a,b){
+    return a+b;
+}
+
+function subtracao(a,b){
+    return a-b;
+}
+
+module.exports = {soma,subtracao,nome}
+</pre>
+
+Arquivo <code>multiplicacao.js</code>, exportando a FUNCAO multiplicacao
+<pre>
+function multiplicacao(a,b){
+    return a*b;
+}
+    
+module.exports = multiplicacao;</pre>
+
+<h3>Importando</h3>
+<code>index.js</code>
+<pre>
+const operacoes = require("./operacoes-matematicas-module.js");
+const multiplica = require("./multiplicacao.js");
+let resultado1 = operacoes.soma(2,3);
+console.log(resultado1);
+//5
+let resultado2 = operacoes.subtracao(2,3);
+console.log(resultado2);
+//-1
+let resultado3 = multiplica(2,3);
+console.log(resultado3)
+//6
+</pre>
+
+<h2>Modulos nativos</h2>
+<pre>
+//file system
+import fs from "fs";
+
+//promises
+import {promises as fs} from "fs"
+
+//readline
+import readline from "readline";
+
+
+</pre>
