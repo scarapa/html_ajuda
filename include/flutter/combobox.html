@@ -47,7 +47,8 @@ List&lt;DropdownMenuItem&lt;String&gt;&gt; getDropDownMenuItems() {
 }
 </pre>
 
-
+Exibindo na tela o componente.<br>
+No metodo onChanged, pode criar um metodo ou pode-se atualizar no proprio componente, conforme exemplo abaixo.
 <pre>
 @override
 Widget build(BuildContext context) {
@@ -58,12 +59,17 @@ Widget build(BuildContext context) {
             new DropdownButton(
             value: _currentCity,
             items: _dropDownMenuItems,
-            onChanged: changedDropDownItem,
+            onChanged: changedDropDownItem,<b style="color:Red">
+            // EXEMPLO ABAIXO QUE SUBSTITUI O METODO changedDropDownItem 
+            // onChanged: (value) => setState(() => _currentCity = value),</b>
             )
         )
     );
-}
+}</pre>
 
+
+Metodo onChanged do elemento
+<pre>
 void changedDropDownItem(String selectedCity) {
     print("Selected city $selectedCity, we are going to refresh the UI");
     setState(() {

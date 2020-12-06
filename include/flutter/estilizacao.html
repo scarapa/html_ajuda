@@ -39,14 +39,19 @@
         counter-increment: aga6;
         content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5)"."counter(aga6) " - ";
     }
+
+    .tabelaAlign{ border-collapse: collapse;}
+    .tabelaAlign th{ background: #ccc; text-align: center;}
+    .tabelaAlign td{ padding: 10px }
+    .tabelaAlign td img{ margin:0px 20px 20px 20px }
 </style>
-
-
 
 <ol>
     <li>Tamanho</li>
     <li>Row / Column</li>
     <li>Align</li>
+    <li>Container</li>
+    <li>DropdownButton</li>
 </ol>
 
 <h2>Tamanho</h2>
@@ -190,4 +195,96 @@ mainAxisAlignment trabalho na vertical , caso o widget seja um <b>ROW()</b> o ei
 
 <h2>Align</h2>
 
+<table class="tabelaAlign">
+    <tr>
+        <th>.topLeft</th>
+        <th>.topCenter</th>
+        <th>.topRight</th>
+    </tr>
+    <tr>
+        <td><img src="images/flutter-align-topLeft.png"></td>
+        <td><img src="images/flutter-align-topCenter.png"></td>
+        <td><img src="images/flutter-align-topRight.png"></td>
+    </tr>
+</table>
+
+<table class="tabelaAlign">
+    <tr>
+        <th>.centerLeft</th>
+        <th>.center</th>
+        <th>.centerRight</th>
+    </tr>
+    <tr>
+        <td><img src="images/flutter-align-centerLeft.png"></td>
+        <td><img src="images/flutter-align-center.png"></td>
+        <td><img src="images/flutter-align-centerRight.png"></td>                
+    </tr>
+</table>
+
+<table class="tabelaAlign">
+    <tr>
+        <th>.bottomLeft</th>
+        <th>.bottomCenter</th>
+        <th>.bottomRight</th>
+    </tr>
+    <tr>
+        <td><img src="images/flutter-align-bottomLeft.png"></td>
+        <td><img src="images/flutter-align-bottomCenter.png"></td>
+        <td><img src="images/flutter-align-bottomRight.png"></td>    
+    </tr>
+</table>
+
+<pre>
+Align(<b style="color:red">
+    alignment: Alignment.center, </b>
+    child: Container(
+        padding: const EdgeInsets.all(0.0),
+        color: Colors.cyanAccent,
+        width: 80.0,
+        height: 80.0,
+    )
+)
+</pre>      
+
+<a href="http://flutterexamples.com/#align">flutterexamples</a><br>
+<a href="https://stackoverflow.com/questions/53716571/how-to-align-single-widgets-in-flutter">stackoverflow</a>
+<h2>Container</h2>
+<h3>Border Color</h3>
+<div class="centro center">
+    <img src="images/flutter-estilizacao-border-color.png" style="width:40%">
+</div>
+
+<pre>
+Container(
+    width: MediaQuery.of(context).size.width ,
+    decoration: BoxDecoration(
+        border: Border.all( width: 1.0 , color: Colors.grey),
+        borderRadius: BorderRadius.circular(10) ,
+    ),
+)
+</pre>
+
+<a href="https://suragch.medium.com/adding-a-border-to-a-widget-in-flutter-d387bc5d7cff">suragch.medium</a><br>
+
+
+<h2>DropdownButton</h2>
+Removendo a linha de baixo do componente
+<div class="centro center">
+    <img src="images/flutter-dropdown-underline.png" style="width:40%">
+</div>
+
+<pre>
+...
+
+DropdownButton(
+    underline: SizedBox(),
+
+...    
+</pre>
+
+<a href="https://stackoverflow.com/questions/53588785/remove-underline-from-dropdownbuttonformfield">stackoverflow</a>
+<br clear="all">
+<br clear="all">
 <a href="http://flutterexamples.com/">FONTE</a>
+
+
