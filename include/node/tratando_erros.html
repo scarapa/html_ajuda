@@ -1,0 +1,35 @@
+<pre>
+import express from "express";
+
+const app = express();
+app.use(express.json())
+
+app.get("/",(req,res)=&gt;{
+    console.log('teste')
+    throw new Error("Erro de teste");
+    res.send();
+    
+});
+
+app.post("/",async (err,req,res,next)=&gt;{
+    try {
+        throw new Error("Erro ASYNC");    
+    } catch (error) {
+        next(err);
+    }
+});
+
+app.use((err , req , res , next) =&gt;{
+    console.log('error[01] 404')
+    next(err);
+});
+
+app.use((err , req , res , next) =&gt;{
+    console.log('error[02] 404')
+    res.status(500).send('error 404');
+});
+
+app.listen(3001, ()=&gt;{
+    console.log('INICIADO');
+});    
+</pre>

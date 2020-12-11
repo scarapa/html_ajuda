@@ -1,0 +1,26 @@
+Um conceito bem interessante é o Middleware de log , primeiramente a porta geral 
+forma o log da requisição e passa para o proximo verbo atraves do <code>NEXT()</code>, mesmo a rota nao existindo, grava o log,conforme exemplo abaixo:
+
+<pre>
+import express from "express";
+
+const app = express();
+app.use(express.json());
+<b style="color:red">
+app.use( (req,res ,next)=&gt;{
+    console.log( new Date());
+    next();
+});
+</b>
+app.get("/teste" ,(req,res)=&gt;{
+    res.end();
+});
+
+
+app.listen(3000 ,()=&gt;{
+    console.log('STARTED');
+});    
+</pre>
+
+Necessario antes instalar a lib express
+<pre class="terminal">$ npm install express</pre>

@@ -1,0 +1,145 @@
+<ul>
+    <li>File System</li>
+    <li>ReadLine</li>
+    <li>EventEmitter</li>
+    <li>http</li>
+</ul>
+
+<h2>File System</h2>
+<pre>
+import { promises as fs} from "fs";
+
+
+let texto = "bla bla bla";
+let texto2 = "apend file dannn";
+
+// UTILIZANDO PROMISES COM ASYNC/AWAIT
+init();
+async function init(){
+    try {
+        await fs.writeFile("teste.txt",texto);
+        await fs.appendFile("teste.txt",texto2);
+        const data = await fs.readFile("teste.txt","utf-8");
+        console.log(data);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+// PROMISES
+fs.writeFile("teste.txt",texto).then( () =>{
+    fs.appendFile("teste.txt",texto2).then( ()=>{
+        fs.readFile("teste.txt","utf-8").then( (resp)=>{
+            console.log(resp);
+        })
+    })
+});
+
+// CALLBACKS
+console.log('1')
+fs.writeFile("teste.txt",texto, function(err){
+    console.log('2')
+    if(err){
+        console.log(err);
+    }else{
+        fs.appendFile("teste.txt",texto2,(err)=>{
+            if(err){
+                console.log(err)
+            }else{
+                fs.readFile("teste.txt","utf-8",(err,data) => {
+                    if(err){
+                        console.log(err)
+                    }else{
+                        console.log(data)
+                    }
+                })
+                console.log('sucesso !');
+            }
+        });
+
+    }
+});
+
+//SINCRONO
+try {
+    fs.writeFileSync("teste.txt",texto);
+    console.log('2')
+    const data = fs.readFileSync("teste.txt","utf-8");
+    console.log(data);
+    console.log("3");
+} catch (error) {
+    console.log(error);
+}
+</pre>    
+
+<h2>ReadLine</h2>
+<pre>
+import readline from "readline";
+const rl = readline.createInterface({
+    input: process.stdin,
+    output:process.stdout
+})
+
+pergunta();
+
+function pergunta(){
+    rl.question("Digite um numero: ", numero =&gt;{
+        if(parseInt(numero) === -1) {
+            rl.close();
+        }else{
+            const multiplos = [];
+            for(let i=0; i &lt; numero ; i++){
+                if( ( i % 3 == 0 ) || ( i % 5 == 0 ) ){
+                    multiplos.push(i);
+                }
+            }
+            console.log(multiplos)
+            pergunta();
+            //rl.close();
+        }
+
+    });
+}
+</pre>    
+
+<h2>EventEmitter</h2>
+<code>modulo-event-emitter.js</code>
+<pre>import { EventEmitter } from "events";
+
+const eventEmitter = new EventEmitter();
+eventEmitter.on("testeEvent",objeto =>{
+    console.log(objeto)
+});
+
+eventEmitter.on("testeEvent",objeto =>{
+    console.log(objeto + "2")
+});
+
+eventEmitter.emit("testeEvent","abc"); 
+
+export default eventEmitter;</pre>
+
+<code>modulo-event-emitter-replicado.js</code>
+<pre>import ev from "./modulo-event-emitter.js";
+
+ev.on("testeEvent",()=>{
+    console.log("ouvindo tambem o evento em outro arquivo por conta da exportacao da classe")
+});
+
+ev.emit("testeEvent","bla bla bla")</pre>
+
+<h2>http</h2>
+<pre>import http from "http";
+
+http.createServer((req, res)=&gt;{
+    if( (req.method === "GET") && (req.url === "/teste2") ){
+        res.write("GET /teste sucesso")
+    }else{
+        res.write("hello word");
+    }
+    
+    res.statusCode = 200;
+    res.end();
+}).listen(8080);
+</pre>

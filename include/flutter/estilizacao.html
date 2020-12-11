@@ -52,6 +52,7 @@
     <li>Align</li>
     <li>Container</li>
     <li>DropdownButton</li>
+    <li>Sobre Pondo Elementos</li>
 </ol>
 
 <h2>Tamanho</h2>
@@ -288,3 +289,20 @@ DropdownButton(
 <a href="http://flutterexamples.com/">FONTE</a>
 
 
+<h2>Sobre Pondo Elementos</h2>
+O flutter nao aceita margins negativas, mesmo elas as vezes sendo necessária
+<pre class="terminal">I/flutter ( 3173): margin.isNonNegative': is not true.</pre>
+
+Pois então como fazer o efeito abaixo ?
+<div class="centro center">
+    <img src="images/flutter-sobreposicao-elemento.jpg" style="width:40%">
+</div>
+
+Basta inserir o codigo abaixo.
+<pre>
+child: Container(
+    color: Theme.of(context).accentColor,
+    transform: Matrix4.translationValues(0.0, -50.0, 0.0),
+),
+</pre>
+<a href="https://stackoverflow.com/questions/48086486/does-flutter-support-negative-margin">stackoverflow</a>

@@ -1,0 +1,145 @@
+<h2>Caracteres Especiais</h2>
+
+<h3>Com o interrogacao (?) tmb responde na rota /test</h3>
+<pre>
+app.get("/teste?", (req,res) =&gt;{
+    res.send("/teste?");
+});    
+</pre>
+
+<h3>Com o adicao (+) tmb responde na rota /buzzzzzz</h3>
+<pre>
+app.get("/buzz+", (req,res) =&gt;{
+    res.send("/buzz");
+});     
+</pre>
+
+<h3>Coringa , pode por qualquer coisa no lugar</h3>
+<pre>
+app.get("/one*blue", (req,res) =&gt;{
+    res.send( req.path );
+}); 
+</pre>
+
+<h3>Parentes trata o ing no caso como unidade</h3>
+<pre>
+app.post("/tes(ing)?", (req,res) =&gt;{
+    res.send( req.path );
+});     
+</pre>
+
+<h3>com EXPRESSAO REGULAR - ER</h3>
+Nesse exemplo responde qualquer coisa com a palavra red, <code>carred , tensored , frered , tared</code>
+<pre
+>app.get(/.*red$/, (req,res) =&gt;{
+    res.send( req.path);
+}); </pre>
+
+<h2>PARAMETROS</h2>
+<h3>Parametros via Query</h3>
+ROTA => localhost:3000/testQuery?nome=beto&idade=39&cpf=12345678
+<pre>
+app.get("/testQuery", (req,res) =&gt;{
+    res.send(req.query);
+}); 
+</pre>
+
+<h3>Next => mais de uma callback</h3>
+<pre>
+app.get("/testMultitpleHandlers", (req,res,next) =&gt;{
+    console.log('callback 1');
+    next();
+},(req,res)=>{
+    console.log('callback 2');
+    res.send('concluido');
+    res.end();
+}); 
+</pre>
+
+<h3>Next com ARRAY</h3>
+<pre>
+const callback1 = (req , res , next) =&gt; {
+    console.log('callback 1');
+    next();
+};
+
+function callback2 (req , res , next){
+    console.log('callback 2');
+    next();
+}
+
+const callback3 = (req , res)=&gt;{
+    console.log('callback 3')
+    res.end();
+}
+
+app.get('/testMultitpleHandlersArray',[callback1,callback2,callback3]);
+</pre>
+
+<h2>AGRUPANDO ROTAS</h2>
+
+<h3>ALL</h3>
+Esse metodo responde por TODOS VERBOS
+<pre>
+app.all("/clientes", (req,res)=>{
+    res.send('ALL')
+});
+</pre>
+
+<h3>Agrupando Recurso</h3>
+<pre>
+app.route("/clientes")
+    .get( (req,res)=>{
+        res.send('GET')
+    })
+    .post( (req,res)=>{
+        res.send('POST')
+    })
+    .delete( (req,res)=>{
+        res.send('DELETE')
+    })
+</pre>
+
+<h3>DESMEMBRAR ROTAS EM ARQUIVOS</h3>
+Vamos criar um exemplo para receber somente as rotas de carros e é necessario exporta-la para receber a mesma no <code>index.js</code><br/>
+<code>rotas\carrosRouter.js</code>
+<pre>import express from "express";
+
+const router = express.Router();
+
+router.get("/",(req,res)=&gt;{
+    console.log("GET CRROS");
+    res.send("GET CARROS")
+});
+
+// localhost:3000/carros/precos
+router.get("/precos",(req,res)=&gt;{
+    res.send("GET "+req.path)
+});
+
+export default router;</pre>
+
+<code>index.js</code>
+<pre>
+import express from "express";<b style="color:red">
+import carrosRouter from "./rotas/carrosRouter.js";</b>
+
+const app = express();
+app.use(express.json());
+<b style="color:red">
+app.use("/carros", carrosRouter);</b>
+
+app.use( (req,res ,next)=&gt;{
+    console.log( new Date());
+    next();
+});
+
+app.get("/teste" ,(req,res)=&gt;{
+    res.end();
+});
+
+
+app.listen(3000 ,()=&gt;{
+    console.log('STARTED');
+});    
+</pre>

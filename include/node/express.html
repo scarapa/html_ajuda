@@ -1,0 +1,25 @@
+<h2>Instalacao</h2>
+
+Framework web rápido, flexível e minimalista para Node.js
+<pre class="terminal">$ npm install express</pre>
+
+<pre>
+import express from "express";
+
+// const app = express();
+app.use( express.json() );
+
+app.all("/testAll", (req,res) =&gt;{
+    res.send(req.method);
+});
+
+app.get("/teste?", (req,res) =&gt;{
+    res.send("/teste?");
+});
+
+app.listem(3000,()=&gt;{
+    console.log('API STARTED');
+})
+</pre>
+
+<a href="https://expressjs.com/pt-br/">expressjs</a>

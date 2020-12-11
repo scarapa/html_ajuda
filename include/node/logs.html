@@ -1,0 +1,45 @@
+<h2>Biblioteca de Logs</h2>
+<h3>Winston</h3>
+Suporta 7 niveis de log:
+<h3>Instalação</h3>
+<pre class="terminal">$ npm install winston</pre>
+
+<pre>
+import express from "express";
+import winston from "winston";
+
+const app = express();
+app.use(express.json())
+
+const { printf , combine , label , timestamp} = winston.format;
+
+const meuFormato =  printf( ({level,message,label,timestamp}) =&gt; {
+    return `${timestamp} [${label}] ${level}: ${message}`;
+});
+
+const logger = winston.createLogger({
+    level:"silly",
+    transports:[
+        new(winston.transports.Console)(),
+        new(winston.transports.File)({filename:"my-log.txt"})
+    ],
+    format: combine(
+        label( {label:'my-app'} ),
+        timestamp(),
+        meuFormato
+    )
+})
+
+logger.error('Error');
+logger.warn('Warn');
+logger.info('Info');
+logger.verbose('Verbose');
+logger.debug('Debug');
+logger.silly('Silly');
+logger.log('info','Hello');
+
+
+app.listen(3001, ()=&gt;{
+    console.log('INICIADO');
+}); 
+</pre>

@@ -1,0 +1,83 @@
+<ul>
+    <li>Verificar Item na Lista</li>
+    <li>Inserir Objeto no Topo</li>
+    <li><a href="#limpar">Limpar lista</a></li>
+</ul>
+
+<h2>Verificar Item na Lista</h2>
+Verificar Existencia de Item
+<pre>
+class Item{
+    String descricao;
+    double valor;
+    
+    Item({this.descricao,this.valor});
+    
+    List&lt;Item&gt; get buscarLista {
+        return [
+            new Item(descricao:'tenis nike',valor:299.00) ,
+            new Item(descricao:'calca taquetel',valor:59.99) ,    
+            new Item(descricao:'tenis',valor:19.00) ,    
+        ];
+    }
+}
+
+void main() {
+    
+    Item item = new Item();
+    List&lt;Item&gt; lista = item.buscarLista;
+
+    item.descricao = 'tenis';
+    item.valor = 19.00;
+    <b style="color:red">
+    if ((lista.singleWhere((it) =&gt; it.descricao == item.descricao, orElse: () =&gt; null)) == null) {
+        lista.add(item);
+    }else{
+        print('EXISTE !');
+    }</b>
+    
+}</pre>
+<a href="https://stackoverflow.com/questions/55757708/check-whether-a-list-contain-an-attribute-of-an-object-in-dart">stackoverflow</a>
+
+<li>Inserir Objeto no Topo</li>
+<pre>
+class Item{
+    String descricao;
+    double valor;
+    
+        Item({this.descricao,this.valor});
+    
+    List&lt;Item&gt; get buscarLista {
+        return [
+            new Item(descricao:'nike',valor:299.00) ,
+            new Item(descricao:'coquetel',valor:59.99) ,    
+            new Item(descricao:'brick 1',valor:19.00) ,    
+        ];
+    }
+
+    @override
+    String toString() { return "${this.descricao}"; }
+}
+
+void main() {
+
+    Item item = new Item();
+    List&lt;Item&gt; lista = item.buscarLista;
+    print(lista.toString()); //[nike, coquetel, brick 1]
+
+    Item item2 = new Item(descricao: 'rebook' , valor: 259.00);
+    lista.add(item2);
+    print(lista.toString()); //[nike, coquetel, brick 1, rebook]
+    
+    
+    Item item3 = new Item(descricao: 'brick 2' , valor: 19.00);
+    lista.insert(0,item3);
+    print(lista.toString()); //[brick 2, nike, coquetel, brick 1, rebook]
+}
+</pre>
+
+<h2><a name="limpar">Limpar Lista</a></h2>
+<pre>
+    List&lt;String&gt; lista = new List();
+    lista.clear();
+</pre>

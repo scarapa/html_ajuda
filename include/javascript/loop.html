@@ -36,3 +36,19 @@ while (cars[i]) {
     text += cars[i];
     i++;
 }</pre>
+
+
+<h3>Retornando Ordem CRESCENTE - 5 PRIMEIROS</h3>
+<pre>
+values = [1,65,8,98,689,12,33,2,3,789];
+var topValues = values.sort((a,b) =&gt; b-a).slice(0,5);
+console.log(topValues); // [789,689,98,65,33]    
+</pre>
+
+<h3>Retornando Ordem DECRESCENTE - 5 PRIMEIROS</h3>
+<pre>
+    values = [1,65,8,98,689,12,33,2,3,789];
+    var topValues = values.sort((a,b) => a-b).slice(0,5);
+    console.log(topValues); // [1,2,3,8,12]
+</pre>
+<a href="https://stackoverflow.com/questions/39254218/js-get-top-5-max-elements-from-array">stackoverflow</a>
