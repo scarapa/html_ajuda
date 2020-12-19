@@ -1,0 +1,11 @@
+<h2>Solucionando problema CORS</h2>
+
+<pre>$ npm install cors</pre>
+
+<pre>
+import cors from "cors";
+...
+const app = express();
+app.use( express.json() );<b style="color:Red">
+app.use(cors());</b>
+</pre>

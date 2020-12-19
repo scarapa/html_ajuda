@@ -1,0 +1,25 @@
+<h2>Imagem da internet para blob</h2>
+<pre>
+import 'package:http/http.dart' as http;
+Future&lt;String&gt; networkImageToBase64(String imageUrl) async {
+    http.Response response = await http.get(imageUrl);
+    final bytes = response?.bodyBytes;
+    return (bytes != null ? base64Encode(bytes) : null);
+} 
+</pre>
+
+usando:
+<pre>
+final imgBase64Str = await networkImageToBase64('IMAGE_URL');
+print(imgBase64Str);    
+</pre>
+
+<a href="https://stackoverflow.com/questions/60565465/fetch-image-from-url-and-convert-it-to-base64-string-flutter">stackoverflow</a><br>
+<a href="https://dart.programmingpedia.net/en/knowledge-base/45549801/display-blob-as-image-in-flutter">programmingpedia</a>
+
+convertendo String para image 
+<pre>
+var imagem = base64.decode(imagem)    
+Image.memory( imagem ),
+</pre>
+<a href="https://bezkoder.com/dart-base64-image/">bezkoder</a>

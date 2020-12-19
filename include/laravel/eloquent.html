@@ -3,8 +3,16 @@
     h2::before{
         counter-increment: aga2;
         content: counter(aga2) " - ";
+        width:100%;
     }	
-    h2{ counter-reset: aga3; }
+    h2{ 
+        font-weight: bold;
+        counter-reset: aga3;
+        border-top:5px solid #333; 
+        padding:0 0 -10px 0 !important;
+        margin-bottom: 20px;
+        margin-top: 20px;        
+    }
 
     h3::before{
         counter-increment: aga3;
@@ -34,17 +42,39 @@
 </style>
 
 <ol>
-    <li>select</li>
-    <li>join</li>
-    <li>where</li>
-    <li>order</li>
-</ol>
-<h2>SELECT</h2>
+    <li><a href="#select">select</a></li>
+    <li><a href="#join">join</a></li>
+    <li><a href="#where">where</a></li>
+    <li><a href="#order">order</a></li>
+    <li><a href="#agregador">Agregadores</a></li>
+    <li><a href="#relacionamento">Relacionamentos</a></li>
 
+</ol>
+
+<a name="select"></a>
+<h2>SELECT</h2>
+    <h3>All</h3>
+    Retorna todos os registros da tabela Products (Seria o equivalente a SELECT * FROM products, para o MySQL)
+    <pre>$articles = Article::all();</pre>
+    
+    <h3>Find</h3>
+        <h4>Find simples</h4>
+        Retorna todos os dados do registro da tabela Products com o $id  especificado na busca
+        <pre>Product::find($id);</pre>
+
+        <h4>Find Multiplo</h4>
+        <pre>$Products = Product::find([1,2,3]);</pre>
+
+
+<a href="https://imasters.com.br/banco-de-dados/aprenda-9-truques-para-o-eloquent-laravel">imasters</a><br>
+<a href="https://laravel-news.com/eloquent-tips-tricks">laravel-news</a>
+
+<a name="join"></a>
 <h2>JOIN</h2>
 
+<a name="where"></a>
 <h2>WHERE</h2>
-<h3>Simples</h3>
+    <h3>Simples</h3>
 <pre>
 public function getMunicipios(){
     <span style="color:red;font-weight: bold;">$objeto = Municipio::where('cd_municipio','!=','99999')-&gt;orderBy('ds_Municipio')-&gt;get();</span>
@@ -66,13 +96,13 @@ Retorno:
 <pre class="terminal">
 ^ Illuminate\Database\Eloquent\Collection {#2084 ▼
     #items: array:497 [▶]
-    }    
+}    
 </pre>
 <a href="https://stackoverflow.com/questions/33374289/laravel-where-query-not-working">stackoverflow</a><br>
 <a href="https://laravel.com/docs/7.x/eloquent">laravel</a>
 
 
-<h3>Multiplas Condições / Multiplos wheres</h3>
+    <h3>Multiplas Condições / Multiplos wheres</h3>
 <pre>
 // AND
 $results = SomeModel::where('location', $location)-&gt;where('blood_group', $bloodGroup)-&gt;get();
@@ -80,10 +110,67 @@ $results = SomeModel::where('location', $location)-&gt;where('blood_group', $blo
 // OR
 $results = SomeModel::where('location', $location)-&gt;orWhere('blood_group', $bloodGroup)-&gt;get();        
 </pre>
-<a href="https://stackoverflow.com/questions/33374289/laravel-where-query-not-working">stackoverflow</a><br>
+    <a href="https://stackoverflow.com/questions/33374289/laravel-where-query-not-working">stackoverflow</a><br>
 
+    <h3>Where Especifico</h3>
+    <pre>$users = User::whereApproved(1)->get(); </pre>
+
+    Você pode alterar o nome de qualquer campo e anexá-lo como um sufixo a “onde” e funcionará como um passe de mágica.<br>
+    Além disso, existem alguns métodos predefinidos no Eloquent, relacionados a data / hora:
+    <pre>
+    User::whereDate('created_at', date('Y-m-d'));
+    User::whereDay('created_at', date('d'));
+    User::whereMonth('created_at', date('m'));
+    User::whereYear('created_at', date('Y'));
+    </pre>
+    <a href="https://laravel-news.com/eloquent-tips-tricks">laravel-news</a>
+
+
+<a name="order"></a>
 <h2>ORDER</h2>
-<pre>$this->sale-><b>orderBy('id','desc')</b>->take(10)->get()</pre>
+    <pre>$this->sale-><b>orderBy('id','desc')</b>->take(10)->get()</pre>
 
 <a href="https://pt.stackoverflow.com/questions/160164/como-trazer-apenas-os-ultimos-registros-com-laravel-5-2">stackoverflow</a> 
 <a href="https://jansenfelipe.com.br/2015/05/27/laravel-como-criar-uma-lista-de-registros-ordenacao/">jansenfelipe</a>
+
+<a name="agregador"></a>
+<h2>AGREGADORES</h2>
+    <h3>count</h3>
+    Executa uma query que conta o número de registro dentro dos parâmetros de restrição (WHERE)
+    <pre>Product::where('product_line_id', 1)->count();</pre>
+
+    <h3>sum</h3>
+    Executa uma query retornando a soma de todos os preços do resultado da busca
+    <pre>Product::where('product_line_id', 1)->sum('price');</pre>
+    
+    <h3>avg</h3>
+    Executa uma query que retorna a média de preços do resultado da busca
+    <pre>Product::where('product_line_id', 1)->avg('price');</pre>    
+
+    <h3>max</h3>
+    Executa uma query que retorna o maior preço encontrado na busca
+    <pre>Product::where('product_line_id', 1)->max('price');</pre>
+    
+    <h3>min</h3>
+    Executa uma query que retorna o menor preço encontrado na busca
+    <pre>Product::where('product_line_id', 1)->min('price');</pre>    
+ 
+<a name="relacionamento"></a>
+<h2>Relacionamentos</h2>
+
+    <h3>hasOne</h3>
+    Esse é o tipo de relação mais simples que existe. Consiste em uma relação de uma determinada tabela com outra, 
+    por exemplo, um usuário (tabela users) precisa informar o seu endereço quando for realizar o cadastro.
+    <br><br>
+    Com a model do endereço devidamente configurada, agora podemos configurar a nossa relação entre Usuários e Endereços.<br>
+    Ainda em app/, encontre o arquivo User.php, e inclua a seguinte função:
+<pre>public function endereco(){
+    return $this->hasOne(Adress:class,'id_usuario');
+}</pre>
+
+<h3>hasMany</h3>
+
+<h3>belongsTo</h3>
+
+<h3>belongsToMany</h3>
+    

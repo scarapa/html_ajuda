@@ -47,20 +47,23 @@
 </style>
 
 <ol>
-    <li>Tamanho</li>
-    <li>Row / Column</li>
-    <li>Align</li>
-    <li>Container</li>
-    <li>DropdownButton</li>
-    <li>Sobre Pondo Elementos</li>
+    <li><a href="#tamanho">Tamanho</a></li>
+    <li><a href="#rowcolum">Row / Column</a></li>
+    <li><a href="#align">Align</a></li>
+    <li><a href="#container">Container</a></li>
+    <li><a href="#dropdownbutton">DropdownButton</a></li>
+    <li><a href="#sobreposicao">Sobre Pondo Elementos</a></li>
 </ol>
 
+<a name="tamanho"></a>
 <h2>Tamanho</h2>
 <h3>MediaQuery</h3>
 <pre>width:MediaQuery.of(context).size.width</pre>
 <h3>Double</h3>
 <pre>double.infinity</pre>
 
+
+<a name="rowcolum"></a>
 <h2>Row / Column</h2>
 As propriedades mainAxisAlignment e crossAxisAlignment são volateis, porque o seu comportamento varia conforme o <b>EIXO PRINCIPAL</b>.
 <br><br>
@@ -194,6 +197,7 @@ mainAxisAlignment trabalho na vertical , caso o widget seja um <b>ROW()</b> o ei
 </div>
 <br clear="all">
 
+<a name="align"></a>
 <h2>Align</h2>
 
 <table class="tabelaAlign">
@@ -249,6 +253,9 @@ Align(<b style="color:red">
 
 <a href="http://flutterexamples.com/#align">flutterexamples</a><br>
 <a href="https://stackoverflow.com/questions/53716571/how-to-align-single-widgets-in-flutter">stackoverflow</a>
+
+
+<a name="container"></a>
 <h2>Container</h2>
 <h3>Border Color</h3>
 <div class="centro center">
@@ -268,6 +275,7 @@ Container(
 <a href="https://suragch.medium.com/adding-a-border-to-a-widget-in-flutter-d387bc5d7cff">suragch.medium</a><br>
 
 
+<a name="dropdownbutton"></a>
 <h2>DropdownButton</h2>
 Removendo a linha de baixo do componente
 <div class="centro center">
@@ -289,6 +297,7 @@ DropdownButton(
 <a href="http://flutterexamples.com/">FONTE</a>
 
 
+<a name="sobreposicao"></a>
 <h2>Sobre Pondo Elementos</h2>
 O flutter nao aceita margins negativas, mesmo elas as vezes sendo necessária
 <pre class="terminal">I/flutter ( 3173): margin.isNonNegative': is not true.</pre>
@@ -305,4 +314,6 @@ child: Container(
     transform: Matrix4.translationValues(0.0, -50.0, 0.0),
 ),
 </pre>
-<a href="https://stackoverflow.com/questions/48086486/does-flutter-support-negative-margin">stackoverflow</a>
+<a href="https://stackoverflow.com/questions/48086486/does-flutter-support-negative-margin">stackoverflow</a><br>
+<a href="https://medium.com/flutter-comunidade-br/como-sobrepor-varios-widgets-no-flutter-utilizando-stack-a18e96ff388d">medium</a><br>
+<a href="http://www.macoratti.net/19/07/flut_stack1.htm">macoratti</a>
