@@ -181,3 +181,30 @@ Platform.isIOS ?
 <h2>NOTCH</h2>
 Devices que possuem o notch podem ocasionar overflow, para isso NAO OCORRER, basta usar o widget abaixo:
 <pre>SafeArea()</pre>
+
+<h2>Stateless Async</h2>
+Por padrão uma tela nao aceita um metodo async, mas pra isso basta declarmos um widget futuro.
+
+<pre>
+Future&lt;String&gt; callAsyncFetch (){
+    return "teste";
+}
+
+class MyWidget extends StatelessWidget {
+    @override
+    Widget build(context) {
+      return FutureBuilder&lt;String&gt;(
+        future: callAsyncFetch(),
+        builder: (context, AsyncSnapshot&lt;String&gt; snapshot) {
+          if (snapshot.hasData) {
+            return Text(snapshot.data);
+          } else {
+            return CircularProgressIndicator();
+          }
+        }
+      );
+    }
+  }
+</pre>  
+
+<a href="https://flutterigniter.com/build-widget-with-async-method-call/">flutterigniter</a>

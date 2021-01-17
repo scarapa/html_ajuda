@@ -1,0 +1,35 @@
+<h2>Setando IP manualmente</h2>
+
+Verifique qual o nome do seu arquivo de configuração de rede com:
+<pre class="terminal">$ ls /etc/netplan/</pre>
+retorno: <code>01-network-manager-all.yaml</code>
+
+<pre class="terminal">$ sudo nano /etc/netplan/50-cloud-init.yaml</pre>
+<div class="centro center">
+    <img src="./images/linux-rede-setting.jpg" style="width:40%">
+</div>
+exemplo de como ficou o meu arquivo, detalhe , é um arquivo do tipo .yaml , ou seja , a identação conta em muitooooo.
+<pre>
+    # Let NetworkManager manage all devices on this system
+    network:
+      version: 2
+      renderer: NetworkManager
+      ethernets:
+        enps8s0:
+          dhcp4: no
+          addresses: [192.168.8.21/24]
+          gateway4: 192.168.8.1
+          nameservers:
+           addresses: [8.8.8.8, 8.8.4.4]
+</pre>
+
+teste
+<pre class="terminal">$ sudo netplan try</pre>
+
+aplique
+<pre class="terminal">$ sudo netplan apply</pre>
+
+Verifique
+<pre class="terminal">$ ip a </pre>
+
+<a href="https://purainfo.com.br/configurando-endereo-ip-esttico-no-ubuntu-server-derivados/">purainfo</a>

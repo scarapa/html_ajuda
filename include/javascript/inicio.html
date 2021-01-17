@@ -1,4 +1,7 @@
-window.onload parece ser o mais amplamente suportado. De fato, alguns dos navegadores mais modernos, em certo sentido, substituíram document.onload por window.onload. Os problemas de suporte ao navegador são provavelmente a razão pela qual muitas pessoas estão começando a usar bibliotecas como o jQuery para lidar com a verificação de que o documento está pronto da seguinte forma:
+window.onload parece ser o mais amplamente suportado. De fato, alguns dos navegadores mais modernos, em 
+certo sentido, substituíram document.onload por window.onload. Os problemas de suporte ao navegador são 
+provavelmente a razão pela qual muitas pessoas estão começando a usar bibliotecas como o jQuery para 
+lidar com a verificação de que o documento está pronto da seguinte forma:
 
 <pre>
 window.tdiff = []; fred = function(a,b){return a-b;};
@@ -13,3 +16,33 @@ window.onload = function(e){
 </pre>
 
 <a href="https://stackoverflow.com/questions/588040/window-onload-vs-document-onload">Fonte</a>
+
+<h2>Outras Formas de Carregar JS</h2>
+
+<h3>Tradicional</h3>
+<pre>
+&lt;body&gt;
+	&lt;div&gt;conteudo&lt;/div&gt;
+	&lt;script src="index.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+</pre>
+
+<h3>Asyncrona</h3>
+A pagina carrega o HTML e JS de forma paralela, resulta em um carregamento mais rapido, nem sempre 
+as coisas funciona como esperamos
+<pre>
+&lt;body&gt;
+	&lt;div&gt;conteudo&lt;/div&gt;
+	&lt;script async src="index.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+</pre>
+
+<h3>Refer</h3>
+Carrega junto ao HTML , mas o script só é executado somente quando o HTML estiver pronto.
+<pre>
+&lt;body&gt;
+	&lt;div&gt;conteudo&lt;/div&gt;
+	&lt;script defer src="index.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+</pre>
+<a href="https://www.instagram.com/p/CJ60TeiFyOD/?igshid=1wskwnwgrd872">FONTE</a>
