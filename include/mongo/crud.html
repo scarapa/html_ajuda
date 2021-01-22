@@ -1,0 +1,100 @@
+
+
+	-- inserir
+    $ db.student.insert({"name":"fernando"})	
+    
+        -- inserir collection SEM parametros
+    $ db.createCollection("student")
+        
+        -- inserir collection COM parametros
+    $ db.createCollection("log",{capped:true,size:1024,max:10})
+    
+        -- verificar collection
+    $ show collections
+    
+        -- excluir collection
+    $ db.COLLECTION_NOME.drop()
+    
+        [CRUD]
+        -- inserir SOMENTE um objeto, retorna a PK objectId
+    $ db.student.insertOne({'name':'Maria dos Anhos'})
+    
+        -- inserir VARIOS objeto, retorna a PK objectId
+    $ db.student.insertMany([{'name':'roberto'},{'name':'luisa',idade:14},{'name':'tonia',genero:'fem'}])
+    
+        -- inserir SOMENTE UM, sem declaracao de quantidade , retorna NUMERO de resultados inseridos(nInserted)
+    $ db.student.insert([{'name':'Eduardo',idade:37,genero:'masc'},{'name':'Anne',idade:34,genero:'fem'},{'name':'Maria Laura',idade:10,genero:'fem'}])db.student.insert([{'name':'Eduardo',idade:37,genero:'masc'},{'name':'Anne',idade:34,genero:'fem'},{'name':'Maria Laura',idade:10,genero:'fem'}])
+    $ db.student.insert([{'name':'Edson',idade:37,genero:'masc'},{'name':'Flavia',idade:30,genero:'fem'}])
+    $ db.student.insert([{'name':'Icaro',idade:27,genero:'masc'},{'name':'Ana',idade:34,genero:'fem'},{'name':'Helena',idade:10,genero:'fem'},{'name':'Igor',idade:3,genero:'masc'}])
+    $ db.student.insert([{'name':'Vagner',idade:38,genero:'masc'},{'name':'Cristina',idade:40,genero:'fem'},{'name':'Vitor',idade:13,genero:'masc'},{'name':'Otavio',idade:3,genero:'masc'}])
+    $ db.student.insert([{'name':'Marcelo',idade:36,genero:'masc'},{'name':'Michele',idade:33,genero:'fem'},{'name':'Manuela',idade:10,genero:'fem'},{'name':'Murilo',idade:5,genero:'masc'}])
+    
+    
+        -- buscar TODOS documentos da collection find()
+    $ db.COLLECTION_NOME.find()	
+    
+        -- query
+    $ db.COLLECTION_NOME.find({query},{projection})	
+    
+            -- 0 NAO retorna , 1 RETORNA
+    $ db.COLLECTION_NOME.find({},{_id:0,name:1})
+    
+        -- limitar o numero de registro retornaveis
+    $ db.COLLECTION_NOME.find().limit(4)
+    
+        -- skip descarta no retorno o Nº de documentos do retorno
+    $ db.COLLECTION_NOME.find().limit(4).skip(1)
+    
+        -- ordenacao
+            -- ordem CRESCENTE == 1
+            -- ordem DECRESCENTE == -1
+    $ db.COLLECTION_NOME.find().sort({name:1})
+    
+        -- TABULAR retorno pretty
+    $ db.COLLECTION_NOME.find().pretty()
+    
+        -- trazer PRIMEIRO REGISTRO
+    $ db.COLLECTION_NOME.findOne()
+    
+        -- query
+    $ db.COLLECTION_NOME.find({genero:"masc"},{})
+    
+        -- Com operadores [AND/NOT/NOR/OR/]
+    $	.find({$and:[{genero:"masc"},{idade:37}]},{})
+    
+        -- com operadores de comparacao
+    $eq	==	igual
+    $gt ==	maior quer
+    $qte == maior ou igual
+    $in ==	contendo
+    $lt ==	menor quer
+    $lte == menor que ou iguak
+    $ne ==	nao igual
+    $nin ==	nao contendo
+    
+            -- idade maior que 30
+    $ .find({idade:{$gt:30}},{}).pretty()
+    
+            -- idade maior que 30
+    $ .find({idade:{$gt:30}},{}).pretty()
+    
+        -- UPDATE - uma linha
+    $ db.COLLECTION_NOME.updateOne(query,update,options)
+    $ db.student.updateOne({name:'Vagner'},{$set:{idade:39}})	
+    
+        -- UPDATE - incrementa valor
+    $ db.student.updateOne({name:'Vagner'},{$inc:{idade:5}})	
+    
+        -- UPDATE - varias linhas
+    $ db.student.updateMany({genero:'masc'},{$set:{idade:5}})		
+        
+        -- UPDATE - NOVOCAMPO
+    $ db.student.updateMany({},{$set:{lastModified:"$$NOW",timestamp:"$$CLUSTERTIME"}})	
+    $ db.student.updateMany({},{$currentDate:{lastModified:true,timestamp:{$type:"timestamp"}}})	
+    
+        -- UPDATE - REMOVER CAMPO
+    $ db.student.updateMany({},{$unset:{update_at:1}})	
+    
+        -- UPDATE - SUBSTITUIR TODO UM DOCUMENTO - replaceOne
+    $ db.student.replaceOne({_id: ObjectId('600ac6bf7960b0397d6a1584')},{name:'Eloa',idade:'75',genero:'fem',lastModified:"$$NOW"})
+    
