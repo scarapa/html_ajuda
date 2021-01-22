@@ -9,3 +9,12 @@ return ListTitle(
     )
 )
 </pre>
+
+<h2>Rotas nomeadas</h2>
+<h3>Sem parametros</h3>
+<pre>Navigator.of(context).pushNamed( AppRoutes.FEIRAS_HOME_AGRICULTURA_FAMILIAR_BANCA );</pre>
+
+<h3>Com parametros</h3>
+<pre>Navigator.of(context).pushNamed( AppRoutes.FEIRAS_HOME_AGRICULTURA_FAMILIAR_BANCA , arguments: objeto  );</pre>
+Pegando os parametros noutra tela
+<pre>final banca = ModalRoute.of(context).settings.arguments as FeiraBancaModel;</pre>

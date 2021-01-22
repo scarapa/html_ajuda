@@ -53,6 +53,7 @@
     <li><a href="#container">Container</a></li>
     <li><a href="#dropdownbutton">DropdownButton</a></li>
     <li><a href="#sobreposicao">Sobre Pondo Elementos</a></li>
+    <li><a href="#cores">Cores</a></li>
 </ol>
 
 <a name="tamanho"></a>
@@ -317,3 +318,21 @@ child: Container(
 <a href="https://stackoverflow.com/questions/48086486/does-flutter-support-negative-margin">stackoverflow</a><br>
 <a href="https://medium.com/flutter-comunidade-br/como-sobrepor-varios-widgets-no-flutter-utilizando-stack-a18e96ff388d">medium</a><br>
 <a href="http://www.macoratti.net/19/07/flut_stack1.htm">macoratti</a>
+
+
+<a name="cores"></a>
+<h2>Cores</h2>
+<h3>Converter cor hexadecimal</h3>
+
+<pre>
+static converterCorStringColor(String hexadecimal){
+    return hexadecimal.replaceAll('#', '0xff');
+}
+
+String color = "#016ABE";
+color = Funcoes.converterCorStringColor(color);
+
+</pre>
+
+<a href="https://suragch.medium.com/adding-a-border-to-a-widget-in-flutter-d387bc5d7cff">suragch.medium</a><br>
+

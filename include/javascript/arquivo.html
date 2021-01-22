@@ -253,10 +253,20 @@ function arrayRetirarVazio(array){
 function stringContarAparicao(palavra, char) {
     palavra = palavra.toLowerCase();
     var c = 0 ;
-    for (var i = 0; i < palavra.length; i++) {
+    for (var i = 0; i &lt; palavra.length; i++) {
         if( palavra[i] == char) { c++;  }
     }
     return c;
+}
+
+function leftPad(value , count = 2 , char = '0'){
+    let newValue = value.toString();
+    if( value.toString().length &lt; count ){
+        for(let i = 0; i &lt; count - value.toString().length ; i++){
+            newValue = cahr + value.toString()
+        }
+    }
+    return newValue;
 }
 
 /******************************/ 

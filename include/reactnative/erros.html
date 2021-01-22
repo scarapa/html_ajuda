@@ -4,3 +4,33 @@ Erro ao tentar conectar a API via tunnel
 <div class="centro">
     <img src="images/react-native-tunnel-erro-001.jpg" style="width:40%">
 </div>
+
+<h2>Nao completa instalacao de novo projeto</h2>
+<h3>Error: Cannot find module 'cra-template'</h3>
+comando<code>$ npx create-react-app --scripts-version 3.4.1 teste-app </code>
+<pre>
+    throw err;
+    ^
+  
+  Error: Cannot find module 'cra-template'
+  Require stack:
+  - D:\projeto-moveis\react\teste-app-01\node_modules\react-scripts\scripts\init.js
+  - D:\projeto-moveis\react\teste-app-01\[eval]
+      at Function.Module._resolveFilename (internal/modules/cjs/loader.js:966:15)
+      at Function.resolve (internal/modules/cjs/helpers.js:78:19)
+      at module.exports (D:\projeto-moveis\react\teste-app-01\node_modules\react-scripts\scripts\init.js:110:13)
+      at [eval]:3:14
+      at Script.runInThisContext (vm.js:120:20)
+      at Object.runInThisContext (vm.js:311:38)
+      at Object.&lt;anonymous&gt; ([eval]-wrapper:10:26)
+      at Module._compile (internal/modules/cjs/loader.js:1138:30)
+      at evalScript (internal/process/execution.js:94:25)
+      at internal/main/eval_string.js:23:3 {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: [
+      'D:\\projeto-moveis\\react\\teste-app-01\\node_modules\\react-scripts\\scripts\\init.js',
+      'D:\\projeto-moveis\\react\\teste-app-01\\[eval]'
+    ]
+</pre>
+
+<code>Solucao</code> executar o comando de criacao sem a tag de scripts <b>$ npx create-react-app teste-app </b>
