@@ -1,0 +1,15 @@
+BulkWrite - Comandos em massa
+    $ db.collection.bulkWrite([operacao1 , operacao2 .... operacaoN ]);
+    $ db.student.bulkWrite([
+        {
+            insertOne:{
+                "document":{name:"Rogerio",idade:37,genero:"masc",timestamp:new Date()}}
+        },
+        {
+            updateOne: {
+                'filter':{name:'roberto'}
+                'update':{$set:{name:'Roberto Alam'}}
+
+            }
+        }
+    ],{ordered:false})

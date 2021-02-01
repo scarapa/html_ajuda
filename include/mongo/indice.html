@@ -1,0 +1,16 @@
+   
+    -- INDICES
+    -- INDICES -- consulta
+    $ db.collection.getIndexes()
+    $ db.student.getIndexes()
+
+    -- INDICES -- criar indice
+    $ db.collection.createIndex({name:-1})
+    $ db.student.createIndex({name:-1})
+
+    -- INDICES -- delete indice
+    $ db.collection.dropIndex('name_-1')
+    $ db.collection.dropIndex({name:-1})
+
+    -- INDICES -- deletar TODOS os indices menos o default
+    $ db.collection.dropIndexes(*)

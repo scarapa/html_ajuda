@@ -1,0 +1,16 @@
+    -- soma de todas idades
+    <pre>$ db.student.aggregate([{$group:{_id:null,total:{$sum:'$idade'}}}])</pre>
+
+    -- media SOMENTE do genero MASC
+    <pre>$ db.student.aggregate([{$match:{genero:'masc'}}, {$group:{_id:null,total:{$avg:'$idade'}}}])</pre>
+
+    -- CONTADOR
+    <pre>$ db.COLLECTION.count(query)</pre>
+    <pre>$ db.student.count({genero:'masc'})</pre>
+
+    -- CONTADOR de DOCUMENTOS
+    <pre>$ db.student.countDocuments({genero:'masc'})</pre>
+
+    -- CONTADOR de DOCUMENTOS
+    <pre>$ db.COLLECTION.distinct(query)</pre>
+    <pre>$ db.student.distinct('genero')</pre>
