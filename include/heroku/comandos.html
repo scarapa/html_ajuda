@@ -1,0 +1,19 @@
+-- logar
+$ heroku login
+
+-- criar aplicacao
+$ heroku create
+esse comando ja cria um nome no HEROKU e aponta para uma repositorio git TEMPORARIO 
+<pre>
+Creating app... done, ⬢ salty-earth-24538
+<span style='color:blue'>https://salty-earth-24538.herokuapp.com/</span> | <span style='color:green'>https://git.heroku.com/salty-earth-24538.git</span> </pre>   
+
+-- renomear aplicacao
+$ heroku apps:rename NOME_NOVO
+
+<h2>Procfile</h2>
+arquivo aonde o heroku pega o comando para iniciar a aplicação
+<pre>web: node -r dotenv/config --experimental-module app.js</pre>
+
+-- subir codigo para o heroku
+$ git push heroku master
