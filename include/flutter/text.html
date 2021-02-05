@@ -1,0 +1,33 @@
+<h2>Shadow</h2>
+<div class="centro center">
+    <img src="./images/flutter-text-shadow-01.png" style="width:40%">
+</div>
+
+<pre>
+var _opacity = 1.0;
+var _xOffset = 0.0;
+var _yOffset = 0.0;
+var _blurRadius = 0.0;
+Text( 'Flutter',
+    style: TextStyle(
+    fontSize: 100,
+    color: Colors.blue.shade700,
+    shadows: [
+        Shadow(
+        color: Colors.blue.shade900.withOpacity(_opacity),
+        offset: Offset(_xOffset, _yOffset),
+        blurRadius: _blurRadius,
+        ),
+    ],
+),
+</pre>
+<a href="https://stackoverflow.com/questions/44303882/how-to-add-shadow-to-the-text-in-flutter">stackoverflow</a>
+
+
+<h2>Alinhamento</h2>
+<pre>Text(
+    "Hello World",
+    textAlign: TextAlign.center,
+  ),</pre>
+
+<a href="https://stackoverflow.com/questions/50554110/how-do-i-center-text-vertically-and-horizontally-in-flutter">stackoverflow</a>
