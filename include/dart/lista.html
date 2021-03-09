@@ -2,6 +2,7 @@
     <li>Verificar Item na Lista</li>
     <li>Inserir Objeto no Topo</li>
     <li><a href="#limpar">Limpar lista</a></li>
+    <li><a href="#jsonparalista">String JSON para lista</a></li>
 </ul>
 
 <h2>Verificar Item na Lista</h2>
@@ -81,3 +82,19 @@ void main() {
     List&lt;String&gt; lista = new List();
     lista.clear();
 </pre>
+
+<h2><a name="jsonparalista">String JSON para lista</a></h2>
+
+<pre>
+main() {
+    String arrayText = '{"tags": ["dart", "flutter", "json"]}';
+    
+    var tagsJson = jsonDecode(arrayText)['tags'];
+    List&lt;String&gt; tags = tagsJson != null ? List.from(tagsJson) : null;
+    
+    print(tags);
+}
+</pre>
+Resultado
+<pre>[dart, flutter, json]</pre>
+<a href="https://stackoverflow.com/questions/53376518/dart-json-string-convert-to-list-string">stackoverflow</a>

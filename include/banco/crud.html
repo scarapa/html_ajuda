@@ -340,6 +340,14 @@ GROUP BY e.id_cliente
 	<br clear="all">
 	<a href="https://msdn.microsoft.com/pt-br/library/ms181765(v=sql.120).aspx">msdn.microsoft</a>
 
+	<h3>ACUMULADOR</h3>
+	<kbd>SQLITE</kbd>
+	<pre>select value, 
+(select sum(t2.value) from table t2 where t2.id <= t1.id) as accumulated 
+from table t1 </pre>
+<a href="http://es.uwenku.com/question/p-xamogkua-b.html" target="_blank">Fonte</a>
+
+
 <h2>UPDATE</h2>
 	<h3>UPDATE com TABELAS DIFERENTES</h3>
 	<pre><kbd>mysql</kbd>
