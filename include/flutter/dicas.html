@@ -94,7 +94,7 @@ MaterialApp(
 
 Uso , exemplo de pegar o dia da semana:
 <pre>
-    // default
+    // defaultll
     DateFormat.E().format(weekDay);
 
     // PORTUGUES
@@ -102,6 +102,23 @@ Uso , exemplo de pegar o dia da semana:
 </pre>
 
 <a href="https://pt.stackoverflow.com/questions/399390/flutter-alterar-internacionaliza%C3%A7%C3%A3o-de-nomes-de-datas">stackoverflow</a>
+<hr>
+
+<h2>Alterar nome da aplicação</h2>
+Para Android, edite apenas android: valor do rótulo na tag do aplicativo no arquivo  localizado na pasta: <code>android/app/src/main/AndroidManifest.xml</code>
+<pre>
+&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"&gt;
+    &lt;application
+        android:name="io.flutter.app.FlutterApplication"
+        android:label="<b style='color:red'>Your Application Name</b>"  //here
+        android:icon="@mipmap/ic_launcher"&gt;
+        &lt;activity&gt;
+        &lt;/activity&gt;
+    &lt;/application&gt;
+&lt;/manifest&gt;    
+</pre>
+
+<a href="https://stackoverflow.com/questions/49353199/how-can-i-change-the-app-display-name-build-with-flutter">stackoverflow</a>
 
 <hr>
 <h2>RaisedButton</h2>

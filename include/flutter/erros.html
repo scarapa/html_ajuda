@@ -352,6 +352,31 @@ Execution failed for task ':app:mergeDebugNativeLibs'.
 </pre>
 <a href="https://stackoverflow.com/questions/55343843/flutter-execution-failed-for-task-appprocessdebugresources">stackoverflow</a>
 
+<h2>Checkbox nao funciona</h2>
+checkbox não atualiza , nao altera o estado. Para resolver tive que envolver a lista de elementos num StatefulBuilder , conforme esse 
+<a href="https://stackoverflow.com/questions/58857826/flutter-checkbox-not-changing-updating-working">link aqui</a>
+<pre>
+return <b style='color:red'>StatefulBuilder</b>(
+    builder: (BuildContext context, StateSetter setState) {
+      return Center(
+        child: CheckboxListTile(
+          title: const Text('Animate Slowly'),
+          value: _valueCheck,
+          onChanged: (bool value) {
+            setState(() {
+              _valueCheck = value;
+            });
+          },
+          secondary: const Icon(Icons.hourglass_empty),
+        ),
+    );
+});    
+</pre>
+
+<a href="https://stackoverflow.com/questions/58857826/flutter-checkbox-not-changing-updating-working">stackoverflow</a>
+<a href="https://stackoverflow.com/questions/51578824/flutter-checkbox-doesnt-work">stackoverflow</a>
+<a href="https://medium.com/flutter-comunidade-br/flutter-descomplica-lista-de-checkbox-1e0dca525cb">medium</a>
+
 <h2>AndroidX Flutter</h2>
 Solução inserir no arquivo <code>android/gradle.properties</code> duas linhas
 <pre>android.useAndroidX=true
