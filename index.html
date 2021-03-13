@@ -92,6 +92,7 @@
 
                 //let titulo = this.getAttribute('href').toString().replace("#","");
                 let titulo = this.getAttribute('href').toString().replace("?","");
+                console.log(titulo)
                 let pagina = "include/"+titulo+".html";
                 await loadPagina(pagina,titulo,icone);
             });
@@ -119,7 +120,7 @@
         var modulo = capturarModuloURL();
         console.log('modulo')
         console.log(modulo)
-        pagina = (modulo != "")? "include/"+modulo+".html" :"include/home.html";
+        pagina = ( (modulo != "") || ( typeof(modulo) != "undefined"))? "include/"+modulo+".html" :"include/home.html";
         await loadPagina(pagina);
     }
 
@@ -137,7 +138,8 @@
     }
     function capturarModuloURL(){
         // RETIRAR O HASH(#)
-        return window.location.hash.replace('?','','g');
+        var pedacos = window.location.toString().split('?');
+        return pedacos[1];
     }
 
     </script>    
