@@ -78,10 +78,17 @@ No exemplo abaixo , é pego os 3 primeiros da lista.
 <pre>contasAgencia33.take(<b style="color:red">3</b>).toList();</pre>
 
 <h2>ORDER</h2>
+
 <h3>CRESCENTE</h3>
-Ordenar por saldo crescente
+Ordenar por saldo CRESCENTE
 <pre>contasAgencia33.sort( (conta1,conta2)=&gt;  conta1.balance - conta2.balance);</pre>
 
+Ordem alfabetica CRESCENTE
+<pre>(a, b) =&gt; a.data.toString.compareTo(b.data.toString)</pre>
+
 <h3>DECRESCENTE</h3>
-Ordenar por saldo decrescente
+Ordenar por saldo DECRESCENTE
 <pre>contasAgencia33.sort( (conta2,conta1)=&gt;  conta2.balance - conta1.balance );</pre>
+
+Ordem alfabetica DECRESCENTE
+<pre>(a, b) =&gt; b.data.toString.compareTo(a.data.toString);</pre>
