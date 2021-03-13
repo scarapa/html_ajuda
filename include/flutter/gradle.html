@@ -1,0 +1,77 @@
+<h2>Gradle</h2>
+Aqui estão as etapas completas para fazer o Gradle funcionar sem preocupações!.
+
+<ol>
+    <li>Baixe o Gradle em seu site: http://www.gradle.org/downloads</li>
+    <li>Descompacte o pacote em qualquer lugar que você deseja mantê-lo. Eu normalmente coloco esse tipo de coisa no meu diretório de desenvolvimento, onde outras coisas também vão.</li>
+    <li>Agora, clique com o botão direito em "Computador" (também conhecido como "Meu Computador") e selecione "Propriedades":</li>
+
+<div style="margin:0 auto;text-align: center;">
+    <img src="./images/flutter-gradle-001.png" style="width:40%;border:0.5px solid black">
+</div>
+    <li>Em seguida, clique em "Configurações avançadas do sistema":</li>
+    <br clear="all"><br clear="all">
+
+<div style="margin:0 auto;text-align: center;">
+    <img src="./images/flutter-gradle-002.png" style="width:40%;border:0.5px solid black">
+</div>
+    <li>Agora, você já deve estar na guia "Avançado", então clique em "Variáveis ??de ambiente ...":</li>
+    <br clear="all"><br clear="all">
+
+<div style="margin:0 auto;text-align: center;">
+    <img src="./images/flutter-gradle-003.png" style="width:40%;border:0.5px solid black">
+</div>
+    <li>Em seguida, queremos adicionar uma nova variável de usuário para nós, chamada <code>JAVA_HOME</code>. Clique em "Novo ..." conforme mostrado abaixo:</li>
+    <br clear="all"><br clear="all">
+
+<div style="margin:0 auto;text-align: center;">
+    <img src="./images/flutter-gradle-004.png" style="width:40%;border:0.5px solid black">
+</div>
+    <li>Agora insira <code>JAVA_HOME</code> no campo de entrada para "Nome da variável:":</li>
+    <br clear="all"><br clear="all">
+
+<div style="margin:0 auto;text-align: center;">
+    <img src="./images/flutter-gradle-005.png" style="width:40%;border:0.5px solid black">
+</div>
+    <li>Para "Valor da variável:", queremos inserir a localização do seu diretório Java JDK. O Java JDK em meu computador está localizado em seu local de instalação padrão, <code>C:\ Arquivos de programas\Java\ jdk1.8.0_25</code></li>
+    <br clear="all"><br clear="all">
+
+<div style="margin:0 auto;text-align: center;">
+    <img src="./images/flutter-gradle-006.png" style="width:40%;border:0.5px solid black">
+</div>
+    <li>Quando terminar, clique em "OK".</li>
+    <li>Em "Variáveis ??do sistema", procure a "Variável" chamada Caminho</li>
+    <br clear="all"><br clear="all">
+
+<div style="margin:0 auto;text-align: center;">
+    <img src="./images/flutter-gradle-007.png" style="width:40%;border:0.5px solid black">
+</div>
+    <li>Agora queremos adicionar caminhos adicionais à nossa variável de ambiente PATH, então vamos clicar em "Editar ..." em "Variáveis ??do sistema" conforme mostrado abaixo:</li>
+    <br clear="all"><br clear="all">
+
+<div style="margin:0 auto;text-align: center;">
+    <img src="./images/flutter-gradle-008.png" style="width:40%;border:0.5px solid black">
+</div>
+    <li>Em seguida, prossiga para o final do valor e insira os locais <code>\bin</code> do Gradle e do Java JDK.</li>
+    <br clear="all"><br clear="all">
+
+<div style="margin:0 auto;text-align: center;">
+    <img src="./images/flutter-gradle-009.png" style="width:40%;border:0.5px solid black">
+</div>
+    <li>Para Gradle, eu o inseri como <code>C:\gradle-2.1\bin</code>. Para o Java JDK, digite apenas <code>%JAVA_HOME%\bin</code> porque <code>%JAVA_HOME%</code> usará a variável de usuário que definimos anteriormente para obter o diretório Java JDK para você.</li>
+    <br clear="all"><br clear="all">
+
+<div style="margin:0 auto;text-align: center;">
+    <img src="./images/flutter-gradle-010.png" style="width:40%;border:0.5px solid black">
+</div>
+    <li>Depois de inserir os novos caminhos de bin para o Gradle e o Java JDK, clique em "OK".</li>
+    <li>Clique em "OK" mais algumas vezes para voltar atrás. Agora, vamos testar. 
+        Abra o prompt de comando e digite <code>gradle -v</code> e você verá algo semelhante:</li>
+    <br clear="all"><br clear="all">
+    
+<div style="margin:0 auto;text-align: center;">
+    <img src="./images/flutter-gradle-011.png" style="width:40%;border:0.5px solid black">
+</div>
+
+</ol>
+<a href="https://bryanlor.com/blog/gradle-tutorial-how-install-gradle-windows">Fonte</a>
