@@ -31,3 +31,56 @@ Text( 'Flutter',
   ),</pre>
 
 <a href="https://stackoverflow.com/questions/50554110/how-do-i-center-text-vertically-and-horizontally-in-flutter">stackoverflow</a>
+
+
+<h2>Overflow</h2>
+Existe a propriedade a ser usada <code>overflow</code> que contem algumas opcoes:
+<h3>ellipsis</h3>
+<pre>
+Text(
+  "This is a long text",
+  overflow: TextOverflow.ellipsis,
+),
+</pre>
+<div class="centro center">
+    <img src="./images/flutter-text-overflow-001.png" style="width:40;">
+</div>
+
+<hr>
+
+<h3>Fade</h3>
+<pre> Text(
+    "This is a long text",
+    overflow: TextOverflow.fade,
+),
+</pre>
+<div class="centro center">
+    <img src="./images/flutter-text-overflow-002.png" style="width:40;">
+</div>
+
+<hr>
+
+<h3>Clip</h3>
+<pre> Text(
+    "This is a long text",
+    overflow: TextOverflow.clip,
+),
+</pre>
+<div class="centro center">
+    <img src="./images/flutter-text-overflow-003.png" style="width:40;">
+</div>
+
+
+<a href="https://stackoverflow.com/questions/44579918/flutter-wrap-text-on-overflow-like-insert-ellipsis-or-fade">stackoverflow</a>
+<pre>
+new Container(
+    padding: new EdgeInsets.only(right: 13.0),
+    child: new Text(
+        'Text lar...',
+        <b style="color:red">overflow: TextOverflow.ellipsis,
+        maxLines: 1,
+        softWrap: false,
+        </b>    
+    )
+),
+</pre>
