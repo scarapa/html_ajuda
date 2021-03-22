@@ -1,0 +1,27 @@
+<h2>HTTP Request</h2>
+criado classe <code>CallApi</code>no modulo de helper para facilitar, nessa funcionalidade foi adicionado o timeout
+<pre>
+    import 'dart:convert';
+    import 'package:http/http.dart' as http;
+    import 'package:shared_preferences/shared_preferences.dart';
+    
+    class CallApi {
+        postData(data, url, apiUrl, [token]) async {
+            var fullUrl = url + apiUrl;
+    
+            if (token == null) {
+                return await http.post(fullUrl, body: jsonEncode(data), headers: _setHeaders()).timeout(
+                    Duration(seconds: 3),
+                    onTimeout: () { return null; },
+                );
+            } else {
+                return await http.post(fullUrl,body: jsonEncode(data), headers: _setHeadersToken(token)).timeout(
+                    Duration(seconds: 3),
+                    onTimeout: () { return null; },
+                );
+            }
+        }
+    }    
+</pre>
+
+<a href="https://stackoverflow.com/questions/51487818/set-timeout-for-httpclient-get-request" target="_blank"></a>
