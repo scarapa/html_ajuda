@@ -23,3 +23,16 @@ var imagem = base64.decode(imagem)
 Image.memory( imagem ),
 </pre>
 <a href="https://bezkoder.com/dart-base64-image/">bezkoder</a>
+
+<hr>
+
+<h2>Cantos arredondados</h2>
+<pre>ClipRRect(
+    borderRadius: BorderRadius.circular(8.0),
+    child: Image.network(
+        subject['images']['large'],
+        height: 150.0,
+        width: 100.0,
+    ),
+)</pre>
+<a href="https://stackoverflow.com/questions/51513429/rounded-corners-image-in-flutter" target="_blank">stackoverflow</a>
