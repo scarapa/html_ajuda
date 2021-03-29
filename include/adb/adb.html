@@ -45,6 +45,7 @@
 	<li><a href="#introducao">Introdução</a></li>
 	<li><a href="#instalacao">Instalação</a></li>
 	<li>Configuração no Dispositivo</li>
+	<li><a href="#acesso">Acessando device via TERMINAL</a></li>
 	<li><a href="#comandos">Comandos</a></li>
 	<li><a href="#virtualizacao">Virtualizacao</a></li>
 	<li><a href="#erros">Erros</li>
@@ -52,121 +53,70 @@
 </ol>
 
 <a name="introducao"></a>
-<h2>Introdução</h2>
 
-Na prática, esta ferramenta do pacote SDK, permite que os utilizadores possam aceder e gerir o seu dispositivo Android ou a instância do emulador.
-<br><br>
 
-Além da comunicação entre computador e dispositivo Android, o ADB permite ainda que se instalem aplicações, que se copie informação entre o PC e o equipamento Android e também que se corram alguns comandos na shell do Android. Mas como posso eu usar o ADB?
-
-<div class="centro" style="width:30%;">
-	<img src="images/adb_001.jpg">
-</div>
+<hr>
 
 <a name="instalacao"></a>
-<h2>Instalação</h2>
-Antes de começar a usar o ADB o seu PC deve realizar os seguintes passos:
-<ul>
-    <li>Download e instalação do Java SDK <a href="http://java.sun.com/javase/downloads/widget/jdk6.jsp">(download aqui)</a></li>
-    <li>Download e instalação do Android SDK <a href="http://developer.android.com/sdk/index.html">(download aqui)</a></li>
-    <li>Extrair o Android SDK por exemplo para <b>c:\android-sdk-windows</b> e instalar usando o executável SDK Manager</li>
-</ul>
 
-<code>Nota1:</code> O adb pode ser obtido à parte, sem ter de realizar este processo. No entanto, vamos explicar o processo, usando o android-sdk
-<br><br>
-<code>Nota2:</code> Verificar na instalação do pacotes, se o item “Android SDK Plataform-tools” está seleccionado.
-<br><br>
+<hr>
 
-<div class="centro" style="width:50%;">
-	<img src="images/adb_002.jpg">
-</div>
+<a name="acesso"></a>
 
-<h2>Configuração no Dispositivo</h2>
-Para que tudo funcione correctamente, dentro do Android deverá ir a Definições >Aplicações > Desenvolvimento e activar Depuração USB
-<div class="centro" style="width:30%;">
-	<img src="images/adb_003.jpg">
-</div>
-Feitas as configurações, basta ligar o cabo entre o smartphone e o PC, abrir a linha de comandos e considerado que o android-sdk-windows esta em C: vamos para  c:\android-sdk-windows\platform-tools
+
+<hr>
 
 <a name="comandos"></a>
-<h2>Comandos</h2>
-Dentro de android-sdk-windows\platform-tools encontram-se várias ferramentas que permitem que o PC interaja com o dispositivo móvel Android. <br>
-Aqui ficam alguns comandos:
 
-<h3>LISTAR DISPOSITIVOS</h3>
-<pre class="terminal">$ adb devices</pre>
-retorno:
-<pre>
-    List of devices attached
-    emulator-5554   device    
-</pre>
-<a href="https://stackoverflow.com/questions/18370219/how-to-use-adb-in-android-studio-to-view-an-sqlite-db">stackoverflow</a>
-
-<h3>ACESSAR DISPOSITIVOS</h3>
-<pre class="terminal">$ adb -s emulator-<b style="color:Red">xxxx</b> shell</pre>
-o que está em <b style="color:Red">vermelho</b> tem que ser trocado pelo dispositivo, conforme abaixo:
-<pre class="terminal">adb -s emulator-5554 shell</pre>
-retorno:
-<pre>generic_x86_arm:/ $</pre>
-<a href="https://stackoverflow.com/questions/18370219/how-to-use-adb-in-android-studio-to-view-an-sqlite-db">stackoverflow</a>
-
-<h3>LISTAR PACOTES/APKs</h3>
-Depois de estar dentro do dispositivo entre com o comando:
-<pre class="terminal">$ pm list packages</pre>
-Procurando por algo especifico
-<pre class="terminal">$ pm list packages | grep atajo</pre>
-<a href="https://stackoverflow.com/questions/18370219/how-to-use-adb-in-android-studio-to-view-an-sqlite-db">stackoverflow</a><br>
-<a href="https://medium.com/@k1d_bl4ck/how-to-extract-the-database-and-other-things-from-an-enterprise-android-app-2194a52b249b">medium</a>
-
-<h3>ENVIAR ARQUIVOS PARA DO DISPOSITIVO </h3>
-<pre class="terminal">$ adb push </pre>
-<kbd>WINDOWS</kbd>
-<pre class="terminal">$ adb push e:\Emater_institucional-0-0-4.apk sdcard/Emater.apk</pre>
-
-<h3>PEGAR ARQUIVOS DO DISPOSITIVO</h3>
-<pre class="terminal">$ adb pull </pre>
-
-<h3>PEGAR DATABASE</h3>
-<kbd>WINDOWS</kbd>
-<pre class="terminal">$ C:\Users\49583\AppData\Local\Android\Sdk\platform-tools\adb exec-out run-as br.tche.emater.institucional cat databases/emater.db > emater.db</pre>
-
-<h3>DADOS DO CARTAO DE MEMORIA</h3>
-<kbd>WINDOWS</kbd>
-<pre class="terminal">$ C:\Users\49583\AppData\Local\Android\Sdk\platform-tools\adb pull /sdcard/</pre>
-
-<h3>Instalando aplicativo</h3>
-<pre>
-$ adb devices
-List of devices attached
-emulator-5554 device
-emulator-5555 device
-
-$ adb -s emulator-5555 install helloWorld.apk </pre>
-<a href="https://developer.android.com/studio/command-line/adb?hl=pt-br">developer.android</a>
 
 <h3>ADB SHELL</h3>
-|Para navegar nas pastas/bancos utilize o adb shell
-<pre class="terminal">$ adb shell</pre>
-<pre>generic_x86:/</pre>
 
 <pre class="terminal">$ cd /storage/emulated</pre>
 <pre>permission denied</pre>
 
+<h4>Acessando armazenamento dispositivo</h4>
 
-<h4>permission denied</h4>
-<pre>D:\android-sdk-windows\platform-tools>adb shell find /data -name *.db
-find: permission denied
-
-D:\android-sdk-windows\platform-tools>adb shell test
-test: permission denied
-
-D:\android-sdk-windows\platform-tools>adb remount
-remount failed: No such file or directory
+Primeiramente temos que acessar a pasta aonde está localizado o <b>ADB</b>
+<pre class="terminal">cd C:\Users\rober\AppData\Local\Android\Sdk\platform-tools
+C:\Users\rober\AppData\Local\Android\Sdk\platform-tools&gt; <b style="color: red;">adb shell</b>
+cd /storage/emulated/0
 </pre>
+Listando pastas
+<pre class="terminal">$ ls -la</pre>
+Retorno 
+<pre class="terminal">drwxrwx--x 12 root sdcard_rw 4096 2021-02-25 22:19 .
+drwx--x--x  4 root sdcard_rw 4096 2021-03-26 14:29 ..
+drwxrwx--x  2 root sdcard_rw 4096 2021-02-25 22:19 Alarms
+drwxrwx--x  3 root sdcard_rw 4096 2021-02-25 22:19 Android
+drwxrwx--x  2 root sdcard_rw 4096 2021-02-25 22:19 DCIM
+drwxrwx--x  2 root sdcard_rw 4096 2021-03-12 16:02 Download
+drwxrwx--x  2 root sdcard_rw 4096 2021-02-25 22:19 Movies
+drwxrwx--x  2 root sdcard_rw 4096 2021-02-25 22:19 Music
+drwxrwx--x  2 root sdcard_rw 4096 2021-02-25 22:19 Notifications
+drwxrwx--x  2 root sdcard_rw 4096 2021-02-25 22:19 Pictures
+drwxrwx--x  2 root sdcard_rw 4096 2021-02-25 22:19 Podcasts
+drwxrwx--x  2 root sdcard_rw 4096 2021-02-25 22:19 Ringtones</pre>
 
-reiniciando as permissoes
-<pre class="terminal">$ adb root</pre>
-<a href="https://stackoverflow.com/questions/7399028/android-adb-permission-denied">stackoverflow</a>
+<h4>Acessando pastas dos aplicativos | Acessando packagename | Acessando pacote da aplicacao</h4>
+Localizar o adb.exe, no meu caso fica em <code>C:\Users\rober\AppData\Local\Android\Sdk\platform-tools</code>
+<pre class="terminal">C:\Users\rober\AppData\Local\Android\Sdk\platform-tools&gt; <b style="color: red;">adb shell</b></pre>
+
+Listando os pacotes/aplicativos disponives no device
+<pre class="terminal">$ pm list packages 
+// ou procurando pelo nome
+$ pm list packages | grep me_poupe</pre>
+
+Retorno da consulta
+<pre class="terminal">package:com.example.me_poupe</pre>
+
+Acessando package/pacote da aplicacao.
+<pre class="terminal">$ run-as com.example.me_poupe</pre>
+Pronto! Agora faça o que quiser !!!
+<br clear='all'>
+
+<a href="https://stackoverflow.com/questions/18436110/how-to-access-package-folder-data-pakcage-name-in-android-device" target="_blank">stackoverflow</a>
+
+
 
 <h4>Listando pacotes/packages</h4>
 <pre class="terminal">$ pm list packages</pre>
@@ -266,45 +216,10 @@ Para executar basta usar esse comando:
 
 <a name="erros"></a>
 <h2>Erros</h2>
-<h3>Error initializing ADB</h3>
-<div class="centro"><img src="images/android-studio-erro-initializing-adb-01.jpg" style="width: 40%;"></div>
-
-<h4>Solucao 01</h4>
-<ul>
-	<li>Feche Android-Studio </li>
-	<li>Abra o CMD <code class="teclado">win</code> + <code class="teclado">r</code></li>
-	<li>navegue até a pasta <kbd>platform-tools</kbd></li>
-	<li><pre>C:\Users\[user]\AppData\Local\Android\android-sdk\platform-tools</pre></li>
-	<li>digite <kbd>adb.exe start-server</kbd> pressione<code class="teclado">Enter</code></li>
-	<li>Abra Android Studio novamente</li>
-</ul>
-
-<a href="https://stackoverflow.com/questions/49340436/error-initializing-adb-unable-to-create-debug-bridge-unable-to-start-adb-serve">Fonte[1]</a>
-<a href="https://stackoverflow.com/questions/47506261/android-studio-error-initializing-adb-android-debug-bridge-not-found">Fonte[2]</a>
-<a href="https://stackoverflow.com/questions/54167187/android-studio-3-2-1-error-initializing-adb-android-debug-bridge-not-found">Fonte[3]</a>
-
+<
 <hr>
 
-<h3>AVD SEM INTERNERT</h3>
-No windows primeiramente no acesso pelo terminal entre na pasta <code>C:\Users\<b>SEU-USUARIO</b>\AppData\Local\Android\Sdk\emulator</code> e
-pesquise pelas imagens disponiveis com o comando abaixo:
-<pre>$ emulator -list-avds</pre>
-o meu retorno foi esse:
-<pre>pie-28</pre>
-E com o emulador desligado , digite o comando:
-<pre>$ emulator -avd <b>NOME-DA-SUA-IMAGEM</b> -dns-server 8.8.8.8 -read-only</pre>
-O meu comando ficou exatamenteo assim:
-<pre>$ emulator -avd pie-28 -dns-server 8.8.8.8 -read-only</pre>
-<a href="https://qastack.com.br/programming/2039964/how-to-connect-android-emulator-to-the-internet">qastack</a>
 
-<h3>AVD NAO ABRE</h3>
-AVD nao abre pois nao foi fechada corretamente , conforme imagem abaixo:
-<div class="centro"><img src="images/adb_avd_error_running_001.jpg" style="width: 60%;"></div>
-<br clear="all">
-
-Solução deletar os arquivos <b>.lock</b> conforme imagem abaixo:
-<div class="centro"><img src="images/adb_avd_error_running_002.jpg" style="width: 60%;" class="bp"></div>
-<a href="https://stackoverflow.com/questions/27014901/android-studio-emulator-is-already-running/31031889">stackoverflow</a>
 
 <h2>Fontes</h2>
 <ul>

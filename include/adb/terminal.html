@@ -1,0 +1,147 @@
+<style>
+    body{ counter-reset: aga2 }
+    h2::before{
+        counter-increment: aga2;
+        content: counter(aga2) " - ";
+        width:100%;
+    }	
+    h2{ 
+        font-weight: bold;
+        counter-reset: aga3;
+        border-bottom:5px solid #333; 
+        padding:0 0 -10px 0 !important;
+        margin-bottom: 20px;
+        margin-top: 20px;        
+    }
+
+    h3::before{
+        counter-increment: aga3;
+        content: counter(aga2)"."counter(aga3) " - ";
+    }	
+    h3{ counter-reset: aga4; }
+
+    h4::before{
+        margin-left:25px;
+        counter-increment: aga4;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4) " - ";
+    }	
+    h4{ counter-reset: aga5; }
+
+    h5::before{
+        margin-left:45px;
+        counter-increment: aga5;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5) " - ";
+    }
+    h5{ counter-reset: aga6; }	    
+    
+    h6::before{
+        margin-left:25px;
+        counter-increment: aga6;
+        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5)"."counter(aga6) " - ";
+    }
+</style>
+
+
+Você pode acessar o dispositivo via terminal, ou seja não precisa abrir o AS(Android Studio) simplesmente para 
+visualizar se alguma pasta/arquivo existe.
+<h2>ACESSANDO DEVICE</h2>
+<h3>Acessando de uma maneira simples</h3>
+Primeiramente precisa-se localizar <code>ADB</code> na sua maquina local, no meu caso fica em:<code>C:\Users\rober\AppData\Local\Android\Sdk\platform-tools</code>
+<pre class="terminal">C:\Users\rober\AppData\Local\Android\Sdk\platform-tools\adb.exe shell</pre>
+se aparecer isso <code>generic_x86_arm:/ $</code>, você acessou o device com sucesso !!!
+
+<h3>Acessando determinada imagem</h3>
+No caso quando você tem mais de uma imagem, precisa escolher qual delas acessa
+<pre class="terminal">$ adb devices
+// retorno:
+List of devices attached
+emulator-5554   device    
+</pre>
+Acessando
+<pre class="terminal">$ adb -s emulator-5554 shell</pre>
+<a href="https://stackoverflow.com/questions/18370219/how-to-use-adb-in-android-studio-to-view-an-sqlite-db">stackoverflow</a>
+
+<hr>
+
+<h2>COMANDOS</h2>
+Dentro de android-sdk-windows\platform-tools encontram-se várias ferramentas que permitem que o PC interaja com o dispositivo móvel Android. <br>
+Aqui ficam alguns comandos:
+
+<h3>Listar devices/dispositivos</h3>
+<pre class="terminal">$ adb devices</pre>
+
+<h3>Listar pacotes/package</h3>
+Depois de estar dentro do dispositivo entre com o comando:
+<pre class="terminal">$ pm list packages</pre>
+Procurando por algo especifico
+<pre class="terminal">$ pm list packages | grep atajo</pre>
+<a href="https://stackoverflow.com/questions/18370219/how-to-use-adb-in-android-studio-to-view-an-sqlite-db">stackoverflow</a><br>
+<a href="https://medium.com/@k1d_bl4ck/how-to-extract-the-database-and-other-things-from-an-enterprise-android-app-2194a52b249b">medium</a>
+
+<h3>Acessar pacotes/package</h3>
+<pre class="terminal">$ run-as com.example.me_poupe</pre>
+<a href="https://stackoverflow.com/questions/18436110/how-to-access-package-folder-data-pakcage-name-in-android-device">stackoverflow</a>
+
+
+<h3>Copiando Arquivos</h3>
+<code>adb <b>push</b> local remoto</code> envia arquivos do computador para o dispositivo.<br/>
+<code>adb <b>pull</b> remoto local</code> baixa arquivos do dispositivo para o computador.
+
+<h4>ENVIAR ARQUIVOS PARA DO DISPOSITIVO </h4>
+<pre class="terminal">$ adb push </pre>
+<kbd>WINDOWS</kbd>
+<pre class="terminal">$ adb push e:\Emater_institucional-0-0-4.apk sdcard/Emater.apk</pre>
+
+<h4>PEGAR ARQUIVOS DO DISPOSITIVO</h4>
+<pre class="terminal">$ adb pull </pre>
+
+outro exemplo; usuário dentro da pasta Downloads do sistema operacional local , acessa o adb em outra pasta do sistema e pega o arquivo da aplicacao/pacote e salva 
+<pre class="terminal">C:\Users\rober\Downloads>C:\Users\rober\AppData\Local\Android\Sdk\platform-tools\adb exec-out run-as com.example.me_poupe cat app_flutter/teste.txt > teste.txt</pre>
+
+outro exemplo, salvando arquivo teste.txt na maquina local
+<pre class="terminal">$ adb exec-out run-as com.example.me_poupe cat app_flutter/teste.txt > %USERPROFILE%\Downloads\teste.txt</pre>
+
+<h5>Pegar DATABASE do device</h5>
+<kbd>WINDOWS</kbd>
+<pre class="terminal">$ C:\Users\49583\AppData\Local\Android\Sdk\platform-tools\adb exec-out run-as br.tche.emater.institucional cat databases/emater.db > emater.db</pre>
+
+<h5>Pegar dados do cartao de memoria do device</h5>
+<kbd>WINDOWS</kbd>
+<pre class="terminal">$ C:\Users\49583\AppData\Local\Android\Sdk\platform-tools\adb pull /sdcard/</pre>
+
+<a href="https://stackoverflow.com/questions/17629889/android-adb-pull-file-on-desktop">stackoverflow</a>
+
+<h3>Instalando aplicativo no device</h3>
+<pre class="terminal">$ adb devices
+List of devices attached
+emulator-5554 device
+emulator-5555 device
+
+$ adb -s emulator-5555 install helloWorld.apk </pre>
+
+<h3>sqlite</h3>
+sqlite3 inicia o programa da linha de comando sqlite para examinar bancos de dados. Inclui comandos como <code>.dump</code> para 
+exibir o conteúdo de uma tabela e <code>.schema</code> para exibir a instrução SQL CREATE de uma tabela existente. 
+Você também pode executar comandos SQLite na linha de comando, como mostrado abaixo.
+<pre class="terminal">$ adb -s emulator-5554 shell
+$ sqlite3 /data/data/com.example.app/databases/rssitems.db
+SQLite version 3.3.12
+Enter ".help" for instructions</pre>
+
+
+<h3>Gravar video da tela do device</h3>
+<pre class="terminal">$ adb shell screenrecord /sdcard/demo.mp4</pre>
+Para interromper a gravação da tela, pressione Control + C
+
+
+
+<hr>
+
+<a href="https://developer.android.com/studio/command-line/adb?hl=pt-br" target="_blank">developer.android</a><br>
+<a href="https://medium.com/@thiagoqvalle/introdu%C3%A7%C3%A3o-ao-adb-4b745918c05a"  target="_blank">medium.com</a><br>
+<ul>
+	<li><a href="https://pplware.sapo.pt/smartphones-tablets/android/como-usar-o-android-debug-bridge-adb/"  target="_blank">pplware.sapo</a></li>
+    <li><a href="https://www.androidpit.com.br/adb-drivers-android-windows" target="_blank">androidpit</a></li>
+    <li><a href="https://windowsloop.com/launch-avd-manager-without-android-studio/" target="_blank">windowsloop</a>
+</ul>
+

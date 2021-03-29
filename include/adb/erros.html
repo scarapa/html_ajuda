@@ -1,0 +1,58 @@
+<h2>permission denied</h2>
+<pre>D:\android-sdk-windows\platform-tools>adb shell find /data -name *.db
+find: permission denied
+
+D:\android-sdk-windows\platform-tools>adb shell test
+test: permission denied
+
+D:\android-sdk-windows\platform-tools>adb remount
+remount failed: No such file or directory
+</pre>
+
+reiniciando as permissoes
+<pre class="terminal">$ adb root</pre>
+<a href="https://stackoverflow.com/questions/7399028/android-adb-permission-denied">stackoverflow</a>
+
+<hr>
+
+<h2>AVD SEM INTERNERT</h2>
+No windows primeiramente no acesso pelo terminal entre na pasta <code>C:\Users\<b>SEU-USUARIO</b>\AppData\Local\Android\Sdk\emulator</code> e
+pesquise pelas imagens disponiveis com o comando abaixo:
+<pre>$ emulator -list-avds</pre>
+o meu retorno foi esse:
+<pre>pie-28</pre>
+E com o emulador desligado , digite o comando:
+<pre>$ emulator -avd <b>NOME-DA-SUA-IMAGEM</b> -dns-server 8.8.8.8 -read-only</pre>
+O meu comando ficou exatamenteo assim:
+<pre>$ emulator -avd pie-28 -dns-server 8.8.8.8 -read-only</pre>
+<a href="https://qastack.com.br/programming/2039964/how-to-connect-android-emulator-to-the-internet">qastack</a>
+
+<hr>
+
+<h2>AVD NAO ABRE</h2>
+AVD nao abre pois nao foi fechada corretamente , conforme imagem abaixo:
+<div class="centro"><img src="images/adb_avd_error_running_001.jpg" style="width: 60%;"></div>
+<br clear="all">
+
+Solução deletar os arquivos <b>.lock</b> conforme imagem abaixo:
+<div class="centro"><img src="images/adb_avd_error_running_002.jpg" style="width: 60%;" class="bp"></div>
+<a href="https://stackoverflow.com/questions/27014901/android-studio-emulator-is-already-running/31031889">stackoverflow</a>
+
+<hr>
+
+<h2>Error initializing ADB</h2>
+<div class="centro"><img src="images/android-studio-erro-initializing-adb-01.jpg" style="width: 40%;"></div>
+
+<h4>Solucao 01</h4>
+<ul>
+	<li>Feche Android-Studio </li>
+	<li>Abra o CMD <code class="teclado">win</code> + <code class="teclado">r</code></li>
+	<li>navegue até a pasta <kbd>platform-tools</kbd></li>
+	<li><pre>C:\Users\[user]\AppData\Local\Android\android-sdk\platform-tools</pre></li>
+	<li>digite <kbd>adb.exe start-server</kbd> pressione<code class="teclado">Enter</code></li>
+	<li>Abra Android Studio novamente</li>
+</ul>
+
+<a href="https://stackoverflow.com/questions/49340436/error-initializing-adb-unable-to-create-debug-bridge-unable-to-start-adb-serve">Fonte[1]</a>
+<a href="https://stackoverflow.com/questions/47506261/android-studio-error-initializing-adb-android-debug-bridge-not-found">Fonte[2]</a>
+<a href="https://stackoverflow.com/questions/54167187/android-studio-3-2-1-error-initializing-adb-android-debug-bridge-not-found">Fonte[3]</a>
