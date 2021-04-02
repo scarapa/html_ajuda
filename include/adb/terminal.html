@@ -1,50 +1,19 @@
-<style>
-    body{ counter-reset: aga2 }
-    h2::before{
-        counter-increment: aga2;
-        content: counter(aga2) " - ";
-        width:100%;
-    }	
-    h2{ 
-        font-weight: bold;
-        counter-reset: aga3;
-        border-bottom:5px solid #333; 
-        padding:0 0 -10px 0 !important;
-        margin-bottom: 20px;
-        margin-top: 20px;        
-    }
+<h2>Emulador</h2>
+No windows o 'programa' emulador fica em:<code>C:\Users\rober\AppData\Local\Android\Sdk\emulator\</code>
 
-    h3::before{
-        counter-increment: aga3;
-        content: counter(aga2)"."counter(aga3) " - ";
-    }	
-    h3{ counter-reset: aga4; }
+<h3>Listar imagens</h3>
+<pre class="terminal">$ emulator -list-avds</pre>
 
-    h4::before{
-        margin-left:25px;
-        counter-increment: aga4;
-        content: counter(aga2)"."counter(aga3)"."counter(aga4) " - ";
-    }	
-    h4{ counter-reset: aga5; }
-
-    h5::before{
-        margin-left:45px;
-        counter-increment: aga5;
-        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5) " - ";
-    }
-    h5{ counter-reset: aga6; }	    
-    
-    h6::before{
-        margin-left:25px;
-        counter-increment: aga6;
-        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5)"."counter(aga6) " - ";
-    }
-</style>
+<h3>Iniciar Emulador</h3>
+Use o comando emulator para iniciar o emulador, como uma alternativa para executar seu 
+projeto ou iniciá-lo com o AVD Manager. 
+<pre class="terminal">$ emulator -avd <b style="color:red">avd_name</b></pre>
+<a href="https://developer.android.com/studio/run/emulator-commandline">developer.android</a>
 
 
+<h2>ACESSANDO DEVICE</h2>
 Você pode acessar o dispositivo via terminal, ou seja não precisa abrir o AS(Android Studio) simplesmente para 
 visualizar se alguma pasta/arquivo existe.
-<h2>ACESSANDO DEVICE</h2>
 <h3>Acessando de uma maneira simples</h3>
 Primeiramente precisa-se localizar <code>ADB</code> na sua maquina local, no meu caso fica em:<code>C:\Users\rober\AppData\Local\Android\Sdk\platform-tools</code>
 <pre class="terminal">C:\Users\rober\AppData\Local\Android\Sdk\platform-tools\adb.exe shell</pre>

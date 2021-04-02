@@ -108,6 +108,48 @@ body{
 	width: 100%;
 }
 
+/* NUMERACAO */
+#page-wrapper{ counter-reset: aga2 }
+#page-wrapper > h2::before{
+	counter-increment: aga2;
+	content: counter(aga2) " - ";
+	width:100%;
+}	
+#page-wrapper > h2{ 
+	font-weight: bold;
+	counter-reset: aga3;
+	border-bottom:5px solid #333; 
+	padding:0 0 -10px 0 !important;
+	margin-bottom: 20px;
+	margin-top: 20px;        
+}
+
+#page-wrapper > h3::before{
+	counter-increment: aga3;
+	content: counter(aga2)"."counter(aga3) " - ";
+}	
+#page-wrapper > h3{ counter-reset: aga4; }
+
+#page-wrapper > h4::before{
+	margin-left:25px;
+	counter-increment: aga4;
+	content: counter(aga2)"."counter(aga3)"."counter(aga4) " - ";
+}	
+#page-wrapper > h4{ counter-reset: aga5; }
+
+#page-wrapper > h5::before{
+	margin-left:45px;
+	counter-increment: aga5;
+	content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5) " - ";
+}
+#page-wrapper > h5{ counter-reset: aga6; }	    
+
+#page-wrapper > h6::before{
+	margin-left:25px;
+	counter-increment: aga6;
+	content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5)"."counter(aga6) " - ";
+}
+
 /* Fixed sidenav, full height */
 .sidenav {
 	font-family: "Lato", sans-serif;

@@ -1,21 +1,3 @@
-<style>
-h3{text-transform: uppercase;font-weight: bold;}
-body{ counter-reset: contadorExterno; }
-
-body h3::before{
-    counter-increment: contadorExterno;
-    content: counter(contadorExterno) " - ";
-}	
-
-
-h3{ counter-reset: contadorInterno; }
-h4::before{
-	margin-left:25px;
-    counter-increment: contadorInterno;
-    content: counter(contadorExterno)"."counter(contadorInterno) " - ";
-}	
-</style>
-
 <ol>
 	<li>Comando MAKE</li>
 	<li>Banco</li>
@@ -24,7 +6,7 @@ h4::before{
 	<li>Servidor</li>
 </ol>
 
-<h3>Make</h3>
+<h2>Make</h2>
 O make possibilita a criação de código fonte, tornando assim o desenvolvimento altamente produtivo.Alguns exemplos:<br>
 cria uma nova classe controller
 <pre class="terminal">$ php artisan make:controller</pre>
@@ -33,11 +15,11 @@ cria uma nova classe model;
 cria um novo arquivo de migração;
 <pre class="terminal">$ php artisan make:migration</pre>
 
-<h3>Banco</h3>
+<h2>Banco</h2>
 O comando abaixo, executa as operações no banco de dados, criando tabelas, rodando script sql entre outros.
 <pre class="terminal">$ php artisan migrate</pre>
 
-<h3>Rotas</h3>
+<h2>Rotas</h2>
 O route possibilita a criação de rotas, tornando a aplicação mais segura.Alguns exemplos:<br>
 cria um arquivo de rota cache de registro rápido;
 <pre class="terminal">$ php artisan route:cache</pre>
@@ -48,28 +30,28 @@ remove o arquivo de rota do cache
 
 <hr>
 
-<h3>Aplicacao</h3>
+<h2>Aplicacao</h2>
 Caso sua aplicação esteja em produção e você precise realizar alguma manutenção que a aplicação necessite ficar alguns minutos fora
-<h4>Derrubar</h4>
+<h3>Derrubar</h3>
 O comando abaixo, fará com que sua aplicação apresenta a tela manutenção padrão do Laravel e não fique off-line.
 <pre class="terminal">$ php artisan down</pre>
 
-<h4>Levantar</h4>
+<h3>Levantar</h3>
 Assim que a equipe de desenvolvimento concluir a manutenção basta apenas digitar o seguinte comando no prompt de comando: 
 <pre class="terminal">$ php artisan up</pre>
 
-<h4>Variaveis de Ambiente</h4>
+<h3>Variaveis de Ambiente</h3>
 Apresenta o ambiente de desenvolvimento que está sendo utilizado.
 <pre class="terminal">$ php artisan env</pre>
 
 <hr>
 
-<h3>Servidor</h3>
+<h2>Servidor</h2>
 
-<h4>Local</h4>
+<h3>Local</h3>
 <pre class="terminal">$ php artisan serve</pre>
 
-<h4>Remoto</h4>
+<h3>Remoto</h3>
 <pre class="terminal">php artisan serve --host 192.168.20.20 --port 8000</pre>
 <a href="https://stackoverflow.com/questions/28956911/how-can-i-access-my-laravel-app-from-another-pc" target="_blank">stackoverflow</a>
 
