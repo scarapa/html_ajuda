@@ -1,0 +1,50 @@
+<h2>Background | Fundo</h2>
+
+<h3>Fundo com imagem</h3>
+<pre>
+Container(<b style="color:red">
+    decoration: BoxDecoration(
+        image: DecorationImage(
+            image: AssetImage("assets/images/bulb.jpg"),
+            fit: BoxFit.cover,
+        ),
+    ),</b>
+    child: null /* add child content here */,
+),
+</pre>
+
+<h3>Fundo linear gradient simples</h3>
+<pre>
+Container(
+    height: 550,
+    width: MediaQuery.of(context).size.width,
+    decoration: BoxDecoration(<b style="color:red">
+        gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [ Colors.transparent, Colors.white, ],
+        )</b>
+    ),
+),
+</pre>
+
+<a href="https://stackoverflow.com/questions/56094881/how-does-one-put-a-flutter-boxdecoration-gradient-over-a-boxdecoration-image">stackoverflow</a>
+<h2>Border | Bordas</h2>
+
+    <h3>Bordas Redondas</h3>
+
+    <h3>Bordas Coloridas</h3>
+
+<h2>Container Redondo</h2>
+A propriedade radius deixa os cantos arredondados, o truque é forçar a propriedade Radius
+até ficar circular o container
+<pre>
+Container(
+    padding:EdgeInsets.all(15),
+    decoration: BoxDecoration(
+        color: Color( int.parse(Configuracoes.converterCorStringColor( objeto['cor'] ) ) ),<b style="color:Red">
+        borderRadius: BorderRadius.circular(100),</b>
+    ),
+    child: Icon( objeto['icone'] , color: Colors.white, size: 40,),
+),    
+</pre>

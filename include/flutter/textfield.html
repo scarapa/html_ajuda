@@ -1,0 +1,87 @@
+<ol>
+    <li>Bordas</li>
+    <li>Cor do texto</li>
+    <li>Background</li>
+    <li>Com Icone</li>
+    <li></li>
+</ol>
+
+<h2>Bordas</h2>
+Todos os tipos de bordas
+<pre>
+TextField(
+    enabled: false, // to trigger disabledBorder
+    decoration: InputDecoration(
+        filled: true,
+        fillColor: Color(0xFFF2F2F2),
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(4)),
+            borderSide: BorderSide(width: 1,color: Colors.red),
+        ),
+        disabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(4)),
+            borderSide: BorderSide(width: 1,color: Colors.orange),
+        ),
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(4)),
+            borderSide: BorderSide(width: 1,color: Colors.green),
+        ),
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(4)),
+            borderSide: BorderSide(width: 1,)
+        ),
+        errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(4)),
+            borderSide: BorderSide(width: 1,color: Colors.black)
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(4) ),
+            borderSide: BorderSide(width: 1,color: Colors.yellowAccent)
+        ),
+        hintText: "HintText",
+        hintStyle: TextStyle(fontSize: 16,color: Color(0xFFB3B1B1)),
+        errorText: snapshot.error,
+    ),
+    controller: _passwordController,
+    onChanged: _authenticationFormBloc.onPasswordChanged,
+    obscureText: false,
+),</pre>
+<div class="centro center">
+    <img src="./images/flutter_textfield_border.jpg" class="bp" style="width:40">
+</div>
+
+<a href="https://stackoverflow.com/questions/50122394/not-able-to-change-textfield-border-color" target="_blank">stackoverflow</a>
+
+
+<h2>Cor do texto</h2>
+<pre>
+child: TextField(<b style="color:red">
+    style: TextStyle(
+        color: Color(int.parse( _colorLetra) ),
+    ),</b>
+    ...
+),</pre>
+<a href="https://stackoverflow.com/questions/50174158/how-can-i-change-the-color-of-an-string-input-in-a-textfield" target="_blank">stackoverflow</a>
+
+<h2>Background | Fundo</h2>
+<pre>
+new TextFormField(
+    decoration: new InputDecoration(<b style="color:red">
+        filled: true,
+        fillColor: Colors.grey,</b>   
+    )
+)
+</pre>
+
+<h2>Com Icone</h2>
+<pre>new TextField(
+    decoration: new InputDecoration(<b style="color:red">
+        prefixIcon: const Icon(
+            Icons.person,
+            color: Colors.purple,
+        ),</b>
+    )
+),</pre>
+
+<a href="https://stackoverflow.com/questions/50122394/not-able-to-change-textfield-border-color" target="_blank">stackoverflow</a>
+
