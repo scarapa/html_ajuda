@@ -1,68 +1,53 @@
-﻿<style>
-body{ counter-reset: contadorExterno; }
-body h3::before{
-    counter-increment: contadorExterno;
-    content: counter(contadorExterno) " - ";
-}	
-
-h3{ counter-reset: contadorInterno; }
-h4::before{
-	margin-left:25px;
-    counter-increment: contadorInterno;
-    content: counter(contadorExterno)"."counter(contadorInterno) " - ";
-}	
-</style>
-
-<ol>
-	<li>Historio</li>
-	<li>Commit</li>
-	<li>Branch</li>
+﻿<ol>
+	<li><a href="#historio">Historio</a></li>
+	<li><a href="#commit">Commit</a></li>
+	<li><a href="#branch">Branch</a></li>
 	<li>Log</li>
 </ol>
-
-<h3>HISTORICO</h3>
-<h4>Historico com os últimos comandos executados</h4>
+<a name="historio"></a>
+<h2>HISTORICO</h2>
+<h3>Historico com os últimos comandos executados</h3>
 <pre class="terminal">$ history | grep -i 'git' </pre>
 
 <hr>
-
-<h3>COMMITs</h3>
-<h4>Adicionar todos os arquivos ao commit</h4> 
+<a name="commit"></a>
+<h2>COMMITs</h2>
+<h3>Adicionar todos os arquivos ao commit</h3> 
 <pre class="terminal">$ git add .</pre>
 
-<h4>Adicionar apenas um arquivo ao commit</h4> 
+<h3>Adicionar apenas um arquivo ao commit</h3> 
 <pre class="terminal">$ git add caminho_do_arquivo</pre>
 
-<h4>Encapsula REALMENTE todos arquivos e adicionar a mensagem ao mesmo</h4>
+<h3>Encapsula REALMENTE todos arquivos e adicionar a mensagem ao mesmo</h3>
 <pre class="terminal">$ git commit -m "mensagem"</pre>
 
-<h4>Comando importantissimo, é o que REALMENTE envia os arquivos para nuvem.</h4>
+<h3>Comando importantissimo, é o que REALMENTE envia os arquivos para nuvem.</h3>
 <pre class="terminal">$ git push -u origin master</pre>
 
-<h4>Verifica o status do branch atual</h4>
+<h3>Verifica o status do branch atual</h3>
 <pre class="terminal">$ git status</pre>
 
-<h4>CRIAR Branch novo e ao mesmo tempo mudar para ele</h4>
+<h3>CRIAR Branch novo e ao mesmo tempo mudar para ele</h3>
 <pre class="terminal">$ git checkout -b nome_branch</pre>
 
 <hr>
-
-<h3>BRANCH</h3>
-<h4>RETORNAR para o Branch MASTER</h4>
+<a name="branch"></a>
+<h2>BRANCH</h2>
+<h3>RETORNAR para o Branch MASTER</h3>
 <pre class="terminal">$ git checkout master</pre>
 
-<h4>REMOVER o Branch</h4> 
+<h3>REMOVER o Branch</h3> 
 <pre class="terminal">$ git branch -D nome_branch</pre>
 
-<h4>ALTERAR o nome do Branch</h4> 
+<h3>ALTERAR o nome do Branch</h3> 
 <pre class="terminal">$ git branch -m nome_atual nome_novo</pre>
 
-<h4>LISTAR Branchs</h4> 
+<h3>LISTAR Branchs</h3> 
 <pre class="terminal">$ git branch</pre>
 
-<h4>RESETAR branch</h4> 
+<h3>RESETAR branch</h3> 
 <pre class="terminal">$ git checkout -f</pre>
 ou
 <pre class="terminal">$ git reset --HARD</pre>
-<h3>LOGs</h3>
+<h2>LOGs</h2>
 
