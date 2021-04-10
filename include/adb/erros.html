@@ -1,3 +1,14 @@
+<ol>
+    <li><a href="#permission-denied">permission denied</a></li>
+    <li><a href="#avd-sem-internet">AVD SEM INTERNERT</a></li>
+    <li><a href="#avd-nao-abre">AVD NAO ABRE</a></li>
+    <li><a href="#error-initializing-adb">Error initializing ADB</a></li>
+    <li><a href="#adb-obsoleto">ADB Obsoleto</a></li>
+</ol>
+
+<hr>
+
+<a name="permission-denied"></a>
 <h2>permission denied</h2>
 <pre>D:\android-sdk-windows\platform-tools>adb shell find /data -name *.db
 find: permission denied
@@ -15,6 +26,7 @@ reiniciando as permissoes
 
 <hr>
 
+<a name="avd-sem-internet"></a>
 <h2>AVD SEM INTERNERT</h2>
 No windows primeiramente no acesso pelo terminal entre na pasta <code>C:\Users\<b>SEU-USUARIO</b>\AppData\Local\Android\Sdk\emulator</code> e
 pesquise pelas imagens disponiveis com o comando abaixo:
@@ -29,19 +41,25 @@ O meu comando ficou exatamenteo assim:
 
 <hr>
 
+<a name="avd-nao-abre"></a>
 <h2>AVD NAO ABRE</h2>
 AVD nao abre pois nao foi fechada corretamente , conforme imagem abaixo:
 <div class="centro"><img src="images/adb_avd_error_running_001.jpg" style="width: 60%;"></div>
 <br clear="all">
 
 Solução deletar os arquivos <b>.lock</b> conforme imagem abaixo:
-<div class="centro"><img src="images/adb_avd_error_running_002.jpg" style="width: 60%;" class="bp"></div>
+<div class="centro">
+    <img src="images/adb_avd_error_running_002.jpg" class="w30 bp">
+</div>
 <a href="https://stackoverflow.com/questions/27014901/android-studio-emulator-is-already-running/31031889">stackoverflow</a>
 
 <hr>
 
+<a name="error-initializing-adb"></a>
 <h2>Error initializing ADB</h2>
-<div class="centro"><img src="images/android-studio-erro-initializing-adb-01.jpg" style="width: 40%;"></div>
+<div class="centro">
+    <img src="images/android-studio-erro-initializing-adb-01.jpg" class="w34">
+</div>
 
 <h4>Solucao 01</h4>
 <ul>
@@ -56,3 +74,30 @@ Solução deletar os arquivos <b>.lock</b> conforme imagem abaixo:
 <a href="https://stackoverflow.com/questions/49340436/error-initializing-adb-unable-to-create-debug-bridge-unable-to-start-adb-serve">Fonte[1]</a>
 <a href="https://stackoverflow.com/questions/47506261/android-studio-error-initializing-adb-android-debug-bridge-not-found">Fonte[2]</a>
 <a href="https://stackoverflow.com/questions/54167187/android-studio-3-2-1-error-initializing-adb-android-debug-bridge-not-found">Fonte[3]</a>
+
+<hr>
+<a name="adb-obsoleto"></a>
+<h2>ADB Obsoleto</h2>
+<div class="centro center">
+    <img src="./images/android_adb_obsoleto_001.jpg" class="bp w40"> 
+</div>
+
+<br><br>
+
+Solucao:
+Abra o SDK Manager em: <code>Menu >> Tools > Sdk Manager</code></li>
+<br><br>
+
+<ol>
+    <li>clique na aba <kbd>SDK Tools</kbd>
+    <li>No canto inferior direito selecione a opção <b>Show Package Details</b></li>
+    <li>Selecione a primeira opção da lista</li>
+    <li>Clique no botao <b>Apply</b></li>
+</ol>
+
+Conforme imagem abaixo
+<div class="centro center">
+    <img src="./images/android_adb_obsoleto_002.jpg" class="bp w60"> 
+</div>
+
+<a href="https://stackoverflow.com/questions/51240223/adb-exe-is-obsolete-and-has-serious-performance-problems" target="_blank">stackoverflow</a><br>
