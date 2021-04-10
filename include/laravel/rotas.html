@@ -1,28 +1,13 @@
-<style>
-body{ counter-reset: contadorExterno; }
-body h3::before{
-    counter-increment: contadorExterno;
-    content: counter(contadorExterno) " - ";
-}	
-
-h3{ counter-reset: contadorInterno; }
-h4::before{
-	margin-left:25px;
-    counter-increment: contadorInterno;
-    content: counter(contadorExterno)"."counter(contadorInterno) " - ";
-}	
-
-</style>
 <ol>
-	<li>Parametros</li>
-	<li>Parametros Opcionais</li>
-	<li>Parametros com Regras</li>
-	<li>Agrupamento de Rotas</li>
+	<li><a href="#parametros">Parametros</a></li>
+	<!-- <li>Parametros Opcionais</li>
+	<li>Parametros com Regras</li> -->
+	<li><a href="#agrupamento">Agrupamento de Rotas</a></li>
 	<li>Nomeando Rotas</li>
 	<li>Redirecionamento Requisicoes</li>
-	<li>Metodos HTTP</li>
+	<li><a href="#metodos">Metodos HTTP</a></li>
 </ol>
-
+<a name="parametros"></a>
 <h2>Listar Rotas</h2>
 <pre class="terminal">$ php artisan route:list</pre>
 
@@ -76,7 +61,8 @@ Route::get('/rotacomregras/{nome}/{n}'),funcion($nome,$n){
 	//view
 })->where('nome','[A-Za-z]+')->where('n','[0-9]+');</pre>
 
-<h3>Agrupamento</h3>
+<a name="agrupamento"></a>
+<h2>Agrupamento</h2>
 Subsituir o metodo <b><code>GET</code></b> por <b><code>PREFIX</code></b> e o metodo <b><code>GROUP</code></b>
 <pre class="codigo codigoPHPLaravel">
 Route::prefix('/app')->group(funcion(){
@@ -132,11 +118,12 @@ Route::get('todosprodutos',function(){
 });
 </pre>
 
-<h3>Metodos HTTP</h3>
+<a name="metodos"></a>
+<h2>Metodos HTTP</h2>
 Preciso 'chamar' a biblioteca ao arquivo de rotas
 <pre class="codigo codigoHTML">use Illuminate\Http\Request;</pre>
 
-<h4>Lista de Metodos/Verbos</h4>
+<h3>Lista de Metodos/Verbos</h3>
 <ol>
 	<li>get</li>
 	<li>post</li>

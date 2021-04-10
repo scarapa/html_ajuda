@@ -1,47 +1,5 @@
-<style>
-    body{ counter-reset: aga2 }
-    h2::before{
-        counter-increment: aga2;
-        content: counter(aga2) " - ";
-        width:100%;
-    }	
-    h2{ 
-        font-weight: bold;
-        counter-reset: aga3;
-        border-top:5px solid #333; 
-        padding:0 0 -10px 0 !important;
-        margin-bottom: 20px;
-        margin-top: 20px;        
-    }
-
-    h3::before{
-        counter-increment: aga3;
-        content: counter(aga2)"."counter(aga3) " - ";
-    }	
-    h3{ counter-reset: aga4; }
-
-    h4::before{
-        margin-left:25px;
-        counter-increment: aga4;
-        content: counter(aga2)"."counter(aga3)"."counter(aga4) " - ";
-    }	
-    h4{ counter-reset: aga5; }
-
-    h5::before{
-        margin-left:25px;
-        counter-increment: aga5;
-        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5) " - ";
-    }
-    h5{ counter-reset: aga6; }	    
-    
-    h6::before{
-        margin-left:25px;
-        counter-increment: aga6;
-        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5)"."counter(aga6) " - ";
-    }
-</style>
-
 <ol>
+    <li><a href="#query">query</a></li>
     <li><a href="#select">select</a></li>
     <li><a href="#join">join</a></li>
     <li><a href="#where">where</a></li>
@@ -50,6 +8,17 @@
     <li><a href="#relacionamento">Relacionamentos</a></li>
 
 </ol>
+
+<a name="query"></a>
+<h2>QUERY</h2>
+Primeiramente importar a classe DB
+<pre>use DB;</pre>
+Utilizando a classe DB
+<pre>
+$query = " SELECT * FROM tabela c WHERE id IN (3,5)  ";
+$result = DB::select($query);        // retornar um array
+</pre>
+<a href="https://stackoverflow.com/questions/33106904/class-app-http-controllers-db-not-found-in-laravel-5-controller/33108316" target="_blank">stackoverflow</a>
 
 <a name="select"></a>
 <h2>SELECT</h2>
