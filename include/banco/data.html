@@ -1,145 +1,86 @@
-﻿
-<h3>Pegar DATA atual</h3>
-<div class="col-lg-6">
-	<div class="panel panel-default">
-		<div class="table-responsive">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>COMANDO</th>
-						<th>AMBIENTE</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>SELECT <span style="color:red;">GETDATE()</span></td>
-						<td><kbd>SQLSERVER</kbd></td>
-					</tr>
-					<tr>
-						<td>SELECT <span style="color:red;">NOW()</span></td>
-						<td><kbd>MYSQL</kbd></td>
-					</tr>
-					<tr>
-						<td>SELECT <span style="color:red;">STRFTIME('%Y-%m-%d', 'NOW')</span></td>
-						<td><kbd>sqlite</kbd></td>
-					</tr>	
-					<tr>
-						<td>SELECT <span style="color:red;">DATETIME('NOW','localtime')</span></td>
-						<td><kbd>sqlite</kbd></td>
-					</tr>										
-				</tbody>
-			</table>
-		</div>
-	</div>
-</div>
+﻿<ol>
+	<li><a href="#data-atual">Pegar DATA atual</a></li>
+	<li><a href="#data-ano-mes-dia">Pegar ANO/MES/DIA de data</a></li>
+	<li><a href="#semana-por-extenso">SEMANA</a></li>
+	<li><a href="#mes-por-extenso">MES</a></li>
+	<li><a href="#manipulando-data">MANIPULANDO DATAS</a></li>
+	<li><a href="#"></a></li>
+	<li><a href="#"></a></li>
+</ol>
+
+<hr>
+
+<a name="data-atual"></a>
+<h2>Pegar DATA atual</h2>
+
+<h3><kbd>SQLSERVER</kbd></h3>
+<pre>GETDATE()</pre>
+
+<h3><kbd>MYSQL</kbd></h3>
+<pre>NOW()</pre>
+
+<h3><kbd>sqlite</kbd></h3>
+<pre>STRFTIME('%Y-%m-%d', 'NOW')</pre>
+<pre>DATETIME('NOW','localtime')</pre>
+
 <a href="https://stackoverflow.com/questions/650480/get-month-from-datetime-in-sqlite" target="_blank">stackoverflow</a> <br>
 <a href="https://www.w3resource.com/sqlite/sqlite-strftime.php"  target="_blank">w3resource</a>
 <br clear="all"><br clear="all">
 
-<h3>SQL: Capturar ANO/MES/DIA de data</h3>	
-<div class="col-lg-6">
-	<kbd>SQL</kbd><br/>
-	<div class="panel panel-default">
-		<div class="table-responsive">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>DESCRIÇÃO</th>
-						<th>RETORNO</th>
-						<th>SQL</th>							
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Ano</td>
-						<td>2017</td>
-						<td>YEAR('2017-11-15') </td>
-					</tr>
-					<tr>
-						<td>Mês</td>
-						<td>11</td>
-						<td>MONTH('2017-11-15')</td>
-					</tr>
-					<tr>
-						<td>Dia</td>
-						<td>15</td>
-						<td>DAY('2017-11-15')</td>
-					</tr>						
-				</tbody>
-			</table>
-		</div>
-	</div>
-</div>	
+<hr>
 
-<br clear="all"><br clear="all">
+<a name="data-ano-mes-dia"></a>
+<h2>Capturar ANO/MES/DIA de data</h2>	
 
-<h3>Descobrir o DIA DA SEMANA ou MES POR EXTENSO de uma data</h3>			
-<div class="col-lg-8">
-	<div class="panel panel-default">
-		<div class="panel-body">
-			<div class="table-responsive">
-				<table class="table">
-					<thead>
-						<tr>
-							<th>DATA</th>
-							<th>SQL</th>
-							<th>RETORNO</th>
-							<th>AMBIENTE</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>2017-09-18</td>
-							<td>DATENAME(dw,'2017-09-18') 'DIA_SEMANA'</td>
-							<td><strong style="color:red">Monday</strong></td>
-							<td><kbd>SQLSERVER</kbd></td>
-						</tr>
-						<tr>
-							<td>2017-09-18</td>
-							<td>DAYNAME('2017-09-18') 'DIA_SEMANA_EXTENSO'</td>
-							<td><strong style="color:red">Monday</strong></td>
-							<td><kbd>MYSQL</kbd></td>
-						</tr>
-						
-						<tr>
-							<td>2017-09-18</td>
-							<td>WEEK('2017-09-18') 'DIA_SEMANA_ANO'</td>
-							<td><strong style="color:red">38</strong></td>
-							<td><kbd>MYSQL</kbd></td>
-						</tr>						
-						<tr>
-							<td>2017-09-18</td>
-							<td>WEEKDAY('2017-09-18') 'DIA_SEMANA'</td>
-							<td><strong style="color:red">0</strong></td>
-							<td><kbd>MYSQL</kbd></td>
-						</tr>
-						
-						<tr>
-							<td>2017-09-18</td>
-							<td>MONTHNAME( '2017-09-18' ) 'MES'</td>
-							<td><strong style="color:red">September</strong></td>
-							<td><kbd>MYSQL</kbd></td>
-						</tr>	
-						<tr>
-							<td>2017-09-18</td>
-							<td><span style="color:red">set lc_time_names = 'pt_BR';</span><br/>
-								SELECT MONTHNAME( '2017-09-18' ) 'MES'</td>
-							<td><strong style="color:red">Setembro</strong></td>
-							<td><kbd>MYSQL</kbd></td>
-						</tr>						
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
-</div>	
+<h3><kbd>SQL</kbd></h3>
+<h4>Ano</h4>
+<pre>YEAR('2017-11-15') 
+// retorno 2017</pre>
+
+<h4>Mês</h4>
+<pre>MONTH('2017-11-15')
+// retorno 11	</pre>
+
+<h4>Dia</h4>
+<pre>DAY('2017-11-15')
+// retorno 15</pre>
+
+<hr>
+
+<a name="semana-por-extenso"></a>
+<h2>Capturar DIA da semana</h2>	
+
+<h3><kbd>SQLSERVER</kbd></h3>
+<pre>DATENAME(dw,'2017-09-18') 'DIA_SEMANA'
+// retorno Monday</pre>
+
+<h3><kbd>MYSQL</kbd></h3>
+<pre>DAYNAME('2017-09-18') 'DIA_SEMANA_EXTENSO'
+// retorno Monday</pre>
+
+<pre>WEEK('2017-09-18') 'DIA_SEMANA_ANO'
+	// retorno 0</pre>
+
+<a name="mes-por-extenso"></a>
+<h2>Capturar MES ANO</h2>	
+
+<h3><kbd>MYSQL</kbd></h3>
+<pre>MONTHNAME( '2017-09-18' ) 'MES'
+	// retorno September</pre>
+
+<pre>set lc_time_names = 'pt_BR';
+MONTHNAME( '2017-09-18' ) 'MES'
+	// retorno Setembro</pre>
+
 <br clear="all">
 <a href="https://augustopierzynski.wordpress.com/2011/08/25/formatando-data-no-sql-server/">Fonte1</a> - 
 <a href="https://pt.stackoverflow.com/questions/30474/converter-dados-de-campo-data-para-m%C3%AAs-mysql">stackoverflow[1]</a> - 
 <a href="https://pt.stackoverflow.com/questions/114183/select-com-o-dia-da-semana-em-portugu%C3%AAs">stackoverflow[2]</a>
-<br clear="all"><br clear="all">
 
-<h3>ADICIONAR/RETIRAR DIAS/MESES/ANOS</h3>
+<hr>
+
+<a name="manipulando-datas">
+<h2>MANIPULANDO DATAS</h2>
 <div class="col-lg-8">
 	<kbd>SQLSERVER</kbd><br/>
 	<div class="panel panel-default">
@@ -212,7 +153,7 @@
 <a href="https://www.w3schools.com/sql/func_mysql_date_add.asp">w3schools</a>
 <br clear="all">
 
-<h3>Converter DATA</h3>
+<h2>Converter DATA</h2>
 <div class="col-lg-8">
 	<kbd>SQLSERVER</kbd><br/>
 	<div class="panel panel-default">
@@ -332,7 +273,7 @@
 <br clear="all">
 
 
-<h3>Diferença de dias entre datas</h3>			
+<h2>Diferença de dias entre datas</h2>			
 <div class="col-lg-8">
 	<kbd>SQLSERVER</kbd><br/>
 	<div class="panel panel-default">
@@ -361,7 +302,7 @@
 <br clear="all">
 
 
-<h3>Ultimo dia do mês</h3>			
+<h2>Ultimo dia do mês</h2>			
 <pre><kbd>MySQL</kbd>
 SELECT LAST_DAY('2017-10-15') AS 'ultimo_dia'
 </pre>
