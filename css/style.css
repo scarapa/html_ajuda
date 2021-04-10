@@ -108,6 +108,14 @@ body{
 	width: 100%;
 }
 
+/* LISTA NUMERADA */
+#page-wrapper > ol{
+	/* background-color: #009688; */
+	/* font-size: 20pt; */
+	font-size: 1.5em;
+	color: black;
+}
+
 /* NUMERACAO */
 #page-wrapper{ counter-reset: aga2 }
 #page-wrapper > h2::before{
@@ -149,6 +157,18 @@ body{
 	counter-increment: aga6;
 	content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5)"."counter(aga6) " - ";
 }
+
+/* TAMANHO IMAGENS */
+.w10{ width:10%; }
+.w20{ width:20%; }
+.w30{ width:30%; }
+.w40{ width:40%; }
+.w50{ width:50%; }
+.w60{ width:60%; }
+.w70{ width:70%; }
+.w80{ width:80%; }
+.w90{ width:90%; }
+.w100{ width:100%; }
 
 /* Fixed sidenav, full height */
 .sidenav {
