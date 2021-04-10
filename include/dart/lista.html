@@ -1,4 +1,144 @@
-<ul>
+<ol>
+    <li><a href="#metodos-importantes">Metodos importantes</a></li>
+    <li><a href="#metodos-simples">Metodos mais simples</a></li>
+    <li><a href="#juntar-simples">Juntar Listas</a></li>
+
+</ol>
+
+<a name="metodos-importantes"></a>
+<h2>Metodos importantes</h2>
+    <h3>forEach()</h3>
+    Executa uma função em cada elemento da lista
+    <pre>
+var fruits = [‘banana’, ‘pineapple’, ‘watermelon’];
+fruits.forEach((fruit) =&gt; print(fruit)); // =&gt; banana pineapple watermelon        
+    </pre>
+
+    <h3>map()</h3>
+    Produz uma nova lista após transformar cada elemento em uma determinada lista
+    <pre>
+var mappedFruits = fruits.map((fruit) => ‘I love $fruit’).toList();
+print(mappedFruits); // => ['I love banana', ‘I love pineapple’, ‘I love watermelon’]        
+    </pre>
+
+    <h3>contains()</h3>
+    Verifica para confirmar se o elemento fornecido está na lista
+    <pre>
+var numbers = [1, 3, 2, 5, 4];
+print(numbers.contains(2)); // =&gt; true        
+    </pre>
+
+    <h3>sort()</h3>
+    Ordene os elementos com base na função de ordenação fornecida
+    <pre>numbers.sort((num1, num2) =&gt; num1 - num2); // =&gt; [1, 2, 3, 4, 5]</pre>
+
+    <h3>reduce(), fold()</h3>
+    Compacta os elementos em um único valor, usando a função fornecida
+    <pre>
+var sum = numbers.reduce((curr, next) =&gt; curr + next);
+print(sum); // =&gt; 15const initialValue = 10;
+var sum2 = numbers.fold(initialValue, (curr, next) =&gt; curr + next);
+print(sum2); // =&gt; 25
+    </pre>
+
+    <h3>every()</h3>
+    Confirma que cada elemento satisfaz o teste
+    <pre>
+List&lt;Map&lt;String, dynamic&gt;&gt; users = [
+{ “name”: ‘John’, “age”: 18 },
+{ “name”: ‘Jane’, “age”: 21 },
+{ “name”: ‘Mary’, “age”: 23 },
+];var is18AndOver = users.every((user) =&gt; user[“age”] &gt;= 18);
+print(is18AndOver); // =&gt; true
+
+var hasNamesWithJ = users.every((user) =&gt; user[“name”].startsWith('J'));
+print(hasNamesWithJ); // =&gt; false        
+    </pre>
+
+    <h3>where(), firstWhere(), singleWhere()</h3>
+    Retorna uma coleção de elementos que satisfazem um teste
+    <pre>
+// Consulte o nº 6 para obter a lista de usuários
+var over21s = users.where((user) =&gt; user[“age”] &gt; 21);
+print(over21s.length); // =&gt; 1var nameJ = users.firstWhere((user) =&gt; user[“name”].startsWith(‘J’), orElse: () =&gt; null);
+print(nameJ); // =&gt; {name: John, age: 18}var under18s = users.singleWhere((user) =&gt; user[“age”] &lt; 18, orElse: () =&gt; null);
+print(under18s); // =&gt; null        
+    </pre>
+    <code>firstWhere()</code> retorna a primeira correspondência na lista, enquanto <code>singleWhere()</code> retorna a 
+    primeira correspondência, desde que haja exatamente uma correspondência.
+
+    <h3>take(), skip()</h3>
+    Retorna uma coleção enquanto inclui ou pula elementos
+    <pre>
+var fiboNumbers = [1, 2, 3, 5, 8, 13, 21];
+print(fiboNumbers.take(3).toList()); // =&gt; [1, 2, 3]
+print(fiboNumbers.skip(5).toList()); // =&gt; [13, 21]
+print(fiboNumbers.take(3).skip(2).take(1).toList()); // =&gt; [3]        
+    </pre>
+
+    <h3>List.from()</h3>
+    Cria uma nova lista da coleção fornecida
+    <pre>
+var clonedFiboNumbers = List.from(fiboNumbers);
+print(‘Cloned list: $clonedFiboNumbers’);        
+    </pre>
+    A partir do Dart 2.0, a <code>new</code> palavra-chave é opcional ao instanciar objetos.
+
+    <h3>expand()</h3>
+    Expande cada elemento em zero ou mais elementos
+    <pre>
+var pairs = [[1, 2], [3, 4]];
+var flattened = pairs.expand((pair) =&gt; pair).toList();
+print(‘Flattened result: $flattened’); // =&gt; [1, 2, 3, 4]var input = [1, 2, 3];
+var duplicated = input.expand((i) =&gt; [i, i]).toList();
+print(duplicated); // =&gt; [1, 1, 2, 2, 3, 3]        
+    </pre>
+
+
+<a href="https://medium.com/flutter-community/useful-list-methods-in-dart-6e173cac803d" target="_blank">medium</a><br/>
+<a href="https://codeburst.io/top-10-array-utility-methods-you-should-know-dart-feb2648ee3a2" target="_blank">codeburst</a><br/>
+
+<a name="metodos-simples"></a>
+<h2>Metodos mais simples</h2>
+    A lista abaixo sao os metodos mais simples , mas nao menos importantes, pois sao muito utilizados.
+    <h3>add</h3>
+    adiciona um novo elemento na lista fornecida.
+
+    <h3>length</h3>
+    retorna o número total de elementos em determinada lista.
+
+    <h3>isEmpty</h3>
+    retorna booleano se a lista fornecida estiver vazia ou não.
+
+    <h3>isNotEmpty</h3>
+    verifica e retorna booleano se a lista fornecida tiver elementos.
+    
+    <h3>first</h3>
+    retorna o primeiro elemento da lista fornecida.
+    
+    <h3>last</h3>
+    retorna o último elemento da lista fornecida.
+    
+    <h3>clear</h3>
+    limpa a lista fornecida.    
+
+<hr>
+<a name="juntar-listas"></a>
+<h2>Juntar Listas</h2>
+    <h3>Dart &lt;2</h3>
+<pre>var newList = new List.from(list1)..addAll(list2);
+var newList = [list1, list2, list3].expand((x) => x).toList()    
+</pre>
+    
+    <h3>Dart &lt;2</h3>
+<pre>var newList = list1 + list2 + list3;</pre>
+
+
+    <h3>Dart &gt;2.3</h3>
+<pre>var newList = [...list1, ...list2, ...list3];</pre>
+<a href="https://stackoverflow.com/questions/21826342/how-do-i-combine-two-lists-in-dart" target="_blank">stackoverflow</a>
+
+<!-- <ul>
     <li>Verificar Item na Lista</li>
     <li>Inserir Objeto no Topo</li>
     <li><a href="#limpar">Limpar lista</a></li>
@@ -97,4 +237,4 @@ main() {
 </pre>
 Resultado
 <pre>[dart, flutter, json]</pre>
-<a href="https://stackoverflow.com/questions/53376518/dart-json-string-convert-to-list-string">stackoverflow</a>
+<a href="https://stackoverflow.com/questions/53376518/dart-json-string-convert-to-list-string">stackoverflow</a> -->
