@@ -1,11 +1,12 @@
 <ol>
-    <li>Bordas</li>
-    <li>Cor do texto</li>
-    <li>Background</li>
-    <li>Com Icone</li>
-    <li></li>
+    <li><a href="#bordas">Bordas</a></li>
+    <li><a href="#cor-texto">Cor do texto</a></li>
+    <li><a href="#background">Background</a></li>
+    <li><a href="#com-icone">Com Icone</a></li>
+    <li><a href="#StatelessWidget">StatelessWidget</a></li>
 </ol>
 
+<a name="bordas"></a>
 <h2>Bordas</h2>
 Todos os tipos de bordas
 <pre>
@@ -52,7 +53,7 @@ TextField(
 
 <a href="https://stackoverflow.com/questions/50122394/not-able-to-change-textfield-border-color" target="_blank">stackoverflow</a>
 
-
+<a name="#cor-texto"></a>
 <h2>Cor do texto</h2>
 <pre>
 child: TextField(<b style="color:red">
@@ -63,6 +64,9 @@ child: TextField(<b style="color:red">
 ),</pre>
 <a href="https://stackoverflow.com/questions/50174158/how-can-i-change-the-color-of-an-string-input-in-a-textfield" target="_blank">stackoverflow</a>
 
+<hr>
+
+<a name="#background">Background</a>
 <h2>Background | Fundo</h2>
 <pre>
 new TextFormField(
@@ -73,6 +77,9 @@ new TextFormField(
 )
 </pre>
 
+<hr>
+
+<a name="#com-icone">Com Icone</a>
 <h2>Com Icone</h2>
 <pre>new TextField(
     decoration: new InputDecoration(<b style="color:red">
@@ -85,3 +92,29 @@ new TextFormField(
 
 <a href="https://stackoverflow.com/questions/50122394/not-able-to-change-textfield-border-color" target="_blank">stackoverflow</a>
 
+<hr>
+
+<a name="StatelessWidget"></a>
+<h2>StatelessWidget</h2>
+Pegando valores do componente um StatelessWidget
+<pre>
+    // declarando
+    String title = "";
+
+    // elemento
+    TextField(
+        onChanged: (novoValor) => title = novoValor,
+        decoration: InputDecoration(
+          labelText: "Titulo"
+        ),
+      ),
+
+    // elemento botao para exibir o valor da variavel num print
+    FlatButton(
+        onPressed: (){
+          print(valor);
+        },
+        textColor: Colors.purple,
+        child: Text('Nova Transacao'),
+    )
+</pre>

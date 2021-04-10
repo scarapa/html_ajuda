@@ -1,5 +1,6 @@
-
 <h2>Erro de Instalação</h2>
+
+<h3>Erro 001</h3>
 Acontece esse erro ao tentar começar a Instalação
 <pre class="terminal">$ flutter doctor</pre>
 Erro:
@@ -14,7 +15,7 @@ Erro:
 <a href="https://stackoverflow.com/questions/49779059/flutter-installation-not-working">stackoverflow</a><br>
 <a href="https://www.clubedohardware.com.br/topic/532674-problema-dos-de-foi-inesperado-neste-momento/">clubedohardware</a><br>
 
-<h2>Erro de Instalação</h2>
+<h3>Erro 002</h3>
 Dart SDK is not configured
 <div class="centro center">
     <img src="images/flutter-erro-instalacao-dart-sdk-001.jpg" style="width:60%" class="bp">
@@ -27,6 +28,24 @@ Dart SDK is not configured
     <img src="images/flutter-erro-instalacao-dart-sdk-002.jpg" style="width:60%" class="bp">
 </div>
 
+<h3>Erro 003</h3>
+Ao tentar fazer downgrade do sdk da versão <code>2.12</code> para <code>1.22.0</code> o android studio
+não é mais encontrado pelo doctor, mesmo reiniciando e reinstalando o AS.
+<pre class="terminal">
+Doctor summary (to see all details, run flutter doctor -v):
+[✓] Flutter (Channel stable, 1.22.0, on Microsoft Windows [versÃ£o 10.0.19042.867], locale pt-BR)
+
+[✓] Android toolchain - develop for Android devices (Android SDK version 30.0.3)
+[!] Android Studio (not installed)
+[✓] VS Code (version 1.55.0)
+[!] Connected device
+    ! No devices available
+
+! Doctor found issues in 2 categories.</pre>
+Solucao: Setar manualmente o caminho de instalação do android studio, no meu caso foi esse.
+<pre class="terminal">flutter config --android-studio-dir='<b style="color:red">C:\Program Files\Android\Android Studio\</b>'</pre>
+
+<a href="https://github.com/flutter/flutter/issues/67986" target="_blank">github</a>
 <hr>
 
 <h2>Bottom overfload</h2>
@@ -363,3 +382,105 @@ Solução inserir no arquivo <code>android/gradle.properties</code> duas linhas
 <pre>android.useAndroidX=true
 android.enableJetifier=true</pre>
 <a href="https://www.youtube.com/watch?v=7GTO9D_Anb0">youtube</a>
+
+<h2>Erro compilar</h2>
+<pre class="terminal">
+PS N:\EMATER\flutter\proposta_app> flutter run
+Using hardware rendering with device AOSP on IA Emulator. If you notice
+graphics artifacts, consider enabling software rendering with
+"--enable-software-rendering".
+Launching lib\main.dart on AOSP on IA Emulator in debug mode...
+/N:/src/flutter/.pub-cache/hosted/pub.dartlang.org/provider-2.0.1+1/lib/src/provider.dart:179:19: Error: The method 'inheritFromWidgetOfExactType' isn't defined for the class 'BuildContext'.
+    - 'BuildContext' is from 'package:flutter/src/widgets/framework.dart' ('/N:/src/flutter/packages/flutter/lib/src/widgets/framework.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'inheritFromWidgetOfExactType'.
+        ? context.inheritFromWidgetOfExactType(type) as _Provider<T>
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/N:/src/flutter/.pub-cache/hosted/pub.dartlang.org/provider-2.0.1+1/lib/src/provider.dart:180:19: Error: The method 'ancestorInheritedElementForWidgetOfExactType' isn't defined for the class 'BuildContext'.
+    - 'BuildContext' is from 'package:flutter/src/widgets/framework.dart' ('/N:/src/flutter/packages/flutter/lib/src/widgets/framework.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'ancestorInheritedElementForWidgetOfExactType'.
+        : context.ancestorInheritedElementForWidgetOfExactType(type)?.widget
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+FAILURE: Build failed with an exception.
+
+* Where:
+Script 'N:\src\flutter\packages\flutter_tools\gradle\flutter.gradle' line: 991
+
+* What went wrong:
+Execution failed for task ':app:compileFlutterBuildDebug'.
+> Process 'command 'N:\src\flutter\bin\flutter.bat'' finished with non-zero exit value 1
+
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+BUILD FAILED in 28s
+Running Gradle task 'assembleDebug'...
+Running Gradle task 'assembleDebug'... Done                        30,1s
+Exception: Gradle task assembleDebug failed with exit code 1 
+</pre>
+
+Solucao:<br>
+Primeiramente atualizar o pacote <b>provider</b> no arquivo <code>pubspec.yaml</code>
+<pre>
+    provider: ^4.0.0    
+</pre>
+
+Segundamente atualizar o arquivo <code>main.dart</code>
+Alterando isso:
+<pre>    
+return StreamProvider&lt;ConnectivityStatus&gt;(
+    builder: (context) =&gt; ConnectivityService().connectionStatusController,
+...
+</pre>
+
+Para isso:
+<pre>
+return MultiProvider(
+    providers: [
+        StreamProvider&lt;ConnectivityStatus&gt;(create: (context) =&gt; ConnectivityService().connectionStatusController.stream  )
+    ],  
+    ...  
+</pre>
+
+<a href="https://www.youtube.com/watch?v=s9Mv_8uA7Wo" target="_blank">youtube</a><br>
+<a href="https://github.com/Richa0305/flutter_network_layer" target="_blank">github</a><br>
+<a href="https://stackoverflow.com/questions/65749767/error-the-method-inheritfromwidgetofexacttype-isnt-defined-for-the-class-bu" target="_blank">stackoverflow</a><br>
+
+<hr>
+
+
+
+<h2>Errso json.decoe()</h2>
+
+Ao requisitar uma lista ENORME de clientes , na devolucao dos dados ao executar 
+o metodo<code>json.decode(retornoPost.body)</code> acontecia o erro de corromper o JSON:
+<pre>var retornoPost = await CallApi().postData(data, _url, 'api/v1/cliente/');
+return json.decode(retornoPost.body);</pre>
+ 
+erro abaixo:
+<pre class="terminal">FormatException: Unexpected character</pre>
+
+Depois de muita analise , foi contornado o erro ajustando no <code>LARAVEL</code>, a forma que
+era enviado os dados.<br><br>
+
+Original:
+<pre>...
+header('Access-Control-Allow-Origin: *');
+header('Content-Type: application/json');
+echo json_encode($retorno);    
+</pre>
+
+Corrigido:
+<pre>...
+return response()->json(
+    $retorno, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
+    JSON_UNESCAPED_UNICODE
+);</pre>
+
+<code>SOLUCAO</code>
+<pre>return json.decode(json.encode(retornoPost.body));</pre>
+<a href="https://github.com/flutter/flutter/issues/32841">github.com</a><br><br>
+<a href="https://stackoverflow.com/questions/55671441/flutter-formatexception-unexpected-character-at-character-1" target="_blank">stackoverflow</a>

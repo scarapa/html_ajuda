@@ -1,3 +1,201 @@
+<ol>
+    <li><a href="#nome-de-pacote">Alterar nome de pacote</a></li>
+    <li><a href="#traducao">Tradução</a></li>
+    <li><a href="#raisedbutton">RaisedButton</a></li>
+    <li><a href="#layout">Layout</a></li>
+    <li><a href="#remover-scroll">Remover Scroll</a></li>
+    <li><a href="#ios">IOS</a></li>
+    <li><a href="#links-importantes">Links importantes</a></li>
+</ol>
+
+<a name="nome-de-pacote"></a>
+<h2>Alterar nome de pacote</h2>
+<h3>android/app/build.gradle</h3>
+<pre> defaultConfig {
+    // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+    <del>applicationId "com.example.emater_tecnico"</del>
+    applicationId "br.tche.emater.emater_tecnico"
+    minSdkVersion 16
+    targetSdkVersion 28
+    versionCode flutterVersionCode.toInteger()</pre>
+
+<h3>android/app/src/debug/AndroidManifest.xml</h3>
+<pre>&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    <del>package="com.example.emater_tecnico"&gt;</del>
+    package="br.tche.emater.emater_tecnico"&gt;
+    &lt;!-- Flutter needs it to communicate with the running application
+         to allow setting breakpoints, to provide hot reload, etc.
+    --&gt;</pre>
+
+<h3>android/app/src/main/AndroidManifest.xml</h3>
+<pre><del>package com.example.emater_tecnico</del>
+package br.tche.emater.emater_tecnico
+
+import io.flutter.embedding.android.FlutterActivity</pre>
+
+<h3>android/app/src/profile/AndroidManifest.xml</h3>
+<pre>&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<del>package="com.example.emater_tecnico"&gt;</del>
+package="br.tche.emater.emater_tecnico"&gt;
+&lt;!-- Flutter needs it to communicate with the running application
+        to allow setting breakpoints, to provide hot reload, etc.
+--&gt;</pre>
+
+<hr>
+
+<a name="traducao"></a>
+<h2>Tradução </h2>
+No <code>pubspec.yaml</code> adicione o flutter_localizations como:
+<pre>
+dependencies:
+    flutter:
+      sdk: flutter
+    flutter_localizations:
+      sdk: flutter    
+
+    # Você pode utilizar a biblioteca intl para utilizar o DateFormat desta 
+    # forma você consegue formatar as datas referentes as localidade que você deseja.
+    intl: ^0.16.0
+</pre>
+
+Então no seu MaterialApp inicial defina os delegates e as linguagens suportadas:
+<pre>
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:intl/intl.dart';
+//...
+MaterialApp(
+    localizationsDelegates: [
+    GlobalMaterialLocalizations.delegate,
+    GlobalWidgetsLocalizations.delegate
+    ],
+    supportedLocales: [const Locale('pt', 'BR')],
+);
+</pre>
+
+Uso , exemplo de pegar o dia da semana:
+<pre>
+    // defaultll
+    DateFormat.E().format(weekDay);
+
+    // PORTUGUES
+    DateFormat(DateFormat.WEEKDAY, 'pt_Br').format( weekDay );
+</pre>
+
+<a href="https://pt.stackoverflow.com/questions/399390/flutter-alterar-internacionaliza%C3%A7%C3%A3o-de-nomes-de-datas">stackoverflow</a><br>
+<a href="https://stackoverflow.com/questions/49353199/how-can-i-change-the-app-display-name-build-with-flutter">stackoverflow</a>
+
+<hr>
+<a name="raisedbutton"></a>
+<h2>RaisedButton</h2>
+botão RaisedButton não pega cor de jeito nenhum. Isso acontece porque a propriedade <b>onPressed</b> não está setada!
+<div class="centro center" style="margin:15px">
+    <img src="images/flutter-raisedbutton-desabilitado.png" style="width:40%" class="bp">
+</div>
+
+<code>Solucao</code>
+<pre>
+RaisedButton(
+    color: Theme.of(context).accentColor,
+    onPressed: () {}, //  <b style="color:Red">&lt;-- PRECISA DISSO !!!</b>
+    child: Text(...),
+),
+</pre>
+
+<a href="https://stackoverflow.com/questions/53981006/change-color-of-raisedbutton-from-theme-not-working">stackoverflow</a>
+
+<hr>
+
+<a name="layout"></a>
+<h2>Layout</h2>
+<h3>Flexible</h3>
+Baseado no css Flex.<br>
+Existem dois valores na propriedade fit que são muito Importantes e fazem toda diferença
+<ul>
+    <li>fit: FlexFit.loose</li>
+    <li>fit: FlexFit.tight</li>
+</ul>
+
+<h3>Expanded</h3>
+É o mesmo que <b>Flexible</b>, a diferença que tem por default a propriedade <b>FlexFit.tight</b>
+
+<a name="remover-scroll"></a>
+<h2>Remover Scroll de Listview</h2>
+<pre>
+ListView.builder(
+    physics:NeverScrollableScrollPhysics(),
+)
+</pre>
+
+<hr>
+
+<a name="ios"></a>
+<h2>IOS</h2>
+Primeiramente fazer o import
+<pre>import 'dart:io';</pre>
+Identificando a plataforna
+<pre>
+Platform.isIOS ? 
+    Container() 
+:
+    FloatingButton()
+</pre>
+
+<h2>NOTCH</h2>
+Devices que possuem o notch podem ocasionar overflow, para isso NAO OCORRER, basta usar o widget abaixo:
+<pre>SafeArea()</pre>
+
+<hr>
+
+<h2>Stateless Async</h2>
+Por padrão uma tela nao aceita um metodo async, mas pra isso basta declarmos um widget futuro.
+
+<pre>
+Future&lt;String&gt; callAsyncFetch (){
+    return "teste";
+}
+
+class MyWidget extends StatelessWidget {
+    @override
+    Widget build(context) {
+      return FutureBuilder&lt;String&gt;(
+        future: callAsyncFetch(),
+        builder: (context, AsyncSnapshot&lt;String&gt; snapshot) {
+          if (snapshot.hasData) {
+            return Text(snapshot.data);
+          } else {
+            return CircularProgressIndicator();
+          }
+        }
+      );
+    }
+  }
+</pre>  
+
+<a href="https://flutterigniter.com/build-widget-with-async-method-call/">flutterigniter</a>
+
+<h2>Arvore de Widgets</h2>
+<div class="centro center">
+    <img src="./images/flutter_arvore_widgets.png" style="width:70%;" class="bp">
+</div>
+
+<hr>
+
+<h2>Alterar nome da aplicação</h2>
+Para Android, edite apenas android: valor do rótulo na tag do aplicativo no arquivo  localizado na pasta: <code>android/app/src/main/AndroidManifest.xml</code>
+<pre>
+&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"&gt;
+    &lt;application
+        android:name="io.flutter.app.FlutterApplication"
+        android:label="<b style='color:red'>Your Application Name</b>"  //here
+        android:icon="@mipmap/ic_launcher"&gt;
+        &lt;activity&gt;
+        &lt;/activity&gt;
+    &lt;/application&gt;
+&lt;/manifest&gt;    
+</pre>
+
+<hr>
+<a name="links-importantes"></a>
 <h2>Links Importantes</h2>
 
 <ul>
@@ -64,175 +262,4 @@
             <li><a href="https://niltonfelipe.wordpress.com/2020/03/04/design-responsivo-para-flutter-introducao/" target="_blank">traduzido - niltonfelipe.wordpress</a></li>
         </ul>
     </li>
-    <li></li>
 </ul>
-
-<h2>Tradução </h2>
-No <code>pubspec.yaml</code> adicione o flutter_localizations como:
-<pre>
-dependencies:
-    flutter:
-      sdk: flutter
-    flutter_localizations:
-      sdk: flutter    
-
-    # Você pode utilizar a biblioteca intl para utilizar o DateFormat desta 
-    # forma você consegue formatar as datas referentes as localidade que você deseja.
-    intl: ^0.16.0
-</pre>
-
-Então no seu MaterialApp inicial defina os delegates e as linguagens suportadas:
-<pre>
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:intl/intl.dart';
-
-
-//...
-MaterialApp(
-    localizationsDelegates: [
-    GlobalMaterialLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate
-    ],
-    supportedLocales: [const Locale('pt', 'BR')],
-);
-</pre>
-
-Uso , exemplo de pegar o dia da semana:
-<pre>
-    // defaultll
-    DateFormat.E().format(weekDay);
-
-    // PORTUGUES
-    DateFormat(DateFormat.WEEKDAY, 'pt_Br').format( weekDay );
-</pre>
-
-<a href="https://pt.stackoverflow.com/questions/399390/flutter-alterar-internacionaliza%C3%A7%C3%A3o-de-nomes-de-datas">stackoverflow</a>
-<hr>
-
-<h2>Alterar nome da aplicação</h2>
-Para Android, edite apenas android: valor do rótulo na tag do aplicativo no arquivo  localizado na pasta: <code>android/app/src/main/AndroidManifest.xml</code>
-<pre>
-&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"&gt;
-    &lt;application
-        android:name="io.flutter.app.FlutterApplication"
-        android:label="<b style='color:red'>Your Application Name</b>"  //here
-        android:icon="@mipmap/ic_launcher"&gt;
-        &lt;activity&gt;
-        &lt;/activity&gt;
-    &lt;/application&gt;
-&lt;/manifest&gt;    
-</pre>
-
-<a href="https://stackoverflow.com/questions/49353199/how-can-i-change-the-app-display-name-build-with-flutter">stackoverflow</a>
-
-<hr>
-<h2>RaisedButton</h2>
-botão RaisedButton não pega cor de jeito nenhum. Isso acontece porque a propriedade <b>onPressed</b> não está setada!
-<div class="centro center" style="margin:15px">
-    <img src="images/flutter-raisedbutton-desabilitado.png" style="width:40%" class="bp">
-</div>
-
-<code>Solucao</code>
-<pre>
-RaisedButton(
-    color: Theme.of(context).accentColor,
-    onPressed: () {}, //  <b style="color:Red">&lt;-- PRECISA DISSO !!!</b>
-    child: Text(...),
-),
-</pre>
-
-
-<a href="https://stackoverflow.com/questions/53981006/change-color-of-raisedbutton-from-theme-not-working">stackoverflow</a>
-<hr>
-
-<h2>Textfield</h2>
-Pegando valores do componente um StatelessWidget
-<pre>
-    // declarando
-    String title = "";
-
-    // elemento
-    TextField(
-        onChanged: (novoValor) => title = novoValor,
-        decoration: InputDecoration(
-          labelText: "Titulo"
-        ),
-      ),
-
-    // elemento botao para exibir o valor da variavel num print
-    FlatButton(
-        onPressed: (){
-          print(valor);
-        },
-        textColor: Colors.purple,
-        child: Text('Nova Transacao'),
-    )
-</pre>
-
-<h2>Layout</h2>
-<h3>Flexible</h3>
-Baseado no css Flex.<br>
-Existem dois valores na propriedade fit que são muito Importantes e fazem toda diferença
-<ul>
-    <li>fit: FlexFit.loose</li>
-    <li>fit: FlexFit.tight</li>
-</ul>
-
-<h3>Expanded</h3>
-É o mesmo que <b>Flexible</b>, a diferença que tem por default a propriedade <b>FlexFit.tight</b>
-
-
-<h2>Remover Scroll de Listview</h2>
-<pre>
-ListView.builder(
-    physics:NeverScrollableScrollPhysics(),
-)
-</pre>
-
-<h2>IOS</h2>
-Primeiramente fazer o import
-<pre>import 'dart:io';</pre>
-Identificando a plataforna
-<pre>
-Platform.isIOS ? 
-    Container() 
-:
-    FloatingButton()
-</pre>
-
-<h2>NOTCH</h2>
-Devices que possuem o notch podem ocasionar overflow, para isso NAO OCORRER, basta usar o widget abaixo:
-<pre>SafeArea()</pre>
-
-
-<h2>Stateless Async</h2>
-Por padrão uma tela nao aceita um metodo async, mas pra isso basta declarmos um widget futuro.
-
-<pre>
-Future&lt;String&gt; callAsyncFetch (){
-    return "teste";
-}
-
-class MyWidget extends StatelessWidget {
-    @override
-    Widget build(context) {
-      return FutureBuilder&lt;String&gt;(
-        future: callAsyncFetch(),
-        builder: (context, AsyncSnapshot&lt;String&gt; snapshot) {
-          if (snapshot.hasData) {
-            return Text(snapshot.data);
-          } else {
-            return CircularProgressIndicator();
-          }
-        }
-      );
-    }
-  }
-</pre>  
-
-<a href="https://flutterigniter.com/build-widget-with-async-method-call/">flutterigniter</a>
-
-<h2>Arvore de Widgets</h2>
-<div class="centro center">
-    <img src="./images/flutter_arvore_widgets.png" style="width:70%;" class="bp">
-</div>
