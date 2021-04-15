@@ -1,3 +1,19 @@
+<ol>
+    <li><a href="#erro-instalacao">Erro de Instalação</a></li>
+    <li><a href="#erro-grandle">Erro Grandle</a></li>
+    <li><a href="#nao-constroi-projeto">Nao constroi projeto</a></li>
+    <li><a href="#depedencia">Erro Dependencia Plugins</a></li>
+    <li><a href="#androidx">AndroidX Flutter</a></li>
+    <li><a href="#erro-json-decode">Erro json.decode()</a></li>
+    <li><a href="#snackbar">Snackbar nao funiona</a></li>
+    <li><a href="#checkbox">Checkbox nao funciona</a></li>
+    <li><a href="#singlechildscrollview">SingleChildScrollView nao funciona</a></li>
+    <li><a href="#overflow">Overflow</a></li>
+</ol>
+
+<hr>
+
+<a name="erro-instalacao"></a>
 <h2>Erro de Instalação</h2>
 
 <h3>Erro 001</h3>
@@ -46,263 +62,92 @@ Solucao: Setar manualmente o caminho de instalação do android studio, no meu c
 <pre class="terminal">flutter config --android-studio-dir='<b style="color:red">C:\Program Files\Android\Android Studio\</b>'</pre>
 
 <a href="https://github.com/flutter/flutter/issues/67986" target="_blank">github</a>
-<hr>
-
-<h2>Bottom overfload</h2>
-<div class="centro center">
-    <img src="images/flutter-bottom-overfload.jpg" style="width:20%;border:1px solid black">
-</div>
-<br><br>
-
-Para corrigir tal problema , bastou inserir no body o widget <b>SingleChildScrollView</b>, conforme abaixo
-<br><br>
-<pre>return Scaffold(
-    body: <b>SingleChildScrollView</b>(
-        child: Container(
-        child: Column(
-            //mainAxisSize: MainAxisSize.max,
-            children: &lt;Widget&gt;[
-            Container(
-                child: GridView.builder(
-                shrinkWrap: true,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount:
-                        (Orientation == Orientation.portrait) ? 3 : 2),
-                itemCount: _thumbs.length,
-                itemBuilder: (BuildContext context, int index) {
-                    return _thumbCard(context, index);
-                },
-                ),
-            ),
-            Container(
-                child: Text('teste'),
-            )
-            ],
-        ),
-        ),
-    ),
-);</pre>
-
-<h2>SingleChildScrollView nao funciona scrool da tela</h2>
-<pre>
-child: Container(
-    child: GridView.count(
-        crossAxisCount: 3,
-        shrinkWrap: true,
-        <b style="color:red">scrollDirection: Axis.vertical,
-        physics: NeverScrollableScrollPhysics(),</b>
-        children: _list.map((p) => ProductManagment(p)).toList(),
-    ), 
-</pre>
-Necessário inserir as duas propriedades em vermelho
-
-
-<a href="https://stackoverflow.com/questions/53717521/flutter-grid-view-is-not-scrolling">stackoverflow</a>
-<a href="https://api.flutter.dev/flutter/widgets/Expanded-class.html">api.flutter</a>
 
 <hr>
 
-Outra alternativa é <b>SEMPRE</b> por na tag <b>BODY</b> o layout <b>LISTVIEW</b>
-<pre>
-...
-body:ListView(
-    children: &lt;Widget&gt;[
-        //CONTEUDO AQUI DENTRO
-    ]
-)
-... 
-</pre>
-<hr>
-<h2>NAO CONSTROI PROJETO-01</h2>
+<a name="erro-grandle"></a>
+<h2>Erro Grandle</h2>
+<h3>Erro-01</h3>
 <pre class="terminal" style="color:red !important">
-    FAILURE: Build failed with an exception.
+FAILURE: Build failed with an exception.
 
-    * Where:
-    Settings file 'C:\Users\49583\AndroidStudioProjects\carwashing\android\settings.gradle' line: 11
-    
-    * What went wrong:
-    A problem occurred evaluating settings 'android'.
-    > Could not read script 'C:\Users\49583\Flutter\packages\flutter_tools\gradle\app_plugin_loader.gradle' as it does not exist.
-    
-    * Try:
-    Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
-    
-    * Get more help at https://help.gradle.org
-    
-    BUILD FAILED in 10s
-    Finished with error: Gradle task assembleDebug failed with exit code 1
-    
+* Where:
+Settings file 'C:\Users\49583\AndroidStudioProjects\carwashing\android\settings.gradle' line: 11
+
+* What went wrong:
+A problem occurred evaluating settings 'android'.
+> Could not read script 'C:\Users\49583\Flutter\packages\flutter_tools\gradle\app_plugin_loader.gradle' as it does not exist.
+
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+BUILD FAILED in 10s
+Finished with error: Gradle task assembleDebug failed with exit code 1
 </pre>
 Você pode contornar isso regenerando seu android / settings.gradle enquanto estiver no estável (certifique-se de usar o controle de origem!).
 <pre class="terminal">
-    $ rm android/settings.gradle 
-    $ flutter create .
+$ rm android/settings.gradle 
+$ flutter create .
 </pre>
 
 <a href="https://github.com/flutter/flutter/issues/55619" target="_blank">github</a>
 
 <hr>
 
-<h2>NAO CONSTROI PROJETO-02</h2>
+<h3>Erro-02</h3>
+<pre class="terminal">
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Unable to start the daemon process.
+This problem might be caused by incorrect configuration of the daemon.
+For example, an unrecognized jvm option is used.
+Please refer to the User Manual chapter on the daemon at https://docs.gradle.org/5.6.2/userguide/gradle_daemon.html
+Process command line: C:\Program Files\Android\Android Studio\jre\bin\java.exe -Xmx1536M -Dfile.encoding=windows-1252 -Duser.country=BR -Duser.language=pt -Duser.variant -cp C:\Users\49583\.gradle\wrapper\dists\gradle-5.6.2-all\9st6wgf78h16so49nn74lgtbb\gradle-5.6.2\lib\gradle-launcher-5.6.2.jar org.gradle.launcher.daemon.bootstrap.GradleDaemon 5.6.2
+Please read the following process output to find out more:
+-----------------------
+Error occurred during initialization of VM
+Could not reserve enough space for object heap
+
+
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+Exception: Gradle task assembleDebug failed with exit code 1</pre>
+
+Solucao
+<pre class="terminal">$ flutter clean</pre>
+
+<hr>
+
+<a name="nao-constroi-projeto"></a>
+<h2>NAO CONSTROI PROJETO</h2>
+<h3>Erro 01</h3>
 <pre class="terminal" style="color:red !important">
 INSTALL_FAILED_NO_MATCHING_ABIS: Failed to extract native libraries, res=-113]
 </pre>
 Solucao:
 <pre class="terminal">$ flutter clean</pre>
 
-
-
-<h2>Dropdown - overflow</h2>
-
-<table>
-    <tr>
-        <td>
-<pre>
-List&lt;DropdownMenuItem&lt;Concentrado&gt;&gt; getDropDownConcentradoMenuItems(concentrados) {
-    List&lt;DropdownMenuItem&lt;Concentrado&gt;&gt; items = new List();
-    for (Concentrado concentrado in concentrados) {
-        items.add(
-            new DropdownMenuItem(
-                value: concentrado,
-                child: new Text(concentrado.titulo)
-            )
-        );
-    }
-    return items;
-}    
-</pre>
-        </td>
-        <td>
-            <div class="centro center">
-                <img src="images/flutter-dropdown-overflow-01.jpg" style="width:80%" class="bp">
-            </div>
-        </td>
-    </tr>
-</table>
-<br clear="all">
-<code>Solução</code>
-<table>
-    <tr>
-        <td>
-<pre>
-List&lt;DropdownMenuItem&lt;Concentrado&gt;&gt; getDropDownConcentradoMenuItems(concentrados) {
-    List&lt;DropdownMenuItem&lt;Concentrado&gt;&gt; items = new List();
-    for (Concentrado concentrado in concentrados) {
-        items.add(
-            new DropdownMenuItem(
-                value: concentrado,
-                child: new SizedBox(
-                    width: 170,
-                    child: new Text(concentrado.titulo)
-                )
-            )
-        );
-    }
-    return items;
-}       
-</pre>
-        </td>
-        <td>
-            <div class="centro center">
-                <img src="images/flutter-dropdown-overflow-02.jpg" style="width:80%" class="bp">
-            </div>            
-        </td>
-    </tr>
-</table>
-<a href="https://stackoverflow.com/questions/47032262/flutter-dropdownbutton-overflow">stackoverflow</a><br>
-
-<h2>Erro ao baixar dependencia</h2>
-Ao tentar baixar a biblioteca <b>brasil_fields</b> da erro 
-<h3>Instalacao</h3>
-<pre>dependencies:
-    brasil_fields: ^0.4.0</pre>
-
-<pre class="terminal">$ flutter pub get</pre>
-<code>ERRO</code>
-<pre>The current Dart SDK version is 2.7.0.
-
-Because flutter_mascaras depends on brasil_fields &gt;=0.0.9 which requires SDK version &gt;=2.7.2 &lt;3.0.0, version solving failed.
-Running "flutter pub get" in flutter_mascaras...
-pub get failed (1; Because flutter_mascaras depends on brasil_fields &gt;=0.0.9 which requires SDK version &gt;=2.7.2 &lt;3.0.0,
-version solving failed.) </pre>
-
-Bem como foi dito , a versao DARK é <code>2.7.0</code> e precisa ser no minino a <code>2.7.2</code><br>
-<code>Solucao</code> Atualizar o framework com o comando abaixo
-<pre class="terminal">$ flutter upgrade</pre>
-verificando ...
-<pre class="terminal">$ flutter --version</pre>
+<h3>Out of memory</h3>
 <pre class="terminal">
-Flutter 1.20.4 • channel stable • https://github.com/flutter/flutter.git
-Framework • revision fba99f6cf9 (11 days ago) • 2020-09-14 15:32:52 -0700
-Engine • revision d1bc06f032
-Tools • Dart 2.9.2    
+borting re-entrant request for stack trace.
+
+../../third_party/dart/runtime/vm/zone.cc: 94: error: Out of memory.
+version=2.10.0 (stable) (Mon Sep 28 09:21:23 2020 +0200) on "windows_x64"
+pid=11224, thread=15916, isolate_group=main(000001909AB4EBC0), isolate=main(000001909AB0E650)
+isolate_instructions=7ff709f0f230, vm_instructions=7ff709f0f240
+    pc 0x00007ff70a0a0058 fp 0x00000032a9af9860 Unknown symbol
+-- End of DumpStackTrace    
 </pre>
-<code>OBSERVACAO:</code> o comando <kbd>$ dart --version</kbd> também é util<br>
-<pre class="terminal">Dart SDK version: 2.9.2 (stable) (Wed Aug 26 12:44:28 2020 +0200) on "windows_x64"</pre>
-<a href="https://stackoverflow.com/questions/59170895/how-to-update-dart-sdk-to-latest-stable-version-in-flutter">stackoverflow</a><br>
-<a href="https://pub.dev/packages/brasil_fields">brasil_fields</a>
+Solucao
+<pre class="terminal">$ flutter clean</pre>
 
-<h2>Snackbar nao funiona</h2>
-<pre class="terminal">The following assertion was thrown while handling a gesture:
-Scaffold.of() called with a context that does not contain a Scaffold.
-No Scaffold ancestor could be found starting from the context that was passed to Scaffold.of(). This
-usually happens when the context provided is from the same StatefulWidget as that whose build
-function actually creates the Scaffold widget being sought.
-There are several ways to avoid this problem. The simplest is to use a Builder to get a context that
-is "under" the Scaffold. For an example of this, please see the documentation for Scaffold.of():</pre>    
 
-Essa exceção ocorre porque você está usando o contexto do widget que instanciou o Scaffold. Não é o contexto de um filho de Scaffold.
-<br><br>
-<code>Solucao:</code>
-Você pode usar uma GlobalKey. A única desvantagem é que usar a GlobalKey pode não ser a maneira mais eficiente de fazer isso.
-<br><br>
-Uma coisa boa sobre isso é que você também pode passar essa chave para outra classe de widgets customizados que não contenha nenhum scaffold.
-<pre>
-class HomePage extends StatelessWidget {
-    <b style="color:red">final _scaffoldKey = GlobalKey&lt;ScaffoldState&gt;();</b> \\ new line
-    @override
-    Widget build(BuildContext context) {
-        return Scaffold(
-        <b style="color:red">key: _scaffoldKey,</b>                           \\ new line
-        appBar: AppBar(
-            title: Text('SnackBar Playground'),
-        ),
-        body: Center(
-            child: RaisedButton(
-            color: Colors.pink,
-            textColor: Colors.white,
-            onPressed: _displaySnackBar(context),
-            child: Text('Display SnackBar'),
-            ),
-        ),
-        );
-    }
-    _displaySnackBar(BuildContext context) {
-        final snackBar = SnackBar(content: Text('Are you talkin\' to me?'));
-        <b style="color:red">_scaffoldKey.currentState.showSnackBar(snackBar);</b>   \\ edited line
-    }
-}    
-</pre>
-
-<a href="https://stackoverflow.com/questions/51304568/scaffold-of-called-with-a-context-that-does-not-contain-a-scaffold"></a>
-
-<hr>
-
-<h2>MissingPluginException</h2>
-
-<pre class="terminal" style="color:Red !important">MissingPluginException(No implementation found for method listen on channel plugins.flutter.io/connectivity_status)</pre>
-
-Solucao, comandos abaixo nessa ordem
-<pre class="terminal">
-$ flutter clean
-$ flutter pub get
-$ flutter clean
-$ flutter run    
-</pre>
-
-<a href="https://stackoverflow.com/questions/58080990/no-implementation-found-for-method-getapplicationdocumentsdirectory-on-channel-p">stackoverflow</a>
-
-<h2>Não constroi APK</h2>
+<h3>app:mergeDebugJavaResource</h3>
 <pre>
     1: Task failed with an exception.
     -----------
@@ -311,8 +156,10 @@ $ flutter run
     > A failure occurred while executing com.android.build.gradle.internal.tasks.Workers$ActionFacade
        > File 'com.android.builder.files.ZipCentralDirectory@4c745f95' was deleted, but previous version not found in cache    
 </pre>
-<code>Solucao</code> deletar a pasta build e rodar comando <code>$ flutter run</code>
+<code>Solucao</code> deletar a pasta build e rodar comando: 
+<pre class="terminal">$ flutter run</pre>
 
+<h3>app:mergeDebugNativeLibs</h3>
 <pre>
 * What went wrong:
 Execution failed for task ':app:mergeDebugNativeLibs'.
@@ -320,6 +167,7 @@ Execution failed for task ':app:mergeDebugNativeLibs'.
     > File 'com.android.builder.files.ZipCentralDirectory@5f59aace' was deleted, but previous version not found in cache
 </pre>
 <code>Solucao</code> baixar a versao do SDK, nesse caso da 29 para 28 , em:<kbd>android\app\build.gradle</kbd>
+
 <pre>
     if (flutterRoot == null) {
         //throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
@@ -352,38 +200,57 @@ Execution failed for task ':app:mergeDebugNativeLibs'.
 </pre>
 <a href="https://stackoverflow.com/questions/55343843/flutter-execution-failed-for-task-appprocessdebugresources">stackoverflow</a>
 
-<h2>Checkbox nao funciona</h2>
-checkbox não atualiza , nao altera o estado. Para resolver tive que envolver a lista de elementos num StatefulBuilder , conforme esse 
-<a href="https://stackoverflow.com/questions/58857826/flutter-checkbox-not-changing-updating-working">link aqui</a>
-<pre>
-return <b style='color:red'>StatefulBuilder</b>(
-    builder: (BuildContext context, StateSetter setState) {
-      return Center(
-        child: CheckboxListTile(
-          title: const Text('Animate Slowly'),
-          value: _valueCheck,
-          onChanged: (bool value) {
-            setState(() {
-              _valueCheck = value;
-            });
-          },
-          secondary: const Icon(Icons.hourglass_empty),
-        ),
-    );
-});    
+<hr>
+
+<a name="depedencia"></a>
+<h2>Erro ao baixar dependencia</h2>
+Ao tentar baixar a biblioteca <b>brasil_fields</b> da erro 
+<h3>Instalacao</h3>
+<pre>dependencies:
+    brasil_fields: ^0.4.0</pre>
+
+<pre class="terminal">$ flutter pub get</pre>
+<code>ERRO</code>
+<pre>The current Dart SDK version is 2.7.0.
+
+Because flutter_mascaras depends on brasil_fields &gt;=0.0.9 which requires SDK version &gt;=2.7.2 &lt;3.0.0, version solving failed.
+Running "flutter pub get" in flutter_mascaras...
+pub get failed (1; Because flutter_mascaras depends on brasil_fields &gt;=0.0.9 which requires SDK version &gt;=2.7.2 &lt;3.0.0,
+version solving failed.) </pre>
+
+Bem como foi dito , a versao DARK é <code>2.7.0</code> e precisa ser no minino a <code>2.7.2</code><br>
+<code>Solucao</code> Atualizar o framework com o comando abaixo
+<pre class="terminal">$ flutter upgrade</pre>
+verificando ...
+<pre class="terminal">$ flutter --version</pre>
+<pre class="terminal">
+Flutter 1.20.4 • channel stable • https://github.com/flutter/flutter.git
+Framework • revision fba99f6cf9 (11 days ago) • 2020-09-14 15:32:52 -0700
+Engine • revision d1bc06f032
+Tools • Dart 2.9.2    
 </pre>
 
-<a href="https://stackoverflow.com/questions/58857826/flutter-checkbox-not-changing-updating-working">stackoverflow</a>
-<a href="https://stackoverflow.com/questions/51578824/flutter-checkbox-doesnt-work">stackoverflow</a>
-<a href="https://medium.com/flutter-comunidade-br/flutter-descomplica-lista-de-checkbox-1e0dca525cb">medium</a>
+<code>OBSERVACAO:</code> o comando <kbd>$ dart --version</kbd> também é util<br>
 
-<h2>AndroidX Flutter</h2>
-Solução inserir no arquivo <code>android/gradle.properties</code> duas linhas
-<pre>android.useAndroidX=true
-android.enableJetifier=true</pre>
-<a href="https://www.youtube.com/watch?v=7GTO9D_Anb0">youtube</a>
+<pre class="terminal">Dart SDK version: 2.9.2 (stable) (Wed Aug 26 12:44:28 2020 +0200) on "windows_x64"</pre>
 
-<h2>Erro compilar</h2>
+<a href="https://stackoverflow.com/questions/59170895/how-to-update-dart-sdk-to-latest-stable-version-in-flutter">stackoverflow</a><br>
+<a href="https://pub.dev/packages/brasil_fields">brasil_fields</a>
+
+<h3>MissingPluginException</h3>
+
+<pre class="terminal" style="color:Red !important">MissingPluginException(No implementation found for method listen on channel plugins.flutter.io/connectivity_status)</pre>
+
+Solucao, comandos abaixo nessa ordem
+<pre class="terminal">
+$ flutter clean
+$ flutter pub get
+$ flutter clean
+$ flutter run    
+</pre>
+<a href="https://stackoverflow.com/questions/58080990/no-implementation-found-for-method-getapplicationdocumentsdirectory-on-channel-p">stackoverflow</a>
+
+<h3>Mudancas no plugin PROVIDER</h3>
 <pre class="terminal">
 PS N:\EMATER\flutter\proposta_app> flutter run
 Using hardware rendering with device AOSP on IA Emulator. If you notice
@@ -451,9 +318,17 @@ return MultiProvider(
 
 <hr>
 
+<a name="androidx"></a>
+<h2>AndroidX Flutter</h2>
+Solução inserir no arquivo <code>android/gradle.properties</code> duas linhas
+<pre>android.useAndroidX=true
+android.enableJetifier=true</pre>
+<a href="https://www.youtube.com/watch?v=7GTO9D_Anb0">youtube</a>
 
+<hr>
 
-<h2>Errso json.decoe()</h2>
+<a name="erro-json-decode"></a>
+<h2>Erro json.decode()</h2>
 
 Ao requisitar uma lista ENORME de clientes , na devolucao dos dados ao executar 
 o metodo<code>json.decode(retornoPost.body)</code> acontecia o erro de corromper o JSON:
@@ -484,3 +359,210 @@ return response()->json(
 <pre>return json.decode(json.encode(retornoPost.body));</pre>
 <a href="https://github.com/flutter/flutter/issues/32841">github.com</a><br><br>
 <a href="https://stackoverflow.com/questions/55671441/flutter-formatexception-unexpected-character-at-character-1" target="_blank">stackoverflow</a>
+
+
+<a name="snackbar"></a>
+<h2>Snackbar nao funiona</h2>
+<pre class="terminal">The following assertion was thrown while handling a gesture:
+Scaffold.of() called with a context that does not contain a Scaffold.
+No Scaffold ancestor could be found starting from the context that was passed to Scaffold.of(). This
+usually happens when the context provided is from the same StatefulWidget as that whose build
+function actually creates the Scaffold widget being sought.
+There are several ways to avoid this problem. The simplest is to use a Builder to get a context that
+is "under" the Scaffold. For an example of this, please see the documentation for Scaffold.of():</pre>    
+
+Essa exceção ocorre porque você está usando o contexto do widget que instanciou o Scaffold. Não é o contexto de um filho de Scaffold.
+<br><br>
+<code>Solucao:</code>
+Você pode usar uma GlobalKey. A única desvantagem é que usar a GlobalKey pode não ser a maneira mais eficiente de fazer isso.
+<br><br>
+Uma coisa boa sobre isso é que você também pode passar essa chave para outra classe de widgets customizados que não contenha nenhum scaffold.
+<pre>
+class HomePage extends StatelessWidget {
+    <b style="color:red">final _scaffoldKey = GlobalKey&lt;ScaffoldState&gt;();</b> \\ new line
+    @override
+    Widget build(BuildContext context) {
+        return Scaffold(
+        <b style="color:red">key: _scaffoldKey,</b>                           \\ new line
+        appBar: AppBar(
+            title: Text('SnackBar Playground'),
+        ),
+        body: Center(
+            child: RaisedButton(
+            color: Colors.pink,
+            textColor: Colors.white,
+            onPressed: _displaySnackBar(context),
+            child: Text('Display SnackBar'),
+            ),
+        ),
+        );
+    }
+    _displaySnackBar(BuildContext context) {
+        final snackBar = SnackBar(content: Text('Are you talkin\' to me?'));
+        <b style="color:red">_scaffoldKey.currentState.showSnackBar(snackBar);</b>   \\ edited line
+    }
+}    
+</pre>
+
+<a href="https://stackoverflow.com/questions/51304568/scaffold-of-called-with-a-context-that-does-not-contain-a-scaffold"></a>
+
+<hr>
+
+<a name="checkbox"></a>
+<h2>Checkbox nao funciona</h2>
+checkbox não atualiza , nao altera o estado. Para resolver tive que envolver a lista de elementos num StatefulBuilder , conforme esse 
+<a href="https://stackoverflow.com/questions/58857826/flutter-checkbox-not-changing-updating-working">link aqui</a>
+<pre>
+return <b style='color:red'>StatefulBuilder</b>(
+    builder: (BuildContext context, StateSetter setState) {
+      return Center(
+        child: CheckboxListTile(
+          title: const Text('Animate Slowly'),
+          value: _valueCheck,
+          onChanged: (bool value) {
+            setState(() {
+              _valueCheck = value;
+            });
+          },
+          secondary: const Icon(Icons.hourglass_empty),
+        ),
+    );
+});    
+</pre>
+
+<a href="https://stackoverflow.com/questions/58857826/flutter-checkbox-not-changing-updating-working">stackoverflow</a>
+<a href="https://stackoverflow.com/questions/51578824/flutter-checkbox-doesnt-work">stackoverflow</a>
+<a href="https://medium.com/flutter-comunidade-br/flutter-descomplica-lista-de-checkbox-1e0dca525cb">medium</a>
+
+<hr>
+
+<a name="singlechildscrollview"></a>
+<h2>SingleChildScrollView nao funciona scrool da tela</h2>
+<pre>
+child: Container(
+    child: GridView.count(
+        crossAxisCount: 3,
+        shrinkWrap: true,
+        <b style="color:red">scrollDirection: Axis.vertical,
+        physics: NeverScrollableScrollPhysics(),</b>
+        children: _list.map((p) => ProductManagment(p)).toList(),
+    ), 
+</pre>
+Necessário inserir as duas propriedades em vermelho
+
+
+<a href="https://stackoverflow.com/questions/53717521/flutter-grid-view-is-not-scrolling">stackoverflow</a>
+<a href="https://api.flutter.dev/flutter/widgets/Expanded-class.html">api.flutter</a>
+
+<hr>
+
+Outra alternativa é <b>SEMPRE</b> por na tag <b>BODY</b> o layout <b>LISTVIEW</b>
+<pre>
+...
+body:ListView(
+    children: &lt;Widget&gt;[
+        //CONTEUDO AQUI DENTRO
+    ]
+)
+... 
+</pre>
+<hr>
+
+<a name="overflow"></a>
+<h2>Overflow</h2>
+<h3>Dropdown</h3>
+
+<table>
+    <tr>
+        <td>
+<pre>
+List&lt;DropdownMenuItem&lt;Concentrado&gt;&gt; getDropDownConcentradoMenuItems(concentrados) {
+    List&lt;DropdownMenuItem&lt;Concentrado&gt;&gt; items = new List();
+    for (Concentrado concentrado in concentrados) {
+        items.add(
+            new DropdownMenuItem(
+                value: concentrado,
+                child: new Text(concentrado.titulo)
+            )
+        );
+    }
+    return items;
+}    
+</pre>
+        </td>
+        <td>
+            <div class="centro center">
+                <img src="images/flutter-dropdown-overflow-01.jpg" style="width:80%" class="bp">
+            </div>
+        </td>
+    </tr>
+</table>
+<br clear="all">
+<code>Solução</code>
+<table>
+    <tr>
+        <td>
+<pre>
+List&lt;DropdownMenuItem&lt;Concentrado&gt;&gt; getDropDownConcentradoMenuItems(concentrados) {
+    List&lt;DropdownMenuItem&lt;Concentrado&gt;&gt; items = new List();
+    for (Concentrado concentrado in concentrados) {
+        items.add(
+            new DropdownMenuItem(
+                value: concentrado,
+                child: new SizedBox(
+                    width: 170,
+                    child: new Text(concentrado.titulo)
+                )
+            )
+        );
+    }
+    return items;
+}       
+</pre>
+        </td>
+        <td>
+            <div class="centro center">
+                <img src="images/flutter-dropdown-overflow-02.jpg" style="width:80%" class="bp">
+            </div>            
+        </td>
+    </tr>
+</table>
+<a href="https://stackoverflow.com/questions/47032262/flutter-dropdownbutton-overflow">stackoverflow</a><br>
+
+<h3>Bottom overfload</h3>
+<div class="centro center">
+    <img src="images/flutter-bottom-overfload.jpg" style="width:20%;border:1px solid black">
+</div>
+<br><br>
+
+Para corrigir tal problema , bastou inserir no body o widget <b>SingleChildScrollView</b>, conforme abaixo
+<br><br>
+<pre>return Scaffold(
+    body: <b>SingleChildScrollView</b>(
+        child: Container(
+        child: Column(
+            //mainAxisSize: MainAxisSize.max,
+            children: &lt;Widget&gt;[
+            Container(
+                child: GridView.builder(
+                shrinkWrap: true,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount:
+                        (Orientation == Orientation.portrait) ? 3 : 2),
+                itemCount: _thumbs.length,
+                itemBuilder: (BuildContext context, int index) {
+                    return _thumbCard(context, index);
+                },
+                ),
+            ),
+            Container(
+                child: Text('teste'),
+            )
+            ],
+        ),
+        ),
+    ),
+);</pre>
+
+
+<hr>

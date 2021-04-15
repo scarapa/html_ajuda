@@ -13,12 +13,12 @@
 
 <h3>Parametros</h3>
 <pre class="codigo codigoPHPLaravel">
-Route::get('/'),funcion(){
+Route::get('/'),function(){
 	return view('welcome');
 });</pre>
 
 <pre class="codigo codigoPHPLaravel">
-Route::get('/{nome}/{sobrenome}'),funcion($nome,$sobrenome){
+Route::get('/{nome}/{sobrenome}'),function($nome,$sobrenome){
 	return "$nome e $sobrenome";
 	// ou pode ser echo
 	echo "$nome e $sobrenome";
@@ -26,7 +26,7 @@ Route::get('/{nome}/{sobrenome}'),funcion($nome,$sobrenome){
 
 <h3>Parametros Opcionais</h3>
 <pre class="codigo codigoPHPLaravel">
-Route::get('/seunome/{nome}'),funcion($nome=nul){
+Route::get('/seunome/{nome}'),function($nome=nul){
 	if(isset($nome))
 		echo "sem nome";
 	else
@@ -36,7 +36,7 @@ Route::get('/seunome/{nome}'),funcion($nome=nul){
 <h3>Parametros com Regras</h3>
 Pode ser utilizado <b>REGEX</b> nas regra nos <b>PARAMETROS</b>, afim de validação.
 <pre class="codigo codigoPHPLaravel">
-Route::get('/rotacomregras/{nome}/{n}'),funcion($nome,$n){
+Route::get('/rotacomregras/{nome}/{n}'),function($nome,$n){
 	for($i=0;$i<$n;$i++){
 		echo " ola , seja bem vindo $nome \\n";
 	}
@@ -45,19 +45,19 @@ Route::get('/rotacomregras/{nome}/{n}'),funcion($nome,$n){
 <h4>REGEX </h4>
 Utilizando REGEX em um parametro, para aceitar SOMENTE caracteres no parametro NOME
 <pre class="codigo codigoPHPLaravel">
-Route::get('/rotacomregras/{nome}/{n}'),funcion($nome,$n){
+Route::get('/rotacomregras/{nome}/{n}'),function($nome,$n){
 	//view
 })->where('nome','[A-Za-z]+');</pre>
 
 Utilizando REGEX para aceita SOMENTE numeros no parametro NUMERO
 <pre class="codigo codigoPHPLaravel">
-Route::get('/rotacomregras/{nome}/{n}'),funcion($nome,$n){
+Route::get('/rotacomregras/{nome}/{n}'),function($nome,$n){
 	//view
 })->where('n','[0-9]+');</pre>
 
 <h4>REGEX - MULTIPLOS PARAMETROS</h4>
 <pre class="codigo codigoPHPLaravel">
-Route::get('/rotacomregras/{nome}/{n}'),funcion($nome,$n){
+Route::get('/rotacomregras/{nome}/{n}'),function($nome,$n){
 	//view
 })->where('nome','[A-Za-z]+')->where('n','[0-9]+');</pre>
 
@@ -65,7 +65,7 @@ Route::get('/rotacomregras/{nome}/{n}'),funcion($nome,$n){
 <h2>Agrupamento</h2>
 Subsituir o metodo <b><code>GET</code></b> por <b><code>PREFIX</code></b> e o metodo <b><code>GROUP</code></b>
 <pre class="codigo codigoPHPLaravel">
-Route::prefix('/app')->group(funcion(){
+Route::prefix('/app')->group(function(){
 	
 	Route::get('/',function(){
 		return "Meu App";
@@ -85,7 +85,7 @@ Route::prefix('/app')->group(funcion(){
 <h3>Nomeando </h3>
 
 <pre class="codigo codigoPHPLaravel">
-Route::prefix('/app')->group(funcion(){
+Route::prefix('/app')->group(function(){
 	Route::get('/',function(){
 		return "Meu App";
 	})->name('app');
