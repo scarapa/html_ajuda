@@ -1,28 +1,19 @@
-<style>
-    body{ counter-reset: aga3 }
+<ol>
+    <li><a href="#create">CREATE</a></li>
+    <li><a href="#read">READ</a></li>
+    <li><a href="#update">UPDATE</a></li>
+    <li><a href="#delete">DELETE</a></li>
+</ol>
 
-    h3::before{
-        counter-increment: aga3;
-        content: counter(aga3) " - ";
-    }	
-    h3{ counter-reset: aga4; font-weight: bold;}
+<hr>
 
-    h4::before{
-        margin-left:25px;
-        counter-increment: aga4;
-        content: counter(aga3)"."counter(aga4) " - ";
-    }	
-    h4{ counter-reset: aga5; }
-</style>
-
-
-
-<h3>CREATE</h3>
+<a name="create"></a>
+<h2>CREATE</h2>
 
 O pacote SQFlite fornece duas maneiras de lidar com essas operações usando consultas 
 RawSQL ou usando o nome da tabela e um mapa que contém os dados:
 
-<h4>rawInsert </h4>
+<h3>rawInsert </h3>
 <pre>newClient(Client newClient) async {
     final db = await database;
     var res = await db.rawInsert(
@@ -34,7 +25,7 @@ RawSQL ou usando o nome da tabela e um mapa que contém os dados:
 </pre>
 
 
-<h4>insert</h4>
+<h3>insert</h3>
 <pre>newClient(Client newClient) async {
     final db = await database;
     var res = await db.insert("Client", newClient.toMap());
@@ -58,8 +49,11 @@ newClient(Client newClient) async {
     }    
 </pre>
 
-<h3>READ</h3>
-<h4>Obter cliente por id</h4>
+<hr>
+
+<a name="read"></a>
+<h2>READ | SELECT</h2>
+<h3>Obter cliente por id</h3>
 <pre>getClient(int id) async {
     final db = await database;
     var res = await  db.query("Client", where: "id = ?", whereArgs: [id]);
@@ -70,7 +64,7 @@ No código acima, fornecemos à consulta um id como argumento usando whereArgs.
 Em seguida, retornamos o primeiro resultado se a lista não estiver vazia, 
 senão retornamos nulo.
 
-<h4>Obtenha todos os clientes com uma condição</h4>
+<h3>Obtenha todos os clientes com uma condição</h3>
 Neste exemplo, usei rawQuery e mapeei a lista de resultados para uma lista de objetos Client:
 <pre>getAllClients() async {
     final db = await database;
@@ -89,8 +83,23 @@ Exemplo: Obtenha apenas os clientes bloqueados
     return list;
 }</pre>
 
-<h3>UPDATE</h3>
-<h4>Atualizar um cliente existente</h4>
+<h3>LIKE</h3>
+Retornar clientes que tenham '<b>ala</b>' no nome
+<pre>getAllClients() async {
+    final db = await database;
+    List argumentos = [];
+    argumentos.add("ala%");
+    var res = await db.query("Client",where: " nome LIKE ? ",whereArgs: argumentos );
+    List&lt;Client&gt; list =
+        res.isNotEmpty ? res.map((c) =&gt; Client.fromMap(c)).toList() : [];
+    return list;
+}</pre>
+
+<hr>
+
+<a name="update"></a>
+<h2>UPDATE</h2>
+<h3>Atualizar um cliente existente</h3>
 <pre>updateClient(Client newClient) async {
     final db = await database;
     var res = await db.update("Client", newClient.toMap(),
@@ -111,14 +120,17 @@ Exemplo: bloquear ou desbloquear um cliente:
     return res;
 }</pre>
 
-<h3>DELETE</h3>
-<h4>Excluir um cliente</h4>
+<hr>
+
+<a name="delete"></a>
+<h2>DELETE</h2>
+<h3>Excluir um cliente</h3>
 <pre>deleteClient(int id) async {
     final db = await database;
     db.delete("Client", where: "id = ?", whereArgs: [id]);
 }</pre>
 
-<h4>Excluir TODOS</h4>
+<h3>Excluir TODOS</h3>
 <pre>deleteAll() async {
     final db = await database;
     db.rawDelete("Delete * from Client");
