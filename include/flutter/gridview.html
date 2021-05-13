@@ -1,0 +1,35 @@
+<ol>
+    <li><a href="#height">Heigth</a></li>
+</ol>
+
+<hr>
+
+<a name="height"></a>
+<h2>Height | Altura </h2>
+Definir a altura do elemento.
+<pre>new Container(
+    child: new GridView.count(
+        crossAxisCount: 2,<b style="color:red">
+        childAspectRatio: (itemWidth / itemHeight),</b>
+        controller: new ScrollController(keepScrollOffset: false),
+        shrinkWrap: true,
+        scrollDirection: Axis.vertical,
+        children: widgetList.map((String value) {
+            return new Container(
+                color: Colors.green,
+                margin: new EdgeInsets.all(1.0),
+                child: new Center(
+                    child: new Text(
+                        value,
+                        style: new TextStyle(
+                        fontSize: 50.0,
+                        color: Colors.white,
+                        ),
+                    ),
+                ),
+            );
+        }).toList(),
+    ),
+),</pre>
+
+<a href="https://stackoverflow.com/questions/48405123/how-to-set-custom-height-for-widget-in-gridview-in-flutter" target="_blank">stackoverflow</a>

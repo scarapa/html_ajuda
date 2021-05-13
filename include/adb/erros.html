@@ -2,8 +2,10 @@
     <li><a href="#permission-denied">permission denied</a></li>
     <li><a href="#avd-sem-internet">AVD SEM INTERNERT</a></li>
     <li><a href="#avd-nao-abre">AVD NAO ABRE</a></li>
-    <li><a href="#error-initializing-adb">Error initializing ADB</a></li>
+    <li><a href="#error-initializing-adb">DEVICE EXPLORER - Error initializing ADB</a></li>
     <li><a href="#adb-obsoleto">ADB Obsoleto</a></li>
+    <li><a href="#emulator-offline">Emulador offline</a></li>
+    <li><a href="#adb-nao-reconhecido">ADB não é reconhecido</a></li>
 </ol>
 
 <hr>
@@ -56,7 +58,8 @@ Solução deletar os arquivos <b>.lock</b> conforme imagem abaixo:
 <hr>
 
 <a name="error-initializing-adb"></a>
-<h2>Error initializing ADB</h2>
+<h2>DEVICE EXPLORER - Error initializing ADB</h2>
+Device explorer não abre!
 <div class="centro">
     <img src="images/android-studio-erro-initializing-adb-01.jpg" class="w34">
 </div>
@@ -70,6 +73,17 @@ Solução deletar os arquivos <b>.lock</b> conforme imagem abaixo:
 	<li>digite <kbd>adb.exe start-server</kbd> pressione<code class="teclado">Enter</code></li>
 	<li>Abra Android Studio novamente</li>
 </ul>
+
+<hr>
+
+<h4>Solucao 02</h4>
+
+Caso ainda não de certo ...
+<ol>
+    <li>Gerecinador de tarefas <kbd>ctrl</kbd> <kbd>alt</kbd> <kbd>del</kbd></li>
+    <li>Procure o adb.exe e encerre-o</li>
+    <li>Volte para Solução 01</li>
+</ol>
 
 <a href="https://stackoverflow.com/questions/49340436/error-initializing-adb-unable-to-create-debug-bridge-unable-to-start-adb-serve">Fonte[1]</a>
 <a href="https://stackoverflow.com/questions/47506261/android-studio-error-initializing-adb-android-debug-bridge-not-found">Fonte[2]</a>
@@ -101,3 +115,56 @@ Conforme imagem abaixo
 </div>
 
 <a href="https://stackoverflow.com/questions/51240223/adb-exe-is-obsolete-and-has-serious-performance-problems" target="_blank">stackoverflow</a><br>
+
+<hr>
+
+<a name="emulator-offline"></a>
+<h2>Emulator offline</h2>
+<div class="centro">
+    <img src="./images/adb_emulator_offline_001.jpg" class="bp w50">
+</div>
+<br clear="all">
+<br clear="all">
+
+Primeira destravar a imagem, delete os arquivos com a extensao <code>.lock</code>
+<div class="centro">
+    <img src="./images/adb_avd_error_running_002.jpg" class="bp w30">
+</div>
+<br clear="all">
+<br clear="all">
+
+Selecionar a opção <code>Cold boot now</code>
+<div class="centro">
+    <img src="./images/adb_avd_error_running_003.jpg" class="bp w60">
+</div>
+<br clear="all">
+<br clear="all">
+
+<hr>
+
+<a name="adb-nao-reconhecido"></a>
+<h2>ADB não é reconhecido</h2>
+<pre class="terminal">$ adb devices</pre>
+<code>adb : O termo 'adb' não é reconhecido como nome de cmdlet</code>
+<br/><br/>
+
+No <kbd>windows</kbd> basta pegar o caminho da instalação:<br/>
+<code>C:\Users\<b>NOME-USUARIO</b>\AppData\Local\Android\Sdk\platform-tools</code>
+<br/><br/>
+
+E inserir nas variaveis de ambiente
+<div class="centro">
+    <img src="./images/flutter-gradle-003.png" class="bp w50">
+</div>
+
+CLICAR no botao <button>EDITAR</button>
+<div class="centro">
+    <img src="./images/adb_varivael_ambiente_01.jpg" class="bp w50">
+</div>    
+
+CLICAR no botao <button>NOVO</button> no topo , inserir o caminho e clicar no botão <button>OK</button>
+<div class="centro">
+    <img src="./images/adb_varivael_ambiente_02.jpg" class="bp w50">
+</div> 
+
+<a href="https://qastack.com.br/programming/20564514/adb-is-not-recognized-as-an-internal-or-external-command-operable-program-or" target="blank">qastack</a>

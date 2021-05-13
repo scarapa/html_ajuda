@@ -1,14 +1,26 @@
+<ol>
+    <li><a href="#permission-denied">Push</a></li>
+    <li><a href="#avd-sem-internet">Rotas nomeadas</a></li>
+    <li><a href="#avd-nao-abre">POP</a></li>
+</ol>
+
+<hr>
+
+
+<h2>Push</h2>
 Dentro da lista(<b">ListTitle</b>), temos um metodo que vai por a tela atual no topo da pilha através do metodo <b>push</b>,
 para navegar para outra tela utiliza-se o widget <b>MaterialPageRoute</b>
-<pre>
-return ListTitle(
+<pre>return ListTitle(
     title: Text('titulo') ,
     onTap: () => <b style="color:red">Navigator.push</b>(
         context , 
         <b  style="color:red">MaterialPageRoute</b>( builder: (context) => <b  style="color:red">NOME-DA-TELA()</b> )
     )
-)
-</pre>
+)</pre>
+ou se preferir ...
+<pre>onPressed: (){ <b style="color:Red">Navigator.push( context ,MaterialPageRoute( builder: (context) => AtendimentoEditTela() ) );</b> },</pre>
+
+<hr>
 
 <h2>Rotas nomeadas</h2>
 <h3>Sem parametros</h3>
@@ -18,3 +30,7 @@ return ListTitle(
 <pre>Navigator.of(context).pushNamed( AppRoutes.FEIRAS_HOME_AGRICULTURA_FAMILIAR_BANCA , arguments: objeto  );</pre>
 Pegando os parametros noutra tela
 <pre>final banca = ModalRoute.of(context).settings.arguments as FeiraBancaModel;</pre>
+
+
+<h2>POP</h2>
+para voltar usa-se o <code>pop</code>

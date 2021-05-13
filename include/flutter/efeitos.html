@@ -1,0 +1,65 @@
+<ol>
+    <li><a href="#transicao-rotas">Efeitos entre paginas</a></li>
+    <li><a href="#"></a></li>
+</ol>
+
+<hr>
+
+<a name="transicao-rotas"></a>
+<h2>Efeitos entre paginas</h2>
+A rota de entrada (nova página) e a rota de saída (página antiga). 
+Podemos usar as animações de transição da pilha e aplicá-las a ambas as rotas. 
+um exemplo disso poderia ser o deslizar na nova rota e deslizar para fora da rota antiga.
+<pre>
+import 'package:flutter/material.dart';class EnterExitRoute extends PageRouteBuilder {
+    final Widget enterPage;
+    final Widget exitPage;
+    EnterExitRoute({this.exitPage, this.enterPage})
+        : super(
+            pageBuilder: (
+                BuildContext context,
+                Animation<double> animation,
+                Animation<double> secondaryAnimation,
+            ) =>
+                enterPage,
+            transitionsBuilder: (
+                BuildContext context,
+                Animation<double> animation,
+                Animation<double> secondaryAnimation,
+                Widget child,
+            ) =>
+                Stack(
+                    children: <Widget>[
+                    SlideTransition(
+                        position: new Tween<Offset>(
+                        begin: const Offset(0.0, 0.0),
+                        end: const Offset(-1.0, 0.0),
+                        ).animate(animation),
+                        child: exitPage,
+                    ),
+                    SlideTransition(
+                        position: new Tween<Offset>(
+                        begin: const Offset(1.0, 0.0),
+                        end: Offset.zero,
+                        ).animate(animation),
+                        child: enterPage,
+                    )
+                    ],
+                ),
+            );
+    }    
+</pre>    
+
+E mais isso ...
+<pre>
+Navigator.push(context,
+    EnterExitRoute( exitPage: this, enterPage: Screen2() )
+)    
+</pre>
+
+Esse é o resultado
+<div class="centro center">
+    <img src="./images/flutter-efeito-rotas-01.gif" class="bp w20">
+</div>
+
+<a href="https://medium.com/flutter-community/everything-you-need-to-know-about-flutter-page-route-transition-9ef5c1b32823" target="_blank">medium</a>

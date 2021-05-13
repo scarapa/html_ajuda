@@ -4,6 +4,7 @@
     <li><a href="#background">Background</a></li>
     <li><a href="#com-icone">Com Icone</a></li>
     <li><a href="#StatelessWidget">StatelessWidget</a></li>
+    <li><a href="#textarea">TextArea</a></li>
 </ol>
 
 <a name="bordas"></a>
@@ -118,3 +119,17 @@ Pegando valores do componente um StatelessWidget
         child: Text('Nova Transacao'),
     )
 </pre>
+
+<hr>
+
+<a name="textarea"></a>
+<h2>TextArea</h2>
+Para fazer o textfield como o textarea do HTML
+<pre>
+TextFormField(
+    minLines: 6, // any number you need (It works as the rows for the textarea)
+    keyboardType: TextInputType.multiline,
+    maxLines: null,
+)</pre>
+
+<a href="https://stackoverflow.com/questions/54972928/how-to-expand-a-textfield-in-flutter-looks-like-a-text-area" target="_blank">stackoverflow</a>

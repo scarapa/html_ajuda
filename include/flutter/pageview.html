@@ -1,0 +1,117 @@
+Exemplo muitoooo simples.
+<pre>
+    import 'package:flutter/material.dart';
+
+    void main() => runApp( MyApp() );
+    
+    class MyApp extends StatelessWidget {
+      @override
+      Widget build(BuildContext context) {
+        return MaterialApp(
+                debugShowCheckedModeBanner: false,
+                home: HomeTela(),
+          );
+      }
+    }
+    
+    
+    class HomeTela extends StatefulWidget {
+    
+      const HomeTela();
+    
+      @override
+      _HomeTelaState createState() => _HomeTelaState();
+    }
+    
+    class _HomeTelaState extends State<HomeTela> {
+      
+      List<Widget> lista = [
+           Image.network("https://raw.githubusercontent.com/scarapa/carros/master/images/01-01.jpg",scale:0.6),
+           Image.network("https://raw.githubusercontent.com/scarapa/carros/master/images/02-01.jpg",scale:0.6),
+           Image.network("https://raw.githubusercontent.com/scarapa/carros/master/images/03-01.jpg",scale:0.6),
+           Image.network("https://raw.githubusercontent.com/scarapa/carros/master/images/04-01.jpg",scale:0.6),
+      ];
+    
+      int currentPageValue = 0;
+      
+      @override
+      Widget build(BuildContext context) {
+    
+        
+        return Scaffold(
+          appBar: AppBar(
+            title: Text('PageView'),
+          ),
+          body: Container(
+            width: MediaQuery.of(context).size.width,
+            child: Stack(
+              alignment: AlignmentDirectional.bottomCenter,
+              children: [
+                
+                PageView(
+                  physics: ClampingScrollPhysics(),
+                  
+                  onPageChanged: (int page) {
+                    getChangedPageAndMoveBar(page);
+                  },
+    //               controller:controller,
+                  children: <Widget>[
+                    for(var item in lista) item,
+                  ],
+                ),
+                Stack(
+                  alignment: AlignmentDirectional.topStart,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(bottom:35),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          for(int i = 0; i < lista.length ; i++)
+                            (i == currentPageValue)?circleBar(true):circleBar(false)
+                        ],
+                      ),
+                      
+                    ),
+    
+                  ],
+                ),Visibility( 
+                      visible: currentPageValue == lista.length - 1 ? true : false,
+                      child: FloatingActionButton(
+                          onPressed: () {
+                        },
+                        shape: BeveledRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(26))
+                        ),
+                        child: Icon(Icons.arrow_forward),
+                      ),
+                )
+              ],
+            ),
+          ),
+    
+        );
+      }
+     
+        void getChangedPageAndMoveBar(int page) {
+            currentPageValue = page;
+            setState(() {});
+        }
+    
+        Widget circleBar(bool isActive) {
+            return AnimatedContainer(
+                duration: Duration(milliseconds: 150),
+                margin: EdgeInsets.symmetric(horizontal: 8),
+                height: isActive ? 12 : 8,
+                width: isActive ? 12 : 8,
+                decoration: BoxDecoration(
+                    color: isActive ? Colors.red : Colors.blue,
+                    borderRadius: BorderRadius.all(Radius.circular(12))
+                ),
+            );
+        }
+    }
+</pre>
+
+<a href="https://medium.com/aubergine-solutions/create-an-onboarding-page-indicator-in-3-minutes-in-flutter-a2bd97ceeaff" target="_blank">medium</a>

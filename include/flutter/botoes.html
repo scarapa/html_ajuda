@@ -1,0 +1,139 @@
+<ol>
+    <li><a href="#bottomnavigatorbar">BottomNavigationBar</a></li>
+    <li><a href="#multiplos-floatingActionButton">Multiplos FloatingActionButton</a></li>
+</ol>
+
+<hr>
+<a name="bottomnavigatorbar"></a>
+<h2>BottomNavigationBar</h2>
+<pre>
+bottom = new Theme(
+    data: Theme.of(context).copyWith(
+        canvasColor: Colors.indigo,
+    ),
+    child: Container(
+        decoration: BoxDecoration(
+            boxShadow: <BoxShadow>[
+                BoxShadow(
+                    color: Colors.black,
+                    blurRadius: 20,
+                ),
+            ],
+        ),
+        child: new BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            onTap: _selecteScreen,
+            unselectedItemColor: Colors.black54,
+            selectedItemColor: Colors.white,
+            currentIndex: _selectedScreenIndex,
+            items: [
+                BottomNavigationBarItem(icon: Icon(Icons.home , size: MediaQuery.of(context).size.width * _tamanhoIconeBarra,), title: Text('Inicio' , style: TextStyle(fontSize: MediaQuery.of(context).size.width * _tamanhoFonteBarra),) ),
+                BottomNavigationBarItem(icon: Icon(Icons.shopping_basket, size:  MediaQuery.of(context).size.width * _tamanhoIconeBarra), title: Text('Feiras', style: TextStyle(fontSize: MediaQuery.of(context).size.width * _tamanhoFonteBarra))),
+                BottomNavigationBarItem(icon: Icon(MdiIcons.mapMarkerRadius, size: MediaQuery.of(context).size.width * _tamanhoIconeBarra), title: Text('Escritorios', style: TextStyle(fontSize: MediaQuery.of(context).size.width * _tamanhoFonteBarra))),
+                BottomNavigationBarItem(icon: Icon(Icons.help, size: MediaQuery.of(context).size.width * _tamanhoIconeBarra), title: Text('Sobre', style: TextStyle(fontSize: MediaQuery.of(context).size.width * _tamanhoFonteBarra))),
+            ],
+        ),   
+)
+</pre>
+
+<h3>BottomNavigationBar - sombra - sombreamento</h3>
+
+<pre>
+class HomePage extends StatelessWidget {
+    @override
+    Widget build(BuildContext context) {
+        return Scaffold(
+            body: Center(
+                child: Text('Sample App'),
+            ),<b style="color:red">
+            bottomNavigationBar: Container(
+                decoration: BoxDecoration(
+                    boxShadow: &lt;BoxShadow&gt;[
+                        BoxShadow(
+                        color: Colors.black,
+                        blurRadius: 10,
+                        ),
+                    ],
+                ),</b>
+                child: BottomNavigationBar(
+                    elevation: 10,
+                    items: [
+                        BottomNavigationBarItem(
+                        icon: Icon(Icons.ac_unit),
+                        title: Text('Test'),
+                        ),
+                        BottomNavigationBarItem(
+                        icon: Icon(Icons.access_alarm),
+                        title: Text('Test'),
+                        ),
+                        BottomNavigationBarItem(
+                        icon: Icon(Icons.access_alarm),
+                        title: Text('Test'),
+                        ),
+                    ],
+                ),
+            ),
+        );
+    }
+}    
+</pre>
+<a href="https://stackoverflow.com/questions/49307858/style-bottomnavigationbar-in-flutter" target="_blank">stackoverflow</a><br>
+<a href="https://stackoverflow.com/questions/61934827/how-to-apply-elevation-in-bottom-navigation-bar-in-flutter" target="_blank">stackoverflow</a><br>
+
+<hr>
+<a name="multiplos-floatingActionButton"></a>
+<h2>Multiplos FloatingActionButton</h2>
+Ao inserir multiplos botoes acontece o seguinte erro...<br>
+<pre>
+══╡ EXCEPTION CAUGHT BY SCHEDULER LIBRARY ╞═════════════════════════════════════════════════════════
+I/flutter (21786): The following assertion was thrown during a scheduler callback:
+I/flutter (21786): There are multiple heroes that share the same tag within a subtree.
+I/flutter (21786): Within each subtree for which heroes are to be animated (typically a PageRoute subtree), each Hero
+I/flutter (21786): must have a unique non-null tag.
+I/flutter (21786): In this case, multiple heroes had the following tag: &lt;default FloatingActionButton tag&gt;
+</pre>
+
+
+Solucao
+<table>
+    <tr>
+        <th style="text-align: center;">CODIGO</th>
+        <th style="text-align: center;">IMAGEM</th>
+    </tr>
+    <tr>
+        <td>
+<pre>
+floatingActionButton: Container(
+    height: alturaDisponivel,
+    child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+            FloatingActionButton(<b style="color:red">
+                heroTag: "btn1",</b>
+                onPressed: (){} ,
+                child: Icon(Icons.photo_camera),
+            ),
+            SizedBox(height: 20,),
+            FloatingActionButton(<b style="color:red">
+                heroTag: "btn2",</b>
+                onPressed: (){} ,
+                child: Icon(Icons.photo),
+            ),
+        ],
+    ),
+),
+</pre>            
+        </td>
+        <td style="text-align: center;">
+            <div class="centro center">
+                <img src="./images/flutter-multiple-botao-floating-01.jpg" class="bp w40">
+            </div>
+        </td>
+    </tr>
+</table>
+
+
+
+
+<a href="https://stackoverflow.com/questions/51125024/there-are-multiple-heroes-that-share-the-same-tag-within-a-subtree" target="_blank">stackoverflow</a>
+
