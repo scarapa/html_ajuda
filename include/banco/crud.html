@@ -1,49 +1,4 @@
-﻿<style>
-    body{ counter-reset: aga2 }
-    h2::before{
-        counter-increment: aga2;
-        content: counter(aga2) " - ";
-        width:100%;
-    }	
-    h2{ 
-        font-weight: bold;
-        counter-reset: aga3;
-        border-bottom:5px solid #333; 
-        padding:0 0 -10px 0 !important;
-        margin-bottom: 20px;
-        margin-top: 20px;        
-    }
-
-    h3::before{
-		margin-left:25px;
-        counter-increment: aga3;
-        content: counter(aga2)"."counter(aga3) " - ";
-    }	
-    h3{ counter-reset: aga4; }
-
-    h4::before{
-        margin-left:25px;
-        counter-increment: aga4;
-        content: counter(aga2)"."counter(aga3)"."counter(aga4) " - ";
-    }	
-    h4{ counter-reset: aga5; }
-
-    h5::before{
-        margin-left:25px;
-        counter-increment: aga5;
-        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5) " - ";
-    }
-    h5{ counter-reset: aga6; }	    
-    
-    h6::before{
-        margin-left:25px;
-        counter-increment: aga6;
-        content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5)"."counter(aga6) " - ";
-	}
-	.table{color:black}
-</style>
-
-
+﻿
 <kbd>DML</kbd> – Data Manipulation Language (DML) são utilizados para o gerenciamento de dados dentro de objetos do banco. Alguns exemplos:
 <br><br>
 <div class="col-lg-8">
@@ -382,9 +337,14 @@ from table t1 </pre>
 	<a href="https://stackoverflow.com/questions/21030990/android-null-from-sum">stackoverflow</a> 
 	<a href="https://www.w3schools.com/sql/sql_isnull.asp">w3schools</a>
 
+    <h3>UPDATE - Replace</h3>
+    <kbd>MySQL</kbd>
+    String na database continha caracteres que não deveriam estar:
+    <code>File:' \data\0\br.com.vida_quadrada.me_poupe</code><br>
+    Solucao fazer um replace dentro de replace para retirar os caracteres incomodos.
+    <code>UPDATE atendimentos_fotos SET ds_caminho = replace(replace(replace( ds_caminho, 'File:', '' ),'''',''),' ','');</code>
 
-
-
+<a href ="https://stackoverflow.com/questions/10532656/sqlite-replace-part-of-a-string/34996870" target="_blank">stackoverflow</a>
 
 
 
