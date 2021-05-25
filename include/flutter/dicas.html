@@ -5,8 +5,12 @@
     <li><a href="#layout">Layout</a></li>
     <li><a href="#remover-scroll">Remover Scroll</a></li>
     <li><a href="#ios">IOS</a></li>
+    <li><a href="#launcher-icons">Icone da Aplicacao</a></li>
     <li><a href="#links-importantes">Links importantes</a></li>
 </ol>
+
+
+
 
 <a name="nome-de-pacote"></a>
 <h2>Alterar nome de pacote</h2>
@@ -40,6 +44,8 @@ package="br.tche.emater.emater_tecnico"&gt;
 &lt;!-- Flutter needs it to communicate with the running application
         to allow setting breakpoints, to provide hot reload, etc.
 --&gt;</pre>
+
+<h3>Dandroid/app/src/main/kotlin/com/example/me_poupe/MainActivity.kt</h3>
 
 <hr>
 
@@ -193,6 +199,33 @@ Para Android, edite apenas android: valor do rótulo na tag do aplicativo no arq
     &lt;/application&gt;
 &lt;/manifest&gt;    
 </pre>
+
+<hr>
+
+<a name="launcher-icons"></a>
+<h2>Icone da Aplicacao</h2>
+Primeiramente você precisa acessar o plugin e ver qual a melhor versão para você, a minha versão é <code> Dart 2.10</code>, voce
+pode verificar na <a href="https://pub.dev/packages/flutter_launcher_icons/versions" target="_blank">pagina oficial do plugin flutter_launcher_icons</a>
+<br><br>
+
+<h3>pubspec.yaml</h3>
+<pre>dev_dependencies:
+    flutter_test:
+      sdk: flutter<b style="color:red">
+    flutter_launcher_icons: ^0.7.0
+  
+flutter_icons:
+    ios: true
+    android: true
+    image_path_ios: "assets/images/porco_01.png"
+    image_path_android: "assets/images/porco_01.png"</b>
+</pre>
+
+Agora basta rodar o seguintes comandos nessa ordem.
+<pre class="terminal">$ flutter packages get</pre>
+<pre class="terminal">flutter packages pub run flutter_launcher_icons:main</pre>
+e tudo pronto !<br><br>
+<a href="https://medium.com/@psyanite/how-to-add-app-launcher-icons-in-flutter-bd92b0e0873a">medium</a>
 
 <hr>
 <a name="links-importantes"></a>

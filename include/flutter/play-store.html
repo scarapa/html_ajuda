@@ -1,9 +1,60 @@
+<ol>
+    <li><a href="#gerar-icone-app">GERAR ICONE DO APP</a></li>
+    <li><a href="#trocar-nome">ALTERAR NOME DO APP</a></li>
+    <li><a href="#gerar-chave">GERAR CHAVE</a></li>
+    <li><a href="#gerar-APK">GERAR APK</a></li>
+</ol>
+
+<a name="gerar-icone-app"></a>
+<h2>GERAR ICONE DO APP</h2>
+Insira o plugin e essas configuracoes no arquivo <code>pubspec.yaml</code>
+<pre>
+    flutter_launcher_icons: ^0.7.0
+
+flutter_icons:
+    ios: true
+    android: true<b style="color:green">
+    // LOCAL ONDE ESTÁ SALVO AS IMAGENS</b>
+    image_path_ios: "assets/images/porco_01.png"
+    image_path_android: "assets/images/porco_01.png"<b style="color:green">
+    // OPCIONAL</b>
+    adaptive_icon_background: "assets/images/icone/background.png"
+    adaptive_icon_foreground: "assets/images/icone/foreground.png"    
+</pre>
+Agora necessário o comando para baixar o plugin e posteriormente para gerar os arquivos
+<pre class="terminal">$ flutter pub get
+$ flutter pub run flutter_launcher_icons:main</pre>
+
+<a href="https://pub.dev/packages/flutter_launcher_icons">pub.dev</a>
+
+<hr>
+
+<a name="trocar-nome"></a>
+<h2>ALTERAR NOME DO APP</h2>
+Necessário alterar esse arquivo <code>android\app\src\main\AndroidManifest.xml</code>
+<pre>
+&lt;uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/&gt;
+&lt;uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/&gt;
+&lt;uses-permission android:name="android.permission.INTERNET"/&gt;
+&lt;application
+    android:name="io.flutter.app.FlutterApplication"
+    android:label=<b style="color:Red">"Emater Tecnico"</b>
+    android:icon="@mipmap/ic_launcher"&gt;
+    &lt;activity
+        android:name=".MainActivity"
+        android:launchMode="singleTop"
+        android:theme="@style/LaunchTheme"    
+</pre>
+<a href="https://qastack.com.br/programming/49353199/how-to-change-the-app-display-name-build-with-flutter" target="_blank">qastack</a>
+<hr>
+
+<a name="gerar-chave"></a>
 <h2>GERAR CHAVE</h2>
 <pre>$ keytool -genkey -v -keystore c:\Users\49583\key.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias key</pre>
 
-<h2>Gerar senha da chave</h2>
+<h3>Gerar senha da chave</h3>
 
-<h2>Arquivo key.properties</h2>
+<h3>Arquivo key.properties</h3>
 Criar o arquivo &lt;app dir&gt;/android/key.properties que irá buscar as informações da nossa chave.
 <pre>
 storePassword=&lt;password from previous step&gt;
@@ -12,7 +63,7 @@ keyAlias=key
 storeFile=&lt;location of the key store file, such as /Users/&lt;user name&gt;/key.jks&gt;	
 </pre>
 
-<h2>build.gradle</h2>
+<h3>build.gradle</h3>
 Configurar arquivo <code>android/app/build.gradle</code>
 
 <pre><span style="color:red">
@@ -43,6 +94,9 @@ buildTypes {
 }</span>
 </pre>
 
+<hr>
+
+<a name="gerando-apk"></a>
 <h2>Gerando APK</h2>
 Antes de gerar o apk limpe as pastas afim de eliminar qualquer resticio
 <pre>$ flutter clean</pre>

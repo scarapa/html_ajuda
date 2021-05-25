@@ -1,3 +1,11 @@
+<ol>
+    <li><a href="#imagem-internet-blob"></a>Imagem da internet para blob</li>
+    <li><a href="#cantos-arredondados">Cantos arredondados</a></li>
+    <li><a href="#redimensionar-imagem-device">Redimensionar Imagem do DEVICE</a></li>
+    <li><a href="#"></a></li>
+</ol>
+
+<a name="imagem-internet-blob"></a>
 <h2>Imagem da internet para blob</h2>
 <pre>
 import 'package:http/http.dart' as http;
@@ -26,6 +34,7 @@ Image.memory( imagem ),
 
 <hr>
 
+<a name="cantos-arredondados"></a>
 <h2>Cantos arredondados</h2>
 <pre>ClipRRect(
     borderRadius: BorderRadius.circular(8.0),
@@ -36,3 +45,81 @@ Image.memory( imagem ),
     ),
 )</pre>
 <a href="https://stackoverflow.com/questions/51513429/rounded-corners-image-in-flutter" target="_blank">stackoverflow</a>
+
+<hr>
+
+<a name="redimensionar-imagem-device"></a>
+<h2>Redimensionar Imagem do DEVICE</h2>
+Para redimensionar uma imagem que esteja armazenada DENTRO DO DISPOSITIVO
+<pre>
+import 'dart:io';
+import 'package:image/image.dart';
+
+class ImagemModel{
+    ImagemModel();
+
+    redimensionar( caminho,{ String novoCaminho} ) async {
+    <span style="color:green">
+    /*  ATENCAO
+        NA CLASSE O WIDTH E HEIGTH DA MESMA SEMPRE SERAO OS MESMOS
+        MESMO QUE A ORIENTACAO DA IMAGEM SEJA DIFERENTE, E PARA
+        FINS DE REDIMENSIONAMENTO REALMENTE NAO IMPORTA A ORIENTACAO
+
+        ORIENTACAO PROPRIEDADE =&gt; image.exif.orientation [1 ou 6]
+    */</span>
+
+    double largura;
+    double altura;
+    double imagemNovaAltura;
+    double imagemNovaLargura;
+    Image image;
+    Image thumb;
+    <span style="color:green">
+    // VARIAVEL QUE DEFINE O TAMANHO IDEAL DA IMAGEM PODE SER QUALQUER
+    // TAMANHO A SUA ESCOLHA [800,1024,1200,1600,1900 ...]
+
+    // VARIVAEL QUE DEFINIRA O REDIMENSIONADO DA IMAGEM</span>
+    double imagemAlturaScalaRedimensionar;
+    double imagemLarguraScalaRedimensionar;
+
+    try{
+        image = decodeImage(new File(caminho).readAsBytesSync());
+    }catch(e){
+        print('ERRO DECODE: $e');
+        return null;
+    }
+
+
+    // SE FOR PAISAGEM
+    if(image.exif.orientation == 1){
+        imagemNovaLargura = 800;
+        imagemNovaAltura = 600;
+    }else{
+        imagemNovaLargura = 600;
+        imagemNovaAltura = 800;
+    }
+
+    imagemLarguraScalaRedimensionar = imagemNovaLargura / image.width;
+    imagemAlturaScalaRedimensionar = imagemNovaAltura / image.height;
+    largura = (image.width * imagemLarguraScalaRedimensionar) as double;
+    altura = (image.height * imagemAlturaScalaRedimensionar) as double;
+
+    thumb = copyResize(
+        image ,
+        width: int.parse( largura.toStringAsFixed(0).toString() ),
+        height: int.parse( altura.toStringAsFixed(0).toString() )
+    );
+    var retorno;
+    try{
+        String caminhoCompleto = (novoCaminho != null)?novoCaminho:caminho;
+        retorno = new File(caminhoCompleto)..writeAsBytesSync( encodeJpg(thumb) );
+        return retorno;
+    }catch(e){
+        print("ERRO REDIMENSIONAR: $e");
+        return null;
+    }
+    }
+
+}</pre>
+
+<a href="https://www.youtube.com/watch?v=tf1Rf7Xj7EA">youtube</a>
