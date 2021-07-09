@@ -1,20 +1,7 @@
-<style>
-body{ counter-reset: contadorExterno; }
-body h3::before{
-    counter-increment: contadorExterno;
-    content: counter(contadorExterno) " - ";
-}	
 
-h3{ counter-reset: contadorInterno; }
-h4::before{
-	margin-left:25px;
-    counter-increment: contadorInterno;
-    content: counter(contadorExterno)"."counter(contadorInterno) " - ";
-}	
-</style>
 
-<h3>Texto</h3>
-<h4>Alinhamento</h4>
+<h2>Texto</h2>
+<h3>Alinhamento</h3>
 Realinhe facilmente o texto aos componentes com as classes de alinhamento de texto
 
 <div class="row">
@@ -35,7 +22,7 @@ Realinhe facilmente o texto aos componentes com as classes de alinhamento de tex
 	</div>
 </div>
 
-<h4>Text wrapping and overflow</h4>
+<h3>Text wrapping and overflow</h3>
 <div class="row">
 	<div class="col-md-2"><img src="./images/bootstrap_texto_alinhamento_02.jpg" class="bp" style="width: 100%"></div>
 	<div class="col-md-6">
@@ -81,7 +68,7 @@ Para um conteúdo mais longo, você pode adicionar uma classe .text-truncate par
 	</div>
 </div>
 
-<h4>Word break</h4>
+<h3>Word break</h3>
 Evite que longas sequências de texto quebrem o layout de seus componentes usando .text-break para definir overflow-wrap: break-word (e word-break: break-word para compatibilidade com o IE e Edge).
 <div class="row">
 	<div class="col-md-4"><img src="./images/bootstrap_texto_alinhamento_05.jpg" class="bp" style="width: 100%"></div>
@@ -94,10 +81,10 @@ Evite que longas sequências de texto quebrem o layout de seus componentes usand
 <br clear="all">
 <a href="https://getbootstrap.com/docs/4.3/utilities/text/" target="_blank">Bootstap4</a>
 <hr>
-<h3>Flex</h3>
+<h2>Flex</h2>
 Criação de contêiner flexbox e transformar elementos filhos diretos em itens flex. Os contêineres e itens flexíveis podem ser modificados ainda mais com propriedades flexíveis adicionais.
 
-<h4>Direction</h4>
+<h3>Direction</h3>
 Defina a direção dos itens flexíveis em um contêiner flexível com os utilitários de direção. Na maioria dos casos, você pode omitir a classe horizontal aqui, pois o padrão do navegador é linha. No entanto, você pode encontrar situações em que precisou definir explicitamente esse valor (como layouts responsivos).
 <br><br>
 Use .flex-row para definir uma direção horizontal (o padrão do navegador) ou .flex-row-reverse para iniciar a direção horizontal do lado oposto.
@@ -138,7 +125,7 @@ Use .flex-column to set a vertical direction, or .flex-column-reverse to start t
 	</div>
 </div>
 
-<h4>Justify content</h4>
+<h3>Justify content</h3>
 <div class="row">
 	<div class="col-md-4"><img src="./images/bootstrap_flex_03.jpg"></div>
 	<div class="col-md-6">
@@ -152,7 +139,7 @@ Use .flex-column to set a vertical direction, or .flex-column-reverse to start t
 	</div>
 </div>
 
-<h4>Align items</h4>
+<h3>Align items</h3>
 Use os utilitários de alinhamento de itens nos contêineres do flexbox para alterar o alinhamento dos itens flex no eixo cruzado (o eixo y a ser iniciado, o eixo x se a direção da flexão: coluna). Escolha entre início, fim, centro, linha de base ou extensão (padrão do navegador).
 <div class="row">
 	<div class="col-md-4"><img src="./images/bootstrap_flex_04.jpg"></div>
@@ -171,8 +158,8 @@ Use os utilitários de alinhamento de itens nos contêineres do flexbox para alt
 <a href="https://getbootstrap.com/docs/4.3/utilities/flex/" target="_blank">Bootstrap 4</a>
 
 
-<h3>Float</h3>
-<h4>Classes</h4>
+<h2>Float</h2>
+<h3>Classes</h3>
 <div class="row">
 	<div class="col-md-4"><img src="./images/bootstrap_float_01.jpg" class="bp" style="width: 100%"></div>
 	<div class="col-md-6">
@@ -185,7 +172,7 @@ Use os utilitários de alinhamento de itens nos contêineres do flexbox para alt
 </div>
 
 
-<h4>Responsividade</h4>
+<h3>Responsividade</h3>
 <div class="row">
 	<div class="col-md-4">
 <pre>

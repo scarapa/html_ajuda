@@ -1,5 +1,5 @@
 ﻿
-<h3>SQLSERVER - ERRO: Heterogeneous queries</h3>
+<h2>SQLSERVER - ERRO: Heterogeneous queries</h2>
 Quando aparecer essa mensagem de erro: <br/><br/>
 <code><span style="font-style:italic;">Heterogeneous queries require the ANSI_NULLS and ANSI_WARNINGS options to be set for the connection. 
 This ensures consistent query semantics. Enable these options and then reissue your query.</span></code><br/><br/>
@@ -10,27 +10,27 @@ Solução:
 <a href="https://stackoverflow.com/questions/13354665/sql-linked-server-query-error-on-php">Fonte</a>
 
 
-<h3>SQLSERVER - ERRO: erro na consulta de string com acentuação</h3>			
+<h2>SQLSERVER - ERRO: erro na consulta de string com acentuação</h2>			
 Quando aparecer essa mensagem de erro: <br/><br/>
 <pre>WHERE (p.nm_produtor COLLATE sql_latin1_general_cp1251_ci_as) LIKE ('álvaro%' COLLATE sql_latin1_general_cp1251_ci_as)</pre>
 <a href="http://www.devmedia.com.br/eliminando-caracteres-especiais-de-strings-no-sql-server-collate/25286">Fonte 1</a>		
 
 
-<h3>SQLSERVER - ERRO NO INSERT</h3>			
+<h2>SQLSERVER - ERRO NO INSERT</h2>			
 Quando aparecer essa mensagem de erro: <br/><br/>
 <code><span style="font-style:italic;">Cannot insert explicit value for identity column in table 'NOME_SUA_TABELA' when IDENTITY_INSERT is set to OFF.</span></code><br/><br/>
 Isso acontece porque na sua tabela existe o relacionamento de ser chave estrangeira em outra tabela, mas é possível FORÇAR  o insert.<br/>
 Solução:
 <pre>mssql_query("SET IDENTITY_INSERT tblCad_Etapas ON;");</pre>
 
-<h3>SQLSERVER - ERRO AO TENTAR CRIAR FK - CHAVE ESTRANGEIRA</h3>
+<h2>SQLSERVER - ERRO AO TENTAR CRIAR FK - CHAVE ESTRANGEIRA</h2>
 <code><span style="font-style:italic;">SQLSERVER Msg 547, Level 16, State 0, Line 2 The ALTER TABLE statement conflicted with the FOREIGN KEY constraint ...</span></code><br/><br/>
 Isso acontece porque não se pode construir a integridade das chaves já populado.<br/>
 Solução: limpar a base e dar comando de construção, exemplo abaixo:
 <pre>ALTER TABLE PEDIDOS ADD CONSTRAINT FK_COD_CLI FOREIGN KEY (COD_CLI) REFERENCES CLIENTES(COD);</pre>
 <a href="http://www.devmedia.com.br/criando-banco-e-tabelas-garantindo-a-integridade-dos-dados/24426">DEVMEDIA</a>
 
-<h3>SQLSERVER - ERRO:Implicit conversion of varchar</h3>
+<h2>SQLSERVER - ERRO:Implicit conversion of varchar</h2>
 <code>Implicit conversion of varchar value to varchar cannot be performed because the collation of the value is unresolved due to a collation conflict.</code>
 Acontece esse erro quando você tenta, exibir duas colunas strings com collation diferentes.
 <pre>e.ds_Esreg +' - '+u.ds_uniop AS 'lotacao'</pre>
@@ -57,7 +57,7 @@ p {
 } 
 </style>
 
-<h3>phpMyAdmin - Erro</h3>
+<h2>phpMyAdmin - Erro</h2>
 <d1>phpMyAdmin - Erro</d1>
 <p>A extensão <a href="./url.php?url=https%3A%2F%2Fphp.net%2Fmanual%2Fpt_BR%2Fbook.mysqli.php" target="Documentation"><em>mysqli</em></a> não está presente. Por favor, verifique a configuração do PHP. Verifique <a href="./doc/html/faq.html#faqmysql" target="documentation">nossa documentação</a> para mais informações.</p>
 
@@ -76,3 +76,78 @@ Depois de removido, reinstale os pacotes:
 Agora, <b>mysqli</b> deve existir em <b>/etc/php/7.2/mods-available/20-mysqli.ini</b>
 <a href="https://stackoverflow.com/questions/53911221/error-in-phpmyadmin-mysqli-extension-is-missing">stackoverflow</a>
 
+
+<h2>MARIADB - ERRO CONTAGEM</h2>
+Erro ao exibir o select da tabela<br/>
+<code>Warning in ./libraries/sql.lib.php#613 <br/>
+count(): Parameter must be an array or an object that implements Countable</code>
+<br><br>
+<div class="centro center">
+    <img src="./images/banco-mariadb-erro-contagem-001.jpg" class="bp w40">
+</div>
+
+versões
+<ul>
+    <li>ubuntu0.18.04.7 </li>
+    <li>Apache/2.4.29 (Ubuntu)</li>
+    <li>PHP: 7.2.24-0</li>
+    <li>10.4.17-MariaDB</li>
+    <li>phpmyadmin 4.6.6deb5ubuntu0.5</li>
+</ul>
+
+Causa:<br>
+Como da escrita deste, a versão phpMyAdmin disponível no Ubuntu gerenciador de pacotes (4.5.4) não suporta totalmente php7.2, 
+o que leva à advertência contagem irritante (). <b>A solução é atualizar para a versão mais recente phpMyAdmin</b> , 
+que é 4.7.9 no momento da escrita.
+
+<ol>
+    <li>Backup</li>
+    <li>Download</li>
+    <li>Resolver blowfish</li>
+</ol>
+
+<h3>Backup</h3>
+Faça uma cópia de backup de instalação atual
+<pre class="terminal">$ mv /usr/share/phpmyadmin /usr/share/phpmyadmin_old
+$ mkdir /usr/share/phpmyadmin</pre>
+
+
+<h3>Download nova versao</h3>
+Faça o download e extrair a última versão do phpMyAdmin
+<pre class="terminal">$ mkdir /var/downloads
+$ cd /var/downloads     
+$ wget https://files.phpmyadmin.net/phpMyAdmin/4.7.9/phpMyAdmin-4.7.9-all-languages.tar.gz
+$ tar -xf phpMyAdmin-4.7.9-all-languages.tar.gz -C /usr/share/phpmyadmin --strip-components=1
+</pre>
+
+<h3>Resolver blowfish</h3>
+Modificar o arquivo vendor_config.php para o diretório apropriado para o Ubuntu<br>
+Abra <b>vendor_config.php</b> em <code>/usr/share/phpmyadmin/libraries/vendor_config.php</code>   <br>
+Quando você é feito, linhas 33-38 de vendor_config.phpdeve ser algo como:
+<pre class="terminal">
+/**
+* Directory where configuration files are stored.
+* It is not used directly in code, just a convenient
+* define used further in this file.
+*/
+define('CONFIG_DIR', '/etc/phpmyadmin/');
+</pre>
+Neste ponto, phpMyAdmin pode funcionar sem erros, mas você pode precisar adicionar o comprimento adicional para a cadeia de configuração blowfish_secret .
+<br><br>
+
+Abra o arquivo <code>/var/lib/phpmyadmin/blowfish_secret.inc.php</code> e você deveria ver:
+<pre>&lt;?php
+$cfg['blowfish_secret'] = 'Something Short';    
+</pre>
+
+Adicionar aleatoriedade adicional para a <code>$cfg['blowfish_secret']</code> cadeia, pelo menos 40 
+caracteres e ainda mais tempo poderia ser melhor (eu uso uma corda contanto que 100 caracteres).<br>
+Por exemplo (não use isso, apenas um exemplo):
+<pre>$cfg['blowfish_secret'] = 'A much longer random string 7NfSjYezwmwGCfGDuDO7uWn4ESw2sCFCym1RatPjGCfGCym1RatPjGCfG';</pre>
+Salve o arquivo.
+<br><br>
+
+Neste ponto, atualizar phpMyAdmin (no seu navegador) e login novamente . Tudo deve funcionar corretamente agora. Se desejar, você pode remover a cópia de segurança da antiga versão phpMyAdmin com:
+<pre class="terminal">$ rm -rfv /usr/share/phpmyadmin_old</pre>
+
+<a href="https://pt.coredump.biz/questions/49246107/phpmyadmin-errors-count-blowfish-etc-after-php72-upgrade-on-ubuntu-16" target="_blank">pt.coredump.biz</a>

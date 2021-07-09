@@ -1,28 +1,4 @@
 <style type="text/css">
-body{ counter-reset: contadorAga3; }
-body h3::before{
-    counter-increment: contadorAga3;
-    content: counter(contadorAga3) " - ";
-}	
-
-h3{ counter-reset: contadorAga4; }
-h4::before{
-	margin-left:25px;
-    counter-increment: contadorAga4;
-    content: counter(contadorAga3)"."counter(contadorAga4) " - ";
-}	
-h4{ counter-reset: contadorAga5; }
-h5::before{
-	margin-left:55px;
-    counter-increment: contadorAga5;
-    content: counter(contadorAga3)"."counter(contadorAga4)"."counter(contadorAga5) " - ";
-}	
-h5{ counter-reset: contadorAga6; }
-h6::before{
-    margin-left:75px;
-    counter-increment: contadorAga6;
-    content: counter(contadorAga3)"."counter(contadorAga4)"."counter(contadorAga5)"."counter(contadorAga6) " - ";
-}  
 .rotate-45 {
 	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0.5);
 	-webkit-transform: rotate(45deg);
@@ -49,6 +25,14 @@ h6::before{
     margin-right: 0.5em;
 }
 
+/* TESTE SOMBRA */
+
+.teste-sombra {
+	text-shadow: 2px 2px #ff0000;
+	font-size:22pt;
+	font-weight: bold;
+}
+
 #teste{
     margin:0px auto;
     width:150px;height: 150px;
@@ -68,6 +52,7 @@ h6::before{
 <ol>
 	<li>Girar Icone</li>
 	<li>Rotacionar Icone</li>
+	<li>Texto com sombra</li>
 	<li>Linhas em Tabelas</li>
 	<li>Bloquear Elemento</li>
 	<li>Centralizar imagem em DIV</li>
@@ -76,7 +61,7 @@ h6::before{
 
 <hr>
 
-<h3>Girar icone</h3>
+<h2>Girar icone</h2>
 <pre>.rotate-45 {
 	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0.5);
 	-webkit-transform: rotate(45deg);
@@ -106,7 +91,7 @@ exemplo<br>
 
 <hr>
 
-<h3>Rotacionar / Rodar</h3>
+<h2>Rotacionar / Rodar</h2>
 <code>fa-spin</code>
 <br clear="all">
 <i class="fa fa-gear fa-spin fa-5x"></i>
@@ -116,7 +101,21 @@ exemplo<br>
 
 <hr>
 
-<h3>TABELA - Numero em linhas</h3>
+<h2>Texto com sombra</h2>
+<pre>.teste-sombra {
+	text-shadow: 2px 2px #ff0000;
+	font-size:22pt;
+}</pre>
+<code>Exemplo</code><br>
+<span class="teste-sombra">Teste de texto sombreado</span>
+<br><br>
+
+<a href="https://www.w3schools.com/cssref/css3_pr_text-shadow.asp" target="_blank">w3schools</a>
+
+
+<hr>
+
+<h2>TABELA - Numero em linhas</h2>
 <pre>
 <kbd>CSS</kbd>
 .tableNumeracaoAutomatica tr:not(.fble_htr) {
@@ -167,7 +166,7 @@ Fonte: <a href="https://stackoverflow.com/questions/25248005/css-auto-numbers-fo
 
 <hr>
 
-<h3>Bloquear Elemento</h3>
+<h2>Bloquear Elemento</h2>
 Aqui vai uma opção interessante, sempre que você desabilita o componente, o mesmo não é submitido no POST, abaixo uma maneira de bloquear no form entretando submeter a informação contida no mesmo!
 
 <pre><kbd>CSS</kbd>
@@ -184,7 +183,7 @@ $(".desabilitar").attr("disabled","disabled");
 </pre>
 
 <hr>
-<h3>CENTRALIZAR IMAGEM EM DIV</h3>
+<h2>CENTRALIZAR IMAGEM EM DIV</h2>
 A principal dificuldade aqui é centralizar o CENTRO na imagem muitoooo maior que a DIV que ela está condida
 
 <pre class="codigo codigoHTML"><kbd>HTML</kbd>
@@ -228,7 +227,7 @@ A principal dificuldade aqui é centralizar o CENTRO na imagem muitoooo maior qu
 
 <hr>
 
-<h3>Criar fonte de Icones</h3>
+<h2>Criar fonte de Icones</h2>
 Usaremos o INKSCAPE
 <h4>Definir tamanho do desenho</h4>
 <code>Menu >> Arquivo >> Propriedadas do desenho</code> O ideal que seja <b>1024px X 1024px</b>, conforme imagem abaixo:

@@ -1,30 +1,4 @@
-﻿<style>
-body{ counter-reset: contadorAga3; }
-body h3::before{
-    counter-increment: contadorAga3;
-    content: counter(contadorAga3) " - ";
-}	
-
-h3{ counter-reset: contadorAga4; }
-h4::before{
-	margin-left:25px;
-    counter-increment: contadorAga4;
-    content: counter(contadorAga3)"."counter(contadorAga4) " - ";
-}	
-h4{ counter-reset: contadorAga5; }
-h5::before{
-	margin-left:55px;
-    counter-increment: contadorAga5;
-    content: counter(contadorAga3)"."counter(contadorAga4)"."counter(contadorAga5) " - ";
-}	
-h5{ counter-reset: contadorAga6; }
-h6::before{
-    margin-left:75px;
-    counter-increment: contadorAga6;
-    content: counter(contadorAga3)"."counter(contadorAga4)"."counter(contadorAga5)"."counter(contadorAga6) " - ";
-}   
-</style>
-
+﻿
 <ol>
     <li>Startar Array
         <ol>
@@ -57,14 +31,14 @@ h6::before{
 </ol>
 
 
-<h3>Startar Array</h3>
-    <h4>Vazio</h4>
+<h2>Startar Array</h2>
+    <h3>Vazio</h3>
     <pre>var cars = [];</pre> 
 
-    <h4>Populado</h4>
+    <h3>Populado</h3>
     <pre>var cars = new Array("Saab", "Volvo", "BMW");</pre>
 
-<h3>LOOPING</h3>
+<h2>LOOPING</h2>
 <pre class="codigo codigoJS">var fruits, text, fLen, i;
 fruits = ["Banana", "Orange", "Apple", "Mango"];
 fLen = fruits.length;
@@ -73,12 +47,12 @@ for (i = 0; i < fLen; i++) {
     text += "&#60li&#62" + fruits[i] + "&#60/ li&#62";
 }</pre>
 
-<h3>Adicionar elementos</h3>
+<h2>Adicionar elementos</h2>
 Adicionar elemento
 <pre class="codigo codigoJS">var fruits = ["Banana", "Orange", "Apple", "Mango"];
 fruits.push("Lemon");</pre>
 
-<h3>Remover elementos</h3>
+<h2>Remover elementos</h2>
 <pre class="codigo codigoJS"><kbd>JS</kbd>
 const numeros = [1,2,3,4,5,6,7,8,9,10];
 //o numero 5 esta na chave 4
@@ -88,17 +62,17 @@ console.log(numeros);
 // Array(11) [1,2,3,4,,6,7,8,9,10]</pre>
 <a href="https://www.instagram.com/p/B3ZtYOnhNSc/?igshid=182y7tiwaepcf">fabricadecodigo</a>
 
-<h3>Principais Metodos</h3>
+<h2>Principais Metodos</h2>
 
-    <h4>length</h4>
+    <h3>length</h3>
     Tamanho do array
     <pre class="codigo codigoJS"> var x = cars.length;   // A propriedade length retorna o número de elementos</pre>
     
-    <h4>sort()</h4>
+    <h3>sort()</h3>
     Ordenacação do array
     <pre>var y = cars.sort();   // O método sort () classifica arrays </pre>
 
-    <h4>includes()</h4>
+    <h3>includes()</h3>
     Possibilita verificar se um element existe ou não no array definido.
 <pre>const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];
 const ages = [20, 25, 19, 21, 42];
@@ -107,7 +81,7 @@ console.log(beers.includes('Skol')); // false
 console.log(ages.includes(25)); // true
 </pre>
 
-    <h4>filter()</h4>
+    <h3>filter()</h3>
     Este método possibilita a criação de filtros de forma rápida e fácil em seus arrays.
 <pre class="codigo codigoJS">
 const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];
@@ -135,7 +109,7 @@ console.log(item.name);
 </pre>
 <a href="https://stackoverflow.com/questions/7364150/find-object-by-id-in-an-array-of-javascript-objects">stackoverflow</a>
 
-    <h4>every</h4>
+    <h3>every</h3>
     Possibilita testar todos os elementos do seu array. Caso algum dos elementos não passe pela condição definida por você, o retorno será false.
 <pre class="codigo codigoJS"><kbd>ES5</kbd>
 const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];    
@@ -152,7 +126,7 @@ const greater = ages.every(isGreaterThan);
 console.log(greater); // true
 </pre>
 
-    <h4>find()</h4>
+    <h3>find()</h3>
     Faça uma busca em seu array de um ou mais elementos que se encaixam no filtro definido por você.
 <pre class="codigo codigoJS">const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];
 const ages = [20, 25, 19, 21, 42];
@@ -166,7 +140,7 @@ const beerSanDiego = beers.find(findSanDiego);
 console.log(beerSanDiego); // 'San Diego'
 > 'San Diego'</pre>
 
-    <h4>map()</h4>
+    <h3>map()</h3>
     Este método percorre todos os elementos do array, executando funções para cada elemento e retornando um novo array como resultado.
 <pre class="codigo codigoJS">const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];
 const ages = [20, 25, 19, 21, 42];
@@ -183,8 +157,8 @@ console.log(newAges); // [0: 21, 1: 26, 2: 20, 3: 22, 4: 43]
 </pre>
 
 
-<h3>MÉTODOS ESPECIAIS/DIFERENTES</h3>
-    <h4>some()</h4>
+<h2>MÉTODOS ESPECIAIS/DIFERENTES</h2>
+    <h3>some()</h3>
     Este método verifica se ao menos um elemento satisfaz a condição definida por você.
 <pre class="codigo codigoJS">
 const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];
@@ -200,7 +174,7 @@ const heinekenSaint = beers.some(hasHeinekenOrSaint);
 console.log(heinekenSaint); // true
 </pre>
 
-    <h5>Validar/Verificar elemento</h5>
+    <h4>Validar/Verificar elemento</h4>
     Esse metodo verifica se uma determinada condicao é atendida por algum elemento do array
     <br><br>
 
@@ -234,7 +208,7 @@ Retorna <code>FALSE</code> porque condição é <b>FALSA!!!</b>
 <br clear="all">
 <a href="https://www.instagram.com/p/B4U7inuhpsV/?utm_source=ig_web_copy_link" target="_blank">Fabricadecodigo</a>
 
-    <h4>reduce()</h4>
+    <h3>reduce()</h3>
     Você pode utilizar o método reduce para alguns casos, sendo um deles para facilitar cálculos.
 <pre class="codigo codigoJS">const beers = ['Heineken', 'San Diego', 'Coruja', 'Saint Bier'];
 const ages = [20, 25, 19, 21, 42];
@@ -251,7 +225,7 @@ console.log(sumAges); // 127
 
 
 
-<h3>Destruturação</h3>
+<h2>Destruturação</h2>
 A técnica de desestruturação consiste em extrair dados de arrays e objetos. Exemplo de objeto abaixo:
 <pre class="codigo codigoJS">
 const usuario = {
@@ -264,7 +238,7 @@ const usuario = {
     }
 }</pre>
 
-<h4>Maneira Antiga</h4>
+<h3>Maneira Antiga</h3>
 
 <pre class="codigo codigoJS">
 const nome = usuario.nome;
@@ -272,6 +246,6 @@ const email = usuario.email;
 const cidade = usuario.endereco.cidade;</pre>
 Da maneira antiga para pegar as informacoes de nome , email e cidade precisa-se de 3 linhas de codigo.
 
-<h4>Maneira NOVA</h4>
+<h3>Maneira NOVA</h3>
 <pre class="codigo codigoJS">const {nome , email , endereco:{cidade} } = usuario</pre>
 <a href="https://www.instagram.com/p/B4z03LvhXNR/?igshid=2lef0rci964u">Insta-FabricaDeCodigo</a>

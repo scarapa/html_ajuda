@@ -1,31 +1,16 @@
-<style>
-h3,h4,h5{margin:0px;padding:0px;}
-h3{margin-left:15px;}
-h4{margin-left:35px;}
-h4{margin-left:55px;}
-
-body{ counter-reset: contadorExterno; }
-body h3::before{
-    counter-increment: contadorExterno;
-    content: counter(contadorExterno) " - ";
-}	
-
-h3{ counter-reset: contadorInterno; }
-h4::before{
-	margin-left:25px;
-    counter-increment: contadorInterno;
-    content: counter(contadorExterno)"."counter(contadorInterno) " - ";
-}		
-</style>
 
 <ol>
-	<li>NOVO Projeto</li>
-	<li>Estrutura</li>
-	<li>Banco de Dados</li>
-	<li>Startar Projeto</li>
+	<li><a href="#novo">NOVO Projeto</a></li>
+	<li><a href="#estrutura">Estrutura</a></li>
+	<li><a href="#database">Banco de Dados</a></li>
+	<li><a href="#start">Startar Projeto</a></li>
+	<li><a href="#plataformas">Platforms</a></li>
 </ol>
 
-<h3>NOVO Projeto</h3>
+<hr>
+
+<a name="novo"></a>
+<h2>NOVO Projeto</h2>
 Atualmente existe alguns templates/esqueletos de projetos, assim como no android studio, conforme imagem abaixo.
 <br>
 <div class="centro">
@@ -78,11 +63,11 @@ blank    | A blank starter project for Ionic
 maps     | An Ionic starter project using Google Maps and a side menu
 </pre>
 
-<h4>Criar Projeto EM BRANCO</h4>
+<h3>Criar Projeto EM BRANCO</h3>
 Criar Projeto Localmente com <span style="color:red">ANGULAR</span>
 <pre class="terminal">$ ionic start <strong style="color:red">nome_projeto</strong> blank --type=angular</pre>
 
-<h4>Criar Projeto COM TEMPLATE</h4>
+<h3>Criar Projeto COM TEMPLATE</h3>
 Criar Projeto Localmente com <span style="color:red">ANGULAR</span>
 <pre class="terminal">$ ionic start <strong style="color:red">nome_projeto</strong> sidemenu --type=angular</pre>
 
@@ -90,22 +75,24 @@ Criar Projeto Localmente com <span style="color:red">ANGULAR</span>
 
 <hr>
 
-<h3>Estrutura</h3>
-<h4>Criar pagina</h4>
+<a name="estrutura"></a>
+<h2>Estrutura</h2>
+<h3>Criar pagina</h3>
 <pre class="terminal">$ ionic g page <strong style="color:red">nome_pagina</strong></pre>
 
-<h4>Criar Provider/Service</h4>
+<h3>Criar Provider/Service</h3>
 <pre class="terminal">$ ionic g service <strong style="color:red">nome_provider</strong></pre>
 
 <hr>
 
-<h3>Banco de Dados</h3>
-<h4>Salvar pelo TERMINAL</h4>
+<a name="database"></a>
+<h2>Banco de Dados</h2>
+<h3>Salvar pelo TERMINAL</h3>
 <pre class="terminal">$ adb -d shell "run-as <b>[PACOTE]</b> cat <b>[PASTA DEVICE]</b>" > <b>[PASTA MAQUINA LOCAL]</b></pre>
 Conforme exemplo abaixo:
 <pre class="terminal">$ adb -d shell "<b>run-as br.tche.emater.expointer</b> cat <b>databases/expointer.db</b>" > <b>~/Documentos/android.db</b></pre>
 
-<h4>Salvar pelo ANDROID STUDIO</h4>
+<h3>Salvar pelo ANDROID STUDIO</h3>
 Pode-se salvar o banco de dados da aplicação , para isso abrimos o Android Studio e exploramos o device da seguinte forma:
 <code>Menu >> View >> Tool Windows >> Device Explorer</code>
 <div class="centro"><img src="./images/ionic_android_studio_banco_01.jpg" style="width:40%"></div>
@@ -116,33 +103,64 @@ basta seguir o caminho da apliacao no explorador:
 <div class="centro"><img src="./images/ionic_android_studio_banco_02.jpg" style="width:40%"></div>
 
 
-<h4>Leitura - SQLITE</h4>
+<h3>Leitura - SQLITE</h3>
 Para abrir e testar querys pode fazer a utilização de ferramente online ou programa local ...
-<h5>online - sqliteonline</h5>
+<h4>online - sqliteonline</h4>
 
 <div class="centro"><img src="./images/sqliteonline.jpg" style="width:40%"></div>
 <a href="https://sqliteonline.com/" target="_blank">sqliteonline</a>
 
-<h5>programa - DB Browser</h5>
+<h4>programa - DB Browser</h4>
 <div class="centro"><img src="./images/sqlite.png" style="width:40%"></div>
 <a href="https://sqlitebrowser.org/dl/" target="_blank">DB Browser</a> , disponivel para <b>TODOS</b> os sistemas operacionais.
 
 <hr>
 
-<h3>Startar Projeto</h3>
-<h4>Localmente</h4>
+<a name="start"></a>
+<h2>Startar Projeto</h2>
+<h3>Localmente</h3>
 <pre class="terminal">$ ionic serve</pre>
 
-<h4>Localmente 2 ambientes</h4>
+<h3>Localmente 2 ambientes</h3>
 <pre class="terminal">$ ionic serve --labs</pre>
 
-<h4>Remotamente</h4>
+<h3>Remotamente</h3>
 <pre class="terminal">$ ionic serve --address=192.168.20.20 --port=8100 </pre>
 
-<h4>Device Android DISPOSITIVO</h4>
+<h3>Device Android DISPOSITIVO</h3>
 <pre class="terminal">$ ionic cordova run android --device</pre>
 
-<h4>Device Android EMULADOR</h4>
+<h3>Device Android EMULADOR</h3>
 <pre class="terminal">$ ionic cordova run android --emulator</pre>
 
 <a href="https://github.com/ionic-team/ionic-cli/issues/2294">github</a>
+
+<hr>
+
+<a name="plataformas"></a>
+<h2>Platforms</h2>
+
+<h3>ADICIONAR plataforma</h3>
+<pre class="terminal">
+	// android
+$ ionic cordova platform add android 
+
+	// ios
+$ ionic cordova platform add ios	
+</pre>
+
+
+
+<h3>REMOVER plataforma</h3>
+<pre class="terminal">
+	// android
+$ ionic cordova platform remove android 
+
+	// ios
+$ ionic cordova platform remove ios
+
+</pre>
+
+<a href="https://ionicframework.com/docs/cli/commands/cordova-platform" target="_blank">ionicframework</a><br>
+<a href="https://ionicframework.com/docs/cli/commands/cordova-build" target="_blank">ionicframework</a><br>
+

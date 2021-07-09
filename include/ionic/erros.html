@@ -1,4 +1,4 @@
-<h3>Variaveis de ambiente</h3>
+<h2>Variaveis de ambiente</h2>
 Erro ao tentar rodar no dispositivo
 <pre class="terminal">$ ionic cordova run android</pre>
 <pre class="terminal"><font color="#4E9A06">cordova run android</font>
@@ -18,7 +18,7 @@ $ export PATH=$PATH:$ANDROID_HOME/tools</pre>
 
 <hr>
 
-<h3>Não cria o projeto</h3>
+<h2>Não cria o projeto</h2>
 erro ao executar o comando <code>$ ionic cordova run android --device</code>
 <pre class="terminal">FAILURE: Build failed with an exception.
 
@@ -51,7 +51,7 @@ Built the following apk(s):
 </pre>
 <hr>
 
-<h3>ERRO - NÃO GERA PAGINA</h3>
+<h2>ERRO - NÃO GERA PAGINA</h2>
 <code>Error: Cannot find module '@ionic/app-scripts'</code><br>
 Para resolver isso foi preciso rodar o comando abaixo:
 <pre>$ npm install @ionic/app-scripts@latest --save-dev</pre>
@@ -59,14 +59,14 @@ Para resolver isso foi preciso rodar o comando abaixo:
 
 <hr>
 
-<h3>ERRO - NÃO GERA PAGINA - Parte 02</h3>
+<h2>ERRO - NÃO GERA PAGINA - Parte 02</h2>
 <code>Error: ENOENT: no such file or directory, scandir</code><br>
 Solução foi <b>DELETAR</b> a pasta <b>node_modules</b> do projeto e rodar esse comando.
 <pre>$ npm install @ionic/app-scripts@latest --save-dev</pre>
 
 <hr>
 
-<h3>Atualizar NodeJS</h3>
+<h2>Atualizar NodeJS</h2>
 <pre class="terminal"><font color="#AAAAAA">[ng] You are running version v8.10.0 of Node.js, which is not supported by Angular CLI 8.0+.</font>
 <font color="#AAAAAA">[ng] The official Node.js version that is supported is 10.9 or greater.</font>
 <font color="#AAAAAA">[ng] Please visit https://nodejs.org/en/ to find instructions on how to update Node.js.</font>
@@ -89,7 +89,7 @@ Retorno: <code>v10.16.3</code>
 
 <hr>
 
-<h3>Erro ao tentar levantar projeto no device</h3>
+<h2>Erro ao tentar levantar projeto no device</h2>
 <pre class="terminal">
 [native-run] Error: Command failed: C:\Users\49583\AppData\Local\Android\Sdk\platform-tools\adb -s 0054824656 shell getprop
 [native-run] error: device unauthorized.
@@ -100,7 +100,7 @@ Retorno: <code>v10.16.3</code>
 
 <hr>
 
-<h3>Aplicação não sobe no DEVICE</h3>
+<h2>Aplicação não sobe no DEVICE</h2>
 <pre class="terminal">BUILD SUCCESSFUL in 53s
 42 actionable tasks: 2 executed, 40 up-to-date
 Built the following apk(s):
@@ -113,7 +113,7 @@ Built the following apk(s):
         Re-running this command with the --verbose flag may provide more information.</pre>
 <hr>
 
-<h3>Aplicação não sobe no DEVICE</h3>
+<h2>Aplicação não sobe no DEVICE</h2>
 <pre class="terminal">PS E:\EMATER\institucional\institucional> <span style="color: yellow">ionic</span> cordova run android --device
 > <span style="color: #29B8DB">ng.cmd run app:ionic-cordova-build --platform=android</span>
 Generating ES5 bundles for differential loading...
@@ -127,7 +127,7 @@ See "C:\Users\49583\AppData\Local\Temp\ng-57452o\angular-errors.log" for further
 
 <hr>
 
-<h3>Erro no deploy</h3>
+<h2>Erro no deploy</h2>
 <pre class="terminal">* What went wrong:
 Execution failed for task ':app:mergeReleaseResources'.
 > java.util.concurrent.ExecutionException: com.android.builder.internal.aapt.v2.Aapt2InternalException: AAPT2 aapt2-3.3.0-5013011-windows Daemon #2: Unexpected error during compile 'E:\EMATER\institucional\institucional\platforms\android\app\src\main\res\drawable-port-xxxhdpi\screen.png', attempting to stop daemon.
@@ -156,18 +156,19 @@ BUILD FAILED in 13s
 
 <hr>
 
-<h3>ANDROID_SDK_ROOT=undefined</h3>
+<h2>ANDROID_SDK_ROOT=undefined</h2>
 
 <hr>
 
-<h3>ionic.ps1 não pode ser carregado</h3>
-<h5>ionic.ps1 não pode ser carregado porque a execução de scripts foi desabilitada neste sistema. Para obter mais informações, consulteabout_Execution_Policies em https://go.microsoft.com/fwlink/?LinkID=135170.</h5>
+<h2>ionic.ps1 não pode ser carregado</h2>
+ionic.ps1 não pode ser carregado porque a execução de scripts foi desabilitada neste sistema. 
+Para obter mais informações, consulteabout_Execution_Policies em https://go.microsoft.com/fwlink/?LinkID=135170.
 Não era possivel instalar o <code>ionic</code> atraves do comando no terminal <code>npm install -g ionic</code>
 <a href="https://support.microsoft.com/pt-br/help/2411920/you-can-t-run-scripts-in-azure-active-directory-module-for-windows-pow">Fonte</a>
 
 <hr>
 
-<h3>ERROR TypeError: Cannot read property 'data' of undefined</h3>
+<h2>ERROR TypeError: Cannot read property 'data' of undefined</h2>
 Esse erro aparece quando tenta navegar de uma pagina para outra.
 <pre style="color:Red">ERROR TypeError: Cannot read property 'data' of undefined
 at Object.eval [as updateDirectives] (PrevisaoShowPage.html:13)
@@ -210,3 +211,52 @@ Inserir antes do <b>ngFor</b> o <b>ngIf</b> para nao ocorrer o loop sem que os d
 &lt;/ion-content&gt;    
 </pre>
 
+<hr>
+
+<h2>erro python2</h2>
+<code>gyp verb `which` failed Error: not found: python2</code>
+
+<hr>
+
+<h2>error MSB4132</h2>
+<code>MSBUILD : error MSB4132: A versão das ferramentas "2.0" não é reconhecida. As versões de ferramentas disponíveis são "4.0".</code>
+<br><br>
+
+Instale um visual studio express 2013 (desktop com c ++ redist), <a href="http://www.microsoft.com/en-us/download/details.aspx?id=40760" target="_blank">clique aqui</a>
+<a href="https://github.com/chjj/pty.js/issues/60" target="_blank">github</a>
+
+<h2>ERRO NO GRADLE - NAO CONSTROI</h2>
+<pre class="terminal">Error: Could not find an installed version of Gradle either in Android Studio,
+    or on your system to install the gradle wrapper. Please include gradle
+    in your path, or install Android Studio
+
+    [ERROR] An error occurred while running cordova run android --device (exit code 1).</pre>
+
+<ol>
+    <li>Download tools_r25.2.3-windows.zip from <a href="https://dl.google.com/android/repository/tools_r25.2.3-windows.zip?hl=id" target="_blank">Android Downloads.</a></li>
+
+    <li>comentar/deletar a pasta <code>C:\Users\<b>[SEU_USUARIO]</b>\AppData\Local\Android\sdk\tools</code></li>
+    <li>Descompactar o arquivo em: <code>C:\Users\<b>[SEU_USUARIO]</b>\AppData\Local\Android\sdk\</code></li>
+    <li>Download <a href="https://gradle.org/install" target="_blank"> Gradle</a></li>
+    <li>Descompactar o arquivo zip para <code>C:\ Gradle</code> ou em outro lugar</li>
+    <li>Vá em variaveis de ambiente > variaveis de sistema e clique no botao <button>NOVO</button></li>
+    <li>
+<pre>//NOME DA VARIAVEL        
+GRADLE_HOME    
+
+// VALOR DA VARIAVEL
+C:\Gradle\gradle-4.0.1\bin
+    </li>
+    <li>Vá em variaveis de ambiente</li>
+    <li>na pasta do projeto executar os seguintes comandos:
+        <pre class="terminal">$ cordova platforms remove Android
+$ cordova platforms add android</pre></li>
+</ol>
+
+<a href="https://stackoverflow.com/questions/43480076/ionic-2-error-could-not-find-an-installed-version-of-gradle-either-in-android" target="_blank">stackoverflow</a><br>
+<a href="https://stackoverflow.com/questions/42613882/error-could-not-find-gradle-wrapper-within-android-sdk-might-need-to-update-yo" target="_blank">stackoverflow</a><br>
+
+<hr>
+
+<h2></h2>
+<pre class="terminal">No installed build tools found. Install the Android build tools version 19.1.0 or higher</pre>
