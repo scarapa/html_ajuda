@@ -1,26 +1,45 @@
-<h2>Variaveis de ambiente</h2>
+<ol>
+    <li><a href="#variaveis-de-ambiente">VARIAVEIS DE AMBIENTE</a></li>
+    <li><a href="#nao-gerar-pagina">NÃO GERAR PAGINA</a></li>
+    <li><a href="#nao-constroi-projeto">CONSTRUCAO</a>
+        <ol>
+            <li><a href="#nao-constroi-projeto-device">DEVICE</a></li>
+            <li><a href="#nao-constroi-projeto-webserver">WEBSERVER</a></li>
+        </ol>
+    </li>
+    <li><a href="#navegacao">NAVEGACAO</a></li>
+    <li><a href="#gradle">GRADLE</a></li>
+
+    <li><a href="#"></a></li>
+</ol>
+
+<hr>
+<a name="variaveis-de-ambiente"></a>
+<h2>VARIAVEIS DE AMBIENTE</h2>
+    <h3>ERRO[01]</h3>
 Erro ao tentar rodar no dispositivo
 <pre class="terminal">$ ionic cordova run android</pre>
-<pre class="terminal"><font color="#4E9A06">cordova run android</font>
+<pre class="terminal"><span color="#4E9A06">cordova run android</span>
 Android Studio project detected
 Failed to find &apos;ANDROID_HOME&apos; environment variable. Try setting it manually.
 Failed to find &apos;android&apos; command in your &apos;PATH&apos;. Try update your &apos;PATH&apos; to include path to valid SDK directory.
-<font color="#AAAAAA">[</font><span style="background-color:#2E3436"><font color="#EF2929"><b>ERROR</b></font></span><font color="#AAAAAA">] </font><font color="#EF2929"><b>An error occurred while running subprocess </b></font><font color="#8AE234"><b>cordova</b></font><font color="#EF2929"><b>.</b></font>
+<span color="#AAAAAA">[</span><span style="background-color:#2E3436"><span color="#EF2929"><b>ERROR</b></span></span><span color="#AAAAAA">] </span><span color="#EF2929"><b>An error occurred while running subprocess </b></span><span color="#8AE234"><b>cordova</b></span><span color="#EF2929"><b>.</b></span>
         
-<font color="#4E9A06">cordova run android</font> exited with exit code 1.
+<span color="#4E9A06">cordova run android</span> exited with exit code 1.
 
-Re-running this command with the <font color="#4E9A06">--verbose</font> flag may provide more 
+Re-running this command with the <span color="#4E9A06">--verbose</span> flag may provide more 
 information.</pre>
 
 <code>Solucao:</code>
 <pre>$ export ANDROID_HOME=$HOME/Android/Sdk
 $ export PATH=$PATH:$ANDROID_HOME/tools</pre>
+<br><br>
 
-<hr>
 
-<h2>Não cria o projeto</h2>
-erro ao executar o comando <code>$ ionic cordova run android --device</code>
-<pre class="terminal">FAILURE: Build failed with an exception.
+    <h3>ERRO[02] - <kbd>LINUX</kbd></h3>
+erro ao executar o comando: 
+<pre class="terminal">$ ionic cordova run android --device
+FAILURE: Build failed with an exception.
 
 * Where:
 Script &apos;/media/beto/PROGRAMAS/www/emater/expointer/platforms/android/CordovaLib/cordova.gradle&apos; line: 68
@@ -35,7 +54,9 @@ Run with --stacktrace option to get the stack trace. Run with --info or --debug 
 * Get more help at https://help.gradle.org
 
 BUILD FAILED in 0s</pre>
-Solução:
+<br><br>
+
+Solução: setar as variaveis de ambiente 
 <pre>$ export ANDROID_HOME=$HOME/Android/Sdk
 $ export PATH=$PATH:$ANDROID_HOME/tools</pre>
 e rodar o comando novamente <code>$ ionic cordova run android --device</code>
@@ -43,64 +64,15 @@ e rodar o comando novamente <code>$ ionic cordova run android --device</code>
 44 actionable tasks: 44 executed
 Built the following apk(s): 
 	/media/beto/PROGRAMAS/www/emater/expointer/platforms/android/app/build/outputs/apk/debug/app-debug.apk
-&gt; <font color="#06989A">native-run android --app platforms/android/app/build/outputs/apk/debug/app-debug.apk --device</font>
-<font color="#AAAAAA">[native-run] Selected hardware device 0053214577</font>
-<font color="#AAAAAA">[native-run] Installing platforms/android/app/build/outputs/apk/debug/app-debug.apk...</font>
-<font color="#AAAAAA">[native-run] Starting application activity br.tche.emater.expointer/br.tche.emater.expointer.MainActivity...</font>
-<font color="#AAAAAA">[native-run] Run Successful</font>
+&gt; <span color="#06989A">native-run android --app platforms/android/app/build/outputs/apk/debug/app-debug.apk --device</span>
+<span color="#AAAAAA">[native-run] Selected hardware device 0053214577</span>
+<span color="#AAAAAA">[native-run] Installing platforms/android/app/build/outputs/apk/debug/app-debug.apk...</span>
+<span color="#AAAAAA">[native-run] Starting application activity br.tche.emater.expointer/br.tche.emater.expointer.MainActivity...</span>
+<span color="#AAAAAA">[native-run] Run Successful</span>
 </pre>
 <hr>
 
-<h2>ERRO - NÃO GERA PAGINA</h2>
-<code>Error: Cannot find module '@ionic/app-scripts'</code><br>
-Para resolver isso foi preciso rodar o comando abaixo:
-<pre>$ npm install @ionic/app-scripts@latest --save-dev</pre>
-<a href="https://stackoverflow.com/questions/44381358/error-cannot-find-module-ionic-app-scripts">stackoverflow</a>
-
-<hr>
-
-<h2>ERRO - NÃO GERA PAGINA - Parte 02</h2>
-<code>Error: ENOENT: no such file or directory, scandir</code><br>
-Solução foi <b>DELETAR</b> a pasta <b>node_modules</b> do projeto e rodar esse comando.
-<pre>$ npm install @ionic/app-scripts@latest --save-dev</pre>
-
-<hr>
-
-<h2>Atualizar NodeJS</h2>
-<pre class="terminal"><font color="#AAAAAA">[ng] You are running version v8.10.0 of Node.js, which is not supported by Angular CLI 8.0+.</font>
-<font color="#AAAAAA">[ng] The official Node.js version that is supported is 10.9 or greater.</font>
-<font color="#AAAAAA">[ng] Please visit https://nodejs.org/en/ to find instructions on how to update Node.js.</font>
-
-<font color="#AAAAAA">[</font><span style="background-color:#2E3436"><font color="#EF2929"><b>ERROR</b></font></span><font color="#AAAAAA">] </font><font color="#34E2E2"><b>ng</b></font><font color="#EF2929"><b> has unexpectedly closed (exit code 3).</b></font>
-		
-		The Ionic CLI will exit. Please check any output above for error
-		details.
-</pre>
-
-Solucao:
-<pre>$ sudo npm cache clean -f
-$ sudo npm install -g n
-$ sudo n stable</pre>
-
-<pre class="terminal">$ node -v</pre>
-Retorno: <code>v10.16.3</code> 
-<br clear="all">
-<a href="https://askubuntu.com/questions/426750/how-can-i-update-my-nodejs-to-the-latest-version">Fonte</a>
-
-<hr>
-
-<h2>Erro ao tentar levantar projeto no device</h2>
-<pre class="terminal">
-[native-run] Error: Command failed: C:\Users\49583\AppData\Local\Android\Sdk\platform-tools\adb -s 0054824656 shell getprop
-[native-run] error: device unauthorized.
-[native-run] This adb server's $ADB_VENDOR_KEYS is not set
-[native-run] Try 'adb kill-server' if that seems wrong.
-[native-run] Otherwise check for a confirmation dialog on your device.</pre>
-<code>SOLUCAO:</code> aceitar no dispositivo que o computador o acesse.
-
-<hr>
-
-<h2>Aplicação não sobe no DEVICE</h2>
+<h3>Aplicação não sobe no DEVICE</h3>
 <pre class="terminal">BUILD SUCCESSFUL in 53s
 42 actionable tasks: 2 executed, 40 up-to-date
 Built the following apk(s):
@@ -113,7 +85,7 @@ Built the following apk(s):
         Re-running this command with the --verbose flag may provide more information.</pre>
 <hr>
 
-<h2>Aplicação não sobe no DEVICE</h2>
+    <h3>Aplicação não sobe no DEVICE</h3>
 <pre class="terminal">PS E:\EMATER\institucional\institucional> <span style="color: yellow">ionic</span> cordova run android --device
 > <span style="color: #29B8DB">ng.cmd run app:ionic-cordova-build --platform=android</span>
 Generating ES5 bundles for differential loading...
@@ -124,10 +96,58 @@ See "C:\Users\49583\AppData\Local\Temp\ng-57452o\angular-errors.log" for further
         <span style="color:#29B8DB">ng.cmd run app:ionic-cordova-build --platform=android</span> exited with exit code 127.
 
         Re-running this command with the --verbose flag may provide more information.</pre>
+<hr>
+
+<a name="nao-gerar-pagina"></a>
+<h2>NÃO GERAR PAGINA</h2>
+    <h3>ERRO[01]</h3>
+<code>Error: Cannot find module '@ionic/app-scripts'</code><br>
+Para resolver isso foi preciso rodar o comando abaixo:
+<pre class="terminal">$ npm install @ionic/app-scripts@latest --save-dev</pre>
+<a href="https://stackoverflow.com/questions/44381358/error-cannot-find-module-ionic-app-scripts">stackoverflow</a>
 
 <hr>
 
-<h2>Erro no deploy</h2>
+    <h3>ERRO[02]</h3>
+<code>Error: ENOENT: no such file or directory, scandir</code><br>
+Solução foi <b>DELETAR</b> a pasta <b>node_modules</b> do projeto e rodar esse comando.
+<pre class="terminal">$ npm install @ionic/app-scripts@latest --save-dev</pre>
+
+<hr>
+
+    <a name="nao-constroi-projeto-device"></a>
+    <h3>NAO CONSTROI PROJETO - DEVICE</h3>
+        <h4>ERRO[01]</h4>
+        Ao tentar levantar projeto nao esta funcionando com o comando
+        <pre class="terminal">$ ionic serve</pre>
+        <br>
+    <pre class="terminal">
+    [ERROR] Unable to find command: C:\Program Files\nodejs\node.exe
+            C:\Users\rober\AppData\Roaming\npm\node_modules\ionic\bin\ionic serve</pre>
+            
+            
+    <code>solucao:</code> desinstalar ionic e reinstalar
+    <pre class="terminal">
+    $ npm uninstall -g ionic
+    
+    $ npm install -g ionic</pre>		
+    
+    
+    <a href="https://stackoverflow.com/questions/51527480/unable-to-find-command-c-program-files-nodejs-node-exe" target="_blank">stackoverflow</a>
+    
+    <h3>ERRO[02]</h3>
+    <pre class="terminal">
+    [native-run] Error: Command failed: C:\Users\49583\AppData\Local\Android\Sdk\platform-tools\adb -s 0054824656 shell getprop
+    [native-run] error: device unauthorized.
+    [native-run] This adb server's $ADB_VENDOR_KEYS is not set
+    [native-run] Try 'adb kill-server' if that seems wrong.
+    [native-run] Otherwise check for a confirmation dialog on your device.</pre>
+    <code>SOLUCAO:</code> aceitar no dispositivo que o computador o acesse.
+
+<hr>
+
+    <h3>ERRO[03]</h3>
+    Erro no deploy
 <pre class="terminal">* What went wrong:
 Execution failed for task ':app:mergeReleaseResources'.
 > java.util.concurrent.ExecutionException: com.android.builder.internal.aapt.v2.Aapt2InternalException: AAPT2 aapt2-3.3.0-5013011-windows Daemon #2: Unexpected error during compile 'E:\EMATER\institucional\institucional\platforms\android\app\src\main\res\drawable-port-xxxhdpi\screen.png', attempting to stop daemon.
@@ -154,22 +174,49 @@ BUILD FAILED in 13s
 }</pre>
 <a href="https://stackoverflow.com/questions/52712063/build-failing-during-merge-resources-with-android-gradle-plugin-3-3-0/54615423#54615423">stackoverflow</a>
 
-<hr>
-
-<h2>ANDROID_SDK_ROOT=undefined</h2>
 
 <hr>
 
-<h2>ionic.ps1 não pode ser carregado</h2>
-ionic.ps1 não pode ser carregado porque a execução de scripts foi desabilitada neste sistema. 
-Para obter mais informações, consulteabout_Execution_Policies em https://go.microsoft.com/fwlink/?LinkID=135170.
-Não era possivel instalar o <code>ionic</code> atraves do comando no terminal <code>npm install -g ionic</code>
-<a href="https://support.microsoft.com/pt-br/help/2411920/you-can-t-run-scripts-in-azure-active-directory-module-for-windows-pow">Fonte</a>
+    <a name="nao-constroi-projeto-webserver"></a>
+    <h3>NAO CONSTROI PROJETO - WEBSERVER</h3>
+        <h3>ERRO[001]</h3>
+<pre class="terminal">$ ionic serve</pre>
+
+retorno:
+<pre class="terminal">
+> ng run app:serve --host=localhost --port=8100
+[ng] 'ng' n�o � reconhecido como um comando interno
+[ng] ou externo, um programa oper�vel ou um arquivo em lotes.
+
+[ERROR] ng has unexpectedly closed (exit code 1).
+
+        The Ionic CLI will exit. Please check any output above for error details.    
+</pre>
+solucao:
+<pre class="terminal">$ npm install -g @angular/cli</pre>
+
+
+<h3>ERRO[002]</h3>
+<pre class="terminal">$ ionic serve</pre>
+
+retorno:
+<pre class="terminal">
+> ng.cmd run app:serve --host=localhost --port=8100
+[ng] Node.js version v8.17.0 detected.
+[ng] The Angular CLI requires a minimum Node.js version of either v12.14 or v14.15.
+[ng] Please update your Node.js version or visit https://nodejs.org/ for additional instructions.
+
+[ERROR] ng has unexpectedly closed (exit code 3).
+
+        The Ionic CLI will exit. Please check any output above for error details.   
+</pre>
 
 <hr>
 
-<h2>ERROR TypeError: Cannot read property 'data' of undefined</h2>
-Esse erro aparece quando tenta navegar de uma pagina para outra.
+<a name="navegacao"></a>
+<h2>NAVEGACAO</h2>
+    <h3>ERROR TypeError: Cannot read property 'data' of undefined</h3>
+    Esse erro aparece quando tenta navegar de uma pagina para outra.
 <pre style="color:Red">ERROR TypeError: Cannot read property 'data' of undefined
 at Object.eval [as updateDirectives] (PrevisaoShowPage.html:13)
 at Object.debugUpdateDirectives [as updateDirectives] (vendor-es2015.js:77031)
@@ -182,8 +229,8 @@ at execEmbeddedViewsAction (vendor-es2015.js:76366)
 at checkAndUpdateView (vendor-es2015.js:76044)
 at callViewAction (vendor-es2015.js:76409) </pre>
 
-<code>Solucao:</code><br>
-Inserir antes do <b>ngFor</b> o <b>ngIf</b> para nao ocorrer o loop sem que os dados ainda nao tenham chegado no loop, exemplo abaixo
+    <code>Solucao:</code><br>
+    Inserir antes do <b>ngFor</b> o <b>ngIf</b> para nao ocorrer o loop sem que os dados ainda nao tenham chegado no loop, exemplo abaixo
 <pre>
 &lt;ion-content fullscreen="true"&gt;
     &lt;div id="divPrevisao" <b style="color:red">*ngIf="this.dados"</b>&gt;
@@ -211,21 +258,17 @@ Inserir antes do <b>ngFor</b> o <b>ngIf</b> para nao ocorrer o loop sem que os d
 &lt;/ion-content&gt;    
 </pre>
 
-<hr>
 
-<h2>erro python2</h2>
-<code>gyp verb `which` failed Error: not found: python2</code>
 
-<hr>
+    Instale um visual studio express 2013 (desktop com c ++ redist), <a href="http://www.microsoft.com/en-us/download/details.aspx?id=40760" target="_blank">clique aqui</a>
+    <a href="https://github.com/chjj/pty.js/issues/60" target="_blank">github</a>
 
-<h2>error MSB4132</h2>
-<code>MSBUILD : error MSB4132: A versão das ferramentas "2.0" não é reconhecida. As versões de ferramentas disponíveis são "4.0".</code>
-<br><br>
+<hr>    
 
-Instale um visual studio express 2013 (desktop com c ++ redist), <a href="http://www.microsoft.com/en-us/download/details.aspx?id=40760" target="_blank">clique aqui</a>
-<a href="https://github.com/chjj/pty.js/issues/60" target="_blank">github</a>
+<a name="gradle"></a>
+<h2>GRADLE</h2>
 
-<h2>ERRO NO GRADLE - NAO CONSTROI</h2>
+    <h3>ERRO NO GRADLE - NAO CONSTROI</h3>
 <pre class="terminal">Error: Could not find an installed version of Gradle either in Android Studio,
     or on your system to install the gradle wrapper. Please include gradle
     in your path, or install Android Studio
@@ -258,5 +301,51 @@ $ cordova platforms add android</pre></li>
 
 <hr>
 
+    <h3>ionic.ps1 não pode ser carregado</h3>
+ionic.ps1 não pode ser carregado porque a execução de scripts foi desabilitada neste sistema. 
+Para obter mais informações, consulteabout_Execution_Policies em https://go.microsoft.com/fwlink/?LinkID=135170.
+Não era possivel instalar o <code>ionic</code> atraves do comando no terminal <code>npm install -g ionic</code>
+<a href="https://support.microsoft.com/pt-br/help/2411920/you-can-t-run-scripts-in-azure-active-directory-module-for-windows-pow">spane</a>
+
+
+    <h3>Atualizar NodeJS</h3>
+<pre class="terminal"><span color="#AAAAAA">[ng] You are running version v8.10.0 of Node.js, which is not supported by Angular CLI 8.0+.</span>
+<span color="#AAAAAA">[ng] The official Node.js version that is supported is 10.9 or greater.</span>
+<span color="#AAAAAA">[ng] Please visit https://nodejs.org/en/ to find instructions on how to update Node.js.</span>
+
+<span color="#AAAAAA">[</span><span style="background-color:#2E3436"><span color="#EF2929"><b>ERROR</b></span></span><span color="#AAAAAA">] </span><span color="#34E2E2"><b>ng</b></span><span color="#EF2929"><b> has unexpectedly closed (exit code 3).</b></span>
+		
+		The Ionic CLI will exit. Please check any output above for error
+		details.
+</pre>
+
+Solucao:
+<pre class="terminal">$ sudo npm cache clean -f
+$ sudo npm install -g n
+$ sudo n stable</pre>
+
+<pre class="terminal">$ node -v</pre>
+Retorno: <code>v10.16.3</code> 
+<br clear="all">
+<a href="https://askubuntu.com/questions/426750/how-can-i-update-my-nodejs-to-the-latest-version">spane</a>
+
+<hr>
+
+<h2>erro python2</h2>
+<code>gyp verb `which` failed Error: not found: python2</code>
+
+<hr>
+
+<h2>error MSB4132</h2>
+<code>MSBUILD : error MSB4132: A versão das ferramentas "2.0" não é reconhecida. As versões de ferramentas disponíveis são "4.0".</code>
+<br><br>
+
 <h2></h2>
 <pre class="terminal">No installed build tools found. Install the Android build tools version 19.1.0 or higher</pre>
+
+
+
+
+<h2>ANDROID_SDK_ROOT=undefined</h2>
+
+<hr>

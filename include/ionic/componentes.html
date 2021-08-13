@@ -1,0 +1,69 @@
+<ol>
+    <li><a href="#input">INPUT</a>
+      <ol>
+          <li><a href="#validar-campo">VALIDAR CAMPO</a></li>
+      </ol>
+    
+    </li>
+    <li><a href="#selectcombo">SELECT COMBOBOX</a></li>
+    <li><a href="#"></a></li>
+</ol>
+
+<hr>
+<a name="input"></a>
+<h2>INPUT</h2>
+<h3>Validar campo</h3>
+validando campo para nao ter mais que 6 caracteres
+<pre><kbd>HTML</kbd>
+  &lt;ion-item&gt;
+    &lt;ion-label floating&gt;Nome&lt;/ion-label&gt;
+    &lt;ion-input type="text" [(ngModel)]="nome" maxlength="20"&gt;&lt;/ion-input&gt;
+  &lt;/ion-item&gt;
+
+  &lt;ion-item&gt;
+    &lt;ion-label floating&gt;Idade&lt;/ion-label&gt;
+    &lt;ion-input type="number" [(ngModel)]="idade" min="0" max="99" maxlength="20"
+      (keypress)="verificarTamanhoMaximo($event,15)" id="idade" name="idade"&gt;
+    &lt;/ion-input&gt;
+  &lt;/ion-item&gt;  
+
+<kbd>TS</kbd>
+verificarTamanhoMaximo($event: KeyboardEvent,tamanhoMaximo:number) {
+  let componente = &lt;HTMLInputElement&gt;event.target;
+  if (componente.value.toString().length &gt;= tamanhoMaximo) {
+    event.preventDefault();
+    return false;
+  }
+}
+</pre>
+<a href="https://stackblitz.com/edit/ionic-first-select-5ovnck?file=pages%2Fhome%2Fhome.html">CLIQUE AQUI</a> para testar.<br><br>
+
+<a href="https://pt.stackoverflow.com/questions/173490/input-do-tipo-number-n%C3%A3o-considera-o-maxlength" target="_blank">pt.stackoverflow</a></br>
+<a href="https://forum.ionicframework.com/t/input-and-onchange/54791" target="_blank">ionicframework</a></br>
+<a href="https://forum.ionicframework.com/t/where-is-maxlength-on-ion-input/79452/25" target="_blank">ionicframework</a></br>
+<a href="https://stackoverflow.com/questions/56931693/keypress-event-in-ionic-4-not-triggering" target="_blank">stackoverflow</a></br>
+<a href="https://stackoverflow.com/questions/48494868/ionic-3-ion-input-maxlength-attribute-not-working" target="_blank">stackoverflow</a></br>
+
+<hr>
+<a name="selectcombo"></a>
+<h2>SELECT COMBOBOX</h2>
+<h3>SELECIONAR ITEM</h3>
+selecionar o primeiro elemento do input
+<pre>
+<kbd>home.html</kbd>
+&lt;ion-select [(ngModel)]="venue_name"&gt;
+  &lt;ion-option *ngFor="let title of venues; let i = index" [value]="title" [selected]="i === 1"&gt;
+	  {{title}} 
+  &lt;/ion-option&gt;
+&lt;/ion-select&gt;
+<kbd>homse.ts</kbd>
+export class HomePage {
+  venues = ['First','Second','Third'];
+  constructor(public navCtrl: NavController) {
+
+}</pre>
+
+<a href="https://forum.ionicframework.com/t/resolved-how-to-set-default-value-on-ion-select/103440">ionicframework</a><br>
+<a href="https://stackblitz.com/edit/ionic-first-select?file=pages%2Fhome%2Fhome.html">stackblitz</a><br>
+
+
