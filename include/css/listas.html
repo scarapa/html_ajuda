@@ -1,4 +1,3 @@
-
 <style>
 ol.nested{ counter-reset: item}
 li.nested{ display: block}
@@ -6,8 +5,26 @@ li.nested:before{
     content: counters(item, ".") ". ";
     counter-increment: item
 }
+
+ul.a {
+  list-style-position: outside;
+}
+
+ul.b {
+  list-style-position: inside;
+}
 </style>
-<h3>Lista e Sublista numeradas</h3>
+
+<ol>
+	<li><a href="#">Lista e Sublista numeradas</a></li>
+	<li><a href="#">Lista e Sublista numeradas[2]</a></li>
+	<li><a href="#">Ordenação de Listas</a></li>
+	<li><a href="#posicao-marcacao">Posição da Marcação</a></li>
+</ol>
+
+<hr>
+
+<h2>Lista e Sublista numeradas</h2>
 
 <pre><kbd>HTML</kbd>
 &lt;ol class="nested"&gt;
@@ -42,18 +59,18 @@ li.nested:before{
 
 <hr>
 
-<h3>Lista e Sublista numeradas[2]</h3>
-Numerando os H3's dentro das sections
+<h2>Lista e Sublista numeradas[2]</h2>
+Numerando os h2's dentro das sections
 <pre><kbd>CSS</kbd>
-.contagem h3:not(.fble_htr) {counter-increment: rowNumber;}
-.contagem h3::before {
+.contagem h2:not(.fble_htr) {counter-increment: rowNumber;}
+.contagem h2::before {
     content: counter(rowNumber);
     min-width: 1em;
     margin-right: 0.5em;
 }
 <kbd>HTML</kbd>	
 &lt;section class="contagem"&gt;
-	&lt;h3&gt;Aqui o Titulo&lt;/h3&gt;
+	&lt;h2&gt;Aqui o Titulo&lt;/h2&gt;
 	...
 	Post aqui
 &lt;/section&gt; </pre>
@@ -62,7 +79,7 @@ Numerando os H3's dentro das sections
 
 
 <hr>
-<h3>Ordenação de Listas</h3>
+<h2>Ordenação de Listas</h2>
 
 O atributo <code>type</code> da tag <code>&lt;ol&gt</code> define o tipo do marcador de item da lista:
 <div class="panel panel-default">
@@ -99,12 +116,13 @@ O atributo <code>type</code> da tag <code>&lt;ol&gt</code> define o tipo do marc
 </div>
 
 <br>
-<pre><code><kbd>CODIGO HTML</kbd>
+<pre><kbd>CODIGO HTML</kbd>
 &lt;ol type="1"&gt;
 	&lt;li&gt;Item 1&lt;/li&gt;
 	&lt;li&gt;>Item 2&lt;/li&gt;
 	&lt;li&gt;Item 3&lt;/li&gt;
-&lt;/ol&gt;</code></pre>	
+&lt;/ol&gt;
+</pre>	
 
 <kbd>RESULTADO HTML</kbd>
 <ol type="1">
@@ -112,9 +130,44 @@ O atributo <code>type</code> da tag <code>&lt;ol&gt</code> define o tipo do marc
 	<li>Item 2</li>
 	<li>Item 3</li>
 </ol>	
-
-
-
-<br>
+<br><br>
 <a href="https://www.w3schools.com/html/html_lists.asp">Fonte[1]</a><br>
 <a href="https://stackoverflow.com/questions/2729927/number-nested-ordered-lists-in-html/7421911#7421911">Fonte[2]</a>
+
+<hr>
+
+<a name="posicao-marcacao"></a>
+<h2>Posição da Marcação</h2>
+<pre><kbd>CSS</kbd>
+ul.a { list-style-position: outside; }
+ul.b { list-style-position: inside; }
+</pre>
+
+<h3>list-style-position: outside (default)</h3>
+<pre>
+&lt;ul class="a"&gt;
+	&lt;li&gt;Coffee - A brewed drink prepared from roasted coffee beans, which are the seeds of berries from the Coffea plant&lt;/li&gt;
+	&lt;li&gt;Tea - An aromatic beverage commonly prepared by pouring hot or boiling water over cured leaves of the Camellia sinensis, an evergreen shrub (bush) native to Asia&lt;/li&gt;
+	&lt;li&gt;Coca Cola - A carbonated soft drink produced by The Coca-Cola Company. The drink's name refers to two of its original ingredients, which were kola nuts (a source of caffeine) and coca leaves&lt;/li&gt;
+  &lt;/ul&gt;	
+</pre>
+<div class="centro center">
+	<img src="./images/list-posicao-marcacao-01.jpg" class="w20">
+</div>
+
+<br clear="all">
+
+<h3>list-style-position: inside</h3>
+<pre>
+&lt;ul class="b"&gt;
+	&lt;li&gt;Coffee - A brewed drink prepared from roasted coffee beans, which are the seeds of berries from the Coffea plant&lt;/li&gt;
+	&lt;li&gt;Tea - An aromatic beverage commonly prepared by pouring hot or boiling water over cured leaves of the Camellia sinensis, an evergreen shrub (bush) native to Asia&lt;/li&gt;
+	&lt;li&gt;Coca Cola - A carbonated soft drink produced by The Coca-Cola Company. The drink's name refers to two of its original ingredients, which were kola nuts (a source of caffeine) and coca leaves&lt;/li&gt;
+  &lt;/ul&gt;	
+</pre>
+<div class="centro center">
+	<img src="./images/list-posicao-marcacao-02.jpg" class="w20">
+</div>
+
+
+<a href="https://www.w3schools.com/css/css_list.asp" target="_blank">w3schools</a><br>
