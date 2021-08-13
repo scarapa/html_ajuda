@@ -1,28 +1,22 @@
-﻿
+﻿<ol>
+	<li><a href="#variaveis">Variaveis</a></li>
+	<li><a href="#multi-variaveis">Multiplas Variaveis</a></li>
+	<li><a href="#condicao">Condição</a></li>
+</ol>
 
-<h3>Pode se usar as variaveis tanto em SELECT/UPDATE/INSERT/DELETE</h3>
-<pre><code><kbd>SQLSERVER</kbd>
-DECLARE @matricula int;
-SET @matricula = 171;
-SELECT * FROM funcionarios WHERE cd = @matricula;
-</code></pre>
 
-<h3>Setando mais de uma variavel no mesmo SELECT, pra isso é necessario um ponteiro/cursor</h3>
-<pre><code><kbd>SQLSERVER</kbd>
-DECLARE @cd_matricula VARCHAR(5);
-DECLARE @cd_grupo INT;
-DECLARE lista CURSOR FOR
-	SELECT cd_matricula,cd_grupo FROM tblUsuario
-	OPEN lista
-		FETCH NEXT FROM lista INTO @cd_matricula,@cd_grupo
-	CLOSE lista
+Pode se usar as variaveis tanto em SELECT/UPDATE/INSERT/DELETE
+setando mais de uma variavel
+MYSQL - VARIAVEIS
+Setando o valor de uma coluna AUTOINCREMENT de um INSERT/INSERÇÃO
+IF ELSE
+DB LINKED COMO VARIAVEL
 
-	SELECT @cd_matricula,@cd_grupo
-DEALLOCATE lista
-</code></pre>
-
-<h3>MYSQL - VARIAVEIS</h3>
-<pre><kbd>MySQL</kbd>
+<a name="variaveis"></a>
+<h2>VARIAVEIS</h2>
+	
+	<h3>MySQL</h3>
+<pre>
 SET @t1=1, @t2=2, @t3:=4;
 SELECT @t1, @t2, @t3, @t4 := @t1+@t2+@t3;</pre>
 
@@ -44,39 +38,23 @@ Retorno:
 <a href="https://pt.stackoverflow.com/questions/91423/vari%C3%A1veis-no-mysql-declare-set-como-pegar-um-elemento-de-uma-tabela">Fonte[1]</a>
 <a href="https://www.devmedia.com.br/forum/cursores-mysql-5-1/379856">Fonte[2]</a>
 
+	<h3>SQLSERVER</h3>
+Pode se usar as variaveis tanto em SELECT/UPDATE/INSERT/DELETE
+<pre>
+DECLARE @matricula int;
+SET @matricula = 171;
+SELECT * FROM funcionarios WHERE cd = @matricula;
+</pre>
 
-
-<hr>
-
-<h3>Setando o valor de uma coluna AUTOINCREMENT de um INSERT/INSERÇÃO</h3>
-<pre><code><kbd>SQLSERVER</kbd>
+Setando o valor de uma coluna AUTOINCREMENT de um INSERT/INSERÇÃO
+<pre>
 DECLARE @cd_log INT;
 INSERT INTO log (cd_modulo ,id_usuario ) VALUES (5, 171 );
 SET @cd_log = SCOPE_IDENTITY();
-</code></pre>
+</pre>
 
-<h3>IF ELSE</h3>
-<pre><code><kbd>SQLSERVER</kbd>
-DECLARE @condicao INT
-SET @condicao = 3
 
-IF @condicao = 1 
-	BEGIN
-		SELECT 'tricolor tricampeão da libertadores'
-	END
-ELSE IF @condicao = 2
-	BEGIN
-		SELECT 'tricolor tricampeão mundial'
-	END
-ELSE
-	BEGIN
-		SELECT 'tricolor campeão paulista 2005'
-	END
-</code></pre>
-<a href="https://forum.imasters.com.br/topic/159724-if-no-sql/">Fonte</a>
-<br clear="all"><br clear="all">
-
-<h3>DB LINKED COMO VARIAVEL</h3>
+DB LINKED COMO VARIAVEL
 <pre>
 <b>DECLARE @AMB VARCHAR(MAX);</b>
 DECLARE @query nVarchar(MAX);
@@ -97,3 +75,55 @@ EXECUTE sp_executesql @query
 </pre>
 <a href="https://docs.microsoft.com/pt-br/sql/relational-databases/system-stored-procedures/sp-executesql-transact-sql?view=sql-server-2017">Fonte[1]</a>
 <a href="https://www.scriptbrasil.com.br/forum/topic/164391-inserir-valor-em-variavel-resolvido/">Fonte[2]</a>
+
+<hr>
+
+<a name="multi-variaveis"></a>
+<h2>MULTI VARIAVEIS</h2>
+	<h3>MySQL</h3>
+
+	<h3>SQLSERVER</h3>
+	Setando mais de uma variavel no mesmo SELECT, pra isso é necessario um ponteiro/cursor
+<pre>
+DECLARE @cd_matricula VARCHAR(5);
+DECLARE @cd_grupo INT;
+DECLARE lista CURSOR FOR
+	SELECT cd_matricula,cd_grupo FROM tblUsuario
+	OPEN lista
+		FETCH NEXT FROM lista INTO @cd_matricula,@cd_grupo
+	CLOSE lista
+
+	SELECT @cd_matricula,@cd_grupo
+DEALLOCATE lista
+</pre>
+
+<hr>
+
+<a name="condicao"></a>
+<h2>CONDICAO</h2>
+	
+	<h3>MySQL</h3>
+
+	<h3>SQLSERVER</h3>
+<pre>
+DECLARE @condicao INT
+SET @condicao = 3
+
+IF @condicao = 1 
+	BEGIN
+		SELECT 'tricolor tricampeão da libertadores'
+	END
+ELSE IF @condicao = 2
+	BEGIN
+		SELECT 'tricolor tricampeão mundial'
+	END
+ELSE
+	BEGIN
+		SELECT 'tricolor campeão paulista 2005'
+	END
+</pre>
+	<a href="https://forum.imasters.com.br/topic/159724-if-no-sql/">Fonte</a>
+	<br clear="all"><br clear="all">
+
+<hr>
+
