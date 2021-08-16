@@ -1,7 +1,8 @@
 <ol>
     <li><a href="#yaml">YAML - Dependencias</a></li>
     <li><a href="#classe">Classe</a></li>
-    <li><a href="#exemplo">Exemplo</a></li>
+    <li><a href="#copiar">Copiar Arquivo</a></li>
+    <li><a href="#mover">Mover Arquivo</a></li>
 </ol>
 
 <hr>
@@ -16,6 +17,14 @@
 <h2>Classe</h2>
 <pre>
     
+</pre>
+
+<hr>
+<a name="copiar"></a>
+<h2>Copiar Arquivo</h2>
+<pre>
+    // CAMINHO ATUAL -- NOVO LOCAL
+    await File(file.path).copy("${_diretorioFotos.path.toString()}${arquivoNomeTruncado.toString()}");    
 </pre>
 
 <hr>

@@ -1,5 +1,10 @@
-<h2></h2>
+<ol>
+	<li><a href="#codigo">CODIGO</a></li>
+	<li><a href="#background">FUNDO - BACKGROUND</a></li>
+</ol>
 
+<a name="codigo"></a>
+<h2>CODIGO</h2>
 <pre>
     import 'package:flutter/material.dart';
 
@@ -119,3 +124,23 @@
 
 <a href="https://api.flutter.dev/flutter/material/BottomNavigationBar-class.html" target="_blank">api.flutter</a><br>
 <a href="https://www.treinaweb.com.br/blog/criando-um-bottomnavigationbar-com-flutter/">treinaweb</a>
+
+<a name="background"></a>
+<h2>FUNDO - BACKGROUND</h2>
+<pre>
+bottomNavigationBar: BottomNavigationBar(<b style="color:red">
+		type: BottomNavigationBarType.fixed,
+		backgroundColor: Colors.purple,</b>
+		items: const &lt;BottomNavigationBarItem&gt;[
+			BottomNavigationBarItem( icon: Icon(Icons.home), label: 'Home'),
+			BottomNavigationBarItem( icon: Icon(MdiIcons.newspaperVariant ), label: 'Notícias' ,),
+			BottomNavigationBarItem( icon: Icon(Icons.arrow_drop_down), label: '' ,),
+		],
+		currentIndex: _selectedIndex,
+		selectedItemColor: Colors.white,
+		unselectedItemColor: Colors.black54,
+		onTap: _onItemTapped,
+	),
+);	
+</pre>
+<a href="https://stackoverflow.com/questions/49307858/style-bottomnavigationbar-in-flutter" target="_blank">stackoverflow</a>
