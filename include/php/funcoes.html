@@ -1,0 +1,63 @@
+<ol>
+    <li><a href="#redirect">REDIRECT COM POST</a></li>
+    <li><a href="#anonima">Classes Anonimas</a></li>
+    <li><a href="#"></a></li>
+    <li><a href="#"></a></li>
+    <li><a href="#"></a></li>
+</ol>
+
+<hr>
+<a name="redirect"></a>
+<h2>REDIRECT COM POST</h2>
+<pre></pre>
+<a href="https://stackoverflow.com/questions/5576619/php-redirect-with-post-data" target="_blank">stackoverflow</a><br>
+
+
+<hr>
+<a name="anonima"></a>
+<h2>Classes Anonimas</h2>
+<pre>
+class Funcoes{
+    public function redirect_url($url){
+        
+        echo "teste: $url";
+        
+        return new class() {
+            private $param;
+            public function __construct(){}
+            public function variavel($param){
+                echo "&lt;pre&gt;"; print_r($param); echo "&lt;/pre&gt;";
+            }
+        };
+    }
+}    
+
+echo (new Funcoes)-&gt;redirect_url('www.i9.com.br')-&gt;variavel( array('param1','param2') );
+
+// RESULTADO
+teste: www.i9.com.br
+Array
+(
+    [0] =&gt; param1
+    [1] =&gt; param2
+)
+</pre>
+<a href="https://www.infoq.com/br/articles/php7-classes-interfaces/" target="_blank">infoq</a><br>
+
+<hr>
+<a name=""></a>
+<h2></h2>
+<pre></pre>
+<a href="" target="_blank"></a><br>
+
+<hr>
+<a name=""></a>
+<h2></h2>
+<pre></pre>
+<a href="" target="_blank"></a><br>
+
+<hr>
+<a name=""></a>
+<h2></h2>
+<pre></pre>
+<a href="" target="_blank"></a><br>

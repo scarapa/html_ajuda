@@ -1,0 +1,18 @@
+Mude seu objeto <code>AppModule</code> adicionando o modificador <b>static</b>
+
+<pre>
+export class AppModule {
+    private static url: string = "http://199.169.0.9/ws/ListarEstados.ashx";
+    
+    static getUrl(){
+        return this.url;
+    }
+}    
+</pre>
+
+E para receber estes dados basta:
+<pre>private url: string = AppModule.getUrl();</pre>
+
+Lembrando de instanciar a classe, assim:
+<pre>import { AppModule } from '../app/app.module';</pre>
+<a href="https://pt.stackoverflow.com/questions/210422/vari%C3%A1veis-sens%C3%ADveis-e-globais-ionic-3-e-angular-4">stackoverflow</a></br>

@@ -1,0 +1,52 @@
+<ol>
+    <li><a href="#verbos">VERBOS</a></li>
+    <li><a href="#get">GET</a></li>
+    <li><a href="#post">POST</a></li>
+    <li><a href="#tudo">AUTOMATICAMENTE</a></li>
+</ol>
+
+<hr>
+<a name=""></a>
+<h2>VERBOS</h2>
+Para pegar os verbos <code>GET</code> ou <code>POST</code> no php
+<pre>$_SERVER['REQUEST_METHOD']</pre>
+<a href="" target="_blank"></a>
+
+<hr>
+<a name="get"></a>
+<h2>GET</h2>
+Geralmente para pegar as variaveis enviadas pelo <code>GET</code>, fariamos da seguinte forma
+<pre>
+// enviando via URL
+?nome=fulano&sobrenome=silva
+
+// recebendo
+$nome = $_GET['nome'];
+$sobrenome = $_GET['sobrenome'];
+</pre>
+<a href="" target="_blank"></a>
+
+<hr>
+<a name="post"></a>
+<h2>POST</h2>
+<pre>
+// formulario
+nome:&lt;input type="text" name="nome" value="fulado"&gt;&lt;br&gt;
+sobrenome:&lt;input type="text" name="sobrenome" value="silva"&gt;&lt;br&gt;    
+
+// recebendo
+$nome = $_POST['nome'];
+$sobrenome = $_POST['sobrenome'];
+</pre>
+<a href="" target="_blank"></a>
+
+<hr>
+<a name="tudo"></a>
+<h2>AUTOMATICAMENTE</h2>
+<pre>
+//TODAS VARIAVEIS GET
+$myGetArgs = filter_input_array(INPUT_GET);
+
+//TODAS VARIAVEIS POST
+$myPostArgs = filter_input_array(INPUT_POST);</pre>
+<a href="https://stackoverflow.com/questions/8207488/get-all-variables-sent-with-post" target="_blank">stackoverflow</a>

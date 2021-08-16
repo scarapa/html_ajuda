@@ -1,34 +1,116 @@
-Como o Bootstrap foi desenvolvido para ser móvel primeiro, usamos várias consultas de mídia para criar pontos de interrupção sensíveis para nossos layouts e interfaces. Esses pontos de interrupção baseiam-se principalmente nas larguras mínimas da janela de visualização e permitem escalar elementos à medida que a janela de visualização muda.
+<ol>
+	<li><a href="#end-point">ENDPOINT</a>
+		<ol>
+			<li><a href="#end-point-bs3">BootStrap 3</a></li>
+			<li><a href="#end-point-bs4">BootStrap 4</a></li>
+		</ol>
+	</li>
+	<li><a href="#firebug">FIREBUG</a></li>
+</ol>
+
+<hr>
+
+<a name="end-point"></a>
+<h2>ENDPOINT</h2>
+Como o Bootstrap foi desenvolvido para ser móvel primeiro, usamos várias consultas de 
+mídia para criar pontos de interrupção sensíveis para nossos layouts e interfaces. 
+Esses pontos de interrupção baseiam-se principalmente nas larguras mínimas da janela 
+de visualização e permitem escalar elementos à medida que a janela de visualização muda.
 <br><br>
 
-O Bootstrap usa principalmente os seguintes intervalos de consulta de mídia - ou pontos de interrupção - em nossos arquivos Sass de origem para nosso layout, sistema de grade e componentes.
+O Bootstrap usa principalmente os seguintes intervalos de consulta de mídia - ou 
+pontos de interrupção - em nossos arquivos Sass de origem para nosso layout, sistema 
+de grade e componentes.
 <br><br>
+
+	<a name="end-point-bs3"></a>
+	<h3>BOOTSTRAP 3</h3>
+	<div class="table-responsive">
+	    <table class="table table-bordered table-striped">
+	      <thead>
+	        <tr>
+	          <th></th>
+	          <th>
+	            Dispositivos extra pequenos
+	            <small>Telefones (&lt;768px)</small>
+	          </th>
+	          <th>
+	            Dispositivos pequenos
+	            <small>Tablets (≥768px)</small>
+	          </th>
+	          <th>
+	            Dispositivos médios
+	            <small>Desktops (≥992px)</small>
+	          </th>
+	          <th>
+	            Dispositivos grandes
+	            <small>Desktops (≥1200px)</small>
+	          </th>
+	        </tr>
+	      </thead>
+	      <tbody>
+	        <tr>
+	          <th class="text-nowrap" scope="row">Comportamento do grid</th>
+	          <td>Horizontal em todos os momentos</td>
+	          <td colspan="3">Colapsa ao princípio, horizontal acima de breakpoints</td>
+	        </tr>
+	        <tr>
+	          <th class="text-nowrap" scope="row">Largura do container</th>
+	          <td>nenhum (auto)</td>
+	          <td>750px</td>
+	          <td>970px</td>
+	          <td>1170px</td>
+	        </tr>
+	        <tr>
+	          <th class="text-nowrap" scope="row">Prefixo de classe</th>
+	          <td><code>.col-xs-</code></td>
+	          <td><code>.col-sm-</code></td>
+	          <td><code>.col-md-</code></td>
+	          <td><code>.col-lg-</code></td>
+	        </tr>
+	        
+	        <tr>
+	          <th class="text-nowrap" scope="row">Largura da coluna</th>
+	          <td class="text-muted">Auto</td>
+	          <td>~62px</td>
+	          <td>~81px</td>
+	          <td>~97px</td>
+	        </tr>
+	        <tr>
+	          <th class="text-nowrap" scope="row">Largura da calha</th>
+	          <td colspan="4">30px (15px em cada lada da coluna)</td>
+	        </tr>
+	      </tbody>
+	    </table>
+	  </div>	
+
+	  <a href="http://localhost/ajuda/index.html#css/bootstrap">Fonte</a>
+
+	<a name="end-point-bs4"></a>
+	<h3>BOOTSTRAP 4</h3>
 
 <pre>/* .col-sm => Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) {
+@media (min-width: 576px) { }
 
-}
+/* .col-md => Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { }
 
- /* .col-md => Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) {
+/* col-lg => Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { }
 
-}
+/* col-xl => Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {}</pre>
+		
 
- /* col-lg => Large devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-
-}
-
- /* col-xl => Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-    
-}</pre>
 
 <a href="https://getbootstrap.com/docs/4.3/layout/overview/">getbootstrap</a><br>
 <a href="https://www.mydevice.io/">mydevice</a><br>
 <a href="https://www.chiefofdesign.com.br/media-queries-css-introducao-a-diferentes-resolucoes-de-tela/">chiefofdesign</a>
 
-<h3>FIREBUG - Dispositivos</h3>
+<hr>
+
+<a name="firebug"></a>
+<h2>FIREBUG - Dispositivos</h2>
 <table>
 	<tr>
 		<th>#</th>

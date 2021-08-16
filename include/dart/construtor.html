@@ -1,5 +1,69 @@
-<h2>PARAMETROS</h2>
+<ol>
+    <li><a href="#construtor-oculto">Construtor Oculto</a></li>
+    <li><a href="#parametros">Parametros</a></li>
+    <li><a href="#metodos">Metodos</a></li>
+    <li><a href="#atributos">Atributos</a></li>
+</ol>
 
+<a name="construtor-oculto"></a>
+<h2>Construtor Oculto</h2>
+Não precisa instanciar a classe.
+<h3>Exemplo 1</h3>
+<pre>
+class Constants{<b style="color:Red">
+    Constants._();</b>
+    static const double padding = 20;
+    static const double avatarRadius = 45;
+}    
+
+// utilizando a classe
+Container(
+    padding: EdgeInsets.only(
+      left: <b style="color:red">Constants.padding</b>,
+      top:  <b style="color:red">Constants.avatarRadius</b> + <b style="color:red">Constants.padding</b>,
+      right:  <b style="color:red">Constants.padding,</b>
+      bottom:  <b style="color:red">Constants.padding</b>
+    ),
+    margin: EdgeInsets.only(top: Constants.avatarRadius),
+)
+</pre>
+fonte:<a href="https://medium.com/flutterdevs/custom-dialog-in-flutter-7ca5c2a8d33a">medium</a>
+
+<h3>Exemplo 2</h3>
+No exemplo abaixo é demonstrado a utilizacao de uma classe com propriedades estaticas e constantes, nao precisando instanciar a classe.
+<pre>
+class Configuracoes{
+
+    //CORES
+    static const cores = {
+        "normal":{
+            "corAppBar":"#9C27B0",
+            "background":"#FFFFFF",
+            "containerFundo":"#FFFFFF",
+            "containerBorda":"#C1C1C1",
+            "textoPrimaria":"#000000",
+            "sombraPrimaria":"#000000",
+            "dividerCor":"#C1C1C1",
+        },"escuro": {
+            "corAppBar":"#461151",
+            "background":"#000000",
+            "containerFundo":"#000000",
+            "containerBorda":"#EEEEEE",
+            "textoPrimaria":"#FFFFFF",
+            "sombraPrimaria":"#FFFFFF",
+            "dividerCor":"#FFFFFF",
+        }
+    };
+}
+
+// utilizando a classe
+String _background = <b style="color:red">Configuracoes</b>.cores[_dados['modo']]['background'];
+</pre>
+
+<hr>
+
+<a name="parametros"></a>
+<h2>PARAMETROS</h2>
 <h3>Parametros POSICIONAIS</h3>
 
 <pre>class Cliente{
@@ -67,11 +131,14 @@ class Transaction{
     });
 }</pre>
 
+<a name="metodos"></a>
 <h2>METODOS</h2>
 
 <h3>MIXINS</h3>
 
+<hr>
 
+<a name="atributos"></a>
 <h2>ATRIBUTOS</h2>
 
 <h3>GETTERS AND SETTERS</h3>
