@@ -34,7 +34,24 @@ Container(
     <h3>Bordas Redondas</h3>
 
     <h3>Bordas Coloridas</h3>
+<pre>
+new Container(
+    margin: const EdgeInsets.all(15.0),
+    padding: const EdgeInsets.all(3.0),
+    decoration: BoxDecoration(<b style="color:red">
+        border: Border.all(color: Colors.blueAccent)</b>
+    ),
+    child: Text("My Awesome Border"),
+)    
+</pre>
 
+    <h3>Bordas Espessas</h3>
+<pre>return BoxDecoration(
+    border: Border.all(
+    width: 1, //espessura da borda
+    ),
+);
+</pre>
 <h2>Container Redondo</h2>
 A propriedade radius deixa os cantos arredondados, o truque é forçar a propriedade Radius
 até ficar circular o container
@@ -48,3 +65,5 @@ Container(
     child: Icon( objeto['icone'] , color: Colors.white, size: 40,),
 ),    
 </pre>
+
+<a href="https://stackoverflow.com/questions/47423297/how-can-i-add-a-border-to-a-widget-in-flutter" target="_blank">stackoverflow</a>
