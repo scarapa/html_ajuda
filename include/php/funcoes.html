@@ -1,8 +1,8 @@
 <ol>
     <li><a href="#redirect">REDIRECT COM POST</a></li>
     <li><a href="#anonima">Classes Anonimas</a></li>
-    <li><a href="#"></a></li>
-    <li><a href="#"></a></li>
+    <li><a href="#interfaces-fluente">INTERFACES FLUENTE</a></li>
+    <li><a href="#builder-pattern">BUILDER PATTERN</a></li>
     <li><a href="#"></a></li>
 </ol>
 
@@ -42,19 +42,86 @@ Array
     [1] =&gt; param2
 )
 </pre>
-<a href="https://www.infoq.com/br/articles/php7-classes-interfaces/" target="_blank">infoq</a><br>
+<br><a href="https://www.infoq.com/br/articles/php7-classes-interfaces/" target="_blank">infoq</a>
+<br><a href="https://www.treinaweb.com.br/blog/closures-e-funcoes-anonimas-no-php" target="_blank">treinaweb</a>
+<br><a href="https://desenvolvimentoparaweb.com/php/funcoes-anonimas-closures-php/" target="_blank">desenvolvimentoparaweb</a>
 
 <hr>
-<a name=""></a>
-<h2></h2>
-<pre></pre>
+<a name="interfaces-fluente"></a>
+<h2>INTERFACES FLUENTE</h2>
+Basicamente, interfaces fluentes consistem em métodos encadeados cujos nomes são 
+significativos para uma determinada operação. Por exemplo:
+<pre>$aviao-&gt;abastecer()-&gt;decolar()-&gt;voarPara("Disney")-&gt;pousar();</pre>
+<a href="https://pt.stackoverflow.com/questions/105259/o-que-%C3%A9-encadeamento-de-m%C3%A9todos" target="_blank">stackoverflow</a><br>
 <a href="" target="_blank"></a><br>
 
+
 <hr>
-<a name=""></a>
-<h2></h2>
-<pre></pre>
-<a href="" target="_blank"></a><br>
+<a name="builder-pattern"></a>
+<h2>BUILDER PATTERN</h2>
+Outra aplicação do encadeamento de métodos é na construção de objetos. Fiz um pequeno exemplo no Ideone para ilustrar.
+<br><br>
+
+Suponha que sua loja virtual tenha uma cesta de compras com itens, representada pela classe a seguir:
+<pre>
+class Cesta {
+    private $itens;
+    public function __construct(array $itens) {
+        $this-&gt;itens = $itens;
+    }
+    public function show() {
+        echo "Minha cesta:\n";
+        foreach ($this-&gt;itens as $item) {
+            echo $item."\n";
+        }
+    }
+}</pre>
+Note que a implementação de Cesta é imutável, isto é, uma vez construído o objeto, ele não pode mais ser alterado. Há várias vantagens nisso, mas não vou entrar em detalhes aqui. A ideia é que você precisa passar todos os itens de uma vez.
+<br><br>
+
+Para facilitar a construção da Cesta, vamos implementar uma calsse builder:
+<pre>class CestaBuilder {
+    private $itens = array();
+    static public function create() {
+        return new static;
+    }
+    public function adicionar($item) {
+        $this-&gt;itens[] = $item;
+        return $this;
+    }
+    public function build() {
+        return new Cesta($this-&gt;itens);
+    }
+}</pre>
+
+O nosso builder permite a composição dos itens em sua própria instância e em algum ponto o método build é chamado para retornar uma instância de Cesta com os itens coletados.
+<br><br>
+
+Exemplo de uso:
+<pre>$minha_cesta = CestaBuilder::create()
+    -&gt;adicionar("Pão")
+    -&gt;adicionar("Queijo")
+    -&gt;adicionar("Mortadela")
+    -&gt;build();</pre>
+
+<a href="https://pt.stackoverflow.com/questions/105259/o-que-%C3%A9-encadeamento-de-m%C3%A9todos" target="_blank">stackoverflow</a><br>
+<a href="https://pt.stackoverflow.com/questions/311724/definir-os-m%C3%A9todos-encadeados-de-um-m%C3%A9todo" target="_blank">stackoverflow</a><br><br>
+
+Outro exemplo:
+<pre>class empresa {
+	private $nome;
+	function teste1(){ echo $this-&gt;nome = " teste1 "; return $this;}
+	function teste2(){ echo $this-&gt;nome = " teste2 "; return $this;}	
+	function teste3(){ echo $this-&gt;nome = " teste3 "; return $this;}		
+
+}
+
+$foo = new empresa();
+$foo-&gt;teste1()-&gt;teste2()-&gt;teste3();
+
+// SAIDA
+teste1 teste2 teste3 </pre>
+<a href="https://pt.stackoverflow.com/questions/105259/o-que-%C3%A9-encadeamento-de-m%C3%A9todos">stackoverflow</a>
 
 <hr>
 <a name=""></a>

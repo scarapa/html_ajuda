@@ -1,25 +1,43 @@
-﻿<style>
-    body{ counter-reset: aga2 }
-    h2::before{
-        counter-increment: aga2;
-        content: counter(aga2) " - ";
-        width:100%;
-    }	
-    h2{ 
-        font-weight: bold;
-        counter-reset: aga3;
-        border-bottom:5px solid #333; 
-        padding:0 0 -10px 0 !important;
-        margin-bottom: 20px;
-        margin-top: 20px;        
-    }
+﻿<h2>PROCEDURE</h2>
+Esta consulta retorna todos os produtos na tabela de produtos do banco de dados de amostra.
+<pre>SELECT * FROM products;</pre>
+	
+	<h3>MySQL</h3>
+	A instrução a seguir cria um novo procedimento armazenado que envolve a consulta.
+	<br><br>
 
-    h3::before{
-        counter-increment: aga3;
-        content: counter(aga2)"."counter(aga3) " - ";
-    }	
-    h3{ counter-reset: aga4; }
-</style>
+	O primeiro e o último comando DELIMITER não fazem parte do procedimento armazenado. O primeiro 
+	comando DELIMITER altera o delimitador padrão para // e o último comando DELIMITER altera o delimitador 
+	de volta para o padrão que é ponto-e-vírgula (;).
+	<br><br>
+
+	Para criar um novo procedimento armazenado, você usa a instrução CREATE PROCEDURE.
+	<br><br>
+
+	Aqui está a sintaxe básica da instrução CREATE PROCEDURE:
+	<pre>
+	DELIMITER //
+
+	CREATE PROCEDURE GetAllProducts()
+	BEGIN
+		SELECT *  FROM products;
+	END //
+
+	DELIMITER ;	
+	</pre>
+
+	Para executar um procedimento armazenado, você usa a instrução CALL:
+	<pre>CALL stored_procedure_name(argument_list);</pre>
+
+	<br><a href="https://www.mysqltutorial.org/getting-started-with-mysql-stored-procedures.aspx" target="_blank">mysqltutorial</a>
+	<br><a href="https://dev.mysql.com/doc/refman/8.0/en/create-procedure.html" target="_blank">dev.mysql</a>
+
+	<h3>SqlServer</h3>
+	<h3>postgresql</h3>
+	<h3>slite</h3>
+<h2>FUNCTION</h2>
+
+
 
 A vantagem de usar FUNCTION ao invés de PROCEDURE é de que a FUNCTION pode ser usada junto com o SELECT<br/>
 

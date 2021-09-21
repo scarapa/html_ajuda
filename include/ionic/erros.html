@@ -10,7 +10,7 @@
     <li><a href="#navegacao">NAVEGACAO</a></li>
     <li><a href="#gradle">GRADLE</a></li>
 
-    <li><a href="#"></a></li>
+    <li><a href="#nodejs">NODEJS</a></li>
 </ol>
 
 <hr>
@@ -72,7 +72,34 @@ Built the following apk(s):
 </pre>
 <hr>
 
-<h3>Aplicação não sobe no DEVICE</h3>
+
+<hr>
+
+<a name="nao-gerar-pagina"></a>
+<h2>NÃO GERAR PAGINA</h2>
+    <h3>ERRO[001]</h3>
+<code>Error: Cannot find module '@ionic/app-scripts'</code><br>
+Para resolver isso foi preciso rodar o comando abaixo:
+<pre class="terminal">$ npm install @ionic/app-scripts@latest --save-dev</pre>
+<a href="https://stackoverflow.com/questions/44381358/error-cannot-find-module-ionic-app-scripts">stackoverflow</a>
+
+<hr>
+
+    <h3>ERRO[002]</h3>
+<code>Error: ENOENT: no such file or directory, scandir</code><br>
+Solução foi <b>DELETAR</b> a pasta <b>node_modules</b> do projeto e rodar esse comando.
+<pre class="terminal">$ npm install @ionic/app-scripts@latest --save-dev</pre>
+
+<hr>
+
+<a name="nao-constroi-projeto"></a>
+<h2>CONSTRUCAO</h2>
+
+    <a name="nao-constroi-projeto-device"></a>
+    <h3>NAO CONSTROI PROJETO - DEVICE</h3>
+
+
+        <h4>ERRO[001]</h4>
 <pre class="terminal">BUILD SUCCESSFUL in 53s
 42 actionable tasks: 2 executed, 40 up-to-date
 Built the following apk(s):
@@ -85,7 +112,7 @@ Built the following apk(s):
         Re-running this command with the --verbose flag may provide more information.</pre>
 <hr>
 
-    <h3>Aplicação não sobe no DEVICE</h3>
+        <h4>ERRO[002]</h4>
 <pre class="terminal">PS E:\EMATER\institucional\institucional> <span style="color: yellow">ionic</span> cordova run android --device
 > <span style="color: #29B8DB">ng.cmd run app:ionic-cordova-build --platform=android</span>
 Generating ES5 bundles for differential loading...
@@ -96,34 +123,13 @@ See "C:\Users\49583\AppData\Local\Temp\ng-57452o\angular-errors.log" for further
         <span style="color:#29B8DB">ng.cmd run app:ionic-cordova-build --platform=android</span> exited with exit code 127.
 
         Re-running this command with the --verbose flag may provide more information.</pre>
-<hr>
 
-<a name="nao-gerar-pagina"></a>
-<h2>NÃO GERAR PAGINA</h2>
-    <h3>ERRO[01]</h3>
-<code>Error: Cannot find module '@ionic/app-scripts'</code><br>
-Para resolver isso foi preciso rodar o comando abaixo:
-<pre class="terminal">$ npm install @ionic/app-scripts@latest --save-dev</pre>
-<a href="https://stackoverflow.com/questions/44381358/error-cannot-find-module-ionic-app-scripts">stackoverflow</a>
-
-<hr>
-
-    <h3>ERRO[02]</h3>
-<code>Error: ENOENT: no such file or directory, scandir</code><br>
-Solução foi <b>DELETAR</b> a pasta <b>node_modules</b> do projeto e rodar esse comando.
-<pre class="terminal">$ npm install @ionic/app-scripts@latest --save-dev</pre>
-
-<hr>
-
-    <a name="nao-constroi-projeto-device"></a>
-    <h3>NAO CONSTROI PROJETO - DEVICE</h3>
-        <h4>ERRO[01]</h4>
+        <h4>ERRO[003]</h4>
         Ao tentar levantar projeto nao esta funcionando com o comando
         <pre class="terminal">$ ionic serve</pre>
         <br>
-    <pre class="terminal">
-    [ERROR] Unable to find command: C:\Program Files\nodejs\node.exe
-            C:\Users\rober\AppData\Roaming\npm\node_modules\ionic\bin\ionic serve</pre>
+<pre class="terminal">[ERROR] Unable to find command: C:\Program Files\nodejs\node.exe
+C:\Users\rober\AppData\Roaming\npm\node_modules\ionic\bin\ionic serve</pre>
             
             
     <code>solucao:</code> desinstalar ionic e reinstalar
@@ -135,7 +141,7 @@ Solução foi <b>DELETAR</b> a pasta <b>node_modules</b> do projeto e rodar esse
     
     <a href="https://stackoverflow.com/questions/51527480/unable-to-find-command-c-program-files-nodejs-node-exe" target="_blank">stackoverflow</a>
     
-    <h3>ERRO[02]</h3>
+    <h4>ERRO[005]</h4>
     <pre class="terminal">
     [native-run] Error: Command failed: C:\Users\49583\AppData\Local\Android\Sdk\platform-tools\adb -s 0054824656 shell getprop
     [native-run] error: device unauthorized.
@@ -146,7 +152,7 @@ Solução foi <b>DELETAR</b> a pasta <b>node_modules</b> do projeto e rodar esse
 
 <hr>
 
-    <h3>ERRO[03]</h3>
+    <h4>ERRO[006]</h4>
     Erro no deploy
 <pre class="terminal">* What went wrong:
 Execution failed for task ':app:mergeReleaseResources'.
@@ -174,12 +180,11 @@ BUILD FAILED in 13s
 }</pre>
 <a href="https://stackoverflow.com/questions/52712063/build-failing-during-merge-resources-with-android-gradle-plugin-3-3-0/54615423#54615423">stackoverflow</a>
 
-
 <hr>
 
     <a name="nao-constroi-projeto-webserver"></a>
     <h3>NAO CONSTROI PROJETO - WEBSERVER</h3>
-        <h3>ERRO[001]</h3>
+        <h4>ERRO[001]</h4>
 <pre class="terminal">$ ionic serve</pre>
 
 retorno:
@@ -196,8 +201,8 @@ solucao:
 <pre class="terminal">$ npm install -g @angular/cli</pre>
 
 
-<h3>ERRO[002]</h3>
-<pre class="terminal">$ ionic serve</pre>
+    <h4>ERRO[002]</h4>
+    <pre class="terminal">$ ionic serve</pre>
 
 retorno:
 <pre class="terminal">
@@ -211,6 +216,51 @@ retorno:
         The Ionic CLI will exit. Please check any output above for error details.   
 </pre>
 
+
+    <h4>ERRO[003]</h4>
+    <pre class="terminal">$ ionic serve</pre>
+
+
+<pre class="terminal">
+FAILURE: Build failed with an exception.
+
+* Where:
+Build file 'D:\projetos\ionic\BMMOB\platforms\android\build.gradle' line: 258
+
+* What went wrong:
+A problem occurred evaluating root project 'android'.
+> Could not get unknown property 'ANDROID_SUPPORT_LIBRARY_VERSION' for object of type org.gradle.api.internal.artifacts.dsl.dependencies.DefaultDependencyHandler.
+
+* Try:
+Run with --stacktrace
+BUILD FAILED
+
+Total time: 4.161 secs
+ option to get the stack trace. Run with --info or --debug option to get more log output.   
+Error: cmd: Command failed with exit code 1 Error output:
+FAILURE: Build failed with an exception.
+
+* Where:
+Build file 'D:\projetos\ionic\BMMOB\platforms\android\build.gradle' line: 258
+
+* What went wrong:
+A problem occurred evaluating root project 'android'.
+> Could not get unknown property 'ANDROID_SUPPORT_LIBRARY_VERSION' for object of type org.gradle.api.internal.artifacts.dsl.dependencies.DefaultDependencyHandler.
+
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output.
+[ERROR] An error occurred while running subprocess cordova.
+
+        cordova.cmd build android --device exited with exit code 1.
+
+        Re-running this command with the --verbose flag may provide more information. </pre>
+<code>SOLUÇÃO</code> remover plataforma e adicionar a especifica do projeto
+<pre class="terminal">
+$ ionic cordova platform remove android 
+$ ionic cordova platform add android@6.1.2
+</pre>
+
+        
 <hr>
 
 <a name="navegacao"></a>
@@ -259,9 +309,8 @@ at callViewAction (vendor-es2015.js:76409) </pre>
 </pre>
 
 
-
-    Instale um visual studio express 2013 (desktop com c ++ redist), <a href="http://www.microsoft.com/en-us/download/details.aspx?id=40760" target="_blank">clique aqui</a>
-    <a href="https://github.com/chjj/pty.js/issues/60" target="_blank">github</a>
+Instale um visual studio express 2013 (desktop com c ++ redist), <a href="http://www.microsoft.com/en-us/download/details.aspx?id=40760" target="_blank">clique aqui</a>
+<a href="https://github.com/chjj/pty.js/issues/60" target="_blank">github</a>
 
 <hr>    
 
@@ -319,7 +368,7 @@ Não era possivel instalar o <code>ionic</code> atraves do comando no terminal <
 		details.
 </pre>
 
-Solucao:
+<code>SOLUCAO</code>
 <pre class="terminal">$ sudo npm cache clean -f
 $ sudo npm install -g n
 $ sudo n stable</pre>
@@ -328,6 +377,23 @@ $ sudo n stable</pre>
 Retorno: <code>v10.16.3</code> 
 <br clear="all">
 <a href="https://askubuntu.com/questions/426750/how-can-i-update-my-nodejs-to-the-latest-version">spane</a>
+
+<hr>
+
+<a name="nodejs">nodejs</a>
+<h2>NODEJS</h2>
+<pre class="terminal">PS D:\projetos\ionic\BMMOB> ionic build
+[ERROR] Unable to find command: C:\Program Files\nodejs\node.exe
+    C:\Users\rober\AppData\Roaming\npm\node_modules\ionic\bin\ionic build</pre>
+
+<code>SOLUCAO</code> remover e reinstalar 
+<br><br>
+
+desinstalando:
+<pre class="terminal">$ npm uninstall -g ionic</pre>
+
+reinstalando:
+<pre class="terminal">$ npm install ionic@3.16.0</pre>
 
 <hr>
 
@@ -342,8 +408,6 @@ Retorno: <code>v10.16.3</code>
 
 <h2></h2>
 <pre class="terminal">No installed build tools found. Install the Android build tools version 19.1.0 or higher</pre>
-
-
 
 
 <h2>ANDROID_SDK_ROOT=undefined</h2>

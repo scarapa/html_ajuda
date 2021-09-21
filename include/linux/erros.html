@@ -1,5 +1,11 @@
-﻿
-<h3>Comando SUDO não funciona</h3>
+﻿<ol>
+    <li><a href="#">SUDO NAO FUNCIONA</a></li>
+    <li><a href="#usuario-nao-esta-sudoers">USUÁRIO NÃO ESTÁ NO ARQUIVO SUDOERS</a></li>
+    <li><a href="#apache-morto">APACHE MORTO</a></li>
+</ol>
+
+
+<h2>Comando SUDO não funciona</h2>
 
 Ao alterar certas variáveis de ambiente, o usuário pode bagunçar tudo e tornar o comando sudo inutilizável.
 
@@ -7,15 +13,15 @@ Ao alterar certas variáveis de ambiente, o usuário pode bagunçar tudo e torna
 Quando isso acontece, ao usar o comando sudo, surge a seguinte mensagem: <br/>
 <code>sudo: /usr/bin/sudo deve ter como dono o uid 0 e tem definido o bit setuid</code><br>
 
-<h3>SOLUCAO</h3>
+<code>SOLUCAO</code>
 Para resolver isso, execute como root,pode ser reiniciando em <code>RECOVERY MODE</code>.<br>
 Agora com o prompt do usuário root você deve remontar a partição principal com direito a escrita:<br/>
 <pre>$ mount -o rw,remount /</pre>
 
-<h4>Tentativa 1: Adicionar o seu usuario ao grupo SUDO</h4>
+<h3>Tentativa 1: Adicionar o seu usuario ao grupo SUDO</h3>
 <pre>adduser username sudo</pre>
 
-<h4>Tentativa 2: Editar o arquivo sudoers</h4>
+<h3>Tentativa 2: Editar o arquivo sudoers</h3>
 <pre>$ cp /etc/sudoers /etc/sudoers.backup
 $ nano /etc/sudoers</pre>
 
@@ -61,10 +67,28 @@ Reiniciar o sistema
 <a href="http://www.psychocats.net/ubuntu/fixsudo">psychocats</a>
 
 <hr>
+
+<a name="usuario-nao-esta-sudoers"></a>
+<h2>USUÁRIO NÃO ESTÁ NO ARQUIVO SUDOERS</h2>
+
+<pre class="terminal">$ su -  </pre>
+
+<pre class="terminal">$ nano /etc/sudoers</pre>
+
+<pre>root    ALL=(ALL:ALL) ALL
+<b style="color:red">teste   ALL=(ALL:ALL) ALL</b></pre>
+
+<a href="vivaolinux.com.br/topico/Duvidas-em-Geral/Usuario-nao-esta-no-arquivo-sudoers-1" targe="_blank">vivaolinux</a>
+
+<hr>
+
+<a name="apache-morto"></a>
 <h2>Apache Morto</h2>
 <code>Erro1: Sem acesso do link pelo <b>APACHE</b></code>
 <pre>You don't have permission to access /dados on this server.
 Apache/2.4.23 (Debian) Server at localhost Port 80</pre>
 
 <code><b>SOLUCAO: </b></code> Acessar viar nautilus a pasta <code>www</code>
+
+
 

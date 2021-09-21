@@ -1,5 +1,5 @@
 
-<h3>REGEX PARA SOMENTE NUMEROS</h3>
+<h2>SOMENTE NUMEROS</h2>
 <pre><kbd>HTML</kbd>
 &lt;input class="form participantes soNumero" type="text" name="numero_participantes" maxlength="5" /&gt;
 
@@ -12,3 +12,12 @@ if(numero_participantes == null)&#123;
     return false;            
 &#125;
 </pre>
+
+<h2>Validar Email</h2>
+<pre>function isEmail(email) {
+    var EmailRegex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return EmailRegex.test(email);
+  }</pre>
+
+
+<a href="https://qawithexperts.com/article/jquery/email-validation-using-jquery-various-methods/288">qawithexperts</a>
