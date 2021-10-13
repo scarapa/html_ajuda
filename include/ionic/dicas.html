@@ -1,9 +1,52 @@
-<h3>CSS</h3>
+<ol>
+	<li><a href="#checkbox">CHECKBOX</a></li>
+	<li><a href="#"></a></li>
+	<li><a href="#"></a></li>
+	<li><a href="#"></a></li>
+</ol>
 
+
+<hr>
+<a name="checkbox"></a>
+<h2>CHECKBOX</h2>
+
+Como exibir o texto na lista de checkbox qndo é muito comprido.
+<div class="centro center">
+	<img src="./images/ionic-checkbox-list-01.jpg" class="bp w30">
+</div>
+<pre>
+&lt;ion-list&gt;
+  &lt;ion-item *ngFor="let a of lista"&gt;
+    &lt;ion-label&gt;{{a.TXT_VALOR_DOMINIO}}&lt;/ion-label&gt;
+    &lt;ion-checkbox slot="end" #checkboxes [(ngModel)]="a.checked"&gt;&lt;/ion-checkbox&gt;
+  &lt;/ion-item&gt;
+&lt;/ion-list&gt;	
+</pre>
+
+<div class="centro center">
+	<img src="./images/ionic-checkbox-list-02.jpg" class="bp w30">
+</div>
+<pre>
+&lt;ion-list&gt;
+  &lt;ion-item *ngFor="let a of lista"&gt;
+    &lt;ion-label text-wrap&gt;{{a.TXT_VALOR_DOMINIO}}&lt;/ion-label&gt;
+    &lt;ion-checkbox slot="end" #checkboxes [(ngModel)]="a.checked"&gt;&lt;/ion-checkbox&gt;
+  &lt;/ion-item&gt;
+&lt;/ion-list&gt;	
+</pre>
+
+<br><a href="https://forum.ionicframework.com/t/ion-text-wrap-doesnt-work/164725/9" target="_blank">ionicframework</a>
+<br><a href="https://forum.ionicframework.com/t/text-wrap-not-working/49294" target="_blank">ionicframework</a>
+<br><a href="https://stackoverflow.com/questions/32335101/how-to-wordwrap-a-long-string-in-ion-item" target="_blank">stackoverflow</a>
+
+<hr>
+<a name=""></a>
+<h2>CSS</h2>
 <a href="https://medium.com/@pliniopjn/como-usar-o-font-awesome-no-ionic-3-x-em-5-passos-simples-a97f82bee171">medium</a>
 
-
-<h3>BANCO</h3>
+<hr>
+<a name=""></a>
+<h2>BANCO</h2>
 <h4>Montando INSERT SQLSERVER</h4>
 
 exemplo de tabela abaixo:
@@ -17,3 +60,8 @@ exemplo de tabela abaixo:
 </table>
 
 <pre>SELECT '["INSERT INTO FEIRA_CATEGORIA (id,descricao) VALUES ('+CAST(id AS VARCHAR)+','''+CAST(descricao AS VARCHAR)+''');",[]],' FROM FEIRAS.categorias</pre>
+
+
+<hr>
+<a name=""></a>
+<h2></h2>

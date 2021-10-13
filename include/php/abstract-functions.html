@@ -123,6 +123,15 @@ Class Funcoes {
 	}	
 	//$sorted = array_orderby($data, 'volume', SORT_DESC, 'edition', SORT_ASC);
 
-	
+	function json_validator($data=NULL) {
+		if (!empty($data)) {
+			@json_decode($data);
+			return (json_last_error() === JSON_ERROR_NONE);
+		}
+		return false;
+	}
+
+	echo (json_validator($sampleJSONData1) ? "JSON is Valid" : "JSON is Not Valid");
+	// https://codeblogmoney.com/validate-json-string-using-php/
 }
 </pre>
