@@ -1,0 +1,47 @@
+<ol>
+    <li><a href="#bootstrap">Bootstrap</a></li>
+    <li><a href="#common_module">CommonModule</a></li>
+    <li><a href="#"></a></li>
+</ol>
+
+
+<!-- --------------------------------------------------------------------- -->
+<hr>
+<a name="bootstrap"></a>
+<h2>BOOTSTRAP</h2>
+No angular também é possivel inserir o bootstrap.
+<h3>Instalando</h3>
+<pre class="terminal">$ npm install bootstrap@4.1.1</pre>
+
+<h3>Carregando no APP</h3>
+Esta indicação é feita em <code>angular.json</code>, que possui uma chave denominada build, dentro do qual está styles. 
+Alteraremos e salvaremos seu conteúdo para incluir o caminho completo do Bootstrap na pasta "node_modules":
+
+<pre>"styles": [
+    "src/styles.css",
+    "./node_modules/bootstrap/dist/css/bootstrap.min.css"
+],
+"scripts": []</pre>
+
+<!-- --------------------------------------------------------------------- -->
+
+<hr>
+<a name="common_module"></a>
+<h2>CommonModule</h2>
+Sempre que criar um componente , como uma boa pratica <b>SEMPRE</b> incluir o <b>CommonModule</b>
+<pre>
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';<b style="color:red">
+import { CommonModule } from '@angular/common';</b>
+
+@NgModule({
+    declarations: [SignInComponent] ,
+    imports: [ <b style="color:red">
+        CommonModule </b>,
+        ReactiveFormsModule ,
+    ],
+})
+
+export class HomeModule {
+
+}</pre>

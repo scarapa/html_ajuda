@@ -1,30 +1,111 @@
-<h2>Cannot find module '<b>@angular/router</b>'</h2>
-Aconteceu depois de fazer atualização angular.
-<pre class="terminal">$ npm i @angular/router -s</pre>
+
+<ol>
+    <li><a href="#cannot-find-module-angular-router">NAO ENCONTRA <b>@NOME_PACOTE</b></a></li>
+    <li><a href="#nao-levanta-projeto-001">NAO LEVANTA PROJETO - 001</a></li>
+    <li><a href="#nao-levanta-projeto-002">NAO LEVANTA PROJETO - 002</a></li>
+    <li><a href="#nao-levanta-projeto-003">NAO LEVANTA PROJETO - 003</a></li>
+    <li><a href="#gradle-001">GRADLE - 001</a></li>
+    <!-- <li><a href="#"></a></li> -->
+</ol>
+
+<a name="cannot-find-module-angular-router"></a>
+<h2>NAO ENCONTRA <b>NOME_PACOTE</b></h2>
+<code>Cannot find module <b>@NOME_PACOTE</b></code>
+Basta instalar o pacote que está faltando !
+<pre class="terminal">$ npm i @NOME_PACOTE -s</pre>
 <a href="https://stackoverflow.com/questions/48451312/angular-4-to-angular-5-cannot-find-module-angular-router?rq=1">stackoverflow</a>
 
 <hr>
+<a name="nao-levanta-projeto-001"></a>
+<h2>NAO LEVANTA PROJETO - 001</h2>
 
-<h2>Cannot find module <b>'@angular/platform-browser'</b></h2>
-Instalar dependencia ...
-<pre class="terminal">$ npm i @angular/core -s</pre>
+<pre class="terminal"><font color="#EF2929">
+<b>ERROR in node_modules/rxjs/internal/types.d.ts(90,44): error TS1005: &apos;;&apos; expected.</b>
+<b>node_modules/rxjs/internal/types.d.ts(90,74): error TS1005: &apos;;&apos; expected.</b>
+<b>node_modules/rxjs/internal/types.d.ts(90,77): error TS1109: Expression expected.</b>
+<b>node_modules/rxjs/internal/types.d.ts(91,52): error TS1005: &apos;;&apos; expected.</b>
+<b>node_modules/rxjs/internal/types.d.ts(91,88): error TS1005: &apos;;&apos; expected.</b>
+<b>node_modules/rxjs/internal/types.d.ts(91,92): error TS1109: Expression expected.</b>
+</font></pre>
+
+<code>SOLUCAO: </code>um erro causado pela biblioteca RxJS. Nesse caso execute o comando abaixo na raiz do projeto para reinstalar RxJS na versão 6.0.0:
+Remover o package-lock.json 
+<pre class="terminal">$ sudo rm -rf package.json</pre>
+
+instalar pacote correto
+<pre class="terminal">$ npm install rxjs@6.0.0 --save</pre>
+
+<pre class="terminal">$ ng serve --open</pre>
 
 <hr>
+<a name="nao-levanta-projeto-002"></a>
+<h2>NAO LEVANTA PROJETO - 002</h2>
+<pre class="terminal">pm ERR! Linux 5.4.0-42-generic
+npm ERR! argv "/usr/bin/node" "/usr/bin/npm" "install"
+npm ERR! node v8.10.0
+npm ERR! npm  v3.5.2
+npm ERR! code EMISSINGARG
 
-<h2>Cannot find module '<b>@angular/core</b>'</h2>
-Aconteceu depois de fazer atualização angular.
-<pre class="terminal">$ npm i @angular/core -s</pre>
-<a href="https://stackoverflow.com/questions/48451312/angular-4-to-angular-5-cannot-find-module-angular-router?rq=1">stackoverflow</a>
+npm ERR! typeerror Error: Missing required argument #1
+npm ERR! typeerror     at andLogAndFinish (/usr/share/npm/lib/fetch-package-metadata.js:31:3)
+npm ERR! typeerror     at fetchPackageMetadata (/usr/share/npm/lib/fetch-package-metadata.js:51:22)
+npm ERR! typeerror     at resolveWithNewModule (/usr/share/npm/lib/install/deps.js:456:12)
+npm ERR! typeerror     at /usr/share/npm/lib/install/deps.js:457:7
+npm ERR! typeerror     at /usr/share/npm/node_modules/iferr/index.js:13:50
+npm ERR! typeerror     at /usr/share/npm/lib/fetch-package-metadata.js:37:12
+npm ERR! typeerror     at addRequestedAndFinish (/usr/share/npm/lib/fetch-package-metadata.js:82:5)
+npm ERR! typeerror     at returnAndAddMetadata (/usr/share/npm/lib/fetch-package-metadata.js:117:7)
+npm ERR! typeerror     at pickVersionFromRegistryDocument (/usr/share/npm/lib/fetch-package-metadata.js:134:20)
+npm ERR! typeerror     at /usr/share/npm/node_modules/iferr/index.js:13:50
+npm ERR! typeerror This is an error with npm itself. Please report this error at:
+npm ERR! typeerror     <http://github.com/npm/npm/issues></pre>
+
+<code>SOLUCAO</code> 
+<ol>
+	<li>deletar pasta do PROJETO
+		<pre class="terminal">$ sudo rm -rf alurapic/</pre>
+	</li>
+	<li>limpar cache npm
+		<pre class="terminal">$ sudo npm cache clean --force</pre>
+	</li>
+	<li>desinstalar npm globalmente
+		<pre class="terminal">$ npm -g uninstall npm && sudo apt-get remove npm</pre>
+	</li>
+	<li>instalar npm
+		<pre class="terminal">$ sudo apt install npm </pre>	
+	</li>
+	<li>instalar projeto
+		<pre class="terminal">$ ng new alurapic</pre>
+	</li>
+</ol>
+
+<br><a href="https://stackoverflow.com/questions/63188337/angular-error-while-create-new-project-unexpected-end-of-json-input-while-pars" >stackoverflow</a>
+<br><a href="https://qastack.com.br/programming/5650169/uninstall-node-js-using-linux-command-line">qastack</a>
+<br><a href="https://stackoverflow.com/questions/26320901/cannot-install-nodejs-usr-bin-env-node-no-such-file-or-directory">stackoverflow</a>
 
 <hr>
+<a name="nao-levanta-projeto-003"></a>
+<h2>NAO LEVANTA PROJETO - 003</h2>
+Servidor sobe, no entanto sobe <code>COM ERRO</code>
+<ol>
+	<li>no arquivo <b>package.json</b>, alterar a chave "rxjs". de: "^6.0.0" para "6.0.0".</li>
+	<li>deletar
+		<ol>
+			<li>pack-lock.json</li>
+			<li>/node_modules</li>
+		</ol>
+	</li>
+	<li>na pasta do projeto, executar "npm install"</li>
+	<li>subir a aplicação novamente "ng serve --open"</li>
+</ol>
 
-<h2>An unhandled exception occurred: Could not find the implementation for builder @ionic/angular-toolkit:cordova-build</h2>
-No momento(02/08/2019) existe uma incompatibilidade do <b>@ionic/angular-toolkit</b> com o <b>Angular 8</b>
-<pre class="terminal"></pre>
+<br><a href="https://cursos.alura.com.br/forum/topico-erro-ao-subir-servidor-localmente-77628" target="_blank">cursos.alura</a>
+
 
 <hr>
-
-<h2>Could not resolve all artifacts for configuration 'classpath'</h2>
+<a name="gradle-001"></a>
+<h2>GRADLE - 001</h2>
+<code>Could not resolve all artifacts for configuration 'classpath'</code>
 <pre>
 * What went wrong:
 A problem occurred evaluating project ':app'.
@@ -63,3 +144,9 @@ Nesses 3 arquivos
 <a href="https://github.com/flutter/flutter/issues/23553">github</a>
 
 <hr>
+<a name=""></a>
+<h2>An unhandled exception occurred: Could not find the implementation for builder @ionic/angular-toolkit:cordova-build</h2>
+No momento(02/08/2019) existe uma incompatibilidade do <b>@ionic/angular-toolkit</b> com o <b>Angular 8</b>
+<pre class="terminal"></pre>
+
+
