@@ -1,0 +1,63 @@
+<ol>
+    <li><a href="#criar_cookie">CRIAR COOKIE</a></li>
+    <li><a href="#setar_cookie">SETAR VALOR</a></li>
+    <li><a href="#recuperar_cookie">RECUPERAR VALOR</a></li>
+
+</ol>
+
+<hr>
+<a name="criar_cookie"></a>
+<h2>CRIAR COOKIE</h2>
+JavaScript pode criar, ler e excluir cookies com a propriedade document.cookie.
+<br><br>
+Com JavaScript, um cookie pode ser criado assim:
+
+<pre>document.cookie = "username=John Doe"; </pre>
+
+Você também pode adicionar uma data de expiração (no horário UTC). Por padrão, o cookie é excluído quando o navegador é fechado:
+<pre>document.cookie = "username=John Doe; expires=Thu, 18 Dec 2013 12:00:00 UTC"; </pre>
+
+com um parâmetro de caminho, você pode dizer ao navegador a qual caminho o cookie pertence. Por padrão, o cookie pertence à página atual.
+
+<pre>document.cookie = "username=John Doe; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/"; </pre>
+
+
+<hr>
+<a name="setar_cookie"></a>
+<h2>SETAR VALOR</h2>
+Primeiro, criamos uma função que armazena o nome do visitante em uma variável de cookie:
+
+
+<pre>function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    let expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}</pre>
+
+Os parâmetros da função acima são o nome do cookie (cname), o valor do cookie (cvalue) e o 
+número de dias até que o cookie expire (exdays).
+<br><br>
+
+A função define um cookie adicionando o cookiename, o valor do cookie e a string expires.
+
+<hr>
+<a name="recuperar_cookie"></a>
+<h2>RECUPERAR VALOR</h2>
+criamos uma função que retorna o valor de um cookie especificado:
+
+<pre>function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i &lt;ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') { c = c.substring(1); }
+        if (c.indexOf(name) == 0) { return c.substring(name.length, c.length); }
+    }
+    return "";
+}    
+</pre>
+
+
+<br><a href="https://www.w3schools.com/js/js_cookies.asp">w3schools</a>

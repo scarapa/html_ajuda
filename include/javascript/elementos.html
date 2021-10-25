@@ -1,18 +1,32 @@
 <ol>
-	<li>Input</li>
-	<li>Select</li>
-	<li>Checkbox</li>
-	<li>Radio</li>
+	<li><a href="#">Input</a></li>
+	<li><a href="#">Select</a></li>
+	<li><a href="#">Checkbox</a></li>
+	<li><a href="#">Radio</a></li>
 </ol>
 
-<h3>Input</h3>
+<h2>Input</h2>
+
+<h2>Select</h2>
+
+<h3>Selecionar option</h3>
+<kbd>HTML</kbd>
+<pre>&lt;select style="float:right" id="escolherTema"&gt; onChange="setarTema(this.value)"
+    &lt;option value="0"&gt;Light Mode&lt;/option&gt;
+    &lt;option value="1"&gt;Dark Mode&lt;/option&gt;
+&lt;/select&gt;</pre>
+
+<kbd>JS</kbd>
+<pre>function setarTema(valor){
+    document.querySelector('#escolherTema')[valor].selected = true
+}</pre>
+	
+
+<h2>Checkbox</h2>
 
 
-<h3>Checkbox</h3>
 
-<h3>Select</h3>
-
-<h3>Radio</h3>
+<h2>Radio</h2>
 Para selecionar 
 
 <a href="https://www.w3schools.com/jsref/prop_checkbox_value.asp">w3schools</a>
