@@ -135,28 +135,29 @@ body{
 #page-wrapper > h3::before{
 	counter-increment: aga3;
 	content: counter(aga2)"."counter(aga3) " - ";
+	margin-left:15px !important;
 }	
 
 #page-wrapper > h3{ counter-reset: aga4; font-weight: bold;}
 
 #page-wrapper > h4::before{
-	margin-left:25px;
 	counter-increment: aga4;
 	content: counter(aga2)"."counter(aga3)"."counter(aga4) " - ";
+	margin-left:25px !important;
 }	
 #page-wrapper > h4{ counter-reset: aga5; font-weight: bold;}
 
 #page-wrapper > h5::before{
-	margin-left:45px;
 	counter-increment: aga5;
 	content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5) " - ";
+	margin-left:35px !important;
 }
 #page-wrapper > h5{ counter-reset: aga6; font-weight: bold; }	    
 
 #page-wrapper > h6::before{
-	margin-left:25px;
 	counter-increment: aga6;
 	content: counter(aga2)"."counter(aga3)"."counter(aga4)"."counter(aga5)"."counter(aga6) " - ";
+	margin-left:45px !important;	
 }
 #page-wrapper > h6{ counter-reset: aga7; font-weight: bold; }	 
 
