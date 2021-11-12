@@ -1,0 +1,42 @@
+﻿
+<h3>Atualizar o SO</h3>
+
+Atualizar os pacote atuais do sistema 
+<pre>$ sudo apt update</pre>
+
+Atualizar a distribuicao (<code>-y</code>) aceitação automática
+<pre>$ sudo apt dist-upgrade <code>-y</code></pre>
+
+
+<h3>descobrir versao</h3>
+<pre>$ cat /etc/issue</pre>
+
+<h3>distribuicao </h3>
+<pre>$ cat /etc/*-release | grep PRETTY</pre>
+
+<h3>listar devices</h3>
+<pre>$ lsusb</pre>
+
+<h3>listar versao do kernel</h3>
+<pre>$ sudo uname -r</pre>
+
+<h3>pesquisar pacotes/programas instalados</h3>
+<pre>$ dpkg --get-selections</pre>
+
+<h3>Localizar e Matar processos</h3>
+<pre>$ ps -ef | grep apache2</pre>
+<hr>
+<h3>Alterar nome da maquina - Alterar hostname</h3>
+<li>1º Editar o arquivo de host</li>
+<pre>$ sudo nano /etc/hosts</pre>
+
+Alterar o que está destacado em VERMELHO na imagem abaixo.<br clear="all">
+
+<img src="../helper/images/linux_hostname.png"><br clear="all"><br clear="all">
+
+<li>2º Editar o arquivo com o HOSTNAME da maquina.</li>
+<pre>$ sudo nano /etc/hostname</pre>
+
+<li>3º Finalizar reiniciando a maquina.</li>
+<pre>$ sudo reboot</pre>
+<a href="https://pricklytech.wordpress.com/2013/04/24/ubuntu-change-hostname-permanently-using-the-command-line/">Fonte</a>
