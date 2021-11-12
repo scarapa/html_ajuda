@@ -1,0 +1,194 @@
+<ol>
+    <li><a href="#instalacao">INSTALACAO</a></li>
+    <li><a href="#introducao">INTRODUCAO</a></li>
+    <li><a href="#requisicao">REQUISICAO</a></li>
+    <li><a href="#variaveis">VARIAVEIS</a></li>
+    <li><a href="#token">TOKEN</a></li>
+</ol>
+
+<!-- ------------------------------------------------------ -->
+<hr>
+<a name="instalacao"></a>
+<h2><i class="fas fa-download"></i> INSTALACAO</h2>
+O primeiro passo para a instalação é baixar o Insomnia. Atualmente, há duas vertentes do Insomnia: a Designer e a Core. 
+A que nos interessa nesse artigo é a Core. Você pode encontrar aqui as versões do Core disponíveis de acordo com o seu 
+sistema operacional. Ao entrar na página você verá uma tela parecida com essa:
+
+<div class="centro center">
+    <img src=".\images\insomnia_instalacao_01.jpg" class="bp w60">
+</div>
+
+    <h3>windows</h3>
+O processo de instalação no Windows é um wizard super fácil. 
+
+    <h3>linux</h3>
+No Linux, você pode baixar o instalador e executar o wizard, ou instalar via linha de comando, executando    
+<pre class="terminal">$ sudo snap install insomnia</pre>
+
+    <h3>mac</h3>
+Basta arrastar o arquivo baixado para a sua lista de aplicações. A instalação também pode ser feita por meio do brew, executando o comando    
+<pre class="terminal">brew cask install insomnia</pre>
+
+<!-- ------------------------------------------------------ -->
+<hr>
+<a name="introducao"></a>
+<h2><i class="fa fa-book fa-fw"></i> INTRODUCAO</h2>
+Ao abrir pela primeira vez o Insomnia, você irá se deparar com a seguinte interface:
+<div class="centro center">
+    <img src=".\images\insomnia_introducao_01.jpg" class="bp w60">
+</div>
+
+    <h3>Workspace</h3>
+    O primeiro passo é criarmos um workspace para a API específica que iremos trabalhar, 
+    para, assim, mantermos tudo bem organizado. 
+    <br><br>
+
+    Basta clicar no botão azul na interface inicial e selecionar a opção “Create Workspace”, conforme a imagem abaixo:
+    <div class="centro center">
+        <img src=".\images\insomnia_workspace_01.jpg" class="bp w60">
+    </div>
+
+    Em seguida, você deve definir um nome para o novo workspace. No meu caso, irei colocar o nome da minha aplicação, que é Tourist Spots.
+    Insomnia. Nome do workspace
+
+    <div class="centro center">
+        <img src=".\images\insomnia_workspace_02.jpg" class="bp w60">
+    </div>
+    
+    Após a criação do workspace, você verá, no botão azul, a indicação de qual está em uso no momento. Veja, no meu aparece aquele que eu acabei de criar:
+
+    <div class="centro center">
+        <img src=".\images\insomnia_workspace_03.jpg" class="bp w60">
+    </div>
+
+    Agora, para melhorar ainda mais a organização, vamos criar pastas para separar as requisições que iremos criar.
+
+    <h3>Pastas</h3>
+    Mesmo que estejamos trabalhando com requisições de uma única aplicação, é comum haver várias entidades 
+    diferentes na mesma aplicação. Por exemplo, na minha aplicação, tenho requisições para pontos turísticos, 
+    para atrações, para avaliações, para comentários… As pastas, nesse cenário, me ajudam a organizar as requisições 
+    pela natureza de cada uma.
+    <br><br>
+
+    A primeira requisição, que irei demonstrar mais à frente, será a de receber todos as atrações 
+    turísticas. Vou criar, então, a pasta Atrações. Para isso, basta acionar o atalho <kbd>Shift + Ctrl + N</kbd> 
+    ou ir na opção <kbd>New Folder</kbd>, conforme imagem a seguir:
+    <br><br>
+
+    <div class="centro center">
+        <img src=".\images\insomnia_pastas_01.jpg" class="bp w60">
+    </div>
+
+    Você terá que definir um nome para a pasta:
+    <div class="centro center">
+        <img src=".\images\insomnia_pastas_02.jpg" class="bp w60">
+    </div>
+    
+    Em seguida, você verá no menu à esquerda a sua pasta recém-criada.
+    <div class="centro center">
+        <img src=".\images\insomnia_pastas_03.jpg" class="bp w60">
+    </div>
+
+<!-- ------------------------------------------------------ -->
+<hr>
+<a name="requisicao"></a>
+<h2><i class="fa fa-refresh"></i> REQUISICAO</h2>    
+
+Após adicionar um endereço de uma API válido, para fazer a requisição, basta ir no 
+botão <kbd>send</kbd>. Feito isso a resposta da API será apresentada à direita:
+<br><br>
+
+<div class="centro center">
+    <img src=".\images\insomnia_rest.jpg" class="bp w60">
+</div>
+
+Perceba que é apresentado o status da resposta, o tempo decorrido e seu tamanho. 
+<br><br>
+
+Esse tipo de informação é muito relevante para certificar-se que sua API realmente está retornando os códigos recomendados na arquitetura REST, além de servir para verificar o desempenho da sua API.
+
+<!-- ------------------------------------------------------ -->
+<hr>
+<a name="variaveis"></a>
+<h2><i class="mdi mdi-keyboard-tab"></i> VARIAVEIS</h2>
+Ter essas variáveis de ambiente traz algumas vantagens, como por exemplo facilidade 
+para fazer alterações em URLs que são muitos referenciadas. Vamos ver isso na prática! 
+No menu abaixo do workspace selecionado, vá na seguinte opção:
+
+<div class="centro center">
+    <img src=".\images\insomnia_variaveis_001.jpg" class="bp w60">
+</div>
+
+Em seguida, você verá a seguinte tela: 
+<div class="centro center">
+    <img src=".\images\insomnia_variaveis_002.jpg" class="bp w60">
+</div>
+
+Agora, observe que do lado esquerdo tem um item chamado “Base Enviroment”. Ele é, 
+digamos, o ambiente padrão do seu workspace. Você pode, ainda, criar sub-ambientes, 
+para ter uma organização melhor.
+<br><br>
+
+Observe que na imagem acima, no meio, tem o objeto JSON, que representa o ambiente escolhido. 
+Perceba que esse objeto está vazio. Vamos adicionar a ele a variável “base_url”, que é a URL 
+comum a todas as requisições que iremos fazer a nossa aplicação REST:
+<div class="centro center">
+    <img src=".\images\insomnia_variaveis_003.jpg" class="bp w60">
+</div>
+
+Voltando à requisição Receber todas, na url, em vez de colocar diretamente o endereço base da minha API, 
+preciso colocar somente “base_url”, que é a variável criada. Perceba que irá funcionar normalmente:
+<div class="centro center">
+    <img src=".\images\insomnia_variaveis_004.jpg" class="bp w60">
+</div>
+
+<!-- ------------------------------------------------------ -->
+<hr>
+<a name="token"></a>
+<h2><i class="fa fa-lock"></i> TOKEN</h2>
+Se você protegeu seu endpoint com um acesso por autenticação via token, verá, após fazer a 
+requisição, uma mensagem semelhante a essa:
+<div class="centro center">
+    <img src=".\images\insomnia_token_001.jpg" class="bp w60">
+</div>
+
+Será apresentado um status de não autorizado e uma mensagem deixando claro que você não 
+forneceu as devidas credenciais. Afinal de contas, onde devemos colocar o token da requisição 
+no Insomnia? Simples! Podemos acrescentá-lo no Header da requisição. Vejamos o meu caso a seguir:
+<div class="centro center">
+    <img src=".\images\insomnia_token_002.jpg" class="bp w60">
+</div>
+
+
+Como é o padrão da minha API, o nome do atributo deve ser Authorization, e o token deve ser 
+antecedido pela palavra Token. Agora, ao fazer a requisição, o resultado esperado ocorre:
+<div class="centro center">
+    <img src=".\images\insomnia_token_003.jpg" class="bp w60">
+</div>
+
+Veremos o status de “sucesso” e o objeto que foi criado no meu servidor será retornado.
+
+Uma outra forma de adicionar o token à requisição é por meio da aba Auth. Para isso, 
+primeiro precisamos selecionar o tipo de autenticação que utilizamos na nossa API.
+Como eu utilizo a do tipo Bearer, irei selecioná-la:
+<div class="centro center">
+    <img src=".\images\insomnia_token_004.jpg" class="bp w60">
+</div>
+
+Uma vez selecionada, você verá os campos da autenticação a serem preenchidos:
+<div class="centro center">
+    <img src=".\images\insomnia_token_005.jpg" class="bp w60">
+</div>
+
+Perceba que não há mais a necessidade de eu indicar que o atributo é chamado de 
+Authorization, pois nesse tipo de autenticação isso já é padrão. Basta indicar 
+o token e o prefixo que vem antes dele:
+<div class="centro center">
+    <img src=".\images\insomnia_token_006.jpg" class="bp w60">
+</div>
+
+Seja passando o token diretamente pelo cabeçalho, seja passando pela aba aba dedicada do 
+Insomnia, você conseguirá adicionar a autenticação nas suas requisições.
+<br>
+
+<br><a href="https://blog.cod3r.com.br/testes-de-api-rest-com-o-insomnia/" target="_blank">cod3r</a>
