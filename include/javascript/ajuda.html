@@ -1,0 +1,351 @@
+
+<h3>Arquivo com as funções amplamente utilizadas nos mais diversos sistemas</h3>
+<pre>
+/************************/
+/********* DATA *********/
+/************************/
+$('.data').mask('00/00/0000');    
+function converterDataEUAtoBR(data) {
+    if(data.length == 0) return "";    
+    var data = data.toString().split("-");
+    return data[2] + "/" + data[1] + "/" + data[0];
+}
+
+function converterDataBRtoEUA(data) {
+    if(data.length == 0) return "";
+    var data = data.toString().split("/");
+    return data[2] + "-" + data[1] + "-" + data[0];
+}
+
+/************************/
+/********* AJAX *********/
+/************************/
+
+function ajaxGenericoGet(url, variaveis) {
+    var tmp = [];
+    $.ajax({
+        'async': false,
+        'type': "GET",
+        'global': false,
+        'dataType': 'html',
+        'url': url,
+        'data': variaveis,
+        'beforeSend': function () {
+            //abrirCortina();
+        },
+        'success': function (data) {
+            return tmp = jQuery.parseJSON(data)
+        }, 'error': function (jqXHR, exception) {
+            //console.log('ERRO');
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            alert(msg)
+            //$('#post').html(msg);            
+        }
+    });
+    return tmp;
+}
+
+function ajaxGenericoPost(rota, variaveis) {
+    var tmp = [];
+    $.ajax({
+        'async': false,
+        'type': "POST",
+        'global': false,
+        'dataType': 'html',
+        'url': rota,
+        'data': variaveis,
+        'beforeSend': function () {
+            //abrirCortina();
+        },
+        'success': function (data) {
+            return tmp = jQuery.parseJSON(data)
+        }, 'error': function () {
+            //console.log('ERRO');
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            //alert(msg)            
+            console.log('%c '+msg+' ','color:hsl(0, 100%, 90%);background-color:hsl(0, 100%, 50%);');
+        }
+    });
+    return tmp;
+}
+
+/*********************/ 
+/***** MONETARIO *****/
+/*********************/ 
+$('.decimal').maskMoney({decimal:".", thousands:".",precision: 0});
+$( ".dinheiro" ).blur(function() {
+    if( $(this).val() == "") { $(this).val('0,00'); }
+});  
+$(".dinheiro").maskMoney({decimal:",", thousands:"."});
+
+function converterBancoParaMoedaBR(numero) {
+    if(!validarTipoNumero(numero)){ return numero}
+    var numero =""+numero+"";
+    numero = numero.toFixed(2).split('.');
+    numero[0] = numero[0].split(/(?=(?:...)*$)/).join('.');
+    return numero.join(',');
+
+}
+
+/*********************/ 
+/****** VALIDAR ******/
+/*********************/ 
+function validarTipoNumero(numero){
+    if(isNaN(numero)){ return false; }
+    if(numero == null) { return false;}
+    if(numero == 'undefined') { return false;}
+    return true;
+}
+$('.soNumero').keyup(function() {
+    $(this).val($(this).val().replace(/[^\d]/, ''));
+});
+
+$('.numeroSomentePonto').keydown(function() {
+	$(this).val($(this).val().replace(",", "."));
+});
+
+$(".cpf").mask("999.999.999-99");
+$(".cep").mask("99999-999");
+
+
+
+function mascaraGenerica(elemento , mascara){
+    var charEspecial = "~`!#$%^&*+=-[]\\\';,/{}|\":<>?.";       
+    var texto = '';
+
+    for (i=0; i < elemento.value.length ; i++) &#123;
+        if( compararTipo(elemento.value[i],mascara[i]) ) { texto += texto = elemento.value[i];}                 
+    &#125;
+    //CASO PROXIMO CHAR SEJA ESPECIAL , JÁ PREENCHE         
+    var stCharEspecialMascara = (charEspecial.indexOf(mascara[i]) > -1)  ? charEspecial.indexOf(mascara[i]): -1 ; 
+    if( stCharEspecialMascara > -1) &#123; texto = texto+mascara[i];    &#125;
+    
+    document.getElementsByName(elemento.name)[0].value = texto.substring(0,mascara.length);
+    document.getElementsByName(elemento.name)[0].maxLength = mascara.length;
+
+    function compararTipo(valor1,valor2)&#123;
+        return ( Number.isInteger(parseInt(valor1))==Number.isInteger(parseInt(valor2)) ) ? true : false ;
+    &#125;
+}
+
+
+//retorno 1 == NUMERO
+//retorno 2 == STRING
+//retorno 3 == SPECIAL    
+
+function buscarTipo(valor){
+    var charEspecial = "~`!#$%^&*+=-[]\\\';,/{}|\":<>?.";  
+    var charLetra = /^[a-zA-Z]+$/;    
+    var charNumero = /^[0-9]+$/;
+    var stCharEspecialMascara;
+    if(valor.match(charNumero) ){ return 1; }
+    if(valor.match(charLetra) ){ return 2; }    
+    stCharEspecialMascara = (charEspecial.indexOf(valor) > -1) ? charEspecial.indexOf(valor):-1;
+    if (stCharEspecialMascara > -1) {return 3;}
+    return 0;
+}
+
+
+/* ELEMENTO COM ESSA CLASSE VAI RESPEITAR A MASCARA 23:59 */
+var elementos = document.querySelectorAll(".mascaraHorario");
+for (var i = 0; i < elementos.length; i++) {
+    elementos[i].addEventListener('keyup', function(event){
+        if(this.value!="undefined"){
+            if( (typeof this.value[0] != "undefined") && (this.value[0]>2) ){
+                this.value = "";
+            }
+            if( (typeof this.value[1] != "undefined") && (this.value[1]>9) ){
+                this.value = this.value[0]
+            }
+            if( (this.value[0]>=2) && (this.value[1]>=4) ){
+                this.value = this.value.substring(0,1);
+            }
+            if( this.value[3]>5){this.value = this.value.substring(0,3);}
+        }
+    });         
+} 
+
+/*********************/ 
+/****** STRING *******/
+/*********************/ 
+
+// SOLUÇÃO ELEGANTE
+String.prototype.replaceAll = function(de, para){
+    var str = this;
+    var pos = str.indexOf(de);
+    while (pos > -1){
+        str = str.replace(de, para);
+        pos = str.indexOf(de);
+    }
+    return (str);
+}
+
+// SOLUÇÃO SIMPLES
+function replaceAll(str, de, para){
+    var pos = str.indexOf(de);
+    while (pos > -1){
+        str = str.replace(de, para);
+        pos = str.indexOf(de);
+    }
+    return (str);
+}
+// fonte: https://www.codigofonte.com.br/codigos/funcao-replaceall-em-javascript
+
+
+function replaceTudo(string, caracterProcurar, caracterSubstituir) {
+    var i = 0;
+    var novaString = "";
+    if(string == undefined) return string;
+    while (i <= string.length) {
+        if (typeof string[i] !== 'undefined') {
+            if (string[i] == caracterProcurar) {
+                novaString += caracterSubstituir;
+            } else {
+                novaString += string[i];
+            }
+        }
+        i++;
+    }
+    return novaString;
+}
+
+function rtrim(str) { return str.replace(/s+$/," ") ; }
+function arrayRetirarVazio(array){
+    var arrayNovo = [];
+    for (var i in array) {
+        if( array[i].toString().trim() != ""){
+            arrayNovo.push(array[i]);
+        }
+    }           
+    return arrayNovo;
+}
+
+function stringContarAparicao(palavra, char) {
+    palavra = palavra.toLowerCase();
+    var c = 0 ;
+    for (var i = 0; i &lt; palavra.length; i++) {
+        if( palavra[i] == char) { c++;  }
+    }
+    return c;
+}
+
+function leftPad(value , count = 2 , char = '0'){
+    let newValue = value.toString();
+    if( value.toString().length &lt; count ){
+        for(let i = 0; i &lt; count - value.toString().length ; i++){
+            newValue = cahr + value.toString()
+        }
+    }
+    return newValue;
+}
+
+/******************************/ 
+/****** CSS - ELEMENTOS *******/
+/******************************/ 
+/*  st_zerar => incluir => 0 = selecione  */
+function limparSelect(elemento,st_zerar){
+    document.getElementById(elemento).innerHTML = "";    
+    if(st_zerar){
+        var select = document.getElementById(elemento);
+        var option = document.createElement("option");
+        option.text = "SELECIONE";
+        option.value = 0;
+        select.appendChild(option);      
+    }
+}
+
+function carregarSelect(elemento,dados,colunaValor,colunaTexto){
+    var select = document.getElementById(elemento);    
+    for (var i = 0; i < dados.length; i++) {
+        var option = document.createElement("option");
+        option.text = dados[i][colunaTexto];
+        option.value = dados[i][colunaValor];
+        select.appendChild(option);
+    }      
+}
+
+function desabilitarBotao(id_elemento,flag){
+    if(flag){
+        document.getElementById(id_elemento).classList.add("habilitarBotao");
+        document.getElementById(id_elemento).classList.remove("desabilitarBotao");
+    }else{
+        document.getElementById(id_elemento).classList.add("desabilitarBotao");
+        document.getElementById(id_elemento).classList.remove("habilitarBotao");
+    }
+}
+
+function desabilitarElemento(elemento_id="",elemento_nome="",elemento_classe="",flag){
+    if(elemento_id != ""){
+        if(flag){
+            document.getElementById(elemento_id).classList.add("elementoHabilitar");
+            document.getElementById(elemento_id).classList.remove("elementoDesabilitar");
+        }else{
+            document.getElementById(elemento_id).classList.add("elementoDesabilitar");
+            document.getElementById(elemento_id).classList.remove("elementoHabilitar");
+        }
+    }else if(elemento_nome != "" ){
+        if(flag){
+            document.getElementsByName(elemento_nome).classList.add("elementoHabilitar");
+            document.getElementsByName(elemento_nome).classList.remove("elementoDesabilitar");
+        }else{
+            document.getElementsByName(elemento_nome).classList.add("elementoDesabilitar");
+            document.getElementsByName(elemento_nome).classList.remove("elementoHabilitar");
+        }
+        
+    }else if(elemento_classe != ""){
+        
+        var elemento = document.querySelectorAll("."+elemento_classe+"");
+        var numberclass =  document.querySelectorAll("."+elemento_classe+"").length; 
+        if(flag){
+            for(var i = 0; i< numberclass; i++) {
+                elemento[i].classList.add("elementoHabilitar");
+                elemento[i].classList.remove("elementoDesabilitar");
+            }
+            
+        }else{
+            for(var i = 0; i< numberclass; i++) {
+                elemento[i].classList.remove("elementoHabilitar");
+                elemento[i].classList.add("elementoDesabilitar");
+            }            
+        }        
+        
+    }else{
+        //NAO FAZ NADA
+    }
+}
+</pre>
+
+Para usar a função <code>mascara()</code>
+<pre>
+&lt;input type="text" name="nm_componente" <b style="color:red">onkeypress="mascara(this,'AAA-9999')"&gt;</b> 
+</pre>
