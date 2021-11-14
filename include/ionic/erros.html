@@ -1,6 +1,7 @@
 <ol>
     <li><a href="#variaveis-de-ambiente">VARIAVEIS DE AMBIENTE</a></li>
     <li><a href="#nao-gerar-pagina">NÃO GERAR PAGINA</a></li>
+    <li><a href="#nao-altera-apk">NÃO ALTERA APK</a></li>
     <li><a href="#nao-constroi-projeto">CONSTRUCAO</a>
         <ol>
             <li><a href="#nao-constroi-projeto-device">DEVICE</a></li>
@@ -90,8 +91,29 @@ Para resolver isso foi preciso rodar o comando abaixo:
 Solução foi <b>DELETAR</b> a pasta <b>node_modules</b> do projeto e rodar esse comando.
 <pre class="terminal">$ npm install @ionic/app-scripts@latest --save-dev</pre>
 
+
+
 <hr>
 
+<a name="nao-altera-apk"></a>
+<h2>NÃO ALTERA APK</h2>
+Ao gerar APK nao altera o codigo HTML nem TS
+<br><br>
+<code>SOLUCAO: </code> 
+<ol>
+    <li>
+        <b>Construir o WEBSERVER</b>
+        <pre class="terminal">$ ionic serve</pre>
+    </li>
+    <li>
+        <b>Gerar APK</b>
+        <pre class="terminal">$ ionic cordova run android --device</pre>
+    </li>
+</ol>
+
+<br><a href="https://stackoverflow.com/questions/44845299/cordova-run-android-does-not-reflect-changes-on-device-emulator#">stackoverflow</a>
+
+<hr>
 <a name="nao-constroi-projeto"></a>
 <h2>CONSTRUCAO</h2>
 

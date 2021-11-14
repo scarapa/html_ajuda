@@ -1,0 +1,134 @@
+<ol>
+	<li><a href="#clone">CLONE</a></li>
+	<li><a href="#branch">BRANCH</a></li>
+    <li><a href="#pull">PULL</a></li>
+    <li><a href="#commit">COMMIT</a></li>
+    <li><a href="#push">PUSH</a></li>
+	<li><a href="#">Log</a></li>
+	<li><a href="#historico">Historico</a></li>
+</ol>
+
+<!-- ----------------------------- -->
+<hr>
+<a name="clone"></a>
+<h2>CLONE</h2>
+
+    <h3>PADRAO</h3>
+clonar repositorio da forma tradicional
+<pre class="terminal">$ git clone <b style="color:red">REPOSITORIO</b></pre>
+    
+    <h3>PASSANDO USUARIO E SENHA</h3>
+clonar repositorio passando usuario e senha; pode ser necessario caso o usuario GLOBAL 
+na maquina nao seja o mesmo que tenha acesso ao repositorio.    
+<pre class="terminal">$ git clone https://USUARIO:SENHA@host.com/name/projeto.git</pre>
+
+exemplo
+<pre class="terminal">$ git clone https://<b style="color:red">SEU_USUARIO:SUA_SENHA</b>@github.com/scarapa/html_ajuda.git</pre>
+
+<br><a href="https://serverfault.com/questions/815043/how-to-give-username-password-to-git-clone-in-a-script-but-not-store-credential">serverfault</a>
+
+<!-- ----------------------------- -->
+<hr>
+<a name="branch"></a>
+<h2>BRANCH</h2>
+
+<h3>CRIAR Branch novo e ao mesmo tempo mudar para ele</h3>
+<pre class="terminal">$ git checkout -b nome_branch</pre>
+
+<h3>RETORNAR para o Branch MASTER</h3>
+<pre class="terminal">$ git checkout master</pre>
+
+<h3>REMOVER o Branch</h3> 
+<pre class="terminal">$ git branch -D nome_branch</pre>
+
+<h3>ALTERAR o nome do Branch</h3> 
+<pre class="terminal">$ git branch -m nome_atual nome_novo</pre>
+
+<h3>LISTAR Branchs</h3> 
+<pre class="terminal">$ git branch</pre>
+
+<h3>RESETAR branch</h3> 
+<pre class="terminal">$ git checkout -f</pre>
+ou
+<pre class="terminal">$ git reset --HARD</pre>
+
+<!-- ----------------------------- -->
+<hr>
+<a name="pull"></a>
+<h2>PULL</h2>
+
+    <h3>PADRAO</h3>
+<pre class="terminal">$ git pull</pre>
+    
+    <h3>PASSANDO USUARIO E SENHA</h3>
+<pre class="terminal">$ git pull https://user:password@github.com/name/repo.git BRANCH_PADRAO</pre>
+
+exemplo
+<pre class="terminal">$ git pull https://<b style="color:red">SEU_USUARIO:SUA_SENHA</b>@github.com/scarapa/html_ajuda.git <b style="color:red">main</b></pre>
+<code>OBSERVACAO: </code> no ano de 2021 o github alterou a branch padrao de <code>MASTER</code> para <code>MAIN</code>
+
+<br><a href="https://serverfault.com/questions/815043/how-to-give-username-password-to-git-clone-in-a-script-but-not-store-credential">serverfault</a>
+
+
+<!-- ----------------------------- -->
+<hr>
+<a name="commit"></a>
+<h2>COMMITs</h2>
+
+<h3>Verifica o status dos arquivos</h3>
+<pre class="terminal">$ git status</pre>
+
+<h3>Adicionar todos os arquivos ao commit</h3> 
+<pre class="terminal">$ git add .</pre>
+
+<h3>Adicionar apenas um arquivo ao commit</h3> 
+<pre class="terminal">$ git add caminho_do_arquivo</pre>
+
+<h3>Encapsula REALMENTE todos arquivos e adicionar a mensagem ao mesmo</h3>
+<pre class="terminal">$ git commit -m "mensagem"</pre>
+
+<h3>Encapsula todos arquivos e adicionar a mensagem no MESMO COMANDO</h3>
+<pre class="terminal">$ git commit -am "mensagem"</pre>
+
+<h3><b>NÃO</b> incluir arquivo no COMMIT</h3>    
+NÃO incluir determinado arquivo que faz parte da sua configuração local, exemplo: retirar o arquivo editado por você da sua arvore de modificacoes , no nosso exemplo esse arquivo é de acesso de banco de dados; não tem necessidade de seu colega ou outra pessoa saber seu usuário e senha de banco.<br>
+<pre class="terminal">$ git checkout <b style="color:red">NOME_ARQUIVO</b></pre>
+<code>Exemplo:</code>
+<pre class="terminal">$ git checkout <b>Database.php</b></pre>
+
+
+<!-- ----------------------------- -->
+<hr>
+<a name="push"></a>
+<h2>PUSH</h2>
+    <h3>PADRAO</h3>
+<pre class="terminal">$ git push -u origin main</pre>
+
+    <h3>PASSANDO USUARIO E SENHA</h3>
+    
+<pre class="terminal">$ git push https://username:password@github.com/scarapa/html_ajuda.git</pre>
+<code>OBSERVACAO</code> Provavelmente tnha que usar o novo padrão de senha do git <code>PAT</code>
+
+<br><a href="https://stackoverflow.com/questions/29776439/username-and-password-in-command-for-git-push">stackoverflow</a>
+
+<!-- ----------------------------- -->
+<h2>LOGs</h2>
+<h3>Listar todos os arquivos commitados no dia</h3>    
+<pre>$ git log --since="1 day ago" --name-only --pretty=format: | sort | uniq </pre>
+<a href="https://stackoverflow.com/questions/8016645/git-list-all-files-added-modified-on-a-day-or-week-month">Fonte</a>
+
+<h3>Para ver o arquivo que não foi commitado para o repositorio ORIGIN</h3>
+<pre>$ git config --global alias.logdifforigin "log --name-only --pretty=format: master --not origin/master" </pre>
+ou pesquisando pelo <strong>NOME DO SEU BRANCH</strong>
+
+<pre>$ git logdifforigin = git log --name-only --pretty=format: nome_do_seu_bracnh_local --not origin/master</pre>
+
+<!-- ----------------------------- -->
+<hr>
+<a name="historico"></a>
+<h2>LINUX - HISTORICO</h2>
+
+<h3>Historico com os últimos comandos executados</h3>
+<pre class="terminal">$ history | grep -i 'git' </pre>
+
+
