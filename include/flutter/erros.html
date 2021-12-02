@@ -1,19 +1,28 @@
 <ol>
-    <li><a href="#erro-instalacao">Erro de Instalação</a></li>
+    <li>
+        <a href="#erro_instalacao">Erro de Instalação</a>
+        <ol>
+            <li><a href="#erro_instalacao_001">Erro 001</a></li>
+            <li><a href="#erro_instalacao_002">Erro 002</a></li>
+            <li><a href="#erro_instalacao_003">Erro 003</a></li>
+            <li><a href="#erro_instalacao_004">Erro 004</a></li>
+        </ol>
+    </li>
     <li><a href="#erro-grandle">Erro Grandle</a></li>
     <li><a href="#nao-constroi-projeto">Nao constroi projeto</a></li>
     <li><a href="#depedencia">Erro Dependencia Plugins</a></li>
     <li><a href="#androidx">AndroidX Flutter</a></li>
     <li><a href="#erro-json-decode">Erro json.decode()</a></li>
-    <li><a href="#snackbar">Snackbar nao funiona</a></li>
-    <li><a href="#checkbox">Checkbox nao funciona</a></li>
+    <li><a href="#snackbar">SNACKBAR nao funciona</a></li>
+    <li><a href="#checkbox">CHECKBOX nao funciona</a></li>
     <li><a href="#singlechildscrollview">SingleChildScrollView nao funciona</a></li>
     <li><a href="#overflow">Overflow</a></li>
+    <li><a href="#versao_depreceada">VERSAO DEPRECEADA</a></li>
 </ol>
 
+<!-- -------------------------------------------------------------- -->
 <hr>
-
-<a name="erro-instalacao"></a>
+<a name="erro_instalacao"></a>
 <h2>Erro de Instalação</h2>
 
 <h3>Erro 001</h3>
@@ -44,6 +53,7 @@ Dart SDK is not configured
     <img src="images/flutter-erro-instalacao-dart-sdk-002.jpg" style="width:60%" class="bp">
 </div>
 
+<a name="erro_instalacao_003"></a>
 <h3>Erro 003</h3>
 Ao tentar fazer downgrade do sdk da versão <code>2.12</code> para <code>1.22.0</code> o android studio
 não é mais encontrado pelo doctor, mesmo reiniciando e reinstalando o AS.
@@ -63,8 +73,25 @@ Solucao: Setar manualmente o caminho de instalação do android studio, no meu c
 
 <a href="https://github.com/flutter/flutter/issues/67986" target="_blank">github</a>
 
-<hr>
+<a name="erro_instalacao_004"></a>
+<h3>Erro 004</h3>
+Erro ao tentar instalar as licencas do android
+<pre class="terminal">$ flutter doctor --android-licenses
+    Exception in thread "main" java.lang.NoClassDefFoundError: javax/xml/bind/annotation/XmlSchema
+    at com.android.repository.api.SchemaModule$SchemaModuleVersion.&lt;init&gt;(SchemaModule.java:156)
+    at com.android.repository.api.SchemaModule.&lt;init&gt;(SchemaModule.java:75)
+    at com.android.sdklib.repository.AndroidSdkHandler.&lt;clinit&gt;(AndroidSdkHandler.java:81)
+    at com.android.sdklib.tool.sdkmanager.SdkManagerCli.main(SdkManagerCli.java:73)
+ ...</pre>
 
+ <code>SOLUCAO</code> instalar <b>Android SDK Command-line Tools</b> conforme imagem abaixo:
+ <div class="centro center">
+     <img src="./images/flutter_erro_instalacao_android_licenses_001.jpg" class="bp w70">
+ </div>
+ <br><a href="https://stackoverflow.com/questions/61993738/flutter-doctor-android-licenses-gives-a-java-error">stackoverflow</a>
+ 
+<!-- -------------------------------------------------------------- -->
+<hr>
 <a name="erro-grandle"></a>
 <h2>Erro Grandle</h2>
 <h3>Erro-01</h3>
@@ -200,8 +227,8 @@ Execution failed for task ':app:mergeDebugNativeLibs'.
 </pre>
 <a href="https://stackoverflow.com/questions/55343843/flutter-execution-failed-for-task-appprocessdebugresources">stackoverflow</a>
 
+<!-- -------------------------------------------------------------- -->
 <hr>
-
 <a name="depedencia"></a>
 <h2>Erro ao baixar dependencia</h2>
 Ao tentar baixar a biblioteca <b>brasil_fields</b> da erro 
@@ -325,8 +352,8 @@ Solução inserir no arquivo <code>android/gradle.properties</code> duas linhas
 android.enableJetifier=true</pre>
 <a href="https://www.youtube.com/watch?v=7GTO9D_Anb0">youtube</a>
 
+<!-- -------------------------------------------------------------- -->
 <hr>
-
 <a name="erro-json-decode"></a>
 <h2>Erro json.decode()</h2>
 
@@ -360,9 +387,10 @@ return response()->json(
 <a href="https://github.com/flutter/flutter/issues/32841">github.com</a><br><br>
 <a href="https://stackoverflow.com/questions/55671441/flutter-formatexception-unexpected-character-at-character-1" target="_blank">stackoverflow</a>
 
-
+<!-- -------------------------------------------------------------- -->
+<hr>
 <a name="snackbar"></a>
-<h2>Snackbar nao funiona</h2>
+<h2>SNACKBAR NAO FUNCIONA</h2>
 <pre class="terminal">The following assertion was thrown while handling a gesture:
 Scaffold.of() called with a context that does not contain a Scaffold.
 No Scaffold ancestor could be found starting from the context that was passed to Scaffold.of(). This
@@ -406,10 +434,10 @@ class HomePage extends StatelessWidget {
 
 <a href="https://stackoverflow.com/questions/51304568/scaffold-of-called-with-a-context-that-does-not-contain-a-scaffold"></a>
 
+<!-- -------------------------------------------------------------- -->
 <hr>
-
 <a name="checkbox"></a>
-<h2>Checkbox nao funciona</h2>
+<h2>CHECKBOX NAO FUNCIONA</h2>
 checkbox não atualiza , nao altera o estado. Para resolver tive que envolver a lista de elementos num StatefulBuilder , conforme esse 
 <a href="https://stackoverflow.com/questions/58857826/flutter-checkbox-not-changing-updating-working">link aqui</a>
 <pre>
@@ -434,8 +462,8 @@ return <b style='color:red'>StatefulBuilder</b>(
 <a href="https://stackoverflow.com/questions/51578824/flutter-checkbox-doesnt-work">stackoverflow</a>
 <a href="https://medium.com/flutter-comunidade-br/flutter-descomplica-lista-de-checkbox-1e0dca525cb">medium</a>
 
+<!-- -------------------------------------------------------------- -->
 <hr>
-
 <a name="singlechildscrollview"></a>
 <h2>SingleChildScrollView nao funciona scrool da tela</h2>
 <pre>
@@ -466,8 +494,10 @@ body:ListView(
 )
 ... 
 </pre>
-<hr>
 
+
+<!-- -------------------------------------------------------------- -->
+<hr>
 <a name="overflow"></a>
 <h2>Overflow</h2>
 <h3>Dropdown</h3>
@@ -564,5 +594,30 @@ Para corrigir tal problema , bastou inserir no body o widget <b>SingleChildScrol
     ),
 );</pre>
 
-
+<!-- -------------------------------------------------------------- -->
 <hr>
+<a name="versao_depreceada"></a>
+<h2>VERSAO DEPRECEADA</h2>
+<pre class="terminal">$ flutter pub get<span style="color:red">
+Running "flutter pub get" in galeria...                             9,0s
+The plugins `ext_storage, shared_preferences` use a deprecated version of the Android embedding.
+To avoid unexpected runtime failures, or future build failures, try to see if these plugins support the Android V2
+embedding. Otherwise, consider removing them since a future release of Flutter will remove these deprecated APIs.
+If you are plugin author, take a look at the docs for migrating the plugin to the V2 embedding:</span>
+https://flutter.dev/go/android-plugin-migration.</pre>
+
+<code>SOLUCAO</code> atualizar versao dos plugins, , primeiramente verificando a versao de dart:
+<pre class="terminal">$ dart --version
+Dart SDK version: 2.14.4 (stable) (Wed Oct 13 11:11:32 2021 +0200) on "windows_x64"</pre>
+
+Posteriormente atualizar os plugins disponiveis em <a href="https://pub.dev/" target="_blank">pub.dev</a>, baseado na versão de DART, acima.
+<br><br>
+Arquivo <code>pubspec.yaml</code> mudou de:
+<pre>path_provider: ^1.5.1
+shared_preferences: ^0.4.3
+url_launcher: ^5.0.2</pre>
+
+para:
+<pre>path_provider: 2.0.7
+shared_preferences: ^2.0.9
+url_launcher: ^5.0.2</pre>
