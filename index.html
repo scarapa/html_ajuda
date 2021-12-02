@@ -90,10 +90,10 @@
                     icone = "";
                 }
 
-                //let titulo = this.getAttribute('href').toString().replace("#","");
                 let titulo = this.getAttribute('href').toString().replace("?","");
-                console.log(titulo)
                 let pagina = "include/"+titulo+".html";
+                console.log('PAGINA')
+                console.log(pagina)
                 await loadPagina(pagina,titulo,icone);
             });
         }    
@@ -123,18 +123,7 @@
         await loadPagina(pagina);
     }
 
-    function loadPagina(pagina,titulo = "",icone = ""){
-
-        if(titulo != "" ){
-            $("#page-wrapper").load(pagina, function() {
-                let cabecalho = "<h1 class='"+icone+" fa-2x' style='width:100% !important;'>&nbsp;"+titulo.toUpperCase()+"</h1><hr>";
-                $("#page-wrapper").prepend(cabecalho);
-            });
-        }else{
-            $("#page-wrapper").load(pagina);
-        }
-        
-    }
+    function loadPagina(pagina){ $("#page-wrapper").load(pagina); }
     function capturarModuloURL(){
         // RETIRAR O HASH(#)
         var pedacos = window.location.toString().split('?');
