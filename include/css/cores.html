@@ -1,10 +1,36 @@
+<style>
+    table{counter-reset: meucontador; }
+    table thead tr th{ text-align: center; background-color: #333;color: white;padding: 5px 10px;}
+    table tbody tr{ counter-increment: meucontador; }
+    table tbody tr td{ border-bottom:2px solid #DCDCDC;}
+    table tbody tr td:first-child{padding: 10px;text-align: center;}
+    table tbody tr td:first-child::before{content: counter(meucontador);}
+    table tbody tr td:nth-child(2){width: 200px;}
+    table tbody tr:nth-child(even) { background:#eee; }
+    table tbody tr td:nth-child(4){padding: 10px;width:150px;}
+    table tbody tr td div {
+        margin:0 auto;
+        height: 50px;width: 50px;
+        border-radius: 50%;
+        border:1px solid black;
+    }
+</style>
+<script>
 
-<table class="w3-table-all notranslate">
+let lista = [
+    {'name':'AliceBlue','hex':'F0F8FF',},
+    {'name':'AntiqueWhite','hex':'FAEBD7',},
+    {'name':'AntiqueWhite','hex':'FAEBD7',},
+]
+
+</script>
+<table>
 	<thead>
 		<tr>
-			<th style="width:25%">Color Name</th>
-			<th style="width:15%">HEX</th>
-			<th style="width:43%">Color</th>
+            <th>#</th>
+			<th>Color Name</th>
+			<th>HEX</th>
+			<th>Color</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -12,1036 +38,1036 @@
 			<td></td>
 			<td>AliceBlue</td>
 			<td>#F0F8FF</td>
-			<td style="background-color:#F0F8FF"></td>
+			<td><div style="background-color:#F0F8FF"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>	
 			<td>AntiqueWhite</td>
 			<td>#FAEBD7</td>
-			<td style="background-color:#FAEBD7"></td>
+			<td><div style="background-color:#FAEBD7"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Aqua</td>
 			<td>#00FFFF</td>
-			<td style="background-color:#00FFFF"></td>
+			<td><div style="background-color:#00FFFF"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Aquamarine</td>
 			<td>#7FFFD4</td>
-			<td style="background-color:#7FFFD4"></td>
+			<td><div style="background-color:#7FFFD4"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Azure</td>
 			<td>#F0FFFF</td>
-			<td style="background-color:#F0FFFF"></td>
+			<td><div style="background-color:#F0FFFF"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>	
 			<td>Beige</td>
 			<td>#F5F5DC</td>
-			<td style="background-color:#F5F5DC"></td>
+			<td><div style="background-color:#F5F5DC"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>	
 			<td>Bisque</td>
 			<td>#FFE4C4</td>
-			<td style="background-color:#FFE4C4"></td>
+			<td><div style="background-color:#FFE4C4"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Black</td>
 			<td>#000000</td>
-			<td style="background-color:#000000"></td>
+			<td><div style="background-color:#000000"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>BlanchedAlmond</td>
 			<td>#FFEBCD</td>
-			<td style="background-color:#FFEBCD"></td>
+			<td><div style="background-color:#FFEBCD"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Blue</td>
 			<td>#0000FF</td>
-			<td style="background-color:#0000FF"></td>
+			<td><div style="background-color:#0000FF"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>BlueViolet</td>
 			<td>#8A2BE2</td>
-			<td style="background-color:#8A2BE2"></td>
+			<td><div style="background-color:#8A2BE2"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Brown</td>
 			<td>#A52A2A</td>
-			<td style="background-color:#A52A2A"></td>
+			<td><div style="background-color:#A52A2A"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>BurlyWood</td>
 			<td>#DEB887</td>
-			<td style="background-color:#DEB887"></td>
+			<td><div style="background-color:#DEB887"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>	
 			<td>CadetBlue</td>
 			<td>#5F9EA0</td>
-			<td style="background-color:#5F9EA0"></td>
+			<td><div style="background-color:#5F9EA0"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>	
 			<td>Chartreuse</td>
 			<td>#7FFF00</td>
-			<td style="background-color:#7FFF00"></td>
+			<td><div style="background-color:#7FFF00"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Chocolate</td>
 			<td>#D2691E</td>
-			<td style="background-color:#D2691E"></td>
+			<td><div style="background-color:#D2691E"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>	
 			<td>Coral</td>
 			<td>#FF7F50</td>
-			<td style="background-color:#FF7F50"></td>
+			<td><div style="background-color:#FF7F50"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>	
 			<td>CornflowerBlue</td>
 			<td>#6495ED</td>
-			<td style="background-color:#6495ED"></td>
+			<td><div style="background-color:#6495ED"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Cornsilk</td>
 			<td>#FFF8DC</td>
-			<td style="background-color:#FFF8DC"></td>
+			<td><div style="background-color:#FFF8DC"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>	
 			<td>Crimson</td>
 			<td>#DC143C</td>
-			<td style="background-color:#DC143C"></td>
+			<td><div style="background-color:#DC143C"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Cyan</td>
 			<td>#00FFFF</td>
-			<td style="background-color:#00FFFF"></td>
+			<td><div style="background-color:#00FFFF"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>DarkBlue</td>
 			<td>#00008B</td>
-			<td style="background-color:#00008B"></td>
+			<td><div style="background-color:#00008B"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>DarkCyan</td>
 			<td>#008B8B</td>
-			<td style="background-color:#008B8B"></td>
+			<td><div style="background-color:#008B8B"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>DarkGoldenRod</td>
 			<td>#B8860B</td>
-			<td style="background-color:#B8860B"></td>
+			<td><div style="background-color:#B8860B"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>DarkGray</td>
 			<td>#A9A9A9</td>
-			<td style="background-color:#A9A9A9"></td>
+			<td><div style="background-color:#A9A9A9"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>DarkGrey</td>
 			<td>#A9A9A9</td>
-			<td style="background-color:#A9A9A9"></td>
+			<td><div style="background-color:#A9A9A9"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>DarkGreen</td>
 			<td>#006400</td>
-			<td style="background-color:#006400"></td>
+			<td><div style="background-color:#006400"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>DarkKhaki</td>
 			<td>#BDB76B</td>
-			<td style="background-color:#BDB76B"></td>
+			<td><div style="background-color:#BDB76B"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>DarkMagenta</td>
 			<td>#8B008B</td>
-			<td style="background-color:#8B008B"></td>
+			<td><div style="background-color:#8B008B"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>DarkOliveGreen</td>
 			<td>#556B2F</td>
-			<td style="background-color:#556B2F"></td>
+			<td><div style="background-color:#556B2F"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>DarkOrange</td>
 			<td>#FF8C00</td>
-			<td style="background-color:#FF8C00"></td>
+			<td><div style="background-color:#FF8C00"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>DarkOrchid</td>
 			<td>#9932CC</td>
-			<td style="background-color:#9932CC"></td>
+			<td><div style="background-color:#9932CC"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>DarkRed</td>
 			<td>#8B0000</td>
-			<td style="background-color:#8B0000"></td>
+			<td><div style="background-color:#8B0000"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>DarkSalmon</td>
 			<td>#E9967A</td>
-			<td style="background-color:#E9967A"></td>
+			<td><div style="background-color:#E9967A"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>DarkSeaGreen</td>
 			<td>#8FBC8F</td>
-			<td style="background-color:#8FBC8F"></td>
+			<td><div style="background-color:#8FBC8F"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>DarkSlateBlue</td>
 			<td>#483D8B</td>
-			<td style="background-color:#483D8B"></td>
+			<td><div style="background-color:#483D8B"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>DarkSlateGray</td>
-			<td>>#2F4F4F</td>
-			<td style="background-color:#2F4F4F"></td>
+			<td>#2F4F4F</td>
+			<td><div style="background-color:#2F4F4F"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>DarkSlateGrey</td>
 			<td>#2F4F4F</td>
-			<td style="background-color:#2F4F4F"></td>
+			<td><div style="background-color:#2F4F4F"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>DarkTurquoise</td>
 			<td>#00CED1</td>
-			<td style="background-color:#00CED1"></td>
+			<td><div style="background-color:#00CED1"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>DarkViolet</td>
 			<td>#9400D3</td>
-			<td style="background-color:#9400D3"></td>
+			<td><div style="background-color:#9400D3"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>DeepPink</td>
 			<td>#FF1493</td>
-			<td style="background-color:#FF1493"></td>
+			<td><div style="background-color:#FF1493"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>DeepSkyBlue</td>
 			<td>#00BFFF</td>
-			<td style="background-color:#00BFFF"></td>
+			<td><div style="background-color:#00BFFF"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>DimGray</td>
 			<td>#696969</td>
-			<td style="background-color:#696969"></td>
+			<td><div style="background-color:#696969"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>DimGrey</td>
 			<td>#696969</td>
-			<td style="background-color:#696969"></td>
+			<td><div style="background-color:#696969"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>DodgerBlue</td>
 			<td>#1E90FF</td>
-			<td style="background-color:#1E90FF"></td>
+			<td><div style="background-color:#1E90FF"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>FireBrick</td>
 			<td>#B22222</td>
-			<td style="background-color:#B22222"></td>
+			<td><div style="background-color:#B22222"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>FloralWhite</td>
 			<td>#FFFAF0</td>
-			<td style="background-color:#FFFAF0"></td>
+			<td><div style="background-color:#FFFAF0"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>ForestGreen</td>
 			<td>#228B22</td>
-			<td style="background-color:#228B22"></td>
+			<td><div style="background-color:#228B22"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Fuchsia</td>
 			<td>#FF00FF</td>
-			<td style="background-color:#FF00FF"></td>
+			<td><div style="background-color:#FF00FF"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Gainsboro</td>
 			<td>#DCDCDC</td>
-			<td style="background-color:#DCDCDC"></td>
+			<td><div style="background-color:#DCDCDC"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>GhostWhite</td>
 			<td>#F8F8FF</td>
-			<td style="background-color:#F8F8FF"></td>
+			<td><div style="background-color:#F8F8FF"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Gold</td>
 			<td>#FFD700</td>
-			<td style="background-color:#FFD700"></td>
+			<td><div style="background-color:#FFD700"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>GoldenRod</td>
 			<td>#DAA520</td>
-			<td style="background-color:#DAA520"></td>
+			<td><div style="background-color:#DAA520"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Gray</td>
 			<td>#808080</td>
-			<td style="background-color:#808080"></td>
+			<td><div style="background-color:#808080"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Grey</td>
 			<td>#808080</td>
-			<td style="background-color:#808080"></td>
+			<td><div style="background-color:#808080"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Green</td>
 			<td>#008000</td>
-			<td style="background-color:#008000"></td>
+			<td><div style="background-color:#008000"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>GreenYellow</td>
 			<td>#ADFF2F</td>
-			<td style="background-color:#ADFF2F"></td>
+			<td><div style="background-color:#ADFF2F"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 		<td>HoneyDew</td>
 		<td>#F0FFF0</td>
-		<td style="background-color:#F0FFF0"></td>
+		<td><div style="background-color:#F0FFF0"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>HotPink</td>
 			<td>#FF69B4</td>
-			<td style="background-color:#FF69B4"></td>
+			<td><div style="background-color:#FF69B4"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>IndianRed </td>
 			<td>#CD5C5C</td>
-			<td style="background-color:#CD5C5C"></td>
+			<td><div style="background-color:#CD5C5C"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Indigo</td>
 			<td>#4B0082</td>
-			<td style="background-color:#4B0082"></td>
+			<td><div style="background-color:#4B0082"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Ivory</td>
 			<td>#FFFFF0</td>
-			<td style="background-color:#FFFFF0"></td>
+			<td><div style="background-color:#FFFFF0"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Khaki</td>
 			<td>#F0E68C</td>
-			<td style="background-color:#F0E68C"></td>
+			<td><div style="background-color:#F0E68C"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Lavender</td>
 			<td>#E6E6FA</td>
-			<td style="background-color:#E6E6FA"></td>
+			<td><div style="background-color:#E6E6FA"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>	
 			<td>LavenderBlush</td>
 			<td>#FFF0F5</td>
-			<td style="background-color:#FFF0F5"></td>
+			<td><div style="background-color:#FFF0F5"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>LawnGreen</td>
 			<td>#7CFC00</td>
-			<td style="background-color:#7CFC00"></td>
+			<td><div style="background-color:#7CFC00"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>LemonChiffon</td>
 			<td>#FFFACD</td>
-			<td style="background-color:#FFFACD"></td>
+			<td><div style="background-color:#FFFACD"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>LightBlue</td>
 			<td>#ADD8E6</td>
-			<td style="background-color:#ADD8E6"></td>
+			<td><div style="background-color:#ADD8E6"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>LightCoral</td>
 			<td>#F08080</td>
-			<td style="background-color:#F08080"></td>
+			<td><div style="background-color:#F08080"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>LightCyan</td>
 			<td>#E0FFFF</td>
-			<td style="background-color:#E0FFFF"></td>
+			<td><div style="background-color:#E0FFFF"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>LightGoldenRodYellow</td>
 			<td>#FAFAD2</td>
-			<td style="background-color:#FAFAD2"></td>
+			<td><div style="background-color:#FAFAD2"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>LightGray</td>
 			<td>#D3D3D3</td>
-			<td style="background-color:#D3D3D3"></td>
+			<td><div style="background-color:#D3D3D3"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>LightGrey</td>
 			<td>#D3D3D3</td>
-			<td style="background-color:#D3D3D3"></td>
+			<td><div style="background-color:#D3D3D3"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>LightGreen</td>
 			<td>#90EE90</td>
-			<td style="background-color:#90EE90"></td>
+			<td><div style="background-color:#90EE90"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>LightPink</td>
 			<td>#FFB6C1</td>
-			<td style="background-color:#FFB6C1"></td>
+			<td><div style="background-color:#FFB6C1"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>LightSalmon</td>
 			<td>#FFA07A</td>
-			<td style="background-color:#FFA07A"></td>
+			<td><div style="background-color:#FFA07A"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>LightSeaGreen</td>
 			<td>#20B2AA</td>
-			<td style="background-color:#20B2AA"></td>
+			<td><div style="background-color:#20B2AA"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>LightSkyBlue</td>
 			<td>#87CEFA</td>
-			<td style="background-color:#87CEFA"></td>
+			<td><div style="background-color:#87CEFA"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>LightSlateGray</td>
 			<td><a rel="#778899">#778899</td>
-			<td style="background-color:#778899"></td>
+			<td><div style="background-color:#778899"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>LightSlateGrey</td>
 			<td>#778899</td>
-			<td style="background-color:#778899"></td>
+			<td><div style="background-color:#778899"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>LightSteelBlue</td>
 			<td>#B0C4DE</td>
-			<td style="background-color:#B0C4DE"></td>
+			<td><div style="background-color:#B0C4DE"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>LightYellow</td>
 			<td>#FFFFE0</td>
-			<td style="background-color:#FFFFE0"></td>
+			<td><div style="background-color:#FFFFE0"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Lime</td>
 			<td>#00FF00</td>
-			<td style="background-color:#00FF00"></td>
+			<td><div style="background-color:#00FF00"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>LimeGreen</td>
 			<td>#32CD32</td>
-			<td style="background-color:#32CD32"></td>
+			<td><div style="background-color:#32CD32"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Linen</td>
 			<td>#FAF0E6</td>
-			<td style="background-color:#FAF0E6"></td>
+			<td><div style="background-color:#FAF0E6"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Magenta</td>
 			<td>#FF00FF</td>
-			<td style="background-color:#FF00FF"></td>
+			<td><div style="background-color:#FF00FF"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Maroon</td>
 			<td>#800000</td>
-			<td style="background-color:#800000"></td>
+			<td><div style="background-color:#800000"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>MediumAquaMarine</td>
 			<td>#66CDAA</td>
-			<td style="background-color:#66CDAA"></td>
+			<td><div style="background-color:#66CDAA"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>MediumBlue</td>
 			<td>#0000CD</td>
-			<td style="background-color:#0000CD"></td>
+			<td><div style="background-color:#0000CD"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>MediumOrchid</td>
 			<td>#BA55D3</td>
-			<td style="background-color:#BA55D3"></td>
+			<td><div style="background-color:#BA55D3"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>MediumPurple</td>
 			<td>#9370DB</td>
-			<td style="background-color:#9370DB"></td>
+			<td><div style="background-color:#9370DB"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>MediumSeaGreen</td>
 			<td>#3CB371</td>
-			<td style="background-color:#3CB371"></td>
+			<td><div style="background-color:#3CB371"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>MediumSlateBlue</td>
 			<td>#7B68EE</td>
-			<td style="background-color:#7B68EE"></td>
+			<td><div style="background-color:#7B68EE"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>MediumSpringGreen</td>
 			<td>#00FA9A</td>
-			<td style="background-color:#00FA9A"></td>
+			<td><div style="background-color:#00FA9A"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>MediumTurquoise</td>
 			<td>#48D1CC</td>
-			<td style="background-color:#48D1CC"></td>
+			<td><div style="background-color:#48D1CC"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>MediumVioletRed</td>
 			<td>#C71585</td>
-			<td style="background-color:#C71585"></td>
+			<td><div style="background-color:#C71585"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>MidnightBlue</td>
 			<td>#191970</td>
-			<td style="background-color:#191970"></td>
+			<td><div style="background-color:#191970"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>MintCream</td>
 			<td>#F5FFFA</td>
-			<td style="background-color:#F5FFFA"></td>
+			<td><div style="background-color:#F5FFFA"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>MistyRose</td>
 			<td>#FFE4E1</td>
-			<td style="background-color:#FFE4E1"></td>
+			<td><div style="background-color:#FFE4E1"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Moccasin</td>
 			<td>#FFE4B5</td>
-			<td style="background-color:#FFE4B5"></td>
+			<td><div style="background-color:#FFE4B5"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>NavajoWhite</td>
 			<td>#FFDEAD</td>
-			<td style="background-color:#FFDEAD"></td>
+			<td><div style="background-color:#FFDEAD"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Navy</td>
 			<td>#000080</td>
-			<td style="background-color:#000080"></td>
+			<td><div style="background-color:#000080"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>OldLace</td>
 			<td>#FDF5E6</td>
-			<td style="background-color:#FDF5E6"></td>
+			<td><div style="background-color:#FDF5E6"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Olive</td>
 			<td>#808000</td>
-			<td style="background-color:#808000"></td>
+			<td><div style="background-color:#808000"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>OliveDrab</td>
 			<td>#6B8E23</td>
-			<td style="background-color:#6B8E23"></td>
+			<td><div style="background-color:#6B8E23"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Orange</td>
 			<td>#FFA500</td>
-			<td style="background-color:#FFA500"></td>
+			<td><div style="background-color:#FFA500"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>OrangeRed</td>
 			<td>#FF4500</td>
-			<td style="background-color:#FF4500"></td>
+			<td><div style="background-color:#FF4500"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Orchid</td>
 			<td>#DA70D6</td>
-			<td style="background-color:#DA70D6"></td>
+			<td><div style="background-color:#DA70D6"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>PaleGoldenRod</td>
 			<td>#EEE8AA</td>
-			<td style="background-color:#EEE8AA"></td>
+			<td><div style="background-color:#EEE8AA"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>PaleGreen</td>
 			<td>#98FB98</td>
-			<td style="background-color:#98FB98"></td>
+			<td><div style="background-color:#98FB98"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>PaleTurquoise</td>
 			<td>#AFEEEE</td>
-			<td style="background-color:#AFEEEE"></td>
+			<td><div style="background-color:#AFEEEE"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>PaleVioletRed</td>
 			<td>#DB7093</td>
-			<td style="background-color:#DB7093"></td>
+			<td><div style="background-color:#DB7093"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>PapayaWhip</td>
 			<td>#FFEFD5</td>
-			<td style="background-color:#FFEFD5"></td>
+			<td><div style="background-color:#FFEFD5"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>PeachPuff</td>
 			<td>#FFDAB9</td>
-			<td style="background-color:#FFDAB9"></td>
+			<td><div style="background-color:#FFDAB9"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Peru</td>
 			<td>#CD853F</td>
-			<td style="background-color:#CD853F"></td>
+			<td><div style="background-color:#CD853F"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Pink</td>
 			<td>#FFC0CB</td>
-			<td style="background-color:#FFC0CB"></td>
+			<td><div style="background-color:#FFC0CB"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Plum</td>
 			<td>#DDA0DD</td>
-			<td style="background-color:#DDA0DD"></td>
+			<td><div style="background-color:#DDA0DD"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>PowderBlue</td>
 			<td>#B0E0E6</td>
-			<td style="background-color:#B0E0E6"></td>
+			<td><div style="background-color:#B0E0E6"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Purple</td>
 			<td>#800080</td>
-			<td style="background-color:#800080"></td>
+			<td><div style="background-color:#800080"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>RebeccaPurple</td>
 			<td>#663399</td>
-			<td style="background-color:#663399"></td>
+			<td><div style="background-color:#663399"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Red</td>
 			<td>#FF0000</td>
-			<td style="background-color:#FF0000"></td>
+			<td><div style="background-color:#FF0000"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>RosyBrown</td>
 			<td>#BC8F8F</td>
-			<td style="background-color:#BC8F8F"></td>
+			<td><div style="background-color:#BC8F8F"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>RoyalBlue</td>
 			<td>#4169E1</td>
-			<td style="background-color:#4169E1"></td>
+			<td><div style="background-color:#4169E1"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>SaddleBrown</td>
 			<td>#8B4513</td>
-			<td style="background-color:#8B4513"></td>
+			<td><div style="background-color:#8B4513"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Salmon</td>
 			<td>#FA8072</td>
-			<td style="background-color:#FA8072"></td>
+			<td><div style="background-color:#FA8072"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>SandyBrown</td>
 			<td>#F4A460</td>
-			<td style="background-color:#F4A460"></td>
+			<td><div style="background-color:#F4A460"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>SeaGreen</td>
 			<td>#2E8B57</td>
-			<td style="background-color:#2E8B57"></td>
+			<td><div style="background-color:#2E8B57"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>SeaShell</td>
 			<td>#FFF5EE</td>
-			<td style="background-color:#FFF5EE"></td>
+			<td><div style="background-color:#FFF5EE"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Sienna</td>
 			<td>#A0522D</td>
-			<td style="background-color:#A0522D"></td>
+			<td><div style="background-color:#A0522D"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Silver</td>
 			<td>#C0C0C0</td>
-			<td style="background-color:#C0C0C0"></td>
+			<td><div style="background-color:#C0C0C0"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>SkyBlue</td>
 			<td>#87CEEB</td>
-			<td style="background-color:#87CEEB"></td>
+			<td><div style="background-color:#87CEEB"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>SlateBlue</td>
 			<td>#6A5ACD</td>
-			<td style="background-color:#6A5ACD"></td>
+			<td><div style="background-color:#6A5ACD"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>SlateGray</td>
 			<td>#708090</td>
-			<td style="background-color:#708090"></td>
+			<td><div style="background-color:#708090"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>SlateGrey</td>
 			<td>#708090</td>
-			<td style="background-color:#708090"></td>
+			<td><div style="background-color:#708090"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Snow</td>
 			<td>#FFFAFA</td>
-			<td style="background-color:#FFFAFA"></td>
+			<td><div style="background-color:#FFFAFA"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>SpringGreen</td>
 			<td>#00FF7F</td>
-			<td style="background-color:#00FF7F"></td>
+			<td><div style="background-color:#00FF7F"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>SteelBlue</td>
 			<td>#4682B4</td>
-			<td style="background-color:#4682B4"></td>
+			<td><div style="background-color:#4682B4"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Tan</td>
 			<td>#D2B48C</td>
-			<td style="background-color:#D2B48C"></td>
+			<td><div style="background-color:#D2B48C"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Teal</td>
 			<td>#008080</td>
-			<td style="background-color:#008080"></td>
+			<td><div style="background-color:#008080"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Thistle</td>
 			<td>#D8BFD8</td>
-			<td style="background-color:#D8BFD8"></td>
+			<td><div style="background-color:#D8BFD8"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Tomato</td>
 			<td>#FF6347</td>
-			<td style="background-color:#FF6347"></td>
+			<td><div style="background-color:#FF6347"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Turquoise</td>
 			<td>#40E0D0</td>
-			<td style="background-color:#40E0D0"></td>
+			<td><div style="background-color:#40E0D0"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Violet</td>
 			<td>#EE82EE</td>
-			<td style="background-color:#EE82EE"></td>
+			<td><div style="background-color:#EE82EE"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Wheat</td>
 			<td>#F5DEB3</td>
-			<td style="background-color:#F5DEB3"></td>
+			<td><div style="background-color:#F5DEB3"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>White</td>
 			<td>#FFFFFF</td>
-			<td style="background-color:#FFFFFF"></td>
+			<td><div style="background-color:#FFFFFF"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>WhiteSmoke</td>
 			<td>#F5F5F5</td>
-			<td style="background-color:#F5F5F5"></td>
+			<td><div style="background-color:#F5F5F5"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>Yellow</td>
 			<td>#FFFF00</td>
-			<td style="background-color:#FFFF00"></td>
+			<td><div style="background-color:#FFFF00"></div></td>
 		</tr>
 
 		<tr>
 			<td></td>
 			<td>YellowGreen</td>
 			<td>#9ACD32</td>
-			<td style="background-color:#9ACD32"></td>
+			<td><div style="background-color:#9ACD32"></div></td>
 		</tr>
 	</tbody>
 </table>
