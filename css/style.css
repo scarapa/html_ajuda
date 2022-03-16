@@ -71,6 +71,15 @@ body{
 	display: flex;
 	flex-direction: column;
 }
+
+
+[class^="devicon-"]{ font-size: 105%; }
+[class^="devicon-php"]{ 
+    font-size: 145%;
+    float:left !important;
+    margin:0px 3px 0 0; 
+}
+
 @media (min-width: 992px){
 	#wrapper{
 		padding-left: 261px !important;
