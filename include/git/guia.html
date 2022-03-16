@@ -52,6 +52,10 @@ exemplo
 ou
 <pre class="terminal">$ git reset --HARD</pre>
 
+<h3>DIFERENCAS entre branchs</h3> 
+<pre class="terminal">$ git diff branch_1..branch_2 </pre>
+<br><a href="https://cursos.alura.com.br/forum/topico-como-comparar-duas-branches-38361?gclid=Cj0KCQiAys2MBhDOARIsAFf1D1caJRQ6Q8BlJFi-UVP_DyZsI9f5Ok7T5vHYO4voYJlyMSA0qWFNwU0aAgKREALw_wcB" target="_blank">alura</a>
+
 <!-- ----------------------------- -->
 <hr>
 <a name="pull"></a>
@@ -90,6 +94,16 @@ exemplo
 <h3>Encapsula todos arquivos e adicionar a mensagem no MESMO COMANDO</h3>
 <pre class="terminal">$ git commit -am "mensagem"</pre>
 
+<h3>Resetar ARQUIVO do COMMIT</h3>
+Todos os arquivos
+<pre class="terminal">$ git reset</pre>
+
+ou somente arquivo especifico
+<pre class="terminal">$ git reset caminho/arquivo</pre>
+
+<br><a href="https://pt.stackoverflow.com/questions/61433/como-desfazer-um-git-add-antes-de-um-commit">stackoverflow</a>
+
+
 <h3><b>NÃO</b> incluir arquivo no COMMIT</h3>    
 NÃO incluir determinado arquivo que faz parte da sua configuração local, exemplo: retirar o arquivo editado por você da sua arvore de modificacoes , no nosso exemplo esse arquivo é de acesso de banco de dados; não tem necessidade de seu colega ou outra pessoa saber seu usuário e senha de banco.<br>
 <pre class="terminal">$ git checkout <b style="color:red">NOME_ARQUIVO</b></pre>
@@ -109,7 +123,7 @@ NÃO incluir determinado arquivo que faz parte da sua configuração local, exem
 <pre class="terminal">$ git push https://username:password@github.com/scarapa/html_ajuda.git</pre>
 <code>OBSERVACAO</code> Provavelmente tnha que usar o novo padrão de senha do git <code>PAT</code>
 
-
+<br><a href="https://stackoverflow.com/questions/29776439/username-and-password-in-command-for-git-push">stackoverflow</a>
 
 <!-- ----------------------------- -->
 <h2>LOGs</h2>

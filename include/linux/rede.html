@@ -9,18 +9,17 @@ retorno: <code>01-network-manager-all.yaml</code>
     <img src="./images/linux-rede-setting.jpg" style="width:40%">
 </div>
 exemplo de como ficou o meu arquivo, detalhe , é um arquivo do tipo .yaml , ou seja , a identação conta em muitooooo.
-<pre>
-    # Let NetworkManager manage all devices on this system
-    network:
-      version: 2
-      renderer: NetworkManager
-      ethernets:
-        enps8s0:
-          dhcp4: no
-          addresses: [192.168.8.21/24]
-          gateway4: 192.168.8.1
-          nameservers:
-           addresses: [8.8.8.8, 8.8.4.4]
+<pre># Let NetworkManager manage all devices on this system
+network:
+  version: 2
+  renderer: NetworkManager
+  ethernets:
+    enps8s0:
+      dhcp4: no
+      addresses: [192.168.8.21/24]
+      gateway4: 192.168.8.1
+      nameservers:
+        addresses: [8.8.8.8, 8.8.4.4]
 </pre>
 
 teste
@@ -33,3 +32,19 @@ Verifique
 <pre class="terminal">$ ip a </pre>
 
 <a href="https://purainfo.com.br/configurando-endereo-ip-esttico-no-ubuntu-server-derivados/">purainfo</a>
+
+<h2>Reiniciar rede</h2>
+<pre>$ /etc/init.d/networking restart </pre>
+
+<h2>Retirar rede</h2>
+<pre>$ ifdown eth0</pre>
+
+<h2>Levantar Rede</h2>
+<pre>$ ifup eth0</pre>
+
+<h2>Renew IP</h2>
+<pre class="terminal">$ sudo dhclient -v -r eth0</pre>
+ou
+<pre class="terminal">$ sudo dhclient -v eth0</pre>
+
+<a href="https://www.cyberciti.biz/faq/howto-linux-renew-dhcp-client-ip-address/">Fonte</a>

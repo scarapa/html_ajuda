@@ -1,5 +1,40 @@
+<ol>
+    <li><a href="#atualizar-sdk">Atualizar SDK/Dart</a></li>
+    <li><a href="#novo-projeto">Novo Projeto</a></li>
+    <li><a href="#baixar-dependencias-projeto">Baixar dependencias de projeto</a></li>
+    <li><a href="#gerar-apk">Gerar APK</a></li>
+</ol>
+
+<hr>
+<a name="atualizar"></a>
+<h2>Atualizar SDK/Dart</h2>
+esse comando atualiza as depedencias de <code>DESENVOLVIMENTO</code> na maquina
+<pre class="terminal">$ flutter upgrade</pre>
+
+<hr>
+<a name="novo-projeto"></a>
 <h2>Novo Projeto</h2>
 <pre class="terminal">$ flutter create <b>NOME_PROJETO</b></pre>
 
-<h2>Baixar dependencias</h2>
+<hr>
+<a name="baixar-dependencias-projeto"></a>
+<h2>Baixar dependencias de projeto</h2>
+Baixar as dependencias declaradas no arquivo <code>pubspec.yaml</code> do projeto.
 <pre class="terminal">$ flutter pub get</pre>
+
+<hr>
+<a name="gerar-apk"></a>
+<h2>Gerar APK</h2>
+
+<h3>LOCAL</h3>
+Essa tipo de release serve para testes, dificil de ser compartilhada entre devices por contas das politicas do <b>SISTEMA OPERACIONAL</b>.
+<pre class="terminal">$ flutter run</pre>
+
+<h3>HOMOLOGACAO</h3>
+Essa release <code>NÃO é possivel DEBUGAR</code> 
+<pre class="terminal">$ flutter build apk</pre>
+
+<br><a href="https://flutterhq.com/questions-and-answers/1178/app-releaseapk-not-installing-after-changing-package-name-in-flutter" target="_blank">flutterhq</a>
+<br><a href="https://stackoverflow.com/questions/49695393/how-to-build-apk-create-old-version-app-in-flutter" target="_blank">stackoverflow</a>
+<br><a href="https://docs.flutter.dev/deployment/android" target="_blank">flutter</a>
+

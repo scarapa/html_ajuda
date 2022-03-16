@@ -1,4 +1,16 @@
+<ol>
+    <li><a href="#construtor">CONSTRUTOR</a></li>
+    <li><a href="#destructuring">Destructuring</a></li>
+    <li><a href="#find">FIND</a></li>
+    <li><a href="#filter">FILTER</a></li>
+    <li><a href="#parser">PARSER</a></li>
+    <li><a href="#spread">SPREAD</a></li>
+    <li><a href="#template_literals">Template Literals</a></li>
+</ol>
 
+<!-- ----------------------------------------------------------- -->
+<hr>
+<a name="construtor"></a>
 <h2>Construindo</h2>
 <pre> var pessoa = {}
 pessoa.nome = 'Roberto'
@@ -9,9 +21,11 @@ Verificando no console.log
 <pre>console.log(pessoa)</pre>
 Saida: <code> Object { nome="Roberto",  idade="35",  uf="RS"} </code>
 
+<!-- ----------------------------------------------------------- -->
+<hr>
+<a name="destructuring"></a>
 <h2>Destructuring</h2>
-<pre>
-const person = {
+<pre>const person = {
 	name: 'Harry',
 	age: '17'
 }
@@ -23,12 +37,86 @@ function createPerson({name, age}) {
 function createPerson(person) {
 	const { name, age } = person;
 	return `Seu nome é ${name} com a idade de ${age}`; 
-}
-</pre>
+}</pre>
 
-<h2>Template Literals</h2>
+
+<!-- ----------------------------------------------------------- -->
+<hr>
+<a name="find"></a>
+<h2>Find</h2>
+<pre>var myArray = [
+ {id:1, name:"bob"},
+ {id:2, name:"dan"},
+ {id:3, name:"barb"},
+]
+var item = myArray.find(item => item.id === 2);
+console.log(item.name);</pre>
+<br><a href="https://stackoverflow.com/questions/7364150/find-object-by-id-in-an-array-of-javascript-objects" target="_blank">stackoverflow</a>
+
+<!-- ----------------------------------------------------------- -->
+<hr>
+<a name="filter"></a>
+<h2>Filter</h2>
 <pre>
-const dog = {
+	var heroes = [
+	{name: “Batman”, franchise: “DC”},
+	{name: “Ironman”, franchise: “Marvel”},
+	{name: “Thor”, franchise: “Marvel”},
+	{name: “Superman”, franchise: “DC”}
+];
+
+var marvelHeroes =  heroes.filter(function(hero) {
+	return hero.franchise == “Marvel”;
+});	
+// [ {name: “Ironman”, franchise: “Marvel”}, {name: “Thor”, franchise: “Marvel”} ]</pre>
+<a href="https://alligator.io/js/filter-array-method/">alligator</a>
+<a href="https://medium.com/@programadriano/javascript-conhecendo-map-filter-e-reduce-ce072d8f0ec5">medium</a>
+<a href="https://medium.com/@programadriano/javascript-entendendo-a-diferen%C3%A7a-entre-map-x-foreach-366a77fc7e82">medium</a>
+
+<!-- ----------------------------------------------------------- -->
+<hr>
+<a name="parser"></a>
+<h2>Parser</h2>
+<pre>var obj = {"1":5,"2":7,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0}
+var result = Object.keys(obj).map((key) => [Number(key), obj[key]]);
+console.log(result);</pre>
+
+<br><a href="https://stackoverflow.com/questions/38824349/how-to-convert-an-object-to-an-array-of-key-value-pairs-in-javascript">stackoverflow</a>
+
+<!-- ----------------------------------------------------------- -->
+<hr>
+<a name="spread"></a>
+<h2>Spread</h2>
+permite que um objeto iterável, como uma expressão de array ou uma string seja expandido 
+para ser usado onde zero ou mais argumentos (para chamadas de funções) ou elementos 
+(para arrays literais) são esperados.
+
+    <h3>SEM spread</h3>
+<pre>var middle = [3, 4];
+var arr = [1, 2, middle, 5, 6];
+console.log(arr);
+// [1, 2, [3, 4], 5, 6]    </pre>
+
+    <h3>COM spread</h3>
+<pre>var middle = [3, 4];
+var arr = [1, 2, ...middle, 5, 6];
+console.log(arr);
+// [1, 2, 3, 4, 5, 6]    </pre>
+
+<br><a href="https://www.luiztools.com.br/post/4-segredos-do-operador-spread-em-javascript/">luiztools</a>
+
+<pre>const person = { name: 'Harry' }
+const personDetails = { age: '19', job: 'none' }
+
+const mergePerson = { ...person, ...personDetails };</pre>
+
+<a href="https://www.youtube.com/watch?v=Mus_vwhTCq0">Fonte</a>
+
+<!-- ----------------------------------------------------------- -->
+<hr>
+<a name="template_literals"></a>
+<h2>Template Literals</h2>
+<pre>const dog = {
 	name: 'Rufus',
 	size: 'Big',
 	color: 'Black',
@@ -42,43 +130,4 @@ function dogAge(str, age) {
 	return `${str[0]}${ageStr} com ${age} anos`;
 }
 
-const bio = dogAge`Esse cachorro é ${dog.age}`;
-</pre>
-
-<h2>Spread</h2>
-<pre>
-const person = { name: 'Harry' }
-const personDetails = { age: '19', job: 'none' }
-
-const mergePerson = { ...person, ...personDetails };
-</pre>
-<a href="https://www.youtube.com/watch?v=Mus_vwhTCq0">Fonte</a>
-<h2>Find</h2>
-<pre>
-var myArray = [
- {id:1, name:"bob"},
- {id:2, name:"dan"},
- {id:3, name:"barb"},
-]
-var item = myArray.find(item => item.id === 2);
-console.log(item.name);
-</pre>
-<a href="https://stackoverflow.com/questions/7364150/find-object-by-id-in-an-array-of-javascript-objects" target="_blank">stackoverflow</a>
-
-<h2>Filter</h2>
-<pre>
-	var heroes = [
-	{name: “Batman”, franchise: “DC”},
-	{name: “Ironman”, franchise: “Marvel”},
-	{name: “Thor”, franchise: “Marvel”},
-	{name: “Superman”, franchise: “DC”}
-];
-
-var marvelHeroes =  heroes.filter(function(hero) {
-	return hero.franchise == “Marvel”;
-});	
-// [ {name: “Ironman”, franchise: “Marvel”}, {name: “Thor”, franchise: “Marvel”} ]
-</pre>
-<a href="https://alligator.io/js/filter-array-method/">alligator</a>
-<a href="https://medium.com/@programadriano/javascript-conhecendo-map-filter-e-reduce-ce072d8f0ec5">medium</a>
-<a href="https://medium.com/@programadriano/javascript-entendendo-a-diferen%C3%A7a-entre-map-x-foreach-366a77fc7e82">medium</a>
+const bio = dogAge`Esse cachorro é ${dog.age}`;</pre>

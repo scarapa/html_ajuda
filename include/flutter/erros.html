@@ -1,19 +1,33 @@
 <ol>
-    <li><a href="#erro-instalacao">Erro de Instalação</a></li>
+    <li>
+        <a href="#erro_instalacao">Erro de Instalação</a>
+        <ol>
+            <li><a href="#erro_instalacao_001">Erro 001</a></li>
+            <li><a href="#erro_instalacao_002">Erro 002</a></li>
+            <li><a href="#erro_instalacao_003">Erro 003</a></li>
+            <li><a href="#erro_instalacao_004">Erro 004</a></li>
+        </ol>
+    </li>
     <li><a href="#erro-grandle">Erro Grandle</a></li>
     <li><a href="#nao-constroi-projeto">Nao constroi projeto</a></li>
     <li><a href="#depedencia">Erro Dependencia Plugins</a></li>
     <li><a href="#androidx">AndroidX Flutter</a></li>
     <li><a href="#erro-json-decode">Erro json.decode()</a></li>
-    <li><a href="#snackbar">Snackbar nao funiona</a></li>
-    <li><a href="#checkbox">Checkbox nao funciona</a></li>
+    <li><a href="#snackbar">SNACKBAR nao funciona</a></li>
+    <li><a href="#checkbox">CHECKBOX nao funciona</a></li>
     <li><a href="#singlechildscrollview">SingleChildScrollView nao funciona</a></li>
     <li><a href="#overflow">Overflow</a></li>
+    <li><a href="#versao_depreceada">VERSAO DEPRECEADA</a></li>
+    <li><a href="#cant_have_a_null">can't have a value of 'null'</a></li>
+    <li><a href="#dont_support_a_null">don't support null safety</a></li>
+    <li><a href="#nao_gera_icone">Nao gera icone</a></li>
+    <li><a href="#nao_gera_apk_prod_emulador">Nao gera APK PRODUCAO NO EMULADOR</a></li>
+    
 </ol>
 
+<!-- -------------------------------------------------------------- -->
 <hr>
-
-<a name="erro-instalacao"></a>
+<a name="erro_instalacao"></a>
 <h2>Erro de Instalação</h2>
 
 <h3>Erro 001</h3>
@@ -44,6 +58,7 @@ Dart SDK is not configured
     <img src="images/flutter-erro-instalacao-dart-sdk-002.jpg" style="width:60%" class="bp">
 </div>
 
+<a name="erro_instalacao_003"></a>
 <h3>Erro 003</h3>
 Ao tentar fazer downgrade do sdk da versão <code>2.12</code> para <code>1.22.0</code> o android studio
 não é mais encontrado pelo doctor, mesmo reiniciando e reinstalando o AS.
@@ -63,8 +78,25 @@ Solucao: Setar manualmente o caminho de instalação do android studio, no meu c
 
 <a href="https://github.com/flutter/flutter/issues/67986" target="_blank">github</a>
 
-<hr>
+<a name="erro_instalacao_004"></a>
+<h3>Erro 004</h3>
+Erro ao tentar instalar as licencas do android
+<pre class="terminal">$ flutter doctor --android-licenses
+    Exception in thread "main" java.lang.NoClassDefFoundError: javax/xml/bind/annotation/XmlSchema
+    at com.android.repository.api.SchemaModule$SchemaModuleVersion.&lt;init&gt;(SchemaModule.java:156)
+    at com.android.repository.api.SchemaModule.&lt;init&gt;(SchemaModule.java:75)
+    at com.android.sdklib.repository.AndroidSdkHandler.&lt;clinit&gt;(AndroidSdkHandler.java:81)
+    at com.android.sdklib.tool.sdkmanager.SdkManagerCli.main(SdkManagerCli.java:73)
+ ...</pre>
 
+ <code>SOLUCAO</code> instalar <b>Android SDK Command-line Tools</b> conforme imagem abaixo:
+ <div class="centro center">
+     <img src="./images/flutter_erro_instalacao_android_licenses_001.jpg" class="bp w70">
+ </div>
+ <br><a href="https://stackoverflow.com/questions/61993738/flutter-doctor-android-licenses-gives-a-java-error">stackoverflow</a>
+ 
+<!-- -------------------------------------------------------------- -->
+<hr>
 <a name="erro-grandle"></a>
 <h2>Erro Grandle</h2>
 <h3>Erro-01</h3>
@@ -200,8 +232,8 @@ Execution failed for task ':app:mergeDebugNativeLibs'.
 </pre>
 <a href="https://stackoverflow.com/questions/55343843/flutter-execution-failed-for-task-appprocessdebugresources">stackoverflow</a>
 
+<!-- -------------------------------------------------------------- -->
 <hr>
-
 <a name="depedencia"></a>
 <h2>Erro ao baixar dependencia</h2>
 Ao tentar baixar a biblioteca <b>brasil_fields</b> da erro 
@@ -325,8 +357,8 @@ Solução inserir no arquivo <code>android/gradle.properties</code> duas linhas
 android.enableJetifier=true</pre>
 <a href="https://www.youtube.com/watch?v=7GTO9D_Anb0">youtube</a>
 
+<!-- -------------------------------------------------------------- -->
 <hr>
-
 <a name="erro-json-decode"></a>
 <h2>Erro json.decode()</h2>
 
@@ -360,9 +392,10 @@ return response()->json(
 <a href="https://github.com/flutter/flutter/issues/32841">github.com</a><br><br>
 <a href="https://stackoverflow.com/questions/55671441/flutter-formatexception-unexpected-character-at-character-1" target="_blank">stackoverflow</a>
 
-
+<!-- -------------------------------------------------------------- -->
+<hr>
 <a name="snackbar"></a>
-<h2>Snackbar nao funiona</h2>
+<h2>SNACKBAR NAO FUNCIONA</h2>
 <pre class="terminal">The following assertion was thrown while handling a gesture:
 Scaffold.of() called with a context that does not contain a Scaffold.
 No Scaffold ancestor could be found starting from the context that was passed to Scaffold.of(). This
@@ -406,10 +439,10 @@ class HomePage extends StatelessWidget {
 
 <a href="https://stackoverflow.com/questions/51304568/scaffold-of-called-with-a-context-that-does-not-contain-a-scaffold"></a>
 
+<!-- -------------------------------------------------------------- -->
 <hr>
-
 <a name="checkbox"></a>
-<h2>Checkbox nao funciona</h2>
+<h2>CHECKBOX NAO FUNCIONA</h2>
 checkbox não atualiza , nao altera o estado. Para resolver tive que envolver a lista de elementos num StatefulBuilder , conforme esse 
 <a href="https://stackoverflow.com/questions/58857826/flutter-checkbox-not-changing-updating-working">link aqui</a>
 <pre>
@@ -434,8 +467,8 @@ return <b style='color:red'>StatefulBuilder</b>(
 <a href="https://stackoverflow.com/questions/51578824/flutter-checkbox-doesnt-work">stackoverflow</a>
 <a href="https://medium.com/flutter-comunidade-br/flutter-descomplica-lista-de-checkbox-1e0dca525cb">medium</a>
 
+<!-- -------------------------------------------------------------- -->
 <hr>
-
 <a name="singlechildscrollview"></a>
 <h2>SingleChildScrollView nao funciona scrool da tela</h2>
 <pre>
@@ -466,8 +499,10 @@ body:ListView(
 )
 ... 
 </pre>
-<hr>
 
+
+<!-- -------------------------------------------------------------- -->
+<hr>
 <a name="overflow"></a>
 <h2>Overflow</h2>
 <h3>Dropdown</h3>
@@ -564,5 +599,234 @@ Para corrigir tal problema , bastou inserir no body o widget <b>SingleChildScrol
     ),
 );</pre>
 
-
+<!-- -------------------------------------------------------------- -->
 <hr>
+<a name="versao_depreceada"></a>
+<h2>VERSAO DEPRECEADA</h2>
+    <h3>ERRO 001</h3>
+<pre class="terminal">$ flutter pub get<span style="color:red">
+Running "flutter pub get" in galeria...                             9,0s
+The plugins `ext_storage, shared_preferences` use a deprecated version of the Android embedding.
+To avoid unexpected runtime failures, or future build failures, try to see if these plugins support the Android V2
+embedding. Otherwise, consider removing them since a future release of Flutter will remove these deprecated APIs.
+If you are plugin author, take a look at the docs for migrating the plugin to the V2 embedding:</span>
+https://flutter.dev/go/android-plugin-migration.</pre>
+
+<code>SOLUCAO</code> atualizar versao dos plugins, , primeiramente verificando a versao de dart:
+<pre class="terminal">$ dart --version
+Dart SDK version: 2.14.4 (stable) (Wed Oct 13 11:11:32 2021 +0200) on "windows_x64"</pre>
+
+Posteriormente atualizar os plugins disponiveis em <a href="https://pub.dev/" target="_blank">pub.dev</a>, baseado na versão de DART, acima.
+<br><br>
+Arquivo <code>pubspec.yaml</code> mudou de:
+<pre>path_provider: ^1.5.1
+shared_preferences: ^0.4.3
+url_launcher: ^5.0.2</pre>
+
+para:
+<pre>path_provider: 2.0.7
+shared_preferences: ^2.0.9
+url_launcher: ^5.0.2</pre>
+
+    <h3>ERRO 001</h3>
+    <div class="w60 center centro">
+        <img src="./images/flutter_erro_versao_deprecead_01.jpg" class="bp w100">
+    </div>
+
+    Tentando usar o operador de difusão de coleção, mas este projeto Flutter 
+    deve suportar Dart 2.12.0 a 3.0.0 de acordo com o que está especificado 
+    em meu <code>pubspec.yaml</code>:
+    <pre>
+    # pubspec.yaml
+
+    # ...
+    environment:
+        sdk: "&gt;=2.12.2 &lt;3.0.0"</pre>
+
+    Como o operador de propagação da coleção foi introduzido no Dart 2.2.2, 
+    precisamos atualizar o limite inferior:
+    <pre>
+    # pubspec.yaml
+
+    # ...
+    environment:
+        sdk: "&gt;=2.2.2 &lt;3.0.0"</pre>    
+    Salve o arquivo e rode o comando:
+    <pre class="terminal">$ flutter pub get</pre>
+    <br><a href="https://flutterigniter.com/update-sdk-constraints/">flutterigniter</a>
+
+<!-- -------------------------------------------------------------- -->
+<hr>
+<a name="cant_have_a_null"></a>
+<h2>can't have a value of 'null'</h2>
+    
+Junto com a nova versão do Flutter foi lançada uma nova funcionalidade chamada NullSafety, que nos obriga a fazer uma verificação sobre um valor para evitar que ele seja nulo e cause problemas no código e no app em alguma situação.
+<br><br>
+Durante os próximos projetos, vocês podem se deparar algumas vezes com a mensagem: "The parameter 'valor' can't have a value of 'null'".
+<br><br>
+Para corrigir isso existem 3 formas. Em alguns casos mais de uma irá funcionar, em outros apenas uma delas irá funcionar.
+<br><br>
+Nesse primeiro exemplo abaixo será gerado o erro descrito lá no getter:
+<br><br>
+
+<pre>VendoItem({this.produto, this.quantidade = 1});
+
+double get preco {
+    if (produto != null && _preco == 0) {
+        _preco = produto.precoComDesconto;
+    }
+    return _preco;
+}</pre>
+
+    Para corrigir, basta adicionar o símbolo ! lá dentro do Getter:
+    <pre>_preco = produto!.precoComDesconto;</pre>
+    
+    No próximo exemplo as duas outras formas de correção funcionam, o erro acontece lá nos parâmetros da função “saudacao”:
+<pre>
+    main() {
+        saudacao(idade: 23, nome: "maria");
+    }
+        
+    saudacao({String nome, int idade}) {
+        print(nome);
+        print(idade);
+    }        
+</pre>
+
+A primeira forma de se resolver é adicionando o símbolo ? na tipagem dos parâmetros. Dessa forma:
+
+<pre>
+    main() {
+        saudacao(idade: 23, nome: "maria");
+    }
+    
+    saudacao({String<b>?</b> nome, int? idade}) {
+        print(nome);
+        print(idade);
+    }
+</pre>
+
+A segunda forma é adicionando a palavra reservada “required” nos parâmetros. Dessa forma:
+<pre>
+    main() {
+        saudacao(idade: 23, nome: "maria");
+    }
+    
+    saudacao({<b>required</b> String nome, required int idade}) {
+        print(nome);
+        print(idade);
+    } </pre>   
+
+<!-- -------------------------------------------------------------- -->
+<a name="dont_support_a_null"></a>
+<h2>don't support null safety'</h2>
+<pre class="terminal">$ flutter run
+Error: Cannot run with sound null safety, because the following dependencies
+don't support null safety:
+
+    - package:material_design_icons_flutter
+    - package:path_provider
+    - package:sqflite
+    - package:path_provider_linux
+    - package:path_provider_windows
+    - package:path_provider_platform_interface
+    - package:xdg_directories
+    - package:plugin_platform_interface
+    - package:sqflite_common
+    - package:synchronized
+
+For solutions, see https://dart.dev/go/unsound-null-safety
+Unhandled exception:
+FileSystemException(uri=org-dartlang-untranslatable-uri:dart%3Ahtml; message=StandardFileSystem only supports file:* and data:* URIs)
+#0      StandardFileSystem.entityForUri (package:front_end/src/api_prototype/standard_file_system.dart:34:7)
+#1      asFileUri (package:vm/kernel_front_end.dart:614:37)
+#2      writeDepfile (package:vm/kernel_front_end.dart:754:21)
+&lt;asynchronous suspension&gt;
+#3      FrontendCompiler.compile (package:frontend_server/frontend_server.dart:582:9)
+&lt;asynchronous suspension&gt;
+#4      starter (package:flutter_frontend_server/server.dart:85:12)
+&lt;asynchronous suspension&gt;
+#5      main (file:///C:/b/s/w/ir/cache/builder/src/flutter/flutter_frontend_server/bin/starter.dart:13:24)
+&lt;asynchronous suspension&gt;
+
+
+
+FAILURE: Build failed with an exception.
+
+* Where:
+Script 'D:\flutter\packages\flutter_tools\gradle\flutter.gradle' line: 1102
+
+* What went wrong:
+Execution failed for task ':app:compileFlutterBuildDebug'.
+&gt; Process 'command 'D:\flutter\bin\flutter.bat'' finished with non-zero exit value 1
+
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+BUILD FAILED in 26s
+Running Gradle task 'assembleDebug'...                             27,3s
+Exception: Gradle task assembleDebug failed with exit code 1  </pre>
+
+<code>SOLUCAO</code><br>
+Se você deseja executar seu projeto com --no-sound-null-safety, agora você adiciona esta linha seu arquivo main.dart no topo (primeira linha) com o comentário ..
+<pre>// @dart=2.9 </pre>
+em seguida, execute seu projeto.
+<br><a href="https://www.devopsschool.com/blog/flutter-cannot-run-with-sound-null-safety-because-the-following-dependencies-dont-support-null-safety/">stackoverflow</a>
+
+
+<!-- -------------------------------------------------------------- -->
+<a name="nao_gera_icone"></a>
+<h2>Nao gera icone</h2>
+<pre class="terminal"> $ flutter pub get
+Running "flutter pub get" in me_poupe...                         2.283ms
+PS D:\projetos\flutter\me_poupe> flutter pub run flutter_launcher_icons:main
+    ════════════════════════════════════════════
+        FLUTTER LAUNCHER ICONS (v0.9.1)
+    ════════════════════════════════════════════
+
+
+✓ Successfully generated launcher icons
+Unhandled exception:
+FormatException: Invalid number (at character 1)
+
+^
+
+#0      int._handleFormatError (dart:core-patch/integers_patch.dart:129:7)
+#1      int.parse (dart:core-patch/integers_patch.dart:55:14)
+#2      minSdk (package:flutter_launcher_icons/android.dart:309:18)
+#3      createIconsFromConfig (package:flutter_launcher_icons/main.dart:94:47)
+#4      createIconsFromArguments (package:flutter_launcher_icons/main.dart:60:7)
+#5      main (file:///D:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_launcher_icons-0.9.2/bin/main.dart:6:26)
+#6      _delayEntrypointInvocation.<anonymous closure> (dart:isolate-patch/isolate_patch.dart:295:32)
+#7      _RawReceivePortImpl._handleMessage (dart:isolate-patch/isolate_patch.dart:192:12)
+pub finished with exit code 255</pre>
+
+<code>SOLUCAO</code> alterar no seguinte arquivo: <code>android\app\build.gradle</code>
+<pre>defaultConfig {
+    // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+    applicationId "br.com.i9tecnosul.me_poupe"
+    minSdkVersion <b style="color:red">flutter.minSdkVersion</b>
+    targetSdkVersion <b style="color:red">flutter.targetSdkVersion</b>
+    versionCode flutterVersionCode.toInteger()
+    versionName flutterVersionName
+}</pre>
+por:
+<pre>defaultConfig {
+    // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+    applicationId "br.com.i9tecnosul.me_poupe"
+    minSdkVersion <b style="color:red">16</b>
+    targetSdkVersion <b style="color:red">31</b>
+    versionCode flutterVersionCode.toInteger()
+    versionName flutterVersionName
+}</pre>
+
+<br><a href="https://stackoverflow.com/questions/70308823/why-am-i-getting-errors-while-adding-launcher-icon-in-flutter-project" target="_blank">stackoverflow</a>
+<br><a href="https://issueexplorer.com/issue/fluttercommunity/flutter_launcher_icons/301">issueexplorer</a>
+
+
+<!-- -------------------------------------------------------------- -->
+<a name="nao_gera_apk_prod_emulador"></a>
+<h2>Nao gera APK PRODUCAO NO EMULADOR</h2>
+<pre class="terminal"> </pre>

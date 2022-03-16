@@ -4,14 +4,12 @@
     <li><a href="#raisedbutton">RaisedButton</a></li>
     <li><a href="#layout">Layout</a></li>
     <li><a href="#remover-scroll">Remover Scroll</a></li>
+    <li><a href="#impedir_volta">Impedir a volta de janela</a></li>
     <li><a href="#ios">IOS</a></li>
     <li><a href="#launcher-icons">Icone da Aplicacao</a></li>
     <li><a href="#links-importantes">Links importantes</a></li>
 </ol>
-
-
-
-
+<!-- -------------------------------------------------------------- -->
 <a name="nome-de-pacote"></a>
 <h2>Alterar nome de pacote</h2>
 <h3>android/app/build.gradle</h3>
@@ -45,15 +43,14 @@ package="br.tche.emater.emater_tecnico"&gt;
         to allow setting breakpoints, to provide hot reload, etc.
 --&gt;</pre>
 
-<h3>Dandroid/app/src/main/kotlin/com/example/me_poupe/MainActivity.kt</h3>
+<h3>android/app/src/main/kotlin/com/example/me_poupe/MainActivity.kt</h3>
 
+<!-- -------------------------------------------------------------- -->
 <hr>
-
 <a name="traducao"></a>
 <h2>Tradução </h2>
 No <code>pubspec.yaml</code> adicione o flutter_localizations como:
-<pre>
-dependencies:
+<pre>dependencies:
     flutter:
       sdk: flutter
     flutter_localizations:
@@ -61,12 +58,10 @@ dependencies:
 
     # Você pode utilizar a biblioteca intl para utilizar o DateFormat desta 
     # forma você consegue formatar as datas referentes as localidade que você deseja.
-    intl: ^0.16.0
-</pre>
+    intl: ^0.16.0</pre>
 
 Então no seu MaterialApp inicial defina os delegates e as linguagens suportadas:
-<pre>
-import 'package:flutter_localizations/flutter_localizations.dart';
+<pre>import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart';
 //...
 MaterialApp(
@@ -79,41 +74,47 @@ MaterialApp(
 </pre>
 
 Uso , exemplo de pegar o dia da semana:
-<pre>
-    // defaultll
+<pre>// defaultll
     DateFormat.E().format(weekDay);
 
     // PORTUGUES
-    DateFormat(DateFormat.WEEKDAY, 'pt_Br').format( weekDay );
-</pre>
+    DateFormat(DateFormat.WEEKDAY, 'pt_Br').format( weekDay );</pre>
 
 <a href="https://pt.stackoverflow.com/questions/399390/flutter-alterar-internacionaliza%C3%A7%C3%A3o-de-nomes-de-datas">stackoverflow</a><br>
 <a href="https://stackoverflow.com/questions/49353199/how-can-i-change-the-app-display-name-build-with-flutter">stackoverflow</a>
 
+<!-- -------------------------------------------------------------- -->
 <hr>
 <a name="raisedbutton"></a>
 <h2>RaisedButton</h2>
+    <h3>SETANDO COLLOR</h3>
 botão RaisedButton não pega cor de jeito nenhum. Isso acontece porque a propriedade <b>onPressed</b> não está setada!
 <div class="centro center" style="margin:15px">
     <img src="images/flutter-raisedbutton-desabilitado.png" style="width:40%" class="bp">
 </div>
 
 <code>Solucao</code>
-<pre>
-RaisedButton(
+<pre>RaisedButton(
     color: Theme.of(context).accentColor,
     onPressed: () {}, //  <b style="color:Red">&lt;-- PRECISA DISSO !!!</b>
     child: Text(...),
-),
-</pre>
+),</pre>
+<br><a href="https://stackoverflow.com/questions/53981006/change-color-of-raisedbutton-from-theme-not-working">stackoverflow</a>
 
-<a href="https://stackoverflow.com/questions/53981006/change-color-of-raisedbutton-from-theme-not-working">stackoverflow</a>
+    <h3>ESTRUTURA DE CONTROLE</h3>
+    Desabilitar botao caso nao seja valido
+<pre>RaisedButton(
+    color: Theme.of(context).accentColor,
+    onPressed:  (_cidadeBotaoController) ?()=> Navigator.of(context).pop( _cidade ) : null , //  <b style="color:Red">&lt;-- OU DESSA FORMA !!!</b>
+    child: Text(...),
+),</pre>
+<br><a href="https://flutteragency.com/how-to-disable-button-in-flutter/">flutteragency</a>
 
+<!-- -------------------------------------------------------------- -->
 <hr>
-
 <a name="layout"></a>
 <h2>Layout</h2>
-<h3>Flexible</h3>
+    <h3>Flexible</h3>
 Baseado no css Flex.<br>
 Existem dois valores na propriedade fit que são muito Importantes e fazem toda diferença
 <ul>
@@ -121,19 +122,43 @@ Existem dois valores na propriedade fit que são muito Importantes e fazem toda 
     <li>fit: FlexFit.tight</li>
 </ul>
 
-<h3>Expanded</h3>
+    <h3>Expanded</h3>
 É o mesmo que <b>Flexible</b>, a diferença que tem por default a propriedade <b>FlexFit.tight</b>
 
+<!-- -------------------------------------------------------------- -->
+<hr>
 <a name="remover-scroll"></a>
 <h2>Remover Scroll de Listview</h2>
-<pre>
-ListView.builder(
+<pre>ListView.builder(
     physics:NeverScrollableScrollPhysics(),
-)
-</pre>
+)</pre>
 
+<!-- -------------------------------------------------------------- -->
 <hr>
+<a name="impedir_volta"></a>
+<h2>Impedir a volta de janela</h2>
+Caso no qual você está em uma view qualquer e quer <b>BLOQUEAR/IMPEDIR</b> a acao de voltar do usuario, 
+no meu caso utilizei quando estou na view SINCRONIZANDO o APP.
 
+<pre>@override
+Widget build(BuildContext context) {
+    return new WillPopScope(
+        onWillPop: () async =&gt; false,
+        child: new Scaffold(
+            appBar: new AppBar(
+                title: new Text("data"),
+                leading: new IconButton(
+                    icon: new Icon(Icons.ac_unit),
+                    onPressed: () =&gt; Navigator.of(context).pop(),
+                ),
+            ),
+        ),
+    );
+}</pre>
+<br><a href="https://stackoverflow.com/questions/45916658/how-to-deactivate-or-override-the-android-back-button-in-flutter" target="_blank">stackoverflow</a>
+
+<!-- -------------------------------------------------------------- -->
+<hr>
 <a name="ios"></a>
 <h2>IOS</h2>
 Primeiramente fazer o import
@@ -146,12 +171,13 @@ Platform.isIOS ?
     FloatingButton()
 </pre>
 
+<!-- -------------------------------------------------------------- -->
 <h2>NOTCH</h2>
 Devices que possuem o notch podem ocasionar overflow, para isso NAO OCORRER, basta usar o widget abaixo:
 <pre>SafeArea()</pre>
 
+<!-- -------------------------------------------------------------- -->
 <hr>
-
 <h2>Stateless Async</h2>
 Por padrão uma tela nao aceita um metodo async, mas pra isso basta declarmos um widget futuro.
 
@@ -179,13 +205,17 @@ class MyWidget extends StatelessWidget {
 
 <a href="https://flutterigniter.com/build-widget-with-async-method-call/">flutterigniter</a>
 
+
+<!-- -------------------------------------------------------------- -->
+<hr>
 <h2>Arvore de Widgets</h2>
 <div class="centro center">
     <img src="./images/flutter_arvore_widgets.png" style="width:70%;" class="bp">
 </div>
 
-<hr>
 
+<!-- -------------------------------------------------------------- -->
+<hr>
 <h2>Alterar nome da aplicação</h2>
 Para Android, edite apenas android: valor do rótulo na tag do aplicativo no arquivo  localizado na pasta: <code>android/app/src/main/AndroidManifest.xml</code>
 <pre>
@@ -200,8 +230,8 @@ Para Android, edite apenas android: valor do rótulo na tag do aplicativo no arq
 &lt;/manifest&gt;    
 </pre>
 
+<!-- -------------------------------------------------------------- -->
 <hr>
-
 <a name="launcher-icons"></a>
 <h2>Icone da Aplicacao</h2>
 Primeiramente você precisa acessar o plugin e ver qual a melhor versão para você, a minha versão é <code> Dart 2.10</code>, voce
@@ -227,6 +257,7 @@ Agora basta rodar o seguintes comandos nessa ordem.
 e tudo pronto !<br><br>
 <a href="https://medium.com/@psyanite/how-to-add-app-launcher-icons-in-flutter-bd92b0e0873a">medium</a>
 
+<!-- -------------------------------------------------------------- -->
 <hr>
 <a name="links-importantes"></a>
 <h2>Links Importantes</h2>
