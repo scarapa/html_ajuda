@@ -1,0 +1,64 @@
+<ol>
+    <li><a href="#pip_nao_instalado">PIP NAO INSTALADO</a></li>
+    <li><a href="#"></a></li>
+</ol>
+
+<!-- ------------------------------------------------------------------------------------ -->
+<hr>
+<a name="pip_nao_instalado"></a>
+<h2>PIP NAO INSTALADO</h2>
+<pre class="terminal">PS D:\projetos\python\robos\testes> pip install pywinauto<span style="color:red">
+    pip : O termo 'pip' não é reconhecido como nome de cmdlet, função, arquivo de script ou programa operável. Verifique a grafia
+    do nome ou, se um caminho tiver sido incluído, veja se o caminho está correto e tente novamente.
+    No linha:1 caractere:1
+    + pip install pywinauto
+    + ~~~
+        + CategoryInfo          : ObjectNotFound: (pip:String) [], CommandNotFoundException
+        + FullyQualifiedErrorId : CommandNotFoundException</span>
+</pre>
+
+A primeira coisa que você precisa fazer é verificar se o pip está instalado. Para isso você precisa navegar 
+até a pasta de instalação do seu python e dentro dela acessar a pasta <b>Scripts</b>.
+<br><br>
+
+No meu caso este é o caminho: <code>D:\Arquivos-de-programas\Python310\Scripts</code>. Na pasta de Scripts 
+você precisa confirmar que existe o arquivo executável do pip, o pip.exe.
+<br><br>
+
+Se o arquivo estiver nesta pasta, ótimo! Isso significa que você já tem o pip, só precisa adicionar esta 
+pasta na variável de ambiente <b>PATH</b> para que o prompt de comandos reconheça este comando em qualquer 
+pasta que você o esteja executando.
+
+<div class="centro center">
+    <img src="./images/python_erro_pip_001.jpeg" class="w60 bp">
+</div>
+
+<code>ATENCAO</code> REINICIE o prompt de comando!
+<br><br>
+
+<pre class="terminal">D:\projetos\python\robos\testes>pip install pywinauto
+    Collecting pywinauto
+      Downloading pywinauto-0.6.8-py2.py3-none-any.whl (362 kB)
+         |████████████████████████████████| 362 kB 2.2 MB/s
+    Requirement already satisfied: six in d:\arquivos-de-programas\python310\lib\site-packages (from pywinauto) (1.16.0)
+    Collecting pywin32
+      Downloading pywin32-303-cp310-cp310-win_amd64.whl (9.2 MB)
+         |████████████████████████████████| 9.2 MB 6.4 MB/s
+    Collecting comtypes
+      Downloading comtypes-1.1.10.tar.gz (145 kB)
+         |████████████████████████████████| 145 kB 6.4 MB/s
+    Using legacy 'setup.py install' for comtypes, since package 'wheel' is not installed.
+    Installing collected packages: pywin32, comtypes, pywinauto
+        Running setup.py install for comtypes ... done
+    Successfully installed comtypes-1.1.10 pywin32-303 pywinauto-0.6.8
+    WARNING: You are using pip version 21.2.4; however, version 21.3.1 is available.
+    You should consider upgrading via the 'D:\Arquivos-de-programas\Python310\python.exe -m pip install --upgrade pip' command.</pre>
+
+<code>FUNCIONOU !!!</code>
+
+<br><a href="https://dicasdepython.com.br/resolvido-pip-nao-e-reconhecido-como-um-comando-interno/" target="_blank">dicasdepython</a>
+
+<!-- ------------------------------------------------------------------------------------ -->
+<hr>
+<a name=""></a>
+<h2></h2>
