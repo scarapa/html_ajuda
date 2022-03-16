@@ -1,0 +1,225 @@
+<ol>
+    <li><a href="#valor-null">valor Null</a></li>
+    <li><a href="#aplicacao-null-safety">Aplicação do Null Safety</a></li>
+    <li><a href="#migracao">Migração</a></li>
+</ol>
+
+A partir do Dart 2.12, temos a possibilidade de usar o Null Safety para facilitar nossas 
+aplicações, dificultando erros de valores nulos. Aprenderemos a identificar erros de valores 
+nulos, aplicar no nosso projeto do ByteBank, atualizar o Dart para a nova versão e migrar um projeto 
+inteiro! Assim podemos criar códigos complexos com mais facilidade!
+
+<hr>
+<a name="valor-null"></a>
+<h2>Erros de valor Null</h2>
+Existem infinitos erros que podem acontecer por conta de um valor nulo:
+<ul>
+    <li>Você pode estar esperando um dado do seu back-end, mas ele não existe ainda…</li>
+    <li></li>Você pode criar uma lista que muda de tamanho de acordo com a quantidade de produtos…</li>
+</ul>
+Vamos dar uma olhada no nosso antigo conhecido: o ByteBank. Nele, temos uma lista de transferências que depende da quantidade de transferências disponíveis no nosso servidor API.
+
+<table>
+    <tr>
+        <td style="width:45%">
+            <div class="centro">
+                <img src="./images/flutter-null-safety-001.png" class="w50">
+            </div>
+        </td>
+        <td style="width:55%">
+            <pre>
+return ListView.builder(
+    itemBuilder: (context, index) {
+        final Transaction transaction = transactions[index];
+        return Card(
+            child: ListTile(
+                leading: Icon(Icons.monetization_on),
+                title: Text(
+                    transaction.value.toString(),
+                    style: TextStyle(
+                        fontSize: 24.0,
+                        fontWeight: FontWeight.bold,
+                    ),
+                ),
+                subtitle: Text(
+                    transaction.contact.accountNumber.toString(),
+                    style: TextStyle(
+                        fontSize: 16.0,
+                    ),
+                ),
+            ),
+        );
+    },
+    itemCount: transactions.length, /// não pode ser nulo
+);
+            </pre>
+        </td>
+    </tr>
+</table>
+<br clear="all"><br clear="all">
+
+Mas e se não tivéssemos nenhuma transferência?
+<div class="centro">
+    <img src="./images/flutter-null-safety-002.png" class="w30">
+</div>
+
+
+Nesse caso, nossas transferências teriam o valor null e a ListView não poderia ser buildada, causando a famosa Tela Vermelha.
+<br><br>
+Para resolver isso, no passado, usávamos uma condição que ignorava o valor nulo.
+<pre>
+if(snapshot.hasData){ // condição inicial para impedir o nulo
+    final List&lt;Transaction&gt; transactions = snapshot.data;
+    if(transactions.isNotEmpty){ // segunda condição para impedir o nulo
+        return ListView.builder(...);
+    }
+}
+    return CenteredMessage('No Transactions Found', icon: Icons.warning); // caso seja nulo, buildar essa mensagem
+    break;
+}
+    return CenteredMessage('Unknown Error'); // caso seja nulo, buildar essa mensagem
+</pre>
+
+<!-- -------------------------------------------------------------------------------------------------------- -->
+
+<hr>
+<a name="aplicacao-null-safety"></a>
+<h2>Aplicação do Null Safety</h2>
+Agora, as coisas funcionam de uma forma levemente diferente. Por padrão, toda variável que criamos não pode receber valor nulo.
+
+<div class="centro">
+    <img src="./images/flutter-null-safety-003.png" class="w50">
+</div>
+
+Mas e se quisermos ter um valor nulo? Existem alguns momentos em que precisamos lidar com valores nulos, 
+então, como podemos garantir que nossa variável vai receber o valor nulo? Para esses casos, basta adicionar 
+o sinal ? e, em seguida, o tipo da variável.
+<pre>int? cafe = null;</pre>
+
+Existem casos extremos em que precisamos ficar alterando a propriedade da nossa variável. Imagina o 
+seguinte: você está fazendo uma função, e ela não pode receber um valor nulo, mas, por algum motivo, 
+um dos atributos dela veio nulo. O que podemos fazer para garantir que esse valor vai ser transformado em não nulo?
+
+<pre>class Cafe {
+    String _temperatura; // criei a Temperatura
+    
+    void esquentar() { _temperatura = 'quente'; } // Defino a Temperatura para quente
+    
+    void esfriar() { _temperatura = 'gelado'; }
+    
+    String servir() =&gt; _temperatura + ' cafe'; // Servir o Cafe com a Temperatura 
+}
+    
+main() {
+    var cafe = Cafe(); // Fazer o Cafe
+    cafe.esquentar(); // Esquentar o Cafe
+    cafe.servir(); // Servir o Cafe sem esperar que ele já esteja quente
+}</pre>
+
+Note que, no momento em que estamos servindo, estamos esquentando! Nossa função não espera 
+o <code>_temperatura</code> ser <code>= ‘quente’</code> antes de servir… Ou seja, se for rápida o suficiente, ela pode entregar o 
+café com a <code>_temperatura = ‘null’</code>
+<br><br>
+Para esses casos, basta adicionar o sinal ! no tipo da variável.
+<pre>class Cafe {
+    String? _temperatura; // Criar a Temperatura que não pode ser nula
+    
+    void esquentar() { _temperatura = 'quente'; } // Definir a Temperatura para quente
+    
+    void esfriar() { _temperatura = 'gelado'; }
+    
+    String servir() =&gt; _temperatura! + ' cafe'; // Servir o Cafe com a Temperatura que pode ser nula.
+} </pre>
+
+Mas já dá pra notar que isso não é uma boa prática, né? Afinal, ficar colocando ? e ! a torto e a 
+direito no código pode confundir qualquer pessoa!
+
+Existe um novo modificador chamado <code>late</code>, que permite que o valor inicialmente seja nulo, mas, quando for 
+utilizado em alguma função ou classe, ele vai ser considerado não nulo.
+<pre>class Cafe {
+    <b>late</b> String _temperatura; // criei a Temperatura
+
+    void esquentar() { _temperatura = 'quente'; } // Definir a Temperatura para quente
+
+    void esfriar() { _temperatura = 'gelado'; }
+
+    String servir() =&gt; _temperatura + ' cafe'; // Servir o Cafe com a Temperatura só depois que a _temperatura for diferente de nula.
+}</pre>
+O que acontece é que o <code>late pede para a <code>_temperatura</code> ser usada na função somente quando ela já tiver deixado de ser <codee>null</code>.
+
+<!-- -------------------------------------------------------------------------------------------------------- -->
+
+<hr>
+<a name="migracao"></a>
+<h2>Migração</h2>
+Vamos agora migrar um aplicativo para utilizar o Null Safety. Antes de tudo, temos de ter certeza de que 
+tudo está nos conformes e para isso vamos usar o comando <code>flutter doctor</code> e <code>dart --version</code> no 
+terminal para ver se temos tudo atualizado!
+
+<div class="centro">
+    <img src="./images/flutter-null-safety-004.png" class="w50">
+</div>
+
+Para que tudo funcione, precisamos do Flutter na versão mínima 2.0.0 e o Dart na versão mínima 2.12.0. 
+Caso você precise atualizar algum deles, utilize o comando <code>flutter upgrade</code> e <code>dart upgrade</code>, respectivamente.
+<br><br>
+
+Agora temos de atualizar nosso projeto!
+<br><br>
+
+Existem dois jeitos de migrar seu projeto. A grande maioria de nós vai tentar migrar um projeto do jeito manual:
+<ul>
+    <li>Ir manualmente no <code>pubspec.yaml</code> e atualizar os pacotes um por um, “na mão”, depois substituir as depreciações uma a uma até que o projeto não tenha nenhum erro ou warning.</li>
+</ul>
+
+Devo alertar você que o jeito manual é muito trabalhoso e pode te dar algumas noites sem sono e alguns 
+cabelos brancos. Então, vou te convencer a fazer de um outro jeito!
+<br>
+
+    <h3>Primeiro passo: Verificar</h3>
+    Saber quando devemos atualizar nosso projeto é essencial! Para isso, verifique quais são os pacotes que 
+    você usa no seu projeto e se eles já têm a versão que aceite o Dart 2.12 (Null Safety).
+
+    Atente-se aos pacotes que dependem de outros pacotes!<br> 
+    Okay, mas como vou saber se meus pacotes têm suporte pro Null Safety? <br> 
+    Simples, para isso basta usarmos o comando no terminal:<br> 
+
+<pre class="terminal">$ dart pub outdated --mode=null-safety</pre>
+
+<div class="centro">
+    <img src="./images/flutter-null-safety-005.png" class="w50">
+</div>
+
+Esse comando vai analisar cada um dos seus pacotes e confirmar se eles já aceitam a Migração! 
+(Bem melhor do que sair procurando cada um no Google, não é?)
+<br><br>
+
+Caso seus pacotes tenham suporte para o Null Safety, basta usar dois comandos simples para atualizá-los!
+<pre class="terminal">$ dart pub upgrade --null-safety</pre>
+e consequentemente ...
+<pre class="terminal">$ dart pub get</pre>
+
+    <h3>Segundo passo: Migrar</h3>
+Agora nós temos o terreno pronto, então, vamos começar a migração! A primeira coisa a se fazer é lançar o comando:
+<pre class="terminal">$ dart migrate</pre>
+
+Em seguida, ele vai te mandar um link que você deve acessar pelo seu navegador:<br>
+<code>View the migration suggestions by visiting: http://127.0.0.1:60278/Users/you/project/mypkg.console-simple?authToken=Xfz0jvpyeMI%3D</code>
+<br><br>
+
+Já no navegador, você vai ver uma interface linda com o seu código atualizado!
+<div class="centro">
+    <img src="./images/flutter-null-safety-006.png" class="w50">
+</div>
+Calma, seu código não foi alterado ainda! Essa interface está apenas sugerindo as alterações. 
+Antes de aplicar as alterações, vamos conferir se todos os valores que devem ser nulos estão especificados 
+e se os valores não nulos estão corretos. Caso você precise fazer uma alteração vá em Edit Details e 
+selecione o hint pertinente (?ou !). Uma vez que você conferiu todo o código e, estando tudo certo, clique 
+em Apply migration. Pronto! Seu projeto está todo atualizado para o Null Safety!
+<br><br>
+
+Incrível, não é? Muito mais fácil do que ir manualmente em cada pacote e verificar todas as variáveis no projeto 
+a fim de encontrar algum que aceite o valor nulo, não acha?
+<br><br>
+
+<br><a href="https://www.alura.com.br/artigos/flutter-null-safety" target="_blank">alura</a>

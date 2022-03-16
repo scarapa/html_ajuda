@@ -5,6 +5,7 @@
     <li><a href="#com-icone">Com Icone</a></li>
     <li><a href="#StatelessWidget">StatelessWidget</a></li>
     <li><a href="#textarea">TextArea</a></li>
+    <li><a href="#foco">Foco</a></li>
 </ol>
 
 <a name="bordas"></a>
@@ -120,10 +121,10 @@ Pegando valores do componente um StatelessWidget
     )
 </pre>
 
+<!-- ----------------------------------------------------------- -->
 <hr>
-
 <a name="textarea"></a>
-<h2>TextArea</h2>
+<h2>TEXTAREA</h2>
 Para fazer o textfield como o textarea do HTML
 <pre>
 TextFormField(
@@ -133,3 +134,133 @@ TextFormField(
 )</pre>
 
 <a href="https://stackoverflow.com/questions/54972928/how-to-expand-a-textfield-in-flutter-looks-like-a-text-area" target="_blank">stackoverflow</a>
+
+<!-- ----------------------------------------------------------- -->
+<hr>
+<a name="foco"></a>
+<h2>FOCO</h2>
+<pre>
+import 'package:flutter/material.dart';
+
+void main() {
+    runApp(MyApp());
+}
+    
+class MyApp extends StatelessWidget {
+    // This widget is the root of your application.
+    @override
+    Widget build(BuildContext context) {
+    return MaterialApp(
+        home: Scaffold(
+            appBar: AppBar(
+                title: Text("GFG | Input Focus"),
+                backgroundColor: Color.fromRGBO(15, 157, 88, 1),
+            ),
+            body: InputForm(),
+            ),
+        );
+    }
+}
+    
+// Defining a custom Form widget
+class InputForm extends StatefulWidget {
+    @override
+    _InputFormState createState() =&gt; _InputFormState();
+}
+    
+// Defining a corresponding State class
+// This class holds data related to the InputForm
+class _InputFormState extends State&lt;InputForm&gt; {
+    
+    // Defining the focus node<b style="color:Red">
+    FocusNode focusNode1;
+    FocusNode focusNode2;</b>
+    
+    @override
+    void initState() {
+        super.initState();
+            
+        // To manage the lifecycle, creating focus nodes in
+        // the initState method<b style="color:Red">
+        focusNode1 = FocusNode();
+        focusNode2 = FocusNode();</b>
+    }
+    
+    // Called when the object is removed
+    // from the tree permanently
+    @override
+    void dispose() {
+        // Clean up the focus nodes
+        // when the form is disposed<b style="color:Red">
+        focusNode1.dispose();
+        focusNode2.dispose();</b>
+        super.dispose();
+    }
+    
+    @override
+    Widget build(BuildContext context) {
+    return Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+        children: [
+            TextField(
+                // The first TextField is focused
+                // on as soon as the app starts
+                autofocus: true,<b style="color:red">
+                focusNode: focusNode1,</b>
+                decoration: InputDecoration(
+                    labelText: "First",
+                    labelStyle: TextStyle(fontSize: 25.0),
+                ),
+            ),
+            SizedBox( height: 50.0, ),
+            TextField(
+                
+                // The second TextField is focused
+                // on when a user taps the second button<b style="color:red">
+                focusNode: focusNode2,</b>
+                decoration: InputDecoration(
+                    labelText: "Second",
+                    labelStyle: TextStyle(fontSize: 25.0),
+                ),
+            ),
+            SizedBox( height: 150.0, ),
+            RaisedButton(
+                onPressed: () {
+                    // When the button is pressed,
+                    // give focus to the first TextField
+                    // using focusNode1.
+                    focusNode1.requestFocus();
+                },
+                color: Color.fromRGBO(15, 157, 88, 1),
+                textColor: Colors.white,
+                child: Text(
+                    "Focus on First Text Field",
+                    style: TextStyle(
+                    color: Colors.white,
+                    ),
+                ),
+            ),
+            SizedBox(height: 50.0,),
+            RaisedButton(
+            onPressed: () {
+                // When the button is pressed,
+                // give focus to the second
+                // TextField using focusNode2.
+                focusNode2.requestFocus();
+            },
+            color: Color.fromRGBO(15, 157, 88, 1),
+            child: Text(
+                "Focus on Second Text Field",
+                style: TextStyle(
+                color: Colors.white,
+                ),
+            ),
+            )
+        ],
+        ),
+    );
+    }
+}    </pre>
+
+<br><a href="https://www.geeksforgeeks.org/flutter-managing-form-input-focus/" target="_blank">geeksforgeeks</a>
