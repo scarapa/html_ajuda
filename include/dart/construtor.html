@@ -1,14 +1,33 @@
 <ol>
-    <li><a href="#construtor-oculto">Construtor Oculto</a></li>
-    <li><a href="#parametros">Parametros</a></li>
+    <li>Construtor
+        <ol>
+            <li><a href="#construtor_oculto">Construtor Oculto</a></li>
+        </ol>
+    </li>
+    
+    <li>
+        <a href="#parametros">Parametros</a>
+        <ol>
+            <li><a href="#parametro_posicionais">Parametros POSICIONAIS</a></li>
+            <li><a href="#parametro_nomeados">Parametros NOMEADOS</a></li>
+            <li><a href="#parametro_obrigatorios">Parametros OBRIGATORIOS</a></li>
+            <li><a href="#parametro_nulos">Parametros NULOS</a></li>
+        </ol>
+    </li>
     <li><a href="#metodos">Metodos</a></li>
     <li><a href="#atributos">Atributos</a></li>
 </ol>
 
+
+
+<!-- ---------------------------------------------------------------- -->
+<hr>
 <a name="construtor-oculto"></a>
-<h2>Construtor Oculto</h2>
+<h2>Construtor</h2>
+
+    <h3>Construtor Oculto</h3>
 Não precisa instanciar a classe.
-<h3>Exemplo 1</h3>
+        <h4>Exemplo 1</h4>
 <pre>
 class Constants{<b style="color:Red">
     Constants._();</b>
@@ -29,7 +48,7 @@ Container(
 </pre>
 fonte:<a href="https://medium.com/flutterdevs/custom-dialog-in-flutter-7ca5c2a8d33a">medium</a>
 
-<h3>Exemplo 2</h3>
+        <h4>Exemplo 2</h4>
 No exemplo abaixo é demonstrado a utilizacao de uma classe com propriedades estaticas e constantes, nao precisando instanciar a classe.
 <pre>
 class Configuracoes{
@@ -60,8 +79,9 @@ class Configuracoes{
 String _background = <b style="color:red">Configuracoes</b>.cores[_dados['modo']]['background'];
 </pre>
 
-<hr>
 
+<!-- ---------------------------------------------------------------- -->
+<hr>
 <a name="parametros"></a>
 <h2>PARAMETROS</h2>
 <h3>Parametros POSICIONAIS</h3>
@@ -131,13 +151,36 @@ class Transaction{
     });
 }</pre>
 
+<h3>Parametros NULOS</h3>
+
+Mudanças foram feitas a partir do Dart 2.
+    <h4>Dart < 2</h4>
+    <pre>
+    _showContactPage();
+    ...
+    void _showContactPage({Contact contact}) async {
+        ....
+    }</pre>
+
+    <h4>Dart > 2</h4>
+    <pre>
+    _showContactPage();
+    ...
+    void _showContactPage({Contact? contact}) async {
+        ....
+    }</pre>    
+
+<br><a href="https://stackoverflow.com/questions/64560461/the-parameter-cant-have-a-value-of-null-because-of-its-type-in-dart">stackoverflow</a>
+
+<!-- ---------------------------------------------------------------- -->
 <a name="metodos"></a>
 <h2>METODOS</h2>
 
-<h3>MIXINS</h3>
+    <h3>MIXINS</h3>
 
+
+<!-- ---------------------------------------------------------------- -->
 <hr>
-
 <a name="atributos"></a>
 <h2>ATRIBUTOS</h2>
 
