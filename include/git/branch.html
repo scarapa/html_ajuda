@@ -1,20 +1,57 @@
-﻿
-<h2>CRIAR Branch novo</h2>
-<pre>$ git checkout -b <strong>nome_branch</strong></pre>
+﻿<ol>
+    <li><a href="#branch-nova">NOVA</a></li>
+    <li><a href="#branch-deletar">DELETAR</a></li>
+    <li><a href="#"></a></li>
+    <li><a href="#"></a></li>
+    <li><a href="#"></a></li>
+</ol>
 
-<h2>RETORNAR para o Branch MASTER</h2>
-<pre>$ git checkout master</pre>
 
-<h2>REMOVER o Branch</h2>
+<!-- -------------------------------- -->
+<hr>
+<a name="branch-nova"></a>
+<h2>NOVA</h2>
+    <h3>LOCAL</h3>
+    <pre class="terminal">$ git checkout -b <strong>nome_branch</strong></pre>
+
+    <h3>REMOTA</h3>
+    <pre class="terminal">$ git checkout -q --track origin/BRANCH</pre>
+    
+
+
+<!-- -------------------------------- -->
+<hr>
+<a name="branch-deletar"></a>
+<h2>REMOVER</h2>
 -D maisculo funciona como o -force, deleta mesmo com erros.<BR/>
 -d minusculo se tiver erros nao deleta
-<pre>$ git branch -D <strong>nome_branch</strong></pre>
+<pre class="terminal">$ git branch -D <strong>nome_branch</strong></pre>
 
+<!-- -------------------------------- -->
+<hr>
+<a name=""></a>
 <h2>ALTERAR o nome do Branch</h2>
-<pre>$ git branch -m <strong>nome_atual nome_novo</strong></pre>
+<pre class="terminal">$ git branch -m <strong>nome_atual nome_novo</strong></pre>
 
+<!-- -------------------------------- -->
+<hr>
+<a name=""></a>
 <h2>LISTAR Branchs</h2>
-<pre>$ git branch</pre>
+    <h3>branchs LOCAIS</h3>
+    <pre class="terminal">$ git branch</pre>
 
+    <h3>branchs REMOTAS</h3>
+    <pre class="terminal">$ git branch -a</pre>
+
+<!-- -------------------------------- -->
+<hr>
+<a name=""></a>
 <h2>ENVIAR o Branch</h2>
-<pre>$ git push origin <strong>nome_branch</strong></pre>
+<pre class="terminal">$ git push origin <strong>nome_branch</strong></pre>
+
+
+<!-- -------------------------------- -->
+<hr>
+<a name=""></a>
+<h2>RETORNAR para o Branch MASTER</h2>
+<pre class="terminal">$ git checkout master</pre>
