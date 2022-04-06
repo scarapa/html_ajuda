@@ -1,0 +1,173 @@
+<ol>
+    <li><a href="#instalacao">INSTALACAO</a></li>
+    <li><a href="#configuracao">CONFIGURACAO</a></li>
+    <li><a href="#setting">SETTINGS</a></li>
+    <li><a href="#"></a></li>
+</ol>
+
+<!-- -------------------------------------------------------------------------------------------------------- -->
+
+<hr>
+<a name="instalacao"></a>
+<h2>INSTALACAO</h2>
+Necessário ter o composer instalado, eu optei por instalar o swagger no raiz do projeto.
+<pre class="terminal">$ composer require zircote/swagger-php</pre>
+
+
+<!-- -------------------------------------------------------------------------------------------------------- -->
+
+<hr>
+<a name="configuracao"></a>
+<h2>CONFIGURACAO</h2>
+    <h3>api.php</h3>
+Arquivo contendo o apontamento para o(s) arquivo(s) de controller(s).
+<br><br>
+Criei arquivo em <code>RAIZ_PROJETO\documentation\api.php</code>
+
+<pre>require_once(substr($_SERVER['SCRIPT_FILENAME'] ,0 ,-strlen("api.php") )."../core/configuracoes/configuracao.php" );
+require_once( $_SERVER['DOCUMENT_ROOT']."aguia/vendor/autoload.php" );
+
+
+$openapi = \OpenApi\Generator::scan( [
+    $_SERVER['DOCUMENT_ROOT']."aguia/controller/"
+] );
+
+header('Content-Type: application/json');
+echo $openapi-&gt;toJSON();</pre>
+
+    <h3>index.php</h3>
+Agora criaremos a estrutura responsável por exibir a nossa API, para isso temos que clonar o 
+projeto do git, disponivel em <a href="https://swagger.io/tools/swagger-ui/" target="_blank">https://swagger.io/tools/swagger-ui/</a>
+
+<div class="centro">
+    <img src=".\images\php-swagger-001.jpg" class="w30">
+</div>
+
+Minha opcao de local foi <code>RAIZ_PROJETO\documentation\</code>
+    <h4>INDEX</h4>
+    Copiaremos TODO o conteudo do arquivo disponivel em <code>RAIZ_PROJETO\documentation\swagger-ui\dist\index.html</code> 
+    e colaremos em <code>RAIZ_PROJETO\documentation\index.php</code> 
+
+    <h4>RAIZ_PROJETO\documentation\swagger\</h4>
+    Agora pegaremos a pasta disponivel em <code>RAIZ_PROJETO\documentation\swagger-ui\dist\</code> e colaremos com o nosso a nome escolha,
+    optei por essa <code>RAIZ_PROJETO\documentation\swagger\</code>
+
+
+    <h4>ESTRUTURA</h4>
+<pre>
+    <i class="fa fa-folder-open"></i> documentation
+        ├ <i class="fa fa-folder-open"></i> swagger
+        └ <i class="fa fa-folder-open"></i> swagger-ui
+    <i class="fa fa-file-o"></i> api.php
+    <i class="fa fa-file-o"></i> index.php
+</pre>
+
+    <h4>CORRIGINDO index.php</h4>
+    Após refatorar o apontamento dos arquivos no index.php,inserindo a pasta swagger no recurso, o mesmo ficou da seguinte forma:
+<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;title&gt;Swagger UI&lt;/title&gt;
+        &lt;link rel="stylesheet" type="text/css" href="./<b style="color:Red">swagger</b>/swagger-ui.css" /&gt;
+        &lt;link rel="icon" type="image/png" href="./<b style="color:Red">swagger</b>/favicon-32x32.png" sizes="32x32" /&gt;
+        &lt;link rel="icon" type="image/png" href="./<b style="color:Red">swagger</b>/favicon-16x16.png" sizes="16x16" /&gt;
+        &lt;style&gt;
+            html {
+                box-sizing: border-box;
+                overflow: -moz-scrollbars-vertical;
+                overflow-y: scroll;
+            }
+            *,*:before,*:after { box-sizing: inherit; }
+            body {
+                margin: 0;
+                background: #fafafa;
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div id="swagger-ui"&gt;&lt;/div&gt;
+        &lt;script src="./<b style="color:Red">swagger</b>/swagger-ui-bundle.js" charset="UTF-8"&gt; &lt;/script&gt;
+        &lt;script src="./<b style="color:Red">swagger</b>/swagger-ui-standalone-preset.js" charset="UTF-8"&gt; &lt;/script&gt;
+        &lt;script&gt;
+            window.onload = function() {
+                // Begin Swagger UI call region
+                const ui = SwaggerUIBundle({
+                    url: "http://192.168.0.107/i9tecnosul/public/aguia/documentation/api.php",
+                    dom_id: '#swagger-ui',
+                    deepLinking: true,
+                    presets: [
+                        SwaggerUIBundle.presets.apis,
+                        SwaggerUIStandalonePreset
+                    ],
+                    plugins: [
+                        SwaggerUIBundle.plugins.DownloadUrl
+                    ],
+                    layout: "StandaloneLayout"
+                });
+                // End Swagger UI call region
+                window.ui = ui;
+            };
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<br><br>
+
+Apos settar as propriedades, o resultado deverá conforme a imgem abaixo:
+<div class="centro">
+    <img src=".\images\php-swagger-002.jpg" class="w40 bp">
+</div>
+
+
+<!-- -------------------------------------------------------------------------------------------------------- -->
+
+<hr>
+<a name="setting"></a>
+<h2>SETTINGS</h2>
+Existe duas anotações obrigatorias nos arquivos a serem lidos para API
+<pre>
+    <b style="color:green">// ESSA NO CABECALHO DO ARQUIVO</b>
+    /**
+    * @OA\Info(title="My First API", version="0.1")
+    */
+   
+
+    <b style="color:green">// ESSA ANTES DO METODO</b>
+   /**
+    * @OA\Get(
+    *     path="/api/resource.json",
+    *     @OA\Response(response="200", description="An example resource")
+    * )
+    */
+</pre>
+
+Exemplo ApiTesteController.php:
+<pre>
+&lt;?php
+    /**
+     * @OA\Info(title="Aguia API", version="1.0")
+     */
+    class ApiTesteController{
+    
+    /**
+     * @OA\Get(
+     *     path="/api/cliente/get_all", 
+     *     @OA\Response(response="200", description="Sucesso"),
+     *     @OA\Response(response="404", description="fail"),
+     * )
+     */
+        public function get_all($data){
+            $objeto = new CidadeModel();
+            return $loadObjeto = $objeto-&gt;fetch_all();
+            die;
+        }
+    }</pre>
+
+
+<!-- -------------------------------------------------------------------------------------------------------- -->
+
+<br><a href="https://github.com/zircote/swagger-php" target="_blank">swagger</a>
+<br><a href="https://www.youtube.com/watch?v=JnjlQBWvDAE" target="_blank">youtube</a>
+

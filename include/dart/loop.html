@@ -1,4 +1,12 @@
-<h3>For In</h3>
+<ol>
+    <li><a href="#for_in">FOR IN</a></li>
+    <li><a href="#foreach">FOREACH</a></li>
+    <li><a href="#async_await">ASYNC / AWAIT</a></li>
+</ol>
+
+<hr>
+<a name="for_in"></a>
+<h2>For In</h2>
 O loop for ... in é usado para percorrer as propriedades de um objeto.
 
 A seguir está a sintaxe do loop ‘for… in’.
@@ -19,3 +27,28 @@ Saida
 <code> 12 13  14</code>
 <br><br>
 <a href="https://www.tutorialspoint.com/dart_programming/dart_programming_for_in_loop.htm">tutorialspoint</a><br>
+
+<hr>
+<a name="foreach"></a>
+<h2>FOREACH</h2>
+
+
+<hr>
+<a name="async_await"></a>
+<h2>ASYNC / AWAIT</h2>
+<pre>void main() {
+    asyncOne();
+  }
+ 
+  asyncOne() async {
+   await Future.forEach([2, 4, 6],(num) async {
+     print(num);
+     await Future.forEach([1, 3, 5],(num) async {
+       print(num);
+     });
+   });
+ }</pre>
+
+ retorno
+ <pre></pre>
+ 

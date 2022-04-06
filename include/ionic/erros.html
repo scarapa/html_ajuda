@@ -10,8 +10,8 @@
     </li>
     <li><a href="#navegacao">NAVEGACAO</a></li>
     <li><a href="#gradle">GRADLE</a></li>
-
     <li><a href="#nodejs">NODEJS</a></li>
+    <li><a href="#query_vazia">SELECT NAO RETORNA</a></li>
 </ol>
 
 <hr>
@@ -71,11 +71,10 @@ Built the following apk(s):
 <span color="#AAAAAA">[native-run] Starting application activity br.tche.emater.expointer/br.tche.emater.expointer.MainActivity...</span>
 <span color="#AAAAAA">[native-run] Run Successful</span>
 </pre>
+
+
+<!-- -------------------------------------------------------------------- -->
 <hr>
-
-
-<hr>
-
 <a name="nao-gerar-pagina"></a>
 <h2>NÃO GERAR PAGINA</h2>
     <h3>ERRO[001]</h3>
@@ -84,17 +83,14 @@ Para resolver isso foi preciso rodar o comando abaixo:
 <pre class="terminal">$ npm install @ionic/app-scripts@latest --save-dev</pre>
 <a href="https://stackoverflow.com/questions/44381358/error-cannot-find-module-ionic-app-scripts">stackoverflow</a>
 
-<hr>
-
     <h3>ERRO[002]</h3>
 <code>Error: ENOENT: no such file or directory, scandir</code><br>
 Solução foi <b>DELETAR</b> a pasta <b>node_modules</b> do projeto e rodar esse comando.
 <pre class="terminal">$ npm install @ionic/app-scripts@latest --save-dev</pre>
 
 
-
+<!-- -------------------------------------------------------------------- -->
 <hr>
-
 <a name="nao-altera-apk"></a>
 <h2>NÃO ALTERA APK</h2>
 Ao gerar APK nao altera o codigo HTML nem TS
@@ -163,7 +159,7 @@ C:\Users\rober\AppData\Roaming\npm\node_modules\ionic\bin\ionic serve</pre>
     
     <a href="https://stackoverflow.com/questions/51527480/unable-to-find-command-c-program-files-nodejs-node-exe" target="_blank">stackoverflow</a>
     
-    <h4>ERRO[005]</h4>
+    <h4>ERRO[004]</h4>
     <pre class="terminal">
     [native-run] Error: Command failed: C:\Users\49583\AppData\Local\Android\Sdk\platform-tools\adb -s 0054824656 shell getprop
     [native-run] error: device unauthorized.
@@ -174,7 +170,7 @@ C:\Users\rober\AppData\Roaming\npm\node_modules\ionic\bin\ionic serve</pre>
 
 <hr>
 
-    <h4>ERRO[006]</h4>
+    <h4>ERRO[005]</h4>
     Erro no deploy
 <pre class="terminal">* What went wrong:
 Execution failed for task ':app:mergeReleaseResources'.
@@ -202,8 +198,35 @@ BUILD FAILED in 13s
 }</pre>
 <a href="https://stackoverflow.com/questions/52712063/build-failing-during-merge-resources-with-android-gradle-plugin-3-3-0/54615423#54615423">stackoverflow</a>
 
-<hr>
+<h4>ERRO[006]</h4>
+<pre class="terminal">$ ionic cordova run android
+<font color="#AAAAAA">[</font><span style="background-color:#000000"><font color="#FF5555"><b>ERROR</b></font></span><font color="#AAAAAA">] </font><font color="#FF5555"><b>Error while getting native targets for </b></font><font color="#55FFFF"><b>android</b></font><font color="#FF5555"><b>:</b></font>
+<font color="#FF5555"><b>/usr/local/lib/node_modules/native-run/node_modules/fs-extra/lib/mkdirs/make-dir.js:85</b></font>
+        
+    } catch {
+    ^
+    
+    SyntaxError: Unexpected token {
+    at createScript (vm.js:80:10)
+    at Object.runInThisContext (vm.js:139:10)
+    at Module._compile (module.js:617:28)
+    at Object.Module._extensions..js (module.js:664:10)
+    at Module.load (module.js:566:32)
+    at tryModuleLoad (module.js:506:12)
+    at Function.Module._load (module.js:498:3)
+    at Module.require (module.js:597:17)
+    at require (internal/module.js:11:18)
+    at Object.&lt;anonymous&gt;
+    (/usr/local/lib/node_modules/native-run/node_modules/fs-extra/lib/mkdirs/index.js:3:44)
+    
+    This error occurred while using <font color="#00AAAA">native-run</font>. You can try running this command with
+    <font color="#00AAAA">--no-native-run</font>, which will revert to using Cordova.
+</pre>
+    
+<code>SOLUCAO</code> rodar o comando abaixo:<br>
+<pre class="terminal">$ ionic cordova run android --no-native-run --device</pre>
 
+<hr>
     <a name="nao-constroi-projeto-webserver"></a>
     <h3>NAO CONSTROI PROJETO - WEBSERVER</h3>
         <h4>ERRO[001]</h4>
@@ -417,8 +440,41 @@ desinstalando:
 reinstalando:
 <pre class="terminal">$ npm install ionic@3.16.0</pre>
 
-<hr>
 
+<!-- ------------------------------------------------------------------- -->
+<hr>
+<a name="query_vazia"></a>
+<h2>SELECT NAO RETORNA</h2>
+<pre>async buscarNumeroSequencialSQL(tabela: string){
+    let sql:string = "SELECT seq FROM sqlite_sequence WHERE name = '"+ tabela + "'";
+    return await this.query(sql).then(async data =&gt; {
+        try{
+            return data.rows[0]['seq'];    
+        }catch( e ){
+            return 0;
+        }
+    })
+}</pre>
+
+<code>SOLUCAO</code>
+<pre>async buscarNumeroSequencialSQL(tabela: string){
+    return await this.query("SELECT seq FROM sqlite_sequence WHERE name = '"+ tabela + "'")
+    .then(async data =&gt;  {
+        if(data.rows.length &gt; 0) {
+            try{
+                return parseInt(data.rows.item(0)['seq']);
+            }catch( e ){
+                return 1;
+            }
+        } else {
+            return 1
+        }
+    })
+}</pre>
+<br><a href="https://forum.ionicframework.com/t/not-able-to-see-any-data-on-executing-select-query-on-a-table-sqlite/69363">ionicframework</a>
+
+<!-- ------------------------------------------------------------------- -->
+<hr>
 <h2>erro python2</h2>
 <code>gyp verb `which` failed Error: not found: python2</code>
 

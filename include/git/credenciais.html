@@ -1,0 +1,66 @@
+<ol>
+    <li><a href="#usuario">USUARIO</a></li>
+    <li><a href="#tipos">TIPOS</a></li>
+    <li><a href="#alterar">ALTERANDO O GERENCIADOR</a></li>
+    <li><a href="#deletar">DELETANDO CREDENCIAIS</a></li>
+</ol>
+
+
+
+Quando instalamos o GIT, ele usa um sistema de credenciais para autenticar no servidor, 
+essas credenciais são gerenciadas por ele ou podem ser gerenciadas pelo Windows ou Linux.
+
+<hr>
+<a name="usuario"></a>
+<h2>USUARIO</h2>
+<pre class="terminal">
+$ git config --global user.name "John Doe"
+$ git config --global user.email johndoe@example.com
+</pre>	
+
+<hr>
+<a name="tipos"></a>
+<h2>TIPOS</h2>
+Para se descobrir qual gerenciador de credencial seu git está usando, use o comando:
+<pre class="terminal">$ git config --global credential.helper</pre>
+
+Alguns retornos podem ser:<br>
+<code>Padrão:</code> o GIT não utiliza um gerenciador, as senhas são informadas a cada conexão.
+
+<code>cache:</code> Ele faz um cache de usuário e senha em memória por 15min, após isso ele pergunta de novo a credencial na conexão.
+
+<code>store</code> (antigo manager): Ele guarda o usuário/senha em um arquivo de texto, não criptografado, em disco que nunca vence, somente é atualizado quando sua senha tem que ser alterada.
+
+<code>osxkeychain:</code> Para usuários de MacOS, ele utiliza sistema de chaves nativo do MacOS.
+
+<code>wincred:</code> Estão sendo usadas as credenciais do Windows Credential Manager (Gerenciador de Credenciais do Windows)
+
+Há outros ainda, mas estas são os mais comuns.
+
+<hr>
+<a name="alterar"></a>
+<h2>ALTERANDO O GERENCIADOR</h2>
+Depois de rodar o comando acima, para descobrir qual está sendo usado, você quer trocar pra outra, por exemplo a wincred. 
+Para isso basta seguir o comando abaixo:
+<pre class="terminal">$ git config --global credential.helper wincred</pre>
+
+<hr>
+<a name="deletar"></a>
+<h2>DELETANDO CREDENCIAIS</h2>
+Muitas vezes caímos em problemas de termos nossas credenciais alteradas e o GIT não atualiza. Podemos então apagar as atuais, para que ele nos peça por usuário e senha novamente, armazenando assim as novas credenciais.
+<br><br>
+
+Com o comando abaixo, o GIT irá solicitar novamente seu usuário e senha:
+<pre class="terminal">$ git config --global --unset credential.helper</pre>
+
+Esse comando limpa como o GIT guarda sua senha.
+<br><br>
+
+Caso você esteja utilizando o wincred (credenciais do windows), pode ir no Gerenciador de Credenciais do Windows e apagar as credencias que começam com “git:”
+<br><br>
+<div class="centro center">
+    <img src="./images/git_credenciais_001.png" class="bp w45">
+</div>
+
+<br><a href="https://git-scm.com/book/en/v2/Git-Tools-Credential-Storage" target="_blank">git-scm</a>
+<br><a href="http://microsoft.github.io/Git-Credential-Manager-for-Windows/Docs/Configuration.html" target="_blank">microsoft</a>

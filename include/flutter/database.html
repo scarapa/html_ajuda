@@ -1,0 +1,79 @@
+<ol>
+    <li><a href="#antigo">MODO ANTIGO</a></li>
+    <li><a href="#novo">MODO NOVO</a></li>
+</ol>
+
+Da versao do < Dart 2 > , a forma de conexão mudou, o que nao mudou foram os metodos de
+acesso.
+
+<hr>
+<a name="antigo"></a>
+<h2>MODO ANTIGO</h2>
+<pre>
+class DatabaseHelper {
+
+    static final _databaseName = "me_poupe.db";
+    static final _databaseVersion = 1;
+    static final _versionAPP = "0.0.1 beta";
+    
+    DatabaseHelper._privateConstructor();
+
+    static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
+    
+    static Database _database;
+        Future&lt;Database&gt; get database async {
+            if (_database != null) return _database;
+            // lazily instantiate the db the first time it is accessed
+            _database = await _initDatabase();
+            return _database;
+        }
+    
+    _initDatabase() async {
+            Directory documentsDirectory = await getApplicationDocumentsDirectory();
+            String path = join(documentsDirectory.path, _databaseName);
+    
+            if(false){
+                await deleteDatabase(path);
+            }
+    
+            return await openDatabase(path, version: _databaseVersion, onCreate: _onCreate);
+        } 
+    }
+}
+</pre>
+
+<!-- ------------------------------------------------------- -->
+<hr>
+<a name="novo"></a>
+<h2>MODO NOVO</h2>
+
+<pre>
+class DatabaseHelper {
+
+    static final _databaseName = "me_poupe.db";
+    static final _databaseVersion = 1;
+    static final _versionAPP = "0.0.1 beta";
+    
+    DatabaseHelper._privateConstructor();
+    
+    static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
+    
+    static Database? _database;
+    
+    Future&lt;Database&gt; get database async {
+        return _database ??= await _initDatabase();
+    }
+
+    _initDatabase() async {
+        Directory documentsDirectory = await getApplicationDocumentsDirectory();
+        String path = join(documentsDirectory.path, _databaseName);
+
+        if(false){
+            await deleteDatabase(path);
+        }
+
+        return await openDatabase(path, version: _databaseVersion, onCreate: _onCreate);
+    }
+}</pre>
+
+<br><a href="https://stackoverflow.com/questions/67994579/why-static-database-database-and-databasehelper-privateconstructor-gives-a">stackoverflow</a>

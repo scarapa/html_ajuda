@@ -1,27 +1,56 @@
-﻿
-<h3>Baixar a aplicação (samba)</h3>
-<pre>$ sudo apt-get install samba samba-common python-glade2 system-config-samba</pre>
+﻿<ol>
+    <li><a href="#download">DOWNLOAD</a></li>
+    <li><a href="#backup">BACKUP</a></li>
+    <li><a href="#configuracao">CONFIGURACAO</a></li>
+    <li><a href="#reinicializacao">REINICIALIZAR SERVICO</a></li>
+</ol>
 
+<!-- ----------------------------------- -->
+<a name="download"></a>
+<h2>DOWNLOAD</h2>
+Baixando a aplicação <b>SAMBA</b> do repositorio oficial
+    <h3>UBUNTU 14</h3>
+<pre class="terminal">$ sudo apt-get install samba samba-common python-glade2 system-config-samba</pre>
+
+    <h3>UBUNTU 20</h3>
+<pre class="terminal">$ sudo apt-get install -y</pre>
+
+
+<!-- ----------------------------------- -->
+<a name="backup"></a>
+<h2>BACKUP</h2>
 Antes de editar o arquivo de configuração fazer uma cópia por segurança.
-<pre>sudo cp /etc/samba/smb.cnf /etc/samba/smb.cnf.bak
-$ sudo nano smb.conf
-</pre>
+    <h3>UBUNTU 14</h3>
+<pre class="terminal">$ sudo cp /etc/samba/smb.cnf /etc/samba/smb.cnf.bak</pre>
 
-<pre>
+    <h3>UBUNTU 20</h3>
+<pre class="terminal">$ sudo cp /etc/samba/smb.conf /etc/samba/smb.cnf.bak</pre>
+
+
+<!-- ----------------------------------- -->
+<a name="configuracao"></a>
+<h2>CONFIGURACAO</h2>
+    <h3>UBUNTU 14</h3>
+<pre class="terminal">$ sudo nano /etc/samba/smb.cnf</pre>
+
+<h3>UBUNTU 20</h3>
+<pre class="terminal">$ sudo nano /etc/samba/smb.conf</pre>
+
+Inserir configuracao abaixo no fim do arquivo:
+<pre class="terminal">
 [NOME_DO _COMPARTILHAMENTO]
 path = /CAMINHO/DA/PASTA
 browsable =yes
 writable = yes
 guest ok = yes
-read only = no
-</pre>
+read only = no</pre>
 
-<h3>Reinicializando o samba</h3>
-<pre>
-$ sudo service smbd restart 
-ou 
-$ sudo /etc/init.d/smbd restart
-</pre>
+<!-- ----------------------------------- -->
+<a name="reinicializacao"></a>
+<h2>REINICIALIZAR SERVICO</h2>
+<pre class="terminal">$ sudo service smbd restart 
+//ou 
+$ sudo /etc/init.d/smbd restart</pre>
 
 
 <a href="https://www.howtoforge.com/samba-server-ubuntu-14.04-lts">Fonte</a>
