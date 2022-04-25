@@ -1,7 +1,13 @@
-<h3>Filtrar lista por busca em Input</h3>
+<ol>
+    <li><a href="#filtrar-listar-input">Filtrar listar por input</a></li>
+    <li><a href="#loop-sincrono">Loop Sync</a></li>
+</ol>
+
+<hr>
+<a name="filtrar-listar-input"></a>
+<h2>Filtrar lista por busca em Input</h2>
 <kbd>HTML</kbd>
-<pre>
-&lt;ion-header&gt;
+<pre>&lt;ion-header&gt;
     &lt;ion-toolbar&gt;
         &lt;ion-buttons slot="start"&gt;
             &lt;ion-back-button&gt;&lt;/ion-back-button&gt;
@@ -23,8 +29,7 @@
 </pre>
 
 <kbds>.ts</kbds>
-<pre>
-async filtroLocalidade(<b style="color:red">evt</b>) {
+<pre>async filtroLocalidade(<b style="color:red">evt</b>) {
     this.dados = this.servico.previsaoCidades();
     let termoPesquisado:String ;
     termoPesquisado = <b style="color:red">evt.srcElement.value</b>;
@@ -33,9 +38,35 @@ async filtroLocalidade(<b style="color:red">evt</b>) {
             return (localidade.nm_cidade.toString().toLowerCase().indexOf(termoPesquisado.toLowerCase()) > -1);
         });
     }
-}    
-</pre>
-
-
-
+}</pre>
 <a href="https://javebratt.com/searchbar-firebase/" target="_blank">Jorge Vergara</a>
+
+<hr>
+<a name="loop-sincrono"></a>
+<h2>Loop Sync</h2>
+Se você quiser ler os arquivos em sequência, não poderá usar forEach de fato. Basta usar um loop moderno para … de, no qual await funcionará conforme o esperado:    
+<br><br>
+
+Utilizando <b>forEach</b> NAO FUNCIONA, necessário fazer com o <b>for</b>
+<pre>listaCompleta.forEach(listagemSemNullos =&gt; {
+    super.consultaPostComInternetObrigatoria([listagemSemNullos])
+        .subscribe(data =&gt; {
+            this.metodoAssincrono(boletins.find(x =&gt; x.K66_BO_MOBILE == listagemSemNullos.K66_BO_MOBILE), boletins, listagemSemNullos)
+        }, error =&gt; {
+            console.log('erro', error)
+        })
+})</pre>
+
+corrigido:
+<pre>
+for (const listagemSemNullos of listaCompleta){
+    super.consultaPostComInternetObrigatoria([listagemSemNullos])
+        .subscribe(data =&gt; {
+            this.metodoAssincrono(boletins.find(x =&gt; x.K66_BO_MOBILE == listagemSemNullos.K66_BO_MOBILE), boletins, listagemSemNullos)
+        }, error =&gt; {
+            console.log('erro', error)
+            this.tratarErroTransmissao(error, boletins, listagemSemNullos)
+        })
+}</pre>
+
+<br><a href="https://stackoverflow.com/questions/37576685/using-async-await-with-a-foreach-loop">stackoverflow</a>
