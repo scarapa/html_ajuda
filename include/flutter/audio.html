@@ -1,0 +1,46 @@
+<ol>
+    <li><a href="#instalacao">Instalação</a></li>
+    <li><a href="#exemplo">Exemplo</a></li>
+</ol>
+
+Para reproduzir Ativos Locais, você deve usar a classe AudioCache. 
+<br><br>
+
+O Flutter não fornece uma maneira fácil de reproduzir áudio em seus ativos, mas essa classe ajuda muito. Na verdade, ele copia o ativo para uma pasta temporária no dispositivo, onde é reproduzido como um arquivo local.
+<br><br>
+
+Funciona como um cache porque mantém o controle dos arquivos copiados para que você possa reproduzi-los sem demora; você também pode pré-carregar arquivos.
+<br><br>
+
+Cada instância tem seu próprio cache independente, portanto, se você quiser otimizar seus tempos de carregamento, crie um singleton.
+<br><br>
+
+Para reproduzir um áudio, basta executar:
+<br><br>
+
+<hr>
+<a name="instalacao"></a>
+<h2>Instalação</h2>
+Insira no arquivo <code>pubspec.yaml</code>
+<pre>
+dependencies:
+    flutter:
+      sdk: flutter<b style="color:red">
+    audioplayers: ^0.10.0</b>
+</pre>
+
+
+<hr>
+<a name="exemplo"></a>
+<h2>Exemplo</h2>
+
+O arquivo de teste tem o nome de <b>error.wav/b> e está localizado na nossa pasta <b>assets</b>
+<pre>
+.
+└── assets
+    └── error.wav
+</pre>
+
+
+<br><a href="https://www.youtube.com/watch?v=0HYSxgrxSEo" target="_blank">youtube</a>
+<br><a href="https://pub.dev/packages/audioplayers" target="_blank">/pub.dev</a>
