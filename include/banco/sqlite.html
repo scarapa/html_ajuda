@@ -1,0 +1,23 @@
+<h2>sqlite version</h2>
+<pre>SELECT sqlite_version();</pre>
+<a href="https://stackoverflow.com/questions/12685563/how-to-find-out-version-sqlite-in-qt" target="_blank">stackoverflow</a>
+
+<h2>contar tabelas</h2>
+<pre>SELECT count(*) FROM sqlite_master WHERE type = 'table' AND name != 'android_metadata' AND name != 'sqlite_sequence';</pre>
+<a href="https://stackoverflow.com/questions/11506527/count-the-number-of-tables-in-the-sqlite-database" target="_blank">stackoverflow</a>
+
+<h2>listar todas tabelas</h2>
+<pre>SELECT name FROM sqlite_master WHERE type = 'table' AND name != 'android_metadata' AND name != 'sqlite_sequence';</pre>
+<a href="https://stackoverflow.com/questions/11506527/count-the-number-of-tables-in-the-sqlite-database" target="_blank">stackoverflow</a>
+
+
+<h2>dabatase version</h2>
+<pre>PRAGMA user_version;</pre>
+<a href="https://stackoverflow.com/questions/9646353/how-to-find-sqlite-database-file-version" target="_blank">stackoverflow</a>
+
+
+<h2>schema version</h2>
+<pre>PRAGMA schema_version;</pre>
+<a href="https://stackoverflow.com/questions/9646353/how-to-find-sqlite-database-file-version" target="_blank">stackoverflow</a>
+
+
