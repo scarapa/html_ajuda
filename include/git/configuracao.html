@@ -1,0 +1,49 @@
+<ol>
+    <li><a href="#repositorio-clonado">CLONE REPOSITORIO</a></li>
+    <li><a href="#repositorio-remoto">REPOSITORIO REMOTO</a></li>
+</ol>
+
+<hr>
+<a name="repositorio-clonado"></a>
+<h2>CLONE REPOSITORIO</h2>
+Esse comando é bem conhecido, mas ele está aqui por um detalhe que muitas pessoas não sabem: por padrão 
+será criada uma pasta com o nome do projeto, mas você também pode no final do comando indicar qual o nome da 
+pasta que você quer que seja criada.
+<pre class="terminal">$ git clone https://meu-endereco.com/meu-projeto.git minha-pasta</pre>
+
+<hr>
+<a name="repositorio-remoto"></a>
+<h2>REPOSITORIO REMOTO</h2>
+Repositórios Remotos são repositórios presentes em outra máquina para a qual nós podemos pegar ou enviar código. 
+Todos esses comandos começam com $ git remote. Veja os principais comandos para gerenciá-los: 
+
+    <h3>Adicionar Repositórios Remotos</h3>
+    <pre class="terminal">$ git remote add origin https://meu-endereco.com/meu-projeto.git</pre>
+
+    <h3>Visualizar Repositórios Remotos</h3>
+    <pre class="terminal">$ git remote -v</pre>
+    Teremos um retorno como: 
+    <pre>
+    > origin https://meu-endereco/meu-projeto.git (fetch)
+    > origin https://meu-endereco/meu-projeto.git (push)        
+    </pre>
+
+    <h3>Remover Repositórios Remotos</h3>
+    <pre class="terminal">$ git remote rm origin</pre>
+
+    <h3>Renomear Repositórios Remotos</h3>
+    <pre class="terminal">$ git remote rename nome-atual novo-nome</pre>
+
+    <h3>Alterar Endereço de Repositórios Remotos</h3>
+    <pre class="terminal">$ git remote set-url origin http://meu-novo-endereco/meu-projeto.git</pre>
+
+    <h3></h3>
+    <pre class="terminal"></pre>
+
+<hr>
+<a name=""></a>
+<h2></h2>
+<pre class="terminal"></pre>
+
+
+<br><a href="https://www.treinaweb.com.br/blog/comandos-do-git-que-voce-precisa-conhecer-parte-2-repositorios-remotos">treinaweb</a>
