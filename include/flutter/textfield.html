@@ -6,6 +6,7 @@
     <li><a href="#StatelessWidget">StatelessWidget</a></li>
     <li><a href="#textarea">TextArea</a></li>
     <li><a href="#foco">Foco</a></li>
+    <li><a href="#formatacao">FORMATAR CAMPO</a></li>
 </ol>
 
 <a name="bordas"></a>
@@ -264,3 +265,28 @@ class _InputFormState extends State&lt;InputForm&gt; {
 }    </pre>
 
 <br><a href="https://www.geeksforgeeks.org/flutter-managing-form-input-focus/" target="_blank">geeksforgeeks</a>
+
+<!-- ----------------------------------------------------------- -->
+<hr>
+<a name="formatacao"></a>
+<h2>FORMATAR CAMPO</h2>
+Exemplo de formatar campo com todas letras <b>MAIUSCULAS</b>
+<pre>TextField(
+    inputFormatters: [
+        UpperCaseTextFormatter(),
+    ],            
+),</pre>
+
+<b>POSTERIORMENTE</b> incluir a classe abaixo:
+<pre>class UpperCaseTextFormatter extends TextInputFormatter {
+    @override
+    TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+        return TextEditingValue(
+            text: newValue.text.toUpperCase(),
+            selection: newValue.selection,
+        );
+    }
+}</pre>
+
+<br><a href="https://stackoverflow.com/questions/49238908/flutter-textfield-value-always-uppercase-debounce" target="_blank">stackoverflow</a>
+<br><a href="https://github.com/flutter/gallery/blob/master/lib/demos/material/text_field_demo.dart#L322" target="_blank">github</a>
