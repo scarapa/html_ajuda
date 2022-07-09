@@ -1,5 +1,52 @@
-<pre>import 'dart:convert';
+<ol>
+    <li><a href="#variavel-de-configuracao">VARIAVAVEL DE CONFIGURACAO</a></li>
+    <li><a href="#arquivo-de-funcoes">ARQUIVO DE FUNCOES</a></li>
+</ol>
 
+<hr>
+<a name="variavel-de-configuracao"></a>
+<h2>VARIAVAVEL DE CONFIGURACAO</h2>
+<pre>
+void main() {
+    var teste = [
+        {
+            'name':'local',
+            'values': [
+                {
+                    'usuario':'teste@gmail.com',
+                    'senha':'1234',
+                    'host':'http://192.168.0.107/aguia'
+                }
+            ]
+        },{
+            'name':'homologacao',
+            'values': [
+                {
+                    'usuario':'admin',
+                    'senha':'1234',
+                    'host':'http://i9tecnosul.com.br/aguia'
+                }
+            ]
+        },{
+            'name':'producao',
+            'values': [
+                {
+                    'usuario':'admin',
+                    'senha':'1234',
+                    'host':'https://api.aguiaempresarial.com.br'
+                }
+            ]
+        }
+    ];
+    var teste2 = teste.where( (item) =&gt; item['name'] == 'local' ).first['name'];
+    print(teste2);
+}</pre>
+      
+
+<hr>
+<a name="arquivo-de-funcoes"></a>
+<h2>ARQUIVO DE FUNCOES</h2>
+<pre>import 'dart:convert';
 class Funcoes{
     
     static temaCorPrimaria(){
@@ -134,5 +181,4 @@ class Funcoes{
     }
     //https://stackoverflow.com/questions/61401756/how-to-extract-number-only-from-string-in-flutter
 
-}    
-</pre>
+}</pre>

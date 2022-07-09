@@ -1,0 +1,48 @@
+Exemplo abaixo, alterando lista DENTRO do objeto:
+<pre>import 'dart:core';
+
+class TurmaModel{
+    int? id;
+    String? nome;
+    late List&lt;PessoaModel&gt;? lista;
+    
+    TurmaModel({ this.id, this.nome,this.lista});
+    
+    get refatorar {
+        if( this!.lista != null){
+            for(PessoaModel item in this.lista!){
+                item.nome = "${item.nome} Alam";
+            }       
+        }
+    }
+}
+
+class PessoaModel{
+    int? id;
+    String? nome;
+    int? idade;
+    
+    PessoaModel({ this.id, this.nome, this.idade, });
+    @override
+    String toString() { return '$nome'; }
+    List&lt;PessoaModel&gt; get buscarLista {
+        return [
+            new PessoaModel(id: 1,nome: 'Roberto',idade: 40),
+            new PessoaModel(id: 2,nome: 'Tonia Laura',idade: 37),
+            new PessoaModel(id: 3,nome: 'Luisa',idade: 15),
+        ];
+    }  
+}
+
+void main() {
+    PessoaModel pessoa = new PessoaModel();
+    List&lt;PessoaModel&gt; pessoaLista;
+    pessoaLista = pessoa.buscarLista;
+    
+    TurmaModel turma = new TurmaModel(id: 1,nome: 'teste',lista: pessoaLista);
+    
+    print(turma.lista);
+    turma.refatorar;
+    print(turma.lista);
+    
+}</pre>    
