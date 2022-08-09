@@ -1,0 +1,41 @@
+<ol>
+    <li><a href="#formatar">FORMATAR</a></li>
+    <li><a href="#datepicker">DATEPICKER</a></li>
+    <li><a href="#validar">VALIDAR</a></li>
+</ol>
+
+<hr>
+<a name="formatar"></a>
+<h2>FORMATAR</h2>
+
+<hr>
+<a name="datepicker"></a>
+<h2>DATEPICKER</h2>
+
+<hr>
+<a name="validar"></a>
+<h2>VALIDAR</h2>
+<pre>
+String inputDate = "2022-02-20"; 
+if (isDate(inputDate, "yyyy-MM-dd")) {
+    print("$inputDate Date Valid");
+} else {
+    print("$inputDate Date notValid");
+}    
+
+bool isDate(String input, String format) {
+    try {
+      final DateTime d = DateFormat(format).parseStrict(input);
+      //print(d);
+      return true;
+    } catch (e) {
+      //print(e);
+      return false;
+    }
+}</pre>
+
+<pre>"2022-02-20" Date Valid</pre>
+<pre>"2022-02-30" Date notValid</pre>
+
+<br><a href="https://www.codegrepper.com/code-examples/dart/click+and+date+picker+open+flutter" target="_blank">codegrepper</a>
+<br><a href="https://stackoverflow.com/questions/58329577/how-to-check-whether-the-entered-date-in-textfield-is-valid-or-not-in-dart-flutt" target="_blank">stackoverflow</a>
