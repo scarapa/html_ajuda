@@ -1,25 +1,36 @@
+<ol>
+  <li><a href="#">Numero randomico</a></li>
+  <li><a href="#">Descobrindo o tipo</a></li>
+  <li><a href="#">Buscando nome da classe</a></li>
+  <li><a href="#"></a></li>
+</ol>
+
+<!-- ------------------------------------------------------------------------------ -->
+<hr>
+<a name=""></a>
 <h2>Numero randomico</h2>
+  <h3>DOUBLE</h3>
+  <pre>new Random().nextDouble().toString(),</pre>
 
-<h3>DOUBLE</h3>
-<pre>new Random().nextDouble().toString(),</pre>
-
-<h3>INT</h3>
-<pre>new Random().nextInt();</pre>
-
-
-<h2>Elemento aleatorio numa LISTA</h2>
-<pre>
-import "dart:math";
-
-var list = ['a','b','c','d','e'];
-
-final _random = new Random();
-
-var element = list[_random.nextInt(list.length)];    
-</pre>
-<a href="https://stackoverflow.com/questions/17476718/how-do-get-a-random-element-from-a-list-in-dart">stackoverflow</a>
+  <h3>INT</h3>
+  <pre>new Random().nextInt();</pre>
 
 
+  <h2>Elemento aleatorio numa LISTA</h2>
+  <pre>
+  import "dart:math";
+
+  var list = ['a','b','c','d','e'];
+
+  final _random = new Random();
+
+  var element = list[_random.nextInt(list.length)];    
+  </pre>
+  <a href="https://stackoverflow.com/questions/17476718/how-do-get-a-random-element-from-a-list-in-dart">stackoverflow</a>
+
+<!-- ------------------------------------------------------------------------------ -->
+<hr>
+<a name=""></a>
 <h2>Descobrindo o tipo</h2>
 <pre>
 var o = 'foo';
@@ -29,3 +40,21 @@ print(tipo);
 //String
 </pre>
 <a href="https://stackoverflow.com/questions/7715948/how-to-perform-runtime-type-checking-in-dart">stackoverflow</a>
+
+<!-- ------------------------------------------------------------------------------ -->
+<hr>
+<a name=""></a>
+<h2>Buscando nome da classe</h2>
+<pre>class Dog {
+
+  Dog() {
+    print("Current classname is: ${this.runtimeType}");
+  }
+
+  teste(){
+    print("Current method is: ${this.runtimeType}");
+  }
+  
+}
+</pre>
+<a href="https://stackoverflow.com/questions/52764758/how-to-retrieve-current-classname-in-flutter">stackoverflow</a>

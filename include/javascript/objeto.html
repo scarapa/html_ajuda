@@ -5,6 +5,7 @@
     <li><a href="#filter">FILTER</a></li>
     <li><a href="#parser">PARSER</a></li>
     <li><a href="#spread">SPREAD</a></li>
+    <li><a href="#copy">COPY/CLONE OBJECT</a></li>
     <li><a href="#template_literals">Template Literals</a></li>
 </ol>
 
@@ -112,6 +113,17 @@ const mergePerson = { ...person, ...personDetails };</pre>
 
 <a href="https://www.youtube.com/watch?v=Mus_vwhTCq0">Fonte</a>
 
+<!-- ----------------------------------------------------------- -->
+<hr>
+<a name="copy"></a>
+<h2>COPY</h2>
+<pre>
+  let original = { person: items };
+  let copy = Object.assign({}, original );
+</pre>
+ou
+<pre>var copy = JSON.parse(JSON.stringify(obj));</pre>
+<br><a href="https://stackoverflow.com/questions/36972586/ionic-2-pass-param-to-next-page-as-copy-not-by-reference" target="_blank">stackoverflow</a>
 <!-- ----------------------------------------------------------- -->
 <hr>
 <a name="template_literals"></a>

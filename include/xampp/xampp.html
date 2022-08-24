@@ -1,6 +1,44 @@
 <ol>
+    <li>LAMPP - ABRINDO GERENCIADOR</li>
+    <li>LAMPP - AUTOMATIZAÇÃO - ubuntu 20</li>
     <li>ALTERAR PASTA HTDOCS</li>
+    <li>FTP SERVER</li>
 </ol>
+
+<hr>
+<h2>ABRINDO GERENCIADOR</h2>
+<pre class="terminal">$ sudo /opt/lampp/manager-linux-x64.run</pre>
+
+<hr>
+<a name=""></a>
+<h2>AUTOMATIZAÇÃO - ubuntu 20</h2>
+Utilizando o ubuntu e um segundo disco a tarefa de montar o HD e levantar os servicos se torna monotona.
+<br>
+Vamos criar um script de inicializacao;
+<br><br>
+
+criar arquivo script <code>servidor.sh</code> e salvar em <code>/etc/init.d </code>
+<pre class="terminal">$ touch servidor.sh</pre>
+
+o arquivo ira conter o codigo abaixo:
+<pre>#!/bin/bash
+<span style="color:gren">#desmontar particao, caso esteja montada</span>
+$ sudo umount /dev/sdb1
+
+<span style="color:gren">#levantar montagem de disco no padrao NTFS</span>
+$ sudo ntfs-3g /dev/sdb1 /media/drive
+
+<span style="color:gren">#levantar os servicos do xampp/lammp</span>
+$ sudo /opt/lampp/lampp start</pre>
+
+conceder permissões para executar este arquivo.
+<pre class="terminal">$ chmod +x servidor.sh</pre>
+
+incluir o script <code>servidor.sh</code> na inicialização do sistema 
+<pre class="terminal">$ cd /etc/init.d/
+$ update-rc.d servidor.sh defaults 80</pre>
+
+<br><a href="https://askubuntu.com/questions/163685/403-forbidden-error-in-apache-with-document-root-on-an-ntfs-partition" target="_blank">askubuntu</a>
 
 <hr>
 <h2>ALTERAR PASTA HTDOCS</h2>
@@ -16,3 +54,9 @@ DocumentRoot "C:/xampp/htdocs"
 &lt;Directory "C:/xampp/htdocs"&gt;</pre>
 
 <br><a href="https://stackoverflow.com/questions/18902887/how-to-configuring-a-xampp-web-server-for-different-root-directory" target="blank"></a>
+
+<hr>
+<h2>FTP SERVER</h2>
+
+
+https://www.youtube.com/watch?v=5RAauPZVfCU
