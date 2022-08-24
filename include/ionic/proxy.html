@@ -1,0 +1,21 @@
+O suporte de proxy é integrado ao Ionic CLI. As configurações de proxy podem ser definidas por meio do arquivo de configuração ou de uma variável de ambiente.
+<br><br>
+
+Para definir as configurações de proxy por meio do arquivo de configuração, execute o seguinte com a URL do servidor proxy:
+<br><br>
+
+<h2>INSTALACAO</h2>
+Primeiramente instalar <code>GLOBALMENTE</code>
+<pre class="terminal">$ npm install -g @ionic/cli-plugin-proxy</pre>
+
+Depois necessário acessar a pasta do projeto e instalar o proxy no projeto
+<pre class="terminal">$ cd myProject # cd into your project's directory
+$ npm install --save-exact --save-dev @ionic/cli-plugin-proxy</pre>
+
+<h2>CONFIGURACAO</h2>
+Em seguida, use uma das seguintes variáveis ​​de ambiente:
+<pre class="terminal">$ export HTTP_PROXY="http://proxy.example.com:8888" # also used by npm
+$ export HTTPS_PROXY="https://proxy.example.com:8888" # also used by npm
+$ export IONIC_HTTP_PROXY="http://proxy.example.com:8888"</pre>
+
+<br><a href="https://ionicframework.com/docs/v3/cli/configuring.html#using-a-proxy">ionicframework</a>

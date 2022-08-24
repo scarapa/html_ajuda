@@ -1,10 +1,13 @@
 ﻿<ol>
-    <li><a href="#">SUDO NAO FUNCIONA</a></li>
+    <li><a href="#sudo-nao-funciona-01">SUDO NAO FUNCIONA</a></li>
     <li><a href="#usuario-nao-esta-sudoers">USUÁRIO NÃO ESTÁ NO ARQUIVO SUDOERS</a></li>
     <li><a href="#apache-morto">APACHE MORTO</a></li>
+    <li><a href="#erro-certificado-ssl">ERRO CERTIFICADO SSL</a></li>
 </ol>
 
-
+<!-- ------------------------------------------------------------------ -->
+<hr>
+<a name="sudo-nao-funciona-01"></a>
 <h2>Comando SUDO não funciona</h2>
 
 Ao alterar certas variáveis de ambiente, o usuário pode bagunçar tudo e tornar o comando sudo inutilizável.
@@ -66,8 +69,9 @@ Reiniciar o sistema
 <a href="https://www.vivaolinux.com.br/dica/sudo-usrbinsudo-deve-ter-como-dono-o-uid-0-e-tem-definido-o-bit-setuid-Resolvido">vivaolinux</a><br/>
 <a href="http://www.psychocats.net/ubuntu/fixsudo">psychocats</a>
 
-<hr>
 
+<!-- ------------------------------------------------------------------ -->
+<hr>
 <a name="usuario-nao-esta-sudoers"></a>
 <h2>USUÁRIO NÃO ESTÁ NO ARQUIVO SUDOERS</h2>
 
@@ -80,8 +84,8 @@ Reiniciar o sistema
 
 <a href="vivaolinux.com.br/topico/Duvidas-em-Geral/Usuario-nao-esta-no-arquivo-sudoers-1" targe="_blank">vivaolinux</a>
 
+<!-- ------------------------------------------------------------------ -->
 <hr>
-
 <a name="apache-morto"></a>
 <h2>Apache Morto</h2>
 <code>Erro1: Sem acesso do link pelo <b>APACHE</b></code>
@@ -90,5 +94,64 @@ Apache/2.4.23 (Debian) Server at localhost Port 80</pre>
 
 <code><b>SOLUCAO: </b></code> Acessar viar nautilus a pasta <code>www</code>
 
+<!-- ------------------------------------------------------------------ -->
+<hr>
+<a name="erro-certificado-ssl"></a>
+<h2>ERRO CERTIFICADO SSL</h2>
 
+No <b>MEU CASO</b> aconteceu ao tentar puxar algumas dependências Java, você obterá o irritante, 
+o erro acontecia ao tentar gerar APK, a origem disso é MAVEN que roda apartir do gradle que é uma ferramenta JAVA.
+A solução veio em duas etapas.
 
+<pre class="terminal">sun.security.validator.ValidatorException: 
+    PKIX path building failed: 
+        sun.security.provider.certpath.SunCertPathBuilderException: 
+            unable to find valid certification path to requested target</pre>
+
+<code>SOLUCAO</code> reinstalar certificados e reinstalar gradle.
+
+    <h3>SALVAR certificados Google/Maven</h3>
+    o Google é o mantedor do maven, primeiramente vamos salvar o seu certificado.
+    <div class="centro center">
+        <img src="./images/linux-erro-certificado-01.jpg" class="bp w45">
+        <br>
+        clique no cadeado a esquerda do link
+    </div>
+    <br clear="all">
+
+    <div class="centro center">
+        <img src="./images/linux-erro-certificado-02.jpg" class="bp w45">
+        <br>
+        clique na opcao <code>CONNECTION IS SECURE</code>
+    </div>
+    <br clear="all">
+
+    <div class="centro center">
+        <img src="./images/linux-erro-certificado-03.jpg" class="bp w45">
+        <br>
+        na aba <code>Details</code>, clique no <button>Export...</button> e salve em qualquer lugar com o nome <code>google.cert</code>
+    </div>
+    <br clear="all">
+
+    <h3>Instalar o certificados Google/Maven</h3>
+    Usaremos um comando(<b>keytool</b>) contido na instalação do JAVA, mas para  isso precisamos localizar o local de instalação.
+    <pre class="terminal">$ sudo find -name keytool</pre>
+    <pre>
+./home/android-studio/jre/jre/bin/keytool<b style="color:Red">
+./home/android-studio/jre/bin/keytool</b>
+./usr/lib/jvm/jdk1.8.0_301/jre/bin/keytool
+./usr/lib/jvm/jdk1.8.0_301/bin/keytool
+find: ‘./run/user/1000/doc’: Permission denied
+find: ‘./run/user/1000/gvfs’: Permission denied
+    </pre>
+
+    Executar o <b>keytool</b> apontando o arquivo de certificado salvo anteriormente cacerts. 
+    <pre class="terminal">$ /usr/lib/jvm/jdk1.8.0_301/jre/bin/keytool -import -alias google.cert -keystore cacerts -file /home/beto/Downloads/google.cert </pre>
+
+    Escreva <b>EXATAMENTE ISSO:</b> <code>changeit</code> 
+    <br><br>
+
+    <b style="color:red">REINICIE</b>
+
+<br><a href="https://ao.ms/solved-pkix-path-building-failed-unable-to-find-valid-certification-path-to-requested-target/">solved-pkix</a>
+<br><a href="https://stackoverflow.com/questions/9619030/resolving-javax-net-ssl-sslhandshakeexception-sun-security-validator-validatore">stackoverflow</a>
