@@ -1,28 +1,28 @@
 <ol>
-    <li>
-        <a href="#erro_instalacao">Erro de Instalação</a>
-        <ol>
-            <li><a href="#erro_instalacao_001">Erro 001</a></li>
-            <li><a href="#erro_instalacao_002">Erro 002</a></li>
-            <li><a href="#erro_instalacao_003">Erro 003</a></li>
-            <li><a href="#erro_instalacao_004">Erro 004</a></li>
-        </ol>
-    </li>
-    <li><a href="#erro-grandle">Erro Grandle</a></li>
-    <li><a href="#nao-constroi-projeto">Nao constroi projeto</a></li>
-    <li><a href="#depedencia">Erro Dependencia Plugins</a></li>
-    <li><a href="#androidx">AndroidX Flutter</a></li>
-    <li><a href="#erro-json-decode">Erro json.decode()</a></li>
-    <li><a href="#snackbar">SNACKBAR nao funciona</a></li>
-    <li><a href="#checkbox">CHECKBOX nao funciona</a></li>
-    <li><a href="#singlechildscrollview">SingleChildScrollView nao funciona</a></li>
-    <li><a href="#overflow">Overflow</a></li>
-    <li><a href="#versao_depreceada">VERSAO DEPRECEADA</a></li>
-    <li><a href="#cant_have_a_null">can't have a value of 'null'</a></li>
-    <li><a href="#dont_support_a_null">don't support null safety</a></li>
-    <li><a href="#nao_gera_icone">Nao gera icone</a></li>
-    <li><a href="#nao_gera_apk_prod_emulador">Nao gera APK PRODUCAO NO EMULADOR</a></li>
-    
+  <li>
+    <a href="#erro_instalacao">Erro de Instalação</a>
+    <ol>
+      <li><a href="#erro_instalacao_001">Erro 001</a></li>
+      <li><a href="#erro_instalacao_002">Erro 002</a></li>
+      <li><a href="#erro_instalacao_003">Erro 003</a></li>
+      <li><a href="#erro_instalacao_004">Erro 004</a></li>
+    </ol>
+  </li>
+  <li><a href="#erro-grandle">Erro Grandle</a></li>
+  <li><a href="#nao-constroi-projeto">Nao constroi projeto</a></li>
+  <li><a href="#depedencia">Erro Dependencia Plugins</a></li>
+  <li><a href="#androidx">AndroidX Flutter</a></li>
+  <li><a href="#erro-json-decode">Erro json.decode()</a></li>
+  <li><a href="#snackbar">SNACKBAR nao funciona</a></li>
+  <li><a href="#checkbox">CHECKBOX nao funciona</a></li>
+  <li><a href="#singlechildscrollview">SingleChildScrollView nao funciona</a></li>
+  <li><a href="#overflow">Overflow</a></li>
+  <li><a href="#versao_depreceada">VERSAO DEPRECEADA</a></li>
+  <li><a href="#cant_have_a_null">can't have a value of 'null'</a></li>
+  <li><a href="#dont_support_a_null">don't support null safety</a></li>
+  <li><a href="#nao_gera_icone">Nao gera icone</a></li>
+  <li><a href="#nao_gera_apk_prod_emulador">Nao gera APK PRODUCAO NO EMULADOR</a></li>
+  <li><a href="#plugin_dio_erro_01">PLUGIN DIO - 01</a></li>
 </ol>
 
 <!-- -------------------------------------------------------------- -->
@@ -38,8 +38,8 @@ Erro:
 
 <code>Solução:</code> ocorre esse porque <b style="color:Red">NÃO É POSSIVEL</b> instalar a pasta <kbd>flutter</kbd> nas pastas abaixo do sistema operacional.
 <ul>
-    <li>C:\Program Files</li>
-    <li>C:\Program Files (x86)</li>
+  <li>C:\Program Files</li>
+  <li>C:\Program Files (x86)</li>
 </ul>
 
 <a href="https://stackoverflow.com/questions/49779059/flutter-installation-not-working">stackoverflow</a><br>
@@ -55,7 +55,7 @@ Dart SDK is not configured
 
 <code>SOLUCAO</code>
 <div class="centro center">
-    <img src="images/flutter-erro-instalacao-dart-sdk-002.jpg" style="width:60%" class="bp">
+  <img src="images/flutter-erro-instalacao-dart-sdk-002.jpg" style="width:60%" class="bp">
 </div>
 
 <a name="erro_instalacao_003"></a>
@@ -127,7 +127,6 @@ $ flutter create .
 <a href="https://github.com/flutter/flutter/issues/55619" target="_blank">github</a>
 
 <hr>
-
 <h3>Erro-02</h3>
 <pre class="terminal">
 FAILURE: Build failed with an exception.
@@ -154,7 +153,6 @@ Solucao
 <pre class="terminal">$ flutter clean</pre>
 
 <hr>
-
 <a name="nao-constroi-projeto"></a>
 <h2>NAO CONSTROI PROJETO</h2>
 <h3>Erro 01</h3>
@@ -201,34 +199,34 @@ Execution failed for task ':app:mergeDebugNativeLibs'.
 <code>Solucao</code> baixar a versao do SDK, nesse caso da 29 para 28 , em:<kbd>android\app\build.gradle</kbd>
 
 <pre>
-    if (flutterRoot == null) {
-        //throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
-        // comentado linha acima por conta do metodo GradleException()
-        <b style="color:red">throw new Exception("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")</b>
+  if (flutterRoot == null) {
+      //throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+      // comentado linha acima por conta do metodo GradleException()
+      <b style="color:red">throw new Exception("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")</b>
+  }
+  ...
+  
+  android {
+    <b style="color:Red">compileSdkVersion 28</b>
+
+    sourceSets {
+      main.java.srcDirs += 'src/main/kotlin'
     }
-    ...
-    
-    android {
-        <b style="color:Red">compileSdkVersion 28</b>
-    
-        sourceSets {
-            main.java.srcDirs += 'src/main/kotlin'
-        }
-    
-        lintOptions {
-            disable 'InvalidPackage'
-        }
-    
-        defaultConfig {
-            // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-            applicationId "br.tche.emater.produtor"
-            minSdkVersion 16
-            <b style="color:Red">targetSdkVersion 28</b>
-            multiDexEnabled true
-            versionCode flutterVersionCode.toInteger()
-            versionName flutterVersionName
-            testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        }    
+
+    lintOptions {
+      disable 'InvalidPackage'
+    }
+
+    defaultConfig {
+      // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+      applicationId "br.tche.emater.produtor"
+      minSdkVersion 16
+      <b style="color:Red">targetSdkVersion 28</b>
+      multiDexEnabled true
+      versionCode flutterVersionCode.toInteger()
+      versionName flutterVersionName
+      testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }    
 </pre>
 <a href="https://stackoverflow.com/questions/55343843/flutter-execution-failed-for-task-appprocessdebugresources">stackoverflow</a>
 
@@ -269,11 +267,11 @@ Tools • Dart 2.9.2
 <a href="https://stackoverflow.com/questions/59170895/how-to-update-dart-sdk-to-latest-stable-version-in-flutter">stackoverflow</a><br>
 <a href="https://pub.dev/packages/brasil_fields">brasil_fields</a>
 
-<h3>MissingPluginException</h3>
+  <h3>MissingPluginException</h3>
 
-<pre class="terminal" style="color:Red !important">MissingPluginException(No implementation found for method listen on channel plugins.flutter.io/connectivity_status)</pre>
+  <pre class="terminal" style="color:Red !important">MissingPluginException(No implementation found for method listen on channel plugins.flutter.io/connectivity_status)</pre>
 
-Solucao, comandos abaixo nessa ordem
+  Solucao, comandos abaixo nessa ordem
 <pre class="terminal">
 $ flutter clean
 $ flutter pub get
@@ -282,8 +280,8 @@ $ flutter run
 </pre>
 <a href="https://stackoverflow.com/questions/58080990/no-implementation-found-for-method-getapplicationdocumentsdirectory-on-channel-p">stackoverflow</a>
 
-<h3>Mudancas no plugin PROVIDER</h3>
-<pre class="terminal">
+  <h3>Mudancas no plugin PROVIDER</h3>
+  <pre class="terminal">
 PS N:\EMATER\flutter\proposta_app> flutter run
 Using hardware rendering with device AOSP on IA Emulator. If you notice
 graphics artifacts, consider enabling software rendering with
@@ -323,33 +321,31 @@ Exception: Gradle task assembleDebug failed with exit code 1
 
 Solucao:<br>
 Primeiramente atualizar o pacote <b>provider</b> no arquivo <code>pubspec.yaml</code>
-<pre>
-    provider: ^4.0.0    
-</pre>
+<pre>provider: ^4.0.0</pre>
 
 Segundamente atualizar o arquivo <code>main.dart</code>
 Alterando isso:
 <pre>    
 return StreamProvider&lt;ConnectivityStatus&gt;(
-    builder: (context) =&gt; ConnectivityService().connectionStatusController,
+  builder: (context) =&gt; ConnectivityService().connectionStatusController,
 ...
 </pre>
 
 Para isso:
 <pre>
 return MultiProvider(
-    providers: [
-        StreamProvider&lt;ConnectivityStatus&gt;(create: (context) =&gt; ConnectivityService().connectionStatusController.stream  )
-    ],  
-    ...  
+  providers: [
+    StreamProvider&lt;ConnectivityStatus&gt;(create: (context) =&gt; ConnectivityService().connectionStatusController.stream  )
+  ],  
+  ...  
 </pre>
 
 <a href="https://www.youtube.com/watch?v=s9Mv_8uA7Wo" target="_blank">youtube</a><br>
 <a href="https://github.com/Richa0305/flutter_network_layer" target="_blank">github</a><br>
 <a href="https://stackoverflow.com/questions/65749767/error-the-method-inheritfromwidgetofexacttype-isnt-defined-for-the-class-bu" target="_blank">stackoverflow</a><br>
 
+<!-- -------------------------------------------------------------- -->
 <hr>
-
 <a name="androidx"></a>
 <h2>AndroidX Flutter</h2>
 Solução inserir no arquivo <code>android/gradle.properties</code> duas linhas
@@ -473,13 +469,13 @@ return <b style='color:red'>StatefulBuilder</b>(
 <h2>SingleChildScrollView nao funciona scrool da tela</h2>
 <pre>
 child: Container(
-    child: GridView.count(
-        crossAxisCount: 3,
-        shrinkWrap: true,
-        <b style="color:red">scrollDirection: Axis.vertical,
-        physics: NeverScrollableScrollPhysics(),</b>
-        children: _list.map((p) => ProductManagment(p)).toList(),
-    ), 
+  child: GridView.count(
+    crossAxisCount: 3,
+    shrinkWrap: true,
+    <b style="color:red">scrollDirection: Axis.vertical,
+    physics: NeverScrollableScrollPhysics(),</b>
+    children: _list.map((p) => ProductManagment(p)).toList(),
+  ), 
 </pre>
 Necessário inserir as duas propriedades em vermelho
 
@@ -493,9 +489,9 @@ Outra alternativa é <b>SEMPRE</b> por na tag <b>BODY</b> o layout <b>LISTVIEW</
 <pre>
 ...
 body:ListView(
-    children: &lt;Widget&gt;[
-        //CONTEUDO AQUI DENTRO
-    ]
+  children: &lt;Widget&gt;[
+    //CONTEUDO AQUI DENTRO
+  ]
 )
 ... 
 </pre>
@@ -508,29 +504,29 @@ body:ListView(
 <h3>Dropdown</h3>
 
 <table>
-    <tr>
-        <td>
+  <tr>
+      <td>
 <pre>
 List&lt;DropdownMenuItem&lt;Concentrado&gt;&gt; getDropDownConcentradoMenuItems(concentrados) {
-    List&lt;DropdownMenuItem&lt;Concentrado&gt;&gt; items = new List();
-    for (Concentrado concentrado in concentrados) {
-        items.add(
-            new DropdownMenuItem(
-                value: concentrado,
-                child: new Text(concentrado.titulo)
-            )
-        );
-    }
-    return items;
+  List&lt;DropdownMenuItem&lt;Concentrado&gt;&gt; items = new List();
+  for (Concentrado concentrado in concentrados) {
+    items.add(
+      new DropdownMenuItem(
+        value: concentrado,
+        child: new Text(concentrado.titulo)
+      )
+    );
+  }
+  return items;
 }    
 </pre>
-        </td>
-        <td>
-            <div class="centro center">
-                <img src="images/flutter-dropdown-overflow-01.jpg" style="width:80%" class="bp">
-            </div>
-        </td>
-    </tr>
+    </td>
+    <td>
+      <div class="centro center">
+        <img src="images/flutter-dropdown-overflow-01.jpg" style="width:80%" class="bp">
+      </div>
+    </td>
+  </tr>
 </table>
 <br clear="all">
 <code>Solução</code>
@@ -573,30 +569,27 @@ List&lt;DropdownMenuItem&lt;Concentrado&gt;&gt; getDropDownConcentradoMenuItems(
 Para corrigir tal problema , bastou inserir no body o widget <b>SingleChildScrollView</b>, conforme abaixo
 <br><br>
 <pre>return Scaffold(
-    body: <b>SingleChildScrollView</b>(
-        child: Container(
-        child: Column(
-            //mainAxisSize: MainAxisSize.max,
-            children: &lt;Widget&gt;[
-            Container(
-                child: GridView.builder(
-                shrinkWrap: true,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount:
-                        (Orientation == Orientation.portrait) ? 3 : 2),
-                itemCount: _thumbs.length,
-                itemBuilder: (BuildContext context, int index) {
-                    return _thumbCard(context, index);
-                },
-                ),
+  body: <b>SingleChildScrollView</b>(
+    child: Container(
+      child: Column(
+        //mainAxisSize: MainAxisSize.max,
+        children: &lt;Widget&gt;[
+          Container(
+            child: GridView.builder(
+              shrinkWrap: true,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: (Orientation == Orientation.portrait) ? 3 : 2),
+              itemCount: _thumbs.length,
+              itemBuilder: (BuildContext context, int index) {
+                return _thumbCard(context, index);
+              },
             ),
-            Container(
-                child: Text('teste'),
-            )
-            ],
-        ),
-        ),
+          ),
+          Container( child: Text('teste'), )
+        ],
+      ),
     ),
+  ),
 );</pre>
 
 <!-- -------------------------------------------------------------- -->
@@ -718,6 +711,7 @@ A segunda forma é adicionando a palavra reservada “required” nos parâmetro
     } </pre>   
 
 <!-- -------------------------------------------------------------- -->
+<hr>
 <a name="dont_support_a_null"></a>
 <h2>don't support null safety'</h2>
 <pre class="terminal">$ flutter run
@@ -777,6 +771,7 @@ em seguida, execute seu projeto.
 
 
 <!-- -------------------------------------------------------------- -->
+<hr>
 <a name="nao_gera_icone"></a>
 <h2>Nao gera icone</h2>
 <pre class="terminal"> $ flutter pub get
@@ -827,6 +822,18 @@ por:
 
 
 <!-- -------------------------------------------------------------- -->
+<hr>
 <a name="nao_gera_apk_prod_emulador"></a>
 <h2>Nao gera APK PRODUCAO NO EMULADOR</h2>
 <pre class="terminal"> </pre>
+
+<!-- -------------------------------------------------------------- -->
+<hr>
+<a name="plugin_dio_erro_01"></a>
+<h2>PLUGIN DIO - 01</h2>
+<pre class="terminal">The method 'DioHttpHeaders.add' has fewer named arguments than those of overridden method 'HttpHeaders.add'</pre>
+<b>SOLUCAO:</b> alterar a versao de <code>^2.0.16</code> para <code>^3.0.10</code>
+
+
+
+
