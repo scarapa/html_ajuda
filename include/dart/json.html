@@ -1,0 +1,58 @@
+<ol>
+  <li><a href="#model-cliente">CLASSE CLIENTE</a></li>
+  <li><a href="#codigo">CODIGO</a></li>
+</ol>
+
+Parse de string para json contendo funcao MAP
+
+<!-- --------------------------------------------- -->
+<hr>
+<a name="model-cliente"></a>
+<h2>CLASSE CLIENTE</h2>
+<pre>class ClienteModel {
+  int id;
+  String nome;
+
+  ClienteModel({this.id, this.nome, this.listaTelefone});
+
+  Map toMap(){
+    var map = new Map&lt;String, dynamic&gt;();
+    map["id"] = id;
+    map["nome"] = nome;
+    return map;
+  }
+
+  factory ClienteModel.fromJson(Map&lt;String, dynamic&gt; json) {
+    return ClienteModel(
+      id: int.parse(json['id'].toString()),
+      nome: json['nome'].toString(),
+    );
+  }
+}</pre>
+
+
+<!-- --------------------------------------------- -->
+<hr>
+<a name="codigo"></a>
+<h2>CODIGO</h2>
+<pre>
+import 'dart:convert';
+import 'model/cliente_model.dart';
+
+main() {
+  String documento = '{"id":1, "nome":"Roberto"} \n{"id":2,"nome":"Tonia"} \n{"id":3,"nome":"Luisa"}';<span style="color:green;font-weight: bold;">
+  // metodo LineSplitter divide por linhas</span>
+  LineSplitter.split(documento)
+    .map( (linha) {
+      ClienteModel cliente = ClienteModel.fromJson( json.decode( linha ) );
+      print( cliente );
+    }).toList();
+}</pre>
+
+<code>saida:</code>
+<pre>
+  1 Roberto
+  2 Tonia
+  3 Luisa
+</pre>
+<br><a href="https://stackoverflow.com/questions/57344662/read-string-line-by-line-after-read-from-file-in-assets-in-flutter">stackoverflow</a>
