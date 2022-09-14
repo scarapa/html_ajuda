@@ -1,12 +1,13 @@
 <ol>
-    <li><a href="#bordas">Bordas</a></li>
-    <li><a href="#cor-texto">Cor do texto</a></li>
-    <li><a href="#background">Background</a></li>
-    <li><a href="#com-icone">Com Icone</a></li>
-    <li><a href="#StatelessWidget">StatelessWidget</a></li>
-    <li><a href="#textarea">TextArea</a></li>
-    <li><a href="#foco">Foco</a></li>
-    <li><a href="#formatacao">FORMATAR CAMPO</a></li>
+  <li><a href="#bordas">Bordas</a></li>
+  <li><a href="#cor-texto">Cor do texto</a></li>
+  <li><a href="#background">Background</a></li>
+  <li><a href="#com-icone">Com Icone</a></li>
+  <li><a href="#StatelessWidget">StatelessWidget</a></li>
+  <li><a href="#textarea">TextArea</a></li>
+  <li><a href="#foco">Foco</a></li>
+  <li><a href="#formatacao">FORMATAR CAMPO</a></li>
+  <li><a href="#password">PASSWORD - SENHA</a></li>
 </ol>
 
 <a name="bordas"></a>
@@ -290,3 +291,26 @@ Exemplo de formatar campo com todas letras <b>MAIUSCULAS</b>
 
 <br><a href="https://stackoverflow.com/questions/49238908/flutter-textfield-value-always-uppercase-debounce" target="_blank">stackoverflow</a>
 <br><a href="https://github.com/flutter/gallery/blob/master/lib/demos/material/text_field_demo.dart#L322" target="_blank">github</a>
+
+<!-- ----------------------------------------------------------- -->
+<hr>
+<a name="password"></a>
+<h2>PASSWORD - SENHA</h2>
+Como Mostrar e esconder a senha com o componente <code>TextFormField</code> da maneira <b>MAIS</b> simples.
+<br>
+Utilizado variavel <b>_flagExibirSenha</b> como booleana para servir de flag.
+<pre>
+TextFormField(
+  controller: _senhaController,
+  keyboardType: TextInputType.text,
+  decoration: InputDecoration(
+    labelText: "Senha",<span style="color:Red">
+    suffixIcon: GestureDetector(
+      onTap: () { setState(() { _flagExibirSenha = !_flagExibirSenha; }); },
+      child: Icon( _flagExibirSenha ? Icons.visibility : Icons.visibility_off ),
+    ),
+  ),
+  obscureText: _flagExibirSenha,</span>
+),
+</pre>
+<br><a href="https://www.youtube.com/watch?v=wqDeTYbz9aw" target="_blank">youtube</a>

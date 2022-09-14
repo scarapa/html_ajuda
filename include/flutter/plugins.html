@@ -2,10 +2,11 @@
   <li><a href="#brasil_fields">Brasil fields</a></li>
   <li><a href="#sqlite">SQLite</a></li>
   <li><a href="#icones">Icones</a></li>
-  <li><a href="#">Http</a></li>
-  <li><a href="#">Json Serialize</a></li>
-  <li><a href="#">Dio</a></li>  
-  <li><a href="#">Path provider</a></li>
+  <li><a href="#http">Http</a></li>
+  <li><a href="#json-serialize">Json Serialize</a></li>
+  <li><a href="#dio">Dio</a></li>  
+  <li><a href="#path-provider">Path provider</a></li>
+  <li><a href="#path-provider">Path provider</a></li>
 </ol>
 
 Os principais plugins
@@ -38,22 +39,69 @@ cupertino_icons: ^0.1.3
 json_serializable: ^3.5.1
 http: ^0.12.0+1    
 
+
+
+<!-- ------------------------------------------------- -->
+<hr>
+<a name="json-serialize"></a>
+<h2>Json Serialize</h2>
+
+<!-- ------------------------------------------------- -->
+<hr>
+<a name="dio"></a>
+<h2>DIO</h2>
+<h3>Exemplo com cancelamento</h3>
+<pre class="codigo">
+  Widget build(BuildContext context) {
+    CancelToken token;
+      .
+      .
+      .
+    RaisedButton(
+      child: Text('requst'),
+      onPressed: () async {
+        try {
+          Dio dio = new Dio();
+          dio.interceptors.add(InterceptorsWrapper(
+              onRequest: (RequestOptions options) async {
+            token = CancelToken();
+            options.cancelToken = token;
+            return options; //continue
+          }));
+
+          var res = await dio.get("/test/long");
+
+          print(res.data);
+        } catch (e) {
+          if (CancelToken.isCancel(e)) {
+            print('cancelled by dio');
+          } else {
+            print('error${e.toString()}');
+          }
+        }
+      },
+    ),
+    RaisedButton(
+      child: Text('cancel'),
+      onPressed: () {
+        token?.cancel('c');
+      },
+    )  
+</pre>
+<br><a href="https://github.com/flutterchina/dio/issues/1035">Fonte</a>
+<br><a href="https://blog.flutterando.com.br/consumindo-api-utilizando-o-dio-9ec72aeceeaa" target="_blank">blog.flutterando</a>
+<br><a href="https://blog.logrocket.com/networking-flutter-using-dio/" target="_blank">blog.logrocket</a>
+<br><a href="https://pub.dev/documentation/dio/latest/#dio-apis" target="_blank">pub.dev[1]</a>
+<br><a href="https://pub.dev/packages/dio" target="_blank">pub.dev[2]</a>
+
+<!-- ------------------------------------------------- -->
+<hr>
+<a name=""></a>
+<h2></h2>
+
+
 #DEVICE
 platform_device_id: ^0.1.3
-
-
-<!-- ------------------------------------------------- -->
-<hr>
-<a name=""></a>
-<h2></h2>
-
-
-<!-- ------------------------------------------------- -->
-<hr>
-<a name=""></a>
-<h2></h2>
-
-
 
 
 # persistencia
