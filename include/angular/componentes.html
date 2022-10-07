@@ -1,8 +1,32 @@
 <ol>
-    <li><a href="#"></a></li>
-    <li><a href="#"></a></li>
+  <li><a href="#databinding">DATABINDING</a></li>
+  <li><a href="#"></a></li>
 </ol>
 
+<!-- ------------------------------------------------ -->
+<hr>
+<a name="databinding"></a>
+<h2>DATABINDING</h2>
+
+  <h3>INTERPOLACAO</h3>
+  É a forma mais facil de exibir um dado. O dados é representado no template por dois pares de chaves.
+  <pre>&lt;label&gt;Nome:{{nome}}&lt;/label&gt;</pre>
+
+  <h3>PROPERTY BINDING</h3>
+  Define o valor de uma propriedade do elemento HTML, é o conceito de <code>one-way</code>que o valor só vai para e NAO VOLTA!
+  <pre>&lt;img [src]="minha-url"&gt;</pre>
+  
+  <h3>EVENT BINDING</h3>
+  Realiza a chamada de uma metodo com base no evento do elemento HTML.
+  <pre>&lt;button (click)="clicContador()"&gt;CLIQUE AQUI&lt;button&gt;</pre>
+
+  <h3>TWO-WAY BINDING</h3>
+  Exibe e atualiza um dado nas duas direcoes(template/componente)
+  <pre>
+&lt;input type="text" [(ngModel)]="evento.nome"&gt;
+&lt;label&gt;Nome:{{evento.nope}}&lt;/label&gt; </pre>
+
+<!-- ------------------------------------------------ -->
 <hr>
 <a name=""></a>
 <h2></h2>

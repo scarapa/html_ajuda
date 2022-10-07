@@ -1,0 +1,21 @@
+<ol>
+  <li><a href="#pipe">PIPE</a></li>
+  <li><a href="#"></a></li>
+</ol>
+
+
+<!-- ------------------------------------------------ -->
+<hr>
+<a name="pipe"></a>
+<h2>PIPE</h2>
+<code>src\app\app.module.ts</code>
+<pre>
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+registerLocaleData(localePt);</pre>
+
+
+Convertendo o dado de moeda estrangeira para moeda NACIONAL através do PIPE .
+<pre>&lt;h4&gt;{{ produto.valor | currency:'BRL':true:'1.2-2':'pt'}}&lt;/h4&gt;</pre>
+
+<br><a href="https://angular.io/guide/pipes">angular.io/guide/pipes</a>
