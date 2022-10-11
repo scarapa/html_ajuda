@@ -1,28 +1,49 @@
-﻿<h2><i class="fa fa-users fw"></i> Usuarios</h2>
+﻿<ol>
+  <li>LISTAR USUARIOS</li>
+  <li>ADICIONAR USUARIO</li>
+  <li>DELETAR USUARIO</li>
+  <li></li>
+  <li></li>
+</ol>
 
-<h3>Listar Usuarios LOCAIS</h3>
-<pre>$ cat /etc/passwd</pre>
+<h2>Listar Usuarios LOCAIS</h2>
+<pre class="terminal">$ cat /etc/passwd</pre>
 <a href="https://www.cyberciti.biz/faq/linux-list-users-command/">Fonte</a>
+<!-- --------------------------------------------- -->
 
-<h3>Adicionar Usuario</h3>
-<pre>$ sudo adduser novo_usuario
-ou
-$ sudo useradd novo_usuario
-</pre>
+<h2>Adicionar Usuario</h2>
+Para iniciar realize o login no terminal com o usuário root
+<pre class="terminal">$ sudo su</pre>
 
-<h3>Remover/Deletar Usuario</h3>
-<pre>$ sudo userdel username</pre>
+o comando useradd para criar o novo usuário.
+<pre class="terminal">$ useradd -m usuario</pre>
 
-<h3>Remover diretório/pasta Usuario</h3>
-<pre>$ sudo rm -r /home/username</pre>
-(Use com cuidado o comando acima!)
+O <code>-m</code> serve para criar o diretório do usuário, que fica: <b>/home/usuario</b>. 
+Substitua <b class="red">usuario</b> pelo nome do usuário que você deseja. 
 
-<h3>Mudar o usuario</h3>
-<pre>$ usermod -l novo_usuario velho_usuario</pre>
+Depois defina uma senha para esse usuário com o comando <b>passwd</b>.
+<pre class="terminal">$ passwd usuario [Enter]</pre>
 
+Após definir a senha, caso deseje adicione o usuário ao grupo sudo. Isto irá permitir que este usuário também vire root e tenha acesso administrativo na máquina.
+<pre class="terminal">$ usermod -a -G sudo usuario</pre>
+
+Para finalizar altere o shell padrão do usuário para o bash. Bash abreviatura de Bourne-Again Shell é um interpretador de comandos
+<pre class="terminal">$ chsh -s /bin/bash usuario</pre>
+<a href="https://irias.com.br/blog/como-criar-um-usuario-no-linux-pelo-terminal/" target="_blank">irias blog</a>
+
+<!-- --------------------------------------------- -->
+<h2>Remover/Deletar Usuario</h2>
+<pre class="terminal">$ sudo userdel username</pre>
+
+  <h3>Remover diretório/pasta Usuario</h3>
+  <pre class="terminal">$ sudo rm -r /home/username</pre>
+  (Use com cuidado o comando acima!)
+
+<h2>Mudar o usuario</h2>
+<pre class="terminal">$ usermod -l novo_usuario velho_usuario</pre>
 <a href="https://askubuntu.com/questions/410244/a-command-to-list-all-users-and-how-to-add-delete-modify-users">askubuntu</a>
 
 
-<h3>Alterar Senha Usuario LOCAL</h3>
-<pre><strong>$ sudo passwd</strong> <username></pre>
+<h2>Alterar Senha Usuario LOCAL</h2>
+<pre class="terminal">$ sudo passwd USUARIO [Enter]</pre>
 <a href="https://askubuntu.com/questions/867831/how-to-alter-the-password-for-www-data-user">askubuntu</a>
