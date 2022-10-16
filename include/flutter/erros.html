@@ -29,6 +29,8 @@
       <li><a href="#nao_builda_01">Erro 01</a></li>
     </ol>
   </li>  
+  <li><a href="#erro-assinatura-01">Erro Geração Assinatura</a></li>
+  
 </ol>
 
 <!-- -------------------------------------------------------------- -->
@@ -839,8 +841,6 @@ por:
 <h2>PLUGIN DIO - 01</h2>
 <pre class="terminal">The method 'DioHttpHeaders.add' has fewer named arguments than those of overridden method 'HttpHeaders.add'</pre>
 <b>SOLUCAO:</b> alterar a versao de <code>^2.0.16</code> para <code>^3.0.10</code>
-
-
 <a href="https://github.com/flutterchina/dio/issues/780">github</a>
 
 
@@ -883,3 +883,19 @@ Gradle task assembleRelease failed with exit code 1</span></pre>
 
 SOLUCAO:  <code>flutter build apk --no-shrink <b>--no-tree-shake-icons</b></code>
 <br><a href="https://stackoverflow.com/questions/63335694/this-application-cannot-tree-shake-icons-fonts" target="_blank">stackoverflow</a>
+
+
+<!-- -------------------------------------------------------------- -->
+<hr>
+<a name="erro-assinatura-01"></a>
+<h2>Erro Geração Assinatura</h2>
+<pre class="terminal">erro de keytool: java.io.FileNotFoundException: c:\Users\49583\key.jks (O sistema não pode encontrar o caminho especificado)
+java.io.FileNotFoundException: c:\Users\49583\key.jks (O sistema não pode encontrar o caminho especificado)
+      at java.base/java.io.FileOutputStream.open0(Native Method)
+      at java.base/java.io.FileOutputStream.open(FileOutputStream.java:298)
+      at java.base/java.io.FileOutputStream.&lt;init&gt;(FileOutputStream.java:237)
+      at java.base/java.io.FileOutputStream.&lt;init&gt;(FileOutputStream.java:126)
+      at java.base/sun.security.tools.keytool.Main.doCommands(Main.java:1324)
+      at java.base/sun.security.tools.keytool.Main.run(Main.java:409)
+      at java.base/sun.security.tools.keytool.Main.main(Main.java:402)</pre>
+Nesse exemplo a pasta <code>c:\Users\49583\</code> realmente nao existe mais !

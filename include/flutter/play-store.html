@@ -1,15 +1,19 @@
 <ol>
-    <li><a href="#gerar-icone-app">GERAR ICONE DO APP</a></li>
-    <li><a href="#trocar-nome">ALTERAR NOME DO APP</a></li>
-    <li><a href="#gerar-chave">GERAR CHAVE</a></li>
-    <li><a href="#gerar-APK">GERAR APK</a></li>
+  <li><a href="#gerar-icone-app">GERAR ICONE DO APP</a></li>
+  <li><a href="#trocar-nome">ALTERAR NOME DO APP</a></li>
+  <li><a href="#gerar-chave">GERAR CHAVE</a></li>
+  <li><a href="#revisando-config-compilacao">REVISANDO CONFIGURACAO DE COMPILACAO</a></li>
+  <li><a href="#gerar-APK">GERAR APLICACAO</a></li>
+  <li><a href="#play-store">PLAY STORE CONSOLE</a></li>
 </ol>
 
+<!-- --------------------------------------------------   -->
+<hr>
 <a name="gerar-icone-app"></a>
 <h2>GERAR ICONE DO APP</h2>
 Insira o plugin e essas configuracoes no arquivo <code>pubspec.yaml</code>
 <pre>
-    flutter_launcher_icons: ^0.7.0
+flutter_launcher_icons: ^0.7.0
 
 flutter_icons:
     ios: true
@@ -27,8 +31,8 @@ $ flutter pub run flutter_launcher_icons:main</pre>
 
 <a href="https://pub.dev/packages/flutter_launcher_icons">pub.dev</a>
 
+<!-- ---------------------------------------------- -->
 <hr>
-
 <a name="trocar-nome"></a>
 <h2>ALTERAR NOME DO APP</h2>
 Necessário alterar esse arquivo <code>android\app\src\main\AndroidManifest.xml</code>
@@ -48,58 +52,117 @@ Necessário alterar esse arquivo <code>android\app\src\main\AndroidManifest.xml<
 <a href="https://qastack.com.br/programming/49353199/how-to-change-the-app-display-name-build-with-flutter" target="_blank">qastack</a>
 <hr>
 
+<!-- ---------------------------------------------- -->
 <a name="gerar-chave"></a>
 <h2>GERAR CHAVE</h2>
-<pre>$ keytool -genkey -v -keystore c:\Users\49583\key.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias key</pre>
+O keytool fica localizado ou na pasta do <code>ANDROID STUDIO</code> ou na pasta do <code>JAVA</code>, nesse exemplo iremos 
+executar  a partir do <code>ANDROID STUDIO</code> na pasta <code>android-studio\jre\bin</code>
 
-<h3>Gerar senha da chave</h3>
+<pre class="terminal">$ cd \android-studio\jre\bin</pre>
 
-<h3>Arquivo key.properties</h3>
-Criar o arquivo &lt;app dir&gt;/android/key.properties que irá buscar as informações da nossa chave.
-<pre>
-storePassword=&lt;password from previous step&gt;
-keyPassword=&lt;password from previous step&gt;
-keyAlias=key
-storeFile=&lt;location of the key store file, such as /Users/&lt;user name&gt;/key.jks&gt;	
-</pre>
+ou setar o caminho da pasta nas variavies de ambiente.
+<div class="w60 centro">
+  <img src="./images/flutter-variaveis-ambiente-keytool.jpg" class="bp">
+</div>
 
-<h3>build.gradle</h3>
-Configurar arquivo <code>android/app/build.gradle</code>
 
-<pre><span style="color:red">
-def keystoreProperties = new Properties()
-def keystorePropertiesFile = rootProject.file('key.properties')
-if (keystorePropertiesFile.exists()) {
-    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-}</span>
+Setado nas variavies, pode-se digitar o keytools diretamente de qualquer local.
+<pre class="terminal">$  keytool -genkey -v -keystore %userprofile%\upload-keystore.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias upload</pre>
+Seguindo os seguintes passos ....
+<pre class="terminal">
+  Informe a senha da área de armazenamento de chaves:
+  Informe novamente a nova senha:
+  Qual é o seu nome e o seu sobrenome?
+    [Unknown]:  Roberto Alam
+  Qual é o nome da sua unidade organizacional?
+    [Unknown]:  i9
+  Qual é o nome da sua empresa?
+    [Unknown]:  i9tecnosul
+  Qual é o nome da sua Cidade ou Localidade?
+    [Unknown]:  Porto Alegre
+  Qual é o nome do seu Estado ou Município?
+    [Unknown]:  RS
+  Quais são as duas letras do código do país desta unidade?
+    [Unknown]:  BR
+  CN=Roberto Alam, OU=i9, O=i9tecnosul, L=Porto Alegre, ST=RS, C=BR Está correto?
+    [não]:  s
+  
+  Gerando o par de chaves RSA de 2.048 bit e o certificado autoassinado (SHA256withRSA) com uma validade de 10.000 dias
+          para: CN=Roberto Alam, OU=i9, O=i9tecnosul, L=Porto Alegre, ST=RS, C=BR
+  Informar a senha da chave de <key>
+          (RETURN se for igual à senha da área do armazenamento de chaves):
+  [Armazenando key.jks]</key>  </pre>
 
-android {    
-...
+<kbd>DESATUALIZADO</kbd>
+<pre class="disabled">$ keytool -genkey -v -keystore c:\Users\49583\key.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias key</pre>
 
-<span style="color:red">
-signingConfigs {
-    release {
-        keyAlias keystoreProperties['keyAlias']
-        keyPassword keystoreProperties['keyPassword']
-        storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
-        storePassword keystoreProperties['storePassword']
-    }
-}
-buildTypes {
-    release {
-        // TODO: Add your own signing config for the release build.
-        // Signing with the debug keys for now, so `flutter run --release` works.
-        signingConfig signingConfigs.release
-    }
-}</span>
-</pre>
 
+  <h3>Arquivo key.properties</h3>
+  Criar o arquivo &lt;app dir&gt;/android/key.properties que irá buscar as informações da nossa chave.
+  <pre>storePassword=&lt;password from previous step&gt;
+  keyPassword=&lt;password from previous step&gt;
+  keyAlias=key
+  storeFile=&lt;location of the key store file, such as /Users/&lt;user name&gt;/key.jks&gt;	
+  </pre>
+  <h3>build.gradle</h3>
+  Configurar arquivo <code>android/app/build.gradle</code>
+
+  <pre><span style="color:red">
+  def keystoreProperties = new Properties()
+  def keystorePropertiesFile = rootProject.file('key.properties')
+  if (keystorePropertiesFile.exists()) {
+      keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+  }</span>
+
+  android {    
+  ...
+
+  <span style="color:red">
+  signingConfigs {
+      release {
+          keyAlias keystoreProperties['keyAlias']
+          keyPassword keystoreProperties['keyPassword']
+          storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+          storePassword keystoreProperties['storePassword']
+      }
+  }
+  buildTypes {
+      release {
+          // TODO: Add your own signing config for the release build.
+          // Signing with the debug keys for now, so `flutter run --release` works.
+          signingConfig signingConfigs.release
+      }
+  }</span>
+  </pre>
+
+<!-- --------------------------------------------------   -->
 <hr>
+<a name="revisando-config-compilacao"></a>
+<h2>REVISANDO CONFIGURACAO DE COMPILACAO</h2>
+Revise o arquivo <code>android\build.gradle</code>
 
+<!-- --------------------------------------------------   -->
+<hr>
 <a name="gerando-apk"></a>
-<h2>Gerando APK</h2>
+<h2>Gerando APLICACAO</h2>
 Antes de gerar o apk limpe as pastas afim de eliminar qualquer resticio
-<pre>$ flutter clean</pre>
+<pre class="terminal">$ flutter clean</pre>
 
-<pre>$ flutter build apk --release</pre>
-<a href="https://flutter.dev/docs/deployment/android#building-the-app-for-release">flutter.dev</a>
+  <h3>BUNDLE</h3>
+  <pre class="terminal">$ flutter build appbundle</pre>
+
+  <h3>APK</h3>
+  <pre class="terminal">$ flutter build apk --release</pre>
+  <br><a href="https://docs.flutter.dev/deployment/android">flutter.dev</a>
+  <br><del><a href="https://flutter.dev/docs/deployment/android#building-the-app-for-release">flutter.dev</a></del>
+
+<!-- --------------------------------------------------   -->
+<hr>
+<a name="play-store"></a>
+<h2>PLAY STORE CONSOLE</h2>  
+Acessando <a href="" target="https://play.google.com/console/developers">loja do google</a> para publicacao da APLICACAO
+
+
+<br><a href="https://www.youtube.com/watch?v=-Eypr9DDp20" target="_blank">youtube</a>
+
+
