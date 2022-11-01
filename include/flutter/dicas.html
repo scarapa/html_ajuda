@@ -1,5 +1,6 @@
 <ol>
     <li><a href="#nome-de-pacote">Alterar nome de pacote</a></li>
+    <li><a href="#modo-escuro">Modo escuro</a></li>
     <li><a href="#traducao">Tradução</a></li>
     <li><a href="#raisedbutton">RaisedButton</a></li>
     <li><a href="#layout">Layout</a></li>
@@ -9,6 +10,7 @@
     <li><a href="#launcher-icons">Icone da Aplicacao</a></li>
     <li><a href="#links-importantes">Links importantes</a></li>
 </ol>
+
 <!-- -------------------------------------------------------------- -->
 <a name="nome-de-pacote"></a>
 <h2>Alterar nome de pacote</h2>
@@ -44,6 +46,145 @@ package="br.tche.emater.emater_tecnico"&gt;
 --&gt;</pre>
 
 <h3>android/app/src/main/kotlin/com/example/me_poupe/MainActivity.kt</h3>
+
+<!-- -------------------------------------------------------------- -->
+<hr>
+<a name="modo-escuro"></a>
+<h2>Modo Escuro</h2>
+<pre>
+  import 'package:flutter/material.dart';
+  import 'pages/splash_tela.dart';
+  
+  void main() {
+    runApp(const MyApp());
+  }
+  
+  var tema = temaEscuro;
+  
+  var temaEscuro = ThemeData(
+    backgroundColor: Colors.black,
+    primaryColor: const Color(0x009c27b0),
+    brightness: Brightness.dark,
+    primarySwatch: Colors.blue,
+    fontFamily: 'Quicksand',
+    textTheme: ThemeData.light().textTheme.copyWith(
+      // ignore: prefer_const_constructors
+      headline6: TextStyle(
+        fontFamily: 'OpenSans',
+        fontSize: 18.0,
+        fontWeight: FontWeight.bold,
+      ),
+      // ignore: prefer_const_constructors
+      button: TextStyle(
+        color: Colors.white,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    appBarTheme: AppBarTheme(
+      toolbarTextStyle: ThemeData.light().textTheme.copyWith(
+        headline6: const TextStyle(
+          fontFamily: 'OpenSans',
+          fontSize: 20,
+          fontWeight: FontWeight.bold
+        )
+      ).bodyText2, titleTextStyle: ThemeData.light().textTheme.copyWith(
+        headline6: const TextStyle(
+          fontFamily: 'OpenSans',
+          fontSize: 20,
+          fontWeight: FontWeight.bold
+        )
+      ).headline6
+    ),
+  );
+  
+  var temaClaro = ThemeData(
+    backgroundColor: Colors.white,
+    primaryColor: Color.fromARGB(0, 237, 230, 238),
+    brightness: Brightness.light,
+    primarySwatch: Colors.blue,
+    fontFamily: 'Quicksand',
+    textTheme: ThemeData.light().textTheme.copyWith(
+      // ignore: prefer_const_constructors
+      headline6: TextStyle(
+        fontFamily: 'OpenSans',
+        fontSize: 18.0,
+        fontWeight: FontWeight.bold,
+      ),
+      // ignore: prefer_const_constructors
+      button: TextStyle(
+        color: Colors.white,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    appBarTheme: AppBarTheme(
+      toolbarTextStyle: ThemeData.light().textTheme.copyWith(
+        headline6: const TextStyle(
+          fontFamily: 'OpenSans',
+          fontSize: 20,
+          fontWeight: FontWeight.bold
+        )
+      ).bodyText2, titleTextStyle: ThemeData.light().textTheme.copyWith(
+        headline6: const TextStyle(
+          fontFamily: 'OpenSans',
+          fontSize: 20,
+          fontWeight: FontWeight.bold
+        )
+      ).headline6
+    ),
+  );
+  
+  
+  class MyApp extends StatefulWidget {
+    const MyApp({Key? key}) : super(key: key);
+  
+    @override
+    State&lt;MyApp&gt; createState() =&gt; _MyAppState();
+  }
+  
+  class _MyAppState extends State&lt;MyApp&gt; with WidgetsBindingObserver {
+    @override
+    void initState(){
+      super.initState();
+      WidgetsBinding.instance.addObserver( this );
+      alterarThema();
+    }
+  
+    @override
+    void dispose(){
+      WidgetsBinding.instance.removeObserver( this );
+      super.dispose();
+    }
+  
+    
+    @override
+    void didChangePlatformBrightness(){
+      alterarThema();
+    }
+  
+    // ignore: prefer_typing_uninitialized_variables
+    var brilho;
+    alterarThema(){
+      brilho = WidgetsBinding.instance.window.platformBrightness;
+      brilho == Brightness.dark? tema = temaEscuro : tema = temaClaro;
+      setState(() { });
+    }
+  
+    @override
+    Widget build(BuildContext context) {
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Me Poupe',
+        theme: tema,
+        home: const SplashTela(),
+      );
+    }
+  }
+</pre>  
+
+<br><a ref="https://www.youtube.com/watch?v=60uu1gkobr8">youtube - balta.io</a>
+<br><a ref="https://www.youtube.com/watch?v=MZXK28IOBWA">Flutter Tips</a>
+<br><a ref="https://blog.cod3r.com.br/dark-mode-com-flutter/">cod3r</a>
+
 
 <!-- -------------------------------------------------------------- -->
 <hr>

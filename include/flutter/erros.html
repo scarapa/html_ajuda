@@ -30,6 +30,8 @@
     </ol>
   </li>  
   <li><a href="#erro-assinatura-01">Erro Geração Assinatura</a></li>
+  <li><a href="#erro-checking-dart-sdk-version-01">Checking Dart SDK version</a></li>
+  <li><a href="#vscode-nao-encontrado">Visual Studio não instalado</a></li>
   
 </ol>
 
@@ -899,3 +901,79 @@ java.io.FileNotFoundException: c:\Users\49583\key.jks (O sistema não pode encon
       at java.base/sun.security.tools.keytool.Main.run(Main.java:409)
       at java.base/sun.security.tools.keytool.Main.main(Main.java:402)</pre>
 Nesse exemplo a pasta <code>c:\Users\49583\</code> realmente nao existe mais !
+
+
+<!-- -------------------------------------------------------------- -->
+<hr>
+<a name="erro-checking-dart-sdk-version-01"></a>
+<h2>ERRO - Checking Dart SDK version</h2>
+<pre class="terminal">Checking Dart SDK version...  &lt;&lt; foi inesperado neste momento.</pre>
+<h3>SOLUCAO 01</h3> 
+Alterar as variaveis de ambiente.
+<pre class="terminal">$ flutter clean</pre>
+
+<pre class="terminal"><span style="color:yellow">
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Warning
+──────────────────────────────────────────────────────────────────────────────
+Your Flutter application is created using an older version of the Android
+embedding. It is being deprecated in favor of Android embedding v2. Follow the
+steps at
+https://flutter.dev/go/android-project-migration
+to migrate your project. You may also pass the --ignore-deprecation flag to
+ignore this check and continue with the deprecated v1 embedding. However,
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+The detected reason was:
+  D:\projetos\flutter\me_poupe\android\app\src\main\AndroidManifest.xml uses `android:name="io.flutter.app.FutterApplication"`
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><span style="color:Red">
+Build failed due to use of deprecated Android v1 embedding.</span><span style="color:yellow">
+Exited (1)  </span>
+</pre>
+
+<a href="https://www.youtube.com/watch?v=apabG0C46xA" target="_blank">youtube</a>
+
+
+<!-- -------------------------------------------------------------- -->
+<hr>
+<a name="vscode-nao-encontrado"></a>
+<h2>Visual Studio não encotrado</h2>
+<pre class="terminal">$ flutter doctor
+[✓] Flutter (Channel stable, 3.3.6, on Microsoft Windows [versÆo 10.0.22621.521], locale pt-BR)
+[✓] Android toolchain - develop for Android devices (Android SDK version 30.0.2)
+[✓] Chrome - develop for the web
+[✗] Visual Studio - develop for Windows
+    ✗ Visual Studio not installed; this is necessary for Windows development.
+      Download at https://visualstudio.microsoft.com/downloads/.
+      Please install the "Desktop development with C++" workload, including all of its default components
+[✓] Android Studio (version 2020.3)
+[✓] Android Studio
+[✓] VS Code (version 1.72.2)
+[✓] Connected device (3 available)
+[✓] HTTP Host Availability
+
+! Doctor found issues in 1 category.</pre>
+
+Executar o arquivo baixado como <code>Administrador</code>
+<div class="centro">
+  <img src="./images/flutter-install-mvs-003.jpg" class="bp w40">
+</div>
+
+Selecionar os dois itens conforme a imagem abaixo:
+<div class="centro">
+  <img src="./images/flutter-install-mvs-004.jpg" class="bp w60">
+</div>
+<br clear="all">
+Resultado final, abaixo.
+<pre class="terminal">$ flutter doctor
+Doctor summary (to see all details, run flutter doctor -v):
+[✓] Flutter (Channel stable, 3.3.6, on Microsoft Windows [versÆo 10.0.22621.521], locale pt-BR)
+[✓] Android toolchain - develop for Android devices (Android SDK version 30.0.2)
+[✓] Chrome - develop for the web
+[✓] Visual Studio - develop for Windows (Visual Studio Community 2022 17.3.6)
+[✓] Android Studio (version 2020.3)
+[✓] Android Studio
+[✓] VS Code (version 1.72.2)
+[✓] Connected device (3 available)
+[✓] HTTP Host Availability
+
+• No issues found!</pre>
