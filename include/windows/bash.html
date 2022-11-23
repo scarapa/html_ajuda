@@ -1,58 +1,113 @@
-Como instalar e usar o Shell Bash do Linux no Windows 10
+<ol>
+  <li><a href="#bash-linux">BASH LINUX NO WINDOWS</a></li>
+  <li><a href="#vm">MAQUINA VIRTUAL</a>
+    <ol>
+      <li><a href="#vm-erro-01">ERRO</a>
+    </ol>
+  </li>
+  <!-- <li><a href="#"></a></li> -->
+</ol>
 
+<!-- --------------------------------------------------------------------- -->
+<hr>
+<a name="bash-linux"></a>
+<h2>BASH LINUX NO WINDOWS</h2>
+Como instalar e usar o Shell Bash do Linux no Windows 10
+<br><br>
 
 Isto é possível por causa do chamado “Subsistema do Windows para o Linux”, que a 
 Microsoft está adicionando ao Windows 10 e é resultado de uma parceria da empresa com a 
 Canonical. Se você quer experimentar essa novidade, veja neste tutorial como instalar e 
 usar o Shell Bash do Linux no Windows 10, e comece a explorá-la.
 
+<div class="centro center w65">
+  <img src="./images/windows_instalar_bash_linux_001.jpg" class="bp w80"><br>
+  Acesse as configurações do Windows 10. Para isso, clique no menu Iniciar e depois na opção “Configurações”;
+</div>
+<br clear="all">
 
-    <div class="centro center w65">
-        <img src="./images/windows_instalar_bash_linux_001.jpg" class="bp w80"><br>
-        Acesse as configurações do Windows 10. Para isso, clique no menu Iniciar e depois na opção “Configurações”;
-    </div>
-    <br clear="all">
+<div class="centro center w65">
+    <img src="./images/windows_instalar_bash_linux_002.jpg" class="bp w80"><br>
+    Em “Configurações”, desça a tela até a o opção “Atualização e segurança” e clique nela;
+</div>
+<br clear="all">
 
-    <div class="centro center w65">
-        <img src="./images/windows_instalar_bash_linux_002.jpg" class="bp w80"><br>
-        Em “Configurações”, desça a tela até a o opção “Atualização e segurança” e clique nela;
-    </div>
-    <br clear="all">
+<div class="centro center w65">
+    <img src="./images/windows_instalar_bash_linux_003.jpg" class="bp w80"><br>
+    
+</div>
+<br clear="all">
 
-    <div class="centro center w65">
-        <img src="./images/windows_instalar_bash_linux_003.jpg" class="bp w80"><br>
-        
-    </div>
-    <br clear="all">
+<div class="centro center w65">
+    <img src="./images/windows_instalar_bash_linux_004.jpg" class="bp w80"><br>
+    marque o item “Modo de desenvolvedor”
+</div>
+<br clear="all">
 
-    <div class="centro center w65">
-        <img src="./images/windows_instalar_bash_linux_004.jpg" class="bp w80"><br>
-        marque o item “Modo de desenvolvedor”
-    </div>
-    <br clear="all">
+<div class="centro center w65">
+    <img src="./images/windows_instalar_bash_linux_005.jpg" class="bp w80"><br>
+    clique no botao <code>SIM</code>
+</div>
+<br clear="all">
 
-    <div class="centro center w65">
-        <img src="./images/windows_instalar_bash_linux_005.jpg" class="bp w80"><br>
-        clique no botao <code>SIM</code>
-    </div>
-    <br clear="all">
+<div class="centro center w65">
+    <img src="./images/windows_instalar_bash_linux_006.jpg" class="bp w80"><br>
+    marque a opcao <code>SUBSISTEMA DO WINDOWS PARA LINUX</code>
+</div>
+<br clear="all">
 
-    <div class="centro center w65">
-        <img src="./images/windows_instalar_bash_linux_006.jpg" class="bp w80"><br>
-        marque a opcao <code>SUBSISTEMA DO WINDOWS PARA LINUX</code>
-    </div>
-    <br clear="all">
+<div class="centro center w65">
+    <img src="./images/windows_instalar_bash_linux_007.jpg" class="bp w80"><br>
 
-    <div class="centro center w65">
-        <img src="./images/windows_instalar_bash_linux_007.jpg" class="bp w80"><br>
+</div>
+<br clear="all">
 
-    </div>
-    <br clear="all">
-
-    <div class="centro center w65">
-        <img src="./images/windows_instalar_bash_linux_008.jpg" class="bp w80"><br>
-        
-    </div>
-    <br clear="all">
+<div class="centro center w65">
+  <img src="./images/windows_instalar_bash_linux_008.jpg" class="bp w80"><br>
+</div>
+<br clear="all">
 
 <br><a href="https://www.techtudo.com.br/noticias/2016/04/como-instalar-e-usar-o-shell-bash-do-linux-no-windows-10.ghtml" target="_blank">COPIADO de techtudo</a>
+
+<!-- --------------------------------------------------------------------- -->
+<hr>
+<a name="vm"></a>
+<h2>MAQUINA VIRTUAL</h2>
+  <h3>ERRO</h3>
+  <div class="centro w100">
+    <img src="./images/windows-vm-erro-01.jpg" class="bp w30">
+  </div>
+  ERRO:
+  <pre>
+  Cannot enable nested VT-x/AMD-V without nested-paging and unresricted guest execution!
+  (VERR_CPUM_INVALID_HWVIRT_CONFIG).
+  
+  Código de Resultado: 
+  E_FAIL (0x80004005)
+  Componente: 
+  ConsoleWrap
+  Interface: 
+  IConsole {872da645-4a9b-1727-bee2-5585105b9eed}</pre>    
+
+    <h4>DESABILITE O HYPER-V</h4>
+    Na janela da linha de comando, você precisa executar o comando bcdedit /set hypervisorlaunchtype off para 
+    desabilitar o Hyper-V em seu sistema. bcdedit é uma ferramenta de linha de comando para gerenciar armazenamentos 
+    de dados de configuração de inicialização (BCD). Você pode conferir mais sobre isso no 
+    <a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/bcdedit" target="_blank">site oficial da Microsoft.</a>
+    <pre class="terminal">C:\&gt;<span style="color:#00ff00">bcdedit /set hypervisorlaunchtype off</span>
+    The operation completed successfully.</pre>
+
+    <h4>DESATIVE RECURSO DO WINDOWS</h4>
+    Em seguida, você precisa desativar o recurso "Virtual Machine Platform" nos Recursos do Windows. 
+    Para isso, basta desmarcar esse recurso e clicar em OK.
+    <div class="centro w100">
+      <img src="./images/windows-vm-erro-02.jpg" class="bp w30">
+    </div>
+
+    <h4>REINICIE</h4>
+    Depois de desmarcar o recurso Virtual Machine Platform, ele solicitará que você reinicie o Windows 
+    para atualizar as alterações. Clique em reiniciar agora para reiniciar o sistema Windows. Isso é tudo 
+    que você precisa fazer. Depois de concluir as etapas, agora você pode tentar iniciar a VM novamente e, 
+    desta vez, deve iniciar sem nenhum erro.
+
+  <br><a href="https://www.cyberithub.com/solved-cannot-enable-nested-vt-x-amd-v-without-nested-paging/" target="blank">cyberithub</a>

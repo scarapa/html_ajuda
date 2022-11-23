@@ -1,4 +1,56 @@
-﻿<style type="text/css">
+﻿<ol>
+  <li><a href="images">IMAGES</a></li>
+  <li><a href="container">CONTAINER</a></li>
+  <li><a href="dockerfile">DOCKERFILE</a></li>
+</ol>
+
+<!-- -------------------------------------------- -->
+<hr>
+<a name="images"></a>
+<h2>IMAGES</h2>
+  <h3>DOWNLOAD</h3>
+  <pre class="terminal">$ docker pull [IMAGEM_NOME]</pre>
+  EXEMPLO:
+  <pre class="terminal">$ docker pull beevelop/ionic:latest</pre>
+
+  <h3>ACESSAR</h3>
+  <pre class="terminal">$ docker run -it [IMAGEM_NOME] /bin/sh</pre>
+  EXEMPLO:
+  <pre class="terminal">$ docker run -it beevelop/ionic bash</pre>
+
+  <h3>UTILIZANDO</h3>
+  <pre class="terminal">FROM beevelop/ionic:latest</pre>
+
+<!-- -------------------------------------------- -->
+<hr>
+<a name="container"></a>
+<h2>CONTAINER</h2>
+  <h3>START</h3>
+  <pre class="terminal">$ docker container start [CONTAINER_NOME]</pre>
+
+  <h3>STOP</h3>
+  <pre class="terminal">$ docker container stop [CONTAINER_NOME]</pre>
+
+  <h3>ACESSAR</h3>
+  <pre class="terminal">$ docker container exec -ti [CONTAINER_NOME] [COMANDO]</pre>
+  EXEMPLO:
+  <pre class="terminal">$ docker container exec -ti [CONTAINER_NOME] /bin/sh</pre>
+
+  <h3>LISTAR</h3>
+  Lista todos containers em execucao
+  <pre class="terminal">$ docker container ps</pre>
+  Lista todos containers criados 
+  <pre class="terminal">$ docker container ps -a</pre>  
+
+  <h3>DELETAR</h3>
+  <pre class="terminal">$ docker container rm [CONTAINER_ID]</pre>  
+<!-- -------------------------------------------- -->
+<hr>
+<a name="dockerfile"></a>
+<h2>DOCKERFILE</h2>
+
+
+<!-- <style type="text/css">
 	.subCabecalho{font-weight: bold;text-align: center;background: black;color:white;font-size: 18pt;}
 </style>
 
@@ -29,15 +81,12 @@
 						<td>RUN</td>							
 						<td>docker container run -d --name nginx -p 8080:80 -v $(pwd):/usr/share/nginx/html nginx</td>
 						<td>
-							<b>--name</b> --> renomear a imagem baixada <br>
-							<b>-p</b> --> portas <br>
-							<b>-v</b> --> link apontando volume do container para maquina local <br>
-							<b>$(pwd)</b> --> diretorio atual da onde foi feito o comando 
+							<b>--name</b> => renomear a imagem baixada <br>
+							<b>-p</b> => portas <br>
+							<b>-v</b> => link apontando volume do container para maquina local <br>
+							<b>$(pwd)</b> => diretorio atual da onde foi feito o comando 
 						</td>
 					</tr>
-
-
-
 					<tr>
 						<td></td>
 						<td>docker run --name <strong>NOME_CONTAINER</strong> image</td>								
@@ -122,7 +171,7 @@
 						<td>$ docker image push</td>
 						<td></td>
 					</tr>										
-					<!--
+
 					<tr>
 						<td></td>						
 						<td>docker container run -p 8080:80 nginx</td>								
@@ -158,7 +207,7 @@
 						<td>$ sudo docker stop [id_containter]</td>
 						<td>Parar um containter</td>
 					</tr>
-				-->
+				
 					<tr>
 						<td></td>							
 						<td></td>
@@ -170,7 +219,7 @@
 		</div>
 	</div>
 </div>	
-
+ -->
 <br clear="all">
 OBS[1]: o metodo RUN SEMPRE cria um novo container<br/>
 OBS[2]: modo interativo: o container esta sendo executado ;modo daemon: o container esta sendo executado em background
