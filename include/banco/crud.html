@@ -392,9 +392,11 @@ ORDER BY chave_primaria ASC
 		<h4>SQLServer</h4>
 
 		<h4>SQLite</h4>
-		<pre>select value, 
-			(select sum(t2.value) from table t2 where t2.id  &lt;= t1.id) as accumulated 
-			from table t1 </pre>
+		<pre>SELECT value, 
+(
+  SELECT sum(t2.value) FROM table t2 WHERE t2.id  &lt;= t1.id
+) as accumulated 
+  FROM table t1 </pre>
 			<a href="http://es.uwenku.com/question/p-xamogkua-b.html" target="_blank">Fonte</a>
 
 		<h4>PostgreSQL</h4>

@@ -67,33 +67,36 @@ ou setar o caminho da pasta nas variavies de ambiente.
 
 
 Setado nas variavies, pode-se digitar o keytools diretamente de qualquer local.
-<pre class="terminal">$  keytool -genkey -v -keystore %userprofile%\upload-keystore.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias upload</pre>
+<pre class="terminal">$ keytool -importkeystore -srckeystore %userprofile%\upload-keystore.jks -destkeystore %userprofile%\upload-keystore.jks -deststoretype pkcs12</pre>
+
 Seguindo os seguintes passos ....
 <pre class="terminal">
-  Informe a senha da área de armazenamento de chaves:
-  Informe novamente a nova senha:
-  Qual é o seu nome e o seu sobrenome?
-    [Unknown]:  Roberto Alam
-  Qual é o nome da sua unidade organizacional?
-    [Unknown]:  i9
-  Qual é o nome da sua empresa?
-    [Unknown]:  i9tecnosul
-  Qual é o nome da sua Cidade ou Localidade?
-    [Unknown]:  Porto Alegre
-  Qual é o nome do seu Estado ou Município?
-    [Unknown]:  RS
-  Quais são as duas letras do código do país desta unidade?
-    [Unknown]:  BR
-  CN=Roberto Alam, OU=i9, O=i9tecnosul, L=Porto Alegre, ST=RS, C=BR Está correto?
-    [não]:  s
-  
-  Gerando o par de chaves RSA de 2.048 bit e o certificado autoassinado (SHA256withRSA) com uma validade de 10.000 dias
-          para: CN=Roberto Alam, OU=i9, O=i9tecnosul, L=Porto Alegre, ST=RS, C=BR
-  Informar a senha da chave de <key>
-          (RETURN se for igual à senha da área do armazenamento de chaves):
-  [Armazenando key.jks]</key>  </pre>
+Informe a senha da área de armazenamento de chaves:
+Informe novamente a nova senha:
+Qual é o seu nome e o seu sobrenome?
+  [Unknown]:  Roberto Alam
+Qual é o nome da sua unidade organizacional?
+  [Unknown]:  i9
+Qual é o nome da sua empresa?
+  [Unknown]:  i9tecnosul
+Qual é o nome da sua Cidade ou Localidade?
+  [Unknown]:  Porto Alegre
+Qual é o nome do seu Estado ou Município?
+  [Unknown]:  RS
+Quais são as duas letras do código do país desta unidade?
+  [Unknown]:  BR
+CN=Roberto Alam, OU=i9, O=i9tecnosul, L=Porto Alegre, ST=RS, C=BR Está correto?
+  [não]:  s
 
-<kbd>DESATUALIZADO</kbd>
+Gerando o par de chaves RSA de 2.048 bit e o certificado autoassinado (SHA256withRSA) com uma validade de 10.000 dias
+    para: CN=Roberto Alam, OU=i9, O=i9tecnosul, L=Porto Alegre, ST=RS, C=BR
+Informar a senha da chave de &lt;key&gt;
+    (RETURN se for igual à senha da área do armazenamento de chaves):
+[Armazenando key.jks]&lt;/key&gt;  </pre>
+
+<kbd>DESATUALIZADO[2]</kbd>
+<pre class="terminal">$  keytool -genkey -v -keystore %userprofile%\upload-keystore.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias upload</pre>
+<kbd>DESATUALIZADO[1]</kbd>
 <pre class="disabled">$ keytool -genkey -v -keystore c:\Users\49583\key.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias key</pre>
 
 
