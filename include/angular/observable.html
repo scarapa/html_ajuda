@@ -1,0 +1,21 @@
+<ol>
+  <li>MULTIPLOS OBSERVABLES</li>
+</ol>
+
+<hr>
+<a name=""></a>
+<h2>MULTIPLOS OBSERVABLES</h2>
+<pre>
+  let obsPesqs: Observable&lt;Uo[]&gt;[] = [];<span style="color:green;font-weight: bold;">
+
+  // pesquisando por varios codigos dentro de LOOP</span>
+  this.filtro.CodOrgaoMultiplo.toString().split(',')
+    .map(Number)
+    .forEach((codOrgao) =&gt; {
+      obsPesqs.push( this.tabelasService.listaUos(codOrgao, text) )
+    });<span style="color:green;font-weight: bold;">
+  
+  // juntando as listas de observable em uma UNICA</span>
+  this.obsPesquisa = scheduled(obsPesqs, asyncScheduler)
+    .pipe(combineAll(), map((listaUo: Array&lt;Uo[]&gt;) =&gt; [].concat(...listaUo)));  
+</pre>
