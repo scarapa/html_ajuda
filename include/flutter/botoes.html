@@ -1,38 +1,40 @@
 <ol>
-    <li><a href="#bottomnavigatorbar">BottomNavigationBar</a></li>
-    <li><a href="#multiplos-floatingActionButton">Multiplos FloatingActionButton</a></li>
+  <li><a href="#bottomnavigatorbar">BottomNavigationBar</a></li>
+  <li><a href="#multiplos-floatingActionButton">Multiplos FloatingActionButton</a></li>
+  <li><a href="#elevatedButton">ElevatedButton</a></li>
 </ol>
 
+<!-- ------------------------------------------------ -->
 <hr>
 <a name="bottomnavigatorbar"></a>
 <h2>BottomNavigationBar</h2>
 <pre>
 bottom = new Theme(
-    data: Theme.of(context).copyWith(
-        canvasColor: Colors.indigo,
-    ),
-    child: Container(
-        decoration: BoxDecoration(
-            boxShadow: <BoxShadow>[
-                BoxShadow(
-                    color: Colors.black,
-                    blurRadius: 20,
-                ),
-            ],
+  data: Theme.of(context).copyWith(
+    canvasColor: Colors.indigo,
+  ),
+  child: Container(
+    decoration: BoxDecoration(
+      boxShadow: &lt;BoxShadow&gt;[
+        BoxShadow(
+          color: Colors.black,
+          blurRadius: 20,
         ),
-        child: new BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            onTap: _selecteScreen,
-            unselectedItemColor: Colors.black54,
-            selectedItemColor: Colors.white,
-            currentIndex: _selectedScreenIndex,
-            items: [
-                BottomNavigationBarItem(icon: Icon(Icons.home , size: MediaQuery.of(context).size.width * _tamanhoIconeBarra,), title: Text('Inicio' , style: TextStyle(fontSize: MediaQuery.of(context).size.width * _tamanhoFonteBarra),) ),
-                BottomNavigationBarItem(icon: Icon(Icons.shopping_basket, size:  MediaQuery.of(context).size.width * _tamanhoIconeBarra), title: Text('Feiras', style: TextStyle(fontSize: MediaQuery.of(context).size.width * _tamanhoFonteBarra))),
-                BottomNavigationBarItem(icon: Icon(MdiIcons.mapMarkerRadius, size: MediaQuery.of(context).size.width * _tamanhoIconeBarra), title: Text('Escritorios', style: TextStyle(fontSize: MediaQuery.of(context).size.width * _tamanhoFonteBarra))),
-                BottomNavigationBarItem(icon: Icon(Icons.help, size: MediaQuery.of(context).size.width * _tamanhoIconeBarra), title: Text('Sobre', style: TextStyle(fontSize: MediaQuery.of(context).size.width * _tamanhoFonteBarra))),
-            ],
-        ),   
+      ],
+    ),
+    child: new BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      onTap: _selecteScreen,
+      unselectedItemColor: Colors.black54,
+      selectedItemColor: Colors.white,
+      currentIndex: _selectedScreenIndex,
+      items: [
+        BottomNavigationBarItem(icon: Icon(Icons.home , size: MediaQuery.of(context).size.width * _tamanhoIconeBarra,), title: Text('Inicio' , style: TextStyle(fontSize: MediaQuery.of(context).size.width * _tamanhoFonteBarra),) ),
+        BottomNavigationBarItem(icon: Icon(Icons.shopping_basket, size:  MediaQuery.of(context).size.width * _tamanhoIconeBarra), title: Text('Feiras', style: TextStyle(fontSize: MediaQuery.of(context).size.width * _tamanhoFonteBarra))),
+        BottomNavigationBarItem(icon: Icon(MdiIcons.mapMarkerRadius, size: MediaQuery.of(context).size.width * _tamanhoIconeBarra), title: Text('Escritorios', style: TextStyle(fontSize: MediaQuery.of(context).size.width * _tamanhoFonteBarra))),
+        BottomNavigationBarItem(icon: Icon(Icons.help, size: MediaQuery.of(context).size.width * _tamanhoIconeBarra), title: Text('Sobre', style: TextStyle(fontSize: MediaQuery.of(context).size.width * _tamanhoFonteBarra))),
+      ],
+    ),   
 )
 </pre>
 
@@ -40,43 +42,42 @@ bottom = new Theme(
 
 <pre>
 class HomePage extends StatelessWidget {
-    @override
-    Widget build(BuildContext context) {
-        return Scaffold(
-            body: Center(
-                child: Text('Sample App'),
-            ),<b style="color:red">
-            bottomNavigationBar: Container(
-                decoration: BoxDecoration(
-                    boxShadow: &lt;BoxShadow&gt;[
-                        BoxShadow(
-                        color: Colors.black,
-                        blurRadius: 10,
-                        ),
-                    ],
-                ),</b>
-                child: BottomNavigationBar(
-                    elevation: 10,
-                    items: [
-                        BottomNavigationBarItem(
-                        icon: Icon(Icons.ac_unit),
-                        title: Text('Test'),
-                        ),
-                        BottomNavigationBarItem(
-                        icon: Icon(Icons.access_alarm),
-                        title: Text('Test'),
-                        ),
-                        BottomNavigationBarItem(
-                        icon: Icon(Icons.access_alarm),
-                        title: Text('Test'),
-                        ),
-                    ],
-                ),
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Text('Sample App'),
+      ),<b style="color:red">
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          boxShadow: &lt;BoxShadow&gt;[
+            BoxShadow(
+            color: Colors.black,
+            blurRadius: 10,
             ),
-        );
-    }
-}    
-</pre>
+          ],
+        ),</b>
+        child: BottomNavigationBar(
+          elevation: 10,
+          items: [
+            BottomNavigationBarItem(
+            icon: Icon(Icons.ac_unit),
+            title: Text('Test'),
+            ),
+            BottomNavigationBarItem(
+            icon: Icon(Icons.access_alarm),
+            title: Text('Test'),
+            ),
+            BottomNavigationBarItem(
+            icon: Icon(Icons.access_alarm),
+            title: Text('Test'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}</pre>
 <a href="https://stackoverflow.com/questions/49307858/style-bottomnavigationbar-in-flutter" target="_blank">stackoverflow</a><br>
 <a href="https://stackoverflow.com/questions/61934827/how-to-apply-elevation-in-bottom-navigation-bar-in-flutter" target="_blank">stackoverflow</a><br>
 
@@ -96,13 +97,13 @@ I/flutter (21786): In this case, multiple heroes had the following tag: &lt;defa
 
 Solucao
 <table>
-    <tr>
-        <th style="text-align: center;">CODIGO</th>
-        <th style="text-align: center;">IMAGEM</th>
-    </tr>
-    <tr>
-        <td>
-<pre>
+  <tr>
+    <th style="text-align: center;">CODIGO</th>
+    <th style="text-align: center;">IMAGEM</th>
+  </tr>
+  <tr>
+    <td>
+      <pre>
 floatingActionButton: Container(
     height: alturaDisponivel,
     child: Column(
@@ -122,18 +123,33 @@ floatingActionButton: Container(
         ],
     ),
 ),
-</pre>            
-        </td>
-        <td style="text-align: center;">
-            <div class="centro center">
-                <img src="./images/flutter-multiple-botao-floating-01.jpg" class="bp w40">
-            </div>
-        </td>
-    </tr>
+</pre>
+    </td>
+    <td style="text-align: center;">
+      <div class="centro center">
+        <img src="./images/flutter-multiple-botao-floating-01.jpg" class="bp w40">
+      </div>
+    </td>
+  </tr>
 </table>
+<a href="https://stackoverflow.com/questions/51125024/there-are-multiple-heroes-that-share-the-same-tag-within-a-subtree"
+  target="_blank">stackoverflow</a>
 
+<!-- ------------------------------------------------ -->
+<hr>
+<a name="elevatedButton"></a>
+<h2>ElevatedButton</h2>
+Botao <button>RaisedButton</button> está depreceado, portanto esse é o novo botao <button>ElevatedButton</button>
 
+  <h3>Styling | Estilizando</h3>
+  <pre>
+  ElevatedButton(<b class="red">
+    style: ElevatedButton.styleFrom(
+      foregroundColor: Theme.of(context).colorScheme.onPrimary,
+      backgroundColor: Theme.of(context).colorScheme.primary,
+    ).copyWith(elevation: ButtonStyleButton.allOrNull(0.0)),</b>
+    onPressed: onPressed,
+    child: const Text('Filled'),
+  ),</pre>
 
-
-<a href="https://stackoverflow.com/questions/51125024/there-are-multiple-heroes-that-share-the-same-tag-within-a-subtree" target="_blank">stackoverflow</a>
-
+  <br><a href="https://api.flutter.dev/flutter/material/ButtonStyle-class.html" target="_blank">flutter</a>

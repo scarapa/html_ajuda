@@ -24,9 +24,10 @@
   <li><a href="#nao_gera_apk_prod_emulador">Nao gera APK PRODUCAO NO EMULADOR</a></li>
   <li><a href="#plugin_dio_erro_01">PLUGIN DIO - 01</a></li>
   <li>
-    <a href="#nao_builda_01">Erro no BUILDA</a>
+    <a href="#nao_builda">Erro no BUILDA</a>
     <ol>
       <li><a href="#nao_builda_01">Erro 01</a></li>
+      <li><a href="#nao_builda_02">Erro 02</a></li>
     </ol>
   </li>  
   <li><a href="#erro-assinatura-01">Erro Geração Assinatura</a></li>
@@ -848,44 +849,74 @@ por:
 
 <!-- -------------------------------------------------------------- -->
 <hr>
-<a name="nao_builda_01"></a>
-<h2>NAO BUILDA - 01</h2>
-Erro acontece quando executa o comando pra buildar apk:<code>$ flutter build apk --no-shrink</code>
-<pre class="terminal">$ flutter build apk --no-shrink
-You are building a fat APK that includes binaries for android-arm, android-arm64, android-x64.
-If you are deploying the app to the Play Store, it's recommended to use app bundles or split the APK to reduce the APK size.
-    To generate an app bundle, run:
-        flutter build appbundle --target-platform android-arm,android-arm64,android-x64
-        Learn more on: https://developer.android.com/guide/app-bundle
-    To split the APKs per ABI, run:
-        flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi
-        Learn more on:  https://developer.android.com/studio/build/configure-apk-splits#configure-abi-split<span style="color:Red">
-This application cannot tree shake icons fonts. It has non-constant instances of IconData at the following locations:
-  - file:///D:/projetos/flutter/me_poupe/lib/componentes/icone_gambiarra.dart:19:7
+<a name="nao_builda"></a>
+<h2>NAO BUILDA</h2>
+
+  <a name="nao_builda_01"></a>
+  <h3>NAO BUILDA</h3>
+  Erro acontece quando executa o comando pra buildar apk:<code>$ flutter build apk --no-shrink</code>
+  <pre class="terminal">$ flutter build apk --no-shrink
+  You are building a fat APK that includes binaries for android-arm, android-arm64, android-x64.
+  If you are deploying the app to the Play Store, it's recommended to use app bundles or split the APK to reduce the APK size.
+      To generate an app bundle, run:
+          flutter build appbundle --target-platform android-arm,android-arm64,android-x64
+          Learn more on: https://developer.android.com/guide/app-bundle
+      To split the APKs per ABI, run:
+          flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi
+          Learn more on:  https://developer.android.com/studio/build/configure-apk-splits#configure-abi-split<span style="color:Red">
+  This application cannot tree shake icons fonts. It has non-constant instances of IconData at the following locations:
+    - file:///D:/projetos/flutter/me_poupe/lib/componentes/icone_gambiarra.dart:19:7
 
 
-FAILURE: Build failed with an exception.
+  FAILURE: Build failed with an exception.
 
-* Where:
-Script 'D:\flutter_sdk_1_20\packages\flutter_tools\gradle\flutter.gradle' line: 896
+  * Where:
+  Script 'D:\flutter_sdk_1_20\packages\flutter_tools\gradle\flutter.gradle' line: 896
 
-* What went wrong:
-Execution failed for task ':app:compileFlutterBuildRelease'.
-> Process 'command 'D:\flutter_sdk_1_20\bin\flutter.bat'' finished with non-zero exit value 1
+  * What went wrong:
+  Execution failed for task ':app:compileFlutterBuildRelease'.
+  > Process 'command 'D:\flutter_sdk_1_20\bin\flutter.bat'' finished with non-zero exit value 1
 
-* Try:
-Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+  * Try:
+  Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
 
-* Get more help at https://help.gradle.org
+  * Get more help at https://help.gradle.org
 
-BUILD FAILED in 1m 21s</span>
-Running Gradle task 'assembleRelease'...
-Running Gradle task 'assembleRelease'... Done                      82,4s<span style="color:Red">
-Gradle task assembleRelease failed with exit code 1</span></pre>
+  BUILD FAILED in 1m 21s</span>
+  Running Gradle task 'assembleRelease'...
+  Running Gradle task 'assembleRelease'... Done                      82,4s<span style="color:Red">
+  Gradle task assembleRelease failed with exit code 1</span></pre>
 
-SOLUCAO:  <code>flutter build apk --no-shrink <b>--no-tree-shake-icons</b></code>
-<br><a href="https://stackoverflow.com/questions/63335694/this-application-cannot-tree-shake-icons-fonts" target="_blank">stackoverflow</a>
+  SOLUCAO:  <code>flutter build apk --no-shrink <b>--no-tree-shake-icons</b></code>
+  <br><a href="https://stackoverflow.com/questions/63335694/this-application-cannot-tree-shake-icons-fonts" target="_blank">stackoverflow</a>
 
+  <!-- -------------------------------------------------------------- -->
+  <a name="nao_builda_02"></a>
+  <h3>NAO BUILDA - "Build failed due to use of deprecated Android v1 embedding" when building Flutter app</h3>
+  <pre>to migrate your project. You may also pass the --ignore-deprecation flag to
+    ignore this check and continue with the deprecated v1 embedding. However,
+    the v1 Android embedding will be removed in future versions of Flutter.
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    The detected reason was:
+    
+      C:\Users\ALI HASSAN\OneDrive\Desktop\New folder\arcore_app\example\android\app\src\main\AndroidManifest.xml uses
+      `android:name="io.flutter.app.FutterApplication"`
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    
+    Build failed due to use of deprecated Android v1 embedding.</pre>
+
+  Voce precisa alterar o arquivo <code>android\app\src\main\AndroidManifest.xml</code> de:
+  <pre>&lt;application
+    android:name="io.flutter.app.FlutterApplication"
+    ...</pre>
+  para:
+  <pre>&lt;meta-data
+    android:name="flutterEmbedding"
+    android:value="2" /&gt;
+      ...</pre>
+
+    <br><a href="https://stackoverflow.com/questions/71413851/build-failed-due-to-use-of-deprecated-android-v1-embedding-when-building-flutt">stackoverflow</a>
+    <br><a href="https://stackoverflow.com/questions/71492645/flutter-build-failed-due-to-use-of-deprecated-android-v1-embedding">stackoverflow</a>
 
 <!-- -------------------------------------------------------------- -->
 <hr>

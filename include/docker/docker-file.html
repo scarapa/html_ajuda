@@ -1,0 +1,201 @@
+<ol>
+  <li><a href="#intro">INTRODUCAO</a></li>
+  <li><a href="#comandos">COMANDOS</a></li>
+</ol>
+
+<!-- ----------------------------------- -->
+<a name="intro"></a>
+<h2>INTRODUCAO</h2>
+
+  <h3>CONCEITO</h3>
+  O Dockerfile nada mais é do que um meio que utilizamos para criar nossas próprias imagens. Em outras palavras, ele serve como a receita para construir um container, permitindo definir um ambiente personalizado e próprio para meu projeto pessoal ou empresarial.
+  <br><br>
+
+  Há ainda um outro ponto muito interessante que deve ser explorado (vejo muitas pessoas confundirem quando ainda estão aprendendo) para entendermos melhor o conceito e começarmos a compreender o Dockerfile mais a fundo: qual é exatamente a diferença entre um container e uma imagem?
+  <br><br>
+
+
+  <h3>IMAGEM x CONTAINER</h3>
+  Uma imagem nada mais é do que uma representação imutável de como será efetivamente construído um container. Por conta disso, nós não rodamos ou inicializamos imagens, nós fazemos isso com os containers.
+  <br><br>
+  
+  O ponto que temos que entender agora é o seguinte: escrevemos um Dockerfile, construímos uma imagem a partir dele executando o comando docker build, e, por fim, criamos e rodamos o container com o comando docker run. O container é o fim enquanto a imagem é o meio.
+  <br><br>
+
+  <div class="w100 centro central">
+    <img src="./images/docker-imagem-docker-build-container-docker-run.jpg" class="bp w70">
+  </div>
+  <br><br>
+
+  <h3>EXEMPLO</h3>
+  Escolhi uma pasta no meu computador e nela criei um arquivo chamado Dockerfile (com letra 
+  maiúscula e sem extensão mesmo). Nele, adicione a seguinte linha:
+  <br><br>
+
+  <code>FROM beevelop/ionic</code>
+  <br><br>
+
+  Então, iniciei o processo de criação da imagem. Para isso, abri o terminal e acessei a pasta 
+  que contém o Dockerfile. Depois, executei o comando docker build. (com o ponto) e o docker 
+  começou a construir a imagem a partir do arquivo.
+  <br><br>
+
+  o terminar o processo, executei o comando docker image ls, e obtive a seguinte saída:
+  <pre>
+  REPOSITORY       TAG       IMAGE ID       CREATED          SIZE
+  beevelop/ionic   latest    749060b48224   17 months ago    5.86GB</pre>
+
+  O resultado acima mostra uma imagem a partir do Dockerfile e ela está pronta para 
+  rodar um container com o comando docker run.
+  <br><br>
+
+  Agora que já sei o que é, e para que serve o Dockerfile, decidi aprender qual o 
+  propósito de cada uma das instruções desta ferramenta.
+  <br><br>
+
+
+<!-- ----------------------------------- -->
+<a name="comandos"></a>
+<h2>COMANDOS</h2>
+Como executar um Dockerfile, entendendo os comandos.
+  
+  <h3>FROM</h3>
+  A instrução FROM é obrigatória, com essa instrução, pode-se definir qual será o 
+  ponto de partida da imagem que criaremos com o nosso Dockerfile.
+  <pre>FROM ubuntu:18.04</pre>
+  
+  Mas e caso eu queira criar uma imagem do zero absoluto? Sem me basear em imagem alguma?
+  <pre>FROM scratch</pre>
+
+  <h3>RUN</h3>
+  Pode ser executada uma ou mais vezes e, com ela, posso definir quais serão os comandos 
+  executados na etapa de criação de camadas da imagem.
+  <pre>
+  FROM ubuntu:18.04
+  RUN apt-get update
+  RUN apt-get install openjdk-8-jdk -y</pre>
+  
+  Quando executo o comando <code>docker build</code>, além de baixar a imagem do <b class="red">Ubuntu 18.04</b> 
+  para colocar na minha imagem, o processo de criação também executará os comandos para 
+  atualizar os repositórios do Ubuntu através do <code>apt-get update</code>, e para instalar o Java 8 
+  utilizará o <code>apt-get install openjdk-8-jdk-y</code>
+
+  Para criar um container utilizando a imagem gerada e podendo manter a execução do container, 
+  executei o comando passando o ID da imagem gerada na minha máquina através do comando
+  <pre class="terminal">$ docker run-it [IMAGEM_ID]</pre>
+  
+  EXEMPLO:
+  <pre class="terminal">$ docker run-it 41afdc6b059f</pre>
+
+  O <code>-it</code> serve para rodar o container em modo interativo, ou seja, 
+  eu quero interagir com ele efetivamente. Caso não utilizasse esse parâmetro, o container subiria e cairia logo em seguida.
+
+  Cada <b>RUN</b> criará uma etapa na criação da imagem. Mas, o que isso muda? <br>
+
+  O grande diferencial da instrução <b>RUN</b> é que cada camada gerada por ele poderá ser 
+  reutilizada na criação de outras imagens.
+  <br><br>
+
+  Então, para testar, alterei meu Dockerfile para criar uma imagem nova com elementos em 
+  comum da outra imagem:
+  <pre>
+  FROM ubuntu:18.04
+  RUN apt-get update
+  RUN apt-get install openjdk-8-jdk -y
+  RUN touch arquivo-de-boas-vindas    
+  </pre>
+
+  Ele conseguirá reutilizar diversas camadas e tornará o processo muito mais rápido. Caso 
+  eu queira adicionar um comando novo qualquer, ao executar o comando docker build . 
+  para gerar essa nova imagem.
+  <br><br>
+
+  O RUN aceita parâmetros de dois jeitos:
+  <ul>
+    <li><code>RUN apt-get install openjdk-8-jdk -y</code></li>
+    <li><code>RUN ["apt-get", "install" "openjdk-8-jdk" ,"-y"]</code></li>
+  </ul>
+
+  <h3>CMD </h3>
+  Bem parecida com a instrução RUN, com algumas poucas diferenças.
+  <br><br>
+
+  A sintaxe é a mesma, podemos passar os parâmetros do mesmo modo que a instrução RUN, 
+  alterando o último RUN por um CMD:
+  <pre>
+  FROM ubuntu:18.04
+  RUN apt-get update
+  RUN apt-get install openjdk-8-jdk -y
+  CMD touch arquivo-de-boas-vindas    
+  </pre>
+  É executado <b>SOMENTE UM</b> comando <code>CMD</code>, ou seja se houver mais de um é executado o 
+  <b>ULTIMO</b> comando <code>CMD</code>
+
+  <h3>ENTRYPOINT</h3>
+  Essa instrução faz exatamente a mesma coisa, porém seus parâmetros não são sobrescritos igual ao <code>CMD</code>.
+  
+  <h3>ADD</h3>
+  O papel do ADD é fazer a cópia de um arquivo, diretório ou até mesmo fazer o download de 
+  uma URL de nossa máquina host e colocar dentro da imagem
+  <br><br>
+
+  No exemplo abaixo é utilizado o <code>ADD</code> para copiar o arquivo chamado arquivo-host da 
+  minha máquina para dentro da imagem, com o nome arquivo-host-transferido:
+  <pre>
+  FROM ubuntu:18.04
+  RUN apt-get update
+  RUN ["apt-get", "install", "openjdk-8-jdk" ,"-y"]
+  ADD arquivo-host arquivo-host-transferido
+  </pre>
+  
+  Tem alguns efeitos interessantes, como: caso o arquivo que esteja sendo passado seja 
+  um arquivo de extensão tar, ele fará a descompressão automaticamente, além do fato 
+  já mencionado de poder fazer download de arquivos por URLS.
+
+  <h3>COPY</h3>
+  Permite apenas a passagem de arquivos ou diretórios, diferente do ADD, que permite downloads. 
+  Como podemos ver abaixo:
+  <pre>
+  FROM ubuntu:18.04
+  RUN apt-get update
+  RUN ["apt-get", "install", "openjdk-8-jdk" ,"-y"]
+  COPY arquivo-host arquivo-host-transferido
+  </pre>
+
+  <h3>EXPOSE</h3>
+  Na verdade o propósito é servir apenas para documentação.
+  <pre>
+  FROM ubuntu:18.04
+  RUN apt-get update
+  RUN apt-get install openjdk-8-jdk -y
+  EXPOSE 8080
+  </pre>
+
+  <h3>VOLUME</h3>
+  Cria uma pasta em nosso container que será compartilhada entre o container e o host, 
+  funcionando do seguinte modo:
+  <pre>
+  FROM ubuntu:18.04
+  RUN apt-get update
+  RUN apt-get install openjdk-8-jdk -y
+  VOLUME /foo
+  </pre>
+  Quando criarmos um container dessa imagem, ele criará uma pasta chamada foo:
+  <br><br>
+
+  Todo arquivo criado dentro dessa pasta será acessível a partir da máquina host
+   no caminho <code>/var/lib/docker/volumes</code>!
+
+  <h3>WORKDIR</h3>
+  Tem o propósito de definir o nosso ambiente de trabalho. Com ela, definimos 
+  onde as instruções <code>CMD, RUN, ENTRYPOINT, ADD e COPY</code> executarão suas tarefas, 
+  além de definir o diretório padrão que será aberto ao executarmos o container.
+  <pre>
+  FROM ubuntu:18.04
+  RUN apt-get update
+  RUN ["apt-get", "install", "openjdk-8-jdk" ,"-y"]
+  WORKDIR /pasta-qualquer
+  COPY arquivo-host arquivo-host-transferido    
+  </pre>
+  
+<br><a href="https://www.alura.com.br/artigos/desvendando-o-dockerfile" target="blank"></a>

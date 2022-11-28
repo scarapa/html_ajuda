@@ -1,13 +1,20 @@
 
 <ol>
-    <li><a href="#cannot-find-module-angular-router">NAO ENCONTRA <b>@NOME_PACOTE</b></a></li>
-    <li><a href="#nao-levanta-projeto-001">NAO LEVANTA PROJETO - 001</a></li>
-    <li><a href="#nao-levanta-projeto-002">NAO LEVANTA PROJETO - 002</a></li>
-    <li><a href="#nao-levanta-projeto-003">NAO LEVANTA PROJETO - 003</a></li>
-    <li><a href="#gradle-001">GRADLE - 001</a></li>
+  <li><a href="#cannot-find-module-angular-router">NAO ENCONTRA <b>@NOME_PACOTE</b></a></li>
+  <li><a href="#nao-levanta-projeto-001">NAO LEVANTA PROJETO - 001</a></li>
+  <li><a href="#nao-levanta-projeto-002">NAO LEVANTA PROJETO - 002</a></li>
+  <li><a href="#nao-levanta-projeto-003">NAO LEVANTA PROJETO - 003</a></li>
+  <li><a href="#gradle-001">GRADLE - 001</a></li>
+  <li><a href="#configuracao-01">SUPORTE EXPERIMENTAL DE DECORATOR</a></li>
+  <li><a href="#breaking-webpack-01">BREAKING CHANGE: webpack < 5</a></li>
+  <li><a href="#global-is-not-defined-01">GLOBAL IS NOT DEFINED</a></li>
+  <li><a href="#process-is-not-defined-01">PROCESS IS NOT DEFINED</a></li>
+
     <!-- <li><a href="#"></a></li> -->
 </ol>
 
+<!-- -------------------------------------------------- -->
+<hr>
 <a name="cannot-find-module-angular-router"></a>
 <h2>NAO ENCONTRA <b>NOME_PACOTE</b></h2>
 <code>Cannot find module <b>@NOME_PACOTE</b></code>
@@ -83,6 +90,7 @@ npm ERR! typeerror     <http://github.com/npm/npm/issues></pre>
 <br><a href="https://qastack.com.br/programming/5650169/uninstall-node-js-using-linux-command-line">qastack</a>
 <br><a href="https://stackoverflow.com/questions/26320901/cannot-install-nodejs-usr-bin-env-node-no-such-file-or-directory">stackoverflow</a>
 
+<!-- -------------------------------------------------- -->
 <hr>
 <a name="nao-levanta-projeto-003"></a>
 <h2>NAO LEVANTA PROJETO - 003</h2>
@@ -101,7 +109,7 @@ Servidor sobe, no entanto sobe <code>COM ERRO</code>
 
 <br><a href="https://cursos.alura.com.br/forum/topico-erro-ao-subir-servidor-localmente-77628" target="_blank">cursos.alura</a>
 
-
+<!-- -------------------------------------------------- -->
 <hr>
 <a name="gradle-001"></a>
 <h2>GRADLE - 001</h2>
@@ -140,13 +148,148 @@ Nesses 3 arquivos
 	<li>platforms/android/CordovaLib/build.gradle</li>
 </ul>
 
-<a href="https://forum.ionicframework.com/t/build-fails-on-android-could-not-resolve-all-files-for-configuration/119024">ionicframework</a><br>
-<a href="https://github.com/flutter/flutter/issues/23553">github</a>
+<br><a href="https://forum.ionicframework.com/t/build-fails-on-android-could-not-resolve-all-files-for-configuration/119024">ionicframework</a><br>
+<br><a href="https://github.com/flutter/flutter/issues/23553">github</a>
 
+
+<!-- -------------------------------------------------- -->
 <hr>
-<a name=""></a>
-<h2>An unhandled exception occurred: Could not find the implementation for builder @ionic/angular-toolkit:cordova-build</h2>
-No momento(02/08/2019) existe uma incompatibilidade do <b>@ionic/angular-toolkit</b> com o <b>Angular 8</b>
-<pre class="terminal"></pre>
+<a name="configuracao-01"></a>
+<h2>SUPORTE EXPERIMENTAL DE DECORATOR</h2>
+<div class="centro w100">
+  <img src="./images/angular-suporte-decorator-01.jpg" class="bp w70">
+</div>
+texto na integra abaixo:
+<pre>O suporte experimental de decorador é um recurso que está sujeito a alterações em uma liberação futura. Configure a opção 'experimentalDecorators' em seu 'tsconfig' ou 'jsconfig' para remover este aviso.ts(1219)</pre>
+
+Solucao: abrir e fechar o VSCode
+
+<!-- -------------------------------------------------- -->
+<hr>
+<a name="breaking-webpack-01"></a>
+<h2>BREAKING CHANGE: webpack < 5</h2>
+<pre>./node_modules/jwa/index.js:5:13-30 - Error: Module not found: Error: Can't resolve 'crypto' in '/app/node_modules/jwa'
+
+BREAKING CHANGE: webpack &lt; 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+    - add a fallback 'resolve.fallback: { "crypto": require.resolve("crypto-browserify") }'
+    - install 'crypto-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+    resolve.fallback: { "crypto": false }
+
+./node_modules/jwa/index.js:9:11-26 - Error: Module not found: Error: Can't resolve 'util' in '/app/node_modules/jwa'
+
+BREAKING CHANGE: webpack &lt; 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+    - add a fallback 'resolve.fallback: { "util": require.resolve("util/") }'
+    - install 'util'
+If you don't want to include a polyfill, you can use an empty module like this:
+    resolve.fallback: { "util": false }
+
+./node_modules/jws/lib/data-stream.js:4:13-30 - Error: Module not found: Error: Can't resolve 'stream' in '/app/node_modules/jws/lib'
+
+BREAKING CHANGE: webpack &lt; 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+    - add a fallback 'resolve.fallback: { "stream": require.resolve("stream-browserify") }'
+    - install 'stream-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+    resolve.fallback: { "stream": false }
+
+./node_modules/jws/lib/data-stream.js:6:11-26 - Error: Module not found: Error: Can't resolve 'util' in '/app/node_modules/jws/lib'
+
+BREAKING CHANGE: webpack &lt; 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+    - add a fallback 'resolve.fallback: { "util": require.resolve("util/") }'
+    - install 'util'
+If you don't want to include a polyfill, you can use an empty module like this:
+    resolve.fallback: { "util": false }
+
+./node_modules/jws/lib/sign-stream.js:8:13-30 - Error: Module not found: Error: Can't resolve 'stream' in '/app/node_modules/jws/lib'
+
+BREAKING CHANGE: webpack &lt; 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+    - add a fallback 'resolve.fallback: { "stream": require.resolve("stream-browserify") }'
+    - install 'stream-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+    resolve.fallback: { "stream": false }
+
+./node_modules/jws/lib/sign-stream.js:12:11-26 - Error: Module not found: Error: Can't resolve 'util' in '/app/node_modules/jws/lib'
+
+BREAKING CHANGE: webpack &lt; 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+    - add a fallback 'resolve.fallback: { "util": require.resolve("util/") }'
+    - install 'util'
+If you don't want to include a polyfill, you can use an empty module like this:
+    resolve.fallback: { "util": false }
+
+./node_modules/jws/lib/verify-stream.js:8:13-30 - Error: Module not found: Error: Can't resolve 'stream' in '/app/node_modules/jws/lib'
+
+BREAKING CHANGE: webpack &lt; 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+    - add a fallback 'resolve.fallback: { "stream": require.resolve("stream-browserify") }'
+    - install 'stream-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+    resolve.fallback: { "stream": false }
+
+./node_modules/jws/lib/verify-stream.js:12:11-26 - Error: Module not found: Error: Can't resolve 'util' in '/app/node_modules/jws/lib'
+
+BREAKING CHANGE: webpack &lt; 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+    - add a fallback 'resolve.fallback: { "util": require.resolve("util/") }'
+    - install 'util'
+If you don't want to include a polyfill, you can use an empty module like this:
+    resolve.fallback: { "util": false }</pre>
+
+Solucao: mesmo após inserir as depedencias foi necessário setar o caminho dos plugins no <code>tsconfig.json</code>
+<pre>"paths":{
+  "crypto":["./node_modules/crypto-js","./node_modules/crypto-browserify"],
+  "stream": ["./node_modules/stream-browserify"],
+  "http": ["./node_modules/stream-http"],
+  "https": ["./node_modules/https-browserify"],
+}</pre>
+<br><a href="https://stackoverflow.com/questions/67572355/webpack-5-angular-polyfill-for-node-js-crypto-js" target="_blank">stackoverflow</a>
 
 
+<!-- -------------------------------------------------- -->
+<hr>
+<a name="global-is-not-defined-01"></a>
+<h2>GLOBAL IS NOT DEFINED</b></h2>
+<pre>Uncaught ReferenceError: global is not defined
+  1396 _stream_readable.js:48
+  Webpack 27</pre>
+
+<kbd>SOLUCAO</kbd><br> 
+inserir no arquivo <code>index.html</code> a sintaxe abaixo:
+<pre>&lt;script&gt; global = window; &lt;/script&gt;</pre>
+
+<br><a href="https://github.com/nodejs/readable-stream/issues/426" target="_blank">github</a>
+
+<!-- -------------------------------------------------- -->
+<hr>
+<a name="process-is-not-defined-01"></a>
+<h2>PROCESS IS NOT DEFINED</b></h2>
+<pre>Uncaught ReferenceError: process is not defined
+  74 util.js:109
+  Webpack 25</pre>
+
+<kbd>SOLUCAO</kbd><br> 
+inserir no arquivo <code>/app/src/polyfills.ts</code> a sintaxe abaixo:
+<pre>(window as any).process = { env: { DEBUG: undefined }, };</pre>
+
+<br><a href="https://github.com/twilio/twilio-client.js/issues/284" target="_blank">github</a>
