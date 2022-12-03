@@ -1,49 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-    <!-- HEADER -->
-    <head>
-        <title>AJUDA</title>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="v2" />
-        <meta name="author" content="Roberto Aguiar Alam" />
-        <meta name="email" content="scarapa@gmail.com" />        
-		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-        <!-- ##########     ########## -->
-        <!-- ########## CSS ########## -->
-        <!-- ##########     ########## -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <!-- <link href="css/sb-admin-2.css" rel="stylesheet">
-        <link href="css/metisMenu.css" rel="stylesheet"> -->
-        <link href="css/fontawesome-NOVO.css" rel="stylesheet" type="text/css">
-        <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
-        <link href="css/materialdesignicons.css" rel="stylesheet">
-        <link href="css/devicon.min.css" rel="stylesheet" charset="utf-8">
-        <link href="css/whhg.css" rel="stylesheet" charset="utf-8">        
-        <link href="css/flutter-Roboto.css" rel="stylesheet" charset="utf-8">
-        <link href="css/flutter-Material.css" rel="stylesheet" charset="utf-8">
-        <link href="css/checkbox3.min.css" rel="stylesheet">
-        <link href="css/datepicker.css" rel="stylesheet">
-        <!-- <link href="css/select2.min.css" rel="stylesheet"> -->
-        <link href="css/select2.1.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
-        
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/metisMenu.min.js"></script>
-        <script src="js/sb-admin-2.js"></script>
-        <!-- <script src="js/select2.min.js"></script> -->
-        <script src="js/select2.1.js"></script>
-        <script src="js/html2canvas.js"></script>
-        <script src="js/bootstrap-datepicker_1.6.1.js"></script>
-        <script src="js/codificacao.js"></script>
+  <!-- HEADER -->
+  <head>
+    <title>AJUDA</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="v2" />
+    <meta name="author" content="Roberto Aguiar Alam" />
+    <meta name="email" content="scarapa@gmail.com" />        
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <!-- ##########     ########## -->
+    <!-- ########## CSS ########## -->
+    <!-- ##########     ########## -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="css/sb-admin-2.css" rel="stylesheet">
+    <link href="css/metisMenu.css" rel="stylesheet"> -->
+    <link href="css/fontawesome-NOVO.css" rel="stylesheet" type="text/css">
+    <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="css/materialdesignicons.css" rel="stylesheet">
+    <link href="css/materialdesignicons-7.0.96.css" rel="stylesheet">
+    <link href="css/devicon.min.css" rel="stylesheet" charset="utf-8">
+    <link href="css/whhg.css" rel="stylesheet" charset="utf-8">        
+    <link href="css/flutter-Roboto.css" rel="stylesheet" charset="utf-8">
+    <link href="css/flutter-Material.css" rel="stylesheet" charset="utf-8">
+    <link href="css/checkbox3.min.css" rel="stylesheet">
+    <link href="css/datepicker.css" rel="stylesheet">
+    <!-- <link href="css/select2.min.css" rel="stylesheet"> -->
+    <link href="css/select2.1.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/metisMenu.min.js"></script>
+    <script src="js/sb-admin-2.js"></script>
+    <!-- <script src="js/select2.min.js"></script> -->
+    <script src="js/select2.1.js"></script>
+    <script src="js/html2canvas.js"></script>
+    <script src="js/bootstrap-datepicker_1.6.1.js"></script>
+    <script src="js/codificacao.js"></script>
     </head>
 
-     <body>
-        <div id="wrapper">
-            <div id="sidebar"></div>
-            <div id="page-wrapper"></div>
-        </div>
+    <body>
+      <div id="wrapper">
+        <div id="sidebar"></div>
+        <div id="page-wrapper"></div>
+      </div>
 
     </body>
     <script>
@@ -51,84 +52,83 @@
     init();
 
     async function init() {
-        await carregarSidebar();
-        await carregarMetodos();
-        await carregarPaginaInicial();
+      await carregarSidebar();
+      await carregarMetodos();
+      await carregarPaginaInicial();
     }
     async function carregarSidebar(){
-        const sidebar = await buscarDocumentoServidor("include/sidebar.html")
-            .then( (dados)=>{
-                return dados;
-            })
-        document.getElementById("sidebar").innerHTML = sidebar;
-        return;
+      const sidebar = await buscarDocumentoServidor("include/sidebar.html")
+        .then( (dados)=>{
+          return dados;
+        })
+      document.getElementById("sidebar").innerHTML = sidebar;
+      return;
     } 
 
     async function carregarMetodos(){
-        var dropdown = document.getElementsByClassName("dropdown-btn");
-        for (var i = 0; i < dropdown.length; i++) {
-            dropdown[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                var dropdownContent = this.nextElementSibling;
-                if (dropdownContent.style.display === "block") {
-                    dropdownContent.style.display = "none";
-                } else {
-                    dropdownContent.style.display = "block";
-                }
-            });
-        }
+      var dropdown = document.getElementsByClassName("dropdown-btn");
+      for (var i = 0; i < dropdown.length; i++) {
+        dropdown[i].addEventListener("click", function() {
+          this.classList.toggle("active");
+          var dropdownContent = this.nextElementSibling;
+          if (dropdownContent.style.display === "block") {
+            dropdownContent.style.display = "none";
+          } else {
+            dropdownContent.style.display = "block";
+          }
+        });
+      }
 
-        var navigation = document.querySelectorAll('.sidenav a');
-        for (var k = 0; k < navigation.length; k++) {
-            navigation[k].addEventListener("click", async function(e) {
-                e.preventDefault();
-                let icone = this.childNodes[0];
+      var navigation = document.querySelectorAll('.sidenav a');
+      for (var k = 0; k < navigation.length; k++) {
+        navigation[k].addEventListener("click", async function(e) {
+          e.preventDefault();
+          let icone = this.childNodes[0];
 
-                try {
-                    icone = icone.getAttribute('class');
-                } catch (error) {
-                    icone = "";
-                }
+          try {
+            icone = icone.getAttribute('class');
+          } catch (error) {
+            icone = "";
+          }
 
-                let titulo = this.getAttribute('href').toString().replace("?","");
-                let pagina = "include/"+titulo+".html";
-                console.log('PAGINA')
-                console.log(pagina)
-                await loadPagina(pagina,titulo,icone);
-            });
-        }    
+          let titulo = this.getAttribute('href').toString().replace("?","");
+          let pagina = "include/"+titulo+".html";
+          console.log('PAGINA')
+          console.log(pagina)
+          await loadPagina(pagina,titulo,icone);
+        });
+      }    
     }
 
     async function buscarDocumentoServidor(pagina){
-        return await loadFileAndPrintToConsole(pagina)
-            .then( (dados)=>{
-                return dados;
-            })
+      return await loadFileAndPrintToConsole(pagina)
+        .then( (dados)=>{
+          return dados;
+        })
     }
 
     async function loadFileAndPrintToConsole(url) {
-        try {
-            const response = await fetch(url);
-            return await response.text();
-        } catch (err) {
-            console.error(err);
-        }
+      try {
+        const response = await fetch(url);
+          return await response.text();
+      } catch (err) {
+        console.error(err);
+      }
     }
 
     async function carregarPaginaInicial(){
-        var modulo = capturarModuloURL();
-        console.log('modulo')
-        console.log(modulo)
-        pagina = ( (modulo != "") || ( typeof(modulo) != "undefined"))? "include/"+modulo+".html" :"include/home.html";
-        await loadPagina(pagina);
+      var modulo = capturarModuloURL();
+      console.log('modulo')
+      console.log(modulo)
+      pagina = ( (modulo != "") || ( typeof(modulo) != "undefined"))? "include/"+modulo+".html" :"include/home.html";
+      await loadPagina(pagina);
     }
 
     function loadPagina(pagina){ $("#page-wrapper").load(pagina); }
     function capturarModuloURL(){
-        // RETIRAR O HASH(#)
-        var pedacos = window.location.toString().split('?');
-        return pedacos[1];
+      // RETIRAR O HASH(#)
+      var pedacos = window.location.toString().split('?');
+      return pedacos[1];
     }
-
-    </script>    
+  </script>    
 </html>
