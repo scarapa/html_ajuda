@@ -1,79 +1,105 @@
 <ol>
-    <li><a href="#antigo">MODO ANTIGO</a></li>
-    <li><a href="#novo">MODO NOVO</a></li>
+  <li><a href="#versao_3">VERSAO 3</a></li>
+  <li><a href="#versao_2">VERSAO 2</a></li>
+  <li><a href="#versao_1">VERSAO 1</a></li>
 </ol>
 
 Da versao do < Dart 2 > , a forma de conexão mudou, o que nao mudou foram os metodos de
 acesso.
 
+<!-- ------------------------------------------------------- -->
 <hr>
-<a name="antigo"></a>
-<h2>MODO ANTIGO</h2>
+<a name="versao_3"></a>
+<h2>VERSAO 3</h2>
 <pre>
-class DatabaseHelper {
+  class DatabaseHelper {
 
-    static final _databaseName = "me_poupe.db";
-    static final _databaseVersion = 1;
-    static final _versionAPP = "0.0.1 beta";
-    
-    DatabaseHelper._privateConstructor();
+  static const _databaseName = "me_poupe.db";
+  static const _databaseVersion = 1;
+  static const APP_VERSION_NUMBER = "0.0.1";
+  static const APP_VERSION_NAME = "beta";
 
-    static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
-    
-    static Database _database;
-        Future&lt;Database&gt; get database async {
-            if (_database != null) return _database;
-            // lazily instantiate the db the first time it is accessed
-            _database = await _initDatabase();
-            return _database;
-        }
-    
-    _initDatabase() async {
-            Directory documentsDirectory = await getApplicationDocumentsDirectory();
-            String path = join(documentsDirectory.path, _databaseName);
-    
-            if(false){
-                await deleteDatabase(path);
-            }
-    
-            return await openDatabase(path, version: _databaseVersion, onCreate: _onCreate);
-        } 
+  DatabaseHelper._privateConstructor();
+  static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
+  static Database? _database;
+  Future&lt;Database&gt; get database async =&gt; _database ??= await _initDatabase();
+
+  Future&lt;Database&gt; _initDatabase() async {
+    Directory documentsDirectory = await getApplicationDocumentsDirectory();
+    String path = join(documentsDirectory.path, _databaseName);
+
+    if(true){ 
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.clear();
+      await deleteDatabase(path); 
     }
-}
-</pre>
+
+    return await openDatabase(path, version: _databaseVersion, onCreate: _onCreate);
+  }
+}</pre>
+<br><a href="https://stackoverflow.com/questions/67049107/the-non-nullable-variable-database-must-be-initialized" target="_blank">stackoverflow</a>
+
 
 <!-- ------------------------------------------------------- -->
 <hr>
-<a name="novo"></a>
-<h2>MODO NOVO</h2>
+<a name="versao_2"></a>
+<h2>VERSAO 2</h2>
 
 <pre>
 class DatabaseHelper {
 
-    static final _databaseName = "me_poupe.db";
-    static final _databaseVersion = 1;
-    static final _versionAPP = "0.0.1 beta";
-    
-    DatabaseHelper._privateConstructor();
-    
-    static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
-    
-    static Database? _database;
-    
-    Future&lt;Database&gt; get database async {
-        return _database ??= await _initDatabase();
-    }
+  static final _databaseName = "me_poupe.db";
+  static final _databaseVersion = 1;
+  static final _versionAPP = "0.0.1 beta";
+  
+  DatabaseHelper._privateConstructor();
+  static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
+  static Database? _database;
+  Future&lt;Database&gt; get database async { return _database ??= await _initDatabase(); }
 
-    _initDatabase() async {
-        Directory documentsDirectory = await getApplicationDocumentsDirectory();
-        String path = join(documentsDirectory.path, _databaseName);
+  _initDatabase() async {
+    Directory documentsDirectory = await getApplicationDocumentsDirectory();
+    String path = join(documentsDirectory.path, _databaseName);
 
-        if(false){
-            await deleteDatabase(path);
-        }
-
-        return await openDatabase(path, version: _databaseVersion, onCreate: _onCreate);
-    }
+    if(false){ await deleteDatabase(path); }
+    return await openDatabase(path, version: _databaseVersion, onCreate: _onCreate);
+  }
 }</pre>
 
 <br><a href="https://stackoverflow.com/questions/67994579/why-static-database-database-and-databasehelper-privateconstructor-gives-a">stackoverflow</a>
+
+<!-- --------------------------------------------- -->
+<hr>
+<a name="versao_1"></a>
+<h2>VERSAO 1</h2>
+<pre>
+class DatabaseHelper {
+
+  static final _databaseName = "me_poupe.db";
+  static final _databaseVersion = 1;
+  static final _versionAPP = "0.0.1 beta";
+  
+  DatabaseHelper._privateConstructor();
+
+  static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
+  
+  static Database _database;
+    Future&lt;Database&gt; get database async {
+      if (_database != null) return _database;
+      // lazily instantiate the db the first time it is accessed
+      _database = await _initDatabase();
+      return _database;
+    }
+  
+  _initDatabase() async {
+      Directory documentsDirectory = await getApplicationDocumentsDirectory();
+      String path = join(documentsDirectory.path, _databaseName);
+
+      if(false){ await deleteDatabase(path); }
+
+      return await openDatabase(path, version: _databaseVersion, onCreate: _onCreate);
+    } 
+  }
+}
+</pre>
+
