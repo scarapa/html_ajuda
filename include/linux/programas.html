@@ -1,16 +1,24 @@
 <ol>
-    <li>Padrao</li>
-    <li>Confirmacao</li>
-    <li>Candidatos</li>
+  <li>CANDIDATOS</li>
+  <li>INSTALACAO
+    <ol>
+      <li>padrao</li>
+      <li>gdebi</li>
+    </ol>
+  </li>
+  <li>LOCALIZACAO
+    <ol>
+      <li>Pasta</li>
+      <li>Executavel</li>
+    </ol>
+  </li>
+  <li>VARIAVEL DE AMBIENTE</li>
+  <li>DESINTALACAO</li>  
 </ol>
-<h2>Padrao</h2>
-<pre class="terminal">$ apt install &lt;programa&gt;</pre>
 
-<h2>Confirmacao</h2>
-<pre class="terminal">$ apt install &lt;programa&gt; -y</pre>
-confirma AUTOMATICAMENTE a pergunta
-
-<h2>Candidatos</h2>
+<!-- ------------------------------------------------------ -->
+<hr>
+<h2>CANDIDATOS</h2>
 <pre class="terminal">$ apt-cache policy &lt;programa&gt;</pre>
 retorna a versao do candidato possivel para instalacao
 <br><br>
@@ -18,11 +26,73 @@ retorna a versao do candidato possivel para instalacao
 exemplo:
 <pre class="terminal">$ apt-cache policy nodejs
 nodejs:
-    Instalado: (nenhum)
-    Candidato: 10.19.0~dfsg-3ubuntu1
-    Tabela de versão:
-        10.19.0~dfsg-3ubuntu1 500
-        500 http://br.archive.ubuntu.com/ubuntu focal/universe amd64 Packages</pre>
+  Instalado: (nenhum)
+  Candidato: 10.19.0~dfsg-3ubuntu1
+  Tabela de versão:
+    10.19.0~dfsg-3ubuntu1 500
+    500 http://br.archive.ubuntu.com/ubuntu focal/universe amd64 Packages</pre>
     
 
 <br><a href="https://askubuntu.com/questions/786272/why-does-installing-node-6-x-on-ubuntu-16-04-actually-install-node-4-2-6">askubuntu</a>
+
+
+<!-- ------------------------------------------------------ -->
+<hr>
+<h2>INSTALACAO</h2>
+  <h3>padrao</h3>
+  <pre class="terminal">$ apt install &lt;programa&gt;</pre>
+
+  <h3>gdebi</h3>
+  primeiramente baixando o pacote
+    <h4>instalando 'instalador'</h4>
+    <pre class="terminal">$ apt install gdebi</pre>
+  
+    <h4>download programa no formato gdebi</h4>
+    no exemplo abaixo é utlizado o chrome
+    <pre class="terminal">$ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/google-chrome-stable_current_amd64.deb</pre>
+
+    <h4>instalando</h4>
+    <pre class="terminal">$ gdebi /tmp/google-chrome-stable_current_amd64.deb</pre>
+
+<code>OBSERVACAO:</code> utilizando o parametro <code>-y</code> é confirmado a instalacao
+<pre class="terminal">$ apt install &lt;programa&gt; -y</pre>
+
+
+
+<!-- ---------------------------------------------------------------- -->
+<hr>
+<h2>LOCALIZACAO</h2>
+
+  <h3>pasta</h3>
+  <pre class="terminal">$ dpkg -S python2.7
+  /usr/lib/python2.7/</pre>
+
+  <h3>executavel</h3>
+  <pre class="terminal">$ type -a python2.7
+  python2.7 is /usr/bin/python2.7
+  python2.7 is /bin/python2.7</pre>
+  
+
+
+<!-- ---------------------------------------------------------------- -->
+<hr>
+<h2>VARIAVEL DE AMBIENTE</h2>
+
+<pre class="terminal">$ export PATH=$PATH:/home/beto/meusprogramas</pre>
+onde:
+<li><b class="red">export</b> comando do bash para definir uma variável acessível por qualquer processo filho dele;</li>
+<li><b class="red">PATH</b> o nome da variável, sempre em LETRAS MAIÚSCULAS, que é o padrão POSIX;</li>
+<li><b class="red">$PATH</b> ao usar $NOME_DA_VARIÁVEL, retorna o valor atual armazenado;</li>
+<li><b class="red">:</b> dois pontos é o separador de valores convencionado para PATH;</li>
+<li><b class="red">/home/beto/meusprogramas </b> o novo valor que estamos adicionando.</li>
+
+Para ver como ficou, basta consultar assim:
+<pre class="terminal">$ printenv PATH</pre>
+
+<br><a href="https://diolinux.com.br/tutoriais/como-configurar-a-path-no-linux.html">diolinux</a>
+<br><a href="https://acervolima.com/como-acrescentar-texto-ao-final-do-arquivo-no-linux/">acervolima</a>
+
+<!-- ------------------------------------------------------ -->
+<hr>
+<h2>DESINSTALACAO</h2>
+<pre class="terminal">$ apt install sudo apt remove &lt;programa&gt; -y && sudo apt purge &lt;programa&gt; -y && sudo apt &lt;programa&gt; -y</pre>

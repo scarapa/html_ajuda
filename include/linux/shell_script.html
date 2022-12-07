@@ -1,2 +1,27 @@
+<h2>CRIAR AQUIVO</h2>
+<pre class="terminal">$ sudo nano /etc/init.d/servidor.sh</pre>
+
+<pre>#!/bin/bash
+# desmontando possiveis particoes
+sudo umount /dev/sdb1
+
+# montando particao
+sudo ntfs-3g /dev/sdb1 /media/drive
+
+# iniciando servicos lampp
+sudo /opt/lampp/lampp start
+
+# arquivo de log
+DATA=$(date +%Y%m%d-%H%M)
+touch /home/beto/log/${DATA}.txt</pre>
+
+Setando o arquivo como executavel
+<pre class>$ chmod +x /etc/init.d/servidor.sh</pre>
+
+carregando o arquivo
+<pre class>$ source /etc/init.d/servidor.sh</pre>
+
+<code>OBSERVACAO</code> reinicie o sistema.
+
 <br><a href="https://guialinux.uniriotec.br/shell/" target="_blank">guialinux</a>
 <br><a href="https://www.devmedia.com.br/introducao-ao-shell-script-no-linux/25778" target="_blank">devmedia</a>
