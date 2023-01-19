@@ -1,0 +1,70 @@
+
+<div class="centro center">
+  <img src="./images/flutter-loading.gif" class="bp w50">
+</div>
+
+<pre>import 'package:flutter/material.dart';
+
+void main() =&gt; runApp(ExampleApp());
+
+class ExampleApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Floating overlay example',
+      debugShowCheckedModeBanner: false,
+      home: ExampleMainWidget(),
+    );
+  }
+}
+
+class ExampleMainWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final overlay = LoadingOverlay.of(context);
+    return Scaffold(
+      body: Center(
+        child: TextButton(
+          child: const Text('Press me!'),
+            onPressed: () async {
+              await overlay.during(Future.delayed(const Duration(seconds: 2)));
+            }
+        )
+      )
+    );
+  }
+}
+
+class LoadingOverlay {
+  BuildContext _context;
+  void hide() { Navigator.of(_context).pop(); }
+
+  void show() {
+    showDialog(
+      context: _context,
+      barrierDismissible: false,
+      builder: (ctx) =&gt; _FullScreenLoader()
+    );
+  }
+
+  Future&lt;T&gt; during&lt;T&gt;(Future&lt;T&gt; future) {
+    show();
+    return future.whenComplete(() =&gt; hide());
+  }
+
+  LoadingOverlay._create(this._context);
+
+  factory LoadingOverlay.of(BuildContext context) { return LoadingOverlay._create(context); }
+}
+
+class _FullScreenLoader extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(color: Color.fromRGBO(0, 0, 0, 0.5)),
+      child: const Center(child: CircularProgressIndicator())
+    );
+  }
+}</pre>
+
+<a href="https://www.greycastle.se/loading-overlay-in-flutter/">greycastle</a>
