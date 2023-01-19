@@ -1,26 +1,15 @@
-<style>
-body{ counter-reset: contadorAga1; }
-h2{ counter-reset: contadorAga3; }
-body h3::before{
-    counter-increment: contadorAga3;
-    content: counter(contadorAga3) " - ";
-}	
-
-h3{ counter-reset: contadorAga4; }
-h4::before{
-	margin-left:25px;
-    counter-increment: contadorAga4;
-    content: counter(contadorAga3)"."counter(contadorAga4) " - ";
-}	
-</style>
 
 <ol>
-    <li>BACKGROUND - Propriedades</li>
-    <li>Fundo com MULTIPLAS imagens</li>
-    <li>Fundo Transparente</li>
+  <li><a href="#">BACKGROUND - Propriedades</a></li>
+  <li><a href="#">Fundo com MULTIPLAS imagens</a></li>
+  <li><a href="#">Fundo Transparente</a></li>
+  <li><a href="#fundo-opacidade">Fundo Com Opacidade</a></li>
 </ol>
 
-<h3>BACKGROUND - Propriedades</h3>
+<!-- -------------------------------------------------- -->
+<hr>
+<a name=""></a>
+<h2>BACKGROUND - Propriedades</h2>
 <pre>
 <b>background-color</b>...........define a cor do fundo;
 <b>background-image</b>...........define uma imagem de fundo;
@@ -34,9 +23,10 @@ h4::before{
 
 <a href="https://tableless.com.br/css3-trabalhando-com-multiplas-imagens-background-images/" target="_blank">tableless</a>
 
+<!-- -------------------------------------------------- -->
 <hr>
-
-<h3>Fundo com MULTIPLAS imagens</h3>
+<a name=""></a>
+<h2>Fundo com MULTIPLAS imagens</h2>
 <pre class="codigo codigoHTML">
 #example1 {
   background-image: url(img_flwr.gif), url(paper.gif);
@@ -45,14 +35,35 @@ h4::before{
 }</pre>
 <a href="https://www.w3schools.com/css/css3_backgrounds.asp" target="_blank">w3schools</a>
 
+<!-- -------------------------------------------------- -->
 <hr>
-
-<h3>Fundo Transparente</h3>
+<a name=""></a>
+<h2>Fundo Transparente</h2>
 <pre class="codigo codigoHTML">
 &lt;div style="background-color:rgba(0, 0, 0, 0.5);"&gt;
-   &lt;div&gt;
-      Text added.
-   &lt;/div&gt;
+  &lt;div&gt;
+    Text added.
+  &lt;/div&gt;
 &lt;/div&gt;	
 </pre>
 <a href="https://stackoverflow.com/questions/10422949/css-background-opacity" target="blank">stackoverflow</a>
+
+<!-- -------------------------------------------------- -->
+<hr>
+<a name="fundo-opacidade"></a>
+<h2>Fundo Com Opacidade</h2>
+Esse método funciona com as cores <b>HEXADECIMAIS</b>, exemplo da cor em questão <code>#0080FF</code>
+<pre class="codigo codigoHTML">div { background-color: #0080FF; }</pre>
+
+Exemplo sem opacidade:
+<div style="background-color: #0080FF;">teste SEM opacidade</div>
+
+<br><br>
+
+Para inserirmos <b>80%</b> de opacidade, basta concatenar o valor com a cor, conforme exemplo abaixo:
+<pre class="codigo codigoHTML">div { background-color: #0080FF<b class="red">80</b>; }</pre>
+
+Exemplo com opacidade:
+<div style="background-color: #0080FF80;">teste COM opacidade</div>
+
+<br><a href="https://www.digitalocean.com/community/tutorials/css-hex-code-colors-alpha-values">digitalocean</a>
