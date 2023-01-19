@@ -22,3 +22,11 @@ exemplo:
 <pre>UPDATE posts SET post = REPLACE(post,'microsof','linux') WHERE post LIKE '%microsoft%'</pre>
 <a href="https://www.w3resource.com/mysql/string-functions/mysql-replace-function.php">Fonte[1]</a> 
 <a href="https://stackoverflow.com/questions/5956993/mysql-string-replace">Fonte[2]</a>
+
+<h3>CASAS DECIMAIS | FORMAT</h3>
+<pre>SELECT 10123.839939117432<span style="color:green;font-weight: bold;">
+// 10123.839939117432</span>
+
+SELECT <b class="red">FORMAT(</b> 10123.839939117432 <b class="red">, 2 )</b><span style="color:green;font-weight: bold;">
+// 10,123.84</span></pre>
+<br><a href="https://pt.stackoverflow.com/questions/37947/valor-decimal-mysql" target="_blank">stackoverflow</a>
