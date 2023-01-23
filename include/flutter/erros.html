@@ -13,6 +13,7 @@
   <li><a href="#depedencia">Erro Dependencia Plugins</a></li>
   <li><a href="#androidx">AndroidX Flutter</a></li>
   <li><a href="#erro-json-decode">Erro json.decode()</a></li>
+  <li><a href="#funcion-void">Function() void</a></li>
   <li><a href="#snackbar">SNACKBAR nao funciona</a></li>
   <li><a href="#checkbox">CHECKBOX nao funciona</a></li>
   <li><a href="#singlechildscrollview">SingleChildScrollView nao funciona</a></li>
@@ -398,6 +399,61 @@ return response()->json(
 <pre>return json.decode(json.encode(retornoPost.body));</pre>
 <a href="https://github.com/flutter/flutter/issues/32841">github.com</a><br><br>
 <a href="https://stackoverflow.com/questions/55671441/flutter-formatexception-unexpected-character-at-character-1" target="_blank">stackoverflow</a>
+
+<!-- -------------------------------------------------------------- -->
+<hr>
+<a name="funcion-void"></a>
+<h2>Function() void</h2>
+<pre>The argument type 'Function' can't be assigned to the parameter type 'void Function()?' after null safety</pre>
+<pre>class DrawerItem extends StatelessWidget {
+    
+  final String text;
+  <b class="red">final Function onPressed;</b>
+
+  const DrawerItem({Key key, this.text, this.onPressed}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FlatButton(
+      child: Text(
+        text,
+        style: TextStyle(
+          fontWeight: FontWeight.w600,
+          fontSize: 18.0,
+        ),
+      ),
+      onPressed: onPressed,
+    );
+  }
+}</pre>
+
+Alterar código para aceitar um VoidCallback em vez de Function para o onPressed.<br>
+A propósito, VoidCallback é apenas um atalho para void Function(), então você também pode defini-lo como final void Function() onPressed;
+
+<pre>class DrawerItem extends StatelessWidget {
+    
+  final String text;
+  final <b class="red">VoidCallback</b> onPressed;
+
+  const DrawerItem({Key key, this.text, this.onPressed}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FlatButton(
+      child: Text(
+        text,
+        style: TextStyle(
+          fontWeight: FontWeight.w600,
+          fontSize: 18.0,
+        ),
+      ),
+      onPressed: onPressed,
+    );
+  }
+}  
+</pre>
+
+<br><a href="https://stackoverflow.com/questions/64484113/the-argument-type-function-cant-be-assigned-to-the-parameter-type-void-funct">stackoverflow</a>
 
 <!-- -------------------------------------------------------------- -->
 <hr>

@@ -1,0 +1,73 @@
+inserir no <code>pubspec.yaml</code>, o codigo abaixo
+<pre>dependencies: ... http_server: ^0.9.8+1</pre>
+A primeira coisa que se faz é criar um servidor em qualquer interface do sistema na porta 8000.
+<br><br>
+
+Em seguida, aplicamos uma transformação ao servidor de fluxo para lidar com “POST” que pré-processa formulários e arquivos.
+<br><br>
+
+A última parte é o manipulador para a assinatura do stream.<br>
+Aqui, por meio de um interruptor, o índice do ponto final de subida é tratado diretamente. Para a página raiz, o conteúdo HTML estático de um arquivo em assets é carregado (function_loadStatic) e é usado.
+<br><br>
+
+Na parte de upload do arquivo, espera-se que o arquivo esteja no campo “arquivo” e como exemplo de processamento seja salvo como “arquivo”.
+<br><br>
+
+Como você pode ver, em algumas linhas de código temos um servidor web embutido que aceita uploads de arquivos facilmente no Dart/Flutter.
+<br><br>
+
+<pre>Future _startWebServer() async {
+  runZoned(() {
+    HttpServer.bind('0.0.0.0', 8000).then((server) {
+      print('Server running at: ${server.address.address}');
+      server.transform(HttpBodyHandler()).listen((HttpRequestBody body) async {
+        print('Request URI');
+        switch (body.request.uri.toString()) {
+          case '/upload': {
+            if (body.type != "form") {
+              body.request.response.statusCode = 400;
+              body.request.response.close();
+              return;
+            }
+            for (var key in body.body.keys.toSet()) {
+              if (key == "file") {
+                foundFile = true;
+              }
+            }
+            if (!foundFile) {
+              body.request.response.statusCode = 400;
+              body.request.response.close();
+              return;
+            }
+            HttpBodyFileUpload data = body.body['file'];
+            // Save file
+            final directory = await getApplicationDocumentsDirectory();
+            File fFile = File('${directory.path}/file');
+            fFile.writeAsBytesSync(data.content);
+            body.request.response.statusCode = 201;
+            body.request.response.close();
+            break;
+          }
+          case '/':
+            {
+              String _content = await _loadStatic('index.html');
+              body.request.response.statusCode = 200;
+              body.request.response.headers.set("Content-Type", "text/html; charset=utf-8");
+              body.request.response.write(_content);
+              body.request.response.close();
+              break;
+            }
+          default: {
+            body.request.response.statusCode = 404;
+            body.request.response.write('Not found');
+            body.request.response.close();
+          }
+      }
+      });
+    });
+  },
+    onError: (e, stackTrace) =&gt; print('Oh noes! $e $stackTrace'));
+}</pre>
+
+<br><a href="https://digitalilusion.com/news/embedded-web-server-in-flutter/" target="_blank">digitalilusion</a>
+<br><a href="https://jmrobles.medium.com/embedded-web-server-in-flutter-e053cb34710" target="_blank">jmrobles.medium</a>

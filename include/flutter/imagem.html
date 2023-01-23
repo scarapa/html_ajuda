@@ -1,20 +1,20 @@
 <ol>
-    <li><a href="#imagem-internet-blob"></a>Imagem da internet para blob</li>
-    <li><a href="#cantos-arredondados">Cantos arredondados</a></li>
-    <li><a href="#redimensionar-imagem-device">Redimensionar Imagem do DEVICE</a></li>
-    <li><a href="#"></a></li>
+  <li><a href="#imagem-internet-blob">Imagem da internet para blob</a></li>
+  <li><a href="#cantos-arredondados">Cantos arredondados</a></li>
+  <li><a href="#redimensionar-imagem-device">Redimensionar Imagem do DEVICE</a></li>
+  <li><a href="#svg">SVG</a></li>
 </ol>
 
+<!-- ------------------------------------------------------------------- -->
+<hr>
 <a name="imagem-internet-blob"></a>
 <h2>Imagem da internet para blob</h2>
-<pre>
-import 'package:http/http.dart' as http;
+<pre>import 'package:http/http.dart' as http;
 Future&lt;String&gt; networkImageToBase64(String imageUrl) async {
-    http.Response response = await http.get(imageUrl);
-    final bytes = response?.bodyBytes;
-    return (bytes != null ? base64Encode(bytes) : null);
-} 
-</pre>
+  http.Response response = await http.get(imageUrl);
+  final bytes = response?.bodyBytes;
+  return (bytes != null ? base64Encode(bytes) : null);
+} </pre>
 
 usando:
 <pre>
@@ -32,8 +32,8 @@ Image.memory( imagem ),
 </pre>
 <a href="https://bezkoder.com/dart-base64-image/">bezkoder</a>
 
+<!-- ------------------------------------------------------------------- -->
 <hr>
-
 <a name="cantos-arredondados"></a>
 <h2>Cantos arredondados</h2>
 <pre>ClipRRect(
@@ -46,8 +46,8 @@ Image.memory( imagem ),
 )</pre>
 <a href="https://stackoverflow.com/questions/51513429/rounded-corners-image-in-flutter" target="_blank">stackoverflow</a>
 
+<!-- ------------------------------------------------------------------- -->
 <hr>
-
 <a name="redimensionar-imagem-device"></a>
 <h2>Redimensionar Imagem do DEVICE</h2>
 Para redimensionar uma imagem que esteja armazenada DENTRO DO DISPOSITIVO
@@ -118,8 +118,42 @@ class ImagemModel{
         print("ERRO REDIMENSIONAR: $e");
         return null;
     }
-    }
+  }
 
 }</pre>
 
 <a href="https://www.youtube.com/watch?v=tf1Rf7Xj7EA">youtube</a>
+
+
+<!-- ------------------------------------------------------------------- -->
+<hr>
+<a name="svg"></a>
+<h2>SVG</h2>
+Depedencia <code>flutter_svg</code>
+<br><br>
+
+Tanto os sistemas operacionais quanto os ambientes de tempo de execução excluíram o SVG. No entanto, com o pacote flutter_svg, o Flutter tem a capacidade de renderizar e decodificar SVG de maneira simples e rápida. Isso indica a excelente escalabilidade do Flutter e do Dart.
+<br><br>
+
+O pacote flutter_svg é fácil de usar. Ele fornece interfaces semelhantes à interface image_provider na estrutura do Flutter. Os trechos de código a seguir são usados ​​para exibir imagens SVG provenientes de ativos e de uma rede, respectivamente.
+
+<pre>
+SvgPicture.asset(
+  'assets/adsmall.svg',
+  placeholderBuilder: (BuildContext context) =&gt; Container(
+    child: const CircularProgressIndicator()
+  ),
+),
+
+SvgPicture.network(
+  'https://raw.githubusercontent.com/dnfield/flutter_svg/master/example/assets/deborah_ufw/new-camera.svg',
+  placeholderBuilder: (BuildContext context) =&gt; Container(
+    child: const CircularProgressIndicator()
+  ),
+),
+</pre>
+
+
+<br><a href="https://medium.com/flutter-community/using-svg-in-flutter-3dcf7b1dd713" target="_blank">medium</a>
+<br><a href="https://www.alibabacloud.com/blog/how-to-make-better-use-of-svg-in-flutter-applications_597129" target="_blank">alibabacloud</a>
+<br><a href="https://www.youtube.com/watch?v=E3xVcQ0TAHg" target="_blank">youtube</a>
