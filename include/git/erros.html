@@ -1,15 +1,15 @@
 ﻿<ol>
-    <li><a href="#clone-01">CLONE - 01</a></li>
-    <li><a href="#clone-02">CLONE - 02</a></li>
-    <li><a href="#push-01">PUSH - 01</a></li>
-    <li><a href="#push-02">PUSH - 02</a></li>
-    <li><a href="#push-03">PUSH - 03</a></li>
-    <li><a href="#push-04">PUSH - 04</a></li>
-    <li><a href="#push-05">PUSH - 05</a></li>
-    <li><a href="#pull-01">PULL - 01</a></li>
-    <li><a href="#pull-02">PULL - 02</a></li>
-    <li><a href="#repositorio-01">REPOSITOROIO - 01</a></li>
-    <li><a href="#"></a></li>
+  <li><a href="#clone-01">CLONE - 01</a></li>
+  <li><a href="#clone-02">CLONE - 02</a></li>
+  <li><a href="#push-01">PUSH - 01</a></li>
+  <li><a href="#push-02">PUSH - 02</a></li>
+  <li><a href="#push-03">PUSH - 03</a></li>
+  <li><a href="#push-04">PUSH - 04</a></li>
+  <li><a href="#push-05">PUSH - 05</a></li>
+  <li><a href="#pull-01">PULL - 01</a></li>
+  <li><a href="#pull-02">PULL - 02</a></li>
+  <li><a href="#repositorio-01">REPOSITOROIO - 01</a></li>
+  <li><a href="#git-nao-funciona">GIT NAO FUNCIONA</a></li>
 </ol>
 
 <!-- ------------------------------------------------------------------- -->
@@ -200,6 +200,22 @@ $ git pull origin master</pre>
 <a href="https://help.github.com/en/github/creating-cloning-and-archiving-repositories/error-repository-not-found">help.github</a><br>
 <a href="https://stackoverflow.com/questions/10116373/git-push-error-repository-not-found">stackoverflow</a><br>
 
+<!-- ------------------------------------------------------------------- -->
+<hr>
+<a name="git-nao-funciona-01"></a>
+<h2>GIT NAO FUNCIONA</h2>
+Ao tentar executar qualquer comando do GIT , essa mensagem era retornada:
+<pre class="terminal">U:\ionic\BMMOB> git branch
+fatal: detected dubious ownership in repository at '//192.168.0.102/server/ionic/BMMOB'
+'//192.168.0.102/server/ionic/BMMOB' is owned by:
+    'S-1-5-21-1040951925-3856822197-3711247031-501'
+but the current user is:
+    'S-1-5-21-42104206-707546283-926103603-1113517'
+To add an exception for this directory, call:
 
+    git config --global --add safe.directory '%(prefix)///192.168.0.102/server/ionic/BMMOB'</pre>
 
+<code>SOLUCAO</code>
+<pre class="terminal">$ git config --global --add safe.directory '*'</pre>
 
+<br><a href="https://stackoverflow.com/questions/72978485/git-submodule-update-failed-with-fatal-detected-dubious-ownership-in-repositor" target="_blank">stackoverflow</a>
