@@ -1,0 +1,39 @@
+
+
+Ao criar um aplicativo pronto para produção, é uma boa prática dividir os widgets em diferentes 
+arquivos dart. Isso aumenta a legibilidade e ajuda na depuração, mas ao fazer isso, acabamos com 
+toneladas de importações mais ou menos assim, como no exemplo abaixo:
+<pre>import 'package:flutter/material.dart';
+import 'package:map_ui/screens/airplane.dart';
+import 'package:map_ui/screens/bus.dart';
+import 'package:map_ui/screens/train.dart';
+import 'package:map_ui/screens/ship.dart';</pre>
+
+Existe uma maneira de reduzir essas importações no início de cada arquivo, no flutter chama-se arquivos Barril.
+
+<pre style="border-left:5px solid black ;font-size: 14pt; "><i>Um barril é uma maneira de acumular importações de vários arquivos em um único arquivo conveniente.</i></pre>
+
+Para reduzir de várias importações para uma única importação, criamos um arquivo de barril.
+<br><br>
+
+Fazemos um barril criando um arquivo dart e colocando todas as importações nele.
+<br><br>
+
+<h2>criar arquivo transportes.dart</h2>
+criar um arquivo com qualque nome, nesse exemplo <code>transportes.dart</code>
+
+<h2>export arquivos</h2>
+faca o export dos outros arquivos no arquivo de barril, <code>transportes.dart</code>
+<pre>export 'airplane.dart';
+export 'bus.dart';
+export 'ship.dart';
+export 'train.dart';</pre>
+
+<h2>substitua os imports</h2>
+Substitua as quatro importações individuais importando o arquivo <code>transportes.dart</code>
+
+<pre>import 'package:map_ui/screens/transportes.dart';</pre>
+
+
+
+<br><a href="https://maruf-hassan.medium.com/handling-flutter-imports-like-a-pro-8ac128f0a6fd" target="_blank">maruf-hassan.medium</a>
