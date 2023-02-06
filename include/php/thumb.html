@@ -1,0 +1,77 @@
+<ol>
+  <li><a href="#download">Download dos binarios</a></li>
+  <li><a href="#instalacao">Instalacao das classes</a></li>
+  <li><a href="#usando">Utilizacao</a></li>
+  <li>Erros
+    <ol>
+      <li><a href="#download">Download dos binarios</a></li>
+    </ol>
+  </li>
+</ol>
+
+<!-- --------------------------------------------- -->
+<hr>
+<a name="download"></a>
+<h2>Download dos binarios</h2>
+Necessario acessa o <a href="https://ffmpeg.org/download.html" target="_blank">site oficial aqui</a>
+<li><a href="https://ffmpeg.org/download.html#build-windows" target="_blank">Windows</a></li>
+<li><a href="https://ffmpeg.org/download.html#build-linux" target="_blank">Linux</a></li>
+
+No caso do <b>windows</b>, tem a opcao do pacote essencial ou o completo.
+<br><br>
+
+Descompacte no local de sua preferencia.
+
+<!-- --------------------------------------------- -->
+<hr>
+<a name="instalacao"></a>
+<h2>Instalacao das classes</h2>
+Instalacao dos pacotes de classe via composer; basta digitar o comando :
+<pre class="terminal">$ composer require php-ffmpeg/php-ffmpeg</pre>
+
+<!-- --------------------------------------------- -->
+<hr>
+<a name="usando"></a>
+<h2>Utilizacao</h2>
+<pre>
+&lt;?php
+require 'vendor/autoload.php';
+
+$sec = 10;
+$movie = 'test.mp4';
+$thumbnail = 'thumbnail.png';
+
+$ffmpeg = FFMpeg\FFMpeg::create();
+$video = $ffmpeg-&gt;open($movie);
+$frame = $video-&gt;frame(FFMpeg\Coordinate\TimeCode::fromSeconds($sec));
+$frame-&gt;save($thumbnail);
+echo '&lt;img src="'.$thumbnail.'"&gt;';  
+</pre>
+
+<br><a href="https://stackoverflow.com/questions/5977448/install-ffmpeg-on-xampp" target="_blank">stackoverflow</a>
+<br><a href="https://stackoverflow.com/questions/60171767/php-ffmpeg-installation-on-apache2" target="_blank">stackoverflow</a>
+<br><a href="https://stackoverflow.com/questions/2043007/generate-preview-image-from-video-file" target="_blank">stackoverflow</a>
+<br><a href="https://github.com/PHP-FFMpeg/PHP-FFMpeg" target="_blank">github</a>
+<br><a href="https://pt.stackoverflow.com/questions/285069/abrir-videosmp3-mp4-externo-com-php" target="_blank">stackoverflow</a>
+
+<!-- --------------------------------------------- -->
+<hr>
+<a name="erros"></a>
+<h2>Erros</h2>
+
+  <h3>LOCALIZACAO DOS BINARIOS</h3>
+  Mensagem do erro:
+  <pre>PHP Fatal error: Uncaught Alchemy\BinaryDriver\Exception\ExecutableNotFoundException: Executable not found, proposed : avprobe, ffprobe in /var/www/html/vendor/alchemy/binary-driver/src/Alchemy/BinaryDriver/AbstractBinary.php:159\nStack trace:\n#0 /var/www/html/vendor/php-ffmpeg/php-ffmpeg/src/FFMpeg/Driver/FFProbeDriver.php(48): Alchemy\BinaryDriver\AbstractBinary::load(Array, NULL, Object(Alchemy\BinaryDriver\Configuration))\n#1 /var/www/html/vendor/php-ffmpeg/php-ffmpeg/src/FFMpeg/FFProbe.php(226): FFMpeg\Driver\FFProbeDriver::create(Object(Alchemy\BinaryDriver\Configuration), NULL)\n#2 /var/www/html/vendor/php-ffmpeg/php-ffmpeg/src/FFMpeg/FFMpeg.php(117): FFMpeg\FFProbe::create(Array, NULL, Object(Doctrine\Common\Cache\ArrayCache))\n#3 /var/www/html/starapp/test.php(4): FFMpeg\FFMpeg::create()\n#4 {main}\n\nNext FFMpeg\Exception\ExecutableNotFoundException: Unable to load FFProbe in /var/www/html/vendor/php-ffmpeg/php-ffmpeg/src/FFMpeg/Driver/FFProbeDriver.php:50\nStack trace:\n#0 /var/www/html/vendor/php-ffmpeg/php-ffmpeg/src/FFMp in /var/www/html/vendor/php-ffmpeg/php-ffmpeg/src/FFMpeg/Driver/FFProbeDriver.php on line 50</pre>
+  O caminho dos binarios ou executáveis está errado, no linux tente essa solução:
+  <pre>'ffmpeg.binaries' => '/usr/bin/ffmpeg',
+'ffprobe.binaries' => '/usr/bin/ffprobe'</pre>
+
+  Exemplo de instalacao no <b>windows</b> utilizando o <b>xampp</b>:
+  <pre>$ffmpeg = FFMpeg\FFMpeg::create(
+  array(
+    'ffmpeg.binaries'  =&gt; 'D:/xampp/ffmpeg/bin/ffmpeg.exe',
+    'ffprobe.binaries' =&gt; 'D:/xampp/ffmpeg/bin/ffprobe.exe',
+  )
+);</pre>
+
+  <br><a href="https://stackoverflow.com/questions/60171767/php-ffmpeg-installation-on-apache2" target="_blank">stackoverflow</a>
