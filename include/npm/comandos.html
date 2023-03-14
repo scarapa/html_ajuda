@@ -1,7 +1,8 @@
 <ol>
-  <li><a href="#principais-comandos">PRINCIPAIS COMANDOS</a></li>
   <li><a href="#novo-projeto">NOVO PROJETO</a></li>
   <li><a href="#listar-pacote">LISTAR PACOTE</a></li>
+  <li><a href="#pesquisar-pacote">PESQUISAR PACOTE</a></li>
+  <li><a href="#plugins">PLUGINS</a></li>
 </ol>
 
 <!-- ---------------------------------------- -->
@@ -37,8 +38,111 @@ Wrote to D:\projetos\node\<b style="color:red">PROJETO_NOME</b>\package.json:
 <hr>
 <a name="listar-pacote"></a>
 <h2>LISTAR PACOTE</h2>
-<pre class="terminal">$ npm list</pre>
+
+  <h3>LOCAL</h3>
+  Se você quiser ver uma lista estruturada em árvore de todos os seus pacotes 
+  instalados localmente, incluindo suas dependências
+  <pre class="terminal">$ npm list</pre>
+
+  <h3>GLOBAL</h3>
+  Se você quiser verificar os pacotes instalados globalmente, basta adicionar o sinalizador -g (abreviação de -global):  
+  <pre class="terminal">$ npm list -g</pre>
+
+  <h3>PROFUNDIDADE</h3>
+  Claro, você pode simplesmente acessar o arquivo package-lock.json, mas a verificação 
+  manual das versões dos pacotes envolverá alguma verificação visual.
+
+  Se você deseja exibir todos os pacotes de nível superior instalados sem suas 
+  dependências, adicione a flag <code>-depth=0</code>. A flag é usada para limitar a 
+  profundidade da árvore de dependência que pode ser exibida.
+  <pre class="terminal">$ npm list -depth=0</pre>
+<pre>BMMOB@0.0.1 /home/projetos/ionic/BMMOB3
+  ├── __ngcc_entry_points__.json@ extraneous
+  ├── @angular-devkit/build-angular@15.0.4
+  ├── @angular-eslint/builder@14.4.0
+  ├── @angular-eslint/eslint-plugin-template@14.4.0
+  ├── @angular-eslint/eslint-plugin@14.4.0
+  ├── @angular-eslint/template-parser@14.4.0
+  ├── @angular/cli@15.0.4
+  ├── @angular/common@15.0.4
+  ├── @angular/compiler-cli@15.0.4
+  ├── @angular/compiler@15.0.4
+  ├── @angular/core@15.0.4
+  ├── @angular/forms@15.0.4
+  ├── @angular/language-service@15.0.4
+  ├── @angular/platform-browser-dynamic@15.0.4
+  ├── @angular/platform-browser@15.0.4
+  ├── @angular/router@15.0.4
+  ├── @awesome-cordova-plugins/core@6.3.0
+  ├── @awesome-cordova-plugins/device@6.3.0
+  ├── @awesome-cordova-plugins/network@6.3.0
+  ├── @ionic-native/app-version@5.36.0
+  ├── @ionic-native/core@5.36.0
+  ├── @ionic-native/file-opener@5.36.0
+  ├── @ionic-native/file-transfer@5.36.0
+  ├── @ionic-native/file@5.36.0
+  ├── @ionic/angular-toolkit@6.1.0
+  ├── @ionic/angular@6.4.1
+  ├── @types/jasmine@4.0.3
+  ├── @types/node@12.20.55
+  ├── @typescript-eslint/eslint-plugin@5.3.0
+  ├── @typescript-eslint/parser@5.3.0
+  ├── cordova-plugin-device@2.1.0
+  ├── cordova-plugin-network-information@2.0.2
+  ├── cordova@11.0.0
+  ├── eslint-plugin-import@2.22.1
+  ├── eslint-plugin-jsdoc@30.7.6
+  ├── eslint-plugin-prefer-arrow@1.2.2
+  ├── eslint@7.32.0
+  ├── ionicons@6.0.4
+  ├── jasmine-core@4.3.0
+  ├── jasmine-spec-reporter@5.0.2
+  ├── jsonwebtoken-esm@1.0.3
+  ├── karma-chrome-launcher@3.1.1
+  ├── karma-coverage-istanbul-reporter@3.0.3
+  ├── karma-coverage@2.2.0
+  ├── karma-jasmine-html-reporter@2.0.0
+  ├── karma-jasmine@5.1.0
+  ├── karma@6.4.1
+  ├── rxjs@6.6.7
+  ├── ts-node@8.3.0
+  ├── tslib@2.4.1
+  ├── typescript@4.8.4
+  └── zone.js@0.12.0
+  </pre>
+
+  <h3>LISTAR ULTIMAS VERSOES</h3>
+  <pre class="terminal">$ npm list express</pre>
+<pre>BMMOB@0.0.1 /home/projetos/ionic/BMMOB3
+  ├─┬ @angular-devkit/build-angular@15.0.4
+  │ └─┬ webpack-dev-server@4.11.1
+  │   └── <span style="background-color:#2E3436"><font color="#C4A000">express@4.18.2</font></span>
+  └─┬ cordova@11.0.0
+    └─┬ cordova-lib@11.0.0
+      └─┬ cordova-serve@4.0.0
+        └── <span style="background-color:#2E3436"><font color="#C4A000">express@4.18.2</font></span> <font color="#555753">deduped</font>
+</pre>
+
 <br><a href="https://flaviocopes.com/npm-know-version-installed/" target="_blank">flaviocopes</a>
+<br><a href="https://www.mend.io/free-developer-tools/blog/npm-how-to-install-a-specific-version-of-node-js-package/" target="_blank">mend</a>
+<br><a href="https://reactgo.com/npm-check-package-version/" target="_blank">reactgo</a>
+
+
+<!-- ---------------------------------------- -->
+<hr>
+<a name="pesquisar-pacote"></a>
+<h2>PESQUISAR PACOTE</h2>
+
+  <h3>PESQUISAR PACOTE INSTALADO</h3>
+  Se você quiser saber a versão mais recente específica de um pacote instalado, basta especificar seu nome.
+  <pre class="terminal">$ npm list [package-name]</pre>
+
+  <h3>PESQUISAR VERSAO MAIS RECENTE</h3>
+  Se você deseja verificar a versão mais recente de um pacote disponível no repositório npm, pode usar o comando npm view package-name version.
+  <pre class="terminal">$ npm view express version
+  4.18.2</pre>
+
+<br><a href="https://reactgo.com/npm-check-package-version/" target="_blank">reactgo</a>
 
 <!-- ---------------------------------------- -->
 <hr>
