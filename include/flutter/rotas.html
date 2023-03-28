@@ -1,27 +1,29 @@
 <ol>
-    <li><a href="#permission-denied">Push</a></li>
-    <li><a href="#avd-sem-internet">Rotas nomeadas</a></li>
-    <li><a href="#avd-nao-abre">POP</a></li>
+  <li><a href="#permission-denied">Push</a></li>
+  <li><a href="#avd-sem-internet">Rotas nomeadas</a></li>
+  <li><a href="#avd-nao-abre">POP</a></li>
+  <li><a href="#view-sem-retorno">VIEW SEM RETORNO</a></li>
 </ol>
 
+<!-- ----------------------------------------------- -->
 <hr>
-
-
+<a name=""></a>
 <h2>Push</h2>
 Dentro da lista(<b">ListTitle</b>), temos um metodo que vai por a tela atual no topo da pilha através do metodo <b>push</b>,
 para navegar para outra tela utiliza-se o widget <b>MaterialPageRoute</b>
 <pre>return ListTitle(
-    title: Text('titulo') ,
-    onTap: () => <b style="color:red">Navigator.push</b>(
-        context , 
-        <b  style="color:red">MaterialPageRoute</b>( builder: (context) => <b  style="color:red">NOME-DA-TELA()</b> )
-    )
+  title: Text('titulo') ,
+  onTap: () =&gt; &lt;b style="color:red"&gt;Navigator.push&lt;/b&gt;(
+    context , 
+    &lt;b  style="color:red"&gt;MaterialPageRoute&lt;/b&gt;( builder: (context) =&gt; &lt;b  style="color:red"&gt;NOME-DA-TELA()&lt;/b&gt; )
+  )
 )</pre>
 ou se preferir ...
 <pre>onPressed: (){ <b style="color:Red">Navigator.push( context ,MaterialPageRoute( builder: (context) => AtendimentoEditTela() ) );</b> },</pre>
 
+<!-- ----------------------------------------------- -->
 <hr>
-
+<a name=""></a>
 <h2>Rotas nomeadas</h2>
 <h3>Sem parametros</h3>
 <pre>Navigator.of(context).pushNamed( AppRoutes.FEIRAS_HOME_AGRICULTURA_FAMILIAR_BANCA );</pre>
@@ -31,6 +33,29 @@ ou se preferir ...
 Pegando os parametros noutra tela
 <pre>final banca = ModalRoute.of(context).settings.arguments as FeiraBancaModel;</pre>
 
-
+<!-- ----------------------------------------------- -->
+<hr>
+<a name=""></a>
 <h2>POP</h2>
 para voltar usa-se o <code>pop</code>
+
+<!-- ----------------------------------------------- -->
+<hr>
+<a name=""></a>
+<h2>VIEW SEM RETORNO</h2>
+Caso no qual você está em uma view qualquer e quer <b>BLOQUEAR/IMPEDIR</b> a acao de voltar do usuario, no meu caso utilizei quando estou na view SINCRONIZANDO o APP. 
+<pre>@override
+Widget build(BuildContext context) {
+  return new WillPopScope(
+    onWillPop: () async =&gt; false,
+    child: new Scaffold(
+      appBar: new AppBar(
+        title: new Text("data"),
+        leading: new IconButton(
+          icon: new Icon(Icons.ac_unit),
+          onPressed: () =&gt; Navigator.of(context).pop(),
+        ),
+      ),
+    ),
+  );
+}</pre>
