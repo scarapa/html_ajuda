@@ -1,7 +1,8 @@
 <ol>
-  <li><a href="#permission-denied">Push</a></li>
-  <li><a href="#avd-sem-internet">Rotas nomeadas</a></li>
-  <li><a href="#avd-nao-abre">POP</a></li>
+  <li><a href="#push">Push</a></li>
+  <li><a href="#rotas-nomeadas">Rotas nomeadas</a></li>
+  <li><a href="#pop">POP</a></li>
+  <li><a href="#efeitos-transicao">Efeito de transicao</a></li>
   <li><a href="#view-sem-retorno">VIEW SEM RETORNO</a></li>
 </ol>
 
@@ -9,8 +10,9 @@
 <hr>
 <a name=""></a>
 <h2>Push</h2>
-Dentro da lista(<b">ListTitle</b>), temos um metodo que vai por a tela atual no topo da pilha através do metodo <b>push</b>,
+Dentro da lista(<b>ListTitle</b>), temos um metodo que vai por a tela atual no topo da pilha através do metodo <b>push</b>,
 para navegar para outra tela utiliza-se o widget <b>MaterialPageRoute</b>
+
 <pre>return ListTitle(
   title: Text('titulo') ,
   onTap: () =&gt; &lt;b style="color:red"&gt;Navigator.push&lt;/b&gt;(
@@ -25,10 +27,10 @@ ou se preferir ...
 <hr>
 <a name=""></a>
 <h2>Rotas nomeadas</h2>
-<h3>Sem parametros</h3>
+  <h3>Sem parametros</h3>
 <pre>Navigator.of(context).pushNamed( AppRoutes.FEIRAS_HOME_AGRICULTURA_FAMILIAR_BANCA );</pre>
 
-<h3>Com parametros</h3>
+  <h3>Com parametros</h3>
 <pre>Navigator.of(context).pushNamed( AppRoutes.FEIRAS_HOME_AGRICULTURA_FAMILIAR_BANCA , arguments: objeto  );</pre>
 Pegando os parametros noutra tela
 <pre>final banca = ModalRoute.of(context).settings.arguments as FeiraBancaModel;</pre>
@@ -38,6 +40,28 @@ Pegando os parametros noutra tela
 <a name=""></a>
 <h2>POP</h2>
 para voltar usa-se o <code>pop</code>
+
+<!-- ----------------------------------------------- -->
+<hr>
+<a name="efeitos-transicao"></a>
+<h2>Efeito de transicao</h2>
+Efeitos de transição entre rotas/views ... 
+<br><br>
+
+Quando começamos a brincar com animações, percebemos que a transição de página pode realmente tornar sua interface do usuário bonita. Se você deseja ter uma transição de slides como o iOS, use o CupertinoPageRoute. É isso, nada mais.
+
+
+<div>
+  <img src="./images/flutter-rotas-efeito-transicao-01.gif" class="bp w20">
+  <img src="./images/flutter-rotas-efeito-transicao-02.gif" class="bp w20">
+  <img src="./images/flutter-rotas-efeito-transicao-03.gif" class="bp w20">
+  <img src="./images/flutter-rotas-efeito-transicao-04.gif" class="bp w20">
+  <img src="./images/flutter-rotas-efeito-transicao-05.gif" class="bp w20">
+  <img src="./images/flutter-rotas-efeito-transicao-06.gif" class="bp w20">
+  <img src="./images/flutter-rotas-efeito-transicao-07.gif" class="bp w20">
+</div>
+
+<br><a href="https://medium.com/flutter-community/everything-you-need-to-know-about-flutter-page-route-transition-9ef5c1b32823" target="_blank">medium.com</a>
 
 <!-- ----------------------------------------------- -->
 <hr>

@@ -1,17 +1,82 @@
 <ol>
-    <li><a href="#formatar">FORMATAR</a></li>
-    <li><a href="#datepicker">DATEPICKER</a></li>
-    <li><a href="#validar">VALIDAR</a></li>
-</ol>
+  <li><a href="#formatar">FORMATAR</a></li>
+  <li><a href="#periodos">PERIODOS</a>
+    <ol>
+      <li><a href="">DIAS | DAYS</a></li>
+      <li><a href="">MESES | MONTHS</a></li>
+      <li><a href="">ANOS | YEARS</a></li>
+    </ol>
+  </li>
+  <li><a href="#validar">VALIDAR</a></li>
 
+  <li><a href="#datepicker">DATEPICKER</a></li>
+
+</ol>
+<!-- --------------------------------------- -->
 <hr>
 <a name="formatar"></a>
 <h2>FORMATAR</h2>
 
+<!-- --------------------------------------- -->
 <hr>
-<a name="datepicker"></a>
-<h2>DATEPICKER</h2>
+<a name="periodos"></a>
+<h2>PERIODOS</h2>
+<pre>DateTime data = DateTime.now();
+//HOJE: 2023-04-30 14:12:03.335779  
+</pre>
 
+  <h3>DIAS | DAYS</h3>
+  inserindo LOOP com 5 dias com o metodo DURATION
+  <pre>for(int i = 0 ; i &lt; 5 ; i++){
+    print("LOOP[${i}]: ${data.add( Duration(days: i) ).toString()}");
+  }
+  2023-04-30 14:18:30.624525
+  2023-05-01 14:18:30.624525
+  2023-05-02 14:18:30.624525
+  2023-05-03 14:18:30.624525
+  2023-05-04 14:18:30.624525</pre>
+
+  Da forma tradicional
+  <pre>for(int i = 0 ; i &lt; 5 ; i++){
+    DateTime novaData = new DateTime( data.year , data.month , data.day + i );    
+  }
+  2023-04-30 00:00:00.000
+  2023-05-01 00:00:00.000
+  2023-05-02 00:00:00.000
+  2023-05-03 00:00:00.000
+  2023-05-04 00:00:00.000</pre>
+  <a href="https://api.flutter.dev/flutter/dart-core/DateTime/add.html" target="_blank">flutter.dev</a>
+
+  <h3>MESES | MONTHS</h3>
+  <pre>  for(int i = 0 ; i &lt; 12 ; i++){
+    DateTime novaData = new DateTime( data.year , data.month + i , data.day );
+    print("LOOP[${i}]: ${novaData.toString()}");
+  }
+  2023-04-30 00:00:00.000
+  2023-05-30 00:00:00.000
+  2023-06-30 00:00:00.000
+  2023-07-30 00:00:00.000
+  2023-08-30 00:00:00.000
+  2023-09-30 00:00:00.000
+  2023-10-30 00:00:00.000
+  2023-11-30 00:00:00.000
+  2023-12-30 00:00:00.000
+  2024-01-30 00:00:00.000<b style="color:red">
+  2024-03-01 00:00:00.000</b>
+  2024-03-30 00:00:00.000</pre>
+  <code>OBSERVACAO</code>repare que nao temos dia 30/02/2024, portanto pegou o proximo dia, que no caso foi em MARÇO
+
+  <h3>ANOS | YEARS</h3>
+  <pre>  for(int i = 0 ; i &lt; 12 ; i++){
+    DateTime novaData = new DateTime( data.year + i , data.month , data.day );
+    print("LOOP[${i}]: ${novaData.toString()}");
+  }
+  2023-04-30 00:00:00.000
+  2024-04-30 00:00:00.000
+  2025-04-30 00:00:00.000
+  2026-04-30 00:00:00.000
+  2027-04-30 00:00:00.000</pre>
+<!-- --------------------------------------- -->
 <hr>
 <a name="validar"></a>
 <h2>VALIDAR</h2>
@@ -39,3 +104,8 @@ bool isDate(String input, String format) {
 
 <br><a href="https://www.codegrepper.com/code-examples/dart/click+and+date+picker+open+flutter" target="_blank">codegrepper</a>
 <br><a href="https://stackoverflow.com/questions/58329577/how-to-check-whether-the-entered-date-in-textfield-is-valid-or-not-in-dart-flutt" target="_blank">stackoverflow</a>
+
+<!-- --------------------------------------- -->
+<hr>
+<a name="datepicker"></a>
+<h2>DATEPICKER</h2>
