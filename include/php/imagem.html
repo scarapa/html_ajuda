@@ -1,28 +1,40 @@
-﻿
+﻿<ol>
+  <li>Converter HTML em IMAGEM</li>
+  <li>Converter Imagem para BLOB</li>
+</ol>
 
-<h3>Converter HTML em IMAGEM</h3>
+<!-- ------------------------------------------------ -->
+<hr>
+<h2>Converter HTML em IMAGEM</h2>
 <pre>
-[?php
-
-$html_code = "this is the body";
-
-$my_img = imagecreate( 200, 80 );
-$background = imagecolorallocate( $my_img, 0, 0, 255 );
-$text_colour = imagecolorallocate( $my_img, 255, 255, 0 );
-//$line_colour = imagecolorallocate( $my_img, 128, 255, 0 );
-imagestring( $my_img, 4, 30, 25, "$html_code",$text_colour );
-imagesetthickness ( $my_img, 5 );
-imageline( $my_img, 30, 45, 165, 45, $line_colour );
-
-header( "Content-type: image/png" );
-imagepng( $my_img );
-imagecolordeallocate( $line_color );
-imagecolordeallocate( $text_color );
-imagecolordeallocate( $background );
-imagedestroy( $my_img );
-?]
+  &lt;?php
+  $html_code = "this is the body";
+  
+  $my_img = imagecreate( 200, 80 );
+  $background = imagecolorallocate( $my_img, 0, 0, 255 );
+  $text_colour = imagecolorallocate( $my_img, 255, 255, 0 );
+  //$line_colour = imagecolorallocate( $my_img, 128, 255, 0 );
+  imagestring( $my_img, 4, 30, 25, "$html_code",$text_colour );
+  imagesetthickness ( $my_img, 5 );
+  imageline( $my_img, 30, 45, 165, 45, $line_colour );
+  
+  header( "Content-type: image/png" );
+  imagepng( $my_img );
+  imagecolordeallocate( $line_color );
+  imagecolordeallocate( $text_color );
+  imagecolordeallocate( $background );
+  imagedestroy( $my_img );
+  ?&gt;
 </pre>
-
-
-
 <a href="http://php-sirigiri.blogspot.com.br/2013/03/convert-html-output-into-image-using-php.html">Fonte</a>
+
+<!-- ------------------------------------------------ -->
+<hr>
+<h2>Converter Imagem para BLOB</h2>
+  <h3>CONVERTENDO</h3>
+<pre>$data = file_get_contents($_FILES["picture"]["tmp_name"]);
+$image = base64_encode($data);</pre>
+
+  <h3>EXIBINDO</h3>
+<pre>&lt;img src="data:image/jpeg;base64,&lt;?php echo $base64_encoded_image ?&gt;" /&gt;</pre>
+<a href="https://stackoverflow.com/questions/27746694/php-how-to-display-image-from-blob" target="_blank">stackoverflow</a>
