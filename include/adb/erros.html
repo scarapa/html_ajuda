@@ -7,6 +7,7 @@
     <li><a href="#emulator-offline">Emulador offline</a></li>
     <li><a href="#adb-nao-reconhecido">ADB não é reconhecido</a></li>
     <li><a href="#adb_sem_permissao">ADB sem permissao</a></li>
+    <li><a href="#adb_sem_devices">ADB NAO LISTA DEVICE</a></li>
 </ol>
 
 <!-- ------------------------------------------------------------------- -->
@@ -174,3 +175,13 @@ CLICAR no botao <button>NOVO</button> no topo , inserir o caminho e clicar no bo
 <hr>
 <a name="adb_sem_permissao"></a>
 <h2>ADB sem permissao</h2>
+
+<!-- ------------------------------------------------------------------- -->
+<hr>
+<a name="adb_sem_devices"></a>
+<h2>ADB NAO LISTA DEVICE</h2>
+<pre class="terminal">$ adb kill-server
+$ adb start-server;
+$ adb devices  </pre>
+
+<a href="https://stackoverflow.com/questions/46128913/list-of-devices-attached-is-empty-on-ubuntu-16-04-using-adb-devices" target="_blank">stackoverflow</a>
