@@ -4,6 +4,7 @@
   <li><a href="#">ALTERAR PASTA HTDOCS</a></li>
   <li><a href="#">FTP SERVER</a></li>
   <li><a href="#localizar-php">LOCALIZAR PHP</a></li>
+  <li><a href="#erro-acesso-remoto-phpmyadmin">ERRO ACESSO REMOTO PHPMYADMIN</a></li>
 </ol>
 
 
@@ -74,3 +75,36 @@ https://www.youtube.com/watch?v=5RAauPZVfCU
 <pre class="terminal">$ whereis php</pre>
 
 <a href="https://stackoverflow.com/questions/64973675/vscode-php-validate-executablepath-after-insalled-xampp">stackoverflow</a>
+
+<!-- ------------------------------------------------------------------- -->
+<hr>
+<a name="erro-acesso-remoto-phpmyadmin"></a>
+<h2>ERRO ACESSO REMOTO PHPMYADMIN</h2>
+  <div class="w100 centro center">
+    <img src="./images/xampp-lampp-phpmyadmin-erro-acesso-remoto.jpg" class="bp w40">
+  </div>
+
+  <h3>Acessar o arquivo responsável pela configuracao</h3>
+  <pre class="terminal">$ sudo nano /opt/lampp/etc/extra/httpd-xampp.conf</pre> 			
+
+A configuracao deverá ficar comentada a linha <span style="color:green">verde</span> e adicionada a linha <b style="color:Red">opcao em VERMELHA</b>
+<pre>
+Alias /phpmyadmin "/opt/lampp/phpmyadmin"
+
+# since XAMPP 1.4.3
+&lt;Directory "/opt/lampp/phpmyadmin"&gt;
+    AllowOverride AuthConfig Limit<span style="color:green">
+    #Require local</span><b style="color:Red">
+    Require all granted</b>
+    ErrorDocument 403 /error/XAMPP_FORBIDDEN.html.var
+&lt;/Directory&gt;</pre>
+
+  <h3>RESTARTAR SERVICO</h3>
+  <pre class="terminal">$ sudo /opt/lampp/lampp restart
+    Restarting XAMPP for Linux 8.2.4-0...
+    XAMPP: Stopping Apache...ok.
+    XAMPP: Stopping MySQL...ok.
+    XAMPP: Stopping ProFTPD...ok.
+  </pre>
+<br><a href="https://stackoverflow.com/questions/27970344/httpd-xampp-conf-how-to-allow-access-to-an-external-ip-besides-localhost" target="_blank">stackoverflow</a>
+<br><a href="https://www.youtube.com/watch?v=Dq8TJYfwFRY" target="_blank">youtube</a>
