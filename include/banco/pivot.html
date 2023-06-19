@@ -1,4 +1,8 @@
-
+<ol>
+  <li><a href="">MSSQL</a></li>
+  <li><a href="">MySQL</a></li>
+  <li><a href="">SQLite</a></li>
+</ol>
 PIVOT transforma uma expressão com valor de tabela ao transformar os valores exclusivos de uma coluna na expressão em várias colunas na saída, além de executar agregações nos locais necessários dos valores de coluna remanescentes que precisam estar na saída final. UNPIVOT executa a operação oposta à PIVOT, transformando as colunas de uma expressão com valor de tabela em valores de coluna.<br><br>
 
 O UNPIVOT é um pouco menos conhecido que o PIVOT, por razões óbvias, dentre elas, “é fácil transformar colunas em linhas”. Mas isso não limita o fato de quem já está acostumado com PIVOT, também utilize o UNPIVOT como recurso, principalmente por apresentarem sintaxes bem semelhantes.<br><br>
@@ -11,7 +15,7 @@ Primeiramente será demonstrado a maneira FIXA das colunas.<br><br>
 
 Query abaixo , um exemplo muito simples para totalizar os tipos de moradia.<BR/>
 
-<h3>MSSQL</h3>
+<h2>MSSQL</h2>
 
 <code>Exemplo 01</code>
 Tabela de cadastro:<code>tblCad_Tipo_Moradia</code>
@@ -170,6 +174,20 @@ PIVOT (
 
 
 
-<h3>MySQL</h3>
+<h2>MySQL</h2>
 <br><a href="https://medium.com/@lcorreasantos/mysql-pivot-linhas-para-coluna-no-mysql-com-dados-tipo-string-e1a2820c875a" target="_blank"></a>
 
+<h2>SQLite</h2>
+Utiliza-se o filter
+<pre>select
+  si.studid,
+  si.name,
+  sum(md.marks) filter(where md.subjectid = 3) subjectid_3,
+  sum(md.marks) filter(where md.subjectid = 4) subjectid_4,
+  sum(md.marks) filter(where md.subjectid = 5) subjectid_5
+from student_info si
+join markdetails md on
+      md.studid = si.studid
+group by si.studid, si.name</pre>
+<br><a href="https://stackoverflow.com/questions/1237068/how-to-pivot-in-sqlite-or-i-e-select-in-wide-format-a-table-stored-in-long-form" target="_blank">stackoverflow</a>
+<br><a href="https://antonz.org/sqlite-pivot-table/" target="_blank">antonz</a>
