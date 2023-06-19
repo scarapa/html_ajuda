@@ -1,7 +1,8 @@
 <ol>
-    <li><a href="#for_in">FOR IN</a></li>
-    <li><a href="#foreach">FOREACH</a></li>
-    <li><a href="#async_await">ASYNC / AWAIT</a></li>
+  <li><a href="#for_in">FOR IN</a></li>
+  <li><a href="#foreach">FOREACH</a></li>
+  <li><a href="#map">MAP</a></li>
+  <li><a href="#async_await">ASYNC / AWAIT</a></li>
 </ol>
 
 <hr>
@@ -32,6 +33,46 @@ Saida
 <a name="foreach"></a>
 <h2>FOREACH</h2>
 
+<hr>
+<a name="map"></a>
+<h2>MAP</h2>
+Exemplo essa lista de nomes
+<pre>List listagem = ['Roberto','Tonia','Luisa','Jose','Valdir','Gabriela','Julia']
+  ...listagem.map((nome){
+    return Text(nome);
+  }),</pre>
+  
+  E para utilizar o index caso haja uma necessidade existem algumas maneiras
+
+  <h3>Map Entries</h3>
+  Converta a lista em um mapa e, em seguida, mapeie as entradas que contêm os pares chave/valor. Cada chave no mapa é o índice da lista original.
+  <pre>
+
+  ...listagem.asMap().entries.map((entry) {
+    int idx = entry.key;
+    String val = entry.value;    
+    return Text(val);
+  }),</pre>
+
+  <h3>Gerar uma lista</h3>
+  Se você estiver percorrendo várias listas com comprimento fixo, pode ser mais eficiente gerar uma única lista uma vez. Por exemplo, criamos uma lista variada com o mesmo tamanho da original
+  <pre>
+  final List fixedList = Iterable<int>.generate(listagem.length).toList();
+  fixedList.map((idx) {
+    String val = myList[idx];
+    return Text(val);
+  }    
+  </pre>
+
+<h3>Pesquise pelo objeto na lista</h3>
+Você pode acessar o índice de um valor específico procurando por ele com List.indexOf, que retorna o índice da primeira correspondência. Essa abordagem é mais previsível quando todos os valores são exclusivos. Um conjunto pode garantir exclusividade em toda a lista.
+<pre>
+  ...listagem.map((nome){<b style="color:Red">
+    int index = listagem.indexOf(nome);</b>
+    return Text(nome);
+  }),</pre>
+
+<br><a href="https://fireship.io/snippets/dart-how-to-get-the-index-on-array-loop-map/" target="blank">fireship</a>
 
 <hr>
 <a name="async_await"></a>
