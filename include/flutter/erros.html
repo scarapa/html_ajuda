@@ -34,7 +34,7 @@
   <li><a href="#erro-assinatura-01">Erro Geração Assinatura</a></li>
   <li><a href="#erro-checking-dart-sdk-version-01">Checking Dart SDK version</a></li>
   <li><a href="#vscode-nao-encontrado">Visual Studio não instalado</a></li>
-  
+  <li><a href="#erro-nao-gera-icone-app-01">Erro NÃO GERA icone APP</a></li>
 </ol>
 
 <!-- -------------------------------------------------------------- -->
@@ -1019,7 +1019,6 @@ Exited (1)  </span>
 
 <a href="https://www.youtube.com/watch?v=apabG0C46xA" target="_blank">youtube</a>
 
-
 <!-- -------------------------------------------------------------- -->
 <hr>
 <a name="vscode-nao-encontrado"></a>
@@ -1064,3 +1063,37 @@ Doctor summary (to see all details, run flutter doctor -v):
 [✓] HTTP Host Availability
 
 • No issues found!</pre>
+
+
+<!-- -------------------------------------------------------------- -->
+<hr>
+<a name="erro-nao-gera-icone-app-01"></a>
+<h2>Erro NÃO GERA icone APP</h2>
+<pre class="terminal">$ flutter packages pub run flutter_launcher_icons:main
+  ════════════════════════════════════════════
+     FLUTTER LAUNCHER ICONS (v0.9.3)
+  ════════════════════════════════════════════
+
+
+✓ Successfully generated launcher icons
+Unhandled exception:
+
+✗ ERROR: InvalidConfigException
+Cannot not find minSdk from android/app/build.gradle or android/local.propertiesSpecify minSdk in either android/app/build.gradle or android/local.properties
+#0      createIconsFromConfig (package:flutter_launcher_icons/main.dart:96:7)
+#1      createIconsFromArguments (package:flutter_launcher_icons/main.dart:60:7)
+#2      main (file:///D:/flutter_sdk_3_3/.pub-cache/hosted/pub.dartlang.org/flutter_launcher_icons-0.9.3/bin/main.dart:7:26)
+#3      _delayEntrypointInvocation.<anonymous closure> (dart:isolate-patch/isolate_patch.dart:295:32)
+#4      _RawReceivePortImpl._handleMessage (dart:isolate-patch/isolate_patch.dart:192:12)
+pub finished with exit code 255></pre>
+
+Solução foi inserir no arquivo <code>android\local.properties</code> as seguintes configurações abaixo em vermelho:
+<pre>  sdk.dir=d:\\Sdk\\
+  flutter.sdk=D:\\flutter_sdk_3_3
+  flutter.buildMode=debug
+  flutter.versionName=0.3.0
+  flutter.versionCode=1<b style="color:red">
+  flutter.minSdkVersion=19
+  flutter.targetSdkVersion=30
+  flutter.compileSdkVersion=30 </b> </pre>
+<br><a href="https://stackoverflow.com/questions/52060516/flutter-how-to-change-android-minsdkversion-in-flutter-project">stackoverflow</a>

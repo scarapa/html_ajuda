@@ -1,0 +1,78 @@
+<pre>// Copyright (c) 2019, the Dart project authors.  Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+
+import 'package:flutter/material.dart';
+import 'dart:async';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const MyHomePage(title: 'Efeito Sirene'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  final String title;
+
+  const MyHomePage({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  
+  int contador = 0;
+  bool flag = false;
+  Timer ? timer;
+  Color background = Colors.white;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: background,
+      appBar: AppBar(
+        title: Text(widget.title),
+        actions: [
+          Switch(
+            value: flag,
+            onChanged: (value) {
+              setState(() {
+                flag = !flag;
+                efeitoSirene( flag );
+              });
+            },
+            activeTrackColor: Colors.lightGreenAccent,
+            activeColor: Colors.green,
+          ),            
+        ],
+      ),
+    );
+  }
+  
+  efeitoSirene( status ){
+    Timer.periodic(Duration(milliseconds: 300),(timer){
+      setState(() { 
+        contador++;  
+        background = (contador %2 == 0) ? Colors.red : Colors.blue;
+      });
+      if( !flag ) timer.cancel();
+    });
+  }
+}</pre>
+<br><a href="https://api.flutter.dev/flutter/material/Switch-class.html" target="_blanbk">api.flutter</a>
+<br><a href="https://www.tutorialkart.com/flutter/flutter-switch/" target="_blanbk">tutorialkart</a>
+<br><a href="https://www.youtube.com/watch?v=uPhhEgpyVY8" target="_blanbk">youtube</a>
