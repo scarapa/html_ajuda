@@ -117,12 +117,25 @@ const mergePerson = { ...person, ...personDetails };</pre>
 <hr>
 <a name="copy"></a>
 <h2>COPY</h2>
-<pre>
-  let original = { person: items };
-  let copy = Object.assign({}, original );
-</pre>
-ou
-<pre>var copy = JSON.parse(JSON.stringify(obj));</pre>
+Atualmente existem 3 formas de clonar um objeto; como exemplo utilizaremos o exemplo abaixo:
+<pre>let pessoa = { 'name': 'robert','last-name':'jordan','age':35  };</pre>
+
+<h3>Object.assign</h3>
+Alternativamente, Object.assign está no lançamento oficial e também criará uma cópia superficial do objeto.
+<pre>let pessoaCloneAssign = Object.assign({}, pessoa );</pre>
+Observe o {} vazio como primeiro argumento, isso garantirá que você não altere o objeto original
+
+<h3>Spread</h3>
+Usar spread irá clonar seu objeto. Observe que esta será uma cópia superficial. A partir deste post, o operador spread para clonagem de objetos está no Estágio 4.
+<pre>let pessoaCloneSpread = { ...pessoa };
+
+  <h3>JSON</h3>
+Esta forma final lhe dará uma cópia profunda. Agora vou mencionar que esta é uma maneira rápida e suja de clonar profundamente um objeto.
+<pre>let pessoaCloneJson = JSON.parse(JSON.stringify(pessoa));</pre>
+
+
+<br><a href="https://www.samanthaming.com/tidbits/70-3-ways-to-clone-objects/#_1-using-spread" target="_blank">samanthaming</a>
+<br><a href="https://www.freecodecamp.org/news/clone-an-object-in-javascript/" target="_blank">freecodecamp</a>
 <br><a href="https://stackoverflow.com/questions/36972586/ionic-2-pass-param-to-next-page-as-copy-not-by-reference" target="_blank">stackoverflow</a>
 <!-- ----------------------------------------------------------- -->
 <hr>
