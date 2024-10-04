@@ -1,3 +1,61 @@
+<ol>
+  <li><a href="#migrate">Artisan Migrate</a></li>
+</ol>
+
+<hr>
+<a name="migrate"></a>
+<h2>Artisan Migrate</h2>
+  <h3>Collation</h3>
+  <pre class="terminal">
+SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 1000 bytes (SQL: alter table `users` add unique `users_email_unique`(`email`))
+
+at C:\wamp64\www\api-projeto-angular\vendor\laravel\framework\src\Illuminate\Database\Connection.php:712
+  708▕         // If an exception occurs when attempting to run a query, we'll format the error
+  709▕         // message to include the bindings with SQL, which will make this exception a
+  710▕         // lot more helpful to the developer instead of just the database's errors.
+  711▕         catch (Exception $e) {
+➜ 712▕             throw new QueryException(
+  713▕                 $query, $this->prepareBindings($bindings), $e
+  714▕             );
+  715▕         }
+  716▕     }    
+  </pre>
+
+  Usar o collation <kbd>utf8mb4_unicode_ci</kbd>, que é uma opção comumente usada no Laravel para suportar uma 
+  ampla gama de caracteres, incluindo emojis. No entanto, o comprimento padrão das strings deve ser ajustado 
+  para <b class="red">191 caracteres</b> para evitar problemas com o índice.  
+  <br><br>
+  
+  Abra o arquivo <kbd>AppServiceProvider.php</kbd>
+  <pre>namespace App\Providers;
+
+  use Illuminate\Support\ServiceProvider;
+  use Illuminate\Support\Facades\Schema;
+  
+  class AppServiceProvider extends ServiceProvider{
+    public function boot(){<b class="red">
+      Schema::defaultStringLength(191);</b>
+    }
+
+    public function register(){
+      //
+    }
+  }</pre>
+
+  Verificar a Configuração no Arquivo <kbd>.env</kbd>
+  <pre>DB_CONNECTION=mysql
+  DB_HOST=127.0.0.1
+  DB_PORT=3306
+  DB_DATABASE=your_database_name
+  DB_USERNAME=your_username
+  DB_PASSWORD=your_password<b class="red">
+  DB_CHARSET=utf8mb4
+  DB_COLLATION=utf8mb4_unicode_ci</b></pre>
+
+<pre class="terminal">$ php artisan migrate:rollback
+$ php artisan migrate</pre>
+
+<hr>
 <h2>Failed opening required autoload.php</h2>
 <pre>
   PHP Warning:  require(/home/user/project-name/vendor/autoload.php):

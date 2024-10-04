@@ -1,13 +1,90 @@
 <ol>
-	<li><a href="#sdkmanager">SDKMANAGER</a></li>
+	<li><a href="#instalacao">INSTALACAO</a></li>
 	<li><a href="#sdkmanager">SDKMANAGER</a></li>
 	<li><a href="#historico">Historico</a></li>
 </ol>
 
+<!-- ------------------------------------------------------------------------- -->
 <hr>
+<a name="instalacao"></a>
+<h2>INSTALACAO</h2>
+  <h3>LINUX</h3>
 
-<a name="sdkmanager"></a>
-<h2>SDKMANAGER</h2>
-    <h3>LINUX</h3>
+  No <a href="https://developer.android.com/studio/archive?hl=pt-br">site oficial</a> você enconta TODAS versões do <a href="https://developer.android.com/studio/archive?hl=pt-br">ANDROID STUDIO</a><div class=""></div>
+  <br><br>
+  
+  <h4>Baixando</h4>
+    Fazer o download da versão desejada na <a href="http://developer.android.com/sdk/index.html#Other" target="blank">pagina oficial</a>.
+    <br><br>
 
-    <h3>WINDOWS</h3>
+    A versao <code>LINUX 2.3.2</code> está disponivel <a href="https://redirector.gvt1.com/edgedl/android/studio/ide-zips/2.3.2.0/android-studio-ide-162.3934792-linux.zip" style="font-weight: bold;">CLICANDO NESSE LINK</a> 
+    <br><br>
+
+  <h4>Descompactando</h4>
+    Descompacte o arquivo conforme o comando abaixo:
+    <pre class="terminal"> // SE FOR TAR
+    $ sudo tar zxvf android-studio-2020.3.1.24-linux.tar.gz -C /home/SEU-USUARIO/
+    // SE FOR ZIP
+    $ sudo unzip android-studio-2020.3.1.24-linux.zip -d /home/SEU-USUARIO/</pre>
+    Deverá ficar assim: <code>/home/SEU-USUARIO/android-studio</code>
+    <br><br>
+
+  <h4>Instalando</h4>
+    Torando o arquivo <code>studio.sh</code> executável para instalação.
+    <pre class="terminal">$ sudo chmod +x /home/teste/android-studio/bin/studio.sh
+    $ ./studio.sh</pre>
+
+    Uma janela pop-up será exibida solicitando as configurações de instalação. No meu caso específico, é uma instalação nova, então vou selecionar Não tenho uma versão anterior do Studio ou não quero importar minhas configurações.
+    <br><br>
+
+    Se você escolher importar as configurações de qualquer maneira, pode ser necessário fechar qualquer projeto antigo aberto para obter um SDK Android funcional.
+    <br><br>
+
+    <div class="centro center" id="divAndroidStudioInstalacao">
+      <div>
+          <img src="./images/android-studio/debian11-android-studio-instalacao-01.jpg" class="bp w40">
+          <img src="./images/android-studio/debian11-android-studio-instalacao-01-01.jpg" class="bp w40">
+      </div>
+      <div>
+          <img src="./images/android-studio/debian11-android-studio-instalacao-02.jpg" class="bp w40">
+          <img src="./images/android-studio/debian11-android-studio-instalacao-03.jpg" class="bp w40">
+      </div>
+      <div>
+          <img src="./images/android-studio/debian11-android-studio-instalacao-04.jpg" class="bp w40">
+          <img src="./images/android-studio/debian11-android-studio-instalacao-05.jpg" class="bp w40">
+      </div>
+      <div>
+          <img src="./images/android-studio/debian11-android-studio-instalacao-06.jpg" class="bp w40">
+          <img src="./images/android-studio/debian11-android-studio-instalacao-07.jpg" class="bp w40">        
+      </div>
+      <div>
+          <img src="./images/android-studio/debian11-android-studio-instalacao-08.jpg" class="bp w40">
+          <img src="./images/android-studio/debian11-android-studio-instalacao-09.jpg" class="bp w40">        
+      </div>
+      <div>
+          <img src="./images/android-studio/debian11-android-studio-instalacao-10.jpg" class="bp w40">        
+      </div>        
+    </div>
+
+    <br clear="all">
+    <br><a href="https://developer.android.com/studio/archive?hl=pt-br">SITE OFICIAL</a>
+    <br><a href="https://stackoverflow.com/questions/34556884/how-to-install-android-sdk-on-ubuntu">stackoverflow</a>
+    <br clear="all">
+
+
+  <h4>VARIAVEL - ANDROID_HOME</h4>
+    <pre class="terminal">$ cd 
+    $ sudo nano ~/.bash_profile</pre>
+    insira a variavel abaixo:
+    <pre>
+    export ANDROID_SDK_ROOT=/home/teste/Android/Sdk
+    export ANDROID_HOME=/home/teste/Android/Sdk
+    export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools</pre>
+
+    recarregue o arquivo
+    <pre class="terminal">$ source ~/.bash_profile</pre>
+
+    <a href="https://stackoverflow.com/questions/36198165/failed-to-find-android-home-environment-variable">stackoverflow</a><br>
+
+
+  <h3>WINDOWS</h3>

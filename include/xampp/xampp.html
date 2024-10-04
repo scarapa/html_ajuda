@@ -3,8 +3,10 @@
   <li><a href="#automatizacao">LAMPP - AUTOMATIZAÇÃO - ubuntu 20</a></li>
   <li><a href="#">ALTERAR PASTA HTDOCS</a></li>
   <li><a href="#">FTP SERVER</a></li>
+  <li><a href="#atualizar-php">LAMPP - UPDATE PHP</a></li>
   <li><a href="#localizar-php">LOCALIZAR PHP</a></li>
-  <li><a href="#erro-acesso-remoto-phpmyadmin">ERRO ACESSO REMOTO PHPMYADMIN</a></li>
+  <li><a href="#erro-apache-nao-starta">ERRO - APACHE NAO STARTA</a></li>
+  <li><a href="#erro-acesso-remoto-phpmyadmin">ERRO - ACESSO REMOTO PHPMYADMIN</a></li>
 </ol>
 
 
@@ -46,10 +48,12 @@ $ update-rc.d servidor.sh defaults 80</pre>
 
 <br><a href="https://askubuntu.com/questions/163685/403-forbidden-error-in-apache-with-document-root-on-an-ntfs-partition" target="_blank">askubuntu</a>
 
+
+<!-- ------------------------------------------------------------------- -->
 <hr>
 <h2>ALTERAR PASTA HTDOCS</h2>
 <div class="centro center">
-    <img src="./images/xampp_config_htdocs_01.jpg" class="bp w55">
+    <img src="./images/xampp/xampp_config_htdocs_01.jpg" class="bp w55">
 </div>
 
 <pre># DocumentRoot: The directory out of which you will serve your
@@ -70,26 +74,81 @@ https://www.youtube.com/watch?v=5RAauPZVfCU
 
 <!-- ------------------------------------------------------------------- -->
 <hr>
+<a name="atualizar-php"></a>
+<h2>ATUALIZAR PHP</h2>
+Execute o seguinte comando para visualizar as informações do PHP:
+<pre class="terminal">$ php -i | grep 'php.ini'
+  PHP Warning:  Module "gd" is already loaded in Unknown on line 0
+  Configuration File (php.ini) Path => /etc/php/8.1/cli
+  Loaded Configuration File => /etc/php/8.1/cli/php.ini</pre>
+  <h3>Atualizar o repositório de pacotes</h3>
+  <pre class="terminal">$ sudo apt update
+$ sudo apt install software-properties-common
+$ sudo add-apt-repository ppa:ondrej/php
+$ sudo apt update</pre>
+
+Após adicionar o repositório, instale o PHP 8.2:
+<pre class="terminal">$ sudo apt install php8.2</pre>
+
+Instalar módulos adicionais do PHP 8.2
+<pre class="terminal">$ sudo apt install php8.2-cli php8.2-common php8.2-mysql php8.2-xml php8.2-curl php8.2-zip php8.2-gd php8.2-mbstring</pre>
+
+  <h3>Configurar o PHP 8.2 com Apache</h3>
+  Se você estiver utilizando o LAMP, precisará habilitar o PHP 8.2 para o Apache:
+  <pre class="terminal">
+  $ sudo a2dismod php8.1  # Desativa o PHP 8.1, se estiver ativado
+  $ sudo a2enmod php8.2   # Ativa o PHP 8.2</pre>
+
+  Após habilitar o PHP 8.2, reinicie o Apache para que as alterações entrem em vigor; caso ainda não esta apontando para a nova versao 
+  execute o seguinte comando para configurar a versão 8.2 como padrão:
+  <pre class="terminal">$ sudo update-alternatives --set php /usr/bin/php8.2</pre>
+
+<!-- ------------------------------------------------------------------- -->
+<hr>
 <a name="localizar-php"></a>
 <h2>LOCALIZAR PHP</h2>
 <pre class="terminal">$ whereis php</pre>
 
 <a href="https://stackoverflow.com/questions/64973675/vscode-php-validate-executablepath-after-insalled-xampp">stackoverflow</a>
 
+
+<!-- ------------------------------------------------------------------- -->
+<hr>
+<a name="erro-apache-nao-starta"></a>
+<h2>Apache Nao Starta</h2>
+
+<pre class="terminal">$ sudo /opt/lampp/lampp start
+  Starting XAMPP for Linux 8.2.12-0...
+  XAMPP: Starting Apache...fail.
+  XAMPP:  Another web server is already running.
+  XAMPP: Starting MySQL...ok.
+  XAMPP: Starting ProFTPD...ok.</pre>
+
+Verificando a porta 80:
+<pre class="terminal">$ sudo lsof -i :80
+  apache2 2709     root    4u  IPv6  41247      0t0  TCP *:http (LISTEN)
+  apache2 2710 www-data    4u  IPv6  41247      0t0  TCP *:http (LISTEN)
+  apache2 2711 www-data    4u  IPv6  41247      0t0  TCP *:http (LISTEN)
+  apache2 2712 www-data    4u  IPv6  41247      0t0  TCP *:http (LISTEN)
+  apache2 2713 www-data    4u  IPv6  41247      0t0  TCP *:http (LISTEN)
+  apache2 2714 www-data    4u  IPv6  41247      0t0  TCP *:http (LISTEN)</pre>
+
+estranhamente ja esta startado, portando vamos matar o servico:
+<pre class="terminal">$ sudo killall apache2</pre>
+
 <!-- ------------------------------------------------------------------- -->
 <hr>
 <a name="erro-acesso-remoto-phpmyadmin"></a>
 <h2>ERRO ACESSO REMOTO PHPMYADMIN</h2>
   <div class="w100 centro center">
-    <img src="./images/xampp-lampp-phpmyadmin-erro-acesso-remoto.jpg" class="bp w40">
+    <img src="./images/xampp/xampp-lampp-phpmyadmin-erro-acesso-remoto.jpg" class="bp w40">
   </div>
 
   <h3>Acessar o arquivo responsável pela configuracao</h3>
   <pre class="terminal">$ sudo nano /opt/lampp/etc/extra/httpd-xampp.conf</pre> 			
 
 A configuracao deverá ficar comentada a linha <span style="color:green">verde</span> e adicionada a linha <b style="color:Red">opcao em VERMELHA</b>
-<pre>
-Alias /phpmyadmin "/opt/lampp/phpmyadmin"
+<pre>Alias /phpmyadmin "/opt/lampp/phpmyadmin"
 
 # since XAMPP 1.4.3
 &lt;Directory "/opt/lampp/phpmyadmin"&gt;
@@ -108,3 +167,6 @@ Alias /phpmyadmin "/opt/lampp/phpmyadmin"
   </pre>
 <br><a href="https://stackoverflow.com/questions/27970344/httpd-xampp-conf-how-to-allow-access-to-an-external-ip-besides-localhost" target="_blank">stackoverflow</a>
 <br><a href="https://www.youtube.com/watch?v=Dq8TJYfwFRY" target="_blank">youtube</a>
+
+
+

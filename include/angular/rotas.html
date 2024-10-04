@@ -2,6 +2,7 @@
   <li><a href="#arquivo-rotas">ARQUIVO DE ROTAS</a></li>
   <li><a href="#importar-rotas">IMPORTAR ROTAS</a></li>
   <li><a href="#diretiva-navegacao">SETANDO DIRETIVA DE NAVEGACAO</a></li>
+  <li><a href="#destaque">DESTACANDO ROTA NO MENU SIDEBAR/NAVEGACAO</a></li>
 </ol>
 
 <!-- ------------------------------------------------ -->
@@ -75,3 +76,14 @@ export class AppModule { }</pre>
 &lt;router-outlet&gt;&lt;/router-outlet&gt;</b>
 &lt;app-footer&gt;&lt;/app-footer&gt;  
 </pre>
+
+
+<!-- ------------------------------------------------ -->
+<hr>
+<a name="destaque"></a>
+<h2>DESTACANDO ROTA NO MENU SIDEBAR/NAVEGACAO</h2>
+  <h3>SIMPLES</h3>
+  <pre>&lt;a class="nav-link" <b>routerLinkActive="active"</b> [routerLink]="['/produtos']"&gt;Produtos&lt;/a&gt;</pre>
+
+  <h3>COMPLEXA</h3>
+  <pre>&lt;a class="nav-link" <b>[routerLinkActiveOptions]="{ exact:true }"</b> [routerLink]="['/produtos']"&gt;Produtos&lt;/a&gt;</pre>
