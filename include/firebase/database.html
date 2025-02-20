@@ -1,0 +1,142 @@
+<style type="text/css">
+#tabelaResumo {border-collapse: collapse;border:2px solid black;border-radius: 15px;}
+#tabelaResumo th{padding: 2px 4px;border-bottom: 2px solid black;}
+#tabelaResumo td{padding: 2px 4px;}
+#tabelaResumo td{padding: 2px 4px;}
+table tbody tr:nth-child(even) { background:#eee; }
+</style>
+
+<ol>
+  <li>operadores</li>
+</ol>
+
+<a name=""></a>
+<h2>OPERADORES</h2>
+  <li>isEqualTo</li>
+  Retorna documentos onde o campo é exatamente igual ao valor informado.
+
+  <li>isGreaterThan</li>
+  Retorna documentos onde o campo é maior que o valor informado.
+  
+  <li>isGreaterThanOrEqualTo/li>
+  Retorna documentos onde o campo é maior ou igual ao valor informado.
+  
+  <li>isLessThan</li>
+  Retorna documentos onde o campo é menor que o valor informado.
+
+  <li>isLessThanOrEqualTo</li>
+  Retorna documentos onde o campo é menor ou igual ao valor informado.
+
+  <li>arrayContains</li>
+  Retorna documentos onde um campo array contém um valor específico.
+
+  <li>arrayContainsAny</li>
+  Retorna documentos onde um campo array contém qualquer valor de uma lista.
+
+  <li>whereIn</li>
+  Retorna documentos onde o campo é igual a qualquer um dos valores de uma lista.
+
+  <li>whereNotIn</li>
+  Retorna documentos onde o campo não é igual a nenhum dos valores de uma lista.  
+
+  <li>isNull</li>
+  Retorna documentos onde o campo é nulo.
+  <br><br>
+
+  Abaixo o exemplo de implementação de um metodo <b>findWhere()</b> na classe <b>FirebaseHelper</b>; onde é possivel enviar por parametro um lista contendo o campo, operador e o valor 
+<pre>static Future&lt;List&lt;Map&lt;String, dynamic&gt;&gt;&gt; findWhere(String collection, String email, List&lt;Map&lt;String, dynamic&gt;&gt; where) async {
+  
+  List&lt;Map&lt;String, dynamic&gt;&gt; _lista = [];
+  FirebaseFirestore db = await FirebaseDatabaseHelper.get();
+  
+  try {
+    // Inicializando a consulta
+    Query query = db.collection(collection).doc(email).collection('subcolecao');
+  
+    // Aplicando as condições do 'where'
+    for (var condition in where) {
+      if (condition.containsKey('field') && condition.containsKey('operator') && condition.containsKey('value')) {
+        String field = condition['field'];
+        String operator = condition['operator'];
+        dynamic value = condition['value'];
+    
+        switch (operator) {
+        case '==':
+          query = query.where(field, isEqualTo: value);
+          break;
+        case '&gt;':
+          query = query.where(field, isGreaterThan: value);
+          break;
+        case '&gt;=':
+          query = query.where(field, isGreaterThanOrEqualTo: value);
+          break;
+        case '&lt;':
+          query = query.where(field, isLessThan: value);
+          break;
+        case '&lt;=':
+          query = query.where(field, isLessThanOrEqualTo: value);
+          break;
+        case 'array-contains':
+          query = query.where(field, arrayContains: value);
+          break;
+        case 'array-contains-any':
+          query = query.where(field, arrayContainsAny: value);
+          break;
+        case 'in':
+          query = query.where(field, whereIn: value);
+          break;
+        case 'not-in':
+          query = query.where(field, whereNotIn: value);
+          break;
+        case 'isNull':
+          query = query.where(field, isNull: value);
+          break;
+        default:
+          print("Operador não suportado: $operator");
+          break;
+        }
+      } else {
+        print("Condição inválida: $condition");
+      }
+    }
+  
+    // Executando a consulta
+    QuerySnapshot registros = await query.get();
+    for (var doc in registros.docs) {
+      _lista.add(doc.data() as Map&lt;String, dynamic&gt;);
+    }
+    return _lista;
+  } catch (e) {
+    print("ERRO FIREBASE: $e");
+    throw e;
+  }
+}	</pre>
+
+<kbd>OBSERVAÇÃO</kbd><br>
+No Firebase Firestore, infelizmente não existe um operador LIKE nativo como no SQL. 😕 Mas tem algumas alternativas pra conseguir algo semelhante!<br><br>
+Se você quer buscar por strings que começam com determinado texto, pode usar um intervalo com esses operadores.<br>
+<pre>Query query = db.collection(collection)
+  .where('nome', isGreaterThanOrEqualTo: 'jo')
+  .where('nome', isLessThanOrEqualTo: 'jo\uf8ff'); // O caractere especial é o truque!</pre>
+
+✅ Isso retorna todos os documentos onde o campo nome começa com jo.<br>
+⚠️ Essa técnica funciona apenas para buscas por prefixo, não no meio ou no final da string.
+
+<h3>Resumo prático:</h3>
+<table id="tabelaResumo">
+  <thead>
+    <tr><th>Operador</th><th>Descrição</th><th>Exemplo</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>isEqualTo</td><td>Iguais ao valor</td><td>where('nome', isEqualTo: 'João')</td></tr>
+    <tr><td>isGreaterThan</td><td>Maior que o valor</td><td>where('idade', isGreaterThan: 18)</td></tr>
+    <tr><td>isGreaterThanOrEqualTo</td><td>Maior ou igual ao valor</td><td>where('idade', isGreaterThanOrEqualTo: 18)</td></tr>
+    <tr><td>isLessThan</td><td>Menor que o valor</td><td>where('idade', isLessThan: 18)</td></tr>
+    <tr><td>isLessThanOrEqualTo</td><td>Menor ou igual ao valor</td><td>where('idade', isLessThanOrEqualTo: 18)</td></tr>
+    <tr><td>arrayContains</td><td>Contém o valor em um array</td><td>where('interesses', arrayContains: 'futebol')</td></tr>
+    <tr><td>arrayContainsAny</td><td>Contém qualquer valor de uma lista</td><td>where('interesses', arrayContainsAny: ['futebol', 'música'])</td></tr>
+    <tr><td>whereIn</td><td>Iguais a qualquer valor de uma lista</td><td>where('status', whereIn: ['ativo', 'pendente'])</td></tr>
+    <tr><td>whereNotIn</td><td>Diferente de todos os valores da lista</td><td>where('status', whereNotIn: ['cancelado'])</td></tr>
+    <tr><td>isNull</td><td>Valor nulo</td><td>where('telefone', isNull: true)</td></tr>
+  </tbody>
+</table>
