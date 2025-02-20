@@ -8,6 +8,7 @@
     <li><a href="#adb-nao-reconhecido">ADB não é reconhecido</a></li>
     <li><a href="#adb_sem_permissao">ADB sem permissao</a></li>
     <li><a href="#adb_sem_devices">ADB NAO LISTA DEVICE</a></li>
+    <li><a href="#adb_conecta_via_wifi">ADB NAO CONECTA VIA WIFI</a></li>	
 </ol>
 
 <!-- ------------------------------------------------------------------- -->
@@ -185,3 +186,20 @@ $ adb start-server;
 $ adb devices  </pre>
 
 <a href="https://stackoverflow.com/questions/46128913/list-of-devices-attached-is-empty-on-ubuntu-16-04-using-adb-devices" target="_blank">stackoverflow</a>
+
+
+
+<!-- ------------------------------------------------------------------- -->
+<hr>
+<a name="adb_conecta_via_wifi"></a>
+<h2>AADB NAO CONECTA VIA WIFI</h2>
+Apos executar o comando abaixo, terminal retorna o seguinte erro
+<pre class="terminal">D:\Sdk\platform-tools\adb.exe connect 192.168.0.104:5555
+cannot connect to 192.168.0.104:5555: Uma operação de soquete foi tentada em uma rede inacessível. (10051)</pre>
+
+uma das causa possiveis pode ser que o dispositivo e a estacao de trabalho estejam em redes wi-fi DISTINTAS, necessario que estejam na mesma;
+caso o erro persista, mata o servico e restar.
+<pre class="terminal">D:\Sdk\platform-tools\adb.exe disconnect
+D:\Sdk\platform-tools\adb.exe kill-server</pre>
+
+<pre class="terminal">D:\Sdk\platform-tools\adb.exe start-server</pre>
