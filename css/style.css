@@ -42,6 +42,7 @@ fieldset.title { padding: 1em; }
 	border-radius: 5px;
 	border: 1px solid white;
 }
+pre > .comenta,pre > .comentario, pre > .comentario{color:green;font-weight: bold;}
 
 .bold{font-weight: bold}
 .red{color:#c7254e;}
