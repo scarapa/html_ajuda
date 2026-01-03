@@ -1,0 +1,149 @@
+<style type="text/css">
+  ol.listagem > li  {
+    list-style-type: decimal;
+    margin-left: 20px;
+    font-size: 70%;
+  }
+  .red {
+    color: #c7254e;
+  }
+</style>
+
+<ol>
+    <li><a href="#config-pasta-htdocs">Configuracao PASTA HTDOCS</a></li>
+    <li><a href="#config-laravel">Configuracao LARAVEL</a></li>
+</ol>
+
+<!-- --------------------------------------------------------------------- -->
+<hr>
+<a name="config-pasta-htdocs"></a>
+<h2>CONFIGURACAO PASTA HTDOCS</h2>
+Configurando para deixar a pasta <b>www/htdocs</b> em outro pasta, em outro disco('D:\projetos\php').
+<br><br>
+  
+  <h3>Pare o servidor Apache.</h3>
+  
+  <h3>httpd.conf</h3>
+  Vá até a pasta de instalação do Wampp64 (geralmente <b>C:\wampp64\bin\apache\apacheX.X.X\conf</b>) e abra o arquivo httpd.conf com um editor de texto (como o Notepad++).<br><br>
+  Procure pela linha que começa com DocumentRoot (geralmente na linha 215) e altere o caminho para a nova pasta desejada. Por exemplo:
+  <pre>
+  DocumentRoot "<b class="red">d:/projetos/php/</b>"
+  &lt;Directory "<b class="red">d:/projetos/php/</b>"&gt;
+  Options +Indexes +FollowSymLinks -Multiviews
+  AllowOverride all
+  Require all granted
+  &lt;/Directory&gt;</pre>
+  
+  <h3>httpd-vhosts.conf</h3>
+  comentar todo o conteudo do arquivo <b>httpd-vhosts.conf</b> que fica na pasta <b>C:\wampp64\bin\apache\apacheX.X.X\conf\extra</b>, para evitar conflitos.
+
+<br clear="all">
+<br clear="all">
+
+<!-- --------------------------------------------------------------------- -->
+<hr>
+<a name="config-laravel"></a>
+<h2>CONFIGURACAO PARA PROJETOS LARAVEL</h2>
+<kbd>Entendendo a solução :</kbd>
+Atualmente tenho varios projetos php que estao dispostos nos caminhos abaixos:
+
+<ol class="listagem">
+  <li>D:\projetos\php\cep_laravel</li>
+  <li>D:\projetos\php\padel_laravel</li>
+  <li>D:\projetos\php\parkflow-laravel-backend</li>
+  <li>D:\projetos\php\futebol_laravel</li>
+</ol>
+
+e como tenho o wampp64 instalado , acesso aos projetos localmente da seguinte forma:
+<ol class="listagem">
+  <li>http://127.0.0.1/cep_laravel/</li>
+  <li>http://127.0.0.1/padel_laravel/</li>
+  <li>http://127.0.0.1/parkflow-laravel-backend/</li>
+  <li>http://127.0.0.1/futebol_laravel/</li>
+</ol>
+
+mas eu desejo mudar o caminho desses projetos pondo todos dentro de uma pasta 'laravel' deixando da seguinte forma:
+<ol class="listagem">
+  <li>D:\projetos\php\<b class="red">laravel</b>\cep</li>
+  <li>D:\projetos\php\<b class="red">laravel</b>\padel</li>
+  <li>D:\projetos\php\<b class="red">laravel</b>\parkflow</li>
+  <li>D:\projetos\php\<b class="red">laravel</b>\futebol</li>
+</ol>
+
+entretanto quero continuar acessando quase da mesma forma:
+<ol class="listagem">
+  <li>http://127.0.0.1/cep/</li>
+  <li>http://127.0.0.1/padel/</li>
+  <li>http://127.0.0.1/parkflow/</li>
+  <li>http://127.0.0.1/futebol/</li>
+</ol>
+
+Mas para isso preciso configurar o seguintes arquivos no Wampp64; como referencia usarei o projeto '<b class="red">cep</b>'; mas isso precisa ser feitos em TODOS os projetos que estao dentro da pasta '<b class="red">laravel</b>'.
+<ol class="listagem">
+  <li>wampp64\bin\apache\apacheX.X.X\conf\httpd.conf</li>
+  <li>wampp64\bin\apache\apacheX.X.X\conf\extra\httpd-laravel.conf</li>
+  <li>projetos\php\laravel\<b>cep</b>\.htaccess</li>
+  <li>projetos\php\laravel\<b>cep</b>\public\.htaccess</li>
+</ol>
+
+<h3>httpd.conf</h3>
+inclua o arquivo de configuração do laravel, adicionando a linha acima do documentRoot:
+<pre><span class="comenta"># PROJETOS LARAVEL - PRECISA ESTAR ANTES DO DOCUMENTROOT</span>
+<b>Include conf/extra/httpd-laravel.conf</b>
+...
+DocumentRoot "d:/projetos/php/"
+&lt;Directory "d:/projetos/php/"&gt;
+	Options +Indexes +FollowSymLinks -Multiviews
+    AllowOverride all
+    Require all granted
+&lt;/Directory&gt;</pre>
+
+<h3>httpd-laravel.conf</h3>
+Crie o arquivo '<b>httpd-laravel.conf</b>' na pasta '<b>conf/extra</b>'; replique o conteudo abaixo, adaptando os paths para cada projeto laravel que voce tiver:
+<pre><span class="comenta"># ======================================================
+# Reservar paths antes do DocumentRoot
+# ======================================================</span>
+
+Alias /cep "D:/projetos/php/laravel/cep/public"
+&lt;Directory "D:/projetos/php/laravel/cep/public"&gt;
+    Options FollowSymLinks
+    AllowOverride All
+    Require all granted
+&lt;/Directory&gt;</pre>
+
+<h3>projetos\php\laravel\<b>cep</b>\.htaccess</h3>
+COMENTE ou DELETE esse arquivo '.htaccess' que esta na raiz do projeto laravel (na pasta 'cep').
+
+<h3>projetos\php\laravel\<b>cep</b>\public\.htaccess</h3>
+No arquivo '.htaccess' que esta dentro da pasta 'public', copie e substitua todo o conteudo pelo conteudo abaixo:
+<pre>&lt;IfModule mod_rewrite.c&gt;
+    &lt;IfModule mod_negotiation.c&gt;
+        Options -MultiViews -Indexes
+    &lt;/IfModule&gt;
+
+    RewriteEngine On<b class="red">
+    RewriteBase /cep/</b>
+
+    # NÃO REESCREVER ARQUIVOS PHP EXISTENTES
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule \.php$ - [L]
+
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Handle X-XSRF-Token Header
+    RewriteCond %{HTTP:x-xsrf-token} .
+    RewriteRule .* - [E=HTTP_X_XSRF_TOKEN:%{HTTP:X-XSRF-Token}]
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # Send Requests To Laravel Front Controller
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+&lt;/IfModule&gt;</pre>
+Necessario alterar a linha 7: '<b class="red">RewriteBase /cep/</b>' para o nome do projeto que voce estiver configurando.
