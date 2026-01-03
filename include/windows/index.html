@@ -1,0 +1,81 @@
+<ol>
+    <li>Comandos secretos</li>
+    <li>Otimização</li>
+    <li>Atualizacao automatica</li>
+    
+    
+</ol>
+
+<!-- --------------------------------------------------------------------- -->
+<hr>
+<a name="comandos_secretos"></a>
+<h2>COMANDOS SECRETOS</h2>
+<h3>Remoção de programas inuteis</h3>
+Softwares e pastas ocultas no Windows
+<pre>shell:appsfolder</pre>
+
+Software e arquivos abertos recentes
+<pre>shell:recent</pre>
+
+Software de inicialização do Windows
+<pre>shell:startup</pre>
+
+<!-- --------------------------------------------------------------------- -->
+<hr>
+<a name="otimizacao"></a>
+<h2>OTIMIZAÇÃO</h2>
+  <h3>Liberar espaço em disco</h3>
+  <pre>temp</pre>
+  <pre>%temp%</pre>
+  
+  <h3>Desativar as IAs</h3>
+  Abrir o power shell como administrador e executar os comandos:
+  <pre>&([scriptblock]::Create((irm "https://raw.githubusercontent.com/zoicware/RemoveWindowsAI/main/RemoveWindowsAi.ps1")))</pre>
+
+  Irá abrir essa janela:
+  <div class="centro w100">
+    <img src="./images/windows-remove-ai-01.jpg" class="bp w50">
+  </div>
+  <a href="https://www.instagram.com/reel/DSqKIB-CVLb/?igsh=b3Eybm4yeXI4YWdj" target="_blank">Vídeo de como usar</a>
+  
+  <!-- <pre>Get-AppxPackage *Microsoft.ZuneMusic* | Remove-AppxPackage</pre>
+  <pre>Get-AppxPackage *Microsoft.ZuneVideo* | Remove-AppxPackage</pre>
+  <pre>Get-AppxPackage *Microsoft.BingNews* | Remove-AppxPackage</pre>
+  <pre>Get-AppxPackage *Microsoft.BingWeather* | Remove-AppxPackage</pre>
+  <pre>Get-AppxPackage *Microsoft.BingSports* | Remove-AppxPackage</pre>
+  <pre>Get-AppxPackage *Microsoft.BingFinance* | Remove-AppxPackage</pre>
+  <pre>Get-AppxPackage *Microsoft.GetHelp* | Remove-AppxPackage</pre>
+  <pre>Get-AppxPackage *Microsoft.Getstarted* | Remove-AppxPackage</pre>
+  <pre>Get-AppxPackage *Microsoft.Microsoft3DViewer* | Remove-AppxPackage</pre>
+  <pre>Get-AppxPackage *Microsoft.MicrosoftOfficeHub* | Remove-AppxPackage</pre>
+  <pre>Get-AppxPackage *Microsoft.MicrosoftSolitaireCollection* | Remove-AppxPackage</pre>
+  <pre>Get-AppxPackage *Microsoft.MicrosoftStickyNotes* | Remove-AppxPackage</pre>
+  <pre>Get-AppxPackage *Microsoft.MixedReality.Portal* | Remove-AppxPackage</pre>
+  <pre>Get-AppxPackage *Microsoft.Office.OneNote* | Remove-AppxPackage</pre>
+  <pre>Get-AppxPackage *Microsoft.People* | Remove-AppxPackage</pre>
+  <pre>Get-AppxPackage *Microsoft.SkypeApp* | Remove-AppxPackage</pre>
+  <pre>Get-AppxPackage *Microsoft.Wallet* | Remove-AppxPackage</pre>
+  <pre>Get-AppxPackage *Microsoft.WindowsAlarms* | Remove-AppxPackage</pre>
+  <pre>Get-AppxPackage *Microsoft.WindowsCalculator* | Remove-AppxPackage</pre>
+  <pre>Get-AppxPackage *Microsoft.WindowsCamera* | Remove-AppxPackage</pre>
+  <pre>Get-AppxPackage *Microsoft.WindowsMaps* | Remove-AppxPackage</pre>
+  <pre>Get-AppxPackage *Microsoft.WindowsPhone* | Remove-AppxPackage</pre>
+  <pre>Get-AppxPackage *Microsoft.WindowsSoundRecorder* | Remove-AppxPackage</pre>
+  <pre>Get-AppxPackage *Microsoft.WindowsStore* | Remove-AppxPackage</pre>
+  <pre>Get-AppxPackage *Microsoft.XboxApp* | Remove-AppxPackage</pre>
+  <pre>Get-AppxPackage *Microsoft.XboxGameCallableUI* | Remove-AppxPackage</pre>  
+  <pre>Get-AppxPackage *Microsoft.XboxIdentityProvider* | Remove-AppxPackage</pre>
+  <pre>Get-AppxPackage *Microsoft.YourPhone* | Remove-AppxPackage</pre>
+  <pre>Get-AppxPackage *Microsoft.ZuneMusic* | Remove-AppxPackage</pre>
+  <pre>Get-AppxPackage *Microsoft.ZuneVideo* | Remove-AppxPackage </pre> -->
+
+
+<!-- --------------------------------------------------------------------- -->
+<hr>
+<a name="atualizacao-automatica"></a>
+<h2>ATUALIZACAO AUTOMATICA</h2>
+  Atualiza todos os programas instalados via winget
+  <pre>winget upgrade</pre>
+
+  incluindo os drivers
+  <pre>winget upgrade --all</pre>
