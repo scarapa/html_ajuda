@@ -1,0 +1,58 @@
+<ol>
+  <li><a href="#configuracao">CONFIGURACAO</a></li>
+  <li><a href="#inicializacao">INICIALIZACAO</a></li>
+  <li><a href="#erros">ERROS</a></li>
+</ol>
+
+<!-- --------------------------------------------------------------------- -->
+<hr>
+<a name="configuracao"></a>
+<h2>CONFIGURACAO</h2>
+    <h3>ARMAZENAMENTO</h3>
+    Os projetos estao armazenados em outro disco, para isso precisamos montar a particao 
+    <pre class="terminal">#desmontar particao, caso esteja montada
+$ sudo umount /dev/sdb1
+
+#levantar montagem de disco no padrao NTFS
+$ sudo ntfs-3g /dev/sdb1 /media/drive</pre>
+<br><br>
+
+    <h3>APONTAMENTO</h3>
+    precisamos apontar no lampp para a nova pasta onde estao os projetos, necessario abrir o arquivo de configuracao.
+    <pre class="terminal">$ sudo nano /opt/lampp/etc/httpd.conf</pre>
+    procurar pela linha <code>DocumentRoot "/opt/lampp/htdocs"</code>
+    e alterar para o novo caminho, no meu caso <code>/media/drive/www</code>
+    <pre>
+DocumentRoot "/media/drive/www"
+&lt;Directory "/media/drive/www"&gt;
+    Options Indexes FollowSymLinks ExecCGI Includes
+    AllowOverride All
+    Require all granted
+&lt;/Directory&gt;</pre>
+
+  <h3>SERVICO</h3>
+  para levantar o lampp, basta executar o comando:
+  <pre class="terminal">$ sudo /opt/lampp/lampp start</pre>
+
+<!-- --------------------------------------------------------------------- -->
+<hr>
+<a name="inicializacao"></a>
+<h2>INICIALIZACAO</h2>
+  Para inicializacao CORRETA de tudo basta seguir os passos:
+  <pre class="terminal">#montar particao
+$ sudo ntfs-3g /dev/sdb1 /media/drive</pre>
+
+  <pre class="terminal">#iniciar lampp  
+$ sudo /opt/lampp/lampp start</pre>
+<br><br>
+
+<!-- --------------------------------------------------------------------- -->
+<hr>
+<a name="erros"></a>
+<h2>ERROS</h2>
+  <h3>Error 403</h3>
+  <div class="centro w100">
+    <img src="./images/lampp/error-403-01.jpg" class="bp w50">
+  </div>
+  Fiz um milhao de coisas, mas no fim; resetei toda a configuracao orientada pelas IAs e voltei ao padrao mencionado acima; e funcionou.
+
