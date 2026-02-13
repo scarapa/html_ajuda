@@ -1,0 +1,52 @@
+O Tinker é uma ferramenta de linha de comando poderosa e interativa (um REPL, ou Loop de Leitura-Avaliação-Impressão) que permite aos desenvolvedores interagir com toda a sua aplicação Laravel em tempo real.
+<br clear="all">
+Desenvolvido pelo pacote PsySH, ele está incluído em todos os novos projetos Laravel por padrão.
+<br clear="all"><br clear="all">
+
+<span class="fa-2x">Como Acessar o Tinker</span>
+<br clear="all">
+
+Para iniciar o Tinker, você pode usar o Artisan, a interface de linha de comando do Laravel. Basta executar o seguinte comando no terminal, dentro do diretório do seu projeto Laravel:
+<pre class="terminal">$ php artisan tinker</pre>
+
+Vamos supor que eu tenha essa classe abaixo:
+<pre>class ParkModel extends Model {
+  
+  use HasFactory;
+
+  protected $table = 'parks';
+
+  public $timestamps = false;<span class="comentario">
+  // NECESSARIO PARA USAR O TICKER
+  // Se não tiver isso, o Laravel vai lançar erro de MassAssignmentException.</span>
+  protected $fillable = [
+    'uuid',
+    'id_user',
+    'ds_documento',
+    'ds_nome',
+    'ds_cep',
+    'id_cidade',
+    'ds_bairro',
+    'ds_endereco',
+    'ds_complemento',
+  ];
+
+  protected $hidden = [
+    'dt_created',
+    'dt_updated',
+    'dt_deleted',
+  ];
+}</pre>
+
+para inserir um novo registro na tabela parks, eu posso fazer assim:
+<pre class="terminal">App\Models\ParkModel::create([
+  'uuid'=>\Illuminate\Support\Str::uuid(),
+  'id_user'=> 2,
+  'ds_documento'=>'41625687000138',
+  'ds_nome'=>'Parada Certa',
+  'ds_cep' => '',
+  'id_cidade' =>4314407,
+  'ds_bairro' =>'centro',
+  'ds_endereco' =>'',
+  'ds_complemento'=>''
+]);</pre>
