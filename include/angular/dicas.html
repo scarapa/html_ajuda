@@ -1,7 +1,10 @@
 <ol>
-    <li><a href="#bootstrap">Bootstrap</a></li>
-    <li><a href="#common_module">CommonModule</a></li>
-    <li><a href="#"></a></li>
+  <li><a href="#bootstrap">Bootstrap</a></li>
+  <li><a href="#common_module">CommonModule</a></li>
+  <li><a href="#alterar-tipo-arquivo-estilos">alterar tipo de arquivo de estilos</a></li>
+  <li><a href="#gambiarra-erro-form">Gambiarra para detectar erro no form</a></li>
+  <li><a href="#indentificar-interacao-humana">IDENTIFICAR INTERACAO HUMANA</a></li>
+  <li><a href="#indentificar-outras-interacoe">IDENTIFICAR OUTRAS INTERACOES</a></li>
 </ol>
 
 
@@ -45,3 +48,187 @@ import { CommonModule } from '@angular/common';</b>
 export class HomeModule {
 
 }</pre>
+
+<!-- --------------------------------------------------------------------- -->
+<hr>
+<a name="alterar-tipo-arquivo-estilos"></a>
+<h2>alterar tipo de arquivo de estilos</h2>
+  <h3>Alterar o padrão para novos componentes</h3>
+Primeiro, informe ao Angular CLI que, a partir de agora, todo novo componente deve ser gerado com .scss. Execute este comando no terminal:
+<pre class="terminal">$ ng config schematics.@schematics/angular:component.styleext scss</pre>
+
+  <h3>Atualizar o arquivo angular.json</h3>
+Você precisa avisar ao Angular onde encontrar o arquivo de estilos globais (que você vai renomear em seguida). No seu angular.json, procure 
+pelas referências a <kbd>src/styles.css</kbd> e mude para <kbd>src/styles.scss.</kbd>
+<br><br>
+Geralmente existem dois lugares: em build e em test.  
+
+  <h3>Renomear os arquivos físico</h3>
+  Voce pode renomear todos os arquivos de uma vez (no Linux/macOS ou Git Bash), manualmente ou usar o comando abaixo:
+  <pre class="terminal">$ find src/ -name "*.css" -exec bash -c 'mv "$0" "${0%.css}.scss"' {} \;</pre>
+Após essas mudanças, pare o servidor (ng serve) e inicie-o novamente para que o Angular reconheça as novas extensões e o pré-processador SASS.
+
+  <h3>Atualizar as referências nos Componentes</h3>
+  Em cada arquivo .ts dos seus componentes, você precisará atualizar o metadado styleUrls (ou styleUrl nas versões mais recentes):
+  <pre class="typescript">
+  @Component({
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss' <span class="comentario">// Altere de .css para .scss</span>
+  })    
+  </pre>
+
+<!-- --------------------------------------------------------------------- -->
+<hr>
+<a name="gambiarra-erro-form"></a>
+<h2>Gambiarra para detectar erro no form</h2>
+<pre class=""><span class="comentario">
+# GAMBIARRA PARA IDENTIFICAR ERRO NO FORM</span>
+
+  console.log('=== FORMULÁRIO INVÁLIDO ===');
+  console.log('Status do form:', this.form.status);
+  console.log('Erros do form (validator customizado):', this.form.errors);
+  
+  Object.keys(this.form.controls).forEach(key => {
+    const control = this.form.get(key);
+    if (control && control.invalid) {
+      console.log(`Campo "${key}" está INVÁLIDO:`, {
+        value: control.value,
+        errors: control.errors,
+        status: control.status,
+        touched: control.touched,
+        dirty: control.dirty
+      });
+    }
+  });  
+</pre>
+
+
+<!-- --------------------------------------------------------------------- -->
+<hr>
+<a name="indentificar-interacao-humana"></a>
+<h2>IDENTIFICAR INTERACAO HUMANA</h2>
+<pre class="">import { Component, HostListener } from '@angular/core';
+
+@Component({
+  selector: 'app-human-interaction',
+  template: `
+    &lt;p&gt;Interações detectadas: {{interactionCount}}&lt;/p&gt;
+    &lt;button [disabled]="!humanInteracted"&gt;Enviar&lt;/button&gt;
+  `
+})
+
+export class HumanInteractionComponent {
+  interactionCount = 0;
+  humanInteracted = false;
+
+  private readonly INTERACTION_THRESHOLD = 5;
+  <span class="comentario">
+  // 🎯 Evento de movimento do mouse</span>
+  @HostListener('document:mousemove', ['$event'])
+  onMouseMove(event: MouseEvent) {
+    this.registerInteraction();
+  }
+  <span class="comentario">
+  // 🎯 Evento de clique com mouse</span>
+  @HostListener('document:click', ['$event'])
+  onClick(event: MouseEvent) {
+    this.registerInteraction();
+  }
+  <span class="comentario">
+  // 🎯 Eventos de toque (mobile)</span>
+  @HostListener('document:touchstart', ['$event'])
+  onTouchStart(event: TouchEvent) {
+    this.registerInteraction();
+  }
+
+  @HostListener('document:touchmove', ['$event'])
+  onTouchMove(event: TouchEvent) {
+    this.registerInteraction();
+  }
+
+  @HostListener('document:touchend', ['$event'])
+  onTouchEnd(event: TouchEvent) {
+    this.registerInteraction();
+  }
+<span class="comentario">
+  // 🎯 Evento de teclado</span>
+  @HostListener('document:keydown', ['$event'])
+  onKeyDown(event: KeyboardEvent) {
+    this.registerInteraction();
+  }
+
+  private registerInteraction() {
+    if (!this.humanInteracted) {
+      this.interactionCount++;
+      if (this.interactionCount &gt;= this.INTERACTION_THRESHOLD) {
+        this.humanInteracted = true;
+        console.log('✅ Interação humana detectada');
+      }
+    }
+  }
+}</pre>
+
+<!-- --------------------------------------------------------------------- -->
+<hr>
+<a name="indentificar-outras-interacoes"></a>
+<h2>IDENTIFICAR OUTRAS INTERACOES</h2>
+<pre class="">import { Component, OnInit, OnDestroy } from '@angular/core';
+
+@Component({
+  selector: 'app-signin-matricula',
+  templateUrl: './signin.matricula.component.html',
+  styleUrls: ['./signin.matricula.component.scss']
+})
+export class SigninMatriculaComponent implements OnInit, OnDestroy {
+  interacaoCount = 0;
+
+  private listeners: Array&lt;() =&gt; void&gt; = [];
+
+  ngOnInit() {<span class="comentario">
+    // Clique em qualquer lugar</span>
+    const clickListener = () =&gt; this.incrementarInteracao();
+    window.addEventListener('click', clickListener);
+<span class="comentario">
+    // Foco em qualquer input</span>
+    const focusListener = (e: Event) =&gt; {
+      if ((e.target as HTMLElement).tagName === 'INPUT') {
+        this.incrementarInteracao();
+      }
+    };
+    window.addEventListener('focusin', focusListener);
+<span class="comentario">
+    // Arrastar com mouse</span>
+    const mouseMoveListener = () =&gt; this.incrementarInteracao();
+    window.addEventListener('mousemove', mouseMoveListener);
+<span class="comentario">
+    // Scroll (desktop e mobile)</span>
+    const scrollListener = () =&gt; this.incrementarInteracao();
+    window.addEventListener('scroll', scrollListener);
+<span class="comentario">
+    // Touch (mobile)</span>
+    const touchListener = () =&gt; this.incrementarInteracao();
+    window.addEventListener('touchmove', touchListener);
+<span class="comentario">
+    // Salva para remover depois</span>
+    this.listeners = [
+      () =&gt; window.removeEventListener('click', clickListener),
+      () =&gt; window.removeEventListener('focusin', focusListener),
+      () =&gt; window.removeEventListener('mousemove', mouseMoveListener),
+      () =&gt; window.removeEventListener('scroll', scrollListener),
+      () =&gt; window.removeEventListener('touchmove', touchListener),
+    ];
+  }
+
+  ngOnDestroy() {<span class="comentario">
+    // Remove todos os listeners ao destruir o componente</span>
+    this.listeners.forEach(remove =&gt; remove());
+  }
+
+  incrementarInteracao() {
+    this.interacaoCount++;<span class="comentario">
+    // console.log('Interações:', this.interacaoCount);</span>
+  }
+}
+
+</pre>
